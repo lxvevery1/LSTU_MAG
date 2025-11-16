@@ -1,0 +1,8 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Раздел: Описания кейсов}{3}{section.1}%
+\contentsline {section}{\numberline {2}Раздел: Сравнительная таблица основных ОПФ}{5}{section.2}%
+\contentsline {section}{\numberline {3}Раздел: Рекомендация начинающему предпринимателю}{7}{section.3}%
+\contentsline {section}{\numberline {4}Раздел: Сравнительный анализ (таблицы по парам)}{8}{section.4}%
+\contentsline {section}{\numberline {5}Раздел: Кейс-стади: выбор ОПФ}{12}{section.5}%
+\contentsline {section}{\numberline {6}Раздел: Информационный анализ по ООО}{15}{section.6}%
+\contentsline {section}{\numberline {7}Тест}{18}{section.7}%

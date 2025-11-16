@@ -1,0 +1,7 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание, конкретизированное вариантом}{3}{section.1}%
+\contentsline {section}{\numberline {2}Описание исследуемых показателей}{4}{section.2}%
+\contentsline {section}{\numberline {3}Исходные данные}{6}{section.3}%
+\contentsline {section}{\numberline {4}Использованные программные средства}{6}{section.4}%
+\contentsline {section}{\numberline {5}Результаты расчёта: таблицы, графики}{7}{section.5}%
+\contentsline {section}{\numberline {6}Выводы}{9}{section.6}%

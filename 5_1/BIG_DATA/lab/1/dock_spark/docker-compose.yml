@@ -1,0 +1,40 @@
+services:
+  spark-master:
+    image: bitnami/spark:3.5.4 # отсюда загрузится изображение спарка
+    container_name: spark-master
+    environment:
+      - SPARK_MODE=master # версия нода
+# Отключаем ненужный (в ходе данной работы) функционал
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+      - SPARK_MASTER_HOST=spark-master # явно указываем имя мастера-хоста
+    ports: # используемые порты
+      - "8080:8080"
+      - "7077:7077"
+    networks:
+      - spark-net # network для работы с сетью (опционально)
+
+  spark-worker:
+    image: bitnami/spark:3.5.4
+    container_name: spark-worker
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2g
+      - SPARK_WORKER_WEBUI_PORT=8081
+    ports:
+      - "8081:8081"
+    depends_on:
+      - spark-master
+    networks:
+      - spark-net
+
+networks:
+  spark-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

@@ -1,0 +1,1307 @@
+2025/10/23 10:49:18 [notice] 1#1: using the "epoll" event method
+2025/10/23 10:49:18 [notice] 1#1: nginx/1.29.1
+2025/10/23 10:49:18 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 10:49:18 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 10:49:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 10:49:18 [notice] 1#1: start worker processes
+2025/10/23 10:49:18 [notice] 1#1: start worker process 30
+2025/10/23 10:49:18 [notice] 1#1: start worker process 31
+2025/10/23 10:49:18 [notice] 1#1: start worker process 32
+2025/10/23 10:49:18 [notice] 1#1: start worker process 33
+2025/10/23 10:49:18 [notice] 1#1: start worker process 34
+2025/10/23 10:49:18 [notice] 1#1: start worker process 35
+2025/10/23 10:49:18 [notice] 1#1: start worker process 36
+2025/10/23 10:49:18 [notice] 1#1: start worker process 37
+2025/10/23 10:49:18 [notice] 1#1: start worker process 38
+2025/10/23 10:49:18 [notice] 1#1: start worker process 39
+2025/10/23 10:49:18 [notice] 1#1: start worker process 40
+2025/10/23 10:49:18 [notice] 1#1: start worker process 41
+2025/10/23 10:49:18 [notice] 1#1: start worker process 42
+2025/10/23 10:49:18 [notice] 1#1: start worker process 43
+2025/10/23 10:49:18 [notice] 1#1: start worker process 44
+2025/10/23 10:49:18 [notice] 1#1: start worker process 45
+2025/10/23 10:56:37 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 10:56:37 [notice] 31#31: gracefully shutting down
+2025/10/23 10:56:37 [notice] 30#30: gracefully shutting down
+2025/10/23 10:56:37 [notice] 32#32: gracefully shutting down
+2025/10/23 10:56:37 [notice] 35#35: gracefully shutting down
+2025/10/23 10:56:37 [notice] 37#37: gracefully shutting down
+2025/10/23 10:56:37 [notice] 33#33: gracefully shutting down
+2025/10/23 10:56:37 [notice] 30#30: exiting
+2025/10/23 10:56:37 [notice] 31#31: exiting
+2025/10/23 10:56:37 [notice] 32#32: exiting
+2025/10/23 10:56:37 [notice] 37#37: exiting
+2025/10/23 10:56:37 [notice] 35#35: exiting
+2025/10/23 10:56:37 [notice] 33#33: exiting
+2025/10/23 10:56:37 [notice] 36#36: gracefully shutting down
+2025/10/23 10:56:37 [notice] 36#36: exiting
+2025/10/23 10:56:37 [notice] 34#34: gracefully shutting down
+2025/10/23 10:56:37 [notice] 34#34: exiting
+2025/10/23 10:56:37 [notice] 30#30: exit
+2025/10/23 10:56:37 [notice] 31#31: exit
+2025/10/23 10:56:37 [notice] 37#37: exit
+2025/10/23 10:56:37 [notice] 33#33: exit
+2025/10/23 10:56:37 [notice] 32#32: exit
+2025/10/23 10:56:37 [notice] 35#35: exit
+2025/10/23 10:56:37 [notice] 36#36: exit
+2025/10/23 10:56:37 [notice] 34#34: exit
+2025/10/23 10:56:37 [notice] 38#38: gracefully shutting down
+2025/10/23 10:56:37 [notice] 39#39: gracefully shutting down
+2025/10/23 10:56:37 [notice] 38#38: exiting
+2025/10/23 10:56:37 [notice] 39#39: exiting
+2025/10/23 10:56:37 [notice] 41#41: gracefully shutting down
+2025/10/23 10:56:37 [notice] 41#41: exiting
+2025/10/23 10:56:37 [notice] 38#38: exit
+2025/10/23 10:56:37 [notice] 39#39: exit
+2025/10/23 10:56:37 [notice] 41#41: exit
+2025/10/23 10:56:37 [notice] 44#44: gracefully shutting down
+2025/10/23 10:56:37 [notice] 42#42: gracefully shutting down
+2025/10/23 10:56:37 [notice] 44#44: exiting
+2025/10/23 10:56:37 [notice] 42#42: exiting
+2025/10/23 10:56:37 [notice] 43#43: gracefully shutting down
+2025/10/23 10:56:37 [notice] 43#43: exiting
+2025/10/23 10:56:37 [notice] 40#40: gracefully shutting down
+2025/10/23 10:56:37 [notice] 45#45: gracefully shutting down
+2025/10/23 10:56:37 [notice] 40#40: exiting
+2025/10/23 10:56:37 [notice] 45#45: exiting
+2025/10/23 10:56:37 [notice] 40#40: exit
+2025/10/23 10:56:37 [notice] 45#45: exit
+2025/10/23 10:56:37 [notice] 43#43: exit
+2025/10/23 10:56:37 [notice] 42#42: exit
+2025/10/23 10:56:37 [notice] 44#44: exit
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2025/10/23 10:56:37 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 10:56:37 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 10:56:37 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 10:56:37 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 10:56:37 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2025/10/23 10:56:37 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/23 10:56:37 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 42
+2025/10/23 10:56:37 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 10:56:37 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/23 10:56:37 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/23 10:56:37 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 10:56:37 [notice] 1#1: exit
+2025/10/23 10:56:45 [notice] 1#1: using the "epoll" event method
+2025/10/23 10:56:45 [notice] 1#1: nginx/1.29.1
+2025/10/23 10:56:45 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 10:56:45 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 10:56:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 10:56:45 [notice] 1#1: start worker processes
+2025/10/23 10:56:45 [notice] 1#1: start worker process 30
+2025/10/23 10:56:45 [notice] 1#1: start worker process 31
+2025/10/23 10:56:45 [notice] 1#1: start worker process 32
+2025/10/23 10:56:45 [notice] 1#1: start worker process 33
+2025/10/23 10:56:45 [notice] 1#1: start worker process 34
+2025/10/23 10:56:45 [notice] 1#1: start worker process 35
+2025/10/23 10:56:45 [notice] 1#1: start worker process 36
+2025/10/23 10:56:45 [notice] 1#1: start worker process 37
+2025/10/23 10:56:45 [notice] 1#1: start worker process 38
+2025/10/23 10:56:45 [notice] 1#1: start worker process 39
+2025/10/23 10:56:45 [notice] 1#1: start worker process 40
+2025/10/23 10:56:45 [notice] 1#1: start worker process 41
+2025/10/23 10:56:45 [notice] 1#1: start worker process 42
+2025/10/23 10:56:45 [notice] 1#1: start worker process 43
+2025/10/23 10:56:45 [notice] 1#1: start worker process 44
+2025/10/23 10:56:45 [notice] 1#1: start worker process 45
+2025/10/23 10:59:16 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 10:59:16 [notice] 30#30: gracefully shutting down
+2025/10/23 10:59:16 [notice] 31#31: gracefully shutting down
+2025/10/23 10:59:16 [notice] 32#32: gracefully shutting down
+2025/10/23 10:59:16 [notice] 33#33: gracefully shutting down
+2025/10/23 10:59:16 [notice] 36#36: gracefully shutting down
+2025/10/23 10:59:16 [notice] 31#31: exiting
+2025/10/23 10:59:16 [notice] 30#30: exiting
+2025/10/23 10:59:16 [notice] 34#34: gracefully shutting down
+2025/10/23 10:59:16 [notice] 35#35: gracefully shutting down
+2025/10/23 10:59:16 [notice] 34#34: exiting
+2025/10/23 10:59:16 [notice] 32#32: exiting
+2025/10/23 10:59:16 [notice] 35#35: exiting
+2025/10/23 10:59:16 [notice] 33#33: exiting
+2025/10/23 10:59:16 [notice] 37#37: gracefully shutting down
+2025/10/23 10:59:16 [notice] 37#37: exiting
+2025/10/23 10:59:16 [notice] 31#31: exit
+2025/10/23 10:59:16 [notice] 30#30: exit
+2025/10/23 10:59:16 [notice] 34#34: exit
+2025/10/23 10:59:16 [notice] 32#32: exit
+2025/10/23 10:59:16 [notice] 35#35: exit
+2025/10/23 10:59:16 [notice] 33#33: exit
+2025/10/23 10:59:16 [notice] 37#37: exit
+2025/10/23 10:59:16 [notice] 38#38: gracefully shutting down
+2025/10/23 10:59:16 [notice] 40#40: gracefully shutting down
+2025/10/23 10:59:16 [notice] 39#39: gracefully shutting down
+2025/10/23 10:59:16 [notice] 41#41: gracefully shutting down
+2025/10/23 10:59:16 [notice] 38#38: exiting
+2025/10/23 10:59:16 [notice] 42#42: gracefully shutting down
+2025/10/23 10:59:16 [notice] 43#43: gracefully shutting down
+2025/10/23 10:59:16 [notice] 40#40: exiting
+2025/10/23 10:59:16 [notice] 39#39: exiting
+2025/10/23 10:59:16 [notice] 41#41: exiting
+2025/10/23 10:59:16 [notice] 42#42: exiting
+2025/10/23 10:59:16 [notice] 36#36: exiting
+2025/10/23 10:59:16 [notice] 43#43: exiting
+2025/10/23 10:59:16 [notice] 40#40: exit
+2025/10/23 10:59:16 [notice] 38#38: exit
+2025/10/23 10:59:16 [notice] 39#39: exit
+2025/10/23 10:59:16 [notice] 41#41: exit
+2025/10/23 10:59:16 [notice] 42#42: exit
+2025/10/23 10:59:16 [notice] 43#43: exit
+2025/10/23 10:59:16 [notice] 36#36: exit
+2025/10/23 10:59:16 [notice] 44#44: gracefully shutting down
+2025/10/23 10:59:16 [notice] 45#45: gracefully shutting down
+2025/10/23 10:59:16 [notice] 44#44: exiting
+2025/10/23 10:59:16 [notice] 45#45: exiting
+2025/10/23 10:59:16 [notice] 44#44: exit
+2025/10/23 10:59:16 [notice] 45#45: exit
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 10:59:16 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 10:59:16 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 44
+2025/10/23 10:59:16 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 10:59:16 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 10:59:16 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/23 10:59:16 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 10:59:16 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 10:59:16 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 10:59:16 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 10:59:16 [notice] 1#1: exit
+2025/10/23 10:59:23 [notice] 1#1: using the "epoll" event method
+2025/10/23 10:59:23 [notice] 1#1: nginx/1.29.1
+2025/10/23 10:59:23 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 10:59:23 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 10:59:23 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 10:59:23 [notice] 1#1: start worker processes
+2025/10/23 10:59:23 [notice] 1#1: start worker process 30
+2025/10/23 10:59:23 [notice] 1#1: start worker process 31
+2025/10/23 10:59:23 [notice] 1#1: start worker process 32
+2025/10/23 10:59:23 [notice] 1#1: start worker process 33
+2025/10/23 10:59:23 [notice] 1#1: start worker process 34
+2025/10/23 10:59:23 [notice] 1#1: start worker process 35
+2025/10/23 10:59:23 [notice] 1#1: start worker process 36
+2025/10/23 10:59:23 [notice] 1#1: start worker process 37
+2025/10/23 10:59:23 [notice] 1#1: start worker process 38
+2025/10/23 10:59:23 [notice] 1#1: start worker process 39
+2025/10/23 10:59:23 [notice] 1#1: start worker process 40
+2025/10/23 10:59:23 [notice] 1#1: start worker process 41
+2025/10/23 10:59:23 [notice] 1#1: start worker process 42
+2025/10/23 10:59:23 [notice] 1#1: start worker process 43
+2025/10/23 10:59:23 [notice] 1#1: start worker process 44
+2025/10/23 10:59:23 [notice] 1#1: start worker process 45
+2025/10/23 11:01:38 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 11:01:38 [notice] 30#30: gracefully shutting down
+2025/10/23 11:01:38 [notice] 31#31: gracefully shutting down
+2025/10/23 11:01:38 [notice] 32#32: gracefully shutting down
+2025/10/23 11:01:38 [notice] 36#36: gracefully shutting down
+2025/10/23 11:01:38 [notice] 33#33: gracefully shutting down
+2025/10/23 11:01:38 [notice] 30#30: exiting
+2025/10/23 11:01:38 [notice] 31#31: exiting
+2025/10/23 11:01:38 [notice] 32#32: exiting
+2025/10/23 11:01:38 [notice] 36#36: exiting
+2025/10/23 11:01:38 [notice] 33#33: exiting
+2025/10/23 11:01:38 [notice] 34#34: gracefully shutting down
+2025/10/23 11:01:38 [notice] 34#34: exiting
+2025/10/23 11:01:38 [notice] 32#32: exit
+2025/10/23 11:01:38 [notice] 30#30: exit
+2025/10/23 11:01:38 [notice] 31#31: exit
+2025/10/23 11:01:38 [notice] 33#33: exit
+2025/10/23 11:01:38 [notice] 36#36: exit
+2025/10/23 11:01:38 [notice] 34#34: exit
+2025/10/23 11:01:38 [notice] 35#35: gracefully shutting down
+2025/10/23 11:01:38 [notice] 35#35: exiting
+2025/10/23 11:01:38 [notice] 38#38: gracefully shutting down
+2025/10/23 11:01:38 [notice] 39#39: gracefully shutting down
+2025/10/23 11:01:38 [notice] 37#37: gracefully shutting down
+2025/10/23 11:01:38 [notice] 38#38: exiting
+2025/10/23 11:01:38 [notice] 39#39: exiting
+2025/10/23 11:01:38 [notice] 37#37: exiting
+2025/10/23 11:01:38 [notice] 35#35: exit
+2025/10/23 11:01:38 [notice] 38#38: exit
+2025/10/23 11:01:38 [notice] 39#39: exit
+2025/10/23 11:01:38 [notice] 37#37: exit
+2025/10/23 11:01:38 [notice] 40#40: gracefully shutting down
+2025/10/23 11:01:38 [notice] 41#41: gracefully shutting down
+2025/10/23 11:01:38 [notice] 43#43: gracefully shutting down
+2025/10/23 11:01:38 [notice] 45#45: gracefully shutting down
+2025/10/23 11:01:38 [notice] 40#40: exiting
+2025/10/23 11:01:38 [notice] 41#41: exiting
+2025/10/23 11:01:38 [notice] 45#45: exiting
+2025/10/23 11:01:38 [notice] 43#43: exiting
+2025/10/23 11:01:38 [notice] 42#42: gracefully shutting down
+2025/10/23 11:01:38 [notice] 42#42: exiting
+2025/10/23 11:01:38 [notice] 40#40: exit
+2025/10/23 11:01:38 [notice] 45#45: exit
+2025/10/23 11:01:38 [notice] 43#43: exit
+2025/10/23 11:01:38 [notice] 41#41: exit
+2025/10/23 11:01:38 [notice] 42#42: exit
+2025/10/23 11:01:38 [notice] 44#44: gracefully shutting down
+2025/10/23 11:01:38 [notice] 44#44: exiting
+2025/10/23 11:01:38 [notice] 44#44: exit
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 42
+2025/10/23 11:01:38 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 11:01:38 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 11:01:38 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/23 11:01:38 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 11:01:38 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/23 11:01:38 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 11:01:38 [notice] 1#1: exit
+2025/10/23 11:01:45 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:01:45 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:01:45 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:01:45 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:01:45 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:01:45 [notice] 1#1: start worker processes
+2025/10/23 11:01:45 [notice] 1#1: start worker process 30
+2025/10/23 11:01:45 [notice] 1#1: start worker process 31
+2025/10/23 11:01:45 [notice] 1#1: start worker process 32
+2025/10/23 11:01:45 [notice] 1#1: start worker process 33
+2025/10/23 11:01:45 [notice] 1#1: start worker process 34
+2025/10/23 11:01:45 [notice] 1#1: start worker process 35
+2025/10/23 11:01:45 [notice] 1#1: start worker process 36
+2025/10/23 11:01:45 [notice] 1#1: start worker process 37
+2025/10/23 11:01:45 [notice] 1#1: start worker process 38
+2025/10/23 11:01:45 [notice] 1#1: start worker process 39
+2025/10/23 11:01:45 [notice] 1#1: start worker process 40
+2025/10/23 11:01:45 [notice] 1#1: start worker process 41
+2025/10/23 11:01:45 [notice] 1#1: start worker process 42
+2025/10/23 11:01:45 [notice] 1#1: start worker process 43
+2025/10/23 11:01:45 [notice] 1#1: start worker process 44
+2025/10/23 11:01:45 [notice] 1#1: start worker process 45
+2025/10/23 11:14:47 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:14:47 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:14:47 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:14:47 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:14:47 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:14:47 [notice] 1#1: start worker processes
+2025/10/23 11:14:47 [notice] 1#1: start worker process 30
+2025/10/23 11:14:47 [notice] 1#1: start worker process 31
+2025/10/23 11:14:47 [notice] 1#1: start worker process 32
+2025/10/23 11:14:47 [notice] 1#1: start worker process 33
+2025/10/23 11:14:47 [notice] 1#1: start worker process 34
+2025/10/23 11:14:47 [notice] 1#1: start worker process 35
+2025/10/23 11:14:47 [notice] 1#1: start worker process 36
+2025/10/23 11:14:47 [notice] 1#1: start worker process 37
+2025/10/23 11:14:47 [notice] 1#1: start worker process 38
+2025/10/23 11:14:47 [notice] 1#1: start worker process 39
+2025/10/23 11:14:47 [notice] 1#1: start worker process 40
+2025/10/23 11:14:47 [notice] 1#1: start worker process 41
+2025/10/23 11:14:47 [notice] 1#1: start worker process 42
+2025/10/23 11:14:47 [notice] 1#1: start worker process 43
+2025/10/23 11:14:47 [notice] 1#1: start worker process 44
+2025/10/23 11:14:47 [notice] 1#1: start worker process 45
+2025/10/23 11:36:16 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 11:36:16 [notice] 30#30: gracefully shutting down
+2025/10/23 11:36:16 [notice] 31#31: gracefully shutting down
+2025/10/23 11:36:16 [notice] 32#32: gracefully shutting down
+2025/10/23 11:36:16 [notice] 33#33: gracefully shutting down
+2025/10/23 11:36:16 [notice] 35#35: gracefully shutting down
+2025/10/23 11:36:16 [notice] 30#30: exiting
+2025/10/23 11:36:16 [notice] 31#31: exiting
+2025/10/23 11:36:16 [notice] 34#34: gracefully shutting down
+2025/10/23 11:36:16 [notice] 33#33: exiting
+2025/10/23 11:36:16 [notice] 32#32: exiting
+2025/10/23 11:36:16 [notice] 35#35: exiting
+2025/10/23 11:36:16 [notice] 34#34: exiting
+2025/10/23 11:36:16 [notice] 33#33: exit
+2025/10/23 11:36:16 [notice] 32#32: exit
+2025/10/23 11:36:16 [notice] 35#35: exit
+2025/10/23 11:36:16 [notice] 30#30: exit
+2025/10/23 11:36:16 [notice] 34#34: exit
+2025/10/23 11:36:16 [notice] 31#31: exit
+2025/10/23 11:36:16 [notice] 38#38: gracefully shutting down
+2025/10/23 11:36:16 [notice] 36#36: gracefully shutting down
+2025/10/23 11:36:16 [notice] 37#37: gracefully shutting down
+2025/10/23 11:36:16 [notice] 36#36: exiting
+2025/10/23 11:36:16 [notice] 38#38: exiting
+2025/10/23 11:36:16 [notice] 37#37: exiting
+2025/10/23 11:36:16 [notice] 37#37: exit
+2025/10/23 11:36:16 [notice] 38#38: exit
+2025/10/23 11:36:16 [notice] 36#36: exit
+2025/10/23 11:36:16 [notice] 41#41: gracefully shutting down
+2025/10/23 11:36:16 [notice] 40#40: gracefully shutting down
+2025/10/23 11:36:16 [notice] 39#39: gracefully shutting down
+2025/10/23 11:36:16 [notice] 43#43: gracefully shutting down
+2025/10/23 11:36:16 [notice] 41#41: exiting
+2025/10/23 11:36:16 [notice] 40#40: exiting
+2025/10/23 11:36:16 [notice] 39#39: exiting
+2025/10/23 11:36:16 [notice] 42#42: gracefully shutting down
+2025/10/23 11:36:16 [notice] 45#45: gracefully shutting down
+2025/10/23 11:36:16 [notice] 43#43: exiting
+2025/10/23 11:36:16 [notice] 42#42: exiting
+2025/10/23 11:36:16 [notice] 45#45: exiting
+2025/10/23 11:36:16 [notice] 44#44: gracefully shutting down
+2025/10/23 11:36:16 [notice] 44#44: exiting
+2025/10/23 11:36:16 [notice] 41#41: exit
+2025/10/23 11:36:16 [notice] 39#39: exit
+2025/10/23 11:36:16 [notice] 40#40: exit
+2025/10/23 11:36:16 [notice] 42#42: exit
+2025/10/23 11:36:16 [notice] 45#45: exit
+2025/10/23 11:36:16 [notice] 43#43: exit
+2025/10/23 11:36:16 [notice] 44#44: exit
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2025/10/23 11:36:16 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 11:36:16 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/23 11:36:16 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 11:36:16 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 42
+2025/10/23 11:36:16 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:36:16 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 11:36:16 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 11:36:16 [notice] 1#1: exit
+2025/10/23 11:36:26 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:36:26 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:36:26 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:36:26 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:36:26 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:36:26 [notice] 1#1: start worker processes
+2025/10/23 11:36:26 [notice] 1#1: start worker process 30
+2025/10/23 11:36:26 [notice] 1#1: start worker process 31
+2025/10/23 11:36:26 [notice] 1#1: start worker process 32
+2025/10/23 11:36:26 [notice] 1#1: start worker process 33
+2025/10/23 11:36:26 [notice] 1#1: start worker process 34
+2025/10/23 11:36:26 [notice] 1#1: start worker process 35
+2025/10/23 11:36:26 [notice] 1#1: start worker process 36
+2025/10/23 11:36:26 [notice] 1#1: start worker process 37
+2025/10/23 11:36:26 [notice] 1#1: start worker process 38
+2025/10/23 11:36:26 [notice] 1#1: start worker process 39
+2025/10/23 11:36:26 [notice] 1#1: start worker process 40
+2025/10/23 11:36:26 [notice] 1#1: start worker process 41
+2025/10/23 11:36:26 [notice] 1#1: start worker process 42
+2025/10/23 11:36:26 [notice] 1#1: start worker process 43
+2025/10/23 11:36:26 [notice] 1#1: start worker process 44
+2025/10/23 11:36:26 [notice] 1#1: start worker process 45
+2025/10/23 11:43:02 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 11:43:02 [notice] 32#32: gracefully shutting down
+2025/10/23 11:43:02 [notice] 30#30: gracefully shutting down
+2025/10/23 11:43:02 [notice] 34#34: gracefully shutting down
+2025/10/23 11:43:02 [notice] 35#35: gracefully shutting down
+2025/10/23 11:43:02 [notice] 33#33: gracefully shutting down
+2025/10/23 11:43:02 [notice] 31#31: gracefully shutting down
+2025/10/23 11:43:02 [notice] 36#36: gracefully shutting down
+2025/10/23 11:43:02 [notice] 32#32: exiting
+2025/10/23 11:43:02 [notice] 30#30: exiting
+2025/10/23 11:43:02 [notice] 34#34: exiting
+2025/10/23 11:43:02 [notice] 35#35: exiting
+2025/10/23 11:43:02 [notice] 33#33: exiting
+2025/10/23 11:43:02 [notice] 31#31: exiting
+2025/10/23 11:43:02 [notice] 36#36: exiting
+2025/10/23 11:43:02 [notice] 37#37: gracefully shutting down
+2025/10/23 11:43:02 [notice] 44#44: gracefully shutting down
+2025/10/23 11:43:02 [notice] 45#45: gracefully shutting down
+2025/10/23 11:43:02 [notice] 37#37: exiting
+2025/10/23 11:43:02 [notice] 44#44: exiting
+2025/10/23 11:43:02 [notice] 45#45: exiting
+2025/10/23 11:43:02 [notice] 33#33: exit
+2025/10/23 11:43:02 [notice] 32#32: exit
+2025/10/23 11:43:02 [notice] 34#34: exit
+2025/10/23 11:43:02 [notice] 35#35: exit
+2025/10/23 11:43:02 [notice] 31#31: exit
+2025/10/23 11:43:02 [notice] 30#30: exit
+2025/10/23 11:43:02 [notice] 36#36: exit
+2025/10/23 11:43:02 [notice] 44#44: exit
+2025/10/23 11:43:02 [notice] 37#37: exit
+2025/10/23 11:43:02 [notice] 45#45: exit
+2025/10/23 11:43:02 [notice] 38#38: gracefully shutting down
+2025/10/23 11:43:02 [notice] 39#39: gracefully shutting down
+2025/10/23 11:43:02 [notice] 40#40: gracefully shutting down
+2025/10/23 11:43:02 [notice] 38#38: exiting
+2025/10/23 11:43:02 [notice] 41#41: gracefully shutting down
+2025/10/23 11:43:02 [notice] 39#39: exiting
+2025/10/23 11:43:02 [notice] 40#40: exiting
+2025/10/23 11:43:02 [notice] 41#41: exiting
+2025/10/23 11:43:02 [notice] 39#39: exit
+2025/10/23 11:43:02 [notice] 38#38: exit
+2025/10/23 11:43:02 [notice] 40#40: exit
+2025/10/23 11:43:02 [notice] 41#41: exit
+2025/10/23 11:43:02 [notice] 42#42: gracefully shutting down
+2025/10/23 11:43:02 [notice] 42#42: exiting
+2025/10/23 11:43:02 [notice] 43#43: gracefully shutting down
+2025/10/23 11:43:02 [notice] 43#43: exiting
+2025/10/23 11:43:02 [notice] 43#43: exit
+2025/10/23 11:43:02 [notice] 42#42: exit
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/23 11:43:02 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2025/10/23 11:43:02 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 42
+2025/10/23 11:43:02 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 11:43:02 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 11:43:02 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 44
+2025/10/23 11:43:02 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 11:43:02 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 11:43:02 [notice] 1#1: exit
+2025/10/23 11:43:09 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:43:09 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:43:09 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:43:09 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:43:09 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:43:09 [notice] 1#1: start worker processes
+2025/10/23 11:43:09 [notice] 1#1: start worker process 30
+2025/10/23 11:43:09 [notice] 1#1: start worker process 31
+2025/10/23 11:43:09 [notice] 1#1: start worker process 32
+2025/10/23 11:43:09 [notice] 1#1: start worker process 33
+2025/10/23 11:43:09 [notice] 1#1: start worker process 34
+2025/10/23 11:43:09 [notice] 1#1: start worker process 35
+2025/10/23 11:43:09 [notice] 1#1: start worker process 36
+2025/10/23 11:43:09 [notice] 1#1: start worker process 37
+2025/10/23 11:43:09 [notice] 1#1: start worker process 38
+2025/10/23 11:43:09 [notice] 1#1: start worker process 39
+2025/10/23 11:43:09 [notice] 1#1: start worker process 40
+2025/10/23 11:43:09 [notice] 1#1: start worker process 41
+2025/10/23 11:43:09 [notice] 1#1: start worker process 42
+2025/10/23 11:43:09 [notice] 1#1: start worker process 43
+2025/10/23 11:43:09 [notice] 1#1: start worker process 44
+2025/10/23 11:43:09 [notice] 1#1: start worker process 45
+2025/10/23 11:44:57 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 11:44:57 [notice] 30#30: gracefully shutting down
+2025/10/23 11:44:57 [notice] 32#32: gracefully shutting down
+2025/10/23 11:44:57 [notice] 31#31: gracefully shutting down
+2025/10/23 11:44:57 [notice] 35#35: gracefully shutting down
+2025/10/23 11:44:57 [notice] 30#30: exiting
+2025/10/23 11:44:57 [notice] 33#33: gracefully shutting down
+2025/10/23 11:44:57 [notice] 32#32: exiting
+2025/10/23 11:44:57 [notice] 31#31: exiting
+2025/10/23 11:44:57 [notice] 35#35: exiting
+2025/10/23 11:44:57 [notice] 33#33: exiting
+2025/10/23 11:44:57 [notice] 34#34: gracefully shutting down
+2025/10/23 11:44:57 [notice] 37#37: gracefully shutting down
+2025/10/23 11:44:57 [notice] 36#36: gracefully shutting down
+2025/10/23 11:44:57 [notice] 45#45: gracefully shutting down
+2025/10/23 11:44:57 [notice] 44#44: gracefully shutting down
+2025/10/23 11:44:57 [notice] 34#34: exiting
+2025/10/23 11:44:57 [notice] 37#37: exiting
+2025/10/23 11:44:57 [notice] 45#45: exiting
+2025/10/23 11:44:57 [notice] 44#44: exiting
+2025/10/23 11:44:57 [notice] 36#36: exiting
+2025/10/23 11:44:57 [notice] 31#31: exit
+2025/10/23 11:44:57 [notice] 32#32: exit
+2025/10/23 11:44:57 [notice] 30#30: exit
+2025/10/23 11:44:57 [notice] 35#35: exit
+2025/10/23 11:44:57 [notice] 33#33: exit
+2025/10/23 11:44:57 [notice] 44#44: exit
+2025/10/23 11:44:57 [notice] 45#45: exit
+2025/10/23 11:44:57 [notice] 37#37: exit
+2025/10/23 11:44:57 [notice] 34#34: exit
+2025/10/23 11:44:57 [notice] 36#36: exit
+2025/10/23 11:44:57 [notice] 40#40: gracefully shutting down
+2025/10/23 11:44:57 [notice] 40#40: exiting
+2025/10/23 11:44:57 [notice] 38#38: gracefully shutting down
+2025/10/23 11:44:57 [notice] 41#41: gracefully shutting down
+2025/10/23 11:44:57 [notice] 38#38: exiting
+2025/10/23 11:44:57 [notice] 42#42: gracefully shutting down
+2025/10/23 11:44:57 [notice] 41#41: exiting
+2025/10/23 11:44:57 [notice] 42#42: exiting
+2025/10/23 11:44:57 [notice] 43#43: gracefully shutting down
+2025/10/23 11:44:57 [notice] 39#39: gracefully shutting down
+2025/10/23 11:44:57 [notice] 43#43: exiting
+2025/10/23 11:44:57 [notice] 39#39: exiting
+2025/10/23 11:44:57 [notice] 43#43: exit
+2025/10/23 11:44:57 [notice] 39#39: exit
+2025/10/23 11:44:57 [notice] 41#41: exit
+2025/10/23 11:44:57 [notice] 42#42: exit
+2025/10/23 11:44:57 [notice] 40#40: exit
+2025/10/23 11:44:57 [notice] 38#38: exit
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/23 11:44:57 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/23 11:44:57 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/23 11:44:57 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 44
+2025/10/23 11:44:57 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/23 11:44:57 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/23 11:44:57 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 11:44:57 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 11:44:57 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 11:44:57 [notice] 1#1: exit
+2025/10/23 11:45:30 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:45:30 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:45:30 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:45:30 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:45:30 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:45:30 [notice] 1#1: start worker processes
+2025/10/23 11:45:30 [notice] 1#1: start worker process 30
+2025/10/23 11:45:30 [notice] 1#1: start worker process 31
+2025/10/23 11:45:30 [notice] 1#1: start worker process 32
+2025/10/23 11:45:30 [notice] 1#1: start worker process 33
+2025/10/23 11:45:30 [notice] 1#1: start worker process 34
+2025/10/23 11:45:30 [notice] 1#1: start worker process 35
+2025/10/23 11:45:30 [notice] 1#1: start worker process 36
+2025/10/23 11:45:30 [notice] 1#1: start worker process 37
+2025/10/23 11:45:30 [notice] 1#1: start worker process 38
+2025/10/23 11:45:30 [notice] 1#1: start worker process 39
+2025/10/23 11:45:30 [notice] 1#1: start worker process 40
+2025/10/23 11:45:30 [notice] 1#1: start worker process 41
+2025/10/23 11:45:30 [notice] 1#1: start worker process 42
+2025/10/23 11:45:30 [notice] 1#1: start worker process 43
+2025/10/23 11:45:30 [notice] 1#1: start worker process 44
+2025/10/23 11:45:30 [notice] 1#1: start worker process 45
+2025/10/23 11:47:41 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 11:47:41 [notice] 31#31: gracefully shutting down
+2025/10/23 11:47:41 [notice] 32#32: gracefully shutting down
+2025/10/23 11:47:41 [notice] 33#33: gracefully shutting down
+2025/10/23 11:47:41 [notice] 30#30: gracefully shutting down
+2025/10/23 11:47:41 [notice] 34#34: gracefully shutting down
+2025/10/23 11:47:41 [notice] 35#35: gracefully shutting down
+2025/10/23 11:47:41 [notice] 39#39: gracefully shutting down
+2025/10/23 11:47:41 [notice] 37#37: gracefully shutting down
+2025/10/23 11:47:41 [notice] 40#40: gracefully shutting down
+2025/10/23 11:47:41 [notice] 38#38: gracefully shutting down
+2025/10/23 11:47:41 [notice] 31#31: exiting
+2025/10/23 11:47:41 [notice] 41#41: gracefully shutting down
+2025/10/23 11:47:41 [notice] 32#32: exiting
+2025/10/23 11:47:41 [notice] 33#33: exiting
+2025/10/23 11:47:41 [notice] 30#30: exiting
+2025/10/23 11:47:41 [notice] 43#43: gracefully shutting down
+2025/10/23 11:47:41 [notice] 34#34: exiting
+2025/10/23 11:47:41 [notice] 36#36: gracefully shutting down
+2025/10/23 11:47:41 [notice] 35#35: exiting
+2025/10/23 11:47:41 [notice] 39#39: exiting
+2025/10/23 11:47:41 [notice] 40#40: exiting
+2025/10/23 11:47:41 [notice] 37#37: exiting
+2025/10/23 11:47:41 [notice] 38#38: exiting
+2025/10/23 11:47:41 [notice] 41#41: exiting
+2025/10/23 11:47:41 [notice] 43#43: exiting
+2025/10/23 11:47:41 [notice] 36#36: exiting
+2025/10/23 11:47:41 [notice] 30#30: exit
+2025/10/23 11:47:41 [notice] 32#32: exit
+2025/10/23 11:47:41 [notice] 33#33: exit
+2025/10/23 11:47:41 [notice] 40#40: exit
+2025/10/23 11:47:41 [notice] 31#31: exit
+2025/10/23 11:47:41 [notice] 35#35: exit
+2025/10/23 11:47:41 [notice] 34#34: exit
+2025/10/23 11:47:41 [notice] 39#39: exit
+2025/10/23 11:47:41 [notice] 38#38: exit
+2025/10/23 11:47:41 [notice] 36#36: exit
+2025/10/23 11:47:41 [notice] 43#43: exit
+2025/10/23 11:47:41 [notice] 37#37: exit
+2025/10/23 11:47:41 [notice] 41#41: exit
+2025/10/23 11:47:41 [notice] 45#45: gracefully shutting down
+2025/10/23 11:47:41 [notice] 45#45: exiting
+2025/10/23 11:47:41 [notice] 44#44: gracefully shutting down
+2025/10/23 11:47:41 [notice] 42#42: gracefully shutting down
+2025/10/23 11:47:41 [notice] 44#44: exiting
+2025/10/23 11:47:41 [notice] 42#42: exiting
+2025/10/23 11:47:41 [notice] 44#44: exit
+2025/10/23 11:47:41 [notice] 42#42: exit
+2025/10/23 11:47:41 [notice] 45#45: exit
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 11:47:41 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/23 11:47:41 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 11:47:41 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/23 11:47:41 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 11:47:41 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 11:47:41 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2025/10/23 11:47:41 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 11:47:41 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 11:47:41 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 11:47:41 [notice] 1#1: exit
+2025/10/23 11:47:49 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:47:49 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:47:49 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:47:49 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:47:49 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:47:49 [notice] 1#1: start worker processes
+2025/10/23 11:47:49 [notice] 1#1: start worker process 30
+2025/10/23 11:47:49 [notice] 1#1: start worker process 31
+2025/10/23 11:47:49 [notice] 1#1: start worker process 32
+2025/10/23 11:47:49 [notice] 1#1: start worker process 33
+2025/10/23 11:47:49 [notice] 1#1: start worker process 34
+2025/10/23 11:47:49 [notice] 1#1: start worker process 35
+2025/10/23 11:47:49 [notice] 1#1: start worker process 36
+2025/10/23 11:47:49 [notice] 1#1: start worker process 37
+2025/10/23 11:47:49 [notice] 1#1: start worker process 38
+2025/10/23 11:47:49 [notice] 1#1: start worker process 39
+2025/10/23 11:47:49 [notice] 1#1: start worker process 40
+2025/10/23 11:47:49 [notice] 1#1: start worker process 41
+2025/10/23 11:47:49 [notice] 1#1: start worker process 42
+2025/10/23 11:47:49 [notice] 1#1: start worker process 43
+2025/10/23 11:47:49 [notice] 1#1: start worker process 44
+2025/10/23 11:47:49 [notice] 1#1: start worker process 45
+2025/10/23 11:49:23 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 11:49:23 [notice] 30#30: gracefully shutting down
+2025/10/23 11:49:23 [notice] 32#32: gracefully shutting down
+2025/10/23 11:49:23 [notice] 34#34: gracefully shutting down
+2025/10/23 11:49:23 [notice] 31#31: gracefully shutting down
+2025/10/23 11:49:23 [notice] 30#30: exiting
+2025/10/23 11:49:23 [notice] 38#38: gracefully shutting down
+2025/10/23 11:49:23 [notice] 37#37: gracefully shutting down
+2025/10/23 11:49:23 [notice] 36#36: gracefully shutting down
+2025/10/23 11:49:23 [notice] 32#32: exiting
+2025/10/23 11:49:23 [notice] 39#39: gracefully shutting down
+2025/10/23 11:49:23 [notice] 40#40: gracefully shutting down
+2025/10/23 11:49:23 [notice] 44#44: gracefully shutting down
+2025/10/23 11:49:23 [notice] 34#34: exiting
+2025/10/23 11:49:23 [notice] 31#31: exiting
+2025/10/23 11:49:23 [notice] 37#37: exiting
+2025/10/23 11:49:23 [notice] 41#41: gracefully shutting down
+2025/10/23 11:49:23 [notice] 38#38: exiting
+2025/10/23 11:49:23 [notice] 42#42: gracefully shutting down
+2025/10/23 11:49:23 [notice] 36#36: exiting
+2025/10/23 11:49:23 [notice] 39#39: exiting
+2025/10/23 11:49:23 [notice] 44#44: exiting
+2025/10/23 11:49:23 [notice] 40#40: exiting
+2025/10/23 11:49:23 [notice] 41#41: exiting
+2025/10/23 11:49:23 [notice] 42#42: exiting
+2025/10/23 11:49:23 [notice] 43#43: gracefully shutting down
+2025/10/23 11:49:23 [notice] 43#43: exiting
+2025/10/23 11:49:23 [notice] 30#30: exit
+2025/10/23 11:49:23 [notice] 32#32: exit
+2025/10/23 11:49:23 [notice] 45#45: gracefully shutting down
+2025/10/23 11:49:23 [notice] 45#45: exiting
+2025/10/23 11:49:23 [notice] 31#31: exit
+2025/10/23 11:49:23 [notice] 37#37: exit
+2025/10/23 11:49:23 [notice] 42#42: exit
+2025/10/23 11:49:23 [notice] 34#34: exit
+2025/10/23 11:49:23 [notice] 43#43: exit
+2025/10/23 11:49:23 [notice] 44#44: exit
+2025/10/23 11:49:23 [notice] 38#38: exit
+2025/10/23 11:49:23 [notice] 36#36: exit
+2025/10/23 11:49:23 [notice] 40#40: exit
+2025/10/23 11:49:23 [notice] 39#39: exit
+2025/10/23 11:49:23 [notice] 41#41: exit
+2025/10/23 11:49:23 [notice] 45#45: exit
+2025/10/23 11:49:23 [notice] 33#33: gracefully shutting down
+2025/10/23 11:49:23 [notice] 33#33: exiting
+2025/10/23 11:49:23 [notice] 35#35: gracefully shutting down
+2025/10/23 11:49:23 [notice] 33#33: exit
+2025/10/23 11:49:23 [notice] 35#35: exiting
+2025/10/23 11:49:23 [notice] 35#35: exit
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 11:49:23 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 11:49:23 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/23 11:49:23 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 11:49:23 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2025/10/23 11:49:23 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 11:49:23 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/23 11:49:23 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 11:49:23 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 11:49:23 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 11:49:23 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/23 11:49:23 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 11:49:23 [notice] 1#1: exit
+2025/10/23 11:51:16 [notice] 1#1: using the "epoll" event method
+2025/10/23 11:51:16 [notice] 1#1: nginx/1.29.1
+2025/10/23 11:51:16 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 11:51:16 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 11:51:16 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 11:51:16 [notice] 1#1: start worker processes
+2025/10/23 11:51:16 [notice] 1#1: start worker process 30
+2025/10/23 11:51:16 [notice] 1#1: start worker process 31
+2025/10/23 11:51:16 [notice] 1#1: start worker process 32
+2025/10/23 11:51:16 [notice] 1#1: start worker process 33
+2025/10/23 11:51:16 [notice] 1#1: start worker process 34
+2025/10/23 11:51:16 [notice] 1#1: start worker process 35
+2025/10/23 11:51:16 [notice] 1#1: start worker process 36
+2025/10/23 11:51:16 [notice] 1#1: start worker process 37
+2025/10/23 11:51:16 [notice] 1#1: start worker process 38
+2025/10/23 11:51:16 [notice] 1#1: start worker process 39
+2025/10/23 11:51:16 [notice] 1#1: start worker process 40
+2025/10/23 11:51:16 [notice] 1#1: start worker process 41
+2025/10/23 11:51:16 [notice] 1#1: start worker process 42
+2025/10/23 11:51:16 [notice] 1#1: start worker process 43
+2025/10/23 11:51:16 [notice] 1#1: start worker process 44
+2025/10/23 11:51:16 [notice] 1#1: start worker process 45
+2025/10/23 11:57:40 [error] 31#31: *1 open() "/usr/share/nginx/html/test-1" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-1 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:41 [error] 30#30: *2 open() "/usr/share/nginx/html/test-2" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-2 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:42 [error] 32#32: *3 open() "/usr/share/nginx/html/test-3" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-3 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:43 [error] 34#34: *4 open() "/usr/share/nginx/html/test-4" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-4 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:44 [error] 33#33: *5 open() "/usr/share/nginx/html/test-5" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-5 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:45 [error] 35#35: *6 open() "/usr/share/nginx/html/test-6" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-6 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:46 [error] 37#37: *7 open() "/usr/share/nginx/html/test-7" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-7 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:47 [error] 36#36: *8 open() "/usr/share/nginx/html/test-8" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-8 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:48 [error] 39#39: *9 open() "/usr/share/nginx/html/test-9" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-9 HTTP/1.1", host: "localhost:8080"
+2025/10/23 11:57:49 [error] 38#38: *10 open() "/usr/share/nginx/html/test-10" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-10 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:00:47 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 12:00:47 [notice] 31#31: gracefully shutting down
+2025/10/23 12:00:47 [notice] 30#30: gracefully shutting down
+2025/10/23 12:00:47 [notice] 33#33: gracefully shutting down
+2025/10/23 12:00:47 [notice] 34#34: gracefully shutting down
+2025/10/23 12:00:47 [notice] 32#32: gracefully shutting down
+2025/10/23 12:00:47 [notice] 31#31: exiting
+2025/10/23 12:00:47 [notice] 30#30: exiting
+2025/10/23 12:00:47 [notice] 38#38: gracefully shutting down
+2025/10/23 12:00:47 [notice] 33#33: exiting
+2025/10/23 12:00:47 [notice] 35#35: gracefully shutting down
+2025/10/23 12:00:47 [notice] 34#34: exiting
+2025/10/23 12:00:47 [notice] 36#36: gracefully shutting down
+2025/10/23 12:00:47 [notice] 32#32: exiting
+2025/10/23 12:00:47 [notice] 37#37: gracefully shutting down
+2025/10/23 12:00:47 [notice] 40#40: gracefully shutting down
+2025/10/23 12:00:47 [notice] 38#38: exiting
+2025/10/23 12:00:47 [notice] 39#39: gracefully shutting down
+2025/10/23 12:00:47 [notice] 42#42: gracefully shutting down
+2025/10/23 12:00:47 [notice] 35#35: exiting
+2025/10/23 12:00:47 [notice] 44#44: gracefully shutting down
+2025/10/23 12:00:47 [notice] 36#36: exiting
+2025/10/23 12:00:47 [notice] 45#45: gracefully shutting down
+2025/10/23 12:00:47 [notice] 37#37: exiting
+2025/10/23 12:00:47 [notice] 40#40: exiting
+2025/10/23 12:00:47 [notice] 39#39: exiting
+2025/10/23 12:00:47 [notice] 42#42: exiting
+2025/10/23 12:00:47 [notice] 44#44: exiting
+2025/10/23 12:00:47 [notice] 45#45: exiting
+2025/10/23 12:00:47 [notice] 30#30: exit
+2025/10/23 12:00:47 [notice] 34#34: exit
+2025/10/23 12:00:47 [notice] 33#33: exit
+2025/10/23 12:00:47 [notice] 31#31: exit
+2025/10/23 12:00:47 [notice] 32#32: exit
+2025/10/23 12:00:47 [notice] 38#38: exit
+2025/10/23 12:00:47 [notice] 39#39: exit
+2025/10/23 12:00:47 [notice] 35#35: exit
+2025/10/23 12:00:47 [notice] 44#44: exit
+2025/10/23 12:00:47 [notice] 40#40: exit
+2025/10/23 12:00:47 [notice] 36#36: exit
+2025/10/23 12:00:47 [notice] 37#37: exit
+2025/10/23 12:00:47 [notice] 45#45: exit
+2025/10/23 12:00:47 [notice] 42#42: exit
+2025/10/23 12:00:47 [notice] 41#41: gracefully shutting down
+2025/10/23 12:00:47 [notice] 41#41: exiting
+2025/10/23 12:00:47 [notice] 43#43: gracefully shutting down
+2025/10/23 12:00:47 [notice] 43#43: exiting
+2025/10/23 12:00:47 [notice] 43#43: exit
+2025/10/23 12:00:47 [notice] 41#41: exit
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 12:00:48 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/23 12:00:48 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 12:00:48 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2025/10/23 12:00:48 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/23 12:00:48 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/23 12:00:48 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/23 12:00:48 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 12:00:48 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/23 12:00:48 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 12:00:48 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 12:00:48 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 42
+2025/10/23 12:00:48 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:00:48 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 12:00:48 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 12:00:48 [notice] 1#1: exit
+2025/10/23 12:01:17 [notice] 1#1: using the "epoll" event method
+2025/10/23 12:01:17 [notice] 1#1: nginx/1.29.1
+2025/10/23 12:01:17 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/23 12:01:17 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/23 12:01:17 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/23 12:01:17 [notice] 1#1: start worker processes
+2025/10/23 12:01:17 [notice] 1#1: start worker process 30
+2025/10/23 12:01:17 [notice] 1#1: start worker process 31
+2025/10/23 12:01:17 [notice] 1#1: start worker process 32
+2025/10/23 12:01:17 [notice] 1#1: start worker process 33
+2025/10/23 12:01:17 [notice] 1#1: start worker process 34
+2025/10/23 12:01:17 [notice] 1#1: start worker process 35
+2025/10/23 12:01:17 [notice] 1#1: start worker process 36
+2025/10/23 12:01:17 [notice] 1#1: start worker process 37
+2025/10/23 12:01:17 [notice] 1#1: start worker process 38
+2025/10/23 12:01:17 [notice] 1#1: start worker process 39
+2025/10/23 12:01:17 [notice] 1#1: start worker process 40
+2025/10/23 12:01:17 [notice] 1#1: start worker process 41
+2025/10/23 12:01:17 [notice] 1#1: start worker process 42
+2025/10/23 12:01:17 [notice] 1#1: start worker process 43
+2025/10/23 12:01:17 [notice] 1#1: start worker process 44
+2025/10/23 12:01:17 [notice] 1#1: start worker process 45
+2025/10/23 12:10:28 [error] 30#30: *1 open() "/usr/share/nginx/html/test-1" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-1 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:29 [error] 31#31: *2 open() "/usr/share/nginx/html/test-2" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-2 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:30 [error] 32#32: *3 open() "/usr/share/nginx/html/test-3" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-3 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:31 [error] 33#33: *4 open() "/usr/share/nginx/html/test-4" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-4 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:32 [error] 34#34: *5 open() "/usr/share/nginx/html/test-5" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-5 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:33 [error] 35#35: *6 open() "/usr/share/nginx/html/test-6" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-6 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:34 [error] 36#36: *7 open() "/usr/share/nginx/html/test-7" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-7 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:35 [error] 37#37: *8 open() "/usr/share/nginx/html/test-8" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-8 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:36 [error] 38#38: *9 open() "/usr/share/nginx/html/test-9" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-9 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:10:37 [error] 39#39: *10 open() "/usr/share/nginx/html/test-10" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-10 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:12:03 [error] 40#40: *11 open() "/usr/share/nginx/html/test-1" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-1 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:12:04 [error] 41#41: *12 open() "/usr/share/nginx/html/test-2" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-2 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:12:05 [error] 42#42: *13 open() "/usr/share/nginx/html/test-3" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-3 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:12:09 [error] 43#43: *14 open() "/usr/share/nginx/html/test-1" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-1 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:12:10 [error] 44#44: *15 open() "/usr/share/nginx/html/test-2" failed (2: No such file or directory), client: 172.23.0.1, server: localhost, request: "GET /test-2 HTTP/1.1", host: "localhost:8080"
+2025/10/23 12:54:46 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/23 12:54:46 [notice] 30#30: gracefully shutting down
+2025/10/23 12:54:46 [notice] 31#31: gracefully shutting down
+2025/10/23 12:54:46 [notice] 32#32: gracefully shutting down
+2025/10/23 12:54:46 [notice] 33#33: gracefully shutting down
+2025/10/23 12:54:46 [notice] 35#35: gracefully shutting down
+2025/10/23 12:54:46 [notice] 30#30: exiting
+2025/10/23 12:54:46 [notice] 31#31: exiting
+2025/10/23 12:54:46 [notice] 32#32: exiting
+2025/10/23 12:54:46 [notice] 39#39: gracefully shutting down
+2025/10/23 12:54:46 [notice] 40#40: gracefully shutting down
+2025/10/23 12:54:46 [notice] 35#35: exiting
+2025/10/23 12:54:46 [notice] 38#38: gracefully shutting down
+2025/10/23 12:54:46 [notice] 33#33: exiting
+2025/10/23 12:54:46 [notice] 42#42: gracefully shutting down
+2025/10/23 12:54:46 [notice] 34#34: gracefully shutting down
+2025/10/23 12:54:46 [notice] 39#39: exiting
+2025/10/23 12:54:46 [notice] 40#40: exiting
+2025/10/23 12:54:46 [notice] 38#38: exiting
+2025/10/23 12:54:46 [notice] 42#42: exiting
+2025/10/23 12:54:46 [notice] 34#34: exiting
+2025/10/23 12:54:46 [notice] 36#36: gracefully shutting down
+2025/10/23 12:54:46 [notice] 36#36: exiting
+2025/10/23 12:54:46 [notice] 32#32: exit
+2025/10/23 12:54:46 [notice] 31#31: exit
+2025/10/23 12:54:46 [notice] 35#35: exit
+2025/10/23 12:54:46 [notice] 30#30: exit
+2025/10/23 12:54:46 [notice] 33#33: exit
+2025/10/23 12:54:46 [notice] 39#39: exit
+2025/10/23 12:54:46 [notice] 42#42: exit
+2025/10/23 12:54:46 [notice] 40#40: exit
+2025/10/23 12:54:46 [notice] 34#34: exit
+2025/10/23 12:54:46 [notice] 38#38: exit
+2025/10/23 12:54:46 [notice] 36#36: exit
+2025/10/23 12:54:46 [notice] 37#37: gracefully shutting down
+2025/10/23 12:54:46 [notice] 41#41: gracefully shutting down
+2025/10/23 12:54:46 [notice] 43#43: gracefully shutting down
+2025/10/23 12:54:46 [notice] 44#44: gracefully shutting down
+2025/10/23 12:54:46 [notice] 41#41: exiting
+2025/10/23 12:54:46 [notice] 37#37: exiting
+2025/10/23 12:54:46 [notice] 43#43: exiting
+2025/10/23 12:54:46 [notice] 44#44: exiting
+2025/10/23 12:54:46 [notice] 45#45: gracefully shutting down
+2025/10/23 12:54:46 [notice] 45#45: exiting
+2025/10/23 12:54:46 [notice] 43#43: exit
+2025/10/23 12:54:46 [notice] 41#41: exit
+2025/10/23 12:54:46 [notice] 37#37: exit
+2025/10/23 12:54:46 [notice] 44#44: exit
+2025/10/23 12:54:46 [notice] 45#45: exit
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/23 12:54:46 [notice] 1#1: worker process 37 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/23 12:54:46 [notice] 1#1: worker process 32 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 38 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 45 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 32
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2025/10/23 12:54:46 [notice] 1#1: worker process 35 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 44
+2025/10/23 12:54:46 [notice] 1#1: worker process 44 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/23 12:54:46 [notice] 1#1: worker process 30 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 31 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 33 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 40 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 41 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: worker process 42 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/23 12:54:46 [notice] 1#1: worker process 34 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/23 12:54:46 [notice] 1#1: worker process 36 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 39
+2025/10/23 12:54:46 [notice] 1#1: worker process 39 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/23 12:54:46 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/23 12:54:46 [notice] 1#1: worker process 43 exited with code 0
+2025/10/23 12:54:46 [notice] 1#1: exit
+2025/10/29 16:54:41 [notice] 1#1: using the "epoll" event method
+2025/10/29 16:54:41 [notice] 1#1: nginx/1.29.1
+2025/10/29 16:54:41 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/29 16:54:41 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/29 16:54:41 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/29 16:54:41 [notice] 1#1: start worker processes
+2025/10/29 16:54:41 [notice] 1#1: start worker process 30
+2025/10/29 16:54:41 [notice] 1#1: start worker process 31
+2025/10/29 16:54:41 [notice] 1#1: start worker process 32
+2025/10/29 16:54:41 [notice] 1#1: start worker process 33
+2025/10/29 16:54:41 [notice] 1#1: start worker process 34
+2025/10/29 16:54:41 [notice] 1#1: start worker process 35
+2025/10/29 16:54:41 [notice] 1#1: start worker process 36
+2025/10/29 16:54:41 [notice] 1#1: start worker process 37
+2025/10/29 16:54:41 [notice] 1#1: start worker process 38
+2025/10/29 16:54:41 [notice] 1#1: start worker process 39
+2025/10/29 16:54:41 [notice] 1#1: start worker process 40
+2025/10/29 16:54:41 [notice] 1#1: start worker process 41
+2025/10/29 16:54:41 [notice] 1#1: start worker process 42
+2025/10/29 16:54:41 [notice] 1#1: start worker process 43
+2025/10/29 16:54:41 [notice] 1#1: start worker process 44
+2025/10/29 16:54:41 [notice] 1#1: start worker process 45
+2025/10/29 16:55:08 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/29 16:55:08 [notice] 30#30: gracefully shutting down
+2025/10/29 16:55:08 [notice] 32#32: gracefully shutting down
+2025/10/29 16:55:08 [notice] 31#31: gracefully shutting down
+2025/10/29 16:55:08 [notice] 34#34: gracefully shutting down
+2025/10/29 16:55:08 [notice] 33#33: gracefully shutting down
+2025/10/29 16:55:08 [notice] 35#35: gracefully shutting down
+2025/10/29 16:55:08 [notice] 30#30: exiting
+2025/10/29 16:55:08 [notice] 32#32: exiting
+2025/10/29 16:55:08 [notice] 36#36: gracefully shutting down
+2025/10/29 16:55:08 [notice] 31#31: exiting
+2025/10/29 16:55:08 [notice] 39#39: gracefully shutting down
+2025/10/29 16:55:08 [notice] 34#34: exiting
+2025/10/29 16:55:08 [notice] 33#33: exiting
+2025/10/29 16:55:08 [notice] 40#40: gracefully shutting down
+2025/10/29 16:55:08 [notice] 37#37: gracefully shutting down
+2025/10/29 16:55:08 [notice] 35#35: exiting
+2025/10/29 16:55:08 [notice] 36#36: exiting
+2025/10/29 16:55:08 [notice] 44#44: gracefully shutting down
+2025/10/29 16:55:08 [notice] 38#38: gracefully shutting down
+2025/10/29 16:55:08 [notice] 42#42: gracefully shutting down
+2025/10/29 16:55:08 [notice] 39#39: exiting
+2025/10/29 16:55:08 [notice] 40#40: exiting
+2025/10/29 16:55:08 [notice] 37#37: exiting
+2025/10/29 16:55:08 [notice] 44#44: exiting
+2025/10/29 16:55:08 [notice] 38#38: exiting
+2025/10/29 16:55:08 [notice] 42#42: exiting
+2025/10/29 16:55:08 [notice] 31#31: exit
+2025/10/29 16:55:08 [notice] 30#30: exit
+2025/10/29 16:55:08 [notice] 32#32: exit
+2025/10/29 16:55:08 [notice] 34#34: exit
+2025/10/29 16:55:08 [notice] 33#33: exit
+2025/10/29 16:55:08 [notice] 35#35: exit
+2025/10/29 16:55:08 [notice] 36#36: exit
+2025/10/29 16:55:08 [notice] 39#39: exit
+2025/10/29 16:55:08 [notice] 40#40: exit
+2025/10/29 16:55:08 [notice] 44#44: exit
+2025/10/29 16:55:08 [notice] 38#38: exit
+2025/10/29 16:55:08 [notice] 37#37: exit
+2025/10/29 16:55:08 [notice] 42#42: exit
+2025/10/29 16:55:08 [notice] 41#41: gracefully shutting down
+2025/10/29 16:55:08 [notice] 43#43: gracefully shutting down
+2025/10/29 16:55:08 [notice] 45#45: gracefully shutting down
+2025/10/29 16:55:08 [notice] 41#41: exiting
+2025/10/29 16:55:08 [notice] 43#43: exiting
+2025/10/29 16:55:08 [notice] 45#45: exiting
+2025/10/29 16:55:08 [notice] 43#43: exit
+2025/10/29 16:55:08 [notice] 41#41: exit
+2025/10/29 16:55:08 [notice] 45#45: exit
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/29 16:55:08 [notice] 1#1: worker process 33 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 35
+2025/10/29 16:55:08 [notice] 1#1: worker process 35 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/29 16:55:08 [notice] 1#1: worker process 41 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/29 16:55:08 [notice] 1#1: worker process 30 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 36 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 37 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 39 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 45
+2025/10/29 16:55:08 [notice] 1#1: worker process 31 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 44 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 45 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 40
+2025/10/29 16:55:08 [notice] 1#1: worker process 40 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 38 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 43 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 42
+2025/10/29 16:55:08 [notice] 1#1: worker process 32 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: worker process 42 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/29 16:55:08 [notice] 1#1: worker process 34 exited with code 0
+2025/10/29 16:55:08 [notice] 1#1: exit
+2025/10/29 16:55:17 [notice] 1#1: using the "epoll" event method
+2025/10/29 16:55:17 [notice] 1#1: nginx/1.29.1
+2025/10/29 16:55:17 [notice] 1#1: built by gcc 14.2.0 (Alpine 14.2.0) 
+2025/10/29 16:55:17 [notice] 1#1: OS: Linux 6.15.4-arch2-1
+2025/10/29 16:55:17 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2025/10/29 16:55:17 [notice] 1#1: start worker processes
+2025/10/29 16:55:17 [notice] 1#1: start worker process 30
+2025/10/29 16:55:17 [notice] 1#1: start worker process 31
+2025/10/29 16:55:17 [notice] 1#1: start worker process 32
+2025/10/29 16:55:17 [notice] 1#1: start worker process 33
+2025/10/29 16:55:17 [notice] 1#1: start worker process 34
+2025/10/29 16:55:17 [notice] 1#1: start worker process 35
+2025/10/29 16:55:17 [notice] 1#1: start worker process 36
+2025/10/29 16:55:17 [notice] 1#1: start worker process 37
+2025/10/29 16:55:17 [notice] 1#1: start worker process 38
+2025/10/29 16:55:17 [notice] 1#1: start worker process 39
+2025/10/29 16:55:17 [notice] 1#1: start worker process 40
+2025/10/29 16:55:17 [notice] 1#1: start worker process 41
+2025/10/29 16:55:17 [notice] 1#1: start worker process 42
+2025/10/29 16:55:17 [notice] 1#1: start worker process 43
+2025/10/29 16:55:17 [notice] 1#1: start worker process 44
+2025/10/29 16:55:17 [notice] 1#1: start worker process 45
+2025/10/29 18:12:11 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2025/10/29 18:12:11 [notice] 33#33: gracefully shutting down
+2025/10/29 18:12:11 [notice] 39#39: gracefully shutting down
+2025/10/29 18:12:11 [notice] 32#32: gracefully shutting down
+2025/10/29 18:12:11 [notice] 35#35: gracefully shutting down
+2025/10/29 18:12:11 [notice] 38#38: gracefully shutting down
+2025/10/29 18:12:11 [notice] 31#31: gracefully shutting down
+2025/10/29 18:12:11 [notice] 40#40: gracefully shutting down
+2025/10/29 18:12:11 [notice] 42#42: gracefully shutting down
+2025/10/29 18:12:11 [notice] 44#44: gracefully shutting down
+2025/10/29 18:12:11 [notice] 34#34: gracefully shutting down
+2025/10/29 18:12:11 [notice] 35#35: exiting
+2025/10/29 18:12:11 [notice] 32#32: exiting
+2025/10/29 18:12:11 [notice] 38#38: exiting
+2025/10/29 18:12:11 [notice] 40#40: exiting
+2025/10/29 18:12:11 [notice] 43#43: gracefully shutting down
+2025/10/29 18:12:11 [notice] 42#42: exiting
+2025/10/29 18:12:11 [notice] 44#44: exiting
+2025/10/29 18:12:11 [notice] 34#34: exiting
+2025/10/29 18:12:11 [notice] 33#33: exiting
+2025/10/29 18:12:11 [notice] 31#31: exiting
+2025/10/29 18:12:11 [notice] 30#30: gracefully shutting down
+2025/10/29 18:12:11 [notice] 43#43: exiting
+2025/10/29 18:12:11 [notice] 39#39: exiting
+2025/10/29 18:12:11 [notice] 45#45: gracefully shutting down
+2025/10/29 18:12:11 [notice] 37#37: gracefully shutting down
+2025/10/29 18:12:11 [notice] 45#45: exiting
+2025/10/29 18:12:11 [notice] 37#37: exiting
+2025/10/29 18:12:11 [notice] 30#30: exiting
+2025/10/29 18:12:11 [notice] 36#36: gracefully shutting down
+2025/10/29 18:12:11 [notice] 41#41: gracefully shutting down
+2025/10/29 18:12:11 [notice] 36#36: exiting
+2025/10/29 18:12:11 [notice] 41#41: exiting
+2025/10/29 18:12:11 [notice] 31#31: exit
+2025/10/29 18:12:11 [notice] 34#34: exit
+2025/10/29 18:12:11 [notice] 45#45: exit
+2025/10/29 18:12:11 [notice] 42#42: exit
+2025/10/29 18:12:11 [notice] 32#32: exit
+2025/10/29 18:12:11 [notice] 35#35: exit
+2025/10/29 18:12:11 [notice] 39#39: exit
+2025/10/29 18:12:11 [notice] 43#43: exit
+2025/10/29 18:12:11 [notice] 33#33: exit
+2025/10/29 18:12:11 [notice] 40#40: exit
+2025/10/29 18:12:11 [notice] 44#44: exit
+2025/10/29 18:12:11 [notice] 36#36: exit
+2025/10/29 18:12:11 [notice] 38#38: exit
+2025/10/29 18:12:11 [notice] 41#41: exit
+2025/10/29 18:12:11 [notice] 30#30: exit
+2025/10/29 18:12:11 [notice] 37#37: exit
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 44
+2025/10/29 18:12:11 [notice] 1#1: worker process 37 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 44 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 37
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 33
+2025/10/29 18:12:11 [notice] 1#1: worker process 31 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 33 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 35 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 43
+2025/10/29 18:12:11 [notice] 1#1: worker process 36 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 43 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 32 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 45 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 36
+2025/10/29 18:12:11 [notice] 1#1: worker process 42 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 38
+2025/10/29 18:12:11 [notice] 1#1: worker process 38 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 39 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 34
+2025/10/29 18:12:11 [notice] 1#1: worker process 34 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 30
+2025/10/29 18:12:11 [notice] 1#1: worker process 30 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: worker process 40 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: signal 29 (SIGIO) received
+2025/10/29 18:12:11 [notice] 1#1: signal 17 (SIGCHLD) received from 41
+2025/10/29 18:12:11 [notice] 1#1: worker process 41 exited with code 0
+2025/10/29 18:12:11 [notice] 1#1: exit

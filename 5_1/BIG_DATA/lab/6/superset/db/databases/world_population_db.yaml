@@ -1,0 +1,12 @@
+version: 1.0.0
+type: Database
+database:
+  database_name: world_population_db
+  sqlalchemy_uri: sqlite:///world_population.db
+  extra: |-
+    {
+      "metadata_params": {},
+      "engine_params": {},
+      "metadata_cache_timeout": {},
+      "schemas_allowed_for_file_upload": []
+    }

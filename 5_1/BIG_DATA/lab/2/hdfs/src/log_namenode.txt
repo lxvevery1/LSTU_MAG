@@ -1,0 +1,430 @@
+Configuring core
+ - Setting fs.defaultFS=hdfs://namenode:9000
+Configuring hdfs
+ - Setting dfs.namenode.name.dir=file:///hadoop/dfs/name
+Configuring yarn
+Configuring httpfs
+Configuring kms
+Configuring mapred
+Configuring for multihomed network
+Formatting namenode name directory: /hadoop/dfs/name
+2025-09-23 18:51:55,914 INFO namenode.NameNode: STARTUP_MSG:
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = namenode/172.19.0.2
+STARTUP_MSG:   args = [-format, hadoop-cluster]
+STARTUP_MSG:   version = 3.2.1
+STARTUP_MSG:   classpath = /etc/hadoop:/opt/hadoop-3.2.1/share/hadoop/common/lib/re2j-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-servlet-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-core-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/hadoop-auth-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/asm-5.0.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-asn1-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/j2objc-annotations-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsch-0.1.54.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-http-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/htrace-core4-4.1.0-incubating.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-server-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-collections-3.2.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/curator-recipes-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jul-to-slf4j-1.7.25.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-io-2.5.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-admin-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-text-1.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-server-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/accessors-smart-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/log4j-1.2.17.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-xc-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-pkix-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-codec-1.11.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/javax.servlet-api-3.1.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/nimbus-jose-jwt-4.41.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-compress-1.18.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-math3-3.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/audience-annotations-0.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-crypto-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-simplekdc-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsr305-3.0.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-configuration2-2.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/failureaccess-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/avro-1.7.7.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-core-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jettison-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/animal-sniffer-annotations-1.17.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/paranamer-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/protobuf-java-2.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-util-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-config-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/checker-qual-2.5.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-security-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/httpcore-4.4.10.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/error_prone_annotations-2.2.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/token-provider-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-webapp-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-jaxrs-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-identity-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-servlet-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/curator-client-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-logging-1.1.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-beanutils-1.9.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-annotations-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/netty-3.10.5.Final.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-core-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jcip-annotations-1.0-1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/slf4j-api-1.7.25.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/hadoop-annotations-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jaxb-api-2.2.11.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/stax2-api-3.1.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/snappy-java-1.0.5.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/httpclient-4.5.6.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsr311-api-1.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-lang3-3.7.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/woodstox-core-5.0.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-io-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-databind-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsp-api-2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-common-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-xml-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/zookeeper-3.4.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jaxb-impl-2.2.3-1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-client-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/json-smart-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-json-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/metrics-core-3.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-cli-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/guava-27.0-jre.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-net-3.6.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-server-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/dnsjava-2.1.7.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/curator-framework-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/gson-2.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-xdr-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-common-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-nfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-kms-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/re2j-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-servlet-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-core-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/hadoop-auth-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/asm-5.0.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-asn1-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/j2objc-annotations-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jsch-0.1.54.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-http-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/htrace-core4-4.1.0-incubating.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-server-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-collections-3.2.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/okio-1.6.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/curator-recipes-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-io-2.5.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-admin-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-text-1.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-server-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/accessors-smart-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/log4j-1.2.17.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-xc-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-pkix-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-codec-1.11.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/javax.servlet-api-3.1.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/nimbus-jose-jwt-4.41.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-compress-1.18.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-math3-3.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/audience-annotations-0.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-crypto-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-simplekdc-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/netty-all-4.0.52.Final.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jsr305-3.0.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-configuration2-2.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/failureaccess-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/avro-1.7.7.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-core-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jettison-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/animal-sniffer-annotations-1.17.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/paranamer-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/protobuf-java-2.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-util-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-config-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/okhttp-2.7.5.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/checker-qual-2.5.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-util-ajax-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-security-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/httpcore-4.4.10.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/error_prone_annotations-2.2.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/token-provider-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-webapp-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-jaxrs-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-identity-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-servlet-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/curator-client-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-logging-1.1.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-beanutils-1.9.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-annotations-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/netty-3.10.5.Final.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-core-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jcip-annotations-1.0-1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/hadoop-annotations-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jaxb-api-2.2.11.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/json-simple-1.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/stax2-api-3.1.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/snappy-java-1.0.5.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/httpclient-4.5.6.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jsr311-api-1.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-daemon-1.0.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-lang3-3.7.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/woodstox-core-5.0.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-io-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-databind-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-common-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-xml-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/zookeeper-3.4.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jaxb-impl-2.2.3-1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-client-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/json-smart-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-json-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-cli-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/guava-27.0-jre.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-net-3.6.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-server-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/dnsjava-2.1.7.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/curator-framework-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/gson-2.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-xdr-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-native-client-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-rbf-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-client-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-client-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-rbf-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-nfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-httpfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-native-client-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/lib/hamcrest-core-1.3.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/lib/junit-4.11.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-nativetask-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-plugins-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-app-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-shuffle-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-uploader-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-core-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/geronimo-jcache_1.0_spec-1.0-alpha-1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/bcpkix-jdk15on-1.60.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/javax.inject-1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jackson-module-jaxb-annotations-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jackson-jaxrs-json-provider-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/snakeyaml-1.16.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/java-util-1.9.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/objenesis-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/guice-4.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jersey-guice-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/guice-servlet-4.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/mssql-jdbc-6.2.1.jre7.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/json-io-2.5.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/fst-2.50.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/swagger-annotations-1.5.4.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jackson-jaxrs-base-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/ehcache-3.3.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/bcprov-jdk15on-1.60.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/metrics-core-3.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/aopalliance-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/HikariCP-java7-2.4.12.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jersey-client-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-tests-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-applications-unmanaged-am-launcher-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-router-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-timeline-pluginstorage-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-client-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-services-api-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-web-proxy-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-api-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-applicationhistoryservice-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-submarine-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-services-core-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-registry-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-nodemanager-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-resourcemanager-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-sharedcachemanager-3.2.1.jar
+STARTUP_MSG:   build = https://gitbox.apache.org/repos/asf/hadoop.git -r b3cbbb467e22ea829b3808f4b7b01d07e0bf3842; compiled by 'rohithsharmaks' on 2019-09-10T15:56Z
+STARTUP_MSG:   java = 1.8.0_232
+************************************************************/
+2025-09-23 18:51:55,927 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]
+2025-09-23 18:51:56,065 INFO namenode.NameNode: createNameNode [-format, hadoop-cluster]
+Formatting using clusterid: CID-931c6537-8fbe-4bcc-b3f4-0efd4406b052
+2025-09-23 18:51:56,689 INFO namenode.FSEditLog: Edit logging is async:true
+2025-09-23 18:51:56,711 INFO namenode.FSNamesystem: KeyProvider: null
+2025-09-23 18:51:56,713 INFO namenode.FSNamesystem: fsLock is fair: true
+2025-09-23 18:51:56,714 INFO namenode.FSNamesystem: Detailed lock hold time metrics enabled: false
+2025-09-23 18:51:56,721 INFO namenode.FSNamesystem: fsOwner             = root (auth:SIMPLE)
+2025-09-23 18:51:56,721 INFO namenode.FSNamesystem: supergroup          = supergroup
+2025-09-23 18:51:56,721 INFO namenode.FSNamesystem: isPermissionEnabled = true
+2025-09-23 18:51:56,722 INFO namenode.FSNamesystem: HA Enabled: false
+2025-09-23 18:51:56,785 INFO common.Util: dfs.datanode.fileio.profiling.sampling.percentage set to 0. Disabling file IO profiling
+2025-09-23 18:51:56,805 INFO blockmanagement.DatanodeManager: dfs.block.invalidate.limit: configured=1000, counted=60, effected=1000
+2025-09-23 18:51:56,805 INFO blockmanagement.DatanodeManager: dfs.namenode.datanode.registration.ip-hostname-check=true
+2025-09-23 18:51:56,812 INFO blockmanagement.BlockManager: dfs.namenode.startup.delay.block.deletion.sec is set to 000:00:00:00.000
+2025-09-23 18:51:56,813 INFO blockmanagement.BlockManager: The block deletion will start around 2025 Sep 23 18:51:56
+2025-09-23 18:51:56,815 INFO util.GSet: Computing capacity for map BlocksMap
+2025-09-23 18:51:56,815 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:56,816 INFO util.GSet: 2.0% max memory 3.3 GB = 68.4 MB
+2025-09-23 18:51:56,817 INFO util.GSet: capacity      = 2^23 = 8388608 entries
+2025-09-23 18:51:56,831 INFO blockmanagement.BlockManager: Storage policy satisfier is disabled
+2025-09-23 18:51:56,831 INFO blockmanagement.BlockManager: dfs.block.access.token.enable = false
+2025-09-23 18:51:56,840 INFO Configuration.deprecation: No unit for dfs.namenode.safemode.extension(30000) assuming MILLISECONDS
+2025-09-23 18:51:56,840 INFO blockmanagement.BlockManagerSafeMode: dfs.namenode.safemode.threshold-pct = 0.9990000128746033
+2025-09-23 18:51:56,840 INFO blockmanagement.BlockManagerSafeMode: dfs.namenode.safemode.min.datanodes = 0
+2025-09-23 18:51:56,840 INFO blockmanagement.BlockManagerSafeMode: dfs.namenode.safemode.extension = 30000
+2025-09-23 18:51:56,841 INFO blockmanagement.BlockManager: defaultReplication         = 3
+2025-09-23 18:51:56,841 INFO blockmanagement.BlockManager: maxReplication             = 512
+2025-09-23 18:51:56,841 INFO blockmanagement.BlockManager: minReplication             = 1
+2025-09-23 18:51:56,841 INFO blockmanagement.BlockManager: maxReplicationStreams      = 2
+2025-09-23 18:51:56,841 INFO blockmanagement.BlockManager: redundancyRecheckInterval  = 3000ms
+2025-09-23 18:51:56,842 INFO blockmanagement.BlockManager: encryptDataTransfer        = false
+2025-09-23 18:51:56,842 INFO blockmanagement.BlockManager: maxNumBlocksToLog          = 1000
+2025-09-23 18:51:56,880 INFO namenode.FSDirectory: GLOBAL serial map: bits=29 maxEntries=536870911
+2025-09-23 18:51:56,880 INFO namenode.FSDirectory: USER serial map: bits=24 maxEntries=16777215
+2025-09-23 18:51:56,880 INFO namenode.FSDirectory: GROUP serial map: bits=24 maxEntries=16777215
+2025-09-23 18:51:56,880 INFO namenode.FSDirectory: XATTR serial map: bits=24 maxEntries=16777215
+2025-09-23 18:51:56,903 INFO util.GSet: Computing capacity for map INodeMap
+2025-09-23 18:51:56,904 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:56,904 INFO util.GSet: 1.0% max memory 3.3 GB = 34.2 MB
+2025-09-23 18:51:56,904 INFO util.GSet: capacity      = 2^22 = 4194304 entries
+2025-09-23 18:51:56,930 INFO namenode.FSDirectory: ACLs enabled? false
+2025-09-23 18:51:56,930 INFO namenode.FSDirectory: POSIX ACL inheritance enabled? true
+2025-09-23 18:51:56,930 INFO namenode.FSDirectory: XAttrs enabled? true
+2025-09-23 18:51:56,931 INFO namenode.NameNode: Caching file names occurring more than 10 times
+2025-09-23 18:51:56,939 INFO snapshot.SnapshotManager: Loaded config captureOpenFiles: false, skipCaptureAccessTimeOnlyChange: false, snapshotDiffAllowSnapRootDescendant: true, maxSnapshotLimit: 65536
+2025-09-23 18:51:56,942 INFO snapshot.SnapshotManager: SkipList is disabled
+2025-09-23 18:51:56,949 INFO util.GSet: Computing capacity for map cachedBlocks
+2025-09-23 18:51:56,949 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:56,949 INFO util.GSet: 0.25% max memory 3.3 GB = 8.6 MB
+2025-09-23 18:51:56,949 INFO util.GSet: capacity      = 2^20 = 1048576 entries
+2025-09-23 18:51:56,964 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.window.num.buckets = 10
+2025-09-23 18:51:56,964 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.num.users = 10
+2025-09-23 18:51:56,964 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.windows.minutes = 1,5,25
+2025-09-23 18:51:56,972 INFO namenode.FSNamesystem: Retry cache on namenode is enabled
+2025-09-23 18:51:56,972 INFO namenode.FSNamesystem: Retry cache will use 0.03 of total heap and retry cache entry expiry time is 600000 millis
+2025-09-23 18:51:56,975 INFO util.GSet: Computing capacity for map NameNodeRetryCache
+2025-09-23 18:51:56,976 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:56,976 INFO util.GSet: 0.029999999329447746% max memory 3.3 GB = 1.0 MB
+2025-09-23 18:51:56,976 INFO util.GSet: capacity      = 2^17 = 131072 entries
+2025-09-23 18:51:57,025 INFO namenode.FSImage: Allocated new BlockPoolId: BP-402907324-172.19.0.2-1758653517014
+2025-09-23 18:51:57,046 INFO common.Storage: Storage directory /hadoop/dfs/name has been successfully formatted.
+2025-09-23 18:51:57,083 INFO namenode.FSImageFormatProtobuf: Saving image file /hadoop/dfs/name/current/fsimage.ckpt_0000000000000000000 using no compression
+2025-09-23 18:51:57,199 INFO namenode.FSImageFormatProtobuf: Image file /hadoop/dfs/name/current/fsimage.ckpt_0000000000000000000 of size 399 bytes saved in 0 seconds .
+2025-09-23 18:51:57,212 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid >= 0
+2025-09-23 18:51:57,220 INFO namenode.FSImage: FSImageSaver clean checkpoint: txid=0 when meet shutdown.
+2025-09-23 18:51:57,221 INFO namenode.NameNode: SHUTDOWN_MSG:
+/************************************************************
+SHUTDOWN_MSG: Shutting down NameNode at namenode/172.19.0.2
+************************************************************/
+2025-09-23 18:51:57,987 INFO namenode.NameNode: STARTUP_MSG:
+/************************************************************
+STARTUP_MSG: Starting NameNode
+STARTUP_MSG:   host = namenode/172.19.0.2
+STARTUP_MSG:   args = []
+STARTUP_MSG:   version = 3.2.1
+STARTUP_MSG:   classpath = /etc/hadoop:/opt/hadoop-3.2.1/share/hadoop/common/lib/re2j-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-servlet-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-core-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/hadoop-auth-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/asm-5.0.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-asn1-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/j2objc-annotations-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsch-0.1.54.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-http-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/htrace-core4-4.1.0-incubating.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-server-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-collections-3.2.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/curator-recipes-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jul-to-slf4j-1.7.25.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-io-2.5.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-admin-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-text-1.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-server-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/accessors-smart-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/log4j-1.2.17.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-xc-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-pkix-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-codec-1.11.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/javax.servlet-api-3.1.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/nimbus-jose-jwt-4.41.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-compress-1.18.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-math3-3.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/audience-annotations-0.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-crypto-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-simplekdc-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsr305-3.0.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-configuration2-2.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/failureaccess-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/avro-1.7.7.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-core-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jettison-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/animal-sniffer-annotations-1.17.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/paranamer-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/protobuf-java-2.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-util-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-config-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/checker-qual-2.5.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-security-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/httpcore-4.4.10.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/error_prone_annotations-2.2.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/token-provider-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-webapp-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-jaxrs-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-identity-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-servlet-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/curator-client-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-logging-1.1.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-beanutils-1.9.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-annotations-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/netty-3.10.5.Final.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-core-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jcip-annotations-1.0-1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/slf4j-api-1.7.25.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/hadoop-annotations-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jaxb-api-2.2.11.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/stax2-api-3.1.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/snappy-java-1.0.5.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/httpclient-4.5.6.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsr311-api-1.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-lang3-3.7.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/woodstox-core-5.0.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-io-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jackson-databind-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jsp-api-2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-common-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-xml-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/slf4j-log4j12-1.7.25.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/zookeeper-3.4.13.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jaxb-impl-2.2.3-1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerb-client-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/json-smart-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jersey-json-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/metrics-core-3.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-cli-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/guava-27.0-jre.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/commons-net-3.6.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/jetty-server-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/dnsjava-2.1.7.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/curator-framework-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/gson-2.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/common/lib/kerby-xdr-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-common-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-nfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-kms-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/common/hadoop-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/re2j-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-servlet-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-core-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/hadoop-auth-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/asm-5.0.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-asn1-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/j2objc-annotations-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-mapper-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jsch-0.1.54.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-http-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/htrace-core4-4.1.0-incubating.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-server-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-collections-3.2.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/okio-1.6.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/curator-recipes-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-io-2.5.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-admin-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-text-1.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-server-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/accessors-smart-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/log4j-1.2.17.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-xc-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-pkix-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-codec-1.11.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/javax.servlet-api-3.1.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/nimbus-jose-jwt-4.41.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-compress-1.18.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-math3-3.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-core-asl-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/audience-annotations-0.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-crypto-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-simplekdc-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/netty-all-4.0.52.Final.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jsr305-3.0.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-configuration2-2.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/failureaccess-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/avro-1.7.7.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-core-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jettison-1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/animal-sniffer-annotations-1.17.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/paranamer-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/protobuf-java-2.5.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-util-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-config-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/okhttp-2.7.5.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/checker-qual-2.5.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-util-ajax-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-security-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/httpcore-4.4.10.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/error_prone_annotations-2.2.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/token-provider-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-webapp-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-jaxrs-1.9.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-identity-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-servlet-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/curator-client-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-logging-1.1.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-beanutils-1.9.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-annotations-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/netty-3.10.5.Final.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-core-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jcip-annotations-1.0-1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/hadoop-annotations-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jaxb-api-2.2.11.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/json-simple-1.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/stax2-api-3.1.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/snappy-java-1.0.5.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/httpclient-4.5.6.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jsr311-api-1.1.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-daemon-1.0.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-lang3-3.7.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/woodstox-core-5.0.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-util-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-io-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jackson-databind-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-common-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-xml-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/zookeeper-3.4.13.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jaxb-impl-2.2.3-1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerb-client-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/json-smart-2.3.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jersey-json-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-cli-1.2.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/guava-27.0-jre.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/commons-net-3.6.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/jetty-server-9.3.24.v20180605.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/dnsjava-2.1.7.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/curator-framework-2.13.0.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/gson-2.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/lib/kerby-xdr-1.0.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-native-client-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-rbf-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-client-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-client-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-rbf-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-nfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-httpfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/hdfs/hadoop-hdfs-native-client-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/lib/hamcrest-core-1.3.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/lib/junit-4.11.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-nativetask-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-plugins-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-app-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-shuffle-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-hs-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-uploader-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-jobclient-3.2.1-tests.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-client-core-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/geronimo-jcache_1.0_spec-1.0-alpha-1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/bcpkix-jdk15on-1.60.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/javax.inject-1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jackson-module-jaxb-annotations-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jackson-jaxrs-json-provider-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/snakeyaml-1.16.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/java-util-1.9.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/objenesis-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/guice-4.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jersey-guice-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/guice-servlet-4.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/mssql-jdbc-6.2.1.jre7.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/json-io-2.5.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/fst-2.50.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/swagger-annotations-1.5.4.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jackson-jaxrs-base-2.9.8.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/ehcache-3.3.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/bcprov-jdk15on-1.60.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/metrics-core-3.2.4.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/aopalliance-1.0.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/HikariCP-java7-2.4.12.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/lib/jersey-client-1.19.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-tests-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-applications-unmanaged-am-launcher-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-router-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-timeline-pluginstorage-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-client-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-services-api-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-web-proxy-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-api-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-applicationhistoryservice-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-applications-distributedshell-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-submarine-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-services-core-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-registry-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-nodemanager-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-resourcemanager-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-common-3.2.1.jar:/opt/hadoop-3.2.1/share/hadoop/yarn/hadoop-yarn-server-sharedcachemanager-3.2.1.jar
+STARTUP_MSG:   build = https://gitbox.apache.org/repos/asf/hadoop.git -r b3cbbb467e22ea829b3808f4b7b01d07e0bf3842; compiled by 'rohithsharmaks' on 2019-09-10T15:56Z
+STARTUP_MSG:   java = 1.8.0_232
+************************************************************/
+2025-09-23 18:51:58,001 INFO namenode.NameNode: registered UNIX signal handlers for [TERM, HUP, INT]
+2025-09-23 18:51:58,111 INFO namenode.NameNode: createNameNode []
+2025-09-23 18:51:58,268 INFO impl.MetricsConfig: Loaded properties from hadoop-metrics2.properties
+2025-09-23 18:51:58,376 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+2025-09-23 18:51:58,376 INFO impl.MetricsSystemImpl: NameNode metrics system started
+2025-09-23 18:51:58,416 INFO namenode.NameNodeUtils: fs.defaultFS is hdfs://namenode:9000
+2025-09-23 18:51:58,416 INFO namenode.NameNode: Clients should use namenode:9000 to access this namenode/service.
+2025-09-23 18:51:58,572 INFO util.JvmPauseMonitor: Starting JVM pause monitor
+2025-09-23 18:51:58,612 INFO hdfs.DFSUtil: Starting Web-server for hdfs at: http://0.0.0.0:9870
+2025-09-23 18:51:58,634 INFO util.log: Logging initialized @1309ms
+2025-09-23 18:51:58,724 INFO server.AuthenticationFilter: Unable to initialize FileSignerSecretProvider, falling back to use random secrets.
+2025-09-23 18:51:58,738 INFO http.HttpRequestLog: Http request log for http.requests.namenode is not defined
+2025-09-23 18:51:58,748 INFO http.HttpServer2: Added global filter 'safety' (class=org.apache.hadoop.http.HttpServer2$QuotingInputFilter)
+2025-09-23 18:51:58,750 INFO http.HttpServer2: Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context hdfs
+2025-09-23 18:51:58,750 INFO http.HttpServer2: Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context logs
+2025-09-23 18:51:58,750 INFO http.HttpServer2: Added filter static_user_filter (class=org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter) to context static
+2025-09-23 18:51:58,774 INFO http.HttpServer2: Added filter 'org.apache.hadoop.hdfs.web.AuthFilter' (class=org.apache.hadoop.hdfs.web.AuthFilter)
+2025-09-23 18:51:58,775 INFO http.HttpServer2: addJerseyResourcePackage: packageName=org.apache.hadoop.hdfs.server.namenode.web.resources;org.apache.hadoop.hdfs.web.resources, pathSpec=/webhdfs/v1/*
+2025-09-23 18:51:58,783 INFO http.HttpServer2: Jetty bound to port 9870
+2025-09-23 18:51:58,784 INFO server.Server: jetty-9.3.24.v20180605, build timestamp: 2018-06-05T17:11:56Z, git hash: 84205aa28f11a4f31f2a3b86d1bba2cc8ab69827
+2025-09-23 18:51:58,812 INFO handler.ContextHandler: Started o.e.j.s.ServletContextHandler@7d0b7e3c{/logs,file:///opt/hadoop-3.2.1/logs/,AVAILABLE}
+2025-09-23 18:51:58,812 INFO handler.ContextHandler: Started o.e.j.s.ServletContextHandler@4b741d6d{/static,file:///opt/hadoop-3.2.1/share/hadoop/hdfs/webapps/static/,AVAILABLE}
+2025-09-23 18:51:58,890 INFO handler.ContextHandler: Started o.e.j.w.WebAppContext@7486b455{/,file:///opt/hadoop-3.2.1/share/hadoop/hdfs/webapps/hdfs/,AVAILABLE}{/hdfs}
+2025-09-23 18:51:58,898 INFO server.AbstractConnector: Started ServerConnector@700fb871{HTTP/1.1,[http/1.1]}{0.0.0.0:9870}
+2025-09-23 18:51:58,898 INFO server.Server: Started @1574ms
+2025-09-23 18:51:59,074 WARN namenode.FSNamesystem: Only one image storage directory (dfs.namenode.name.dir) configured. Beware of data loss due to lack of redundant storage directories!
+2025-09-23 18:51:59,074 WARN namenode.FSNamesystem: Only one namespace edits storage directory (dfs.namenode.edits.dir) configured. Beware of data loss due to lack of redundant storage directories!
+2025-09-23 18:51:59,124 INFO namenode.FSEditLog: Edit logging is async:true
+2025-09-23 18:51:59,179 INFO namenode.FSNamesystem: KeyProvider: null
+2025-09-23 18:51:59,180 INFO namenode.FSNamesystem: fsLock is fair: true
+2025-09-23 18:51:59,180 INFO namenode.FSNamesystem: Detailed lock hold time metrics enabled: false
+2025-09-23 18:51:59,185 INFO namenode.FSNamesystem: fsOwner             = root (auth:SIMPLE)
+2025-09-23 18:51:59,185 INFO namenode.FSNamesystem: supergroup          = supergroup
+2025-09-23 18:51:59,185 INFO namenode.FSNamesystem: isPermissionEnabled = true
+2025-09-23 18:51:59,185 INFO namenode.FSNamesystem: HA Enabled: false
+2025-09-23 18:51:59,219 INFO common.Util: dfs.datanode.fileio.profiling.sampling.percentage set to 0. Disabling file IO profiling
+2025-09-23 18:51:59,228 INFO blockmanagement.DatanodeManager: dfs.block.invalidate.limit: configured=1000, counted=60, effected=1000
+2025-09-23 18:51:59,228 INFO blockmanagement.DatanodeManager: dfs.namenode.datanode.registration.ip-hostname-check=true
+2025-09-23 18:51:59,231 INFO blockmanagement.BlockManager: dfs.namenode.startup.delay.block.deletion.sec is set to 000:00:00:00.000
+2025-09-23 18:51:59,232 INFO blockmanagement.BlockManager: The block deletion will start around 2025 Sep 23 18:51:59
+2025-09-23 18:51:59,233 INFO util.GSet: Computing capacity for map BlocksMap
+2025-09-23 18:51:59,233 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:59,235 INFO util.GSet: 2.0% max memory 3.3 GB = 68.4 MB
+2025-09-23 18:51:59,235 INFO util.GSet: capacity      = 2^23 = 8388608 entries
+2025-09-23 18:51:59,246 INFO blockmanagement.BlockManager: Storage policy satisfier is disabled
+2025-09-23 18:51:59,246 INFO blockmanagement.BlockManager: dfs.block.access.token.enable = false
+2025-09-23 18:51:59,253 INFO Configuration.deprecation: No unit for dfs.namenode.safemode.extension(30000) assuming MILLISECONDS
+2025-09-23 18:51:59,253 INFO blockmanagement.BlockManagerSafeMode: dfs.namenode.safemode.threshold-pct = 0.9990000128746033
+2025-09-23 18:51:59,253 INFO blockmanagement.BlockManagerSafeMode: dfs.namenode.safemode.min.datanodes = 0
+2025-09-23 18:51:59,253 INFO blockmanagement.BlockManagerSafeMode: dfs.namenode.safemode.extension = 30000
+2025-09-23 18:51:59,253 INFO blockmanagement.BlockManager: defaultReplication         = 3
+2025-09-23 18:51:59,253 INFO blockmanagement.BlockManager: maxReplication             = 512
+2025-09-23 18:51:59,253 INFO blockmanagement.BlockManager: minReplication             = 1
+2025-09-23 18:51:59,254 INFO blockmanagement.BlockManager: maxReplicationStreams      = 2
+2025-09-23 18:51:59,254 INFO blockmanagement.BlockManager: redundancyRecheckInterval  = 3000ms
+2025-09-23 18:51:59,254 INFO blockmanagement.BlockManager: encryptDataTransfer        = false
+2025-09-23 18:51:59,254 INFO blockmanagement.BlockManager: maxNumBlocksToLog          = 1000
+2025-09-23 18:51:59,281 INFO namenode.FSDirectory: GLOBAL serial map: bits=29 maxEntries=536870911
+2025-09-23 18:51:59,281 INFO namenode.FSDirectory: USER serial map: bits=24 maxEntries=16777215
+2025-09-23 18:51:59,281 INFO namenode.FSDirectory: GROUP serial map: bits=24 maxEntries=16777215
+2025-09-23 18:51:59,281 INFO namenode.FSDirectory: XATTR serial map: bits=24 maxEntries=16777215
+2025-09-23 18:51:59,295 INFO util.GSet: Computing capacity for map INodeMap
+2025-09-23 18:51:59,295 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:59,295 INFO util.GSet: 1.0% max memory 3.3 GB = 34.2 MB
+2025-09-23 18:51:59,295 INFO util.GSet: capacity      = 2^22 = 4194304 entries
+2025-09-23 18:51:59,297 INFO namenode.FSDirectory: ACLs enabled? false
+2025-09-23 18:51:59,297 INFO namenode.FSDirectory: POSIX ACL inheritance enabled? true
+2025-09-23 18:51:59,297 INFO namenode.FSDirectory: XAttrs enabled? true
+2025-09-23 18:51:59,297 INFO namenode.NameNode: Caching file names occurring more than 10 times
+2025-09-23 18:51:59,303 INFO snapshot.SnapshotManager: Loaded config captureOpenFiles: false, skipCaptureAccessTimeOnlyChange: false, snapshotDiffAllowSnapRootDescendant: true, maxSnapshotLimit: 65536
+2025-09-23 18:51:59,305 INFO snapshot.SnapshotManager: SkipList is disabled
+2025-09-23 18:51:59,310 INFO util.GSet: Computing capacity for map cachedBlocks
+2025-09-23 18:51:59,310 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:59,310 INFO util.GSet: 0.25% max memory 3.3 GB = 8.6 MB
+2025-09-23 18:51:59,310 INFO util.GSet: capacity      = 2^20 = 1048576 entries
+2025-09-23 18:51:59,319 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.window.num.buckets = 10
+2025-09-23 18:51:59,319 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.num.users = 10
+2025-09-23 18:51:59,319 INFO metrics.TopMetrics: NNTop conf: dfs.namenode.top.windows.minutes = 1,5,25
+2025-09-23 18:51:59,323 INFO namenode.FSNamesystem: Retry cache on namenode is enabled
+2025-09-23 18:51:59,323 INFO namenode.FSNamesystem: Retry cache will use 0.03 of total heap and retry cache entry expiry time is 600000 millis
+2025-09-23 18:51:59,325 INFO util.GSet: Computing capacity for map NameNodeRetryCache
+2025-09-23 18:51:59,325 INFO util.GSet: VM type       = 64-bit
+2025-09-23 18:51:59,325 INFO util.GSet: 0.029999999329447746% max memory 3.3 GB = 1.0 MB
+2025-09-23 18:51:59,325 INFO util.GSet: capacity      = 2^17 = 131072 entries
+2025-09-23 18:51:59,351 INFO common.Storage: Lock on /hadoop/dfs/name/in_use.lock acquired by nodename 161@namenode
+2025-09-23 18:51:59,378 INFO namenode.FileJournalManager: Recovering unfinalized segments in /hadoop/dfs/name/current
+2025-09-23 18:51:59,379 INFO namenode.FSImage: No edit log streams selected.
+2025-09-23 18:51:59,379 INFO namenode.FSImage: Planning to load image: FSImageFile(file=/hadoop/dfs/name/current/fsimage_0000000000000000000, cpktTxId=0000000000000000000)
+2025-09-23 18:51:59,444 INFO namenode.FSImageFormatPBINode: Loading 1 INodes.
+2025-09-23 18:51:59,470 INFO namenode.FSImageFormatProtobuf: Loaded FSImage in 0 seconds.
+2025-09-23 18:51:59,470 INFO namenode.FSImage: Loaded image for txid 0 from /hadoop/dfs/name/current/fsimage_0000000000000000000
+2025-09-23 18:51:59,474 INFO namenode.FSNamesystem: Need to save fs image? false (staleImage=false, haEnabled=false, isRollingUpgrade=false)
+2025-09-23 18:51:59,475 INFO namenode.FSEditLog: Starting log segment at 1
+2025-09-23 18:51:59,563 INFO namenode.NameCache: initialized with 0 entries 0 lookups
+2025-09-23 18:51:59,563 INFO namenode.FSNamesystem: Finished loading FSImage in 233 msecs
+2025-09-23 18:51:59,866 INFO namenode.NameNode: RPC server is binding to 0.0.0.0:9000
+2025-09-23 18:51:59,891 INFO ipc.CallQueueManager: Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 1000, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+2025-09-23 18:51:59,901 INFO ipc.Server: Starting Socket Reader #1 for port 9000
+2025-09-23 18:52:00,045 INFO namenode.FSNamesystem: Registered FSNamesystemState, ReplicatedBlocksState and ECBlockGroupsState MBeans.
+2025-09-23 18:52:00,054 INFO namenode.LeaseManager: Number of blocks under construction: 0
+2025-09-23 18:52:00,061 INFO blockmanagement.BlockManager: initializing replication queues
+2025-09-23 18:52:00,062 INFO hdfs.StateChange: STATE* Leaving safe mode after 0 secs
+2025-09-23 18:52:00,062 INFO hdfs.StateChange: STATE* Network topology has 0 racks and 0 datanodes
+2025-09-23 18:52:00,062 INFO hdfs.StateChange: STATE* UnderReplicatedBlocks has 0 blocks
+2025-09-23 18:52:00,069 INFO blockmanagement.BlockManager: Total number of blocks            = 0
+2025-09-23 18:52:00,069 INFO blockmanagement.BlockManager: Number of invalid blocks          = 0
+2025-09-23 18:52:00,069 INFO blockmanagement.BlockManager: Number of under-replicated blocks = 0
+2025-09-23 18:52:00,069 INFO blockmanagement.BlockManager: Number of  over-replicated blocks = 0
+2025-09-23 18:52:00,069 INFO blockmanagement.BlockManager: Number of blocks being written    = 0
+2025-09-23 18:52:00,069 INFO hdfs.StateChange: STATE* Replication Queue initialization scan for invalid, over- and under-replicated blocks completed in 8 msec
+2025-09-23 18:52:00,081 INFO ipc.Server: IPC Server listener on 9000: starting
+2025-09-23 18:52:00,081 INFO ipc.Server: IPC Server Responder: starting
+2025-09-23 18:52:00,083 INFO namenode.NameNode: NameNode RPC up at: namenode/172.19.0.2:9000
+2025-09-23 18:52:00,085 INFO namenode.FSNamesystem: Starting services required for active state
+2025-09-23 18:52:00,085 INFO namenode.FSDirectory: Initializing quota with 4 thread(s)
+2025-09-23 18:52:00,090 INFO namenode.FSDirectory: Quota initialization completed in 5 milliseconds
+name space=1
+storage space=0
+storage types=RAM_DISK=0, SSD=0, DISK=0, ARCHIVE=0, PROVIDED=0
+2025-09-23 18:52:00,093 INFO blockmanagement.CacheReplicationMonitor: Starting CacheReplicationMonitor with interval 30000 milliseconds
+2025-09-23 18:52:00,775 INFO hdfs.StateChange: BLOCK* registerDatanode: from DatanodeRegistration(172.19.0.3:9866, datanodeUuid=f596791b-f5b2-4b98-8b4a-20e119c80f3f, infoPort=9864, infoSecurePort=0, ipcPort=9867, storageInfo=lv=-57;cid=CID-931c6537-8fbe-4bcc-b3f4-0efd4406b052;nsid=1853864144;c=1758653517014) storage f596791b-f5b2-4b98-8b4a-20e119c80f3f
+2025-09-23 18:52:00,776 INFO net.NetworkTopology: Adding a new node: /default-rack/172.19.0.3:9866
+2025-09-23 18:52:00,776 INFO blockmanagement.BlockReportLeaseManager: Registered DN f596791b-f5b2-4b98-8b4a-20e119c80f3f (172.19.0.3:9866).
+2025-09-23 18:52:00,778 INFO hdfs.StateChange: BLOCK* registerDatanode: from DatanodeRegistration(172.19.0.4:9866, datanodeUuid=ddffe429-6254-462b-912a-4dee1d91300f, infoPort=9864, infoSecurePort=0, ipcPort=9867, storageInfo=lv=-57;cid=CID-931c6537-8fbe-4bcc-b3f4-0efd4406b052;nsid=1853864144;c=1758653517014) storage ddffe429-6254-462b-912a-4dee1d91300f
+2025-09-23 18:52:00,779 INFO net.NetworkTopology: Adding a new node: /default-rack/172.19.0.4:9866
+2025-09-23 18:52:00,779 INFO blockmanagement.BlockReportLeaseManager: Registered DN ddffe429-6254-462b-912a-4dee1d91300f (172.19.0.4:9866).
+2025-09-23 18:52:00,851 INFO blockmanagement.DatanodeDescriptor: Adding new storage ID DS-7f847090-8ed8-4b75-81ce-0fc226a064ce for DN 172.19.0.4:9866
+2025-09-23 18:52:00,853 INFO blockmanagement.DatanodeDescriptor: Adding new storage ID DS-eda7ede1-6f0a-4310-8b5f-e36fc04b022d for DN 172.19.0.3:9866
+2025-09-23 18:52:00,888 INFO BlockStateChange: BLOCK* processReport 0x5b3fefa7a59bf8cb: Processing first storage report for DS-eda7ede1-6f0a-4310-8b5f-e36fc04b022d from datanode f596791b-f5b2-4b98-8b4a-20e119c80f3f
+2025-09-23 18:52:00,890 INFO BlockStateChange: BLOCK* processReport 0x5b3fefa7a59bf8cb: from storage DS-eda7ede1-6f0a-4310-8b5f-e36fc04b022d node DatanodeRegistration(172.19.0.3:9866, datanodeUuid=f596791b-f5b2-4b98-8b4a-20e119c80f3f, infoPort=9864, infoSecurePort=0, ipcPort=9867, storageInfo=lv=-57;cid=CID-931c6537-8fbe-4bcc-b3f4-0efd4406b052;nsid=1853864144;c=1758653517014), blocks: 0, hasStaleStorage: false, processing time: 2 msecs, invalidatedBlocks: 0
+2025-09-23 18:52:00,890 INFO BlockStateChange: BLOCK* processReport 0xb8cc0cefef3607f1: Processing first storage report for DS-7f847090-8ed8-4b75-81ce-0fc226a064ce from datanode ddffe429-6254-462b-912a-4dee1d91300f
+2025-09-23 18:52:00,890 INFO BlockStateChange: BLOCK* processReport 0xb8cc0cefef3607f1: from storage DS-7f847090-8ed8-4b75-81ce-0fc226a064ce node DatanodeRegistration(172.19.0.4:9866, datanodeUuid=ddffe429-6254-462b-912a-4dee1d91300f, infoPort=9864, infoSecurePort=0, ipcPort=9867, storageInfo=lv=-57;cid=CID-931c6537-8fbe-4bcc-b3f4-0efd4406b052;nsid=1853864144;c=1758653517014), blocks: 0, hasStaleStorage: false, processing time: 0 msecs, invalidatedBlocks: 0
+Sep 23, 2025 7:03:43 PM com.sun.jersey.api.core.PackagesResourceConfig init
+INFO: Scanning for root resource and provider classes in the packages:
+  org.apache.hadoop.hdfs.server.namenode.web.resources
+  org.apache.hadoop.hdfs.web.resources
+Sep 23, 2025 7:03:43 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Root resource classes found:
+  class org.apache.hadoop.hdfs.server.namenode.web.resources.NamenodeWebHdfsMethods
+Sep 23, 2025 7:03:43 PM com.sun.jersey.api.core.ScanningResourceConfig logClasses
+INFO: Provider classes found:
+  class org.apache.hadoop.hdfs.web.resources.ExceptionHandler
+  class org.apache.hadoop.hdfs.web.resources.UserProvider
+Sep 23, 2025 7:03:43 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
+INFO: Initiating Jersey application, version 'Jersey: 1.19 02/11/2015 03:25 AM'
+Sep 23, 2025 7:03:44 PM com.sun.jersey.spi.inject.Errors processErrorMessages
+WARNING: The following warnings have been detected with resource and/or provider classes:
+  WARNING: A sub-resource method, public javax.ws.rs.core.Response org.apache.hadoop.hdfs.server.namenode.web.resources.NamenodeWebHdfsMethods.putRoot(org.apache.hadoop.security.UserGroupInformation,org.apache.hadoop.hdfs.web.resources.DelegationParam,org.apache.hadoop.hdfs.web.resources.UserParam,org.apache.hadoop.hdfs.web.resources.DoAsParam,org.apache.hadoop.hdfs.web.resources.PutOpParam,org.apache.hadoop.hdfs.web.resources.DestinationParam,org.apache.hadoop.hdfs.web.resources.OwnerParam,org.apache.hadoop.hdfs.web.resources.GroupParam,org.apache.hadoop.hdfs.web.resources.PermissionParam,org.apache.hadoop.hdfs.web.resources.UnmaskedPermissionParam,org.apache.hadoop.hdfs.web.resources.OverwriteParam,org.apache.hadoop.hdfs.web.resources.BufferSizeParam,org.apache.hadoop.hdfs.web.resources.ReplicationParam,org.apache.hadoop.hdfs.web.resources.BlockSizeParam,org.apache.hadoop.hdfs.web.resources.ModificationTimeParam,org.apache.hadoop.hdfs.web.resources.AccessTimeParam,org.apache.hadoop.hdfs.web.resources.RenameOptionSetParam,org.apache.hadoop.hdfs.web.resources.CreateParentParam,org.apache.hadoop.hdfs.web.resources.TokenArgumentParam,org.apache.hadoop.hdfs.web.resources.AclPermissionParam,org.apache.hadoop.hdfs.web.resources.XAttrNameParam,org.apache.hadoop.hdfs.web.resources.XAttrValueParam,org.apache.hadoop.hdfs.web.resources.XAttrSetFlagParam,org.apache.hadoop.hdfs.web.resources.SnapshotNameParam,org.apache.hadoop.hdfs.web.resources.OldSnapshotNameParam,org.apache.hadoop.hdfs.web.resources.ExcludeDatanodesParam,org.apache.hadoop.hdfs.web.resources.CreateFlagParam,org.apache.hadoop.hdfs.web.resources.NoRedirectParam,org.apache.hadoop.hdfs.web.resources.StoragePolicyParam,org.apache.hadoop.hdfs.web.resources.ECPolicyParam) throws java.io.IOException,java.lang.InterruptedException, with URI template, "/", is treated as a resource method
+  WARNING: A sub-resource method, public javax.ws.rs.core.Response org.apache.hadoop.hdfs.server.namenode.web.resources.NamenodeWebHdfsMethods.postRoot(org.apache.hadoop.security.UserGroupInformation,org.apache.hadoop.hdfs.web.resources.DelegationParam,org.apache.hadoop.hdfs.web.resources.UserParam,org.apache.hadoop.hdfs.web.resources.DoAsParam,org.apache.hadoop.hdfs.web.resources.PostOpParam,org.apache.hadoop.hdfs.web.resources.ConcatSourcesParam,org.apache.hadoop.hdfs.web.resources.BufferSizeParam,org.apache.hadoop.hdfs.web.resources.ExcludeDatanodesParam,org.apache.hadoop.hdfs.web.resources.NewLengthParam,org.apache.hadoop.hdfs.web.resources.NoRedirectParam) throws java.io.IOException,java.lang.InterruptedException, with URI template, "/", is treated as a resource method
+  WARNING: A sub-resource method, public javax.ws.rs.core.Response org.apache.hadoop.hdfs.server.namenode.web.resources.NamenodeWebHdfsMethods.deleteRoot(org.apache.hadoop.security.UserGroupInformation,org.apache.hadoop.hdfs.web.resources.DelegationParam,org.apache.hadoop.hdfs.web.resources.UserParam,org.apache.hadoop.hdfs.web.resources.DoAsParam,org.apache.hadoop.hdfs.web.resources.DeleteOpParam,org.apache.hadoop.hdfs.web.resources.RecursiveParam,org.apache.hadoop.hdfs.web.resources.SnapshotNameParam) throws java.io.IOException,java.lang.InterruptedException, with URI template, "/", is treated as a resource method
+  WARNING: A sub-resource method, public javax.ws.rs.core.Response org.apache.hadoop.hdfs.server.namenode.web.resources.NamenodeWebHdfsMethods.getRoot(org.apache.hadoop.security.UserGroupInformation,org.apache.hadoop.hdfs.web.resources.DelegationParam,org.apache.hadoop.hdfs.web.resources.UserParam,org.apache.hadoop.hdfs.web.resources.DoAsParam,org.apache.hadoop.hdfs.web.resources.GetOpParam,org.apache.hadoop.hdfs.web.resources.OffsetParam,org.apache.hadoop.hdfs.web.resources.LengthParam,org.apache.hadoop.hdfs.web.resources.RenewerParam,org.apache.hadoop.hdfs.web.resources.BufferSizeParam,java.util.List,org.apache.hadoop.hdfs.web.resources.XAttrEncodingParam,org.apache.hadoop.hdfs.web.resources.ExcludeDatanodesParam,org.apache.hadoop.hdfs.web.resources.FsActionParam,org.apache.hadoop.hdfs.web.resources.SnapshotNameParam,org.apache.hadoop.hdfs.web.resources.OldSnapshotNameParam,org.apache.hadoop.hdfs.web.resources.TokenKindParam,org.apache.hadoop.hdfs.web.resources.TokenServiceParam,org.apache.hadoop.hdfs.web.resources.NoRedirectParam,org.apache.hadoop.hdfs.web.resources.StartAfterParam) throws java.io.IOException,java.lang.InterruptedException, with URI template, "/", is treated as a resource method
+2025-09-23 19:03:44,310 INFO namenode.FSEditLog: Number of transactions: 2 Total time for transactions(ms): 26 Number of transactions batched in Syncs: 0 Number of syncs: 2 SyncTimes(ms): 6
+2025-09-23 19:03:44,787 INFO hdfs.StateChange: BLOCK* allocate blk_1073741825_1001, replicas=172.19.0.3:9866, 172.19.0.4:9866 for /test/simple_data.json
+2025-09-23 19:03:45,045 INFO namenode.FSNamesystem: BLOCK* blk_1073741825_1001 is COMMITTED but not COMPLETE(numNodes= 0 <  minimum = 1) in file /test/simple_data.json
+2025-09-23 19:03:45,451 INFO hdfs.StateChange: DIR* completeFile: /test/simple_data.json is closed by DFSClient_NONMAPREDUCE_1937218854_90
+ERROR:  'org.eclipse.jetty.io.EofException'
+2025-09-23 19:06:44,657 WARN servlet.ServletHandler: /conf
+java.io.IOException: javax.xml.transform.TransformerException: org.eclipse.jetty.io.RuntimeIOException: org.eclipse.jetty.io.EofException
+        at org.apache.hadoop.conf.Configuration.writeXml(Configuration.java:3503)
+        at org.apache.hadoop.conf.ConfServlet.writeResponse(ConfServlet.java:101)
+        at org.apache.hadoop.conf.ConfServlet.doGet(ConfServlet.java:76)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+        at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:848)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1772)
+        at org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter.doFilter(StaticUserWebFilter.java:110)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1759)
+        at org.apache.hadoop.http.HttpServer2$QuotingInputFilter.doFilter(HttpServer2.java:1624)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1759)
+        at org.apache.hadoop.http.NoCacheFilter.doFilter(NoCacheFilter.java:45)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1759)
+        at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:582)
+        at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+        at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+        at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:226)
+        at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1180)
+        at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:512)
+        at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185)
+        at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1112)
+        at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+        at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:119)
+        at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+        at org.eclipse.jetty.server.Server.handle(Server.java:539)
+        at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:333)
+        at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:251)
+        at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:283)
+        at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:108)
+        at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+        at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+        at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+        at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+        at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+        at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+        at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.xml.transform.TransformerException: org.eclipse.jetty.io.RuntimeIOException: org.eclipse.jetty.io.EofException
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:737)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:343)
+        at org.apache.hadoop.conf.Configuration.writeXml(Configuration.java:3501)
+        ... 35 more
+Caused by: org.eclipse.jetty.io.RuntimeIOException: org.eclipse.jetty.io.EofException
+        at org.eclipse.jetty.server.ResponseWriter.isOpen(ResponseWriter.java:133)
+        at org.eclipse.jetty.server.ResponseWriter.write(ResponseWriter.java:180)
+        at com.sun.org.apache.xml.internal.serializer.ToStream.endElement(ToStream.java:2063)
+        at com.sun.org.apache.xml.internal.serializer.ToXMLStream.endElement(ToXMLStream.java:532)
+        at com.sun.org.apache.xml.internal.serializer.ToUnknownStream.endElement(ToUnknownStream.java:361)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:235)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:230)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:230)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:136)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:98)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transformIdentity(TransformerImpl.java:684)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:728)
+        ... 37 more
+Caused by: org.eclipse.jetty.io.EofException
+        at org.eclipse.jetty.io.ChannelEndPoint.flush(ChannelEndPoint.java:199)
+        at org.eclipse.jetty.io.WriteFlusher.flush(WriteFlusher.java:420)
+        at org.eclipse.jetty.io.WriteFlusher.write(WriteFlusher.java:313)
+        at org.eclipse.jetty.io.AbstractEndPoint.write(AbstractEndPoint.java:147)
+        at org.eclipse.jetty.server.HttpConnection$SendCallback.process(HttpConnection.java:739)
+        at org.eclipse.jetty.util.IteratingCallback.processing(IteratingCallback.java:241)
+        at org.eclipse.jetty.util.IteratingCallback.iterate(IteratingCallback.java:224)
+        at org.eclipse.jetty.server.HttpConnection.send(HttpConnection.java:519)
+        at org.eclipse.jetty.server.HttpChannel.sendResponse(HttpChannel.java:753)
+        at org.eclipse.jetty.server.HttpChannel.write(HttpChannel.java:804)
+        at org.eclipse.jetty.server.HttpOutput.write(HttpOutput.java:235)
+        at org.eclipse.jetty.server.HttpOutput.write(HttpOutput.java:219)
+        at org.eclipse.jetty.server.HttpOutput.write(HttpOutput.java:496)
+        at java.io.ByteArrayOutputStream.writeTo(ByteArrayOutputStream.java:167)
+        at org.eclipse.jetty.server.Utf8HttpWriter.write(Utf8HttpWriter.java:183)
+        at org.eclipse.jetty.server.ResponseWriter.write(ResponseWriter.java:203)
+        at com.sun.org.apache.xml.internal.serializer.ToStream.characters(ToStream.java:1488)
+        at com.sun.org.apache.xml.internal.serializer.ToUnknownStream.characters(ToUnknownStream.java:814)
+        at com.sun.org.apache.xml.internal.serializer.ToUnknownStream.characters(ToUnknownStream.java:348)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:244)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:230)
+        ... 43 more
+Caused by: java.io.IOException: Broken pipe
+        at sun.nio.ch.FileDispatcherImpl.writev0(Native Method)
+        at sun.nio.ch.SocketDispatcher.writev(SocketDispatcher.java:51)
+        at sun.nio.ch.IOUtil.write(IOUtil.java:148)
+        at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:504)
+        at org.eclipse.jetty.io.ChannelEndPoint.flush(ChannelEndPoint.java:179)
+        ... 63 more
+2025-09-23 19:06:44,660 WARN server.HttpChannel: //localhost:9870/conf
+java.io.IOException: javax.xml.transform.TransformerException: org.eclipse.jetty.io.RuntimeIOException: org.eclipse.jetty.io.EofException
+        at org.apache.hadoop.conf.Configuration.writeXml(Configuration.java:3503)
+        at org.apache.hadoop.conf.ConfServlet.writeResponse(ConfServlet.java:101)
+        at org.apache.hadoop.conf.ConfServlet.doGet(ConfServlet.java:76)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:687)
+        at javax.servlet.http.HttpServlet.service(HttpServlet.java:790)
+        at org.eclipse.jetty.servlet.ServletHolder.handle(ServletHolder.java:848)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1772)
+        at org.apache.hadoop.http.lib.StaticUserWebFilter$StaticUserFilter.doFilter(StaticUserWebFilter.java:110)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1759)
+        at org.apache.hadoop.http.HttpServer2$QuotingInputFilter.doFilter(HttpServer2.java:1624)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1759)
+        at org.apache.hadoop.http.NoCacheFilter.doFilter(NoCacheFilter.java:45)
+        at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1759)
+        at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:582)
+        at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:143)
+        at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+        at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:226)
+        at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1180)
+        at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:512)
+        at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:185)
+        at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1112)
+        at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:141)
+        at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:119)
+        at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:134)
+        at org.eclipse.jetty.server.Server.handle(Server.java:539)
+        at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:333)
+        at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:251)
+        at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:283)
+        at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:108)
+        at org.eclipse.jetty.io.SelectChannelEndPoint$2.run(SelectChannelEndPoint.java:93)
+        at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.executeProduceConsume(ExecuteProduceConsume.java:303)
+        at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.produceConsume(ExecuteProduceConsume.java:148)
+        at org.eclipse.jetty.util.thread.strategy.ExecuteProduceConsume.run(ExecuteProduceConsume.java:136)
+        at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:671)
+        at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:589)
+        at java.lang.Thread.run(Thread.java:748)
+Caused by: javax.xml.transform.TransformerException: org.eclipse.jetty.io.RuntimeIOException: org.eclipse.jetty.io.EofException
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:737)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:343)
+        at org.apache.hadoop.conf.Configuration.writeXml(Configuration.java:3501)
+        ... 35 more
+Caused by: org.eclipse.jetty.io.RuntimeIOException: org.eclipse.jetty.io.EofException
+        at org.eclipse.jetty.server.ResponseWriter.isOpen(ResponseWriter.java:133)
+        at org.eclipse.jetty.server.ResponseWriter.write(ResponseWriter.java:180)
+        at com.sun.org.apache.xml.internal.serializer.ToStream.endElement(ToStream.java:2063)
+        at com.sun.org.apache.xml.internal.serializer.ToXMLStream.endElement(ToXMLStream.java:532)
+        at com.sun.org.apache.xml.internal.serializer.ToUnknownStream.endElement(ToUnknownStream.java:361)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:235)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:230)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:230)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:136)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:98)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transformIdentity(TransformerImpl.java:684)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.TransformerImpl.transform(TransformerImpl.java:728)
+        ... 37 more
+Caused by: org.eclipse.jetty.io.EofException
+        at org.eclipse.jetty.io.ChannelEndPoint.flush(ChannelEndPoint.java:199)
+        at org.eclipse.jetty.io.WriteFlusher.flush(WriteFlusher.java:420)
+        at org.eclipse.jetty.io.WriteFlusher.write(WriteFlusher.java:313)
+        at org.eclipse.jetty.io.AbstractEndPoint.write(AbstractEndPoint.java:147)
+        at org.eclipse.jetty.server.HttpConnection$SendCallback.process(HttpConnection.java:739)
+        at org.eclipse.jetty.util.IteratingCallback.processing(IteratingCallback.java:241)
+        at org.eclipse.jetty.util.IteratingCallback.iterate(IteratingCallback.java:224)
+        at org.eclipse.jetty.server.HttpConnection.send(HttpConnection.java:519)
+        at org.eclipse.jetty.server.HttpChannel.sendResponse(HttpChannel.java:753)
+        at org.eclipse.jetty.server.HttpChannel.write(HttpChannel.java:804)
+        at org.eclipse.jetty.server.HttpOutput.write(HttpOutput.java:235)
+        at org.eclipse.jetty.server.HttpOutput.write(HttpOutput.java:219)
+        at org.eclipse.jetty.server.HttpOutput.write(HttpOutput.java:496)
+        at java.io.ByteArrayOutputStream.writeTo(ByteArrayOutputStream.java:167)
+        at org.eclipse.jetty.server.Utf8HttpWriter.write(Utf8HttpWriter.java:183)
+        at org.eclipse.jetty.server.ResponseWriter.write(ResponseWriter.java:203)
+        at com.sun.org.apache.xml.internal.serializer.ToStream.characters(ToStream.java:1488)
+        at com.sun.org.apache.xml.internal.serializer.ToUnknownStream.characters(ToUnknownStream.java:814)
+        at com.sun.org.apache.xml.internal.serializer.ToUnknownStream.characters(ToUnknownStream.java:348)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:244)
+        at com.sun.org.apache.xalan.internal.xsltc.trax.DOM2TO.parse(DOM2TO.java:230)
+        ... 43 more
+Caused by: java.io.IOException: Broken pipe
+        at sun.nio.ch.FileDispatcherImpl.writev0(Native Method)
+        at sun.nio.ch.SocketDispatcher.writev(SocketDispatcher.java:51)
+        at sun.nio.ch.IOUtil.write(IOUtil.java:148)
+        at sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:504)
+        at org.eclipse.jetty.io.ChannelEndPoint.flush(ChannelEndPoint.java:179)
+        ... 63 more

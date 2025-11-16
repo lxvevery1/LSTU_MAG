@@ -1,0 +1,18 @@
+filebeat.inputs:
+  - type: filestream
+    id: from-one-file
+    enabled: true
+    paths:
+      - /logs/test.log           # указываем наш файл с логами
+      - /logs/nginx/error.log # оставляйте только ваши файлы!
+      - /logs/nginx/access.log
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  # Оставляем ILM по умолчанию: индексы будут вида filebeat-8.11.0-*
+  # (Самый простой и надежный старт)
+
+setup.kibana:
+  host: "kibana:5601"
+
+logging.level: info

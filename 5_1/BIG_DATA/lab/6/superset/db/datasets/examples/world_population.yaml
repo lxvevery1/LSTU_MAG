@@ -1,0 +1,103 @@
+version: 1.0.0
+type: SqlaTable
+table:
+  table_name: world_population
+  main_dttm_col: null
+  schema: public
+  sql: |
+    CREATE TABLE world_population (
+      country VARCHAR(100) PRIMARY KEY,
+      country_code VARCHAR(3),
+      continent VARCHAR(50),
+      region VARCHAR(50),
+      year_2020 BIGINT,
+      year_2025 BIGINT,
+      year_2030 BIGINT,
+      growth_rate DECIMAL(5,2),
+      density_km2 INT,
+      urban_population DECIMAL(5,2),
+      median_age DECIMAL(4,1),
+      fertility_rate DECIMAL(4,2)
+    );
+
+    INSERT INTO world_population VALUES
+    ('China', 'CHN', 'Asia', 'Eastern Asia', 1439323776, 1425030000, 1410000000, 0.34, 153, 61.4, 38.4, 1.69),
+    ('India', 'IND', 'Asia', 'Southern Asia', 1380004385, 1396000000, 1412000000, 1.04, 464, 35.0, 28.1, 2.24),
+    ('United States', 'USA', 'North America', 'Northern America', 331002651, 340000000, 349000000, 0.71, 36, 82.7, 38.3, 1.73),
+    ('Indonesia', 'IDN', 'Asia', 'South-Eastern Asia', 273523615, 280000000, 286000000, 1.10, 151, 56.0, 29.7, 2.32),
+    ('Pakistan', 'PAK', 'Asia', 'Southern Asia', 220892340, 235000000, 250000000, 2.00, 287, 35.1, 22.8, 3.55),
+    ('Brazil', 'BRA', 'South America', 'South America', 212559417, 220000000, 227000000, 0.75, 25, 87.1, 33.5, 1.73),
+    ('Nigeria', 'NGA', 'Africa', 'Western Africa', 206139589, 220000000, 234000000, 2.58, 226, 51.2, 18.1, 5.32),
+    ('Bangladesh', 'BGD', 'Asia', 'Southern Asia', 164689383, 170000000, 175000000, 1.01, 1265, 37.4, 27.6, 2.05),
+    ('Russia', 'RUS', 'Europe', 'Eastern Europe', 145934462, 144000000, 142000000, -0.21, 9, 74.4, 39.6, 1.57),
+    ('Mexico', 'MEX', 'North America', 'Latin America', 128932753, 132000000, 135000000, 1.06, 66, 80.2, 29.3, 2.14),
+    ('Japan', 'JPN', 'Asia', 'Eastern Asia', 126476461, 124000000, 121000000, -0.30, 347, 91.7, 48.4, 1.36),
+    ('Ethiopia', 'ETH', 'Africa', 'Eastern Africa', 114963588, 125000000, 135000000, 2.57, 115, 21.7, 19.9, 4.25),
+    ('Philippines', 'PHL', 'Asia', 'South-Eastern Asia', 109581078, 115000000, 121000000, 1.72, 368, 47.4, 25.7, 2.90),
+    ('Egypt', 'EGY', 'Africa', 'Northern Africa', 102334404, 110000000, 118000000, 2.03, 103, 42.8, 25.3, 3.28),
+    ('Vietnam', 'VNM', 'Asia', 'South-Eastern Asia', 97338579, 100000000, 103000000, 0.97, 314, 37.3, 32.5, 2.05),
+    ('DR Congo', 'COD', 'Africa', 'Middle Africa', 89561403, 100000000, 112000000, 3.19, 40, 45.6, 17.2, 6.06),
+    ('Turkey', 'TUR', 'Asia', 'Western Asia', 84339067, 87000000, 89700000, 1.45, 110, 75.7, 31.5, 2.07),
+    ('Iran', 'IRN', 'Asia', 'Southern Asia', 83992949, 87000000, 90000000, 1.19, 52, 75.4, 32.0, 2.15),
+    ('Germany', 'DEU', 'Europe', 'Western Europe', 83783942, 83000000, 82200000, -0.17, 240, 77.5, 47.8, 1.54),
+    ('Thailand', 'THA', 'Asia', 'South-Eastern Asia', 69799978, 69000000, 68200000, -0.25, 136, 50.1, 40.1, 1.53);
+  columns:
+    - column_name: country
+      type: VARCHAR
+      is_dimensional: true
+      verbose_name: Country Name
+    - column_name: country_code
+      type: VARCHAR
+      is_dimensional: true
+      verbose_name: Country Code
+    - column_name: continent
+      type: VARCHAR
+      is_dimensional: true
+      verbose_name: Continent
+    - column_name: region
+      type: VARCHAR
+      is_dimensional: true
+      verbose_name: Region
+    - column_name: year_2020
+      type: BIGINT
+      is_dimensional: false
+      verbose_name: Population 2020
+    - column_name: year_2025
+      type: BIGINT
+      is_dimensional: false
+      verbose_name: Population 2025
+    - column_name: year_2030
+      type: BIGINT
+      is_dimensional: false
+      verbose_name: Population 2030
+    - column_name: growth_rate
+      type: DECIMAL
+      is_dimensional: false
+      verbose_name: Growth Rate
+    - column_name: density_km2
+      type: INT
+      is_dimensional: false
+      verbose_name: Density per km²
+    - column_name: urban_population
+      type: DECIMAL
+      is_dimensional: false
+      verbose_name: Urban Population %
+    - column_name: median_age
+      type: DECIMAL
+      is_dimensional: false
+      verbose_name: Median Age
+    - column_name: fertility_rate
+      type: DECIMAL
+      is_dimensional: false
+      verbose_name: Fertility Rate
+  metrics:
+    - metric_name: total_population_2020
+      verbose_name: Total Population 2020
+      expression: SUM(year_2020)
+      extra: '{"warning_text": "Sum of all countries"}'
+    - metric_name: avg_growth_rate
+      verbose_name: Average Growth Rate
+      expression: AVG(growth_rate)
+    - metric_name: max_density
+      verbose_name: Maximum Density
+      expression: MAX(density_km2)
