@@ -1,110 +1,116 @@
 #!/usr/bin/env python3
 """
-TOP500 InfiniBand Interconnect Trend Analysis (2007–2025)
+Variant #17
+Correlation:
+    X = HPL Rmax
+    Y = HPL Efficiency = Rmax / Rpeak
 
-Dependencies:
-    pip install lxml matplotlib pandas
+For lists:
+    32 → 2008.11
+    33 → 2009.06
 """
 
 import os
-import re
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from lxml import etree
+from tabulate import tabulate
 
-# ---------- CONFIG ----------
 XML_DIR = "xml"
-OUT_CSV = "infiniband_trend.csv"
-OUT_PLOT = "infiniband_trend.png"
-# ----------------------------
 
-def parse_xml(path):
-    """Return number of systems mentioning InfiniBand in <computer> field."""
+LISTS = {
+    31: (2007, 11),
+    56: (2021, 6),
+}
+
+OUT_PLOT = "variant17_scatter.png"
+
+
+def load_xml(year, month):
+    fname = f"TOP500_{year}{month:02d}.xml"
+    path = os.path.join(XML_DIR, fname)
+    if not os.path.exists(path):
+        print(f"[ERR] missing XML file: {path}")
+        return None
     with open(path, "rb") as f:
-        xml_bytes = f.read()
-
-    try:
-        root = etree.fromstring(xml_bytes)
-    except Exception as e:
-        print(f"[ERR]  Cannot parse {path}: {e}")
-        return 0, 0
-
-    ns_uri = root.nsmap.get("top500")
-    ns = {"top500": ns_uri} if ns_uri else {}
-
-    total, infiniband = 0, 0
-
-    for site in root.findall("top500:site", namespaces=ns) if ns_uri else root.findall("site"):
-        total += 1
-        comp_text = site.findtext("top500:computer", namespaces=ns) if ns_uri else site.findtext("computer")
-        if comp_text and re.search(r"infini\s*band", comp_text, re.IGNORECASE):
-            infiniband += 1
-
-    return total, infiniband
+        return etree.fromstring(f.read())
 
 
-def parse_all():
-    records = []
-    for fname in sorted(os.listdir(XML_DIR)):
-        if not fname.endswith(".xml"):
+def parse_list(root, list_id):
+    ns = {"top500": root.nsmap.get("top500")}
+
+    rows = []
+    for site in root.findall("top500:site", namespaces=ns):
+        try:
+            rmax = float(site.findtext("top500:r-max", namespaces=ns))
+            rpeak = float(site.findtext("top500:r-peak", namespaces=ns))
+
+            if rmax <= 0 or rpeak <= 0:
+                continue
+
+            eff = rmax / rpeak
+
+            rows.append({
+                "list": list_id,
+                "rmax": rmax,
+                "rpeak": rpeak,
+                "eff_hpl": eff
+            })
+        except:
             continue
-        match = re.search(r"TOP500_(\d{4})(\d{2})\.xml", fname)
-        if not match:
-            continue
-        year, month = int(match.group(1)), int(match.group(2))
-        path = os.path.join(XML_DIR, fname)
-        total, infiniband = parse_xml(path)
-        if total == 0:
-            continue
-        ratio = infiniband / total * 100
-        label = f"{year}.{month:02d}"
-        records.append({
-            "year": year,
-            "month": month,
-            "label": label,
-            "total": total,
-            "infiniband": infiniband,
-            "percent": ratio
-        })
-        print(f"[OK]  {fname}: {infiniband}/{total} ({ratio:.1f}%)")
 
-    return pd.DataFrame(records)
+    return rows
 
 
-def plot_trend(df):
-    plt.figure(figsize=(12,6))
-    x = range(len(df))
-    plt.bar(x, df["infiniband"], color="steelblue", edgecolor="black", alpha=0.8)
-    plt.xticks(x, df["label"], rotation=45)
-    plt.ylabel("Number of Systems Using InfiniBand")
-    plt.title("InfiniBand Usage Trend in TOP500 (2007–2025)")
-    plt.grid(True, linestyle=":", alpha=0.5)
-    plt.tight_layout()
-    plt.savefig(OUT_PLOT, dpi=150)
-    plt.close()
-    print(f"[PLOT] {OUT_PLOT} saved")
+def scatter(df, label, ax):
+    x = df["rmax"]
+    y = df["eff_hpl"]
+
+    ax.scatter(x, y, alpha=0.7)
+    ax.set_xlabel("HPL Rmax")
+    ax.set_ylabel("HPL Efficiency (Rmax / Rpeak)")
+    ax.set_title(f"Scatter — {label}")
+
+    corr = np.corrcoef(x, y)[0, 1]
+    ax.text(0.05, 0.95, f"Pearson: {corr:.3f}", transform=ax.transAxes, va="top")
+
+    return corr
 
 
 def main():
-    if not os.path.isdir(XML_DIR):
-        print(f"[ERROR] Directory '{XML_DIR}' not found")
-        return
+    all_rows = []
 
-    df = parse_all()
-    if df.empty:
-        print("[ERROR] No valid XML files parsed.")
-        return
+    for list_id, (yy, mm) in LISTS.items():
+        root = load_xml(yy, mm)
+        if root is None:
+            continue
+        rows = parse_list(root, list_id)
+        print(f"[OK] List {list_id} parsed: {len(rows)} rows")
+        all_rows.extend(rows)
 
-    df = df.sort_values(["year", "month"]).reset_index(drop=True)
-    df.to_csv(OUT_CSV, index=False)
-    print(f"[CSV] {OUT_CSV} saved ({len(df)} records)")
+    df = pd.DataFrame(all_rows)
 
-    print(df)
+    print("\n=== Parsed data ===")
+    print(tabulate(df.head(10), headers="keys", tablefmt="github", floatfmt=".3f"))
 
-    plot_trend(df)
+    df32 = df[df["list"] == 31]
+    df33 = df[df["list"] == 56]
 
-    print("\n=== InfiniBand Usage Table ===")
-    print(df[["label", "infiniband", "total", "percent"]].to_string(index=False, formatters={"percent": "{:.1f}%".format}))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+    c32 = scatter(df32, "List #32 (2008.11)", ax1)
+    c33 = scatter(df33, "List #33 (2009.06)", ax2)
+
+    plt.tight_layout()
+    plt.savefig(OUT_PLOT, dpi=150)
+    plt.close()
+
+    print(f"\n[PLOT] saved as {OUT_PLOT}")
+
+    print("\n=== Correlations ===")
+    print(f"2008.11 (List 55): {c32:.4f}")
+    print(f"2009.06 (List 56): {c33:.4f}")
 
 
 if __name__ == "__main__":
