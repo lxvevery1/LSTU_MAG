@@ -1,0 +1,7 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание, конкретизированное вариантом}{3}{section.1}%
+\contentsline {section}{\numberline {2}Описание исследуемых показателей}{4}{section.2}%
+\contentsline {section}{\numberline {3}Исходные данные}{4}{section.3}%
+\contentsline {section}{\numberline {4}Использованные программные средства}{4}{section.4}%
+\contentsline {section}{\numberline {5}Ход и результаты исследования: построение диаграмм рассеяния, расчёт коэффициентов корреляции.}{6}{section.5}%
+\contentsline {section}{\numberline {6}Выводы}{7}{section.6}%

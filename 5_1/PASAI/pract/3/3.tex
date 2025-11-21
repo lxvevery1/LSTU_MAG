@@ -108,75 +108,36 @@
     наличие и характер взаимосвязи между показателями.
 \end{sloppypar}
 
-Вариант 17 -> 2&7:
+Вариант 17 -> 2\&7:
 
 2. Реальная производительность по HPL: Rmax
-7. Эффективность архитектуры по HPL: Rmax/Rpeak
+\newline7. Эффективность архитектуры по HPL: Rmax/Rpeak
+
 
 \newpage
 \section{Описание исследуемых показателей}
-Infiniband (иногда сокр. IB) — высокоскоростная коммутируемая компьютерная
-    сеть, используемая в высокопроизводительных вычислениях, имеющая очень
-    большую пропускную способность и низкую задержку. Также используется для
-    внутренних соединений в некоторых вычислительных комплексах. По состоянию
-    на 2014 год Infiniband являлся наиболее популярной сетью для
-    суперкомпьютеров. Контроллеры Infiniband (host channel adapter) и сетевые
-    коммутаторы производятся компаниями Mellanox и Intel. При создании
-    Infiniband в него закладывалась масштабируемость, сеть использует сетевую
-    топологию на основе коммутаторов (Switched fabric).
+Rmax - наивысший результат, полученный при использовании системы тестов Linpack
+(реализация HPL). Это число используется для сравнения быстродействия
+компьютеров. Измеряется в GFLOPS.
 
-    В качестве коммуникационной сети кластеров Infiniband конкурирует с группой
-    стандартов Ethernet и проприетарными технологиями, например, компаний
-    Cray и IBM. При построении компьютерных сетей IB конкурирует с Gigabit
-    Ethernet, 10 Gigabit Ethernet и 40/100 Gigabit Ethernet. Также IB
-    используется для подключения накопителей информации DAS. Развитием и
-    стандартизацией технологий Infiniband занимается InfiniBand Trade
-    Association
+Rpeak - теоретический максимум производительности. Определяется путем умножения
+количества единиц измерения с плавающей запятой на процессор, умноженное на
+количество команд с плавающей запятой, которые могут быть выполнены в секунду.
+Измеряется в GFLOPS
+
+Отношение HPL Efficiency = Rmax / Rpeak характеризует архитектурную
+сбалансированность системы. Это соотношение можно рассматривать как коэффициент
+эффективности, хотя использование этого результата для определения ценности
+систем может оказаться непродуктивным. 75\% от 1000 - это то же самое, что и
+100\% от 750, и если у них одинаковые денежные затраты и затраты на
+электроэнергию, то разницы нет.
 
 \sloppy
-Подобно многим современным шинам, например, PCI Express, SATA, USB 3.0, в
-Infiniband используются дифференциальные пары для передачи последовательных
-сигналов. Две пары вместе составляют одну базовую двунаправленную
-последовательную шину (англ. lane), обозначаемую 1х. Базовая скорость — 2,5
-Гбит/с в каждом направлении. Порты Infiniband состоят из одной шины или
-агрегированных групп 4x или 12x базовых двунаправленных шин. Чаще всего
-применяются порты 4x[4].
 
-Для портов существует несколько режимов передачи данных по шинам. Более ранние
-режимы использовали для балансировки сигнала кодирование 8B/10B (каждые 8
-бит данных передаются по шине как 10 бит) с накладными расходами в 20\%:
-
-Single Data Rate (SDR, 1999) — работа с базовой скоростью 2,5 Гбит/с,
-эффективная скорость (с учётом расходов на кодирование) 2 Гбит/с на каждую шину
-\newline
-\indent Double Data Rate (DDR, 2004) — битовая скорость равна удвоенной базовой (5
-Гбит/с, эффективная 4 Гбит/с). 4x порт имеет физическую скорость 20 Гбит/с и
-эффективную 16 Гбит/с
-\newline
-\indent Quad Data Rate (QDR, 2008) — соответственно, учетверённой
-(базовая 10 Гбит/с), эффективная для 4x порта 32 Гбит/с.
-\newline
-\indent
-Начиная с режима FDR-10 применяется намного более экономичное кодирование
-64B/66B:
-\newline
-\indent Fourteen Data Rate 10 (FDR-10) — эффективная скорость на 1x шину чуть более 10
-Гбит/с, для 4x порта 40 Гбит/с
-\newline
-\indent Fourteen Data Rate (FDR, 2011) — базовая
-скорость 1х шины 14,0625 Гбит/с, 4x порт предоставляет около 56 Гбит/с
-\newline
-\indent Enhanced Data Rate (EDR) — скорость 1x 25,78125 Гбит/с, 4x — около 100 Гбит/с
-
-\vspace{5mm}
-Основное назначение Infiniband — межсерверные соединения, в том числе и для
-организации RDMA (Remote Direct Memory Access).
-\newpage
 \section{Исходные данные}
 
-В качестве исходных данных используются результаты
-рейтингов TOP500, начиная с июня 2007 года и
-заканчивая июнем 2025 года
+Для анализа, в качестве исходных данных, были выбраны следующие рейтинги для
+сравнения: 1993.06 и 2009.06.
 
 \section{Использованные программные средства}
 Для выполнения анализа использовался язык программирования Python 3.
@@ -186,72 +147,91 @@ Single Data Rate (SDR, 1999) — работа с базовой скорость
 \texttt {pip install requests lxml mapplotlib pandas numpy scipy tabulate}
 \end{sloppypar}
 
+\begin{sloppypar}
 С помощью библиотеки \texttt{requests} выполнялось автоматическое скачивание XML-файлов с сайта \texttt{top500.org}
 
 Модуль «\texttt{lxml.etree}» применялся для разбора структуры XML.
-Из каждого документа (рейтинга) извлекается значение «\texttt{top500:computer}»
+Из каждого документа (рейтинга) извлекается значение <<\texttt{Rmax}>> и <<\texttt{Rpeak}>>
 с помощью функции \texttt{findtext}, затем в каждой извлечённой строке
-ищется слово «\texttt{InfiniBand}» с помощью функции \texttt{search}.
-Совпадения добавляются в массив, соответствующий рейтингу, для последующей обработки.
+рассчитывается показатель «\texttt{HPL Efficiency }» по следующей формуле:
+\texttt{ eff = rmax / rpeak }. Полученные записи rmax, rpeak, eff, а также list\_id добавляются в общий массив пользовательской
+структуры для последующей обработки.
 
-Результаты записываются в единую таблицу (DataFrame) с помощью библиотеки
-\texttt{pandas} и сохраняются в файл \texttt{top500\_efficiency.csv}.
-Исходя из полученной таблицы, строится гистограмма тенденций использования InfiniBand в суперкомпьютерах.
-\newlineПо оси X - даты составления рейтинговых списков.
-\newlineПо оси Y - количество суперкомпьютеров, использующих исследуемую компьютерную сеть InfiniBand.
+Далее в функции \texttt{ scatter } рассчитывается коэффициент корреляции Пирсона между \texttt{Rpeak} и \texttt{HPL Efficiency} с помощью
+функции из модуля \texttt{numpy} <<\texttt{corrcoef}>>.
+
+Результаты записываются в единую таблицу (DataFrame) с помощью библиотеки \texttt{pandas}.
+
+Исходя из полученной таблицы, строятся две диаграммы рассеяния (scatter plot),
+а поверх нее сплошным текстом указываются показатели коэффициента Пирсона для
+рейтингов 1993.06 и 2009.06 соответственно.
+\end{sloppypar}
+
+По оси X - HPL Rmax.
+\newlineПо оси Y - HPL Efficiency.
 
 Текст программы представлен в приложении 1.
 
 \newpage
-\section{Результаты расчёта: таблицы, графики}
-    Полученная таблица использования компьютерной сети InfiniBand для каждого
-    рейтинга TOP500, начиная с 2007.06, заканчивая 2025.06, представлена на
-    рисунке 1.
+\section{Ход и результаты исследования: построение диаграмм рассеяния, расчёт
+коэффициентов корреляции.}
+    Полученная диаграмма рассеяния для рейтинга TOP500 1993.06, между двумя
+    показателями: HPL Efficiency и HPL Rmax, представлена на рисунке 1.
 
 \begin{figure}[H]
-    \label{fig:table}
+    \label{fig:pic1}
     \centering
     \includegraphics[width=0.78\textwidth]{pic1.png}
     \refstepcounter{figure}
-    \caption*{Рисунок \thefigure\ — Таблица использования InfiniBand среди суперкомпьютеров (2007.06--2025.06)}
+    \caption*{Рисунок \thefigure\ — Диаграмма рассеяния 1993.06}
 \end{figure}
 
-    Гистограмма полученной таблицы представлена на рисунке 2.
+    Полученная диаграмма рассеяния для рейтинга TOP500 2009.06, между двумя
+    показателями: HPL Efficiency и HPL Rmax, представлена на рисунке 2.
 
 
 \begin{figure}[H]
-    \label{fig:histogram}
+    \label{fig:pic2}
     \centering
-    \includegraphics[width=0.9\textwidth]{pic2.png}
+    \includegraphics[width=0.78\textwidth]{pic2.png}
     \refstepcounter{figure}
-    \caption*{Рисунок \thefigure\ — Гистограмма, отображающая тенденцию использования InfiniBand среди суперкомпьютеров (2007.06--2025.06)}
+    \caption*{Рисунок \thefigure\ — Диаграмма рассеяния 2009.06}
 \end{figure}
 
+Полученные коээфициенты корреляции Пирсона: -0.118 и 0.253 для рейтингов
+1993.06 и 2009.06 соответственно
+
 \section{Выводы}
-Рост с 2007 по 2015. В эти годы HPC-инфраструктура стремительно
-масштабировалась, и InfiniBand давал то, чего не обеспечивали Ethernet-решения
-того времени: низкие задержки, высокую пропускную способность и стабильную
-работу на крупных кластерах. Производители суперкомпьютеров активно переходили
-на InfiniBand, а сами сети переживали ускоренное развитие — появлялись новые
-поколения (DDR, QDR, FDR), что автоматически подталкивало рынок вверх. Этот
-период можно назвать фазой активного внедрения и технологического лидерства
-InfiniBand.
+1993.06. Диаграмма показывает полное отсутствие связи между HPL Rmax и
+архитектурной эффективностью. Корреляция отрицательная и близка к нулю
+(–0.118). Точки разбросаны хаотично: даже системы с очень низким Rmax могут
+иметь высокую эффективность, и наоборот — мощные машины демонстрируют низкие
+коэффициенты Rmax/Rpeak. Это объясняется тем, что ландшафт HPC в начале 1990-х
+был крайне разнородным: векторные ЭВМ, SMP-сервера и экспериментальные
+суперкомпьютеры использовали разные архитектурные подходы, несовместимые
+методики расчёта Rpeak, и в целом не обеспечивали стабильного масштабирования
+LINPACK при росте числа узлов. Отсюда — отсутствие какой-либо зависимости между
+производительностью и эффективностью.
 
-Спад после 2015 до примерно 2019 года связан с тем, что высокоскоростной
-Ethernet начал догонять InfiniBand по ключевым параметрам. 40GbE и позже 100GbE
-стали массовыми и относительно дешёвыми. Многие центры обработки данных стали
-смотреть в сторону Ethernet как универсального решения: одна инфраструктура
-закрывает и обычные серверные нагрузки, и распределённые вычисления.
-Параллельно начали расти облачные HPC-услуги, где крупные провайдеры
-предпочитали унифицированные сетевые стеки для упрощения эксплуатации — тоже в
-пользу Ethernet. Всё это временно снизило долю InfiniBand.
+2009.06 На диаграмме уже видна слабая положительная связь между показателями:
+более мощные системы чаще демонстрируют более высокую эффективность HPL.
+Корреляция +0.253 хоть и небольшая, но это заметный контраст с 1993 годом.
+Облако точек становится более плотным: большинство машин имеют эффективностьМ
+0.75–0.9, а экстремальные значения почти исчезают. Это следствие перехода
+отрасли к зрелым кластерным архитектурам, стандартизированным CPU,
+распространению InfiniBand в качестве высокоскоростной сети и унификации
+программного стека MPI. Системы проектируются сбалансированно, и их масштаб уже
+напрямую влияет на способность эффективно выполнять LINPACK.
 
-Возврат к росту после 2019 выглядит логичным в контексте резкого подъёма
-нагрузок ИИ и GPU-кластеров. Современные AI-модели требуют экстремально низких
-задержек и высокой пропускной способности при огромном объёме межузловых
-обменов. InfiniBand в этих условиях вновь стал фактически стандартом для
-крупных ML-кластеров — особенно из-за RDMA и NVLink/NVSwitch-ориентированных
-архитектур.
+Между периодами виден качественный скачок развития HPC. В 1993
+производительность суперкомпьютера не имела никакой связи с его архитектурной
+эффективностью: каждая машина была индивидуальным инженерным экспериментом. В
+2009, напротив, прослеживается тенденция, что более крупные и мощные системы
+демонстрируют более высокую эффективность — отрасль пришла к стандартным
+решениям и оптимизированным кластерным архитектурам. Иными словами, если в 1993
+эффективность диктовалась исключительно особенностями конкретной машины и часто
+была случайна, то в 2009 она становится системным свойством, растущим вместе с
+масштабом и качеством архитектуры.
 
 \newpage
 \section*{Приложение 1. Код программы}
@@ -259,111 +239,117 @@ Ethernet начал догонять InfiniBand по ключевым парам
 
 #!/usr/bin/env python3
 """
-TOP500 InfiniBand Interconnect Trend Analysis (2007–2025)
+Variant #17
+Correlation:
+    X = HPL Rmax
+    Y = HPL Efficiency = Rmax / Rpeak
 
-Dependencies:
-    pip install lxml matplotlib pandas
+For lists:
+    1 → 1993.6
+    2 → 2007.06
 """
 
 import os
-import re
+import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from lxml import etree
+from tabulate import tabulate
 
-# ---------- CONFIG ----------
 XML_DIR = "xml"
-OUT_CSV = "infiniband_trend.csv"
-OUT_PLOT = "infiniband_trend.png"
-# ----------------------------
 
-def parse_xml(path):
-    """Return number of systems mentioning InfiniBand in <computer> field."""
+LISTS = {
+    1: (1993, 6),
+    2: (2009, 6),
+}
+
+OUT_PLOT = "variant17_scatter.png"
+
+
+def load_xml(year, month):
+    fname = f"TOP500_{year}{month:02d}.xml"
+    path = os.path.join(XML_DIR, fname)
+    if not os.path.exists(path):
+        print(f"[ERR] missing XML file: {path}")
+        return None
     with open(path, "rb") as f:
-        xml_bytes = f.read()
-
-    try:
-        root = etree.fromstring(xml_bytes)
-    except Exception as e:
-        print(f"[ERR]  Cannot parse {path}: {e}")
-        return 0, 0
-
-    ns_uri = root.nsmap.get("top500")
-    ns = {"top500": ns_uri} if ns_uri else {}
-
-    total, infiniband = 0, 0
-
-    for site in root.findall("top500:site", namespaces=ns) if ns_uri else root.findall("site"):
-        total += 1
-        comp_text = site.findtext("top500:computer", namespaces=ns) if ns_uri else site.findtext("computer")
-        if comp_text and re.search(r"infini\s*band", comp_text, re.IGNORECASE):
-            infiniband += 1
-
-    return total, infiniband
+        return etree.fromstring(f.read())
 
 
-def parse_all():
-    records = []
-    for fname in sorted(os.listdir(XML_DIR)):
-        if not fname.endswith(".xml"):
+def parse_list(root, list_id):
+    ns = {"top500": root.nsmap.get("top500")}
+
+    rows = []
+    for site in root.findall("top500:site", namespaces=ns):
+        try:
+            rmax = float(site.findtext("top500:r-max", namespaces=ns))
+            rpeak = float(site.findtext("top500:r-peak", namespaces=ns))
+
+            if rmax <= 0 or rpeak <= 0:
+                continue
+
+            eff = rmax / rpeak
+
+            rows.append({
+                "list": list_id,
+                "rmax": rmax,
+                "rpeak": rpeak,
+                "eff_hpl": eff
+            })
+        except:
             continue
-        match = re.search(r"TOP500_(\d{4})(\d{2})\.xml", fname)
-        if not match:
-            continue
-        year, month = int(match.group(1)), int(match.group(2))
-        path = os.path.join(XML_DIR, fname)
-        total, infiniband = parse_xml(path)
-        if total == 0:
-            continue
-        ratio = infiniband / total * 100
-        label = f"{year}.{month:02d}"
-        records.append({
-            "year": year,
-            "month": month,
-            "label": label,
-            "total": total,
-            "infiniband": infiniband,
-            "percent": ratio
-        })
-        print(f"[OK]  {fname}: {infiniband}/{total} ({ratio:.1f}%)")
 
-    return pd.DataFrame(records)
+    return rows
 
 
-def plot_trend(df):
-    plt.figure(figsize=(12,6))
-    x = range(len(df))
-    plt.bar(x, df["infiniband"], color="steelblue", edgecolor="black", alpha=0.8)
-    plt.xticks(x, df["label"], rotation=45)
-    plt.ylabel("Number of Systems Using InfiniBand")
-    plt.title("InfiniBand Usage Trend in TOP500 (2007–2025)")
-    plt.grid(True, linestyle=":", alpha=0.5)
-    plt.tight_layout()
-    plt.savefig(OUT_PLOT, dpi=150)
-    plt.close()
-    print(f"[PLOT] {OUT_PLOT} saved")
+def scatter(df, label, ax):
+    x = df["rmax"]
+    y = df["eff_hpl"]
+
+    ax.scatter(x, y, alpha=0.7)
+    ax.set_xlabel("HPL Rmax")
+    ax.set_ylabel("HPL Efficiency (Rmax / Rpeak)")
+    ax.set_title(f"Scatter — {label}")
+
+    corr = np.corrcoef(x, y)[0, 1]
+    ax.text(0.05, 0.95, f"Pearson: {corr:.3f}", transform=ax.transAxes, va="top")
+
+    return corr
 
 
 def main():
-    if not os.path.isdir(XML_DIR):
-        print(f"[ERROR] Directory '{XML_DIR}' not found")
-        return
+    all_rows = []
 
-    df = parse_all()
-    if df.empty:
-        print("[ERROR] No valid XML files parsed.")
-        return
+    for list_id, (yy, mm) in LISTS.items():
+        root = load_xml(yy, mm)
+        if root is None:
+            continue
+        rows = parse_list(root, list_id)
+        print(f"[OK] List {list_id} parsed: {len(rows)} rows")
+        all_rows.extend(rows)
 
-    df = df.sort_values(["year", "month"]).reset_index(drop=True)
-    df.to_csv(OUT_CSV, index=False)
-    print(f"[CSV] {OUT_CSV} saved ({len(df)} records)")
+    df = pd.DataFrame(all_rows)
 
-    print(df)
+    print("\n=== Parsed data ===")
+    print(tabulate(df.head(10), headers="keys", tablefmt="github", floatfmt=".3f"))
 
-    plot_trend(df)
+    df32 = df[df["list"] == 1]
+    df33 = df[df["list"] == 2]
 
-    print("\n=== InfiniBand Usage Table ===")
-    print(df[["label", "infiniband", "total", "percent"]].to_string(index=False, formatters={"percent": "{:.1f}%".format}))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+    c32 = scatter(df32, "List 1993.06", ax1)
+    c33 = scatter(df33, "List 2009.06", ax2)
+
+    plt.tight_layout()
+    plt.savefig(OUT_PLOT, dpi=150)
+    plt.close()
+
+    print(f"\n[PLOT] saved as {OUT_PLOT}")
+
+    print("\n=== Correlations ===")
+    print(f"1993.06: {c32:.4f}")
+    print(f"2009.06: {c33:.4f}")
 
 
 if __name__ == "__main__":

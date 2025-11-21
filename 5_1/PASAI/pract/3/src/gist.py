@@ -6,8 +6,8 @@ Correlation:
     Y = HPL Efficiency = Rmax / Rpeak
 
 For lists:
-    32 → 2008.11
-    33 → 2009.06
+    1 → 1993.6
+    2 → 2007.06
 """
 
 import os
@@ -20,8 +20,8 @@ from tabulate import tabulate
 XML_DIR = "xml"
 
 LISTS = {
-    31: (2007, 11),
-    56: (2021, 6),
+    1: (1993, 6),
+    2: (2009, 6),
 }
 
 OUT_PLOT = "variant17_scatter.png"
@@ -94,13 +94,13 @@ def main():
     print("\n=== Parsed data ===")
     print(tabulate(df.head(10), headers="keys", tablefmt="github", floatfmt=".3f"))
 
-    df32 = df[df["list"] == 31]
-    df33 = df[df["list"] == 56]
+    df32 = df[df["list"] == 1]
+    df33 = df[df["list"] == 2]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-    c32 = scatter(df32, "List #32 (2008.11)", ax1)
-    c33 = scatter(df33, "List #33 (2009.06)", ax2)
+    c32 = scatter(df32, "List 1993.06", ax1)
+    c33 = scatter(df33, "List 2009.06", ax2)
 
     plt.tight_layout()
     plt.savefig(OUT_PLOT, dpi=150)
@@ -109,8 +109,8 @@ def main():
     print(f"\n[PLOT] saved as {OUT_PLOT}")
 
     print("\n=== Correlations ===")
-    print(f"2008.11 (List 55): {c32:.4f}")
-    print(f"2009.06 (List 56): {c33:.4f}")
+    print(f"1993.06: {c32:.4f}")
+    print(f"2009.06: {c33:.4f}")
 
 
 if __name__ == "__main__":
