@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 from time import time
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.linear_model import LinearRegression, Lasso, Ridge
 from sklearn.ensemble import BaggingRegressor, StackingRegressor, HistGradientBoostingRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
@@ -31,6 +31,16 @@ y = df.iloc[:, -2:]   # Y1, Y2
 # reproducible split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+lasso_resutlts = {}
+
+best_alpha = 0.001
+for target in ["Y1", "Y2"]:
+    model = Lasso(alpha=best_alpha, max_iter=10000)
+    model.fit(X_train, y_train[target])
+    y_pred = model.predict(X_test)
+    lasso_resutlts[target] = evaluate(y_test[target], y_pred)
+
+
 # -----------------------
 # Base model: Polynomial Regression (GLM) used in LR5
 # We'll build a pipeline: PolynomialFeatures(degree=2) -> StandardScaler -> LinearRegression
@@ -38,6 +48,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 # -----------------------
 poly_degree = 2
 base_pipeline = Pipeline([
+    ("poly", PolynomialFeatures(degree=poly_degree, include_bias=False)),
     ("scaler", StandardScaler()),
     ("lr", LinearRegression())
 ])
@@ -46,7 +57,7 @@ base_pipeline = Pipeline([
 # but for interpretability we also train two single-output pipelines:
 base_results = {}
 for target in ["Y1", "Y2"]:
-    model =  base_pipeline
+    model = base_pipeline
     model.fit(X_train, y_train[target])
     y_pred = model.predict(X_test)
     base_results[target] = evaluate(y_test[target], y_pred)
@@ -88,10 +99,11 @@ def grid_search_bagging(X_tr, y_tr, X_val, y_val):
     return best, best_params
 
 bagging_results = {}
-# for target in ["Y1", "Y2"]:
-#     model_bag, params_bag = grid_search_bagging(X_train, y_train[target], X_test, y_test[target])
-#     y_pred = model_bag.predict(X_test)
-#     bagging_results[target] = {"model": model_bag, "params": params_bag, **evaluate(y_test[target], y_pred)}
+for target in ["Y1", "Y2"]:
+    print(f"Grid-search Bagging for {target} ...")
+    model_bag, params_bag = grid_search_bagging(X_train, y_train[target], X_test, y_test[target])
+    y_pred = model_bag.predict(X_test)
+    bagging_results[target] = {"model": model_bag, "params": params_bag, **evaluate(y_test[target], y_pred)}
 
 # -----------------------
 # 2) Boosting: HistGradientBoostingRegressor (fast, supports multioutput via wrapper)
@@ -105,6 +117,7 @@ boost_params = {
 
 boosting_results = {}
 for target in ["Y1", "Y2"]:
+    print(f"Grid-search Boosting for {target} ...")
     best = None
     best_params = None
     best_score = -np.inf
@@ -132,6 +145,7 @@ stacking_results = {}
 from sklearn.ensemble import StackingRegressor
 
 for target in ["Y1", "Y2"]:
+    print(f"Building Stacking for {target} ...")
     estimators = [
         ("rf", RandomForestRegressor(n_estimators=200, max_depth=6, random_state=42, n_jobs=-1)),
         ("svr", Pipeline([
@@ -153,18 +167,12 @@ for target in ["Y1", "Y2"]:
     stacking_results[target] = {"model": stack, "params": "rf(200,d=6)+svr+poly_ridge", **evaluate(y_test[target], y_pred)}
 
 # -----------------------
-# 4) Lasso
-# -----------------------
-
-lasso_results = {}
-
-
-# -----------------------
 # Collect results into DataFrame for both targets and compare with base GLM
 # -----------------------
 rows = []
 methods = [
-    ("Base LM", base_results),
+    ("Base", base_results),
+    ("Lasso", lasso_resutlts),
     ("Bagging", bagging_results),
     ("Boosting", boosting_results),
     ("Stacking", stacking_results)
