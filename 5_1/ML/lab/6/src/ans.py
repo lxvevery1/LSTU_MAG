@@ -43,18 +43,20 @@ for target in ["Y1", "Y2"]:
 
 # -----------------------
 # Base model: Polynomial Regression (GLM) used in LR5
-# We'll build a pipeline: PolynomialFeatures(degree=2) -> StandardScaler -> LinearRegression
-# Use this pipeline as the "base" estimator when applicable.
 # -----------------------
 poly_degree = 2
 base_pipeline = Pipeline([
+
+    ("scaler", StandardScaler()),
+    ("lr", LinearRegression())
+])
+
+glm_pipeline = Pipeline([
     ("poly", PolynomialFeatures(degree=poly_degree, include_bias=False)),
     ("scaler", StandardScaler()),
     ("lr", LinearRegression())
 ])
 
-# Fit base model separately per target (multi-output via MultiOutputRegressor)
-# but for interpretability we also train two single-output pipelines:
 base_results = {}
 for target in ["Y1", "Y2"]:
     model = base_pipeline
@@ -62,18 +64,21 @@ for target in ["Y1", "Y2"]:
     y_pred = model.predict(X_test)
     base_results[target] = evaluate(y_test[target], y_pred)
 
+glm_results = {}
+for target in ["Y1", "Y2"]:
+    model = glm_pipeline
+    model.fit(X_train, y_train[target])
+    y_pred = model.predict(X_test)
+    glm_results[target] = evaluate(y_test[target], y_pred)
 # -----------------------
-# 1) Bagging (base estimator = poly linear)
+# 1) Bagging
 # -----------------------
-# Bagging does not require base estimator to be complex; use base_pipeline's steps except final linear regression can't be passed as pipeline inside BaggingRegressor
-# We'll pass a regressor that itself includes poly transform: use Pipeline as base_estimator via BaggingRegressor (works in sklearn>=0.24)
 bagging_grid = {
     "n_estimators": [20, 50, 100],
     "max_samples": [0.6, 0.8, 1.0],
     "max_features": [0.8, 1.0]
 }
 
-# We'll tune per-target to keep it simple and transparent
 def grid_search_bagging(X_tr, y_tr, X_val, y_val):
     best = None
     best_params = None
@@ -106,8 +111,7 @@ for target in ["Y1", "Y2"]:
     bagging_results[target] = {"model": model_bag, "params": params_bag, **evaluate(y_test[target], y_pred)}
 
 # -----------------------
-# 2) Boosting: HistGradientBoostingRegressor (fast, supports multioutput via wrapper)
-# We'll tune learning_rate and max_iter / max_depth
+# 2) Boosting
 # -----------------------
 boost_params = {
     "learning_rate": [0.01, 0.05, 0.1],
@@ -124,7 +128,6 @@ for target in ["Y1", "Y2"]:
     for lr in boost_params["learning_rate"]:
         for it in boost_params["max_iter"]:
             for md in boost_params["max_depth"]:
-                # HistGradientBoostingRegressor doesn't accept None for max_depth in some versions; treat None as no limit
                 hgb = HistGradientBoostingRegressor(learning_rate=lr, max_iter=it, max_depth=md, random_state=42)
                 hgb.fit(X_train, y_train[target])
                 y_pred = hgb.predict(X_test)
@@ -137,9 +140,7 @@ for target in ["Y1", "Y2"]:
     boosting_results[target] = {"model": best, "params": best_params, **evaluate(y_test[target], y_pred)}
 
 # -----------------------
-# 3) Stacking: use a set of diverse base learners, meta-learner = LinearRegression
-# We'll build stacking per-target to simplify multioutput handling.
-# Base estimators: RandomForest, SVR (with RBF), Ridge linear on poly features (already strong)
+# 3) Stacking
 # -----------------------
 stacking_results = {}
 from sklearn.ensemble import StackingRegressor
@@ -161,17 +162,17 @@ for target in ["Y1", "Y2"]:
     # final estimator
     final_est = LinearRegression()
     stack = StackingRegressor(estimators=estimators, final_estimator=final_est, n_jobs=-1, passthrough=False)
-    # we can grid-search some params (but keep reasonable defaults to save time)
     stack.fit(X_train, y_train[target])
     y_pred = stack.predict(X_test)
     stacking_results[target] = {"model": stack, "params": "rf(200,d=6)+svr+poly_ridge", **evaluate(y_test[target], y_pred)}
 
 # -----------------------
-# Collect results into DataFrame for both targets and compare with base GLM
+# Collect results
 # -----------------------
 rows = []
 methods = [
-    ("Base", base_results),
+    ("Base (Linear)", base_results),
+    ("GLM", glm_results),
     ("Lasso", lasso_resutlts),
     ("Bagging", bagging_results),
     ("Boosting", boosting_results),
