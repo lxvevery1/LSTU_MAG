@@ -27,7 +27,6 @@ from alembic import op
 
 # revision identifiers, used by Alembic.
 from superset import db
-from superset.migrations.shared.utils import create_table
 from superset.utils.core import generic_find_fk_constraint_name
 
 revision = "3e1b21cd94a4"
@@ -66,7 +65,7 @@ DruidDatasource = sa.Table(
 
 
 def upgrade():
-    create_table(
+    op.create_table(
         "sqlatable_user",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("user_id", sa.Integer(), nullable=True),
@@ -75,7 +74,7 @@ def upgrade():
         sa.ForeignKeyConstraint(["user_id"], ["ab_user.id"]),
         sa.PrimaryKeyConstraint("id"),
     )
-    create_table(
+    op.create_table(
         "druiddatasource_user",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("user_id", sa.Integer(), nullable=True),

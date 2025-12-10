@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { styled, css } from '@apache-superset/core/ui';
-import { Checkbox } from '@superset-ui/core/components';
+import { styled, css } from '@superset-ui/core';
 import ControlHeader from '../ControlHeader';
+import Checkbox from '../../../components/Checkbox';
 
 const propTypes = {
   value: PropTypes.bool,
@@ -36,18 +36,15 @@ const defaultProps = {
 const CheckBoxControlWrapper = styled.div`
   ${({ theme }) => css`
     .ControlHeader label {
-      color: ${theme.colorText};
+      color: ${theme.colors.grayscale.dark1};
     }
-    span:has(label) {
-      padding-right: ${theme.sizeUnit * 2}px;
-    }
-    .ant-checkbox-wrapper {
-      font-size: ${theme.fontSizeSM}px;
+    span[role='checkbox'] {
+      padding-right: ${theme.gridUnit * 2}px;
     }
   `}
 `;
 
-export default class CheckboxControl extends Component {
+export default class CheckboxControl extends React.Component {
   onChange() {
     this.props.onChange(!this.props.value);
   }

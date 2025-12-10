@@ -35,8 +35,18 @@ import Divider from './Divider';
 import Header from './Header';
 import Row from './Row';
 import Tab from './Tab';
-import Tabs from './Tabs';
+import TabsConnected from './Tabs';
 import DynamicComponent from './DynamicComponent';
+
+export { default as ChartHolder } from './ChartHolder';
+export { default as Markdown } from './Markdown';
+export { default as Column } from './Column';
+export { default as Divider } from './Divider';
+export { default as Header } from './Header';
+export { default as Row } from './Row';
+export { default as Tab } from './Tab';
+export { default as Tabs } from './Tabs';
+export { default as DynamicComponent } from './DynamicComponent';
 
 export const componentLookup = {
   [CHART_TYPE]: ChartHolder,
@@ -46,6 +56,6 @@ export const componentLookup = {
   [HEADER_TYPE]: Header,
   [ROW_TYPE]: Row,
   [TAB_TYPE]: Tab,
-  [TABS_TYPE]: Tabs,
+  [TABS_TYPE]: TabsConnected,
   [DYNAMIC_TYPE]: DynamicComponent,
 };

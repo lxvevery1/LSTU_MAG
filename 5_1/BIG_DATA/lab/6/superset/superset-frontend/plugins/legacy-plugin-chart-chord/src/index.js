@@ -19,9 +19,7 @@
 import { t, ChartMetadata, ChartPlugin } from '@superset-ui/core';
 import transformProps from './transformProps';
 import example from './images/chord.jpg';
-import exampleDark from './images/chord-dark.jpg';
 import thumbnail from './images/thumbnail.png';
-import thumbnailDark from './images/thumbnail-dark.png';
 import controlPanel from './controlPanel';
 
 const metadata = new ChartMetadata({
@@ -31,16 +29,17 @@ const metadata = new ChartMetadata({
     'Showcases the flow or link between categories using thickness of chords. The value and corresponding thickness can be different for each side.',
   ),
   exampleGallery: [
-    {
-      url: example,
-      urlDark: exampleDark,
-      caption: t('Relationships between community channels'),
-    },
+    { url: example, caption: t('Relationships between community channels') },
   ],
   name: t('Chord Diagram'),
-  tags: [t('Circular'), t('Legacy'), t('Proportional'), t('Relational')],
+  tags: [
+    t('Aesthetic'),
+    t('Circular'),
+    t('Legacy'),
+    t('Proportional'),
+    t('Relational'),
+  ],
   thumbnail,
-  thumbnailDark,
   useLegacyApi: true,
 });
 

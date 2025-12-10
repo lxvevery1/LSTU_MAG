@@ -18,26 +18,24 @@
  */
 
 import {
+  css,
   logging,
+  styled,
   SupersetClient,
   SupersetClientResponse,
-  getClientErrorObject,
+  SupersetTheme,
   t,
-  lruCache,
 } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
 import Chart from 'src/types/Chart';
 import { intersection } from 'lodash';
 import rison from 'rison';
-import type {
-  ListViewFetchDataConfig as FetchDataConfig,
-  ListViewFilterValue as FilterValue,
-} from 'src/components';
+import { getClientErrorObject } from 'src/utils/getClientErrorObject';
+import { FetchDataConfig, FilterValue } from 'src/components/ListView';
 import SupersetText from 'src/utils/textUtils';
 import { findPermission } from 'src/utils/findPermission';
 import { User } from 'src/types/bootstrapTypes';
-import { RecentActivity, WelcomeTable } from 'src/features/home/types';
 import { Dashboard, Filter, TableTab } from './types';
+import { WelcomeTable } from './welcome/types';
 
 // Modifies the rison encoding slightly to match the backend's rison encoding/decoding. Applies globally.
 // Code pulled from rison.js (https://github.com/Nanonid/rison), rison is licensed under the MIT license.
@@ -67,10 +65,6 @@ import { Dashboard, Filter, TableTab } from './types';
   risonRef.id_ok = new RegExp(`^${idrx}$`);
   risonRef.next_id = new RegExp(idrx, 'g');
 })();
-
-export const Actions = styled.div`
-  color: ${({ theme }) => theme.colorText};
-`;
 
 const createFetchResourceMethod =
   (method: string) =>
@@ -128,17 +122,15 @@ const createFetchResourceMethod =
   };
 
 export const PAGE_SIZE = 5;
-const getParams = (filters?: Filter[], selectColumns?: string[]) => {
+const getParams = (filters?: Filter[]) => {
   const params = {
     order_column: 'changed_on_delta_humanized',
     order_direction: 'desc',
     page: 0,
     page_size: PAGE_SIZE,
     filters,
-    select_columns: selectColumns,
   };
   if (!filters) delete params.filters;
-  if (!selectColumns) delete params.select_columns;
   return rison.encode(params);
 };
 
@@ -181,41 +173,10 @@ export const getUserOwnedObjects = (
       value: `${userId}`,
     },
   ],
-  selectColumns?: string[],
 ) =>
   SupersetClient.get({
-    endpoint: `/api/v1/${resource}/?q=${getParams(filters, selectColumns)}`,
+    endpoint: `/api/v1/${resource}/?q=${getParams(filters)}`,
   }).then(res => res.json?.result);
-
-export const getFilteredChartsandDashboards = (
-  addDangerToast: (arg1: string, arg2: any) => any,
-  filters: Filter[],
-  dashboardSelectColumns?: string[],
-  chartSelectColumns?: string[],
-) => {
-  const newBatch = [
-    SupersetClient.get({
-      endpoint: `/api/v1/chart/?q=${getParams(filters, chartSelectColumns)}`,
-    }),
-    SupersetClient.get({
-      endpoint: `/api/v1/dashboard/?q=${getParams(
-        filters,
-        dashboardSelectColumns,
-      )}`,
-    }),
-  ];
-  return Promise.all(newBatch)
-    .then(([chartRes, dashboardRes]) => ({
-      other: [...chartRes.json.result, ...dashboardRes.json.result],
-    }))
-    .catch(errMsg => {
-      addDangerToast(
-        t('There was an error fetching the filtered charts and dashboards:'),
-        errMsg,
-      );
-      return { other: [] };
-    });
-};
 
 export const getRecentActivityObjs = (
   userId: string | number,
@@ -225,17 +186,26 @@ export const getRecentActivityObjs = (
 ) =>
   SupersetClient.get({ endpoint: recent }).then(recentsRes => {
     const res: any = {};
-    const distinctRes = lruCache<RecentActivity>(6);
-    recentsRes.json.result.reverse().forEach((record: RecentActivity) => {
-      distinctRes.set(record.item_url, record);
-    });
-    return getFilteredChartsandDashboards(addDangerToast, filters).then(
-      ({ other }) => {
-        res.other = other;
-        res.viewed = distinctRes.values().reverse();
+    const newBatch = [
+      SupersetClient.get({
+        endpoint: `/api/v1/chart/?q=${getParams(filters)}`,
+      }),
+      SupersetClient.get({
+        endpoint: `/api/v1/dashboard/?q=${getParams(filters)}`,
+      }),
+    ];
+    return Promise.all(newBatch)
+      .then(([chartRes, dashboardRes]) => {
+        res.other = [...chartRes.json.result, ...dashboardRes.json.result];
+        res.viewed = recentsRes.json.result;
         return res;
-      },
-    );
+      })
+      .catch(errMsg =>
+        addDangerToast(
+          t('There was an error fetching your recent activity:'),
+          errMsg,
+        ),
+      );
   });
 
 export const createFetchRelated = createFetchResourceMethod('related');
@@ -365,15 +335,14 @@ export const CardContainer = styled.div<{
   ${({ showThumbnails, theme }) => `
     overflow: hidden;
     display: grid;
-    justify-content: start;
-    grid-gap: ${theme.sizeUnit * 12}px ${theme.sizeUnit * 4}px;
+    grid-gap: ${theme.gridUnit * 12}px ${theme.gridUnit * 4}px;
     grid-template-columns: repeat(auto-fit, 300px);
     max-height: ${showThumbnails ? '314' : '148'}px;
-    margin-top: ${theme.sizeUnit * -6}px;
+    margin-top: ${theme.gridUnit * -6}px;
     padding: ${
       showThumbnails
-        ? `${theme.sizeUnit * 8 + 3}px ${theme.sizeUnit * 20}px`
-        : `${theme.sizeUnit * 8 + 1}px ${theme.sizeUnit * 20}px`
+        ? `${theme.gridUnit * 8 + 3}px ${theme.gridUnit * 9}px`
+        : `${theme.gridUnit * 8 + 1}px ${theme.gridUnit * 9}px`
     };
   `}
 `;
@@ -389,38 +358,17 @@ export const CardStyles = styled.div`
   }
 `;
 
+export const StyledIcon = (theme: SupersetTheme) => css`
+  margin: auto ${theme.gridUnit * 2}px auto 0;
+  color: ${theme.colors.grayscale.base};
+`;
+
 export /* eslint-disable no-underscore-dangle */
 const isNeedsPassword = (payload: any) =>
   typeof payload === 'object' &&
   Array.isArray(payload._schema) &&
-  !!payload._schema?.find(
-    (e: string) => e === 'Must provide a password for the database',
-  );
-
-export /* eslint-disable no-underscore-dangle */
-const isNeedsSSHPassword = (payload: any) =>
-  typeof payload === 'object' &&
-  Array.isArray(payload._schema) &&
-  !!payload._schema?.find(
-    (e: string) => e === 'Must provide a password for the ssh tunnel',
-  );
-
-export /* eslint-disable no-underscore-dangle */
-const isNeedsSSHPrivateKey = (payload: any) =>
-  typeof payload === 'object' &&
-  Array.isArray(payload._schema) &&
-  !!payload._schema?.find(
-    (e: string) => e === 'Must provide a private key for the ssh tunnel',
-  );
-
-export /* eslint-disable no-underscore-dangle */
-const isNeedsSSHPrivateKeyPassword = (payload: any) =>
-  typeof payload === 'object' &&
-  Array.isArray(payload._schema) &&
-  !!payload._schema?.find(
-    (e: string) =>
-      e === 'Must provide a private key password for the ssh tunnel',
-  );
+  payload._schema.length === 1 &&
+  payload._schema[0] === 'Must provide a password for the database';
 
 export const isAlreadyExists = (payload: any) =>
   typeof payload === 'string' &&
@@ -431,35 +379,6 @@ export const getPasswordsNeeded = (errors: Record<string, any>[]) =>
     .map(error =>
       Object.entries(error.extra)
         .filter(([, payload]) => isNeedsPassword(payload))
-        .map(([fileName]) => fileName),
-    )
-    .flat();
-
-export const getSSHPasswordsNeeded = (errors: Record<string, any>[]) =>
-  errors
-    .map(error =>
-      Object.entries(error.extra)
-        .filter(([, payload]) => isNeedsSSHPassword(payload))
-        .map(([fileName]) => fileName),
-    )
-    .flat();
-
-export const getSSHPrivateKeysNeeded = (errors: Record<string, any>[]) =>
-  errors
-    .map(error =>
-      Object.entries(error.extra)
-        .filter(([, payload]) => isNeedsSSHPrivateKey(payload))
-        .map(([fileName]) => fileName),
-    )
-    .flat();
-
-export const getSSHPrivateKeyPasswordsNeeded = (
-  errors: Record<string, any>[],
-) =>
-  errors
-    .map(error =>
-      Object.entries(error.extra)
-        .filter(([, payload]) => isNeedsSSHPrivateKeyPassword(payload))
         .map(([fileName]) => fileName),
     )
     .flat();
@@ -482,12 +401,7 @@ export const hasTerminalValidation = (errors: Record<string, any>[]) =>
     if (noIssuesCodes.length === 0) return true;
 
     return !noIssuesCodes.every(
-      ([, payload]) =>
-        isNeedsPassword(payload) ||
-        isAlreadyExists(payload) ||
-        isNeedsSSHPassword(payload) ||
-        isNeedsSSHPrivateKey(payload) ||
-        isNeedsSSHPrivateKeyPassword(payload),
+      ([, payload]) => isNeedsPassword(payload) || isAlreadyExists(payload),
     );
   });
 
@@ -509,14 +423,14 @@ export const uploadUserPerms = (
   allowedExt: Array<string>,
 ) => {
   const canUploadCSV =
-    findPermission('can_upload', 'Database', roles) &&
+    findPermission('can_this_form_get', 'CsvToDatabaseView', roles) &&
     checkUploadExtensions(csvExt, allowedExt);
   const canUploadColumnar =
     checkUploadExtensions(colExt, allowedExt) &&
-    findPermission('can_upload', 'Database', roles);
+    findPermission('can_this_form_get', 'ColumnarToDatabaseView', roles);
   const canUploadExcel =
     checkUploadExtensions(excelExt, allowedExt) &&
-    findPermission('can_upload', 'Database', roles);
+    findPermission('can_this_form_get', 'ExcelToDatabaseView', roles);
   return {
     canUploadCSV,
     canUploadColumnar,

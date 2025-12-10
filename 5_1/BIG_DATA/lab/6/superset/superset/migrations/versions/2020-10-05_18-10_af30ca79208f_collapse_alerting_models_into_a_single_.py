@@ -29,7 +29,6 @@ from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm import backref, relationship, RelationshipProperty
 
 from superset import db
-from superset.migrations.shared.utils import create_table
 from superset.utils.core import generic_find_fk_constraint_name
 
 revision = "af30ca79208f"
@@ -154,7 +153,7 @@ def upgrade():
     # sqlite does not support column and fk deletion
     if isinstance(bind.dialect, SQLiteDialect):
         op.drop_table("sql_observations")
-        create_table(
+        op.create_table(
             "sql_observations",
             sa.Column("id", sa.Integer(), nullable=False),
             sa.Column("dttm", sa.DateTime(), nullable=True),
@@ -175,7 +174,7 @@ def downgrade():
     bind = op.get_bind()
     insp = sa.engine.reflection.Inspector.from_engine(bind)
 
-    create_table(
+    op.create_table(
         "sql_observers",
         sa.Column("created_on", sa.DateTime(), nullable=True),
         sa.Column("changed_on", sa.DateTime(), nullable=True),
@@ -192,7 +191,7 @@ def downgrade():
         sa.PrimaryKeyConstraint("id"),
     )
 
-    create_table(
+    op.create_table(
         "alert_validators",
         sa.Column("created_on", sa.DateTime(), nullable=True),
         sa.Column("changed_on", sa.DateTime(), nullable=True),
@@ -249,7 +248,7 @@ def downgrade():
             ),
         )
         op.drop_table("alerts")
-        create_table(
+        op.create_table(
             "alerts",
             sa.Column("id", sa.Integer(), nullable=False),
             sa.Column("label", sa.String(length=150), nullable=False),

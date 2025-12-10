@@ -171,7 +171,7 @@ export const sqlLabView = {
     header: '[role=columnheader]',
     table: '.QueryTable',
     row: dataTestLocator('table-row'),
-    failureMarkIcon: '[aria-label=close]',
+    failureMarkIcon: '[aria-label=x-small]',
     successMarkIcon: '[aria-label=check]',
   },
 };
@@ -252,7 +252,7 @@ export const datasetsList = {
     aceTextInput: '.ace_text-input',
     sourceSQLInput: '.ace_content',
     sourceVirtualSQLRadio: ':nth-child(2) > .ant-radio > .ant-radio-inner',
-    sourcePadlock: '[aria-label=lock]',
+    sourcePadlock: '[aria-label=lock-locked]',
     legacy: {
       panel: '.panel-body',
       sqlInput: '#sql',
@@ -286,6 +286,8 @@ export const chartListView = {
     card: dataTestLocator('styled-card'),
     cardCover: '[class="ant-card-cover"]',
     cardImage: '[class="gradient-container"]',
+    selectedStarIcon: "[aria-label='favorite-selected']",
+    unselectedStarIcon: "[aria-label='favorite-unselected']",
     starIcon: dataTestLocator('fave-unfave-icon'),
   },
   deleteModal: {
@@ -294,8 +296,8 @@ export const chartListView = {
   },
   table: {
     bulkSelect: {
-      checkboxOff: 'input[type="checkbox"]:checked',
-      checkboxOn: 'input[type="checkbox"]:not(:checked)',
+      checkboxOff: '[aria-label="checkbox-off"]',
+      checkboxOn: '[aria-label="checkbox-on"]',
       action: dataTestLocator('bulk-select-action'),
     },
     tableList: dataTestLocator('listview-table'),
@@ -320,20 +322,20 @@ export const nativeFilters = {
     footer: '.ant-modal-footer',
     saveButton: dataTestLocator('native-filter-modal-save-button'),
     cancelButton: dataTestLocator('native-filter-modal-cancel-button'),
-    confirmCancelButton: dataTestLocator(
-      'native-filter-modal-confirm-cancel-button',
-    ),
+    yesCancelButton: '[type="button"]',
     alertXUnsavedFilters: '.ant-alert-message',
     tabsList: {
       filterItemsContainer: dataTestLocator('filter-title-container'),
       tabsContainer: '[class="ant-tabs-nav-list"]',
       tab: '.ant-tabs-tab',
-      removeTab: '[aria-label="delete"]',
+      removeTab: '[aria-label="trash"]',
     },
     addFilter: dataTestLocator('add-filter-button'),
     defaultValueCheck: '.ant-checkbox-checked',
-    addNewFilterButton: dataTestLocator('add-new-filter-button'),
-    addNewDividerButton: dataTestLocator('add-new-divider-button'),
+  },
+  addFilterButton: {
+    button: `.ant-modal-content [data-test="new-dropdown-icon"]`,
+    dropdownItem: '.ant-dropdown-menu-item',
   },
   filtersPanel: {
     filterName: dataTestLocator('filters-config-modal__name-input'),
@@ -344,7 +346,6 @@ export const nativeFilters = {
     filterTypeInput: dataTestLocator('filters-config-modal__filter-type'),
     fieldInput: dataTestLocator('field-input'),
     filterTypeItem: '.ant-select-selection-item',
-    filterGear: dataTestLocator('filterbar-orientation-icon'),
   },
   filterFromDashboardView: {
     filterValueInput: '[class="ant-select-selection-search-input"]',
@@ -373,7 +374,7 @@ export const nativeFilters = {
     listItemNotActive: '[class="ant-tabs-tab ant-tabs-tab-with-remove"]',
     listItemActive:
       '[class="ant-tabs-tab ant-tabs-tab-with-remove ant-tabs-tab-active"]',
-    removeIcon: '[aria-label="delete"]',
+    removeIcon: '[aria-label="trash"]',
   },
   filterItem: dataTestLocator('form-item-value'),
   filterItemDropdown: '.ant-select-selection-search',
@@ -400,8 +401,8 @@ export const dashboardListView = {
     card: dataTestLocator('styled-card'),
     cardCover: '[class="ant-card-cover"]',
     cardImage: '[class="gradient-container"]',
-    selectedStarIcon: "[aria-label='star']",
-    unselectedStarIcon: "[aria-label='star']",
+    selectedStarIcon: "[aria-label='favorite-selected']",
+    unselectedStarIcon: "[aria-label='favorite-unselected']",
     starIcon: dataTestLocator('fave-unfave-icon'),
   },
   deleteModal: {
@@ -410,8 +411,8 @@ export const dashboardListView = {
   },
   table: {
     starIcon: dataTestLocator('fave-unfave-icon'),
-    selectedStarIcon: "[aria-label='star']",
-    unselectedStarIcon: "[aria-label='star']",
+    selectedStarIcon: "[aria-label='favorite-selected']",
+    unselectedStarIcon: "[aria-label='favorite-unselected']",
     bulkSelect: {
       checkboxOff: '[aria-label="checkbox-off"]',
       checkboxOn: '[aria-label="checkbox-on"]',
@@ -436,8 +437,8 @@ export const dashboardListView = {
     importButton: dataTestLocator('modal-confirm-button'),
   },
   header: {
-    cardView: '[aria-label="appstore"]',
-    listView: '[aria-label="unordered-list"]',
+    cardView: '[aria-label="card-view"]',
+    listView: '[aria-label="list-view"]',
     sort: dataTestLocator('sort-header'),
     sortDropdown: '.Select__menu',
     statusFilterInput: `${dataTestLocator(
@@ -501,7 +502,7 @@ export const exploreView = {
     optionField: dataTestLocator('option-label'),
     fieldInput: '.Select__control input',
     removeFieldValue: dataTestLocator('remove-control-button'),
-    addFieldValue: '[aria-label="plus"]',
+    addFieldValue: '[aria-label="plus-small"]',
     vizType: dataTestLocator('visualization-type'),
     runButton: dataTestLocator('run-query-button'),
     saveQuery: dataTestLocator('query-save-button'),
@@ -583,7 +584,7 @@ export const exploreView = {
     saveButton: dataTestLocator('datasource-modal-save'),
     metricsTab: {
       addItem: dataTestLocator('crud-add-table-item'),
-      rowsContainer: '.ant-table-body',
+      rowsContainer: dataTestLocator('table-content-rows'),
     },
     confirmModal: {
       okButton: '.ant-modal-confirm-btns .ant-btn-primary',
@@ -656,7 +657,7 @@ export const dashboardView = {
   treeMapChartModal: {
     selectItem: '.Select_control',
     selectItemInput: '.Select__control input[type=text]',
-    applyButton: '.filter button:not(:disabled)',
+    applyButton: '.filter_box button:not(:disabled)',
     clearItemIcon: '.Select__clear-indicator',
   },
   sliceThreeDots: '[aria-label="More Options"]',

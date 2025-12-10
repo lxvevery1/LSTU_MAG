@@ -16,34 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { SMART_DATE_ID, t } from '@superset-ui/core';
+import { hasGenericChartAxes, smartDateFormatter, t } from '@superset-ui/core';
 import {
-  aggregationControl,
   ControlPanelConfig,
-  ControlSubSectionHeader,
   D3_FORMAT_DOCS,
   D3_TIME_FORMAT_OPTIONS,
   getStandardizedControls,
+  sections,
   temporalColumnMixin,
 } from '@superset-ui/chart-controls';
-import {
-  headerFontSize,
-  subheaderFontSize,
-  subtitleFontSize,
-  subtitleControl,
-  showMetricNameControl,
-  metricNameFontSizeWithVisibility,
-} from '../sharedControls';
+import React from 'react';
+import { headerFontSize, subheaderFontSize } from '../sharedControls';
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
+    sections.genericTime,
     {
       label: t('Query'),
       expanded: true,
       controlSetRows: [
-        ['x_axis'],
-        ['time_grain_sqla'],
-        [aggregationControl],
+        [hasGenericChartAxes ? 'x_axis' : null],
+        [hasGenericChartAxes ? 'time_grain_sqla' : null],
         ['metric'],
         ['adhoc_filters'],
       ],
@@ -141,12 +134,7 @@ const config: ControlPanelConfig = {
         ['color_picker', null],
         [headerFontSize],
         [subheaderFontSize],
-        [subtitleControl],
-        [subtitleFontSize],
-        [showMetricNameControl],
-        [metricNameFontSizeWithVisibility],
         ['y_axis_format'],
-        ['currency_format'],
         [
           {
             name: 'time_format',
@@ -157,7 +145,7 @@ const config: ControlPanelConfig = {
               renderTrigger: true,
               choices: D3_TIME_FORMAT_OPTIONS,
               description: D3_FORMAT_DOCS,
-              default: SMART_DATE_ID,
+              default: smartDateFormatter.id,
             },
           },
         ],
@@ -182,11 +170,7 @@ const config: ControlPanelConfig = {
       expanded: false,
       controlSetRows: [
         // eslint-disable-next-line react/jsx-key
-        [
-          <ControlSubSectionHeader>
-            {t('Rolling Window')}
-          </ControlSubSectionHeader>,
-        ],
+        [<div className="section-header">{t('Rolling Window')}</div>],
         [
           {
             name: 'rolling_type',
@@ -239,7 +223,7 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [<ControlSubSectionHeader>{t('Resample')}</ControlSubSectionHeader>],
+        [<div className="section-header">{t('Resample')}</div>],
         [
           {
             name: 'resample_rule',
@@ -292,7 +276,7 @@ const config: ControlPanelConfig = {
       label: t('Number format'),
     },
     x_axis: {
-      label: t('Temporal X-Axis'),
+      label: t('TEMPORAL X-AXIS'),
       ...temporalColumnMixin,
     },
   },

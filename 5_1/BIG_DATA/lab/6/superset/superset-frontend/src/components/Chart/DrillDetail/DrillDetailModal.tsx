@@ -17,68 +17,42 @@
  * under the License.
  */
 
-import { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   BinaryQueryObjectFilterClause,
+  css,
   QueryFormData,
   t,
+  useTheme,
 } from '@superset-ui/core';
-import { css, useTheme } from '@apache-superset/core/ui';
-import { Button, Modal } from '@superset-ui/core/components';
+import Modal from 'src/components/Modal';
+import Button from 'src/components/Button';
 import { useSelector } from 'react-redux';
 import { DashboardPageIdContext } from 'src/dashboard/containers/DashboardPage';
-import { isEmbedded } from 'src/dashboard/util/isEmbedded';
 import { Slice } from 'src/types/Chart';
-import { RootState } from 'src/dashboard/types';
-import { findPermission } from 'src/utils/findPermission';
-import { Dataset } from '../types';
 import DrillDetailPane from './DrillDetailPane';
 
 interface ModalFooterProps {
-  canExplore: boolean;
-  closeModal?: () => void;
   exploreChart: () => void;
+  closeModal?: () => void;
 }
 
-const ModalFooter = ({
-  canExplore,
-  closeModal,
-  exploreChart,
-}: ModalFooterProps) => {
-  const theme = useTheme();
-
-  return (
-    <>
-      {!isEmbedded() && (
-        <Button
-          buttonStyle="secondary"
-          buttonSize="small"
-          onClick={exploreChart}
-          disabled={!canExplore}
-          tooltip={
-            !canExplore
-              ? t('You do not have sufficient permissions to edit the chart')
-              : undefined
-          }
-        >
-          {t('Edit chart')}
-        </Button>
-      )}
-      <Button
-        buttonStyle="primary"
-        buttonSize="small"
-        onClick={closeModal}
-        data-test="close-drilltodetail-modal"
-        css={css`
-          margin-left: ${theme.sizeUnit * 2}px;
-        `}
-      >
-        {t('Close')}
-      </Button>
-    </>
-  );
-};
+const ModalFooter = ({ exploreChart, closeModal }: ModalFooterProps) => (
+  <>
+    <Button buttonStyle="secondary" buttonSize="small" onClick={exploreChart}>
+      {t('Edit chart')}
+    </Button>
+    <Button
+      buttonStyle="primary"
+      buttonSize="small"
+      onClick={closeModal}
+      data-test="close-drilltodetail-modal"
+    >
+      {t('Close')}
+    </Button>
+  </>
+);
 
 interface DrillDetailModalProps {
   chartId: number;
@@ -86,7 +60,6 @@ interface DrillDetailModalProps {
   initialFilters: BinaryQueryObjectFilterClause[];
   showModal: boolean;
   onHideModal: () => void;
-  dataset?: Dataset;
 }
 
 export default function DrillDetailModal({
@@ -95,17 +68,13 @@ export default function DrillDetailModal({
   initialFilters,
   showModal,
   onHideModal,
-  dataset,
 }: DrillDetailModalProps) {
   const theme = useTheme();
   const history = useHistory();
   const dashboardPageId = useContext(DashboardPageIdContext);
   const { slice_name: chartName } = useSelector(
     (state: { sliceEntities: { slices: Record<number, Slice> } }) =>
-      state.sliceEntities?.slices?.[chartId] || {},
-  );
-  const canExplore = useSelector((state: RootState) =>
-    findPermission('can_explore', 'Superset', state.user?.roles),
+      state.sliceEntities.slices[chartId],
   );
 
   const exploreUrl = useMemo(
@@ -127,30 +96,23 @@ export default function DrillDetailModal({
           flex-direction: column;
         }
       `}
-      name={t('Drill to detail: %s', chartName)}
       title={t('Drill to detail: %s', chartName)}
-      footer={
-        <ModalFooter exploreChart={exploreChart} canExplore={canExplore} />
-      }
+      footer={<ModalFooter exploreChart={exploreChart} />}
       responsive
       resizable
       resizableConfig={{
-        minHeight: theme.sizeUnit * 128,
-        minWidth: theme.sizeUnit * 128,
+        minHeight: theme.gridUnit * 128,
+        minWidth: theme.gridUnit * 128,
         defaultSize: {
           width: 'auto',
           height: '75vh',
         },
       }}
       draggable
-      destroyOnHidden
+      destroyOnClose
       maskClosable={false}
     >
-      <DrillDetailPane
-        formData={formData}
-        initialFilters={initialFilters}
-        dataset={dataset}
-      />
+      <DrillDetailPane formData={formData} initialFilters={initialFilters} />
     </Modal>
   );
 }

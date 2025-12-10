@@ -14,19 +14,19 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+from typing import List
 
 from marshmallow import fields, Schema
 
 from superset.dashboards.schemas import UserSchema
 from superset.models.sql_lab import Query
-from superset.sql.parse import Table
+from superset.sql_parse import Table
 
 openapi_spec_methods_override = {
-    "get": {"get": {"summary": "Get query detail information"}},
+    "get": {"get": {"description": "Get query detail information."}},
     "get_list": {
         "get": {
-            "summary": "Get a list of queries",
-            "description": "Gets a list of queries, use Rison or JSON query "
+            "description": "Get a list of queries, use Rison or JSON query "
             "parameters for filtering, sorting, pagination and "
             " for selecting specific columns and metadata.",
         }
@@ -72,7 +72,8 @@ class QuerySchema(Schema):
         load_instance = True
         include_relationships = True
 
-    def get_sql_tables(self, obj: Query) -> list[Table]:
+    # pylint: disable=no-self-use
+    def get_sql_tables(self, obj: Query) -> List[Table]:
         return obj.sql_tables
 
 

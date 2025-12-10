@@ -16,34 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useState, ReactNode, useLayoutEffect, RefObject } from 'react';
-import { css, styled, SupersetTheme } from '@apache-superset/core/ui';
-import {
-  SafeMarkdown,
-  Tooltip,
-  InfoTooltip,
-} from '@superset-ui/core/components';
+import React, { useState, ReactNode, useLayoutEffect } from 'react';
+import { css, styled, SupersetTheme } from '@superset-ui/core';
+import { Tooltip } from './Tooltip';
 import { ColumnTypeLabel } from './ColumnTypeLabel/ColumnTypeLabel';
 import CertifiedIconWithTooltip from './CertifiedIconWithTooltip';
 import { ColumnMeta } from '../types';
-import {
-  getColumnLabelText,
-  getColumnTooltipNode,
-  getColumnTypeTooltipNode,
-} from './labelUtils';
+import { getColumnLabelText, getColumnTooltipNode } from './labelUtils';
 import { SQLPopover } from './SQLPopover';
 
 export type ColumnOptionProps = {
   column: ColumnMeta;
   showType?: boolean;
-  labelRef?: RefObject<any>;
+  labelRef?: React.RefObject<any>;
 };
 
 const StyleOverrides = styled.span`
   display: flex;
   align-items: center;
   svg {
-    margin-right: ${({ theme }) => theme.sizeUnit}px;
+    margin-right: ${({ theme }) => theme.gridUnit}px;
   }
 `;
 
@@ -54,39 +46,24 @@ export function ColumnOption({
 }: ColumnOptionProps) {
   const { expression, column_name, type_generic } = column;
   const hasExpression = expression && expression !== column_name;
-  const warningMarkdown =
-    column.warning_markdown || column.warning_text || column.error_text;
   const type = hasExpression ? 'expression' : type_generic;
   const [tooltipText, setTooltipText] = useState<ReactNode>(column.column_name);
-  const [columnTypeTooltipText, setcolumnTypeTooltipText] = useState<ReactNode>(
-    column.type,
-  );
 
   useLayoutEffect(() => {
     setTooltipText(getColumnTooltipNode(column, labelRef));
-    setcolumnTypeTooltipText(getColumnTypeTooltipNode(column));
   }, [labelRef, column]);
 
   return (
     <StyleOverrides>
-      {showType && type !== undefined && (
-        <Tooltip
-          id="metric-type-tooltip"
-          title={columnTypeTooltipText}
-          placement="bottomRight"
-          align={{ offset: [8, -2] }}
-        >
-          <span>
-            <ColumnTypeLabel type={type} />
-          </span>
-        </Tooltip>
-      )}
+      {showType && type !== undefined && <ColumnTypeLabel type={type} />}
       <Tooltip id="metric-name-tooltip" title={tooltipText}>
         <span
           className="option-label column-option-label"
-          css={(theme: SupersetTheme) => css`
-            margin-right: ${theme.sizeUnit}px;
-          `}
+          css={(theme: SupersetTheme) =>
+            css`
+              margin-right: ${theme.gridUnit}px;
+            `
+          }
           ref={labelRef}
         >
           {getColumnLabelText(column)}
@@ -98,17 +75,6 @@ export function ColumnOption({
           metricName={column.metric_name}
           certifiedBy={column.certified_by}
           details={column.certification_details}
-        />
-      )}
-      {warningMarkdown && (
-        <InfoTooltip
-          type="warning"
-          tooltip={<SafeMarkdown source={warningMarkdown} />}
-          label={`warn-${column.column_name}`}
-          iconStyle={{ marginLeft: 0 }}
-          {...(column.error_text && {
-            type: 'error',
-          })}
         />
       )}
     </StyleOverrides>

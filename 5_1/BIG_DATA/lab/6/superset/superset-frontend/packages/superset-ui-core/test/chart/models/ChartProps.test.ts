@@ -17,8 +17,7 @@
  * under the License.
  */
 
-import { Behavior, ChartProps } from '@superset-ui/core';
-import { supersetTheme } from '@apache-superset/core/ui';
+import { Behavior, ChartProps, supersetTheme } from '@superset-ui/core';
 
 const RAW_FORM_DATA = {
   some_field: 1,
@@ -30,7 +29,7 @@ const RAW_DATASOURCE = {
 
 const QUERY_DATA = { data: {} };
 const QUERIES_DATA = [QUERY_DATA];
-const BEHAVIORS = [Behavior.NativeFilter, Behavior.InteractiveChart];
+const BEHAVIORS = [Behavior.NATIVE_FILTER, Behavior.INTERACTIVE_CHART];
 
 describe('ChartProps', () => {
   it('exists', () => {
@@ -120,7 +119,7 @@ describe('ChartProps', () => {
       });
       expect(props1).not.toBe(props2);
     });
-    it('selector returns a new chartProps if some input fields change and returns memoized chart props', () => {
+    it('selector returns a new chartProps if some input fields change', () => {
       const props1 = selector({
         width: 800,
         height: 600,
@@ -146,7 +145,7 @@ describe('ChartProps', () => {
         theme: supersetTheme,
       });
       expect(props1).not.toBe(props2);
-      expect(props1).toBe(props3);
+      expect(props1).not.toBe(props3);
     });
   });
 });

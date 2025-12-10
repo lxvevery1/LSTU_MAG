@@ -20,7 +20,6 @@ import getDashboardUrl from 'src/dashboard/util/getDashboardUrl';
 import { DASHBOARD_FILTER_SCOPE_GLOBAL } from 'src/dashboard/reducers/dashboardFilters';
 import { DashboardStandaloneMode } from 'src/dashboard/util/constants';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('getChartIdsFromLayout', () => {
   const filters = {
     '35_key': {
@@ -34,14 +33,14 @@ describe('getChartIdsFromLayout', () => {
     window.location = globalLocation;
   });
 
-  test('should encode filters', () => {
+  it('should encode filters', () => {
     const url = getDashboardUrl({ pathname: 'path', filters });
     expect(url).toBe(
       'path?preselect_filters=%7B%2235%22%3A%7B%22key%22%3A%5B%22value%22%5D%7D%7D',
     );
   });
 
-  test('should encode filters with hash', () => {
+  it('should encode filters with hash', () => {
     const urlWithHash = getDashboardUrl({
       pathname: 'path',
       filters,
@@ -52,18 +51,18 @@ describe('getChartIdsFromLayout', () => {
     );
   });
 
-  test('should encode filters with standalone', () => {
+  it('should encode filters with standalone', () => {
     const urlWithStandalone = getDashboardUrl({
       pathname: 'path',
       filters,
-      standalone: DashboardStandaloneMode.HideNav,
+      standalone: DashboardStandaloneMode.HIDE_NAV,
     });
     expect(urlWithStandalone).toBe(
-      `path?preselect_filters=%7B%2235%22%3A%7B%22key%22%3A%5B%22value%22%5D%7D%7D&standalone=${DashboardStandaloneMode.HideNav}`,
+      `path?preselect_filters=%7B%2235%22%3A%7B%22key%22%3A%5B%22value%22%5D%7D%7D&standalone=${DashboardStandaloneMode.HIDE_NAV}`,
     );
   });
 
-  test('should encode filters with missing standalone', () => {
+  it('should encode filters with missing standalone', () => {
     const urlWithStandalone = getDashboardUrl({
       pathname: 'path',
       filters,
@@ -74,36 +73,7 @@ describe('getChartIdsFromLayout', () => {
     );
   });
 
-  test('should encode filters with missing filters', () => {
-    const urlWithStandalone = getDashboardUrl({
-      pathname: 'path',
-      filters: undefined,
-      standalone: DashboardStandaloneMode.HideNav,
-    });
-    expect(urlWithStandalone).toBe(
-      `path?standalone=${DashboardStandaloneMode.HideNav}`,
-    );
-  });
-
-  test('should preserve unknown filters', () => {
-    const windowSpy = jest.spyOn(window, 'window', 'get');
-    windowSpy.mockImplementation(() => ({
-      location: {
-        origin: 'https://localhost',
-        search: '?unknown_param=value',
-      },
-    }));
-    const urlWithStandalone = getDashboardUrl({
-      pathname: 'path',
-      standalone: DashboardStandaloneMode.HideNav,
-    });
-    expect(urlWithStandalone).toBe(
-      `path?unknown_param=value&standalone=${DashboardStandaloneMode.HideNav}`,
-    );
-    windowSpy.mockRestore();
-  });
-
-  test('should process native filters key', () => {
+  it('should process native filters key', () => {
     const windowSpy = jest.spyOn(window, 'window', 'get');
     windowSpy.mockImplementation(() => ({
       location: {
@@ -119,6 +89,5 @@ describe('getChartIdsFromLayout', () => {
     expect(urlWithNativeFilters).toBe(
       'path?preselect_filters=%7B%7D&native_filters_key=024380498jdkjf-2094838',
     );
-    windowSpy.mockRestore();
   });
 });

@@ -16,14 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ReactNode } from 'react';
+import React from 'react';
 import { t, tn } from '@superset-ui/core';
 import levenshtein from 'js-levenshtein';
 
-import { List } from '@superset-ui/core/components';
 import { ErrorMessageComponentProps } from './types';
-import { IssueCode } from './IssueCode';
-import { ErrorAlert } from './ErrorAlert';
+import IssueCode from './IssueCode';
+import ErrorAlert from './ErrorAlert';
 
 interface ParameterErrorExtra {
   undefined_parameters?: string[];
@@ -52,8 +51,9 @@ const findMatches = (undefinedParameters: string[], templateKeys: string[]) => {
   return matches;
 };
 
-export function ParameterErrorMessage({
+function ParameterErrorMessage({
   error,
+  source = 'sqllab',
   subtitle,
 }: ErrorMessageComponentProps<ParameterErrorExtra>) {
   const { extra = { issue_codes: [] }, level, message } = error;
@@ -75,15 +75,11 @@ export function ParameterErrorMessage({
         {Object.keys(matches).length > 0 && (
           <>
             <p>{t('Did you mean:')}</p>
-            <List
-              split={false}
-              size="small"
-              dataSource={Object.entries(matches)}
-              renderItem={([undefinedParameter, templateKeys]) => (
-                <List.Item compact>
-                  <List.Item.Meta
-                    avatar={<span>•</span>}
-                    title={tn(
+            <ul>
+              {Object.entries(matches).map(
+                ([undefinedParameter, templateKeys]) => (
+                  <li>
+                    {tn(
                       '%(suggestion)s instead of "%(undefinedParameter)s?"',
                       '%(firstSuggestions)s or %(lastSuggestion)s instead of "%(undefinedParameter)s"?',
                       templateKeys.length,
@@ -94,10 +90,10 @@ export function ParameterErrorMessage({
                         undefinedParameter,
                       },
                     )}
-                  />
-                </List.Item>
+                  </li>
+                ),
               )}
-            />
+            </ul>
             <br />
           </>
         )}
@@ -105,18 +101,26 @@ export function ParameterErrorMessage({
         <br />
         {extra.issue_codes.length > 0 &&
           extra.issue_codes
-            .map<ReactNode>(issueCode => <IssueCode {...issueCode} />)
+            .map<React.ReactNode>(issueCode => <IssueCode {...issueCode} />)
             .reduce((prev, curr) => [prev, <br />, curr])}
       </p>
     </>
   );
+
+  const copyText = `${message}
+${triggerMessage}
+${extra.issue_codes.map(issueCode => issueCode.message).join('\n')}`;
+
   return (
     <ErrorAlert
-      errorType={t('Parameter error')}
-      type={level}
-      message={message}
-      description={subtitle}
-      descriptionDetails={body}
+      title={t('Parameter error')}
+      subtitle={subtitle}
+      level={level}
+      source={source}
+      copyText={copyText}
+      body={body}
     />
   );
 }
+
+export default ParameterErrorMessage;

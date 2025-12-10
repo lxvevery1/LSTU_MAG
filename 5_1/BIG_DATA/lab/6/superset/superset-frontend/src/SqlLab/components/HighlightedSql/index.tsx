@@ -16,11 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
+import SyntaxHighlighter from 'react-syntax-highlighter/dist/cjs/light';
+import sql from 'react-syntax-highlighter/dist/cjs/languages/hljs/sql';
+import github from 'react-syntax-highlighter/dist/cjs/styles/hljs/github';
 import { t } from '@superset-ui/core';
-import { ModalTrigger } from '@superset-ui/core/components';
-import CodeSyntaxHighlighter from '@superset-ui/core/components/CodeSyntaxHighlighter';
+import ModalTrigger from 'src/components/ModalTrigger';
 
-export interface HighlightedSqlProps {
+SyntaxHighlighter.registerLanguage('sql', sql);
+
+interface HighlightedSqlProps {
   sql: string;
   rawSql?: string;
   maxWidth?: number;
@@ -48,17 +53,20 @@ const shrinkSql = (sql: string, maxLines: number, maxWidth: number) => {
     lines.push('{...}');
   }
   return lines
-    .map(line =>
-      line.length > maxWidth ? `${line.slice(0, maxWidth)}{...}` : line,
-    )
+    .map(line => {
+      if (line.length > maxWidth) {
+        return `${line.slice(0, maxWidth)}{...}`;
+      }
+      return line;
+    })
     .join('\n');
 };
 
 function TriggerNode({ shrink, sql, maxLines, maxWidth }: TriggerNodeProps) {
   return (
-    <CodeSyntaxHighlighter language="sql">
+    <SyntaxHighlighter language="sql" style={github}>
       {shrink ? shrinkSql(sql, maxLines, maxWidth) : sql}
-    </CodeSyntaxHighlighter>
+    </SyntaxHighlighter>
   );
 }
 
@@ -66,11 +74,15 @@ function HighlightSqlModal({ rawSql, sql }: HighlightedSqlModalTypes) {
   return (
     <div>
       <h4>{t('Source SQL')}</h4>
-      <CodeSyntaxHighlighter language="sql">{sql}</CodeSyntaxHighlighter>
+      <SyntaxHighlighter language="sql" style={github}>
+        {sql}
+      </SyntaxHighlighter>
       {rawSql && rawSql !== sql && (
         <div>
           <h4>{t('Executed SQL')}</h4>
-          <CodeSyntaxHighlighter language="sql">{rawSql}</CodeSyntaxHighlighter>
+          <SyntaxHighlighter language="sql" style={github}>
+            {rawSql}
+          </SyntaxHighlighter>
         </div>
       )}
     </div>

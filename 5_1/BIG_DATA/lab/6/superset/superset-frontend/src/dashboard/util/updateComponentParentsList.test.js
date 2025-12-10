@@ -23,7 +23,6 @@ import {
   dashboardLayoutWithTabs,
 } from 'spec/fixtures/mockDashboardLayout';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('updateComponentParentsList', () => {
   const emptyLayout = {
     DASHBOARD_VERSION_KEY: 'v2',
@@ -45,7 +44,7 @@ describe('updateComponentParentsList', () => {
     ...dashboardLayoutWithTabs.present,
   };
 
-  test('should handle empty layout', () => {
+  it('should handle empty layout', () => {
     const nextState = {
       ...emptyLayout,
     };
@@ -58,7 +57,7 @@ describe('updateComponentParentsList', () => {
     expect(nextState.GRID_ID.parents).toEqual(['ROOT_ID']);
   });
 
-  test('should handle grid layout', () => {
+  it('should handle grid layout', () => {
     const nextState = {
       ...gridLayout,
     };
@@ -77,7 +76,7 @@ describe('updateComponentParentsList', () => {
     ]);
   });
 
-  test('should handle root level tabs', () => {
+  it('should handle root level tabs', () => {
     const nextState = {
       ...tabsLayout,
     };
@@ -97,9 +96,8 @@ describe('updateComponentParentsList', () => {
   });
 });
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('updateComponentParentsList with bad inputs', () => {
-  test('should handle invalid parameters and not throw error', () => {
+  it('should handle invalid parameters and not throw error', () => {
     updateComponentParentsList({
       currentComponent: undefined,
       layout: undefined,

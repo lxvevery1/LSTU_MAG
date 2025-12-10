@@ -258,36 +258,20 @@ export const dashboardWithFilter = {
     type: DASHBOARD_ROOT_TYPE,
     id: DASHBOARD_ROOT_ID,
     children: [DASHBOARD_GRID_ID],
-    meta: {
-      chartId: 0,
-      height: 0,
-      uuid: '',
-      width: 0,
-    },
   },
 
   [DASHBOARD_GRID_ID]: {
     type: DASHBOARD_GRID_TYPE,
     id: DASHBOARD_GRID_ID,
     children: ['ROW_ID'],
-    meta: {
-      chartId: 0,
-      height: 0,
-      uuid: '',
-      width: 0,
-    },
+    meta: {},
   },
 
   [DASHBOARD_HEADER_ID]: {
     type: DASHBOARD_HEADER_TYPE,
     id: DASHBOARD_HEADER_ID,
-    children: [],
     meta: {
       text: 'New dashboard',
-      chartId: 0,
-      height: 0,
-      uuid: '',
-      width: 0,
     },
   },
 
@@ -301,7 +285,6 @@ export const dashboardWithFilter = {
     ...newComponentFactory(CHART_TYPE),
     id: 'FILTER_ID',
     meta: {
-      ...newComponentFactory(CHART_TYPE).meta,
       chartId: filterId,
       width: 3,
       height: 10,
@@ -313,7 +296,6 @@ export const dashboardWithFilter = {
     ...newComponentFactory(CHART_TYPE),
     id: 'CHART_ID',
     meta: {
-      ...newComponentFactory(CHART_TYPE).meta,
       chartId,
       width: 3,
       height: 10,

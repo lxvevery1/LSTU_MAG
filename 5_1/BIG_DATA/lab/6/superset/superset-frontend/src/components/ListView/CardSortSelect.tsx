@@ -16,38 +16,38 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useState, useMemo } from 'react';
-import { t } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
-import { FormLabel, Select } from '@superset-ui/core/components';
+import React, { useState, useMemo } from 'react';
+import { styled, t } from '@superset-ui/core';
+import { Select } from 'src/components';
+import { FormLabel } from 'src/components/Form';
 import { SELECT_WIDTH } from './utils';
-import { CardSortSelectOption, SortColumn } from './types';
+import { CardSortSelectOption, FetchDataConfig, SortColumn } from './types';
 
 const SortContainer = styled.div`
   display: inline-flex;
-  font-size: ${({ theme }) => theme.fontSizeSM}px;
+  font-size: ${({ theme }) => theme.typography.sizes.s}px;
   align-items: center;
   text-align: left;
   width: ${SELECT_WIDTH}px;
 `;
 
 interface CardViewSelectSortProps {
-  onChange: (value: SortColumn[]) => void;
+  onChange: (conf: FetchDataConfig) => any;
   options: Array<CardSortSelectOption>;
   initialSort?: SortColumn[];
+  pageIndex: number;
+  pageSize: number;
 }
 
 export const CardSortSelect = ({
   initialSort,
   onChange,
   options,
+  pageIndex,
+  pageSize,
 }: CardViewSelectSortProps) => {
   const defaultSort =
-    (initialSort &&
-      options.find(
-        ({ id, desc }) =>
-          id === initialSort[0].id && desc === initialSort[0].desc,
-      )) ||
+    (initialSort && options.find(({ id }) => id === initialSort[0].id)) ||
     options[0];
 
   const [value, setValue] = useState({
@@ -72,7 +72,7 @@ export const CardSortSelect = ({
           desc: originalOption.desc,
         },
       ];
-      onChange(sortBy);
+      onChange({ pageIndex, pageSize, sortBy, filters: [] });
     }
   };
 
@@ -82,11 +82,10 @@ export const CardSortSelect = ({
         ariaLabel={t('Sort')}
         header={<FormLabel>{t('Sort')}</FormLabel>}
         labelInValue
-        onChange={handleOnChange}
+        onChange={(value: CardSortSelectOption) => handleOnChange(value)}
         options={formattedOptions}
         showSearch
         value={value}
-        data-test="card-sort-select"
       />
     </SortContainer>
   );

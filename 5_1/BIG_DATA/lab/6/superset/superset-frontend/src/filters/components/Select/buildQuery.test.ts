@@ -16,11 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { GenericDataType } from '@apache-superset/core/api/core';
+import { GenericDataType } from '@superset-ui/core';
 import buildQuery from './buildQuery';
 import { PluginFilterSelectQueryFormData } from './types';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('Select buildQuery', () => {
   const formData: PluginFilterSelectQueryFormData = {
     datasource: '5__table',
@@ -31,7 +30,6 @@ describe('Select buildQuery', () => {
     filters: undefined,
     enableEmptyFilter: false,
     inverseSelection: false,
-    creatable: false,
     multiSelect: false,
     defaultToFirstItem: false,
     searchAllOptions: false,
@@ -39,7 +37,7 @@ describe('Select buildQuery', () => {
     width: 100,
   };
 
-  test('should build a default query', () => {
+  it('should build a default query', () => {
     const queryContext = buildQuery(formData);
     expect(queryContext.queries.length).toEqual(1);
     const [query] = queryContext.queries;
@@ -49,7 +47,7 @@ describe('Select buildQuery', () => {
     expect(query.orderby).toEqual([]);
   });
 
-  test('should sort descending by metric', () => {
+  it('should sort descending by metric', () => {
     const queryContext = buildQuery({
       ...formData,
       sortMetric: 'my_metric',
@@ -62,7 +60,7 @@ describe('Select buildQuery', () => {
     expect(query.orderby).toEqual([['my_metric', false]]);
   });
 
-  test('should sort ascending by metric', () => {
+  it('should sort ascending by metric', () => {
     const queryContext = buildQuery({
       ...formData,
       sortMetric: 'my_metric',
@@ -75,7 +73,7 @@ describe('Select buildQuery', () => {
     expect(query.orderby).toEqual([['my_metric', true]]);
   });
 
-  test('should sort ascending by column', () => {
+  it('should sort ascending by column', () => {
     const queryContext = buildQuery({
       ...formData,
       sortAscending: true,
@@ -87,7 +85,7 @@ describe('Select buildQuery', () => {
     expect(query.orderby).toEqual([['my_col', true]]);
   });
 
-  test('should sort descending by column', () => {
+  it('should sort descending by column', () => {
     const queryContext = buildQuery({
       ...formData,
       sortAscending: false,
@@ -99,11 +97,11 @@ describe('Select buildQuery', () => {
     expect(query.orderby).toEqual([['my_col', false]]);
   });
 
-  test('should add text search parameter for string to query filter', () => {
+  it('should add text search parameter to query filter', () => {
     const queryContext = buildQuery(formData, {
       ownState: {
         search: 'abc',
-        coltypeMap: { my_col: GenericDataType.String },
+        coltypeMap: { my_col: GenericDataType.STRING },
       },
     });
     expect(queryContext.queries.length).toEqual(1);
@@ -113,17 +111,15 @@ describe('Select buildQuery', () => {
     ]);
   });
 
-  test('should add text search parameter for numeric to query filter', () => {
+  it('should add numeric search parameter to query filter', () => {
     const queryContext = buildQuery(formData, {
       ownState: {
         search: '123',
-        coltypeMap: { my_col: GenericDataType.Numeric },
+        coltypeMap: { my_col: GenericDataType.NUMERIC },
       },
     });
     expect(queryContext.queries.length).toEqual(1);
     const [query] = queryContext.queries;
-    expect(query.filters).toEqual([
-      { col: 'my_col', op: 'ILIKE', val: '%123%' },
-    ]);
+    expect(query.filters).toEqual([{ col: 'my_col', op: '>=', val: 123 }]);
   });
 });

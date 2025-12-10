@@ -19,7 +19,9 @@ from __future__ import annotations
 import json
 import pickle
 from abc import ABC, abstractmethod
-from typing import Any, TypedDict, Union
+from dataclasses import dataclass
+from enum import Enum
+from typing import Any, Optional, TypedDict
 from uuid import UUID
 
 from marshmallow import Schema, ValidationError
@@ -28,38 +30,40 @@ from superset.key_value.exceptions import (
     KeyValueCodecDecodeException,
     KeyValueCodecEncodeException,
 )
-from superset.utils.backports import StrEnum
 
-Key = Union[int, UUID]
+
+@dataclass
+class Key:
+    id: Optional[int]
+    uuid: Optional[UUID]
 
 
 class KeyValueFilter(TypedDict, total=False):
     resource: str
-    id: int | None
-    uuid: UUID | None
+    id: Optional[int]
+    uuid: Optional[UUID]
 
 
-class KeyValueResource(StrEnum):
+class KeyValueResource(str, Enum):
     APP = "app"
     DASHBOARD_PERMALINK = "dashboard_permalink"
     EXPLORE_PERMALINK = "explore_permalink"
     METASTORE_CACHE = "superset_metastore_cache"
-    LOCK = "lock"
-    SQLLAB_PERMALINK = "sqllab_permalink"
 
 
-class SharedKey(StrEnum):
+class SharedKey(str, Enum):
     DASHBOARD_PERMALINK_SALT = "dashboard_permalink_salt"
     EXPLORE_PERMALINK_SALT = "explore_permalink_salt"
-    SQLLAB_PERMALINK_SALT = "sqllab_permalink_salt"
 
 
 class KeyValueCodec(ABC):
     @abstractmethod
-    def encode(self, value: Any) -> bytes: ...
+    def encode(self, value: Any) -> bytes:
+        ...
 
     @abstractmethod
-    def decode(self, value: bytes) -> Any: ...
+    def decode(self, value: bytes) -> Any:
+        ...
 
 
 class JsonKeyValueCodec(KeyValueCodec):
@@ -81,7 +85,7 @@ class PickleKeyValueCodec(KeyValueCodec):
         return pickle.dumps(value)
 
     def decode(self, value: bytes) -> dict[Any, Any]:
-        return pickle.loads(value)  # noqa: S301
+        return pickle.loads(value)
 
 
 class MarshmallowKeyValueCodec(JsonKeyValueCodec):

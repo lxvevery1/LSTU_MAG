@@ -19,7 +19,6 @@
 
 import { Layout } from 'src/dashboard/types';
 import { ChartState } from 'src/explore/types';
-import { AlertObject } from 'src/features/alerts/types';
 
 interface DashboardInfo {
   id: number;
@@ -28,14 +27,10 @@ interface DashboardInfo {
   dash_save_perm: boolean;
   metadata?: Record<string, any>;
   common?: { conf: Record<string, any> };
-  theme?: {
-    id: number;
-    name: string;
-  } | null;
 }
 
 export interface HeaderDropdownProps {
-  addSuccessToast: (msg: string) => void;
+  addSuccessToast: () => void;
   addDangerToast: () => void;
   customCss: string;
   colorNamespace?: string;
@@ -49,24 +44,17 @@ export interface HeaderDropdownProps {
   hasUnsavedChanges: boolean;
   isLoading: boolean;
   layout: Layout;
+  onChange: () => void;
   onSave: () => void;
   refreshFrequency: number;
+  setRefreshFrequency: () => void;
   shouldPersistRefreshFrequency: boolean;
   showPropertiesModal: () => void;
-  showRefreshModal: () => void;
+  startPeriodicRender: () => void;
+  updateCss: () => void;
   userCanEdit: boolean;
   userCanSave: boolean;
-  userCanShare: boolean;
-  userCanCurate: boolean;
-  manageEmbedded: () => void;
-  dataMask?: any;
   lastModifiedTime: number;
-  logEvent: () => void;
-  refreshLimit?: number;
-  refreshWarning?: string;
-  directPathToChild?: string[];
-  showReportModal: () => void;
-  setCurrentReportDeleting: (alert: AlertObject | null) => void;
 }
 
 export interface HeaderProps {
@@ -77,7 +65,7 @@ export interface HeaderProps {
   charts: ChartState | {};
   colorScheme?: string;
   customCss: string;
-  user: object | undefined;
+  user: Object | undefined;
   dashboardInfo: DashboardInfo;
   dashboardTitle: string;
   setColorScheme: () => void;
@@ -88,7 +76,7 @@ export interface HeaderProps {
   onSave: () => void;
   fetchFaveStar: () => void;
   saveFaveStar: () => void;
-  savePublished: (dashboardId: number, isPublished: boolean) => void;
+  savePublished: () => void;
   updateDashboardTitle: () => void;
   editMode: boolean;
   setEditMode: () => void;

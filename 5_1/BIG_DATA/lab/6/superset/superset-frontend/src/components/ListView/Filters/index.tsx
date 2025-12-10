@@ -16,27 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import {
+import React, {
   createRef,
   forwardRef,
   useImperativeHandle,
   useMemo,
-  RefObject,
 } from 'react';
+import { withTheme } from '@superset-ui/core';
 
-import { withTheme } from '@apache-superset/core/ui';
-
-import type {
-  ListViewFilterValue as FilterValue,
-  ListViewFilters as Filters,
+import {
+  FilterValue,
+  Filters,
   InternalFilter,
   SelectOption,
-} from '../types';
-import type { FilterHandler } from './types';
+} from 'src/components/ListView/types';
 import SearchFilter from './Search';
 import SelectFilter from './Select';
 import DateRangeFilter from './DateRange';
-import NumericalRangeFilter from './NumericalRange';
+import { FilterHandler } from './Base';
 
 interface UIFiltersProps {
   filters: Filters;
@@ -46,7 +43,7 @@ interface UIFiltersProps {
 
 function UIFilters(
   { filters, internalFilters = [], updateFilterValue }: UIFiltersProps,
-  ref: RefObject<{ clearFilters: () => void }>,
+  ref: React.RefObject<{ clearFilters: () => void }>,
 ) {
   const filterRefs = useMemo(
     () =>
@@ -74,13 +71,7 @@ function UIFilters(
             input,
             paginate,
             selects,
-            toolTipDescription,
             onFilterUpdate,
-            loading,
-            dateFilterValueType,
-            min,
-            max,
-            dropdownStyle,
           },
           index,
         ) => {
@@ -109,8 +100,6 @@ function UIFilters(
                 }}
                 paginate={paginate}
                 selects={selects}
-                loading={loading ?? false}
-                dropdownStyle={dropdownStyle}
               />
             );
           }
@@ -122,7 +111,6 @@ function UIFilters(
                 initialValue={initialValue}
                 key={key}
                 name={id}
-                toolTipDescription={toolTipDescription}
                 onSubmit={(value: string) => {
                   if (onFilterUpdate) {
                     onFilterUpdate(value);
@@ -139,21 +127,6 @@ function UIFilters(
                 ref={filterRefs[index]}
                 Header={Header}
                 initialValue={initialValue}
-                key={key}
-                name={id}
-                onSubmit={value => updateFilterValue(index, value)}
-                dateFilterValueType={dateFilterValueType || 'unix'}
-              />
-            );
-          }
-          if (input === 'numerical_range') {
-            return (
-              <NumericalRangeFilter
-                ref={filterRefs[index]}
-                Header={Header}
-                initialValue={initialValue}
-                min={min}
-                max={max}
                 key={key}
                 name={id}
                 onSubmit={value => updateFilterValue(index, value)}

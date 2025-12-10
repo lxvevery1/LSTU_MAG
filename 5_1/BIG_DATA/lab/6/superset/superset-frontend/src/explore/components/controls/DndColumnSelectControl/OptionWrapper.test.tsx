@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
 import { render, screen, fireEvent } from 'spec/helpers/testing-library';
 import { DndItemType } from 'src/explore/components/DndItemType';
 import OptionWrapper from 'src/explore/components/controls/DndColumnSelectControl/OptionWrapper';
@@ -32,7 +33,9 @@ test('renders with default props', async () => {
     { useDnd: true },
   );
   expect(container).toBeInTheDocument();
-  expect(await screen.findByRole('img', { name: 'close' })).toBeInTheDocument();
+  expect(
+    await screen.findByRole('img', { name: 'x-small' }),
+  ).toBeInTheDocument();
 });
 
 test('triggers onShiftOptions on drop', async () => {

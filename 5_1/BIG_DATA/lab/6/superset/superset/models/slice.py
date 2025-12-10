@@ -16,11 +16,13 @@
 # under the License.
 from __future__ import annotations
 
+import json
 import logging
-from typing import Any, TYPE_CHECKING
+from typing import Any, Dict, Optional, Type, TYPE_CHECKING
 from urllib import parse
 
 import sqlalchemy as sqla
+from flask import current_app
 from flask_appbuilder import Model
 from flask_appbuilder.models.decorators import renders
 from markupsafe import escape, Markup
@@ -37,8 +39,6 @@ from sqlalchemy import (
 from sqlalchemy.engine.base import Connection
 from sqlalchemy.orm import relationship
 from sqlalchemy.orm.mapper import Mapper
-from sqlalchemy.sql.elements import BinaryExpression
-from superset_core.api.models import Chart as CoreChart
 
 from superset import db, is_feature_enabled, security_manager
 from superset.legacy import update_time_range
@@ -46,31 +46,31 @@ from superset.models.helpers import AuditMixinNullable, ImportExportMixin
 from superset.tasks.thumbnails import cache_chart_thumbnail
 from superset.tasks.utils import get_current_user
 from superset.thumbnails.digest import get_chart_digest
-from superset.utils import core as utils, json
+from superset.utils import core as utils
 from superset.viz import BaseViz, viz_types
 
 if TYPE_CHECKING:
     from superset.common.query_context import QueryContext
     from superset.common.query_context_factory import QueryContextFactory
-    from superset.connectors.sqla.models import SqlaTable
+    from superset.connectors.base.models import BaseDatasource
 
 metadata = Model.metadata  # pylint: disable=no-member
 slice_user = Table(
     "slice_user",
     metadata,
     Column("id", Integer, primary_key=True),
-    Column("user_id", Integer, ForeignKey("ab_user.id", ondelete="CASCADE")),
-    Column("slice_id", Integer, ForeignKey("slices.id", ondelete="CASCADE")),
+    Column("user_id", Integer, ForeignKey("ab_user.id")),
+    Column("slice_id", Integer, ForeignKey("slices.id")),
 )
 logger = logging.getLogger(__name__)
 
 
 class Slice(  # pylint: disable=too-many-public-methods
-    CoreChart, AuditMixinNullable, ImportExportMixin
+    Model, AuditMixinNullable, ImportExportMixin
 ):
     """A slice is essentially a report or a view on data"""
 
-    query_context_factory: QueryContextFactory | None = None
+    query_context_factory: Optional[QueryContextFactory] = None
 
     __tablename__ = "slices"
     id = Column(Integer, primary_key=True)
@@ -79,13 +79,12 @@ class Slice(  # pylint: disable=too-many-public-methods
     datasource_type = Column(String(200))
     datasource_name = Column(String(2000))
     viz_type = Column(String(250))
-    params = Column(utils.MediumText())
-    query_context = Column(utils.MediumText())
+    params = Column(Text)
+    query_context = Column(Text)
     description = Column(Text)
     cache_timeout = Column(Integer)
     perm = Column(String(1000))
     schema_perm = Column(String(1000))
-    catalog_perm = Column(String(1000), nullable=True, default=None)
     # the last time a user has saved the chart, changed_on is referencing
     # when the database row was last written
     last_saved_at = Column(DateTime, nullable=True)
@@ -97,24 +96,10 @@ class Slice(  # pylint: disable=too-many-public-methods
     last_saved_by = relationship(
         security_manager.user_model, foreign_keys=[last_saved_by_fk]
     )
-    owners = relationship(
-        security_manager.user_model,
-        secondary=slice_user,
-        passive_deletes=True,
-    )
-    tags = relationship(
-        "Tag",
-        secondary="tagged_object",
-        overlaps="objects,tag,tags",
-        primaryjoin="and_(Slice.id == TaggedObject.object_id, "
-        "TaggedObject.object_type == 'chart')",
-        secondaryjoin="TaggedObject.tag_id == Tag.id",
-        viewonly=True,  # cascading deletion already handled by superset.tags.models.ObjectUpdater.after_delete  # noqa: E501
-    )
+    owners = relationship(security_manager.user_model, secondary=slice_user)
     table = relationship(
         "SqlaTable",
         foreign_keys=[datasource_id],
-        overlaps="table",
         primaryjoin="and_(Slice.datasource_id == SqlaTable.id, "
         "Slice.datasource_type == 'table')",
         remote_side="SqlaTable.id",
@@ -142,17 +127,17 @@ class Slice(  # pylint: disable=too-many-public-methods
         return self.slice_name or str(self.id)
 
     @property
-    def cls_model(self) -> type[SqlaTable]:
+    def cls_model(self) -> Type["BaseDatasource"]:
         # pylint: disable=import-outside-toplevel
-        from superset.daos.datasource import DatasourceDAO
+        from superset.datasource.dao import DatasourceDAO
 
         return DatasourceDAO.sources[self.datasource_type]
 
     @property
-    def datasource(self) -> SqlaTable | None:
+    def datasource(self) -> Optional["BaseDatasource"]:
         return self.get_datasource
 
-    def clone(self) -> Slice:
+    def clone(self) -> "Slice":
         return Slice(
             slice_name=self.slice_name,
             datasource_id=self.datasource_id,
@@ -166,7 +151,7 @@ class Slice(  # pylint: disable=too-many-public-methods
 
     # pylint: disable=using-constant-test
     @datasource.getter  # type: ignore
-    def get_datasource(self) -> SqlaTable | None:
+    def get_datasource(self) -> Optional["BaseDatasource"]:
         return (
             db.session.query(self.cls_model)
             .filter_by(id=self.datasource_id)
@@ -174,18 +159,21 @@ class Slice(  # pylint: disable=too-many-public-methods
         )
 
     @renders("datasource_name")
-    def datasource_link(self) -> Markup | None:
+    def datasource_link(self) -> Optional[Markup]:
+        # pylint: disable=no-member
         datasource = self.datasource
         return datasource.link if datasource else None
 
     @renders("datasource_url")
-    def datasource_url(self) -> str | None:
+    def datasource_url(self) -> Optional[str]:
+        # pylint: disable=no-member
         if self.table:
             return self.table.explore_url
         datasource = self.datasource
         return datasource.explore_url if datasource else None
 
-    def datasource_name_text(self) -> str | None:
+    def datasource_name_text(self) -> Optional[str]:
+        # pylint: disable=no-member
         if self.table:
             if self.table.schema:
                 return f"{self.table.schema}.{self.table.table_name}"
@@ -197,14 +185,15 @@ class Slice(  # pylint: disable=too-many-public-methods
         return None
 
     @property
-    def datasource_edit_url(self) -> str | None:
+    def datasource_edit_url(self) -> Optional[str]:
+        # pylint: disable=no-member
         datasource = self.datasource
         return datasource.url if datasource else None
 
     # pylint: enable=using-constant-test
 
     @property
-    def viz(self) -> BaseViz | None:
+    def viz(self) -> Optional[BaseViz]:
         form_data = json.loads(self.params)
         viz_class = viz_types.get(self.viz_type)
         datasource = self.datasource
@@ -214,12 +203,12 @@ class Slice(  # pylint: disable=too-many-public-methods
 
     @property
     def description_markeddown(self) -> str:
-        return utils.markdown(self.description or "")
+        return utils.markdown(self.description)
 
     @property
-    def data(self) -> dict[str, Any]:
+    def data(self) -> Dict[str, Any]:
         """Data used to render slice in templates"""
-        data: dict[str, Any] = {}
+        data: Dict[str, Any] = {}
         self.token = ""
         try:
             viz = self.viz
@@ -249,27 +238,24 @@ class Slice(  # pylint: disable=too-many-public-methods
         }
 
     @property
-    def digest(self) -> str | None:
+    def digest(self) -> str:
         return get_chart_digest(self)
 
     @property
-    def thumbnail_url(self) -> str | None:
+    def thumbnail_url(self) -> str:
         """
         Returns a thumbnail URL with a HEX digest. We want to avoid browser cache
         if the dashboard has changed
         """
-        if digest := self.digest:
-            return f"/api/v1/chart/{self.id}/thumbnail/{digest}/"
-
-        return None
+        return f"/api/v1/chart/{self.id}/thumbnail/{self.digest}/"
 
     @property
     def json_data(self) -> str:
         return json.dumps(self.data)
 
     @property
-    def form_data(self) -> dict[str, Any]:
-        form_data: dict[str, Any] = {}
+    def form_data(self) -> Dict[str, Any]:
+        form_data: Dict[str, Any] = {}
         try:
             form_data = json.loads(self.params)
         except Exception as ex:  # pylint: disable=broad-except
@@ -279,7 +265,7 @@ class Slice(  # pylint: disable=too-many-public-methods
             {
                 "slice_id": self.id,
                 "viz_type": self.viz_type,
-                "datasource": f"{self.datasource_id}__{self.datasource_type}",
+                "datasource": "{}__{}".format(self.datasource_id, self.datasource_type),
             }
         )
 
@@ -288,13 +274,13 @@ class Slice(  # pylint: disable=too-many-public-methods
         update_time_range(form_data)
         return form_data
 
-    def get_query_context(self) -> QueryContext | None:
+    def get_query_context(self) -> Optional[QueryContext]:
         if self.query_context:
             try:
                 return self.get_query_context_factory().create(
                     **json.loads(self.query_context)
                 )
-            except json.JSONDecodeError as ex:
+            except json.decoder.JSONDecodeError as ex:
                 logger.error("Malformed json in slice's query context", exc_info=True)
                 logger.exception(ex)
         return None
@@ -302,13 +288,13 @@ class Slice(  # pylint: disable=too-many-public-methods
     def get_explore_url(
         self,
         base_url: str = "/explore",
-        overrides: dict[str, Any] | None = None,
+        overrides: Optional[Dict[str, Any]] = None,
     ) -> str:
         return self.build_explore_url(self.id, base_url, overrides)
 
     @staticmethod
     def build_explore_url(
-        id_: int, base_url: str = "/explore", overrides: dict[str, Any] | None = None
+        id_: int, base_url: str = "/explore", overrides: Optional[Dict[str, Any]] = None
     ) -> str:
         overrides = overrides or {}
         form_data = {"slice_id": id_}
@@ -340,6 +326,15 @@ class Slice(  # pylint: disable=too-many-public-methods
         return Markup(f'<a href="{self.url}">{name}</a>')
 
     @property
+    def changed_by_url(self) -> str:
+        if (
+            not self.changed_by
+            or not current_app.config["ENABLE_BROAD_ACTIVITY_ACCESS"]
+        ):
+            return ""
+        return f"/superset/profile/{self.changed_by.username}"
+
+    @property
     def icons(self) -> str:
         return f"""
         <a
@@ -363,26 +358,18 @@ class Slice(  # pylint: disable=too-many-public-methods
         return self.query_context_factory
 
     @classmethod
-    def get(cls, id_or_uuid: str) -> Slice:
-        qry = db.session.query(Slice).filter(id_or_uuid_filter(id_or_uuid))
+    def get(cls, id_: int) -> Slice:
+        qry = db.session.query(Slice).filter_by(id=id_)
         return qry.one_or_none()
-
-
-def id_or_uuid_filter(id_or_uuid: str | int) -> BinaryExpression:
-    if isinstance(id_or_uuid, int):
-        return Slice.id == id_or_uuid
-    if id_or_uuid.isdigit():
-        return Slice.id == int(id_or_uuid)
-    return Slice.uuid == id_or_uuid
 
 
 def set_related_perm(_mapper: Mapper, _connection: Connection, target: Slice) -> None:
     src_class = target.cls_model
-    if id_ := target.datasource_id:
+    id_ = target.datasource_id
+    if id_:
         ds = db.session.query(src_class).filter_by(id=int(id_)).first()
         if ds:
             target.perm = ds.perm
-            target.catalog_perm = ds.catalog_perm
             target.schema_perm = ds.schema_perm
 
 
@@ -390,7 +377,9 @@ def event_after_chart_changed(
     _mapper: Mapper, _connection: Connection, target: Slice
 ) -> None:
     cache_chart_thumbnail.delay(
-        current_user=get_current_user(), chart_id=target.id, force=True
+        current_user=get_current_user(),
+        chart_id=target.id,
+        force=True,
     )
 
 

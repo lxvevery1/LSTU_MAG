@@ -16,20 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
-import {
-  Input,
-  Tooltip,
-  Button,
-  TextAreaEditor,
-  ModalTrigger,
-} from '@superset-ui/core/components';
-import { t } from '@superset-ui/core';
-import { withTheme } from '@apache-superset/core/ui';
+import { TextArea } from 'src/components/Input';
+import { t, withTheme } from '@superset-ui/core';
 
-import 'ace-builds/src-min-noconflict/mode-handlebars';
+import Button from 'src/components/Button';
+import { TextAreaEditor } from 'src/components/AsyncAceEditor';
+import ModalTrigger from 'src/components/ModalTrigger';
 
 import ControlHeader from 'src/explore/components/ControlHeader';
 
@@ -48,7 +42,6 @@ const propTypes = {
     'sql',
     'markdown',
     'javascript',
-    'handlebars',
   ]),
   aboveEditorSection: PropTypes.node,
   readOnly: PropTypes.bool,
@@ -62,9 +55,6 @@ const propTypes = {
     'vertical',
   ]),
   textAreaStyles: PropTypes.object,
-  tooltipOptions: PropTypes.object,
-  hotkeys: PropTypes.array,
-  debounceDelay: PropTypes.number,
 };
 
 const defaultProps = {
@@ -77,54 +67,23 @@ const defaultProps = {
   readOnly: false,
   resize: null,
   textAreaStyles: {},
-  tooltipOptions: {},
-  hotkeys: [],
-  debounceDelay: null,
 };
 
-class TextAreaControl extends Component {
-  constructor(props) {
-    super(props);
-    if (props.debounceDelay) {
-      this.debouncedOnChange = debounce(props.onChange, props.debounceDelay);
-    }
+class TextAreaControl extends React.Component {
+  onControlChange(event) {
+    const { value } = event.target;
+    this.props.onChange(value);
   }
 
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.onChange !== prevProps.onChange &&
-      this.props.debounceDelay
-    ) {
-      if (this.debouncedOnChange) {
-        this.debouncedOnChange.cancel();
-      }
-      this.debouncedOnChange = debounce(
-        this.props.onChange,
-        this.props.debounceDelay,
-      );
-    }
-  }
-
-  handleChange(value) {
-    const finalValue = typeof value === 'object' ? value.target.value : value;
-    if (this.debouncedOnChange) {
-      this.debouncedOnChange(finalValue);
-    } else {
-      this.props.onChange(finalValue);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.debouncedOnChange) {
-      this.debouncedOnChange.cancel();
-    }
+  onAreaEditorChange(value) {
+    this.props.onChange(value);
   }
 
   renderEditor(inModal = false) {
     const minLines = inModal ? 40 : this.props.minLines || 12;
     if (this.props.language) {
       const style = {
-        border: `1px solid ${this.props.theme.colorBorder}`,
+        border: `1px solid ${this.props.theme.colors.grayscale.light1}`,
         minHeight: `${minLines}em`,
         width: 'auto',
         ...this.props.textAreaStyles,
@@ -133,57 +92,33 @@ class TextAreaControl extends Component {
         style.resize = this.props.resize;
       }
       if (this.props.readOnly) {
-        style.backgroundColor = this.props.theme.colorBgMask;
+        style.backgroundColor = '#f2f2f2';
       }
-      const onEditorLoad = editor => {
-        this.props.hotkeys.forEach(keyConfig => {
-          editor.commands.addCommand({
-            name: keyConfig.name,
-            bindKey: { win: keyConfig.key, mac: keyConfig.key },
-            exec: keyConfig.func,
-          });
-        });
-      };
-      const codeEditor = (
-        <div>
-          <TextAreaEditor
-            mode={this.props.language}
-            style={style}
-            minLines={minLines}
-            maxLines={inModal ? 1000 : this.props.maxLines}
-            editorProps={{ $blockScrolling: true }}
-            onLoad={onEditorLoad}
-            defaultValue={this.props.initialValue}
-            readOnly={this.props.readOnly}
-            key={this.props.name}
-            {...this.props}
-            onChange={this.handleChange.bind(this)}
-          />
-        </div>
-      );
 
-      if (this.props.tooltipOptions) {
-        return <Tooltip {...this.props.tooltipOptions}>{codeEditor}</Tooltip>;
-      }
-      return codeEditor;
-    }
-
-    const textArea = (
-      <div>
-        <Input.TextArea
-          placeholder={t('textarea')}
-          onChange={this.handleChange.bind(this)}
+      return (
+        <TextAreaEditor
+          mode={this.props.language}
+          style={style}
+          minLines={minLines}
+          maxLines={inModal ? 1000 : this.props.maxLines}
+          editorProps={{ $blockScrolling: true }}
           defaultValue={this.props.initialValue}
-          disabled={this.props.readOnly}
-          style={{ height: this.props.height }}
-          aria-required={this.props['aria-required']}
+          readOnly={this.props.readOnly}
+          key={this.props.name}
+          {...this.props}
+          onChange={this.onAreaEditorChange.bind(this)}
         />
-      </div>
-    );
-    if (this.props.tooltipOptions) {
-      return <Tooltip {...this.props.tooltipOptions}>{textArea}</Tooltip>;
+      );
     }
-    return textArea;
+    return (
+      <TextArea
+        placeholder={t('textarea')}
+        onChange={this.onControlChange.bind(this)}
+        defaultValue={this.props.initialValue}
+        disabled={this.props.readOnly}
+        style={{ height: this.props.height }}
+      />
+    );
   }
 
   renderModalBody() {
@@ -205,11 +140,9 @@ class TextAreaControl extends Component {
           <ModalTrigger
             modalTitle={controlHeader}
             triggerNode={
-              <Button
-                buttonSize="small"
-                style={{ marginTop: this.props.theme.sizeUnit }}
-              >
-                {t('Edit %s in modal', this.props.language)}
+              <Button buttonSize="small" className="m-t-5">
+                {t('Edit')} <strong>{this.props.language}</strong>{' '}
+                {t('in modal')}
               </Button>
             }
             modalBody={this.renderModalBody(true)}

@@ -16,20 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import {
+import React, {
   useState,
   useMemo,
   forwardRef,
   useImperativeHandle,
-  type RefObject,
 } from 'react';
-
 import { t } from '@superset-ui/core';
-import { Select, AsyncSelect, FormLabel } from '@superset-ui/core/components';
-import { ListViewFilter as Filter, SelectOption } from '../types';
-import type { BaseFilter, FilterHandler } from './types';
-import { FilterContainer } from './Base';
-import { SELECT_WIDTH } from '../utils';
+import { Select } from 'src/components';
+import { Filter, SelectOption } from 'src/components/ListView/types';
+import { FormLabel } from 'src/components/Form';
+import AsyncSelect from 'src/components/Select/AsyncSelect';
+import { FilterContainer, BaseFilter, FilterHandler } from './Base';
 
 interface SelectFilterProps extends BaseFilter {
   fetchSelects?: Filter['fetchSelects'];
@@ -37,8 +35,6 @@ interface SelectFilterProps extends BaseFilter {
   onSelect: (selected: SelectOption | undefined, isClear?: boolean) => void;
   paginate?: boolean;
   selects: Filter['selects'];
-  loading?: boolean;
-  dropdownStyle?: React.CSSProperties;
 }
 
 function SelectFilter(
@@ -49,10 +45,8 @@ function SelectFilter(
     initialValue,
     onSelect,
     selects = [],
-    loading = false,
-    dropdownStyle,
   }: SelectFilterProps,
-  ref: RefObject<FilterHandler>,
+  ref: React.RefObject<FilterHandler>,
 ) {
   const [selectedOption, setSelectedOption] = useState(initialValue);
 
@@ -90,26 +84,19 @@ function SelectFilter(
     },
     [fetchSelects],
   );
-  const placeholder = t('Choose...');
+
   return (
-    <FilterContainer
-      data-test="select-filter-container"
-      width={SELECT_WIDTH}
-      vertical
-      justify="center"
-      align="start"
-    >
-      <FormLabel>{Header}</FormLabel>
+    <FilterContainer>
       {fetchSelects ? (
         <AsyncSelect
           allowClear
           ariaLabel={typeof Header === 'string' ? Header : name || t('Filter')}
           data-test="filters-select"
+          header={<FormLabel>{Header}</FormLabel>}
           onChange={onChange}
           onClear={onClear}
           options={fetchAndFormatSelects}
-          placeholder={placeholder}
-          dropdownStyle={dropdownStyle}
+          placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}
         />
@@ -118,15 +105,14 @@ function SelectFilter(
           allowClear
           ariaLabel={typeof Header === 'string' ? Header : name || t('Filter')}
           data-test="filters-select"
+          header={<FormLabel>{Header}</FormLabel>}
           labelInValue
           onChange={onChange}
           onClear={onClear}
           options={selects}
-          placeholder={placeholder}
-          dropdownStyle={dropdownStyle}
+          placeholder={t('Select or type a value')}
           showSearch
           value={selectedOption}
-          loading={loading}
         />
       )}
     </FilterContainer>

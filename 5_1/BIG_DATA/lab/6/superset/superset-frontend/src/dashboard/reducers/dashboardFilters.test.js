@@ -18,6 +18,8 @@
  */
 /* eslint-disable camelcase */
 import {
+  ADD_FILTER,
+  REMOVE_FILTER,
   CHANGE_FILTER,
   UPDATE_DASHBOARD_FILTERS_SCOPE,
 } from 'src/dashboard/actions/dashboardFilters';
@@ -25,7 +27,10 @@ import dashboardFiltersReducer, {
   DASHBOARD_FILTER_SCOPE_GLOBAL,
 } from 'src/dashboard/reducers/dashboardFilters';
 import * as activeDashboardFilters from 'src/dashboard/util/activeDashboardFilters';
-import { dashboardFilters } from 'spec/fixtures/mockDashboardFilters';
+import {
+  emptyFilters,
+  dashboardFilters,
+} from 'spec/fixtures/mockDashboardFilters';
 import {
   sliceEntitiesForDashboard,
   filterId,
@@ -33,14 +38,42 @@ import {
 } from 'spec/fixtures/mockSliceEntities';
 import { filterComponent } from 'spec/fixtures/mockDashboardLayout';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('dashboardFilters reducer', () => {
   const { form_data } = sliceEntitiesForDashboard.slices[filterId];
   const component = filterComponent;
   const directPathToFilter = (component.parents || []).slice();
   directPathToFilter.push(component.id);
 
-  test('should overwrite a filter if merge is false', () => {
+  it('should add a new filter if it does not exist', () => {
+    expect(
+      dashboardFiltersReducer(emptyFilters, {
+        type: ADD_FILTER,
+        chartId: filterId,
+        component,
+        form_data,
+      }),
+    ).toEqual({
+      [filterId]: {
+        chartId: filterId,
+        componentId: component.id,
+        directPathToFilter,
+        filterName: component.meta.sliceName,
+        isDateFilter: false,
+        isInstantFilter: !!form_data.instant_filtering,
+        columns: {
+          [column]: undefined,
+        },
+        labels: {
+          [column]: column,
+        },
+        scopes: {
+          [column]: DASHBOARD_FILTER_SCOPE_GLOBAL,
+        },
+      },
+    });
+  });
+
+  it('should overwrite a filter if merge is false', () => {
     expect(
       dashboardFiltersReducer(dashboardFilters, {
         type: CHANGE_FILTER,
@@ -73,7 +106,7 @@ describe('dashboardFilters reducer', () => {
     });
   });
 
-  test('should merge a filter if merge is true', () => {
+  it('should merge a filter if merge is true', () => {
     expect(
       dashboardFiltersReducer(dashboardFilters, {
         type: CHANGE_FILTER,
@@ -106,7 +139,16 @@ describe('dashboardFilters reducer', () => {
     });
   });
 
-  test('should buildActiveFilters on UPDATE_DASHBOARD_FILTERS_SCOPE', () => {
+  it('should remove the filter if values are empty', () => {
+    expect(
+      dashboardFiltersReducer(dashboardFilters, {
+        type: REMOVE_FILTER,
+        chartId: filterId,
+      }),
+    ).toEqual({});
+  });
+
+  it('should buildActiveFilters on UPDATE_DASHBOARD_FILTERS_SCOPE', () => {
     const regionScope = {
       scope: ['TAB-1'],
       immune: [],
@@ -132,6 +174,6 @@ describe('dashboardFilters reducer', () => {
 
     // when UPDATE_DASHBOARD_FILTERS_SCOPE is changed, applicable filters to a chart
     // might be changed.
-    expect(activeDashboardFilters.buildActiveFilters).toHaveBeenCalled();
+    expect(activeDashboardFilters.buildActiveFilters).toBeCalled();
   });
 });

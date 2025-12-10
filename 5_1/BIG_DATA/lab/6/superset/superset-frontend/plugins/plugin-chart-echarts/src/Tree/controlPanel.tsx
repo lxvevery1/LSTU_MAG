@@ -16,11 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { t } from '@superset-ui/core';
+import React from 'react';
+import { FeatureFlag, isFeatureEnabled, t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
-  ControlSubSectionHeader,
   getStandardizedControls,
+  sections,
   sharedControls,
 } from '@superset-ui/chart-controls';
 import { DEFAULT_FORM_DATA } from './constants';
@@ -37,6 +38,7 @@ const optionalEntity = {
 
 const controlPanel: ControlPanelConfig = {
   controlPanelSections: [
+    sections.legacyRegularTime,
     {
       label: t('Query'),
       expanded: true,
@@ -89,9 +91,11 @@ const controlPanel: ControlPanelConfig = {
           {
             name: 'metric',
             config: {
-              ...sharedControls.metric,
-              clearable: true,
-              validators: [],
+              ...optionalEntity,
+              type: isFeatureEnabled(FeatureFlag.ENABLE_EXPLORE_DRAG_AND_DROP)
+                ? 'DndMetricSelect'
+                : 'MetricsControl',
+              label: t('Metric'),
               description: t('Metric for node values'),
             },
           },
@@ -104,7 +108,7 @@ const controlPanel: ControlPanelConfig = {
       label: t('Chart options'),
       expanded: true,
       controlSetRows: [
-        [<ControlSubSectionHeader>{t('Layout')}</ControlSubSectionHeader>],
+        [<div className="section-header">{t('Layout')}</div>],
         [
           {
             name: 'layout',
@@ -275,23 +279,6 @@ const controlPanel: ControlPanelConfig = {
               ],
               description: t(
                 'Whether to enable changing graph position and scaling.',
-              ),
-            },
-          },
-        ],
-        [
-          {
-            name: 'initialTreeDepth',
-            config: {
-              type: 'NumberControl',
-              label: t('Initial tree depth'),
-              min: -1,
-              step: 1,
-              max: 10,
-              default: DEFAULT_FORM_DATA.initialTreeDepth,
-              renderTrigger: true,
-              description: t(
-                'The initial level (depth) of the tree. If set as -1 all nodes are expanded.',
               ),
             },
           },

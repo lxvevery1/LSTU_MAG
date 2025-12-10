@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { SupersetTheme } from '@apache-superset/core/ui';
+import { SupersetTheme } from '@superset-ui/core';
 
 /* eslint-disable sort-keys, no-magic-numbers */
 export const generateData = (theme: SupersetTheme) => ({
@@ -5539,5 +5539,5 @@ export const generateData = (theme: SupersetTheme) => ({
   ],
   renderWhileDragging: true,
   tooltip: null,
-  color: theme.colorPrimary,
+  color: theme.colors.primary.base,
 });

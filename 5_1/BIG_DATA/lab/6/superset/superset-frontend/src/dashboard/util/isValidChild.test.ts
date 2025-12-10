@@ -36,16 +36,14 @@ const getIndentation = (depth: number) =>
     .fill('')
     .join('-');
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('isValidChild', () => {
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('valid calls', () => {
     // these are representations of nested structures for easy testing
     //  [ROOT (depth 0) > GRID (depth 1) > HEADER (depth 2)]
     // every unique parent > child relationship is tested, but because this
     // test representation WILL result in duplicates, we hash each test
     // to keep track of which we've run
-    const didTest: Record<string, boolean> = {};
+    const didTest = {};
     const validExamples = [
       [ROOT, GRID, CHART], // chart is valid because it is wrapped in a row
       [ROOT, GRID, MARKDOWN], // markdown is valid because it is wrapped in a row
@@ -98,7 +96,7 @@ describe('isValidChild', () => {
         if (i > 0 && !didTest[testKey]) {
           didTest[testKey] = true;
 
-          test(`(${exampleIdx})${getIndentation(
+          it(`(${exampleIdx})${getIndentation(
             childDepth,
           )}${parentType} (depth ${parentDepth}) > ${childType} ✅`, () => {
             expect(
@@ -116,7 +114,6 @@ describe('isValidChild', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('invalid calls', () => {
     // In order to assert that a parent > child hierarchy at a given depth is invalid
     // we also define some valid hierarchies in doing so. we indicate which
@@ -147,7 +144,7 @@ describe('isValidChild', () => {
           if (typeof parentType !== 'string')
             throw TypeError('parent must be string');
 
-          test(`(${exampleIdx})${getIndentation(
+          it(`(${exampleIdx})${getIndentation(
             childDepth,
           )}${parentType} (depth ${parentDepth}) > ${childType} ❌`, () => {
             expect(

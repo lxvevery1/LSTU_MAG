@@ -16,9 +16,10 @@
 # under the License.
 import logging
 
-from flask import current_app as app, Response
+from flask import Response
 from flask_appbuilder.api import expose, protect, safe
 
+from superset import conf
 from superset.available_domains.schemas import AvailableDomainsSchema
 from superset.constants import MODEL_API_RW_METHOD_PERMISSION_MAP
 from superset.extensions import event_logger
@@ -37,7 +38,7 @@ class AvailableDomainsRestApi(BaseSupersetApi):
     openapi_spec_tag = "Available Domains"
     openapi_spec_component_schemas = (AvailableDomainsSchema,)
 
-    @expose("/", methods=("GET",))
+    @expose("/", methods=["GET"])
     @protect()
     @safe
     @statsd_metrics
@@ -47,12 +48,13 @@ class AvailableDomainsRestApi(BaseSupersetApi):
     )
     def get(self) -> Response:
         """
-        Get the list of available Superset Webserver domains (if any)
+        Returns the list of available Superset Webserver domains (if any)
         defined in config. This enables charts embedded in other apps to
         leverage domain sharding if appropriately configured.
         ---
         get:
-          summary: Get all available domains
+          description: >-
+            Get all available domains
           responses:
             200:
               description: a list of available domains
@@ -69,6 +71,6 @@ class AvailableDomainsRestApi(BaseSupersetApi):
               $ref: '#/components/responses/403'
         """
         result = self.available_domains_schema.dump(
-            {"domains": app.config.get("SUPERSET_WEBSERVER_DOMAINS")}
+            {"domains": conf.get("SUPERSET_WEBSERVER_DOMAINS")}
         )
         return self.response(200, result=result)

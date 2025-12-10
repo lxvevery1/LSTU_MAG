@@ -16,24 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useState, useEffect } from 'react';
-import { t } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
-import { Icons } from '@superset-ui/core/components/Icons';
-import { Select } from '@superset-ui/core/components';
+import React, { useState } from 'react';
+import { styled, t } from '@superset-ui/core';
+import Icons from 'src/components/Icons';
+import { Select } from 'src/components';
 import { CollapsibleControl } from './CollapsibleControl';
-import { INPUT_WIDTH } from './constants';
 
 interface DependencyListProps {
-  availableFilters: {
-    label: string;
-    value: string;
-    type: string | undefined;
-  }[];
+  availableFilters: { label: string; value: string }[];
   dependencies: string[];
   onDependenciesChange: (dependencies: string[]) => void;
   getDependencySuggestion: () => string;
-  children?: JSX.Element;
 }
 
 const MainPanel = styled.div`
@@ -47,20 +40,20 @@ const AddFilter = styled.div`
     flex-direction: row;
     align-items: center;
     cursor: pointer;
-    color: ${theme.colorPrimary};
+    color: ${theme.colors.primary.base};
     &:hover {
-      color: ${theme.colorPrimaryText};
+      color: ${theme.colors.primary.dark1};
     }
   `}
 `;
 
-const DeleteFilter = styled(Icons.DeleteOutlined)`
+const DeleteFilter = styled(Icons.Trash)`
   ${({ theme }) => `
     cursor: pointer;
-    margin-left: ${theme.sizeUnit * 2}px;
-    color: ${theme.colorIcon};
+    margin-left: ${theme.gridUnit * 2}px;
+    color: ${theme.colors.grayscale.base};
     &:hover {
-      color: ${theme.colorText};
+      color: ${theme.colors.grayscale.dark1};
     }
   `}
 `;
@@ -68,20 +61,18 @@ const DeleteFilter = styled(Icons.DeleteOutlined)`
 const RowPanel = styled.div`
   ${({ theme }) => `
     display: flex;
+    width: 220px;
     flex-direction: row;
     align-items: center;
-    margin-bottom: ${theme.sizeUnit}px;
-
-    & > div {
-      width: ${INPUT_WIDTH}px;
-    }
+    margin-bottom: ${theme.gridUnit}px;
   `}
 `;
 
 const Label = styled.div`
-  font-size: ${({ theme }) => theme.fontSizeSM}px;
-  color: ${({ theme }) => theme.colorText};
-  margin-bottom: ${({ theme }) => theme.sizeUnit}px;
+  text-transform: uppercase;
+  font-size: ${({ theme }) => theme.typography.sizes.s}px;
+  color: ${({ theme }) => theme.colors.grayscale.base};
+  margin-bottom: ${({ theme }) => theme.gridUnit}px;
 `;
 
 const Row = ({
@@ -171,8 +162,8 @@ const List = ({
         />
       ))}
       {availableFilters.length > rows.length && (
-        <AddFilter role="button" onClick={onAdd}>
-          <Icons.PlusOutlined iconSize="xs" />
+        <AddFilter onClick={onAdd}>
+          <Icons.PlusSmall />
           {t('Add filter')}
         </AddFilter>
       )}
@@ -185,33 +176,14 @@ const DependencyList = ({
   dependencies = [],
   onDependenciesChange,
   getDependencySuggestion,
-  children,
 }: DependencyListProps) => {
   const hasAvailableFilters = availableFilters.length > 0;
   const hasDependencies = dependencies.length > 0;
 
-  // Clean up invalid dependencies when available filters change
-  useEffect(() => {
-    if (dependencies.length > 0) {
-      const availableFilterIds = new Set(availableFilters.map(f => f.value));
-      const validDependencies = dependencies.filter(dep =>
-        availableFilterIds.has(dep),
-      );
-
-      // If some dependencies are no longer valid, update the list
-      if (validDependencies.length !== dependencies.length) {
-        onDependenciesChange(validDependencies);
-      }
-    }
-  }, [availableFilters, dependencies, onDependenciesChange]);
-
   const onCheckChanged = (value: boolean) => {
     const newDependencies: string[] = [];
     if (value && !hasDependencies && hasAvailableFilters) {
-      const suggestion = getDependencySuggestion();
-      if (suggestion) {
-        newDependencies.push(suggestion);
-      }
+      newDependencies.push(getDependencySuggestion());
     }
     onDependenciesChange(newDependencies);
   };
@@ -220,7 +192,7 @@ const DependencyList = ({
     <MainPanel>
       <CollapsibleControl
         title={t('Values are dependent on other filters')}
-        checked={hasDependencies}
+        initialValue={hasDependencies}
         onChange={onCheckChanged}
         tooltip={t(
           'Values selected in other filters will affect the filter options to only show relevant values',
@@ -233,7 +205,6 @@ const DependencyList = ({
           onDependenciesChange={onDependenciesChange}
           getDependencySuggestion={getDependencySuggestion}
         />
-        {children}
       </CollapsibleControl>
     </MainPanel>
   );

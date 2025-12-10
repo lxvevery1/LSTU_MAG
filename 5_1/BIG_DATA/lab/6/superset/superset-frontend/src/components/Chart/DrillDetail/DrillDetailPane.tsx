@@ -16,42 +16,47 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import {
-  cloneElement,
-  ReactElement,
-  useCallback,
+import React, {
+  useState,
   useEffect,
   useMemo,
+  useCallback,
   useRef,
-  useState,
+  ReactElement,
 } from 'react';
 import { useSelector } from 'react-redux';
 import {
   BinaryQueryObjectFilterClause,
+  css,
   ensureIsArray,
-  JsonObject,
-  QueryFormData,
   t,
+  useTheme,
+  QueryFormData,
+  JsonObject,
+  GenericDataType,
 } from '@superset-ui/core';
-import { css, useTheme } from '@apache-superset/core/ui';
-import { GenericDataType } from '@apache-superset/core/api/core';
 import { useResizeDetector } from 'react-resize-detector';
-import BooleanCell from '@superset-ui/core/components/Table/cell-renderers/BooleanCell';
-import NullCell from '@superset-ui/core/components/Table/cell-renderers/NullCell';
-import TimeCell from '@superset-ui/core/components/Table/cell-renderers/TimeCell';
-import { EmptyState, Loading } from '@superset-ui/core/components';
+import Loading from 'src/components/Loading';
+import BooleanCell from 'src/components/Table/cell-renderers/BooleanCell';
+import NullCell from 'src/components/Table/cell-renderers/NullCell';
+import TimeCell from 'src/components/Table/cell-renderers/TimeCell';
+import { EmptyStateMedium } from 'src/components/EmptyState';
 import { getDatasourceSamples } from 'src/components/Chart/chartAction';
 import Table, {
   ColumnsType,
+  TablePaginationConfig,
   TableSize,
-} from '@superset-ui/core/components/Table';
-import { RootState } from 'src/dashboard/types';
-import HeaderWithRadioGroup from '@superset-ui/core/components/Table/header-renderers/HeaderWithRadioGroup';
-import { useDatasetMetadataBar } from 'src/features/datasets/metadataBar/useDatasetMetadataBar';
-import { Dataset } from '../types';
+} from 'src/components/Table';
+import MetadataBar, {
+  ContentType,
+  MetadataType,
+} from 'src/components/MetadataBar';
+import Alert from 'src/components/Alert';
+import { useApiV1Resource } from 'src/hooks/apiResources';
+import HeaderWithRadioGroup from 'src/components/Table/header-renderers/HeaderWithRadioGroup';
 import TableControls from './DrillDetailTableControls';
 import { getDrillPayload } from './utils';
-import { ResultsPage } from './types';
+import { Dataset, ResultsPage } from './types';
 
 const PAGE_SIZE = 50;
 
@@ -66,7 +71,7 @@ function Resizable({ children }: { children: ReactElement }) {
   const { ref, height } = useResizeDetector();
   return (
     <div ref={ref} css={{ flex: 1 }}>
-      {cloneElement(children, { height })}
+      {React.cloneElement(children, { height })}
     </div>
   );
 }
@@ -79,11 +84,9 @@ enum TimeFormatting {
 export default function DrillDetailPane({
   formData,
   initialFilters,
-  dataset,
 }: {
   formData: QueryFormData;
   initialFilters: BinaryQueryObjectFilterClause[];
-  dataset?: Dataset;
 }) {
   const theme = useTheme();
   const [pageIndex, setPageIndex] = useState(0);
@@ -94,13 +97,7 @@ export default function DrillDetailPane({
   const [resultsPages, setResultsPages] = useState<Map<number, ResultsPage>>(
     new Map(),
   );
-  const [timeFormatting, setTimeFormatting] = useState<
-    Record<string, TimeFormatting>
-  >({});
-
-  const dashboardId = useSelector<RootState, number>(
-    ({ dashboardInfo }) => dashboardInfo.id,
-  );
+  const [timeFormatting, setTimeFormatting] = useState({});
 
   const SAMPLES_ROW_LIMIT = useSelector(
     (state: { common: { conf: JsonObject } }) =>
@@ -112,10 +109,6 @@ export default function DrillDetailPane({
     () => formData.datasource.split('__'),
     [formData.datasource],
   );
-
-  const { metadataBar: metadataBarComponent } = useDatasetMetadataBar({
-    dataset,
-  });
 
   // Get page of results
   const resultsPage = useMemo(() => {
@@ -134,9 +127,9 @@ export default function DrillDetailPane({
         key: column,
         dataIndex: column,
         title:
-          resultsPage?.colTypes[index] === GenericDataType.Temporal ? (
+          resultsPage?.colTypes[index] === GenericDataType.TEMPORAL ? (
             <HeaderWithRadioGroup
-              headerTitle={dataset?.verbose_map?.[column] || column}
+              headerTitle={column}
               groupTitle={t('Formatting')}
               groupOptions={[
                 { label: t('Original value'), value: TimeFormatting.Original },
@@ -151,14 +144,11 @@ export default function DrillDetailPane({
                   : TimeFormatting.Formatted
               }
               onChange={value =>
-                setTimeFormatting(state => ({
-                  ...state,
-                  [column]: parseInt(value, 10) as TimeFormatting,
-                }))
+                setTimeFormatting(state => ({ ...state, [column]: value }))
               }
             />
           ) : (
-            dataset?.verbose_map?.[column] || column
+            column
           ),
         render: value => {
           if (value === true || value === false) {
@@ -168,7 +158,7 @@ export default function DrillDetailPane({
             return <NullCell />;
           }
           if (
-            resultsPage?.colTypes[index] === GenericDataType.Temporal &&
+            resultsPage?.colTypes[index] === GenericDataType.TEMPORAL &&
             timeFormatting[column] !== TimeFormatting.Original &&
             (typeof value === 'number' || value instanceof Date)
           ) {
@@ -178,12 +168,7 @@ export default function DrillDetailPane({
         },
         width: 150,
       })) || [],
-    [
-      resultsPage?.colNames,
-      resultsPage?.colTypes,
-      timeFormatting,
-      dataset?.verbose_map,
-    ],
+    [resultsPage?.colNames, resultsPage?.colTypes, timeFormatting],
   );
 
   const data: DataType[] = useMemo(
@@ -243,7 +228,6 @@ export default function DrillDetailPane({
         jsonPayload,
         PAGE_SIZE,
         pageIndex + 1,
-        dashboardId,
       )
         .then(response => {
           setResultsPages(
@@ -281,9 +265,11 @@ export default function DrillDetailPane({
     resultsPages,
   ]);
 
-  const bootstrapping = !responseError && !resultsPages.size;
+  // Get datasource metadata
+  const response = useApiV1Resource<Dataset>(`/api/v1/dataset/${datasourceId}`);
 
-  const allowHTML = formData.allow_render_html ?? true;
+  const bootstrapping =
+    (!responseError && !resultsPages.size) || response.status === 'loading';
 
   let tableContent = null;
   if (responseError) {
@@ -291,7 +277,7 @@ export default function DrillDetailPane({
     tableContent = (
       <pre
         css={css`
-          margin-top: ${theme.sizeUnit * 4}px;
+          margin-top: ${theme.gridUnit * 4}px;
         `}
       >
         {responseError}
@@ -303,7 +289,7 @@ export default function DrillDetailPane({
   } else if (resultsPage?.total === 0) {
     // Render empty state if no results are returned for page
     const title = t('No rows were returned for this dataset');
-    tableContent = <EmptyState image="document.svg" title={title} />;
+    tableContent = <EmptyStateMedium image="document.svg" title={title} />;
   } else {
     // Render table if at least one page has successfully loaded
     tableContent = (
@@ -311,25 +297,91 @@ export default function DrillDetailPane({
         <Table
           data={data}
           columns={mappedColumns}
-          size={TableSize.Small}
+          size={TableSize.SMALL}
           defaultPageSize={PAGE_SIZE}
           recordCount={resultsPage?.total}
           usePagination
           loading={isLoading}
-          onChange={pagination =>
+          onChange={(pagination: TablePaginationConfig) =>
             setPageIndex(pagination.current ? pagination.current - 1 : 0)
           }
           resizable
           virtualize
-          allowHTML={allowHTML}
         />
       </Resizable>
     );
   }
 
+  const metadata = useMemo(() => {
+    const { status, result } = response;
+    const items: ContentType[] = [];
+    if (result) {
+      const {
+        changed_on_humanized,
+        created_on_humanized,
+        description,
+        table_name,
+        changed_by,
+        created_by,
+        owners,
+      } = result;
+      const notAvailable = t('Not available');
+      const createdBy =
+        `${created_by?.first_name ?? ''} ${
+          created_by?.last_name ?? ''
+        }`.trim() || notAvailable;
+      const modifiedBy = changed_by
+        ? `${changed_by.first_name} ${changed_by.last_name}`
+        : notAvailable;
+      const formattedOwners =
+        owners.length > 0
+          ? owners.map(owner => `${owner.first_name} ${owner.last_name}`)
+          : [notAvailable];
+      items.push({
+        type: MetadataType.TABLE,
+        title: table_name,
+      });
+      items.push({
+        type: MetadataType.LAST_MODIFIED,
+        value: changed_on_humanized,
+        modifiedBy,
+      });
+      items.push({
+        type: MetadataType.OWNER,
+        createdBy,
+        owners: formattedOwners,
+        createdOn: created_on_humanized,
+      });
+      if (description) {
+        items.push({
+          type: MetadataType.DESCRIPTION,
+          value: description,
+        });
+      }
+    }
+    return (
+      <div
+        css={css`
+          display: flex;
+          margin-bottom: ${theme.gridUnit * 4}px;
+        `}
+      >
+        {status === 'complete' && (
+          <MetadataBar items={items} tooltipPlacement="bottom" />
+        )}
+        {status === 'error' && (
+          <Alert
+            type="error"
+            message={t('There was an error loading the dataset metadata')}
+          />
+        )}
+      </div>
+    );
+  }, [response, theme.gridUnit]);
+
   return (
     <>
-      {!bootstrapping && metadataBarComponent}
+      {!bootstrapping && metadata}
       {!bootstrapping && (
         <TableControls
           filters={filters}

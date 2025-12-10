@@ -27,19 +27,17 @@ import {
   SET_UNSAVED_CHANGES,
   TOGGLE_EXPAND_SLICE,
   TOGGLE_FAVE_STAR,
-  TOGGLE_NATIVE_FILTERS_BAR,
   UNSET_FOCUSED_FILTER_FIELD,
 } from 'src/dashboard/actions/dashboardState';
 
 import dashboardStateReducer from 'src/dashboard/reducers/dashboardState';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('dashboardState reducer', () => {
-  test('should return initial state', () => {
+  it('should return initial state', () => {
     expect(dashboardStateReducer(undefined, {})).toEqual({});
   });
 
-  test('should add a slice', () => {
+  it('should add a slice', () => {
     expect(
       dashboardStateReducer(
         { sliceIds: [1] },
@@ -48,7 +46,7 @@ describe('dashboardState reducer', () => {
     ).toEqual({ sliceIds: [1, 2] });
   });
 
-  test('should remove a slice', () => {
+  it('should remove a slice', () => {
     expect(
       dashboardStateReducer(
         { sliceIds: [1, 2], filters: {} },
@@ -57,7 +55,7 @@ describe('dashboardState reducer', () => {
     ).toEqual({ sliceIds: [1], filters: {} });
   });
 
-  test('should toggle fav star', () => {
+  it('should toggle fav star', () => {
     expect(
       dashboardStateReducer(
         { isStarred: false },
@@ -66,7 +64,7 @@ describe('dashboardState reducer', () => {
     ).toEqual({ isStarred: true });
   });
 
-  test('should toggle edit mode', () => {
+  it('should toggle edit mode', () => {
     expect(
       dashboardStateReducer(
         { editMode: false },
@@ -77,7 +75,7 @@ describe('dashboardState reducer', () => {
     });
   });
 
-  test('should toggle expanded slices', () => {
+  it('should toggle expanded slices', () => {
     expect(
       dashboardStateReducer(
         { expandedSlices: { 1: true, 2: false } },
@@ -93,7 +91,7 @@ describe('dashboardState reducer', () => {
     ).toEqual({ expandedSlices: { 1: true, 2: true } });
   });
 
-  test('should set hasUnsavedChanges', () => {
+  it('should set hasUnsavedChanges', () => {
     expect(dashboardStateReducer({}, { type: ON_CHANGE })).toEqual({
       hasUnsavedChanges: true,
     });
@@ -108,7 +106,7 @@ describe('dashboardState reducer', () => {
     });
   });
 
-  test('should set maxUndoHistoryExceeded', () => {
+  it('should set maxUndoHistoryExceeded', () => {
     expect(
       dashboardStateReducer(
         {},
@@ -122,7 +120,7 @@ describe('dashboardState reducer', () => {
     });
   });
 
-  test('should set unsaved changes, max undo history, and editMode to false on save', () => {
+  it('should set unsaved changes, max undo history, and editMode to false on save', () => {
     const result = dashboardStateReducer(
       { hasUnsavedChanges: true },
       { type: ON_SAVE },
@@ -133,7 +131,7 @@ describe('dashboardState reducer', () => {
     expect(result.updatedColorScheme).toBe(false);
   });
 
-  test('should reset lastModifiedTime on save', () => {
+  it('should reset lastModifiedTime on save', () => {
     const initTime = new Date().getTime() / 1000;
     dashboardStateReducer(
       {
@@ -151,7 +149,7 @@ describe('dashboardState reducer', () => {
     ).toBeGreaterThanOrEqual(initTime);
   });
 
-  test('should clear the focused filter field', () => {
+  it('should clear the focused filter field', () => {
     const initState = {
       focusedFilterField: {
         chartId: 1,
@@ -168,7 +166,7 @@ describe('dashboardState reducer', () => {
     expect(cleared.focusedFilterField).toBeNull();
   });
 
-  test('should only clear focused filter when the fields match', () => {
+  it('should only clear focused filter when the fields match', () => {
     // dashboard only has 1 focused filter field at a time,
     // but when user switch different filter boxes,
     // browser didn't always fire onBlur and onFocus events in order.
@@ -198,21 +196,5 @@ describe('dashboardState reducer', () => {
       chartId: 2,
       column: 'column_2',
     });
-  });
-
-  test('should toggle native filters bar', () => {
-    expect(
-      dashboardStateReducer(
-        { nativeFiltersBarOpen: false },
-        { type: TOGGLE_NATIVE_FILTERS_BAR, isOpen: true },
-      ),
-    ).toEqual({ nativeFiltersBarOpen: true });
-
-    expect(
-      dashboardStateReducer(
-        { nativeFiltersBarOpen: true },
-        { type: TOGGLE_NATIVE_FILTERS_BAR, isOpen: false },
-      ),
-    ).toEqual({ nativeFiltersBarOpen: false });
   });
 });

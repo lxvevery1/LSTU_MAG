@@ -20,7 +20,6 @@ import {
   DatasourceType,
   getChartControlPanelRegistry,
   t,
-  VizType,
 } from '@superset-ui/core';
 import {
   ControlConfig,
@@ -45,29 +44,22 @@ const getKnownControlConfig = (controlKey: string, vizType: string) =>
 const getKnownControlState = (...args: Parameters<typeof getControlState>) =>
   getControlState(...args) as Exclude<ReturnType<typeof getControlState>, null>;
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('controlUtils', () => {
   const state: ControlPanelState = {
     datasource: {
       id: 1,
       type: DatasourceType.Table,
       columns: [{ column_name: 'a' }],
-      metrics: [
-        { metric_name: 'first', uuid: '1' },
-        { metric_name: 'second', uuid: '2' },
-      ],
-      column_formats: {},
+      metrics: [{ metric_name: 'first' }, { metric_name: 'second' }],
+      column_format: {},
       verbose_map: {},
       main_dttm_col: '',
       datasource_name: '1__table',
       description: null,
     },
     controls: {},
-    form_data: { datasource: '1__table', viz_type: VizType.Table },
+    form_data: { datasource: '1__table', viz_type: 'table' },
     common: {},
-    slice: {
-      slice_id: 1,
-    },
   };
 
   beforeAll(() => {
@@ -94,14 +86,13 @@ describe('controlUtils', () => {
       .remove('test-chart-override');
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('getControlConfig', () => {
-    test('returns a valid spatial controlConfig', () => {
+    it('returns a valid spatial controlConfig', () => {
       const spatialControl = getControlConfig('color_scheme', 'test-chart');
       expect(spatialControl?.type).toEqual('ColorSchemeControl');
     });
 
-    test('overrides according to vizType', () => {
+    it('overrides according to vizType', () => {
       let control = getKnownControlConfig('color_scheme', 'test-chart');
       expect(control.label).toEqual('Color Scheme');
 
@@ -109,7 +100,7 @@ describe('controlUtils', () => {
       expect(control.label).toEqual('My beautiful colors');
     });
 
-    test(
+    it(
       'returns correct control config when control config is defined ' +
         'in the control panel definition',
       () => {
@@ -131,29 +122,27 @@ describe('controlUtils', () => {
     );
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('applyMapStateToPropsToControl,', () => {
-    test('applies state to props as expected', () => {
+    it('applies state to props as expected', () => {
       let control = getKnownControlConfig('all_columns', 'table');
       control = applyMapStateToPropsToControl(control, state);
       expect(control.options).toEqual([{ column_name: 'a' }]);
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('getControlState', () => {
-    test('to still have the functions', () => {
+    it('to still have the functions', () => {
       const control = getKnownControlState('metrics', 'table', state, 'a');
       expect(typeof control.mapStateToProps).toBe('function');
       expect(typeof control.validators?.[0]).toBe('function');
     });
 
-    test('to make sure value is array', () => {
+    it('to make sure value is array', () => {
       const control = getKnownControlState('all_columns', 'table', state, 'a');
       expect(control.value).toEqual(['a']);
     });
 
-    test('removes missing/invalid choice', () => {
+    it('removes missing/invalid choice', () => {
       let control = getControlState(
         'stacked_style',
         'test-chart',
@@ -166,22 +155,22 @@ describe('controlUtils', () => {
       expect(control?.value).toBeNull();
     });
 
-    test('returns null for nonexistent field', () => {
+    it('returns null for non-existent field', () => {
       const control = getControlState('NON_EXISTENT', 'table', state);
       expect(control).toBeNull();
     });
 
-    test('metrics control should be empty by default', () => {
+    it('metrics control should be empty by default', () => {
       const control = getControlState('metrics', 'table', state);
       expect(control?.default).toBeUndefined();
     });
 
-    test('metric control should be empty by default', () => {
+    it('metric control should be empty by default', () => {
       const control = getControlState('metric', 'table', state);
       expect(control?.default).toBeUndefined();
     });
 
-    test('should not apply mapStateToProps when initializing', () => {
+    it('should not apply mapStateToProps when initializing', () => {
       const control = getControlState('metrics', 'table', {
         ...state,
         controls: undefined,
@@ -190,13 +179,12 @@ describe('controlUtils', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('validateControl', () => {
-    test('validates the control, returns an error if empty', () => {
+    it('validates the control, returns an error if empty', () => {
       const control = getControlState('metric', 'table', state, null);
       expect(control?.validationErrors).toEqual(['cannot be empty']);
     });
-    test('should not validate if control panel is initializing', () => {
+    it('should not validate if control panel is initializing', () => {
       const control = getControlState(
         'metric',
         'table',
@@ -207,9 +195,8 @@ describe('controlUtils', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('findControlItem', () => {
-    test('find control as a string', () => {
+    it('find control as a string', () => {
       const controlItem = findControlItem(
         controlPanelSectionsChartOptions,
         'color_scheme',
@@ -217,7 +204,7 @@ describe('controlUtils', () => {
       expect(controlItem).toEqual('color_scheme');
     });
 
-    test('find control as a control object', () => {
+    it('find control as a control object', () => {
       let controlItem = findControlItem(
         controlPanelSectionsChartOptions,
         'rose_area_proportion',
@@ -233,7 +220,7 @@ describe('controlUtils', () => {
       expect(controlItem).toHaveProperty('config');
     });
 
-    test('returns null when key is not found', () => {
+    it('returns null when key is not found', () => {
       const controlItem = findControlItem(
         controlPanelSectionsChartOptions,
         'non_existing_key',

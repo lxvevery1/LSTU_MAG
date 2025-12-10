@@ -16,8 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { pick } from 'lodash';
-import { useMemo } from 'react';
+import pick from 'lodash/pick';
 import { shallowEqual, useSelector } from 'react-redux';
 import { SqlLabRootState, QueryEditor } from 'src/SqlLab/types';
 
@@ -25,21 +24,12 @@ export default function useQueryEditor<T extends keyof QueryEditor>(
   sqlEditorId: string,
   attributes: ReadonlyArray<T>,
 ) {
-  const queryEditors = useSelector<SqlLabRootState, QueryEditor[]>(
-    ({ sqlLab: { queryEditors } }) => queryEditors,
-    shallowEqual,
-  );
-  const queryEditorsById = useMemo(
-    () => Object.fromEntries(queryEditors.map(editor => [editor.id, editor])),
-    [queryEditors.map(({ id }) => id).join(',')],
-  );
-
   return useSelector<SqlLabRootState, Pick<QueryEditor, T | 'id'>>(
-    ({ sqlLab: { unsavedQueryEditor } }) =>
+    ({ sqlLab: { unsavedQueryEditor, queryEditors } }) =>
       pick(
         {
-          ...queryEditorsById[sqlEditorId],
-          ...(sqlEditorId === unsavedQueryEditor?.id && unsavedQueryEditor),
+          ...queryEditors.find(({ id }) => id === sqlEditorId),
+          ...(sqlEditorId === unsavedQueryEditor.id && unsavedQueryEditor),
         },
         ['id'].concat(attributes),
       ) as Pick<QueryEditor, T | 'id'>,

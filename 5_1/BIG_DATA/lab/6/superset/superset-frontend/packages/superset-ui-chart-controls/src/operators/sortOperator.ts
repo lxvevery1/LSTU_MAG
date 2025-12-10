@@ -21,23 +21,24 @@ import {
   ensureIsArray,
   getMetricLabel,
   getXAxisLabel,
+  hasGenericChartAxes,
   isDefined,
   PostProcessingSort,
 } from '@superset-ui/core';
 import { PostProcessingFactory } from './types';
-import { extractExtraMetrics } from './utils';
 
-export const sortOperator: PostProcessingFactory<
-  PostProcessingSort
-> = formData => {
+export const sortOperator: PostProcessingFactory<PostProcessingSort> = (
+  formData,
+  queryObject,
+) => {
   // the sortOperator only used in the barchart v2
   const sortableLabels = [
     getXAxisLabel(formData),
-    ...ensureIsArray(formData.metrics).map(getMetricLabel),
-    ...extractExtraMetrics(formData).map(getMetricLabel),
+    ...ensureIsArray(formData.metrics).map(metric => getMetricLabel(metric)),
   ].filter(Boolean);
 
   if (
+    hasGenericChartAxes &&
     isDefined(formData?.x_axis_sort) &&
     isDefined(formData?.x_axis_sort_asc) &&
     sortableLabels.includes(formData.x_axis_sort) &&

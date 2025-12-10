@@ -16,17 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
 import fetchMock from 'fetch-mock';
+import userEvent from '@testing-library/user-event';
 import {
   render,
-  userEvent,
   waitForElementToBeRemoved,
   waitFor,
 } from 'spec/helpers/testing-library';
+import { exploreActions } from 'src/explore/actions/exploreActions';
 import { SamplesPane } from '../components';
 import { createSamplesPaneProps } from './fixture';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('SamplesPane', () => {
   fetchMock.post(
     'end:/datasource/samples?force=false&datasource_type=table&datasource_id=34',
@@ -49,8 +50,6 @@ describe('SamplesPane', () => {
         ],
         colnames: ['__timestamp', 'genre'],
         coltypes: [2, 1],
-        rowcount: 2,
-        sql_rowcount: 2,
       },
     },
   );
@@ -60,7 +59,7 @@ describe('SamplesPane', () => {
     400,
   );
 
-  const setForceQuery = jest.fn();
+  const setForceQuery = jest.spyOn(exploreActions, 'setForceQuery');
 
   afterAll(() => {
     fetchMock.reset();
@@ -69,9 +68,7 @@ describe('SamplesPane', () => {
 
   test('render', async () => {
     const props = createSamplesPaneProps({ datasourceId: 34 });
-    const { findByText } = render(
-      <SamplesPane {...props} setForceQuery={setForceQuery} />,
-    );
+    const { findByText } = render(<SamplesPane {...props} />);
     expect(
       await findByText('No samples were returned for this dataset'),
     ).toBeVisible();
@@ -88,7 +85,7 @@ describe('SamplesPane', () => {
       useRedux: true,
     });
 
-    expect(await findByText('Error: Bad request')).toBeVisible();
+    expect(await findByText('Error: Bad Request')).toBeVisible();
   });
 
   test('force query, render and search', async () => {
@@ -97,7 +94,7 @@ describe('SamplesPane', () => {
       queryForce: true,
     });
     const { queryByText, getByPlaceholderText } = render(
-      <SamplesPane {...props} setForceQuery={setForceQuery} />,
+      <SamplesPane {...props} />,
       {
         useRedux: true,
       },

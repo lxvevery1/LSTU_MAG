@@ -16,7 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { render, screen, userEvent } from 'spec/helpers/testing-library';
+import React from 'react';
+import { render, screen } from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
 import Header from './index';
 
 const createProps = () => ({
@@ -29,26 +31,22 @@ test('should render', () => {
   expect(container).toBeInTheDocument();
 });
 
-test('should render the "Actions" heading', () => {
+test('should render the "Filters" heading', () => {
   const mockedProps = createProps();
   render(<Header {...mockedProps} />, { useRedux: true });
-  expect(screen.getByText('Actions')).toBeInTheDocument();
+  expect(screen.getByText('Filters')).toBeInTheDocument();
 });
 
 test('should render the expand button', () => {
   const mockedProps = createProps();
   render(<Header {...mockedProps} />, { useRedux: true });
-  expect(
-    screen.getByRole('button', { name: 'vertical-align' }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'expand' })).toBeInTheDocument();
 });
 
 test('should toggle', () => {
   const mockedProps = createProps();
   render(<Header {...mockedProps} />, { useRedux: true });
-  const expandBtn = screen.getByRole('button', {
-    name: 'vertical-align',
-  });
+  const expandBtn = screen.getByRole('button', { name: 'expand' });
   expect(mockedProps.toggleFiltersBar).not.toHaveBeenCalled();
   userEvent.click(expandBtn);
   expect(mockedProps.toggleFiltersBar).toHaveBeenCalled();

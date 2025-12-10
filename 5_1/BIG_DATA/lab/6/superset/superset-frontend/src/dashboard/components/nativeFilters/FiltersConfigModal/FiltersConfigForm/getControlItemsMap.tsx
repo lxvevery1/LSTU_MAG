@@ -16,17 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { CustomControlItem } from '@superset-ui/chart-controls';
-import { ReactNode } from 'react';
 import {
-  Checkbox,
-  FormItem,
-  InfoTooltip,
-  Tooltip,
-  type FormInstance,
-} from '@superset-ui/core/components';
-import { Filter, getChartControlPanelRegistry, t } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
+  CustomControlItem,
+  InfoTooltipWithTrigger,
+} from '@superset-ui/chart-controls';
+import React from 'react';
+import { AntdCheckbox, FormInstance } from 'src/components';
+import {
+  Filter,
+  getChartControlPanelRegistry,
+  styled,
+  t,
+} from '@superset-ui/core';
+import { Tooltip } from 'src/components/Tooltip';
+import { FormItem } from 'src/components/Form';
 import {
   doesColumnMatchFilterType,
   getControlItems,
@@ -41,11 +44,9 @@ import {
 import { ColumnSelect } from './ColumnSelect';
 
 export interface ControlItemsProps {
-  expanded: boolean;
   datasetId: number;
   disabled: boolean;
   forceUpdate: Function;
-  formChanged: Function;
   form: FormInstance<NativeFiltersForm>;
   filterId: string;
   filterType: string;
@@ -59,11 +60,9 @@ const CleanFormItem = styled(FormItem)`
 `;
 
 export default function getControlItemsMap({
-  expanded,
   datasetId,
   disabled,
   forceUpdate,
-  formChanged,
   form,
   filterId,
   filterType,
@@ -76,11 +75,11 @@ export default function getControlItemsMap({
     getControlItems(controlPanelRegistry.get(filterType)) ?? [];
   const mapControlItems: Record<
     string,
-    { element: ReactNode; checked: boolean }
+    { element: React.ReactNode; checked: boolean }
   > = {};
   const mapMainControlItems: Record<
     string,
-    { element: ReactNode; checked: boolean }
+    { element: React.ReactNode; checked: boolean }
   > = {};
 
   controlItems
@@ -105,7 +104,6 @@ export default function getControlItemsMap({
             }
           />
           <StyledFormItem
-            expanded={expanded}
             // don't show the column select unless we have a dataset
             name={['filters', filterId, 'column']}
             initialValue={initColumn}
@@ -128,10 +126,7 @@ export default function getControlItemsMap({
               filterId={filterId}
               datasetId={datasetId}
               filterValues={column =>
-                doesColumnMatchFilterType(
-                  formFilter?.filterType || '',
-                  column,
-                ) && !!column?.filterable
+                doesColumnMatchFilterType(formFilter?.filterType || '', column)
               }
               onChange={() => {
                 // We need reset default value when column changed
@@ -139,7 +134,6 @@ export default function getControlItemsMap({
                   defaultDataMask: null,
                 });
                 forceUpdate();
-                formChanged();
               }}
             />
           </StyledFormItem>
@@ -180,16 +174,15 @@ export default function getControlItemsMap({
             }
           >
             <StyledRowFormItem
-              expanded={expanded}
               key={controlItem.name}
               name={['filters', filterId, 'controlValues', controlItem.name]}
               initialValue={initialValue}
               valuePropName="checked"
               colon={false}
             >
-              <Checkbox
+              <AntdCheckbox
                 disabled={controlItem.config.affectsDataMask && disabled}
-                onChange={checked => {
+                onChange={({ target: { checked } }) => {
                   if (controlItem.config.requiredFirst) {
                     setNativeFilterFieldValues(form, filterId, {
                       requiredFirst: {
@@ -203,20 +196,18 @@ export default function getControlItemsMap({
                       defaultDataMask: null,
                     });
                   }
-                  formChanged();
                   forceUpdate();
                 }}
               >
-                <>
-                  {controlItem.config.label}&nbsp;
-                  {controlItem.config.description && (
-                    <InfoTooltip
-                      placement="top"
-                      tooltip={controlItem.config.description}
-                    />
-                  )}
-                </>
-              </Checkbox>
+                {controlItem.config.label}&nbsp;
+                {controlItem.config.description && (
+                  <InfoTooltipWithTrigger
+                    placement="top"
+                    label={controlItem.config.name}
+                    tooltip={controlItem.config.description}
+                  />
+                )}
+              </AntdCheckbox>
             </StyledRowFormItem>
           </Tooltip>
         </>

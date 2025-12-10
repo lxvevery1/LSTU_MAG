@@ -16,24 +16,26 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { AnnotationType, Behavior, t } from '@superset-ui/core';
+import {
+  AnnotationType,
+  Behavior,
+  ChartMetadata,
+  ChartPlugin,
+  hasGenericChartAxes,
+  t,
+} from '@superset-ui/core';
 import {
   EchartsTimeseriesChartProps,
   EchartsTimeseriesFormData,
   EchartsTimeseriesSeriesType,
 } from '../../types';
-import { EchartsChartPlugin } from '../../../types';
 import buildQuery from '../../buildQuery';
 import controlPanel from './controlPanel';
 import transformProps from '../../transformProps';
 import thumbnail from './images/thumbnail.png';
-import thumbnailDark from './images/thumbnail-dark.png';
 import example1 from './images/Bar1.png';
-import example1Dark from './images/Bar1-dark.png';
 import example2 from './images/Bar2.png';
-import example2Dark from './images/Bar2-dark.png';
 import example3 from './images/Bar3.png';
-import example3Dark from './images/Bar3-dark.png';
 
 const barTransformProps = (chartProps: EchartsTimeseriesChartProps) =>
   transformProps({
@@ -44,7 +46,7 @@ const barTransformProps = (chartProps: EchartsTimeseriesChartProps) =>
     },
   });
 
-export default class EchartsTimeseriesBarChartPlugin extends EchartsChartPlugin<
+export default class EchartsTimeseriesBarChartPlugin extends ChartPlugin<
   EchartsTimeseriesFormData,
   EchartsTimeseriesChartProps
 > {
@@ -53,21 +55,19 @@ export default class EchartsTimeseriesBarChartPlugin extends EchartsChartPlugin<
       buildQuery,
       controlPanel,
       loadChart: () => import('../../EchartsTimeseries'),
-      metadata: {
-        behaviors: [
-          Behavior.InteractiveChart,
-          Behavior.DrillToDetail,
-          Behavior.DrillBy,
-        ],
+      metadata: new ChartMetadata({
+        behaviors: [Behavior.INTERACTIVE_CHART, Behavior.DRILL_TO_DETAIL],
         category: t('Evolution'),
         credits: ['https://echarts.apache.org'],
-        description: t(
-          'Bar Charts are used to show metrics as a series of bars.',
-        ),
+        description: hasGenericChartAxes
+          ? t('Bar Charts are used to show metrics as a series of bars.')
+          : t(
+              'Time-series Bar Charts are used to show the changes in a metric over time as a series of bars.',
+            ),
         exampleGallery: [
-          { url: example1, urlDark: example1Dark },
-          { url: example2, urlDark: example2Dark },
-          { url: example3, urlDark: example3Dark },
+          { url: example1 },
+          { url: example2 },
+          { url: example3 },
         ],
         supportedAnnotationTypes: [
           AnnotationType.Event,
@@ -75,20 +75,21 @@ export default class EchartsTimeseriesBarChartPlugin extends EchartsChartPlugin<
           AnnotationType.Interval,
           AnnotationType.Timeseries,
         ],
-        name: t('Bar Chart'),
+        name: hasGenericChartAxes ? t('Bar Chart') : t('Time-series Bar Chart'),
         tags: [
           t('ECharts'),
           t('Predictive'),
           t('Advanced-Analytics'),
+          t('Aesthetic'),
           t('Time'),
           t('Transformable'),
           t('Stacked'),
+          t('Vertical'),
           t('Bar'),
-          t('Featured'),
+          t('Popular'),
         ],
         thumbnail,
-        thumbnailDark,
-      },
+      }),
       transformProps: barTransformProps,
     });
   }

@@ -16,8 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { buildQueryContext, QueryFormData } from '@superset-ui/core';
-import { GenericDataType } from '@apache-superset/core/api/core';
+import {
+  buildQueryContext,
+  GenericDataType,
+  QueryFormData,
+  t,
+} from '@superset-ui/core';
 
 /**
  * The buildQuery function is used to create an instance of QueryContext that's
@@ -47,22 +51,22 @@ export default function buildQuery(formData: QueryFormData) {
           column: {
             column_name: column,
             id: 1,
-            type_generic: GenericDataType.Numeric,
+            type_generic: GenericDataType.NUMERIC,
           },
           expressionType: 'SIMPLE',
           hasCustomLabel: true,
-          label: 'min',
+          label: t('min'),
         },
         {
           aggregate: 'MAX',
           column: {
             column_name: column,
             id: 2,
-            type_generic: GenericDataType.Numeric,
+            type_generic: GenericDataType.NUMERIC,
           },
           expressionType: 'SIMPLE',
           hasCustomLabel: true,
-          label: 'max',
+          label: t('max'),
         },
       ],
     },

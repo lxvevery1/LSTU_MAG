@@ -18,8 +18,8 @@
  */
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import { PureComponent } from 'react';
-import { styled } from '@apache-superset/core/ui';
+import React from 'react';
+import { styled } from '@superset-ui/core';
 import TTestTable, { dataPropType } from './TTestTable';
 
 const propTypes = {
@@ -46,8 +46,8 @@ const StyledDiv = styled.div`
     }
 
     .paired-ttest-table .scrollbar-content {
-      padding-left: ${theme.sizeUnit}px;
-      padding-right: ${theme.sizeUnit}px;
+      padding-left: ${theme.gridUnit}px;
+      padding-right: ${theme.gridUnit}px;
       margin-bottom: 0;
     }
 
@@ -56,7 +56,7 @@ const StyledDiv = styled.div`
     }
 
     .paired-ttest-table h1 {
-      margin-left: ${theme.sizeUnit}px;
+      margin-left: ${theme.gridUnit}px;
     }
 
     .reactable-data tr {
@@ -70,52 +70,52 @@ const StyledDiv = styled.div`
     }
 
     .reactable-data tr:hover {
-      background-color: ${theme.colorFillTertiary};
+      background-color: ${theme.colors.grayscale.light3};
     }
 
     .reactable-data tr .false {
-      color: ${theme.colorError};
+      color: ${theme.colors.error.base};
     }
 
     .reactable-data tr .true {
-      color: ${theme.colorSuccess};
+      color: ${theme.colors.success.base};
     }
 
     .reactable-data tr .control {
-      color: ${theme.colorPrimary};
+      color: ${theme.colors.primary.base};
     }
 
     .reactable-data tr .invalid {
-      color: ${theme.colorWarning};
+      color: ${theme.colors.warning.base};
     }
 
     .reactable-data .control td {
-      background-color: ${theme.colorFillTertiary};
+      background-color: ${theme.colors.grayscale.light3};
     }
 
     .reactable-header-sortable:hover,
     .reactable-header-sortable:focus,
     .reactable-header-sort-asc,
     .reactable-header-sort-desc {
-      background-color: ${theme.colorFillTertiary};
+      background-color: ${theme.colors.grayscale.light3};
       position: relative;
     }
 
     .reactable-header-sort-asc:after {
       content: '\\25bc';
       position: absolute;
-      right: ${theme.sizeUnit * 3}px;
+      right: ${theme.gridUnit * 3}px;
     }
 
     .reactable-header-sort-desc:after {
       content: '\\25b2';
       position: absolute;
-      right: ${theme.sizeUnit * 3}px;
+      right: ${theme.gridUnit * 3}px;
     }
   `}
 `;
 
-class PairedTTest extends PureComponent {
+class PairedTTest extends React.PureComponent {
   render() {
     const { className, metrics, groups, data, alpha, pValPrec, liftValPrec } =
       this.props;

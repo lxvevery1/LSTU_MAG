@@ -16,11 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ReactNode } from 'react';
+import React from 'react';
 import { ClassNames } from '@emotion/react';
-import { t } from '@superset-ui/core';
-import { styled, useTheme } from '@apache-superset/core/ui';
-import { Flex, Tooltip } from '@superset-ui/core/components';
+import { styled, useTheme, t } from '@superset-ui/core';
+import { Tooltip } from 'src/components/Tooltip';
 
 const StyledTooltip = (props: any) => {
   const theme = useTheme();
@@ -30,7 +29,7 @@ const StyledTooltip = (props: any) => {
         <Tooltip
           overlayClassName={css`
             .ant-tooltip-inner {
-              max-width: ${theme.sizeUnit * 125}px;
+              max-width: ${theme.gridUnit * 125}px;
               word-wrap: break-word;
               text-align: center;
 
@@ -38,8 +37,8 @@ const StyledTooltip = (props: any) => {
                 background: transparent;
                 border: none;
                 text-align: left;
-                color: ${theme.colorBgLayout};
-                font-size: ${theme.fontSizeXS}px;
+                color: ${theme.colors.grayscale.light5};
+                font-size: ${theme.typography.sizes.xs}px;
               }
             }
           `}
@@ -51,7 +50,7 @@ const StyledTooltip = (props: any) => {
 };
 
 const Hr = styled.hr`
-  margin-top: ${({ theme }) => theme.sizeUnit * 1.5}px;
+  margin-top: ${({ theme }) => theme.gridUnit * 1.5}px;
 `;
 
 const iconMap = {
@@ -81,7 +80,7 @@ const NowrapDiv = styled.div`
 `;
 
 const ColumnElement = ({ column }: ColumnElementProps) => {
-  let columnName: ReactNode = column.name;
+  let columnName: React.ReactNode = column.name;
   let icons;
   if (column.keys && column.keys.length > 0) {
     columnName = <strong>{column.name}</strong>;
@@ -99,22 +98,21 @@ const ColumnElement = ({ column }: ColumnElementProps) => {
             </>
           }
         >
-          {' '}
-          <i className={`fa text-muted ${iconMap[key.type]}`} />
+          <i className={`fa text-muted m-l-2 ${iconMap[key.type]}`} />
         </StyledTooltip>
       </span>
     ));
   }
   return (
-    <Flex align="center" justify="space-between">
-      <div data-test="col-name">
+    <div className="clearfix table-column">
+      <div className="pull-left m-l-10 col-name">
         {columnName}
         {icons}
       </div>
-      <NowrapDiv className="text-muted">
+      <NowrapDiv className="pull-right text-muted">
         <small> {column.type}</small>
       </NowrapDiv>
-    </Flex>
+    </div>
   );
 };
 

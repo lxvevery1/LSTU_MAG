@@ -23,12 +23,10 @@ import {
   getChartControlPanelRegistry,
   QueryFormData,
   TimeGranularity,
-  VizType,
 } from '@superset-ui/core';
-// TODO: tests shouldn't depend on plugins
+import TableChartPlugin from '@superset-ui/plugin-chart-table';
+import { BigNumberTotalChartPlugin } from '@superset-ui/plugin-chart-echarts';
 import { sections } from '@superset-ui/chart-controls';
-import TableChartPlugin from '../../../plugins/plugin-chart-table/src';
-import { BigNumberTotalChartPlugin } from '../../../plugins/plugin-chart-echarts/src';
 import {
   StandardizedFormData,
   sharedMetricsKey,
@@ -63,7 +61,7 @@ const adhocMetricSimple: AdhocMetricSimple = {
 
 const tableVizFormData = {
   datasource: '30__table',
-  viz_type: VizType.Table,
+  viz_type: 'table',
   granularity_sqla: 'ds',
   time_grain_sqla: TimeGranularity.DAY,
   time_range: 'No filter',
@@ -168,7 +166,6 @@ const tableVizStore = {
   },
 };
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('should collect control values and create SFD', () => {
   const sharedKey = [...sharedMetricsKey, ...sharedColumnsKey];
   const sharedControlsFormData = {
@@ -217,8 +214,6 @@ describe('should collect control values and create SFD', () => {
     // advanced analytics - resample
     resample_rule: '1D',
     resample_method: 'zerofill',
-    // dashboard context
-    dashboardId: 123,
   };
   const sourceMockFormData: QueryFormData = {
     ...sharedControlsFormData,
@@ -242,15 +237,12 @@ describe('should collect control values and create SFD', () => {
   };
 
   beforeAll(() => {
-    // dashboardId is not a control, it's just context, so exclude it from control definitions
-    const publicControlFields = publicControls.filter(c => c !== 'dashboardId');
-
     getChartControlPanelRegistry().registerValue('source_viz', {
       controlPanelSections: [
         sections.advancedAnalyticsControls,
         {
           label: 'transform controls',
-          controlSetRows: publicControlFields.map(control => [control]),
+          controlSetRows: publicControls.map(control => [control]),
         },
         {
           label: 'axis column',
@@ -263,7 +255,7 @@ describe('should collect control values and create SFD', () => {
         sections.advancedAnalyticsControls,
         {
           label: 'transform controls',
-          controlSetRows: publicControlFields.map(control => [control]),
+          controlSetRows: publicControls.map(control => [control]),
         },
         {
           label: 'axis column',
@@ -320,9 +312,7 @@ describe('should collect control values and create SFD', () => {
     const { formData } = sfd.transform('target_viz', sourceMockStore);
     Object.entries(publicControlsFormData).forEach(([key, value]) => {
       expect(formData).toHaveProperty(key);
-      expect(value).toEqual(
-        publicControlsFormData[key as keyof typeof publicControlsFormData],
-      );
+      expect(value).toEqual(publicControlsFormData[key]);
     });
     expect(formData.columns).toEqual([
       'c1',
@@ -385,11 +375,10 @@ describe('should collect control values and create SFD', () => {
   });
 });
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('should transform form_data between table and bigNumberTotal', () => {
   beforeAll(() => {
     getChartControlPanelRegistry().registerValue(
-      VizType.BigNumberTotal,
+      'big_number_total',
       new BigNumberTotalChartPlugin().controlPanel,
     );
     getChartControlPanelRegistry().registerValue(
@@ -402,35 +391,34 @@ describe('should transform form_data between table and bigNumberTotal', () => {
     // table -> bigNumberTotal
     const sfd = new StandardizedFormData(tableVizFormData);
     const { formData: bntFormData } = sfd.transform(
-      VizType.BigNumberTotal,
+      'big_number_total',
       tableVizStore,
     );
 
     // bigNumberTotal -> table
     const sfd2 = new StandardizedFormData(bntFormData);
-    expect(sfd2.has(VizType.BigNumberTotal)).toBeTruthy();
+    expect(sfd2.has('big_number_total')).toBeTruthy();
     expect(sfd2.has('table')).toBeTruthy();
-    expect(sfd2.get(VizType.BigNumberTotal).viz_type).toBe(
-      VizType.BigNumberTotal,
-    );
-    expect(sfd2.get('table').viz_type).toBe(VizType.Table);
+    expect(sfd2.get('big_number_total').viz_type).toBe('big_number_total');
+    expect(sfd2.get('table').viz_type).toBe('table');
   });
 
   test('transform', () => {
     // table -> bigNumberTotal
     const sfd = new StandardizedFormData(tableVizFormData);
     const { formData: bntFormData, controlsState: bntControlsState } =
-      sfd.transform(VizType.BigNumberTotal, tableVizStore);
+      sfd.transform('big_number_total', tableVizStore);
     expect(Object.keys(bntFormData).sort()).toEqual(
       [...Object.keys(bntControlsState), 'standardizedFormData'].sort(),
     );
-    expect(bntFormData.viz_type).toBe(VizType.BigNumberTotal);
+    expect(bntFormData.viz_type).toBe('big_number_total');
     expect(bntFormData.metric).toBe('count');
 
     // change control values on bigNumber
     bntFormData.metric = 'sum(sales)';
-
+    bntFormData.time_range = '2021 : 2022';
     bntControlsState.metric.value = 'sum(sales)';
+    bntControlsState.time_range.value = '2021 : 2022';
 
     // bigNumberTotal -> table
     const sfd2 = new StandardizedFormData(bntFormData);
@@ -443,7 +431,7 @@ describe('should transform form_data between table and bigNumberTotal', () => {
     expect(Object.keys(tblFormData).sort()).toEqual(
       [...Object.keys(tblControlsState), 'standardizedFormData'].sort(),
     );
-    expect(tblFormData.viz_type).toBe(VizType.Table);
+    expect(tblFormData.viz_type).toBe('table');
     expect(tblFormData.metrics).toEqual([
       'sum(sales)',
       'avg(sales)',
@@ -451,91 +439,14 @@ describe('should transform form_data between table and bigNumberTotal', () => {
       adhocMetricSQL,
     ]);
     expect(tblFormData.groupby).toEqual(['name', 'gender', adhocColumn]);
-  });
-
-  test('preserves dashboardId when transforming between viz types', () => {
-    // Create form data with dashboardId (simulating opening explore from a dashboard)
-    const formDataWithDashboard = {
-      ...tableVizFormData,
-      dashboardId: 42,
-    };
-    const storeWithDashboard = {
-      ...tableVizStore,
-      form_data: formDataWithDashboard,
-    };
-
-    // Transform table -> bigNumberTotal
-    const sfd = new StandardizedFormData(formDataWithDashboard);
-    const { formData: bntFormData } = sfd.transform(
-      VizType.BigNumberTotal,
-      storeWithDashboard,
-    );
-
-    // Verify dashboardId is preserved after transformation
-    expect(bntFormData.dashboardId).toBe(42);
-
-    // Transform back bigNumberTotal -> table
-    const sfd2 = new StandardizedFormData(bntFormData);
-    const { formData: tblFormData } = sfd2.transform('table', {
-      ...storeWithDashboard,
-      form_data: bntFormData,
-      controls: {
-        ...tableVizStore.controls,
-      },
-    });
-
-    // Verify dashboardId is still preserved after second transformation
-    expect(tblFormData.dashboardId).toBe(42);
-  });
-
-  test('handles missing dashboardId gracefully', () => {
-    // Test with no dashboardId (exploring a chart not from a dashboard)
-    const formDataNoDashboard = {
-      ...tableVizFormData,
-      // dashboardId is undefined
-    };
-    const storeNoDashboard = {
-      ...tableVizStore,
-      form_data: formDataNoDashboard,
-    };
-
-    const sfd = new StandardizedFormData(formDataNoDashboard);
-    const { formData: bntFormData } = sfd.transform(
-      VizType.BigNumberTotal,
-      storeNoDashboard,
-    );
-
-    // dashboardId should not be present when it was never set
-    expect(bntFormData.dashboardId).toBeUndefined();
-  });
-
-  test('handles null dashboardId', () => {
-    // Test with explicit null dashboardId
-    const formDataNullDashboard = {
-      ...tableVizFormData,
-      dashboardId: null,
-    };
-    const storeNullDashboard = {
-      ...tableVizStore,
-      form_data: formDataNullDashboard,
-    };
-
-    const sfd = new StandardizedFormData(formDataNullDashboard);
-    const { formData: bntFormData } = sfd.transform(
-      VizType.BigNumberTotal,
-      storeNullDashboard,
-    );
-
-    // null is falsy, so dashboardId should not be added
-    expect(bntFormData.dashboardId).toBeUndefined();
+    expect(tblFormData.time_range).toBe('2021 : 2022');
   });
 });
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('initial SFD between different datasource', () => {
   beforeAll(() => {
     getChartControlPanelRegistry().registerValue(
-      VizType.BigNumberTotal,
+      'big_number_total',
       new BigNumberTotalChartPlugin().controlPanel,
     );
     getChartControlPanelRegistry().registerValue(
@@ -548,7 +459,7 @@ describe('initial SFD between different datasource', () => {
     const sfd = new StandardizedFormData(tableVizFormData);
     // table -> big number
     const { formData: bntFormData, controlsState: bntControlsState } =
-      sfd.transform(VizType.BigNumberTotal, tableVizStore);
+      sfd.transform('big_number_total', tableVizStore);
     const sfd2 = new StandardizedFormData(bntFormData);
     // big number -> table
     const { formData: tblFormData } = sfd2.transform('table', {
@@ -561,14 +472,14 @@ describe('initial SFD between different datasource', () => {
       tblFormData.standardizedFormData.memorizedFormData.map(
         (mfd: [string, QueryFormData][]) => mfd[0],
       ),
-    ).toEqual([VizType.Table, VizType.BigNumberTotal]);
+    ).toEqual(['table', 'big_number_total']);
     const newDatasourceFormData = { ...tblFormData, datasource: '20__table' };
     const newDatasourceSFD = new StandardizedFormData(newDatasourceFormData);
     expect(
       newDatasourceSFD
         .serialize()
         .memorizedFormData.map(([vizType]) => vizType),
-    ).toEqual([VizType.Table]);
+    ).toEqual(['table']);
     expect(newDatasourceSFD.get('table')).not.toHaveProperty(
       'standardizedFormData',
     );

@@ -16,18 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import { getMetricLabel, DataRecordValue } from '@superset-ui/core';
+import { EChartsCoreOption, TreeSeriesOption } from 'echarts';
 import {
-  getMetricLabel,
-  DataRecordValue,
-  tooltipHtml,
-} from '@superset-ui/core';
-import type { EChartsCoreOption } from 'echarts/core';
-import type { TreeSeriesOption } from 'echarts/charts';
-import type {
   TreeSeriesCallbackDataParams,
   TreeSeriesNodeItemOption,
 } from 'echarts/types/src/chart/tree/TreeSeries';
-import type { OptionName } from 'echarts/types/src/util/types';
+import { OptionName } from 'echarts/types/src/util/types';
 import {
   EchartsTreeChartProps,
   EchartsTreeFormData,
@@ -49,14 +44,17 @@ export function formatTooltip({
   const treePath = (treeAncestors ?? [])
     .map(pathInfo => pathInfo?.name || '')
     .filter(path => path !== '');
-  const row = value ? [metricLabel, String(value)] : [];
-  return tooltipHtml([row], treePath.join(' ▸ '));
+
+  return [
+    `<div>${treePath.join(' ▸ ')}</div>`,
+    value ? `${metricLabel}: ${value}` : '',
+  ].join('');
 }
 
 export default function transformProps(
   chartProps: EchartsTreeChartProps,
 ): TreeTransformedProps {
-  const { width, height, formData, queriesData, theme } = chartProps;
+  const { width, height, formData, queriesData } = chartProps;
   const refs: Refs = {};
   const data: TreeDataRecord[] = queriesData[0].data || [];
 
@@ -74,7 +72,6 @@ export default function transformProps(
     nodeLabelPosition,
     childLabelPosition,
     emphasis,
-    initialTreeDepth,
   }: EchartsTreeFormData = { ...DEFAULT_FORM_DATA, ...formData };
   const metricLabel = getMetricLabel(metric);
 
@@ -182,6 +179,7 @@ export default function transformProps(
       }
     });
   }
+
   const series: TreeSeriesOption[] = [
     {
       type: 'tree',
@@ -189,7 +187,6 @@ export default function transformProps(
       label: {
         ...DEFAULT_TREE_SERIES_OPTION.label,
         position: nodeLabelPosition,
-        color: theme.colorText,
       },
       emphasis: { focus: emphasis },
       animation: DEFAULT_TREE_SERIES_OPTION.animation,
@@ -198,13 +195,9 @@ export default function transformProps(
       symbol,
       roam,
       symbolSize,
-      lineStyle: {
-        color: theme.colorText,
-        width: 1.5,
-      },
+      lineStyle: DEFAULT_TREE_SERIES_OPTION.lineStyle,
       select: DEFAULT_TREE_SERIES_OPTION.select,
       leaves: { label: { position: childLabelPosition } },
-      initialTreeDepth,
     },
   ];
 

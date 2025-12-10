@@ -16,19 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useState, ReactNode, useLayoutEffect, RefObject } from 'react';
-
-import { Metric } from '@superset-ui/core';
-import { css, styled, SupersetTheme } from '@apache-superset/core/ui';
+import React, { useState, ReactNode, useLayoutEffect } from 'react';
 import {
+  css,
+  styled,
+  Metric,
   SafeMarkdown,
-  Typography,
-  // TODO: somehow doesn't work with our main Tooltip (?)
-  RawAntdTooltip as Tooltip,
-  InfoTooltip,
-} from '@superset-ui/core/components';
+  SupersetTheme,
+} from '@superset-ui/core';
+import InfoTooltipWithTrigger from './InfoTooltipWithTrigger';
 import { ColumnTypeLabel } from './ColumnTypeLabel/ColumnTypeLabel';
 import CertifiedIconWithTooltip from './CertifiedIconWithTooltip';
+import Tooltip from './Tooltip';
 import { getMetricTooltipNode } from './labelUtils';
 import { SQLPopover } from './SQLPopover';
 
@@ -37,17 +36,17 @@ const FlexRowContainer = styled.div`
   display: flex;
 
   > svg {
-    margin-right: ${({ theme }) => theme.sizeUnit}px;
+    margin-right: ${({ theme }) => theme.gridUnit}px;
   }
 `;
 
 export interface MetricOptionProps {
-  metric: Omit<Metric, 'id' | 'uuid'> & { label?: string };
+  metric: Omit<Metric, 'id'> & { label?: string };
   openInNewWindow?: boolean;
   showFormula?: boolean;
   showType?: boolean;
   url?: string;
-  labelRef?: RefObject<any>;
+  labelRef?: React.RefObject<any>;
   shouldShowTooltip?: boolean;
 }
 
@@ -61,31 +60,29 @@ export function MetricOption({
   url = '',
 }: MetricOptionProps) {
   const verbose = metric.verbose_name || metric.metric_name || metric.label;
+  const link = url ? (
+    <a href={url} target={openInNewWindow ? '_blank' : ''} rel="noreferrer">
+      {verbose}
+    </a>
+  ) : (
+    verbose
+  );
 
   const label = (
     <span
       className="option-label metric-option-label"
-      css={(theme: SupersetTheme) => css`
-        margin-right: ${theme.sizeUnit}px;
-      `}
+      css={(theme: SupersetTheme) =>
+        css`
+          margin-right: ${theme.gridUnit}px;
+        `
+      }
       ref={labelRef}
     >
-      {url ? (
-        <Typography.Link
-          href={url}
-          target={openInNewWindow ? '_blank' : ''}
-          rel="noreferrer"
-        >
-          {verbose}
-        </Typography.Link>
-      ) : (
-        verbose
-      )}
+      {link}
     </span>
   );
 
-  const warningMarkdown =
-    metric.warning_markdown || metric.warning_text || metric.error_text;
+  const warningMarkdown = metric.warning_markdown || metric.warning_text;
 
   const [tooltipText, setTooltipText] = useState<ReactNode>(metric.metric_name);
 
@@ -114,14 +111,12 @@ export function MetricOption({
         />
       )}
       {warningMarkdown && (
-        <InfoTooltip
-          type="warning"
+        <InfoTooltipWithTrigger
+          className="text-warning"
+          icon="warning"
           tooltip={<SafeMarkdown source={warningMarkdown} />}
           label={`warn-${metric.metric_name}`}
-          iconStyle={{ marginLeft: 0 }}
-          {...(metric.error_text && {
-            type: 'error',
-          })}
+          iconsStyle={{ marginLeft: 0 }}
         />
       )}
     </FlexRowContainer>

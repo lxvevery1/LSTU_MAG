@@ -16,12 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component } from 'react';
+import React from 'react';
 import { t } from '@superset-ui/core';
 import PropTypes from 'prop-types';
-import { Popover, FormLabel, Label } from '@superset-ui/core/components';
+import Popover from 'src/components/Popover';
 import { decimal2sexagesimal } from 'geolib';
 
+import Label from 'src/components/Label';
+import { FormLabel } from 'src/components/Form';
 import TextControl from './TextControl';
 import ControlHeader from '../ControlHeader';
 
@@ -54,7 +56,7 @@ const defaultProps = {
   value: DEFAULT_VIEWPORT,
 };
 
-export default class ViewportControl extends Component {
+export default class ViewportControl extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);

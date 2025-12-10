@@ -16,11 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { isEqualArray, t } from '@superset-ui/core';
-import { css } from '@apache-superset/core/ui';
-import { Select } from '@superset-ui/core/components';
+import { css, isEqualArray, t } from '@superset-ui/core';
+import Select from 'src/components/Select/Select';
 import ControlHeader from 'src/explore/components/ControlHeader';
 
 const propTypes = {
@@ -32,14 +31,11 @@ const propTypes = {
   disabled: PropTypes.bool,
   freeForm: PropTypes.bool,
   isLoading: PropTypes.bool,
-  mode: PropTypes.string,
   multi: PropTypes.bool,
   isMulti: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  onSelect: PropTypes.func,
-  onDeselect: PropTypes.func,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -88,77 +84,7 @@ const defaultProps = {
   valueKey: 'value',
 };
 
-const numberComparator = (a, b) => a.value - b.value;
-
-export const areAllValuesNumbers = (items, valueKey = 'value') => {
-  if (!items || items.length === 0) {
-    return false;
-  }
-  return items.every(item => {
-    if (Array.isArray(item)) {
-      const [value] = item;
-      return typeof value === 'number';
-    }
-    if (typeof item === 'object' && item !== null) {
-      return typeof item[valueKey] === 'number';
-    }
-    return typeof item === 'number';
-  });
-};
-
-export const getSortComparator = (
-  choices,
-  options,
-  valueKey,
-  explicitComparator,
-) => {
-  if (explicitComparator) {
-    return explicitComparator;
-  }
-
-  if (
-    (options && areAllValuesNumbers(options, valueKey)) ||
-    (choices && areAllValuesNumbers(choices, valueKey))
-  ) {
-    return numberComparator;
-  }
-
-  return undefined;
-};
-
-export const innerGetOptions = props => {
-  const { choices, optionRenderer, valueKey } = props;
-  let options = [];
-  if (props.options) {
-    options = props.options.map(o => ({
-      ...o,
-      value: o[valueKey],
-      label: optionRenderer ? optionRenderer(o) : o.label || o[valueKey],
-    }));
-  } else if (choices) {
-    // Accepts different formats of input
-    options = choices.map(c => {
-      if (Array.isArray(c)) {
-        const [value, label] = c.length > 1 ? c : [c[0], c[0]];
-        return {
-          value,
-          label,
-        };
-      }
-      if (Object.is(c)) {
-        return {
-          ...c,
-          value: c[valueKey],
-          label: c.label || c[valueKey],
-        };
-      }
-      return { value: c, label: c };
-    });
-  }
-  return options;
-};
-
-export default class SelectControl extends PureComponent {
+export default class SelectControl extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -168,12 +94,12 @@ export default class SelectControl extends PureComponent {
     this.handleFilterOptions = this.handleFilterOptions.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (
-      !isEqualArray(this.props.choices, prevProps.choices) ||
-      !isEqualArray(this.props.options, prevProps.options)
+      !isEqualArray(nextProps.choices, this.props.choices) ||
+      !isEqualArray(nextProps.options, this.props.options)
     ) {
-      const options = this.getOptions(this.props);
+      const options = this.getOptions(nextProps);
       this.setState({ options });
     }
   }
@@ -198,7 +124,36 @@ export default class SelectControl extends PureComponent {
   }
 
   getOptions(props) {
-    return innerGetOptions(props);
+    const { choices, optionRenderer, valueKey } = props;
+    let options = [];
+    if (props.options) {
+      options = props.options.map(o => ({
+        ...o,
+        value: o[valueKey],
+        label: o.label || o[valueKey],
+        customLabel: optionRenderer ? optionRenderer(o) : undefined,
+      }));
+    } else if (choices) {
+      // Accepts different formats of input
+      options = choices.map(c => {
+        if (Array.isArray(c)) {
+          const [value, label] = c.length > 1 ? c : [c[0], c[0]];
+          return {
+            value,
+            label,
+          };
+        }
+        if (Object.is(c)) {
+          return {
+            ...c,
+            value: c[valueKey],
+            label: c.label || c[valueKey],
+          };
+        }
+        return { value: c, label: c };
+      });
+    }
+    return options;
   }
 
   handleFilterOptions(text, option) {
@@ -219,14 +174,12 @@ export default class SelectControl extends PureComponent {
       label,
       multi,
       name,
-      notFoundContent,
-      onFocus,
-      onSelect,
-      onDeselect,
       placeholder,
+      onFocus,
       showHeader,
-      tokenSeparators,
       value,
+      tokenSeparators,
+      notFoundContent,
       // ControlHeader props
       description,
       renderTrigger,
@@ -257,7 +210,7 @@ export default class SelectControl extends PureComponent {
 
     const getValue = () => {
       const currentValue =
-        value ??
+        value ||
         (this.props.default !== undefined ? this.props.default : undefined);
 
       // safety check - the value is intended to be undefined but null was used
@@ -283,20 +236,13 @@ export default class SelectControl extends PureComponent {
           : true,
       header: showHeader && <ControlHeader {...headerProps} />,
       loading: isLoading,
-      mode: this.props.mode || (isMulti || multi ? 'multiple' : 'single'),
+      mode: isMulti || multi ? 'multiple' : 'single',
       name: `select-${name}`,
       onChange: this.onChange,
       onFocus,
-      onSelect,
-      onDeselect,
       options: this.state.options,
       placeholder,
-      sortComparator: getSortComparator(
-        this.props.choices,
-        this.props.options,
-        this.props.valueKey,
-        this.props.sortComparator,
-      ),
+      sortComparator: this.props.sortComparator,
       value: getValue(),
       tokenSeparators,
       notFoundContent,
@@ -306,7 +252,7 @@ export default class SelectControl extends PureComponent {
       <div
         css={theme => css`
           .type-label {
-            margin-right: ${theme.sizeUnit * 2}px;
+            margin-right: ${theme.gridUnit * 2}px;
           }
           .Select__multi-value__label > span,
           .Select__option > span,

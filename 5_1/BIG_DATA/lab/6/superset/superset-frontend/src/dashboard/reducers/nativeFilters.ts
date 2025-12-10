@@ -18,37 +18,33 @@
  */
 import {
   AnyFilterAction,
-  SET_NATIVE_FILTERS_CONFIG_COMPLETE,
+  SET_FILTER_CONFIG_COMPLETE,
   SET_IN_SCOPE_STATUS_OF_FILTERS,
+  SET_FILTER_SETS_COMPLETE,
   SET_FOCUSED_NATIVE_FILTER,
   UNSET_FOCUSED_NATIVE_FILTER,
   SET_HOVERED_NATIVE_FILTER,
   UNSET_HOVERED_NATIVE_FILTER,
-  SET_HOVERED_CHART_CUSTOMIZATION,
-  UNSET_HOVERED_CHART_CUSTOMIZATION,
-  UPDATE_CASCADE_PARENT_IDS,
 } from 'src/dashboard/actions/nativeFilters';
 import {
-  Divider,
-  Filter,
+  FilterSet,
   FilterConfiguration,
   NativeFiltersState,
 } from '@superset-ui/core';
 import { HYDRATE_DASHBOARD } from '../actions/hydrate';
 
-interface ExtendedNativeFiltersState extends NativeFiltersState {
-  hoveredChartCustomizationId?: string;
-}
-
 export function getInitialState({
+  filterSetsConfig,
   filterConfig,
   state: prevState,
 }: {
+  filterSetsConfig?: FilterSet[];
   filterConfig?: FilterConfiguration;
-  state?: ExtendedNativeFiltersState;
-}): ExtendedNativeFiltersState {
-  const state: Partial<ExtendedNativeFiltersState> = {};
-  const filters: Record<string, Filter | Divider> = {};
+  state?: NativeFiltersState;
+}): NativeFiltersState {
+  const state: Partial<NativeFiltersState> = {};
+
+  const filters = {};
   if (filterConfig) {
     filterConfig.forEach(filter => {
       const { id } = filter;
@@ -58,38 +54,25 @@ export function getInitialState({
   } else {
     state.filters = prevState?.filters ?? {};
   }
+
+  if (filterSetsConfig) {
+    const filterSets = {};
+    filterSetsConfig.forEach(filtersSet => {
+      const { id } = filtersSet;
+      filterSets[id] = filtersSet;
+    });
+    state.filterSets = filterSets;
+  } else {
+    state.filterSets = prevState?.filterSets ?? {};
+  }
   state.focusedFilterId = undefined;
-  state.hoveredChartCustomizationId = undefined;
-  return state as ExtendedNativeFiltersState;
-}
-
-function handleFilterChangesComplete(
-  state: ExtendedNativeFiltersState,
-  filters: Filter[],
-) {
-  const modifiedFilters = { ...state.filters };
-  filters.forEach(filter => {
-    if (filter.chartsInScope != null && filter.tabsInScope != null) {
-      modifiedFilters[filter.id] = filter;
-    } else {
-      const existingFilter = modifiedFilters[filter.id];
-      modifiedFilters[filter.id] = {
-        ...filter,
-        chartsInScope: filter.chartsInScope ?? existingFilter?.chartsInScope,
-        tabsInScope: filter.tabsInScope ?? existingFilter?.tabsInScope,
-      };
-    }
-  });
-
-  return {
-    ...state,
-    filters: modifiedFilters,
-  } as ExtendedNativeFiltersState;
+  return state as NativeFiltersState;
 }
 
 export default function nativeFilterReducer(
-  state: ExtendedNativeFiltersState = {
+  state: NativeFiltersState = {
     filters: {},
+    filterSets: {},
   },
   action: AnyFilterAction,
 ) {
@@ -97,13 +80,18 @@ export default function nativeFilterReducer(
     case HYDRATE_DASHBOARD:
       return {
         filters: action.data.nativeFilters.filters,
+        filterSets: action.data.nativeFilters.filterSets,
       };
 
+    case SET_FILTER_CONFIG_COMPLETE:
     case SET_IN_SCOPE_STATUS_OF_FILTERS:
       return getInitialState({ filterConfig: action.filterConfig, state });
 
-    case SET_NATIVE_FILTERS_CONFIG_COMPLETE:
-      return handleFilterChangesComplete(state, action.filterChanges);
+    case SET_FILTER_SETS_COMPLETE:
+      return getInitialState({
+        filterSetsConfig: action.filterSets,
+        state,
+      });
 
     case SET_FOCUSED_NATIVE_FILTER:
       return {
@@ -127,30 +115,6 @@ export default function nativeFilterReducer(
       return {
         ...state,
         hoveredFilterId: undefined,
-      };
-
-    case SET_HOVERED_CHART_CUSTOMIZATION:
-      return {
-        ...state,
-        hoveredChartCustomizationId: action.id,
-      };
-
-    case UNSET_HOVERED_CHART_CUSTOMIZATION:
-      return {
-        ...state,
-        hoveredChartCustomizationId: undefined,
-      };
-
-    case UPDATE_CASCADE_PARENT_IDS:
-      return {
-        ...state,
-        filters: {
-          ...state.filters,
-          [action.id]: {
-            ...state.filters[action.id],
-            cascadeParentIds: action.parentIds,
-          },
-        },
       };
     // TODO handle SET_FILTER_CONFIG_FAIL action
     default:

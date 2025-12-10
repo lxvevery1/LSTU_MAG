@@ -21,7 +21,3 @@ export type savedMetricType = {
   verbose_name?: string;
   expression: string;
 };
-
-export interface AggregateOption {
-  aggregate_name: string;
-}

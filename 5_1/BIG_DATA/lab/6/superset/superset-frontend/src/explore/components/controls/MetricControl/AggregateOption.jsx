@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ColumnTypeLabel } from '@superset-ui/chart-controls';
 
@@ -30,7 +31,7 @@ export default function AggregateOption({ aggregate, showType }) {
   return (
     <div>
       {showType && <ColumnTypeLabel type="aggregate" />}
-      <span className="option-label">{aggregate.aggregate_name}</span>
+      <span className="m-r-5 option-label">{aggregate.aggregate_name}</span>
     </div>
   );
 }

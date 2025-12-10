@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { reactify, addAlpha } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
+import React from 'react';
+import { styled, reactify, addAlpha } from '@superset-ui/core';
 import PropTypes from 'prop-types';
 import Component from './ParallelCoordinates';
 
@@ -40,14 +40,14 @@ export default styled(ParallelCoordinates)`
         overflow: auto;
         div.row {
           &:hover {
-            background-color: ${theme.colorBgTextHover};
+            background-color: ${theme.colors.grayscale.light2};
           }
         }
       }
     }
     .parcoords svg,
     .parcoords canvas {
-      font-size: ${theme.fontSizeSM}px;
+      font-size: ${theme.typography.sizes.s}px;
       position: absolute;
     }
     .parcoords > canvas {
@@ -56,26 +56,26 @@ export default styled(ParallelCoordinates)`
 
     .parcoords text.label {
       font: 100%;
-      font-size: ${theme.fontSizeSM}px;
+      font-size: ${theme.typography.sizes.s}px;
       cursor: drag;
     }
     .parcoords rect.background {
       fill: transparent;
     }
     .parcoords rect.background:hover {
-      fill: ${addAlpha(theme.colorBorder, 0.2)};
+      fill: ${addAlpha(theme.colors.grayscale.base, 0.2)};
     }
     .parcoords .resize rect {
-      fill: ${addAlpha(theme.colorText, 0.1)};
+      fill: ${addAlpha(theme.colors.grayscale.dark2, 0.1)};
     }
     .parcoords rect.extent {
-      fill: ${addAlpha(theme.colorBgContainer, 0.25)};
-      stroke: ${addAlpha(theme.colorText, 0.6)};
+      fill: ${addAlpha(theme.colors.grayscale.light5, 0.25)};
+      stroke: ${addAlpha(theme.colors.grayscale.dark2, 0.6)};
     }
     .parcoords .axis line,
     .parcoords .axis path {
       fill: none;
-      stroke: ${theme.colorText};
+      stroke: ${theme.colors.grayscale.dark1};
       shape-rendering: crispEdges;
     }
     .parcoords canvas {
@@ -85,7 +85,7 @@ export default styled(ParallelCoordinates)`
       -o-transition: opacity 0.3s;
     }
     .parcoords canvas.faded {
-      opacity: 35%;
+      opacity: ${theme.opacity.mediumLight};
     }
     .parcoords {
       -webkit-touch-callout: none;
@@ -94,23 +94,23 @@ export default styled(ParallelCoordinates)`
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      background-color: ${theme.colorBgContainer};
+      background-color: ${theme.colors.grayscale.light5};
     }
 
     /* data table styles */
     .parcoords .row,
     .parcoords .header {
       clear: left;
-      font-size: ${theme.fontSizeSM}px;
+      font-size: ${theme.typography.sizes.s}px;
       line-height: 18px;
       height: 18px;
       margin: 0px;
     }
-    .parcoords .row:nth-of-type(odd) {
-      background: ${addAlpha(theme.colorText, 0.05)};
+    .parcoords .row:nth-child(odd) {
+      background: ${addAlpha(theme.colors.grayscale.dark2, 0.05)};
     }
     .parcoords .header {
-      font-weight: ${theme.fontWeightStrong};
+      font-weight: ${theme.typography.weights.bold};
     }
     .parcoords .cell {
       float: left;

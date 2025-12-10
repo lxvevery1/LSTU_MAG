@@ -22,7 +22,6 @@ import {
   LocalStorageKeys,
 } from 'src/utils/localStorageHelpers';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('localStorageHelpers', () => {
   beforeEach(() => {
     localStorage.clear();
@@ -32,13 +31,13 @@ describe('localStorageHelpers', () => {
     localStorage.clear();
   });
 
-  test('gets a value that was set', () => {
-    setItem(LocalStorageKeys.IsDatapanelOpen, false);
+  it('gets a value that was set', () => {
+    setItem(LocalStorageKeys.is_datapanel_open, false);
 
-    expect(getItem(LocalStorageKeys.IsDatapanelOpen, true)).toBe(false);
+    expect(getItem(LocalStorageKeys.is_datapanel_open, true)).toBe(false);
   });
 
-  test('returns the default value for an unset value', () => {
-    expect(getItem(LocalStorageKeys.IsDatapanelOpen, true)).toBe(true);
+  it('returns the default value for an unset value', () => {
+    expect(getItem(LocalStorageKeys.is_datapanel_open, true)).toBe(true);
   });
 });

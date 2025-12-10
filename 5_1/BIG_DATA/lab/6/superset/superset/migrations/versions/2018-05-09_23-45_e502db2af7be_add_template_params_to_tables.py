@@ -22,16 +22,12 @@ Create Date: 2018-05-09 23:45:14.296283
 
 """
 
-import logging
-
-import sqlalchemy as sa  # noqa: E402
-from alembic import op  # noqa: E402
-
 # revision identifiers, used by Alembic.
 revision = "e502db2af7be"
 down_revision = "5ccf602336a0"
 
-logger = logging.getLogger("alembic.env")
+import sqlalchemy as sa
+from alembic import op
 
 
 def upgrade():
@@ -42,4 +38,4 @@ def downgrade():
     try:
         op.drop_column("tables", "template_params")
     except Exception as ex:
-        logger.warning(str(ex))
+        logging.warning(str(ex))

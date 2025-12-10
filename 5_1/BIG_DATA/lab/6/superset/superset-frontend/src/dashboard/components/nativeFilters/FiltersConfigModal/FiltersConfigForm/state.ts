@@ -17,7 +17,7 @@
  * under the License.
  */
 import { useEffect, useState } from 'react';
-import type { FormInstance } from '@superset-ui/core/components';
+import { FormInstance } from 'src/components';
 import { Filter, t } from '@superset-ui/core';
 import { NativeFiltersForm, NativeFiltersFormItem } from '../types';
 import { setNativeFilterFieldValues, useForceUpdate } from './utils';
@@ -29,7 +29,7 @@ export const useBackendFormUpdate = (
   filterId: string,
 ) => {
   const forceUpdate = useForceUpdate();
-  const formFilter = form.getFieldValue('filters')?.[filterId];
+  const formFilter = (form.getFieldValue('filters') || {})[filterId];
   useEffect(() => {
     setNativeFilterFieldValues(form, filterId, {
       isDataDirty: true,

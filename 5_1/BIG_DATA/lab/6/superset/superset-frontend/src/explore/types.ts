@@ -22,7 +22,6 @@ import {
   AnnotationData,
   AdhocMetric,
   JsonObject,
-  LatestQueryFormData,
 } from '@superset-ui/core';
 import {
   ColumnMeta,
@@ -53,10 +52,10 @@ export interface ChartState {
   chartUpdateEndTime: number | null;
   chartUpdateStartTime: number;
   lastRendered: number;
-  latestQueryFormData: LatestQueryFormData;
+  latestQueryFormData: Partial<QueryFormData>;
   sliceFormData: QueryFormData | null;
   queryController: AbortController | null;
-  queriesResponse: QueryData[] | null;
+  queriesResponse: QueryData | null;
   triggerQuery: boolean;
 }
 
@@ -67,10 +66,8 @@ export type OptionSortType = Partial<
 export type Datasource = Dataset & {
   database?: DatabaseObject;
   datasource?: string;
-  catalog?: string | null;
   schema?: string;
   is_sqllab_view?: boolean;
-  extra?: string | object;
 };
 
 export interface ExplorePageInitialData {
@@ -83,10 +80,6 @@ export interface ExplorePageInitialData {
     owners: string[];
     created_by?: string;
     changed_by?: string;
-    dashboards?: {
-      id: number;
-      dashboard_title: string;
-    }[];
   };
   saveAction?: SaveActionType | null;
 }
@@ -98,6 +91,7 @@ export interface ExploreResponsePayload {
 export interface ExplorePageState {
   user: UserWithPermissionsAndRoles;
   common: {
+    flash_messages: string[];
     conf: JsonObject;
     locale: string;
   };
@@ -114,7 +108,6 @@ export interface ExplorePageState {
     datasource: Dataset;
     controls: ControlStateMapping;
     form_data: QueryFormData;
-    hiddenFormData?: Partial<QueryFormData>;
     slice: Slice;
     controlsTransferred: string[];
     standalone: boolean;

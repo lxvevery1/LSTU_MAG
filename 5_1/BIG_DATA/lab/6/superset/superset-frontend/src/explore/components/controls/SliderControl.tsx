@@ -16,7 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import Slider from '@superset-ui/core/components/Slider';
+import React from 'react';
+import Slider from 'src/components/Slider';
 import ControlHeader, {
   ControlHeaderProps,
 } from 'src/explore/components/ControlHeader';

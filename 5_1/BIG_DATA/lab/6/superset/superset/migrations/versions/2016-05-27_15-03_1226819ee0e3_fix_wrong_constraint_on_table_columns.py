@@ -21,7 +21,6 @@ Revises: 956a063c52b3
 Create Date: 2016-05-27 15:03:32.980343
 
 """
-
 import logging
 
 from alembic import op
@@ -32,8 +31,6 @@ from superset.utils.core import generic_find_constraint_name
 # revision identifiers, used by Alembic.
 revision = "1226819ee0e3"
 down_revision = "956a063c52b3"
-
-logger = logging.getLogger("alembic.env")
 
 
 naming_convention = {
@@ -62,8 +59,8 @@ def upgrade():
                 ["datasource_name"],
                 ["datasource_name"],
             )
-    except:  # noqa: E722
-        logger.warning("Could not find or drop constraint on `columns`")
+    except:
+        logging.warning("Could not find or drop constraint on `columns`")
 
 
 def downgrade():

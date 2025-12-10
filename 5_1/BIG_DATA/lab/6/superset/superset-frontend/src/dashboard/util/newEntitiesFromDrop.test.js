@@ -25,9 +25,8 @@ import {
   TAB_TYPE,
 } from 'src/dashboard/util/componentTypes';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('newEntitiesFromDrop', () => {
-  test('should return a new Entity of appropriate type, and add it to the drop target children', () => {
+  it('should return a new Entity of appropriate type, and add it to the drop target children', () => {
     const result = newEntitiesFromDrop({
       dropResult: {
         destination: { id: 'a', index: 0 },
@@ -49,7 +48,7 @@ describe('newEntitiesFromDrop', () => {
     expect(result[newId].type).toBe(CHART_TYPE);
   });
 
-  test('should create Tab AND Tabs components if the drag entity is Tabs', () => {
+  it('should create Tab AND Tabs components if the drag entity is Tabs', () => {
     const result = newEntitiesFromDrop({
       dropResult: {
         destination: { id: 'a', index: 0 },
@@ -74,7 +73,7 @@ describe('newEntitiesFromDrop', () => {
     expect(result[newTabId].type).toBe(TAB_TYPE);
   });
 
-  test('should create a Row if the drag entity should be wrapped in a row', () => {
+  it('should create a Row if the drag entity should be wrapped in a row', () => {
     const result = newEntitiesFromDrop({
       dropResult: {
         destination: { id: 'a', index: 0 },

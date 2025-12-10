@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useCallback, useState } from 'react';
-import { Popover } from '@superset-ui/core/components';
+import React, { useCallback, useState } from 'react';
+import Popover from 'src/components/Popover';
 import { FormattingPopoverContent } from './FormattingPopoverContent';
 import { ConditionalFormattingConfig, FormattingPopoverProps } from './types';
 
@@ -27,8 +27,6 @@ export const FormattingPopover = ({
   onChange,
   config,
   children,
-  extraColorChoices,
-  conditionalFormattingFlag,
   ...props
 }: FormattingPopoverProps) => {
   const [visible, setVisible] = useState(false);
@@ -49,12 +47,10 @@ export const FormattingPopover = ({
           onChange={handleSave}
           config={config}
           columns={columns}
-          extraColorChoices={extraColorChoices}
-          conditionalFormattingFlag={conditionalFormattingFlag}
         />
       }
-      open={visible}
-      onOpenChange={setVisible}
+      visible={visible}
+      onVisibleChange={setVisible}
       trigger={['click']}
       overlayStyle={{ width: '450px' }}
       {...props}

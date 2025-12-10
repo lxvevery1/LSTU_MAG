@@ -17,66 +17,66 @@
  * under the License.
  */
 
-import { safeHtmlSpan } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
-import { ReactNode } from 'react';
+import { styled } from '@superset-ui/core';
+import React, { useMemo } from 'react';
+import { filterXSS } from 'xss';
 
 export type TooltipProps = {
   tooltip:
     | {
         x: number;
         y: number;
-        content: ReactNode;
+        content: string;
       }
     | null
     | undefined;
-  variant?: 'default' | 'custom';
 };
 
-const StyledDiv = styled.div<{
-  top: number;
-  left: number;
-  variant: 'default' | 'custom';
-}>`
-  ${({ theme, top, left, variant }) => `
+const StyledDiv = styled.div<{ top: number; left: number }>`
+  ${({ theme, top, left }) => `
     position: absolute;
     top: ${top}px;
     left: ${left}px;
+    padding: ${theme.gridUnit * 2}px;
+    margin: ${theme.gridUnit * 2}px;
+    background: ${theme.colors.grayscale.dark2};
+    color: ${theme.colors.grayscale.light5};
+    maxWidth: 300px;
+    fontSize: ${theme.typography.sizes.s}px;
     zIndex: 9;
     pointerEvents: none;
-    ${
-      variant === 'default'
-        ? `
-      padding: ${theme.sizeUnit * 2}px;
-      margin: ${theme.sizeUnit * 2}px;
-      background: ${theme.colorBgElevated};
-      color: ${theme.colorText};
-      maxWidth: 300px;
-      fontSize: ${theme.fontSizeSM}px;
-      border: 1px solid ${theme.colorBorder};
-      border-radius: ${theme.borderRadius}px;
-      box-shadow: ${theme.boxShadowSecondary};
-    `
-        : `
-      margin: ${theme.sizeUnit * 3}px;
-    `
-    }
   `}
 `;
 
 export default function Tooltip(props: TooltipProps) {
-  const { tooltip, variant = 'default' } = props;
+  const { tooltip } = props;
   if (typeof tooltip === 'undefined' || tooltip === null) {
     return null;
   }
 
   const { x, y, content } = tooltip;
-  const safeContent =
-    typeof content === 'string' ? safeHtmlSpan(content) : content;
+
+  if (typeof content === 'string') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const contentHtml = useMemo(
+      () => ({
+        __html: filterXSS(content, { stripIgnoreTag: true }),
+      }),
+      [content],
+    );
+    return (
+      <StyledDiv top={y} left={x}>
+        <div
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={contentHtml}
+        />
+      </StyledDiv>
+    );
+  }
 
   return (
-    <StyledDiv top={y} left={x} variant={variant}>
-      {safeContent}
+    <StyledDiv top={y} left={x}>
+      {content}
     </StyledDiv>
   );
 }

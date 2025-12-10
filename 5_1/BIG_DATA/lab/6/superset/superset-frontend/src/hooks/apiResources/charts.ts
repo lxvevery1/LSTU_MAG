@@ -31,7 +31,7 @@ const ownerNamesQuery = rison.encode({
   keys: ['none'],
 });
 
-export function useChartOwnerNames(chartId: number) {
+export function useChartOwnerNames(chartId: string) {
   return useTransformedResource(
     useApiV1Resource<Chart>(`/api/v1/chart/${chartId}?q=${ownerNamesQuery}`),
     extractOwnerNames,

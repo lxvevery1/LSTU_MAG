@@ -17,8 +17,7 @@
  * under the License.
  */
 /* eslint camelcase: 0 */
-import {
-  isValidElement,
+import React, {
   ReactNode,
   useCallback,
   useContext,
@@ -30,57 +29,49 @@ import {
 import {
   ensureIsArray,
   t,
+  styled,
   getChartControlPanelRegistry,
   QueryFormData,
   DatasourceType,
+  css,
+  SupersetTheme,
+  useTheme,
   isDefined,
   JsonValue,
   NO_TIME_RANGE,
-  usePrevious,
-  isFeatureEnabled,
-  FeatureFlag,
 } from '@superset-ui/core';
-import { styled, css, SupersetTheme, useTheme } from '@apache-superset/core/ui';
 import {
   ControlPanelSectionConfig,
   ControlState,
   CustomControlItem,
   Dataset,
   ExpandedControlItem,
-  isCustomControlItem,
   isTemporalColumn,
   sections,
 } from '@superset-ui/chart-controls';
 import { useSelector } from 'react-redux';
-import { kebabCase, isEqual } from 'lodash';
+import { rgba } from 'emotion-rgba';
+import { kebabCase } from 'lodash';
 
-import {
-  Collapse,
-  Loading,
-  Label,
-  Tooltip,
-} from '@superset-ui/core/components';
-import Tabs from '@superset-ui/core/components/Tabs';
-import { PluginContext } from 'src/components';
-import { useConfirmModal } from 'src/hooks/useConfirmModal';
+import Collapse from 'src/components/Collapse';
+import Tabs from 'src/components/Tabs';
+import { PluginContext } from 'src/components/DynamicPlugins';
+import Loading from 'src/components/Loading';
+import Modal from 'src/components/Modal';
 
+import { usePrevious } from 'src/hooks/usePrevious';
 import { getSectionsToRender } from 'src/explore/controlUtils';
 import { ExploreActions } from 'src/explore/actions/exploreActions';
 import { ChartState, ExplorePageState } from 'src/explore/types';
-import { Icons } from '@superset-ui/core/components/Icons';
+import { Tooltip } from 'src/components/Tooltip';
+import Icons from 'src/components/Icons';
 import ControlRow from './ControlRow';
 import Control from './Control';
 import { ExploreAlert } from './ExploreAlert';
 import { RunQueryButton } from './RunQueryButton';
 import { Operators } from '../constants';
-import { Clauses } from './controls/FilterControl/types';
-import StashFormDataContainer from './StashFormDataContainer';
 
-const TABS_KEYS = {
-  DATA: 'DATA',
-  CUSTOMIZE: 'CUSTOMIZE',
-  MATRIXIFY: 'MATRIXIFY',
-};
+const { confirm } = Modal;
 
 export type ControlPanelsContainerProps = {
   exploreState: ExplorePageState['explore'];
@@ -91,7 +82,6 @@ export type ControlPanelsContainerProps = {
   form_data: QueryFormData;
   isDatasourceMetaLoading: boolean;
   errorMessage: ReactNode;
-  buttonErrorMessage?: ReactNode; // Error message for RunQueryButton (includes all errors)
   onQuery: () => void;
   onStop: () => void;
   canStopQuery: boolean;
@@ -117,11 +107,16 @@ const iconStyles = css`
 
 const actionButtonsContainerStyles = (theme: SupersetTheme) => css`
   display: flex;
+  position: sticky;
+  bottom: 0;
   flex-direction: column;
   align-items: center;
-  padding: ${theme.sizeUnit * 4}px;
-  background: ${theme.colorBgContainer};
-  flex-shrink: 0;
+  padding: ${theme.gridUnit * 4}px;
+  z-index: 999;
+  background: linear-gradient(
+    ${rgba(theme.colors.grayscale.light5, 0)},
+    ${theme.colors.grayscale.light5} ${theme.opacity.mediumLight}
+  );
 
   & > button {
     min-width: 156px;
@@ -132,62 +127,71 @@ const Styles = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
 
   // Resizable add overflow-y: auto as a style to this div
   // To override it, we need to use !important
   overflow: visible !important;
-
   #controlSections {
-    flex: 1;
-    overflow: auto;
-  }
-
-  .tab-content {
+    height: 100%;
     overflow: visible;
+  }
+  .nav-tabs {
+    flex: 0 0 1;
+  }
+  .tab-content {
+    overflow: auto;
     flex: 1 1 100%;
   }
-
-  // Ensure Ant Design tabs allow content to expand
-  .ant-tabs-content {
-    overflow: visible;
-    height: auto;
-  }
-
-  .ant-tabs-content-holder {
-    overflow: visible;
-    height: auto;
-  }
-
-  .ant-tabs-tabpane {
-    overflow: visible;
-    height: auto;
-  }
-
-  // Ensure collapse components can expand
-  .ant-collapse-content {
-    overflow: visible;
-  }
-
-  .ant-collapse-content-box {
-    overflow: visible;
-  }
-
   .Select__menu {
     max-width: 100%;
   }
   .type-label {
-    margin-right: ${({ theme }) => theme.sizeUnit * 3}px;
-    width: ${({ theme }) => theme.sizeUnit * 7}px;
+    margin-right: ${({ theme }) => theme.gridUnit * 3}px;
+    width: ${({ theme }) => theme.gridUnit * 7}px;
     display: inline-block;
     text-align: center;
-    font-weight: ${({ theme }) => theme.fontWeightStrong};
+    font-weight: ${({ theme }) => theme.typography.weights.bold};
   }
 `;
 
+const ControlPanelsTabs = styled(Tabs)`
+  ${({ theme, fullWidth }) => css`
+    height: 100%;
+    overflow: visible;
+    .ant-tabs-nav {
+      margin-bottom: 0;
+    }
+    .ant-tabs-nav-list {
+      width: ${fullWidth ? '100%' : '50%'};
+    }
+    .ant-tabs-tabpane {
+      height: 100%;
+    }
+    .ant-tabs-content-holder {
+      padding-top: ${theme.gridUnit * 4}px;
+    }
+
+    .ant-collapse-ghost > .ant-collapse-item {
+      &:not(:last-child) {
+        border-bottom: 1px solid ${theme.colors.grayscale.light3};
+      }
+
+      & > .ant-collapse-header {
+        font-size: ${theme.typography.sizes.s}px;
+      }
+
+      & > .ant-collapse-content > .ant-collapse-content-box {
+        padding-bottom: 0;
+        font-size: ${theme.typography.sizes.s}px;
+      }
+    }
+  `}
+`;
+
 const isTimeSection = (section: ControlPanelSectionConfig): boolean =>
-  !!section.label && sections.legacyTimeseriesTime.label === section.label;
+  !!section.label &&
+  (sections.legacyRegularTime.label === section.label ||
+    sections.legacyTimeseriesTime.label === section.label);
 
 const hasTimeColumn = (datasource: Dataset): boolean =>
   datasource?.columns?.some(c => c.is_dttm);
@@ -212,19 +216,11 @@ function getState(
 ) {
   const querySections: ControlPanelSectionConfig[] = [];
   const customizeSections: ControlPanelSectionConfig[] = [];
-  const matrixifySections: ControlPanelSectionConfig[] = [];
-  let matrixifyEnableControl: ControlPanelSectionConfig | null = null;
 
   getSectionsToRender(vizType, datasourceType).forEach(section => {
-    if (!section) return;
-    if (section.tabOverride === 'matrixify') {
-      // Separate the enable control from other sections
-      if (section.label === t('Enable Matrixify')) {
-        matrixifyEnableControl = section;
-      } else {
-        matrixifySections.push(section);
-      }
-    } else if (
+    // if at least one control in the section is not `renderTrigger`
+    // or asks to be displayed at the Data tab
+    if (
       section.tabOverride === 'data' ||
       section.controlSetRows.some(rows =>
         rows.some(
@@ -239,11 +235,10 @@ function getState(
       )
     ) {
       querySections.push(section);
-    } else if (section.controlSetRows && section.controlSetRows.length > 0) {
+    } else if (section.controlSetRows.length > 0) {
       customizeSections.push(section);
     }
   });
-
   const expandedQuerySections: string[] = sectionsToExpand(
     querySections,
     datasource,
@@ -252,19 +247,11 @@ function getState(
     customizeSections,
     datasource,
   );
-  const expandedMatrixifySections: string[] = sectionsToExpand(
-    matrixifySections,
-    datasource,
-  );
-
   return {
     expandedQuerySections,
     expandedCustomizeSections,
-    expandedMatrixifySections,
     querySections,
     customizeSections,
-    matrixifySections,
-    matrixifyEnableControl,
   };
 }
 
@@ -280,9 +267,8 @@ function useResetOnChangeRef(initialValue: () => any, resetOnChangeValue: any) {
 }
 
 export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
-  const theme = useTheme();
+  const { colors } = useTheme();
   const pluginContext = useContext(PluginContext);
-  const { showConfirm, ConfirmModal } = useConfirmModal();
 
   const prevState = usePrevious(props.exploreState);
   const prevDatasource = usePrevious(props.exploreState.datasource);
@@ -298,7 +284,7 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
   >(state => state.explore.controlsTransferred);
 
   const defaultTimeFilter = useSelector<ExplorePageState>(
-    state => state.common?.conf?.DEFAULT_TIME_FILTER || NO_TIME_RANGE,
+    state => state.common?.conf?.DEFAULT_TIME_FILTER,
   );
 
   const { form_data, actions } = props;
@@ -313,32 +299,32 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
       x_axis !== previousXAxis &&
       isTemporalColumn(x_axis, props.exploreState.datasource)
     ) {
-      const noFilter = !adhoc_filters?.find(
-        filter =>
-          filter.expressionType === 'SIMPLE' &&
-          filter.operator === Operators.TemporalRange &&
-          filter.subject === x_axis,
-      );
+      const noFilter =
+        !adhoc_filters ||
+        !adhoc_filters.find(
+          filter =>
+            filter.expressionType === 'SIMPLE' &&
+            filter.operator === Operators.TEMPORAL_RANGE &&
+            filter.subject === x_axis,
+        );
       if (noFilter) {
-        showConfirm({
+        confirm({
           title: t('The X-axis is not on the filters list'),
-          body: t(
-            `The X-axis is not on the filters list which will prevent it from being used in time range filters in dashboards. Would you like to add it to the filters list?`,
-          ),
-          onConfirm: () => {
+          content:
+            t(`The X-axis is not on the filters list which will prevent it from being used in
+            time range filters in dashboards. Would you like to add it to the filters list?`),
+          onOk: () => {
             setControlValue('adhoc_filters', [
               ...(adhoc_filters || []),
               {
-                clause: Clauses.Where,
+                clause: 'WHERE',
                 subject: x_axis,
-                operator: Operators.TemporalRange,
-                comparator: defaultTimeFilter,
+                operator: Operators.TEMPORAL_RANGE,
+                comparator: defaultTimeFilter || NO_TIME_RANGE,
                 expressionType: 'SIMPLE',
               },
             ]);
           },
-          confirmText: t('Yes'),
-          cancelText: t('No'),
         });
       }
     }
@@ -349,7 +335,6 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
     defaultTimeFilter,
     previousXAxis,
     props.exploreState.datasource,
-    showConfirm,
   ]);
 
   useEffect(() => {
@@ -416,11 +401,8 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
   const {
     expandedQuerySections,
     expandedCustomizeSections,
-    expandedMatrixifySections,
     querySections,
     customizeSections,
-    matrixifySections,
-    matrixifyEnableControl,
   } = useMemo(
     () =>
       getState(
@@ -467,13 +449,13 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
 
   const renderControl = ({ name, config }: CustomControlItem) => {
     const { controls, chart, exploreState } = props;
-    const { visibility, hidden, disableStash, ...restConfig } = config;
+    const { visibility } = config;
 
     // If the control item is not an object, we have to look up the control data from
     // the centralized controls file.
     // When it is an object we read control data straight from `config` instead
     const controlData = {
-      ...restConfig,
+      ...config,
       ...controls[name],
       ...(shouldRecalculateControlState({ name, config })
         ? config?.mapStateToProps?.(exploreState, controls[name], chart)
@@ -495,11 +477,6 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
       ? visibility.call(config, props, controlData)
       : undefined;
 
-    const isHidden =
-      typeof hidden === 'function'
-        ? hidden.call(config, props, controlData)
-        : hidden;
-
     const label =
       typeof baseLabel === 'function'
         ? baseLabel(exploreState, controls[name], chart)
@@ -510,36 +487,19 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
         ? baseDescription(exploreState, controls[name], chart)
         : baseDescription;
 
-    if (name.includes('adhoc_filters')) {
+    if (name === 'adhoc_filters') {
       restProps.canDelete = (
         valueToBeDeleted: Record<string, any>,
         values: Record<string, any>[],
       ) => {
         const isTemporalRange = (filter: Record<string, any>) =>
-          filter.operator === Operators.TemporalRange;
+          filter.operator === Operators.TEMPORAL_RANGE;
         if (!controls?.time_range?.value && isTemporalRange(valueToBeDeleted)) {
           const count = values.filter(isTemporalRange).length;
           if (count === 1) {
-            // if temporal filter's value is "No filter", prevent deletion
-            // otherwise reset the value to "No filter"
-            if (valueToBeDeleted.comparator === defaultTimeFilter) {
-              return t(
-                `You cannot delete the last temporal filter as it's used for time range filters in dashboards.`,
-              );
-            }
-            props.actions.setControlValue(
-              name,
-              values.map(val => {
-                if (isEqual(val, valueToBeDeleted)) {
-                  return {
-                    ...val,
-                    comparator: defaultTimeFilter,
-                  };
-                }
-                return val;
-              }),
+            return t(
+              `You cannot delete the last temporal filter as it's used for time range filters in dashboards.`,
             );
-            return false;
           }
         }
         return true;
@@ -547,23 +507,16 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
     }
 
     return (
-      <StashFormDataContainer
-        shouldStash={isVisible === false && disableStash !== true}
-        fieldNames={[name]}
-        key={`control-container-${name}`}
-      >
-        <Control
-          key={`control-${name}`}
-          name={name}
-          label={label}
-          description={description}
-          validationErrors={validationErrors}
-          actions={props.actions}
-          isVisible={isVisible}
-          hidden={isHidden}
-          {...restProps}
-        />
-      </StashFormDataContainer>
+      <Control
+        key={`control-${name}`}
+        name={name}
+        label={label}
+        description={description}
+        validationErrors={validationErrors}
+        actions={props.actions}
+        isVisible={isVisible}
+        {...restProps}
+      />
     );
   };
 
@@ -576,21 +529,21 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
     section: ExpandedControlPanelSectionConfig,
   ) => {
     const { controls } = props;
-    const { label, description, visibility } = section;
+    const { label, description } = section;
 
     // Section label can be a ReactNode but in some places we want to
     // have a string ID. Using forced type conversion for now,
     // should probably add a `id` field to sections in the future.
     const sectionId = String(label);
-    const isVisible = visibility?.call(this, props, controls) !== false;
+
     const hasErrors = section.controlSetRows.some(rows =>
       rows.some(item => {
         const controlName =
           typeof item === 'string'
             ? item
             : item && 'name' in item
-              ? item.name
-              : null;
+            ? item.name
+            : null;
         return (
           controlName &&
           controlName in controls &&
@@ -604,11 +557,15 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
       sectionHasHadNoErrors.current[sectionId] = true;
     }
 
+    const errorColor = sectionHasHadNoErrors.current[sectionId]
+      ? colors.error.base
+      : colors.alert.base;
+
     const PanelHeader = () => (
       <span data-test="collapsible-control-panel-header">
         <span
           css={(theme: SupersetTheme) => css`
-            font-size: ${theme.fontSize}px;
+            font-size: ${theme.typography.sizes.m}px;
             line-height: 1.3;
           `}
         >
@@ -624,73 +581,80 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
             id={`${kebabCase('validation-errors')}-tooltip`}
             title={t('This section contains validation errors')}
           >
-            <Icons.ExclamationCircleOutlined iconColor={theme.colorError} />
+            <Icons.InfoCircleOutlined
+              css={css`
+                ${iconStyles};
+                color: ${errorColor};
+              `}
+            />
           </Tooltip>
         )}
       </span>
     );
 
-    const PanelChildren = (
-      <>
-        <StashFormDataContainer
-          key={`sectionId-${sectionId}`}
-          shouldStash={!isVisible}
-          fieldNames={section.controlSetRows
-            .flat()
-            .map(item =>
-              item && typeof item === 'object'
-                ? 'name' in item
-                  ? item.name
-                  : ''
-                : String(item || ''),
-            )
-            .filter(Boolean)}
-        />
-        {isVisible && (
-          <>
-            {section.controlSetRows.map((controlSets, i) => {
-              const renderedControls = controlSets
-                .map(controlItem => {
-                  if (!controlItem) {
-                    // When the item is invalid
-                    return null;
-                  }
-                  if (isValidElement(controlItem)) {
-                    // When the item is a React element
-                    return controlItem;
-                  }
-                  if (
-                    isCustomControlItem(controlItem) &&
-                    controlItem.name !== 'datasource'
-                  ) {
-                    return renderControl(controlItem);
-                  }
-                  return null;
-                })
-                .filter(x => x !== null);
-              // don't show the row if it is empty
-              if (renderedControls.length === 0) {
+    return (
+      <Collapse.Panel
+        css={theme => css`
+          margin-bottom: 0;
+          box-shadow: none;
+
+          &:last-child {
+            padding-bottom: ${theme.gridUnit * 16}px;
+            border-bottom: 0;
+          }
+
+          .panel-body {
+            margin-left: ${theme.gridUnit * 4}px;
+            padding-bottom: 0;
+          }
+
+          span.label {
+            display: inline-block;
+          }
+          ${!section.label &&
+          `
+            .ant-collapse-header {
+              display: none;
+            }
+          `}
+        `}
+        header={<PanelHeader />}
+        key={sectionId}
+      >
+        {section.controlSetRows.map((controlSets, i) => {
+          const renderedControls = controlSets
+            .map(controlItem => {
+              if (!controlItem) {
+                // When the item is invalid
                 return null;
               }
-              return (
-                <ControlRow
-                  key={`controlsetrow-${i}`}
-                  controls={renderedControls}
-                />
-              );
-            })}
-          </>
-        )}
-      </>
+              if (React.isValidElement(controlItem)) {
+                // When the item is a React element
+                return controlItem;
+              }
+              if (
+                controlItem.name &&
+                controlItem.config &&
+                controlItem.name !== 'datasource'
+              ) {
+                return renderControl(controlItem);
+              }
+              return null;
+            })
+            .filter(x => x !== null);
+          // don't show the row if it is empty
+          if (renderedControls.length === 0) {
+            return null;
+          }
+          return (
+            <ControlRow
+              key={`controlsetrow-${i}`}
+              controls={renderedControls}
+            />
+          );
+        })}
+      </Collapse.Panel>
     );
-
-    return {
-      key: String(section.label),
-      label: <PanelHeader />,
-      children: PanelChildren,
-      className: section.label ? '' : 'hidden-collapse-header',
-      style: { visibility: isVisible ? 'visible' : 'hidden' },
-    };
   };
 
   const hasControlsTransferred =
@@ -734,13 +698,17 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
       dataTabHasHadNoErrors.current = true;
     }
 
+    const errorColor = dataTabHasHadNoErrors.current
+      ? colors.error.base
+      : colors.alert.base;
+
     return (
       <>
         <span>{t('Data')}</span>
         {props.errorMessage && (
           <span
             css={(theme: SupersetTheme) => css`
-              margin-left: ${theme.sizeUnit * 2}px;
+              margin-left: ${theme.gridUnit * 2}px;
             `}
           >
             {' '}
@@ -750,9 +718,10 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
               title={props.errorMessage}
             >
               <Icons.ExclamationCircleOutlined
-                data-test="query-error-tooltip-trigger"
-                iconColor={theme.colorError}
-                iconSize="s"
+                css={css`
+                  ${iconStyles};
+                  color: ${errorColor};
+                `}
               />
             </Tooltip>
           </span>
@@ -760,204 +729,61 @@ export const ControlPanelsContainer = (props: ControlPanelsContainerProps) => {
       </>
     );
   }, [
-    theme.colorErrorText,
-    theme.colorWarningText,
+    colors.error.base,
+    colors.alert.base,
     dataTabHasHadNoErrors,
     props.errorMessage,
   ]);
-
-  const showCustomizeTab = customizeSections.length > 0;
-  const showMatrixifyTab = isFeatureEnabled(FeatureFlag.Matrixify);
-
-  // Check if matrixify sections have validation errors
-  const matrixifyHasErrors = useMemo(() => {
-    if (!showMatrixifyTab) return false;
-
-    return matrixifySections.some(section =>
-      section.controlSetRows.some(rows =>
-        rows.some(item => {
-          const controlName =
-            typeof item === 'string'
-              ? item
-              : item && 'name' in item
-                ? item.name
-                : null;
-          return (
-            controlName &&
-            controlName in props.controls &&
-            props.controls[controlName].validationErrors &&
-            props.controls[controlName].validationErrors.length > 0
-          );
-        }),
-      ),
-    );
-  }, [showMatrixifyTab, matrixifySections, props.controls]);
-
-  // Create Matrixify tab label with Beta tag and validation errors
-  const matrixifyTabLabel = useMemo(
-    () => (
-      <>
-        <span>{t('Matrixify')}</span>
-        {matrixifyHasErrors && (
-          <span
-            css={(theme: SupersetTheme) => css`
-              margin-left: ${theme.sizeUnit * 2}px;
-            `}
-          >
-            {' '}
-            <Tooltip
-              id="matrixify-validation-error-tooltip"
-              placement="right"
-              title={t('This section contains validation errors')}
-            >
-              <Icons.ExclamationCircleOutlined
-                data-test="matrixify-validation-error-tooltip-trigger"
-                iconColor={theme.colorError}
-                iconSize="s"
-              />
-            </Tooltip>
-          </span>
-        )}{' '}
-        <Tooltip
-          title={t(
-            'This feature is experimental and may change or have limitations',
-          )}
-          placement="top"
-        >
-          <Label
-            type="info"
-            css={css`
-              margin-left: ${theme.sizeUnit}px;
-              font-size: ${theme.fontSizeSM}px;
-            `}
-          >
-            {t('beta')}
-          </Label>
-        </Tooltip>
-      </>
-    ),
-    [
-      matrixifyHasErrors,
-      theme.colorErrorText,
-      theme.sizeUnit,
-      theme.fontSizeSM,
-    ],
-  );
 
   const controlPanelRegistry = getChartControlPanelRegistry();
   if (!controlPanelRegistry.has(form_data.viz_type) && pluginContext.loading) {
     return <Loading />;
   }
 
+  const showCustomizeTab = customizeSections.length > 0;
+
   return (
-    <>
-      <Styles ref={containerRef}>
-        <Tabs
-          id="controlSections"
-          data-test="control-tabs"
-          allowOverflow={false}
-          items={[
-            {
-              key: TABS_KEYS.DATA,
-              label: dataTabTitle,
-              children: (
-                <>
-                  {showDatasourceAlert && <DatasourceAlert />}
-                  <Collapse
-                    defaultActiveKey={expandedQuerySections}
-                    expandIconPosition="end"
-                    ghost
-                    bordered
-                    items={querySections.map(renderControlPanelSection)}
-                  />
-                </>
-              ),
-            },
-            ...(showCustomizeTab
-              ? [
-                  {
-                    key: TABS_KEYS.CUSTOMIZE,
-                    label: t('Customize'),
-                    children: (
-                      <Collapse
-                        defaultActiveKey={expandedCustomizeSections}
-                        expandIconPosition="end"
-                        ghost
-                        bordered
-                        items={customizeSections.map(renderControlPanelSection)}
-                      />
-                    ),
-                  },
-                ]
-              : []),
-            ...(showMatrixifyTab
-              ? [
-                  {
-                    key: TABS_KEYS.MATRIXIFY,
-                    label: matrixifyTabLabel,
-                    children: (
-                      <>
-                        {/* Render Enable Matrixify control outside collapsible sections */}
-                        {matrixifyEnableControl &&
-                          (
-                            matrixifyEnableControl as ControlPanelSectionConfig
-                          ).controlSetRows.map(
-                            (controlSetRow: CustomControlItem[], i: number) => (
-                              <div
-                                key={`matrixify-enable-${i}`}
-                                css={css`
-                                  padding: ${theme.sizeUnit * 4}px;
-                                  border-bottom: 1px solid ${theme.colorBorder};
-                                `}
-                              >
-                                {controlSetRow.map(
-                                  (control: CustomControlItem, j: number) => {
-                                    if (
-                                      !control ||
-                                      typeof control === 'string'
-                                    ) {
-                                      return null;
-                                    }
-                                    return (
-                                      <div key={`control-${i}-${j}`}>
-                                        {renderControl(control)}
-                                      </div>
-                                    );
-                                  },
-                                )}
-                              </div>
-                            ),
-                          )}
-                        <Collapse
-                          defaultActiveKey={expandedMatrixifySections}
-                          expandIconPosition="end"
-                          ghost
-                          bordered
-                          items={matrixifySections.map(
-                            renderControlPanelSection,
-                          )}
-                        />
-                      </>
-                    ),
-                  },
-                ]
-              : []),
-          ]}
+    <Styles ref={containerRef}>
+      <ControlPanelsTabs
+        id="controlSections"
+        data-test="control-tabs"
+        fullWidth={showCustomizeTab}
+        allowOverflow={false}
+      >
+        <Tabs.TabPane key="query" tab={dataTabTitle}>
+          <Collapse
+            defaultActiveKey={expandedQuerySections}
+            expandIconPosition="right"
+            ghost
+          >
+            {showDatasourceAlert && <DatasourceAlert />}
+            {querySections.map(renderControlPanelSection)}
+          </Collapse>
+        </Tabs.TabPane>
+        {showCustomizeTab && (
+          <Tabs.TabPane key="display" tab={t('Customize')}>
+            <Collapse
+              defaultActiveKey={expandedCustomizeSections}
+              expandIconPosition="right"
+              ghost
+            >
+              {customizeSections.map(renderControlPanelSection)}
+            </Collapse>
+          </Tabs.TabPane>
+        )}
+      </ControlPanelsTabs>
+      <div css={actionButtonsContainerStyles}>
+        <RunQueryButton
+          onQuery={props.onQuery}
+          onStop={props.onStop}
+          errorMessage={props.errorMessage}
+          loading={props.chart.chartStatus === 'loading'}
+          isNewChart={!props.chart.queriesResponse}
+          canStopQuery={props.canStopQuery}
+          chartIsStale={props.chartIsStale}
         />
-        <div css={actionButtonsContainerStyles}>
-          <RunQueryButton
-            onQuery={props.onQuery}
-            onStop={props.onStop}
-            errorMessage={props.buttonErrorMessage || props.errorMessage}
-            loading={props.chart.chartStatus === 'loading'}
-            isNewChart={!props.chart.queriesResponse}
-            canStopQuery={props.canStopQuery}
-            chartIsStale={props.chartIsStale}
-          />
-        </div>
-      </Styles>
-      {ConfirmModal}
-    </>
+      </div>
+    </Styles>
   );
 };
 

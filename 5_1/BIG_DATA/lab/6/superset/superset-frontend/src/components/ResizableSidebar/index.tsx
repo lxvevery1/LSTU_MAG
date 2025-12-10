@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { FC, ReactNode } from 'react';
+import React from 'react';
 import { Resizable } from 're-resizable';
-import { styled } from '@apache-superset/core/ui';
+import { styled } from '@superset-ui/core';
 import useStoredSidebarWidth from './useStoredSidebarWidth';
 
 const ResizableWrapper = styled.div`
@@ -26,7 +26,7 @@ const ResizableWrapper = styled.div`
   height: 100%;
 
   :hover .sidebar-resizer::after {
-    background-color: ${({ theme }) => theme.colorPrimary};
+    background-color: ${({ theme }) => theme.colors.primary.base};
   }
 
   .sidebar-resizer {
@@ -49,10 +49,10 @@ type Props = {
   enable: boolean;
   minWidth?: number;
   maxWidth?: number;
-  children: (width: number) => ReactNode;
+  children: (width: number) => React.ReactNode;
 };
 
-const ResizableSidebar: FC<Props> = ({
+const ResizableSidebar: React.FC<Props> = ({
   id,
   initialWidth,
   minWidth,
@@ -67,12 +67,7 @@ const ResizableSidebar: FC<Props> = ({
       <ResizableWrapper>
         <Resizable
           enable={{ right: enable }}
-          handleClasses={{
-            right: 'sidebar-resizer',
-            bottom: 'hidden',
-            bottomRight: 'hidden',
-            bottomLeft: 'hidden',
-          }}
+          handleClasses={{ right: 'sidebar-resizer' }}
           size={{ width, height: '100%' }}
           minWidth={minWidth}
           maxWidth={maxWidth}

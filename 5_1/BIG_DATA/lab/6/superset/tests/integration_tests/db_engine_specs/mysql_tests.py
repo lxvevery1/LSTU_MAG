@@ -21,17 +21,17 @@ from sqlalchemy.dialects.mysql import DATE, NVARCHAR, TEXT, VARCHAR
 
 from superset.db_engine_specs.mysql import MySQLEngineSpec
 from superset.errors import ErrorLevel, SupersetError, SupersetErrorType
-from tests.integration_tests.base_tests import SupersetTestCase
+from tests.integration_tests.db_engine_specs.base_tests import TestDbEngineSpec
 
 
-class TestMySQLEngineSpecsDbEngineSpec(SupersetTestCase):
+class TestMySQLEngineSpecsDbEngineSpec(TestDbEngineSpec):
     @unittest.skipUnless(
-        SupersetTestCase.is_module_installed("MySQLdb"), "mysqlclient not installed"
+        TestDbEngineSpec.is_module_installed("MySQLdb"), "mysqlclient not installed"
     )
     def test_get_datatype_mysql(self):
         """Tests related to datatype mapping for MySQL"""
-        assert "TINY" == MySQLEngineSpec.get_datatype(1)
-        assert "VARCHAR" == MySQLEngineSpec.get_datatype(15)
+        self.assertEqual("TINY", MySQLEngineSpec.get_datatype(1))
+        self.assertEqual("VARCHAR", MySQLEngineSpec.get_datatype(15))
 
     def test_column_datatype_to_string(self):
         test_cases = (
@@ -49,7 +49,7 @@ class TestMySQLEngineSpecsDbEngineSpec(SupersetTestCase):
             actual = MySQLEngineSpec.column_datatype_to_string(
                 original, mysql.dialect()
             )
-            assert actual == expected
+            self.assertEqual(actual, expected)
 
     def test_extract_error_message(self):
         from MySQLdb._exceptions import OperationalError
@@ -170,18 +170,18 @@ class TestMySQLEngineSpecsDbEngineSpec(SupersetTestCase):
                     "issue_codes": [
                         {
                             "code": 1015,
-                            "message": "Issue 1015 - Either the database is spelled incorrectly or does not exist.",  # noqa: E501
+                            "message": "Issue 1015 - Either the database is spelled incorrectly or does not exist.",
                         }
                     ],
                 },
             )
         ]
 
-        msg = "check the manual that corresponds to your MySQL server version for the right syntax to use near 'from_"  # noqa: E501
+        msg = "check the manual that corresponds to your MySQL server version for the right syntax to use near 'fromm"
         result = MySQLEngineSpec.extract_errors(Exception(msg))
         assert result == [
             SupersetError(
-                message='Please check your query for syntax errors near "from_". Then, try running your query again.',  # noqa: E501
+                message='Please check your query for syntax errors near "fromm". Then, try running your query again.',
                 error_type=SupersetErrorType.SYNTAX_ERROR,
                 level=ErrorLevel.ERROR,
                 extra={

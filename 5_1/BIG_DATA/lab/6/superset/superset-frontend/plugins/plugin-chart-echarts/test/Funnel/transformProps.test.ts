@@ -16,38 +16,42 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ChartProps, getNumberFormatter } from '@superset-ui/core';
-import { supersetTheme } from '@apache-superset/core/ui';
-import transformProps, { parseParams } from '../../src/Funnel/transformProps';
+import {
+  ChartProps,
+  getNumberFormatter,
+  supersetTheme,
+} from '@superset-ui/core';
+import transformProps, {
+  formatFunnelLabel,
+} from '../../src/Funnel/transformProps';
 import {
   EchartsFunnelChartProps,
-  PercentCalcType,
+  EchartsFunnelLabelTypeType,
 } from '../../src/Funnel/types';
 
-const formData = {
-  colorScheme: 'bnbColors',
-  datasource: '3__table',
-  granularity_sqla: 'ds',
-  metric: 'sum__num',
-  groupby: ['foo', 'bar'],
-};
-const queriesData = [
-  {
-    data: [
-      { foo: 'Sylvester', bar: 1, sum__num: 10 },
-      { foo: 'Arnold', bar: 2, sum__num: 2.5 },
-    ],
-  },
-];
-const chartProps = new ChartProps({
-  formData,
-  width: 800,
-  height: 600,
-  queriesData,
-  theme: supersetTheme,
-});
-
 describe('Funnel transformProps', () => {
+  const formData = {
+    colorScheme: 'bnbColors',
+    datasource: '3__table',
+    granularity_sqla: 'ds',
+    metric: 'sum__num',
+    groupby: ['foo', 'bar'],
+  };
+  const chartProps = new ChartProps({
+    formData,
+    width: 800,
+    height: 600,
+    queriesData: [
+      {
+        data: [
+          { foo: 'Sylvester', bar: 1, sum__num: 10 },
+          { foo: 'Arnold', bar: 2, sum__num: 2.5 },
+        ],
+      },
+    ],
+    theme: supersetTheme,
+  });
+
   it('should transform chart props for viz', () => {
     expect(transformProps(chartProps as EchartsFunnelChartProps)).toEqual(
       expect.objectContaining({
@@ -77,93 +81,63 @@ describe('Funnel transformProps', () => {
 describe('formatFunnelLabel', () => {
   it('should generate a valid funnel chart label', () => {
     const numberFormatter = getNumberFormatter();
-    const params = {
-      name: 'My Label',
-      value: 1234,
-      percent: 12.34,
-      data: { firstStepPercent: 0.5, prevStepPercent: 0.85 },
-    };
+    const params = { name: 'My Label', value: 1234, percent: 12.34 };
     expect(
-      parseParams({
+      formatFunnelLabel({
         params,
         numberFormatter,
-        percentCalculationType: PercentCalcType.Total,
+        labelType: EchartsFunnelLabelTypeType.Key,
       }),
-    ).toEqual(['My Label', '1.23k', '12.34%']);
+    ).toEqual('My Label');
     expect(
-      parseParams({
+      formatFunnelLabel({
         params,
         numberFormatter,
-        percentCalculationType: PercentCalcType.FirstStep,
+        labelType: EchartsFunnelLabelTypeType.Value,
       }),
-    ).toEqual(['My Label', '1.23k', '50.00%']);
+    ).toEqual('1.23k');
     expect(
-      parseParams({
+      formatFunnelLabel({
         params,
         numberFormatter,
-        percentCalculationType: PercentCalcType.PreviousStep,
+        labelType: EchartsFunnelLabelTypeType.Percent,
       }),
-    ).toEqual(['My Label', '1.23k', '85.00%']);
+    ).toEqual('12.34%');
     expect(
-      parseParams({
+      formatFunnelLabel({
+        params,
+        numberFormatter,
+        labelType: EchartsFunnelLabelTypeType.KeyValue,
+      }),
+    ).toEqual('My Label: 1.23k');
+    expect(
+      formatFunnelLabel({
+        params,
+        numberFormatter,
+        labelType: EchartsFunnelLabelTypeType.KeyPercent,
+      }),
+    ).toEqual('My Label: 12.34%');
+    expect(
+      formatFunnelLabel({
+        params,
+        numberFormatter,
+        labelType: EchartsFunnelLabelTypeType.KeyValuePercent,
+      }),
+    ).toEqual('My Label: 1.23k (12.34%)');
+    expect(
+      formatFunnelLabel({
         params: { ...params, name: '<NULL>' },
         numberFormatter,
-        percentCalculationType: PercentCalcType.Total,
+        labelType: EchartsFunnelLabelTypeType.Key,
       }),
-    ).toEqual(['<NULL>', '1.23k', '12.34%']);
+    ).toEqual('<NULL>');
     expect(
-      parseParams({
+      formatFunnelLabel({
         params: { ...params, name: '<NULL>' },
         numberFormatter,
-        percentCalculationType: PercentCalcType.Total,
+        labelType: EchartsFunnelLabelTypeType.Key,
         sanitizeName: true,
       }),
-    ).toEqual(['&lt;NULL&gt;', '1.23k', '12.34%']);
-  });
-});
-
-describe('legend sorting', () => {
-  const legendQueriesData = [
-    {
-      data: [
-        { foo: 'Sylvester', sum__num: 10 },
-        { foo: 'Arnold', sum__num: 2.5 },
-        { foo: 'Mark', sum__num: 13 },
-      ],
-    },
-  ];
-  const createChartProps = (overrides = {}) =>
-    new ChartProps({
-      ...chartProps,
-      formData: {
-        ...formData,
-        groupby: ['foo'],
-        ...overrides,
-      },
-      queriesData: legendQueriesData,
-    });
-
-  it('preserves original data order when no sort specified', () => {
-    const props = createChartProps({ legendSort: null });
-    const result = transformProps(props as EchartsFunnelChartProps);
-
-    const legendData = (result.echartOptions.legend as any).data;
-    expect(legendData).toEqual(['Sylvester', 'Arnold', 'Mark']);
-  });
-
-  it('sorts alphabetically ascending when legendSort is "asc"', () => {
-    const props = createChartProps({ legendSort: 'asc' });
-    const result = transformProps(props as EchartsFunnelChartProps);
-
-    const legendData = (result.echartOptions.legend as any).data;
-    expect(legendData).toEqual(['Arnold', 'Mark', 'Sylvester']);
-  });
-
-  it('sorts alphabetically descending when legendSort is "desc"', () => {
-    const props = createChartProps({ legendSort: 'desc' });
-    const result = transformProps(props as EchartsFunnelChartProps);
-
-    const legendData = (result.echartOptions.legend as any).data;
-    expect(legendData).toEqual(['Sylvester', 'Mark', 'Arnold']);
+    ).toEqual('&lt;NULL&gt;');
   });
 });

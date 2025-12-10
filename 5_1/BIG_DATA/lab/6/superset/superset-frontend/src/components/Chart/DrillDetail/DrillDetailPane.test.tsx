@@ -16,12 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import fetchMock from 'fetch-mock';
-import { QueryFormData, SupersetClient } from '@superset-ui/core';
+import React from 'react';
 import { render, screen, waitFor } from 'spec/helpers/testing-library';
 import { getMockStoreWithNativeFilters } from 'spec/fixtures/mockStore';
 import chartQueries, { sliceId } from 'spec/fixtures/mockChartQueries';
-import { supersetGetCache } from 'src/utils/cachedSupersetGet';
+import { QueryFormData, SupersetClient } from '@superset-ui/core';
+import fetchMock from 'fetch-mock';
 import DrillDetailPane from './DrillDetailPane';
 
 const chart = chartQueries[sliceId];
@@ -114,10 +114,7 @@ const fetchWithData = () => {
   });
 };
 
-afterEach(() => {
-  fetchMock.restore();
-  supersetGetCache.clear();
-});
+afterEach(fetchMock.restore);
 
 test('should render', async () => {
   fetchWithNoData();
@@ -164,7 +161,7 @@ test('should render the "No results" components', async () => {
 
 test('should render the metadata bar', async () => {
   fetchWithNoData();
-  setup({ dataset: MOCKED_DATASET });
+  setup();
   expect(
     await screen.findByText(MOCKED_DATASET.table_name),
   ).toBeInTheDocument();
@@ -181,56 +178,23 @@ test('should render the metadata bar', async () => {
   ).toBeInTheDocument();
 });
 
+test('should render an error message when fails to load the metadata', async () => {
+  fetchWithNoData();
+  fetchMock.get(
+    DATASET_ENDPOINT,
+    { status: 'error', error: 'Some error' },
+    { overwriteRoutes: true },
+  );
+  setup();
+  expect(
+    await screen.findByText('There was an error loading the dataset metadata'),
+  ).toBeInTheDocument();
+});
+
 test('should render the error', async () => {
   jest
     .spyOn(SupersetClient, 'post')
     .mockRejectedValue(new Error('Something went wrong'));
   await waitForRender();
   expect(screen.getByText('Error: Something went wrong')).toBeInTheDocument();
-});
-
-test('should use verbose_map for column headers when available', async () => {
-  jest.restoreAllMocks();
-
-  const datasetWithVerboseMap = {
-    ...MOCKED_DATASET,
-    verbose_map: {
-      year: 'Year of Release',
-      na_sales: 'North America Sales',
-    },
-  };
-
-  fetchMock.post(SAMPLES_ENDPOINT, {
-    result: {
-      total_count: 1,
-      data: [
-        {
-          year: 1996,
-          na_sales: 11.27,
-          eu_sales: 8.89,
-        },
-      ],
-      colnames: ['year', 'na_sales', 'eu_sales'],
-      coltypes: [0, 0, 0],
-    },
-  });
-
-  await waitForRender({ dataset: datasetWithVerboseMap });
-
-  expect(
-    screen.getByRole('columnheader', { name: 'Year of Release' }),
-  ).toBeInTheDocument();
-  expect(
-    screen.getByRole('columnheader', { name: 'North America Sales' }),
-  ).toBeInTheDocument();
-  expect(
-    screen.queryByRole('columnheader', { name: 'eu_sales' }),
-  ).toBeInTheDocument();
-
-  expect(
-    screen.queryByRole('columnheader', { name: 'year' }),
-  ).not.toBeInTheDocument();
-  expect(
-    screen.queryByRole('columnheader', { name: 'na_sales' }),
-  ).not.toBeInTheDocument();
 });

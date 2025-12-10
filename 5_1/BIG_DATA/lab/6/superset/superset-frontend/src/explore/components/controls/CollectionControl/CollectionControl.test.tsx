@@ -16,11 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { render, screen, userEvent } from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { render, screen } from 'spec/helpers/testing-library';
 import CollectionControl from '.';
 
 jest.mock('@superset-ui/chart-controls', () => ({
-  InfoTooltip: (props: any) => (
+  InfoTooltipWithTrigger: (props: any) => (
     <button
       onClick={props.onClick}
       type="button"
@@ -105,27 +107,23 @@ test('Should have add button', async () => {
   render(<CollectionControl {...props} />);
 
   expect(
-    await screen.findByRole('button', { name: 'plus' }),
+    await screen.findByRole('button', { name: 'plus-large' }),
   ).toBeInTheDocument();
-  expect(props.onChange).toHaveBeenCalledTimes(0);
-  userEvent.click(screen.getByRole('button', { name: 'plus' }));
-  expect(props.onChange).toHaveBeenCalledWith([
-    { key: 'hrYAZ5iBH' },
-    undefined,
-  ]);
+  expect(props.onChange).toBeCalledTimes(0);
+  userEvent.click(screen.getByRole('button', { name: 'plus-large' }));
+  expect(props.onChange).toBeCalledWith([{ key: 'hrYAZ5iBH' }, undefined]);
 });
 
 test('Should have remove button', async () => {
   const props = createProps();
   render(<CollectionControl {...props} />);
 
-  const removeButton = await screen.findByRole('img', { name: 'close' });
-  expect(removeButton).toBeInTheDocument();
-  expect(props.onChange).toHaveBeenCalledTimes(0);
-  const buttonElement = removeButton.closest('button');
-  expect(buttonElement).not.toBeNull();
-  userEvent.click(buttonElement!);
-  expect(props.onChange).toHaveBeenCalledWith([]);
+  expect(
+    await screen.findByRole('button', { name: 'remove-item' }),
+  ).toBeInTheDocument();
+  expect(props.onChange).toBeCalledTimes(0);
+  userEvent.click(screen.getByRole('button', { name: 'remove-item' }));
+  expect(props.onChange).toBeCalledWith([]);
 });
 
 test('Should have SortableDragger icon', async () => {
@@ -139,7 +137,7 @@ test('Should call Control component', async () => {
   render(<CollectionControl {...props} />);
 
   expect(await screen.findByTestId('TestControl')).toBeInTheDocument();
-  expect(props.onChange).toHaveBeenCalledTimes(0);
+  expect(props.onChange).toBeCalledTimes(0);
   userEvent.click(screen.getByTestId('TestControl'));
-  expect(props.onChange).toHaveBeenCalledWith([{ key: 'hrYAZ5iBH' }]);
+  expect(props.onChange).toBeCalledWith([{ key: 'hrYAZ5iBH' }]);
 });

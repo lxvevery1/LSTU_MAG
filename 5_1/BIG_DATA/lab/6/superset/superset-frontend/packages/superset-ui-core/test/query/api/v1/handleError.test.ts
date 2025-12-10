@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import 'whatwg-fetch'; // for adding Response polyfill
 import {
   JsonObject,
   SupersetApiError,
@@ -104,7 +105,7 @@ describe('handleError()', () => {
     const mockError = {
       error: {
         message: 'Request timeout',
-        error_type: SupersetApiErrorType.FrontendTimeoutError,
+        error_type: SupersetApiErrorType.FRONTEND_TIMEOUT_ERROR,
       },
     };
     await testHandleError(mockError, {

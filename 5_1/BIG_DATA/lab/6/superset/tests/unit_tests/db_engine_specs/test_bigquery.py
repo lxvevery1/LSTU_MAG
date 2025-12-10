@@ -17,22 +17,18 @@
 
 # pylint: disable=line-too-long, import-outside-toplevel, protected-access, invalid-name
 
+import json
 from datetime import datetime
 from typing import Optional
-from unittest import mock
 
 import pytest
-from pytest_mock import MockerFixture
+from pytest_mock import MockFixture
 from sqlalchemy import select
-from sqlalchemy.engine.url import make_url
 from sqlalchemy.sql import sqltypes
 from sqlalchemy_bigquery import BigQueryDialect
 
-from superset.sql.parse import Table
-from superset.superset_typing import ResultSetColumnType
-from superset.utils import json
 from tests.unit_tests.db_engine_specs.utils import assert_convert_dttm
-from tests.unit_tests.fixtures.common import dttm  # noqa: F401
+from tests.unit_tests.fixtures.common import dttm
 
 
 def test_get_fields() -> None:
@@ -68,16 +64,7 @@ def test_get_fields() -> None:
     """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
-    columns: list[ResultSetColumnType] = [
-        {"column_name": "limit", "name": "limit", "type": "STRING", "is_dttm": False},
-        {"column_name": "name", "name": "name", "type": "STRING", "is_dttm": False},
-        {
-            "column_name": "project.name",
-            "name": "project.name",
-            "type": "STRING",
-            "is_dttm": False,
-        },
-    ]
+    columns = [{"name": "limit"}, {"name": "name"}, {"name": "project.name"}]
     fields = BigQueryEngineSpec._get_fields(columns)
 
     query = select(fields)
@@ -87,7 +74,7 @@ def test_get_fields() -> None:
     )
 
 
-def test_select_star(mocker: MockerFixture) -> None:
+def test_select_star(mocker: MockFixture) -> None:
     """
     Test the ``select_star`` method.
 
@@ -97,9 +84,8 @@ def test_select_star(mocker: MockerFixture) -> None:
     """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
-    cols: list[ResultSetColumnType] = [
+    cols = [
         {
-            "column_name": "trailer",
             "name": "trailer",
             "type": sqltypes.ARRAY(sqltypes.JSON()),
             "nullable": True,
@@ -108,10 +94,8 @@ def test_select_star(mocker: MockerFixture) -> None:
             "precision": None,
             "scale": None,
             "max_length": None,
-            "is_dttm": False,
         },
         {
-            "column_name": "trailer.key",
             "name": "trailer.key",
             "type": sqltypes.String(),
             "nullable": True,
@@ -120,10 +104,8 @@ def test_select_star(mocker: MockerFixture) -> None:
             "precision": None,
             "scale": None,
             "max_length": None,
-            "is_dttm": False,
         },
         {
-            "column_name": "trailer.value",
             "name": "trailer.value",
             "type": sqltypes.String(),
             "nullable": True,
@@ -132,10 +114,8 @@ def test_select_star(mocker: MockerFixture) -> None:
             "precision": None,
             "scale": None,
             "max_length": None,
-            "is_dttm": False,
         },
         {
-            "column_name": "trailer.email",
             "name": "trailer.email",
             "type": sqltypes.String(),
             "nullable": True,
@@ -144,14 +124,13 @@ def test_select_star(mocker: MockerFixture) -> None:
             "precision": None,
             "scale": None,
             "max_length": None,
-            "is_dttm": False,
         },
     ]
 
     # mock the database so we can compile the query
     database = mocker.MagicMock()
-    database.compile_sqla_query = lambda query, catalog, schema: str(
-        query.compile(dialect=BigQueryDialect(), compile_kwargs={"literal_binds": True})
+    database.compile_sqla_query = lambda query: str(
+        query.compile(dialect=BigQueryDialect())
     )
 
     engine = mocker.MagicMock()
@@ -159,8 +138,9 @@ def test_select_star(mocker: MockerFixture) -> None:
 
     sql = BigQueryEngineSpec.select_star(
         database=database,
-        table=Table("my_table"),
+        table_name="my_table",
         engine=engine,
+        schema=None,
         limit=100,
         show_cols=True,
         indent=True,
@@ -169,10 +149,9 @@ def test_select_star(mocker: MockerFixture) -> None:
     )
     assert (
         sql
-        == """SELECT
-  `trailer` AS `trailer`
+        == """SELECT `trailer` AS `trailer`
 FROM `my_table`
-LIMIT 100"""
+LIMIT :param_1"""
     )
 
 
@@ -192,7 +171,7 @@ def test_get_parameters_from_uri_serializable() -> None:
 
 def test_unmask_encrypted_extra() -> None:
     """
-    Test that the private key can be reused from the previous `encrypted_extra`.
+    Test that the private key can be reused from the previous ``encrypted_extra``.
     """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
@@ -213,52 +192,17 @@ def test_unmask_encrypted_extra() -> None:
         }
     )
 
-    assert BigQueryEngineSpec.unmask_encrypted_extra(old, new) == json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "yellow-unicorn-314419",
-                "private_key": "SECRET",
-            },
-        }
-    )
+    assert json.loads(str(BigQueryEngineSpec.unmask_encrypted_extra(old, new))) == {
+        "credentials_info": {
+            "project_id": "yellow-unicorn-314419",
+            "private_key": "SECRET",
+        },
+    }
 
 
-def test_unmask_encrypted_extra_field_changeed() -> None:
+def test_unmask_encrypted_extra_when_empty() -> None:
     """
-    Test that the private key is not reused when the field has changed.
-    """
-    from superset.db_engine_specs.bigquery import BigQueryEngineSpec
-
-    old = json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "black-sanctum-314419",
-                "private_key": "SECRET",
-            },
-        }
-    )
-    new = json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "yellow-unicorn-314419",
-                "private_key": "NEW-SECRET",
-            },
-        }
-    )
-
-    assert BigQueryEngineSpec.unmask_encrypted_extra(old, new) == json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "yellow-unicorn-314419",
-                "private_key": "NEW-SECRET",
-            },
-        }
-    )
-
-
-def test_unmask_encrypted_extra_when_old_is_none() -> None:
-    """
-    Test that a `None` value for the old field works for `encrypted_extra`.
+    Test that a None value works for ``encrypted_extra``.
     """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
@@ -272,19 +216,17 @@ def test_unmask_encrypted_extra_when_old_is_none() -> None:
         }
     )
 
-    assert BigQueryEngineSpec.unmask_encrypted_extra(old, new) == json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "yellow-unicorn-314419",
-                "private_key": "XXXXXXXXXX",
-            },
-        }
-    )
+    assert json.loads(str(BigQueryEngineSpec.unmask_encrypted_extra(old, new))) == {
+        "credentials_info": {
+            "project_id": "yellow-unicorn-314419",
+            "private_key": "XXXXXXXXXX",
+        },
+    }
 
 
-def test_unmask_encrypted_extra_when_new_is_none() -> None:
+def test_unmask_encrypted_extra_when_new_is_empty() -> None:
     """
-    Test that a `None` value for the new field works for `encrypted_extra`.
+    Test that a None value works for ``encrypted_extra``.
     """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
@@ -299,31 +241,6 @@ def test_unmask_encrypted_extra_when_new_is_none() -> None:
     new = None
 
     assert BigQueryEngineSpec.unmask_encrypted_extra(old, new) is None
-
-
-def test_mask_encrypted_extra() -> None:
-    """
-    Test that the private key is masked when the database is edited.
-    """
-    from superset.db_engine_specs.bigquery import BigQueryEngineSpec
-
-    config = json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "black-sanctum-314419",
-                "private_key": "SECRET",
-            },
-        }
-    )
-
-    assert BigQueryEngineSpec.mask_encrypted_extra(config) == json.dumps(
-        {
-            "credentials_info": {
-                "project_id": "black-sanctum-314419",
-                "private_key": "XXXXXXXXXX",
-            },
-        }
-    )
 
 
 def test_mask_encrypted_extra_when_empty() -> None:
@@ -345,11 +262,11 @@ def test_parse_error_message() -> None:
     (job ID: ddf30b05-44e8-4fbf-aa29-40bfccaed886)
                                                 -----Query Job SQL Follows-----
     |    .    |    .    |    .    |\n   1:select * from case_detail_all_suites\n   2:LIMIT 1001\n    |    .    |    .    |    .    |
-    """  # noqa: E501
+    """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
-    message = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).\n\n(job ID: ddf30b05-44e8-4fbf-aa29-40bfccaed886)\n\n     -----Query Job SQL Follows-----     \n\n    |    .    |    .    |    .    |\n   1:select * from case_detail_all_suites\n   2:LIMIT 1001\n    |    .    |    .    |    .    |'  # noqa: E501
-    expected_result = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).'  # noqa: E501
+    message = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).\n\n(job ID: ddf30b05-44e8-4fbf-aa29-40bfccaed886)\n\n     -----Query Job SQL Follows-----     \n\n    |    .    |    .    |    .    |\n   1:select * from case_detail_all_suites\n   2:LIMIT 1001\n    |    .    |    .    |    .    |'
+    expected_result = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).'
     assert (
         str(BigQueryEngineSpec.parse_error_exception(Exception(message)))
         == expected_result
@@ -363,12 +280,12 @@ def test_parse_error_raises_exception() -> None:
     Example errors:
     400 Syntax error: Expected "(" or keyword UNNEST but got "@" at [4:80]
     bigquery error: 400 Table \"case_detail_all_suites\" must be qualified with a dataset (e.g. dataset.table).
-    """  # noqa: E501
+    """
     from superset.db_engine_specs.bigquery import BigQueryEngineSpec
 
-    message = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).'  # noqa: E501
+    message = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).'
     message_2 = "6"
-    expected_result = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).'  # noqa: E501
+    expected_result = 'bigquery error: 400 Syntax error: Table "case_detail_all_suites" must be qualified with a dataset (e.g. dataset.table).'
     assert (
         str(BigQueryEngineSpec.parse_error_exception(Exception(message)))
         == expected_result
@@ -387,145 +304,11 @@ def test_parse_error_raises_exception() -> None:
     ],
 )
 def test_convert_dttm(
-    target_type: str,
-    expected_result: Optional[str],
-    dttm: datetime,  # noqa: F811
+    target_type: str, expected_result: Optional[str], dttm: datetime
 ) -> None:
     """
     DB Eng Specs (bigquery): Test conversion to date time
     """
-    from superset.db_engine_specs.bigquery import (
-        BigQueryEngineSpec as spec,  # noqa: N813
-    )
+    from superset.db_engine_specs.bigquery import BigQueryEngineSpec as spec
 
     assert_convert_dttm(spec, target_type, expected_result, dttm)
-
-
-def test_get_default_catalog(mocker: MockerFixture) -> None:
-    """
-    Test that we get the default catalog from the connection URI.
-    """
-    from superset.db_engine_specs.bigquery import BigQueryEngineSpec
-    from superset.models.core import Database
-
-    mocker.patch.object(Database, "get_sqla_engine")
-    get_client = mocker.patch.object(BigQueryEngineSpec, "_get_client")
-    get_client().project = "project"
-
-    database = Database(
-        database_name="my_db",
-        sqlalchemy_uri="bigquery://project",
-    )
-    assert BigQueryEngineSpec.get_default_catalog(database) == "project"
-
-    database = Database(
-        database_name="my_db",
-        sqlalchemy_uri="bigquery:///project",
-    )
-    assert BigQueryEngineSpec.get_default_catalog(database) == "project"
-
-    database = Database(
-        database_name="my_db",
-        sqlalchemy_uri="bigquery://",
-    )
-    assert BigQueryEngineSpec.get_default_catalog(database) == "project"
-
-
-def test_adjust_engine_params_catalog_as_host() -> None:
-    """
-    Test passing a custom catalog.
-
-    In this test, the original URI has the catalog as the host.
-    """
-    from superset.db_engine_specs.bigquery import BigQueryEngineSpec
-
-    url = make_url("bigquery://project")
-
-    uri = BigQueryEngineSpec.adjust_engine_params(url, {})[0]
-    assert str(uri) == "bigquery://project"
-
-    uri = BigQueryEngineSpec.adjust_engine_params(
-        url,
-        {},
-        catalog="other-project",
-    )[0]
-    assert str(uri) == "bigquery://other-project/"
-
-
-def test_get_materialized_view_names() -> None:
-    """
-    Test get_materialized_view_names method.
-    """
-    from superset.db_engine_specs.bigquery import BigQueryEngineSpec
-
-    database = mock.Mock()
-    database.get_default_catalog.return_value = "my_project"
-
-    inspector = mock.Mock()
-
-    # Mock the raw connection and cursor
-    cursor_mock = mock.Mock()
-    cursor_mock.fetchall.return_value = [
-        ("materialized_view_1",),
-        ("materialized_view_2",),
-    ]
-
-    connection_mock = mock.Mock()
-    connection_mock.cursor.return_value = cursor_mock
-    connection_mock.__enter__ = mock.Mock(return_value=connection_mock)
-    connection_mock.__exit__ = mock.Mock(return_value=None)
-
-    database.get_raw_connection.return_value = connection_mock
-
-    result = BigQueryEngineSpec.get_materialized_view_names(
-        database=database, inspector=inspector, schema="my_dataset"
-    )
-
-    assert result == {"materialized_view_1", "materialized_view_2"}
-
-    # Verify the SQL query was correct
-    cursor_mock.execute.assert_called_once()
-    executed_query = cursor_mock.execute.call_args[0][0]
-    assert "INFORMATION_SCHEMA.TABLES" in executed_query
-    assert "table_type = 'MATERIALIZED VIEW'" in executed_query
-
-
-def test_get_view_names_excludes_materialized_views() -> None:
-    """
-    Test get_view_names excludes materialized views.
-    """
-    from superset.db_engine_specs.bigquery import BigQueryEngineSpec
-
-    database = mock.Mock()
-    database.get_default_catalog.return_value = "my_project"
-
-    inspector = mock.Mock()
-
-    # Mock the raw connection and cursor
-    cursor_mock = mock.Mock()
-    # Return only regular views, not materialized views
-    cursor_mock.fetchall.return_value = [
-        ("regular_view_1",),
-        ("regular_view_2",),
-    ]
-
-    connection_mock = mock.Mock()
-    connection_mock.cursor.return_value = cursor_mock
-    connection_mock.__enter__ = mock.Mock(return_value=connection_mock)
-    connection_mock.__exit__ = mock.Mock(return_value=None)
-
-    database.get_raw_connection.return_value = connection_mock
-
-    result = BigQueryEngineSpec.get_view_names(
-        database=database, inspector=inspector, schema="my_dataset"
-    )
-
-    assert result == {"regular_view_1", "regular_view_2"}
-
-    # Verify the SQL query only gets regular views
-    cursor_mock.execute.assert_called_once()
-    executed_query = cursor_mock.execute.call_args[0][0]
-    assert "INFORMATION_SCHEMA.TABLES" in executed_query
-    assert "table_type = 'VIEW'" in executed_query
-    # Ensure it's not querying for materialized views
-    assert "MATERIALIZED VIEW" not in executed_query

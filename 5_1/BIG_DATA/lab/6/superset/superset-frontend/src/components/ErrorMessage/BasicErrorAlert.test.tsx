@@ -17,17 +17,17 @@
  * under the License.
  */
 
+import React from 'react';
 import { render, screen } from 'spec/helpers/testing-library';
-import { ErrorLevel } from '@superset-ui/core';
-import { supersetTheme } from '@apache-superset/core/ui';
-import { BasicErrorAlert } from './BasicErrorAlert';
+import { supersetTheme } from '@superset-ui/core';
+import BasicErrorAlert from './BasicErrorAlert';
+import { ErrorLevel } from './types';
 
 jest.mock(
-  '@superset-ui/core/components/Icons/AsyncIcon',
+  'src/components/Icons/Icon',
   () =>
-    ({ fileName }: { fileName: string }) => (
-      <span role="img" aria-label={fileName.replace('_', '-')} />
-    ),
+    ({ fileName }: { fileName: string }) =>
+      <span role="img" aria-label={fileName.replace('_', '-')} />,
 );
 
 const mockedProps = {
@@ -44,7 +44,7 @@ test('should render', () => {
 test('should render warning icon', () => {
   render(<BasicErrorAlert {...mockedProps} />);
   expect(
-    screen.getByRole('img', { name: 'exclamation-circle' }),
+    screen.getByRole('img', { name: 'warning-solid' }),
   ).toBeInTheDocument();
 });
 
@@ -54,9 +54,7 @@ test('should render error icon', () => {
     level: 'error' as ErrorLevel,
   };
   render(<BasicErrorAlert {...errorProps} />);
-  expect(
-    screen.getByRole('img', { name: 'exclamation-circle' }),
-  ).toBeInTheDocument();
+  expect(screen.getByRole('img', { name: 'error-solid' })).toBeInTheDocument();
 });
 
 test('should render the error title', () => {
@@ -73,7 +71,7 @@ test('should render with warning theme', () => {
   render(<BasicErrorAlert {...mockedProps} />);
   expect(screen.getByRole('alert')).toHaveStyle(
     `
-      color: ${supersetTheme.colorWarningText};
+      backgroundColor: ${supersetTheme.colors.warning.light2};
     `,
   );
 });
@@ -86,7 +84,7 @@ test('should render with error theme', () => {
   render(<BasicErrorAlert {...errorProps} />);
   expect(screen.getByRole('alert')).toHaveStyle(
     `
-      color: ${supersetTheme.colorErrorText};
+      backgroundColor: ${supersetTheme.colors.error.light2};
     `,
   );
 });

@@ -16,25 +16,24 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { styled, css } from '@apache-superset/core/ui';
-import { GenericDataType } from '@apache-superset/core/api/core';
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { zip } from 'lodash';
+import { css, GenericDataType, styled } from '@superset-ui/core';
 import {
   CopyToClipboardButton,
   FilterInput,
+  RowCount,
 } from 'src/explore/components/DataTableControl';
 import { applyFormattingToTabularData } from 'src/utils/common';
 import { getTimeColumns } from 'src/explore/components/DataTableControl/utils';
-import RowCountLabel from 'src/components/RowCountLabel';
 import { TableControlsProps } from '../types';
 
 export const TableControlsWrapper = styled.div`
   ${({ theme }) => `
     display: flex;
     align-items: center;
-    padding-bottom: ${theme.sizeUnit * 2}px;
     justify-content: space-between;
+    margin-bottom: ${theme.gridUnit * 2}px;
 
     span {
       flex-shrink: 0;
@@ -48,9 +47,7 @@ export const TableControls = ({
   onInputChange,
   columnNames,
   columnTypes,
-  rowcount,
   isLoading,
-  canDownload,
 }: TableControlsProps) => {
   const originalTimeColumns = getTimeColumns(datasourceId);
   const formattedTimeColumns = zip<string, GenericDataType>(
@@ -59,7 +56,7 @@ export const TableControls = ({
   )
     .filter(
       ([name, type]) =>
-        type === GenericDataType.Temporal &&
+        type === GenericDataType.TEMPORAL &&
         name &&
         !originalTimeColumns.includes(name),
     )
@@ -70,17 +67,15 @@ export const TableControls = ({
   );
   return (
     <TableControlsWrapper>
-      <FilterInput onChangeHandler={onInputChange} shouldFocus />
+      <FilterInput onChangeHandler={onInputChange} />
       <div
         css={css`
           display: flex;
           align-items: center;
         `}
       >
-        <RowCountLabel rowcount={rowcount} loading={isLoading} />
-        {canDownload && (
-          <CopyToClipboardButton data={formattedData} columns={columnNames} />
-        )}
+        <RowCount data={data} loading={isLoading} />
+        <CopyToClipboardButton data={formattedData} columns={columnNames} />
       </div>
     </TableControlsWrapper>
   );

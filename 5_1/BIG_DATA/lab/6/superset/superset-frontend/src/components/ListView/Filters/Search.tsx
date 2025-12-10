@@ -16,52 +16,43 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import {
-  forwardRef,
-  useImperativeHandle,
-  useState,
-  RefObject,
-  ChangeEvent,
-} from 'react';
-
-import { t } from '@superset-ui/core';
-import { useTheme } from '@apache-superset/core/ui';
-import {
-  Input,
-  InfoTooltip,
-  FormLabel,
-  Icons,
-  Flex,
-} from '@superset-ui/core/components';
-import type { BaseFilter, FilterHandler } from './types';
-import { FilterContainer } from './Base';
-import { SELECT_WIDTH } from '../utils';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { t, styled } from '@superset-ui/core';
+import Icons from 'src/components/Icons';
+import { AntdInput } from 'src/components';
+import { SELECT_WIDTH } from 'src/components/ListView/utils';
+import { FormLabel } from 'src/components/Form';
+import { BaseFilter, FilterHandler } from './Base';
 
 interface SearchHeaderProps extends BaseFilter {
   Header: string;
   onSubmit: (val: string) => void;
   name: string;
-  toolTipDescription: string | undefined;
 }
 
+const Container = styled.div`
+  width: ${SELECT_WIDTH}px;
+`;
+
+const SearchIcon = styled(Icons.Search)`
+  color: ${({ theme }) => theme.colors.grayscale.light1};
+`;
+
+const StyledInput = styled(AntdInput)`
+  border-radius: ${({ theme }) => theme.gridUnit}px;
+`;
+
 function SearchFilter(
-  {
-    Header,
-    name,
-    initialValue,
-    toolTipDescription,
-    onSubmit,
-  }: SearchHeaderProps,
-  ref: RefObject<FilterHandler>,
+  { Header, name, initialValue, onSubmit }: SearchHeaderProps,
+  ref: React.RefObject<FilterHandler>,
 ) {
-  const theme = useTheme();
   const [value, setValue] = useState(initialValue || '');
   const handleSubmit = () => {
     if (value) {
       onSubmit(value.trim());
     }
   };
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
     if (e.currentTarget.value === '') {
       onSubmit('');
@@ -76,18 +67,9 @@ function SearchFilter(
   }));
 
   return (
-    <FilterContainer
-      data-test="search-filter-container"
-      width={SELECT_WIDTH}
-      vertical
-      justify="center"
-      align="start"
-    >
-      <Flex>
-        <FormLabel>{Header}</FormLabel>
-        {toolTipDescription && <InfoTooltip tooltip={toolTipDescription} />}
-      </Flex>
-      <Input
+    <Container>
+      <FormLabel>{Header}</FormLabel>
+      <StyledInput
         allowClear
         data-test="filters-search"
         placeholder={t('Type a value')}
@@ -96,11 +78,9 @@ function SearchFilter(
         onChange={handleChange}
         onPressEnter={handleSubmit}
         onBlur={handleSubmit}
-        prefix={
-          <Icons.SearchOutlined iconColor={theme.colorIcon} iconSize="l" />
-        }
+        prefix={<SearchIcon iconSize="l" />}
       />
-    </FilterContainer>
+    </Container>
   );
 }
 

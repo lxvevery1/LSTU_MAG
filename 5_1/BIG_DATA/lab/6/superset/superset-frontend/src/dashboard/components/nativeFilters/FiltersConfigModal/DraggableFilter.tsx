@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { styled } from '@apache-superset/core/ui';
-import { useRef, FC } from 'react';
+import { styled } from '@superset-ui/core';
+import React, { useRef } from 'react';
 import {
   DragSourceMonitor,
   DropTargetMonitor,
@@ -25,8 +25,7 @@ import {
   useDrop,
   XYCoord,
 } from 'react-dnd';
-import { Icons } from '@superset-ui/core/components/Icons';
-import type { IconType } from '@superset-ui/core/components/Icons/types';
+import Icons, { IconType } from 'src/components/Icons';
 
 interface TitleContainerProps {
   readonly isDragging: boolean;
@@ -40,6 +39,7 @@ const Container = styled.div<TitleContainerProps>`
     cursor: ${isDragging ? 'grabbing' : 'pointer'};
     width: 100%;
     display: flex;
+    padding:  ${theme.gridUnit}px;
   `}
 `;
 
@@ -47,9 +47,10 @@ const DragIcon = styled(Icons.Drag, {
   shouldForwardProp: propName => propName !== 'isDragging',
 })<IconType & { isDragging: boolean }>`
   ${({ isDragging, theme }) => `
-    font-size: ${theme.fontSize}px;
+    font-size: ${theme.typography.sizes.m}px;
+    margin-top: 15px;
     cursor: ${isDragging ? 'grabbing' : 'grab'};
-    padding-left: ${theme.sizeUnit}px;
+    padding-left: ${theme.gridUnit}px;
   `}
 `;
 
@@ -65,7 +66,7 @@ interface DragItem {
   type: string;
 }
 
-export const DraggableFilter: FC<FilterTabTitleProps> = ({
+export const DraggableFilter: React.FC<FilterTabTitleProps> = ({
   index,
   onRearrange,
   filterIds,

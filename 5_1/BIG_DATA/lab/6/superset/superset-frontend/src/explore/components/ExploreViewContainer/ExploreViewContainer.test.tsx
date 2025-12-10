@@ -16,36 +16,23 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-
-// Mock isMatrixifyEnabled before loading any modules
+import React from 'react';
 import fetchMock from 'fetch-mock';
 import {
   getChartControlPanelRegistry,
   getChartMetadataRegistry,
   ChartMetadata,
-  VizType,
 } from '@superset-ui/core';
-import { QUERY_MODE_REQUISITES } from 'src/explore/constants';
 import { MemoryRouter, Route } from 'react-router-dom';
-import {
-  render,
-  screen,
-  userEvent,
-  waitFor,
-} from 'spec/helpers/testing-library';
+import { render, screen, waitFor } from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
 import ExploreViewContainer from '.';
-
-jest.doMock('@superset-ui/core', () => ({
-  __esModule: true,
-  ...jest.requireActual('@superset-ui/core'),
-  isMatrixifyEnabled: jest.fn(() => false),
-}));
 
 const reduxState = {
   explore: {
     controls: {
       datasource: { value: '1__table' },
-      viz_type: { value: VizType.Table },
+      viz_type: { value: 'table' },
     },
     datasource: {
       id: 1,
@@ -91,13 +78,10 @@ const reduxState = {
 const KEY = 'aWrs7w29sd';
 const SEARCH = `?form_data_key=${KEY}&dataset_id=1`;
 
-jest.mock(
-  'src/explore/components/ExploreChartPanel/useResizeDetectorByObserver',
-  () => ({
-    __esModule: true,
-    default: () => ({ height: 100, width: 100 }),
-  }),
-);
+jest.mock('react-resize-detector', () => ({
+  __esModule: true,
+  useResizeDetector: () => ({ height: 100, width: 100 }),
+}));
 
 jest.mock('lodash/debounce', () => ({
   __esModule: true,
@@ -107,22 +91,15 @@ jest.mock('lodash/debounce', () => ({
 fetchMock.post('glob:*/api/v1/explore/form_data*', { key: KEY });
 fetchMock.put('glob:*/api/v1/explore/form_data*', { key: KEY });
 fetchMock.get('glob:*/api/v1/explore/form_data*', {});
-fetchMock.get('glob:*/api/v1/chart/favorite_status*', {
-  result: [{ value: true }],
-});
-fetchMock.get('glob:*/api/v1/chart/*', {
-  result: {},
-});
+fetchMock.get('glob:*/favstar/slice*', { count: 0 });
 
 const defaultPath = '/explore/';
 const renderWithRouter = ({
   search = '',
   overridePathname,
-  initialState = reduxState,
 }: {
   search?: string;
   overridePathname?: string;
-  initialState?: object;
 } = {}) => {
   const path = overridePathname ?? defaultPath;
   Object.defineProperty(window, 'location', {
@@ -136,7 +113,7 @@ const renderWithRouter = ({
         <ExploreViewContainer />
       </Route>
     </MemoryRouter>,
-    { useRedux: true, useDnd: true, initialState },
+    { useRedux: true, initialState: reduxState },
   );
 };
 
@@ -162,16 +139,6 @@ test('generates a new form_data param when none is available', async () => {
     expect.stringMatching('datasource_id'),
   );
   replaceState.mockRestore();
-});
-
-test('renders chart in standalone mode', () => {
-  const { queryByTestId } = renderWithRouter({
-    initialState: {
-      ...reduxState,
-      explore: { ...reduxState.explore, standalone: true },
-    },
-  });
-  expect(queryByTestId('standalone-app')).toBeInTheDocument();
 });
 
 test('generates a different form_data param when one is provided and is mounting', async () => {
@@ -234,243 +201,4 @@ test('preserves unknown parameters', async () => {
     expect.stringMatching(unknownParam),
   );
   replaceState.mockRestore();
-});
-
-test('retains query mode requirements when query_mode is enabled', async () => {
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      controls: {
-        ...reduxState.explore.controls,
-        query_mode: { value: 'raw' },
-        optional_key1: { value: 'value1' },
-        all_columns: { value: ['all_columns'] },
-        groupby: { value: ['groupby'] },
-      },
-      hiddenFormData: {
-        all_columns: ['all_columns'],
-        groupby: ['groupby'],
-        optional_key1: 'value1',
-      },
-    },
-  };
-
-  await waitFor(() => renderWithRouter({ initialState: customState }));
-
-  const formDataEndpointCalls = fetchMock.calls(/api\/v1\/explore\/form_data/);
-  expect(formDataEndpointCalls.length).toBeGreaterThan(0);
-  const lastCall = formDataEndpointCalls[formDataEndpointCalls.length - 1];
-
-  const body = JSON.parse(lastCall[1]?.body as string);
-  const formData = JSON.parse(body.form_data);
-
-  const queryModeFields = Object.keys(
-    customState.explore.hiddenFormData,
-  ).filter(key => QUERY_MODE_REQUISITES.has(key));
-
-  queryModeFields.forEach(key => {
-    expect(formData[key]).toBeDefined();
-  });
-  expect(formData.optional_key1).toBeUndefined();
-});
-
-test('does omit hiddenFormData when query_mode is not enabled', async () => {
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      controls: {
-        ...reduxState.explore.controls,
-        optional_key1: { value: 'value1' },
-        all_columns: { value: ['all_columns'] },
-        groupby: { value: ['groupby'] },
-      },
-      hiddenFormData: {
-        all_columns: ['all_columns'],
-        groupby: ['groupby'],
-        optional_key1: 'value1',
-      },
-    },
-  };
-
-  await waitFor(() => renderWithRouter({ initialState: customState }));
-
-  const formDataEndpointCalls = fetchMock.calls(/api\/v1\/explore\/form_data/);
-  expect(formDataEndpointCalls.length).toBeGreaterThan(0);
-  const lastCall = formDataEndpointCalls[formDataEndpointCalls.length - 1];
-
-  const body = JSON.parse(lastCall[1]?.body as string);
-  const formData = JSON.parse(body.form_data);
-
-  Object.keys(customState.explore.hiddenFormData).forEach(key => {
-    expect(formData[key]).toBeUndefined();
-  });
-});
-
-// Component tests for the errorMessage behavior
-test('does not show error indicator when no controls have validation errors', async () => {
-  getChartControlPanelRegistry().registerValue('table', {
-    controlPanelSections: [],
-  });
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      controls: {
-        ...reduxState.explore.controls,
-        metric: { value: 'count', label: 'Metric' },
-        groupby: { value: ['category'], label: 'Group by' },
-      },
-    },
-  };
-
-  renderWithRouter({ initialState: customState });
-
-  await waitFor(() => {
-    const errorIndicator = screen.queryByTestId('query-error-tooltip-trigger');
-    expect(errorIndicator).not.toBeInTheDocument();
-  });
-});
-
-test('shows error indicator when controls have validation errors', async () => {
-  getChartControlPanelRegistry().registerValue('table', {
-    controlPanelSections: [],
-  });
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      controls: {
-        ...reduxState.explore.controls,
-        metric: {
-          value: '',
-          label: 'Metric',
-          validationErrors: ['Metric is required'],
-        },
-      },
-    },
-  };
-
-  renderWithRouter({ initialState: customState });
-
-  const errorIndicator = await screen.findByTestId(
-    'query-error-tooltip-trigger',
-  );
-
-  userEvent.hover(errorIndicator);
-
-  const tooltip = await screen.findByRole('tooltip');
-  expect(tooltip).toBeInTheDocument();
-
-  const errorMessage = await screen.findByText(/Metric is required/);
-  expect(errorMessage).toBeInTheDocument();
-});
-
-test('shows error indicator for multiple controls with validation errors', async () => {
-  getChartControlPanelRegistry().registerValue('table', {
-    controlPanelSections: [],
-  });
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      controls: {
-        ...reduxState.explore.controls,
-        metric: {
-          value: '',
-          label: 'Metric',
-          validationErrors: ['Field is required'],
-        },
-        groupby: {
-          value: [],
-          label: 'Group by',
-          validationErrors: ['Field is required'],
-        },
-      },
-    },
-  };
-
-  renderWithRouter({ initialState: customState });
-
-  const errorIndicator = await screen.findByTestId(
-    'query-error-tooltip-trigger',
-  );
-
-  userEvent.hover(errorIndicator);
-
-  const tooltip = await screen.findByRole('tooltip');
-  expect(tooltip).toBeInTheDocument();
-
-  expect(await screen.findByText(/Field is required/)).toBeInTheDocument();
-});
-
-test('shows error indicator for control with multiple validation errors', async () => {
-  getChartControlPanelRegistry().registerValue('table', {
-    controlPanelSections: [],
-  });
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      controls: {
-        ...reduxState.explore.controls,
-        metric: {
-          value: '',
-          label: 'Metric',
-          validationErrors: ['Field is required', 'Invalid format'],
-        },
-      },
-    },
-  };
-
-  renderWithRouter({ initialState: customState });
-
-  const errorIndicator = await screen.findByTestId(
-    'query-error-tooltip-trigger',
-  );
-
-  userEvent.hover(errorIndicator);
-
-  const tooltip = await screen.findByRole('tooltip');
-  expect(tooltip).toBeInTheDocument();
-
-  expect(await screen.findByText(/Field is required/)).toBeInTheDocument();
-  expect(await screen.findByText(/Invalid format/)).toBeInTheDocument();
-});
-
-test('shows error indicator with function labels', async () => {
-  getChartControlPanelRegistry().registerValue('table', {
-    controlPanelSections: [],
-  });
-  // Ensure the explore state passed to the label function contains the expected property
-  const customState = {
-    ...reduxState,
-    explore: {
-      ...reduxState.explore,
-      someState: 'test',
-      controls: {
-        ...reduxState.explore.controls,
-        metric: {
-          value: '',
-          label: (exploreState: { someState: string }) =>
-            `Dynamic Metric (${exploreState.someState})`,
-          validationErrors: ['Metric is required'],
-        },
-      },
-    },
-  };
-
-  renderWithRouter({ initialState: customState });
-
-  const errorIndicator = await screen.findByTestId(
-    'query-error-tooltip-trigger',
-  );
-
-  userEvent.hover(errorIndicator);
-
-  const tooltip = await screen.findByRole('tooltip');
-  expect(tooltip).toBeInTheDocument();
-
-  expect(await screen.findByText(/Metric is required/)).toBeInTheDocument();
 });

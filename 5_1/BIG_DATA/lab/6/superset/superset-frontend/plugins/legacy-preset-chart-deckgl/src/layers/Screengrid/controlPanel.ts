@@ -19,6 +19,7 @@
 import {
   ControlPanelConfig,
   getStandardizedControls,
+  sections,
 } from '@superset-ui/chart-controls';
 import { t, validateNonEmpty } from '@superset-ui/core';
 import timeGrainSqlaAnimationOverrides from '../../utilities/controls';
@@ -33,16 +34,11 @@ import {
   viewport,
   spatial,
   mapboxStyle,
-  deckGLFixedColor,
-  deckGLCategoricalColorSchemeSelect,
-  deckGLCategoricalColorSchemeTypeSelect,
-  tooltipContents,
-  tooltipTemplate,
 } from '../../utilities/Shared_DeckGL';
-import { COLOR_SCHEME_TYPES } from '../../utilities/utils';
 
 const config: ControlPanelConfig = {
   controlPanelSections: [
+    sections.legacyRegularTime,
     {
       label: t('Query'),
       expanded: true,
@@ -52,39 +48,19 @@ const config: ControlPanelConfig = {
         ['row_limit'],
         [filterNulls],
         ['adhoc_filters'],
-        [tooltipContents],
-        [tooltipTemplate],
       ],
     },
     {
       label: t('Map'),
-      controlSetRows: [[mapboxStyle], [autozoom, viewport]],
+      controlSetRows: [
+        [mapboxStyle, viewport],
+        [autozoom, null],
+      ],
     },
     {
       label: t('Grid'),
       expanded: true,
-      controlSetRows: [
-        [gridSize],
-        [
-          {
-            name: 'color_scheme_type',
-            config: {
-              ...deckGLCategoricalColorSchemeTypeSelect.config,
-              choices: [
-                ['default', 'Default'],
-                [COLOR_SCHEME_TYPES.fixed_color, t('Fixed color')],
-                [
-                  COLOR_SCHEME_TYPES.categorical_palette,
-                  t('Categorical palette'),
-                ],
-              ],
-              default: 'default',
-            },
-          },
-        ],
-        [deckGLFixedColor],
-        [deckGLCategoricalColorSchemeSelect],
-      ],
+      controlSetRows: [[gridSize, 'color_picker']],
     },
     {
       label: t('Advanced'),

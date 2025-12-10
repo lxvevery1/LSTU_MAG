@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { PureComponent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { Metric, t } from '@superset-ui/core';
 import AdhocMetricEditPopoverTitle from 'src/explore/components/controls/MetricControl/AdhocMetricEditPopoverTitle';
 import { ExplorePopoverContent } from 'src/explore/components/ExploreContentPopover';
@@ -57,7 +57,7 @@ export type AdhocMetricPopoverTriggerState = {
   showSaveDatasetModal: boolean;
 };
 
-class AdhocMetricPopoverTrigger extends PureComponent<
+class AdhocMetricPopoverTrigger extends React.PureComponent<
   AdhocMetricPopoverTriggerProps,
   AdhocMetricPopoverTriggerState
 > {
@@ -259,9 +259,9 @@ class AdhocMetricPopoverTrigger extends PureComponent<
           placement="right"
           trigger="click"
           content={overlayContent}
-          defaultOpen={visible}
-          open={visible}
-          onOpenChange={togglePopover}
+          defaultVisible={visible}
+          visible={visible}
+          onVisibleChange={togglePopover}
           title={popoverTitle}
           destroyTooltipOnHide
         >

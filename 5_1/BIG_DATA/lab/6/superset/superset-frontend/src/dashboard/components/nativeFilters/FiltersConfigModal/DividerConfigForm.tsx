@@ -16,10 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { FC } from 'react';
-import { FormItem, Input } from '@superset-ui/core/components';
-import { NativeFilterType, t } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
+import React from 'react';
+import { FormItem } from 'src/components/Form';
+import { Input, TextArea } from 'src/components/Input';
+import { NativeFilterType, styled, t } from '@superset-ui/core';
 
 interface Props {
   componentId: string;
@@ -30,11 +30,11 @@ interface Props {
 }
 const Container = styled.div`
   ${({ theme }) => `
-    padding: ${theme.sizeUnit * 4}px;
+    padding: ${theme.gridUnit * 4}px;
   `}
 `;
 
-const DividerConfigForm: FC<Props> = ({ componentId, divider }) => (
+const DividerConfigForm: React.FC<Props> = ({ componentId, divider }) => (
   <Container>
     <FormItem
       initialValue={divider ? divider.title : ''}
@@ -51,12 +51,12 @@ const DividerConfigForm: FC<Props> = ({ componentId, divider }) => (
       label={t('Description')}
       name={['filters', componentId, 'description']}
     >
-      <Input.TextArea rows={4} />
+      <TextArea rows={4} />
     </FormItem>
     <FormItem
       hidden
       name={['filters', componentId, 'type']}
-      initialValue={NativeFilterType.Divider}
+      initialValue={NativeFilterType.DIVIDER}
     />
   </Container>
 );

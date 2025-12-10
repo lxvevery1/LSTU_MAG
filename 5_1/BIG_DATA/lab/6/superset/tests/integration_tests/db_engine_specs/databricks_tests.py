@@ -18,12 +18,12 @@ from unittest import mock
 
 from superset.db_engine_specs import get_engine_spec
 from superset.db_engine_specs.databricks import DatabricksNativeEngineSpec
-from tests.integration_tests.base_tests import SupersetTestCase
+from tests.integration_tests.db_engine_specs.base_tests import TestDbEngineSpec
 from tests.integration_tests.fixtures.certificates import ssl_certificate
 from tests.integration_tests.fixtures.database import default_db_extra
 
 
-class TestDatabricksDbEngineSpec(SupersetTestCase):
+class TestDatabricksDbEngineSpec(TestDbEngineSpec):
     def test_get_engine_spec(self):
         """
         DB Eng Specs (databricks): Test "databricks" in engine spec
@@ -33,10 +33,10 @@ class TestDatabricksDbEngineSpec(SupersetTestCase):
         assert get_engine_spec("databricks", "pyhive").engine == "databricks"
 
     def test_extras_without_ssl(self):
-        database = mock.Mock()
-        database.extra = default_db_extra
-        database.server_cert = None
-        extras = DatabricksNativeEngineSpec.get_extra_params(database)
+        db = mock.Mock()
+        db.extra = default_db_extra
+        db.server_cert = None
+        extras = DatabricksNativeEngineSpec.get_extra_params(db)
         assert extras == {
             "engine_params": {
                 "connect_args": {
@@ -50,12 +50,12 @@ class TestDatabricksDbEngineSpec(SupersetTestCase):
         }
 
     def test_extras_with_ssl_custom(self):
-        database = mock.Mock()
-        database.extra = default_db_extra.replace(
+        db = mock.Mock()
+        db.extra = default_db_extra.replace(
             '"engine_params": {}',
             '"engine_params": {"connect_args": {"ssl": "1"}}',
         )
-        database.server_cert = ssl_certificate
-        extras = DatabricksNativeEngineSpec.get_extra_params(database)
+        db.server_cert = ssl_certificate
+        extras = DatabricksNativeEngineSpec.get_extra_params(db)
         connect_args = extras["engine_params"]["connect_args"]
         assert connect_args["ssl"] == "1"

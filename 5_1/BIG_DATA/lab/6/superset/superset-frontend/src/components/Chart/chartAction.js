@@ -16,33 +16,30 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/* eslint no-undef: 'error' */
 /* eslint no-param-reassign: ["error", { "props": false }] */
-import {
-  FeatureFlag,
-  isDefined,
-  SupersetClient,
-  t,
-  isFeatureEnabled,
-  getClientErrorObject,
-} from '@superset-ui/core';
+import moment from 'moment';
+import { t, SupersetClient, isDefined } from '@superset-ui/core';
 import { getControlsState } from 'src/explore/store';
+import { isFeatureEnabled, FeatureFlag } from 'src/featureFlags';
 import {
   getAnnotationJsonUrl,
   getExploreUrl,
   getLegacyEndpointType,
   buildV1ChartDataPayload,
-  getQuerySettings,
+  shouldUseLegacyApi,
   getChartDataUri,
 } from 'src/explore/exploreUtils';
+import { requiresQuery } from 'src/modules/AnnotationTypes';
+
 import { addDangerToast } from 'src/components/MessageToasts/actions';
 import { logEvent } from 'src/logger/actions';
 import { Logger, LOG_ACTIONS_LOAD_CHART } from 'src/logger/LogUtils';
+import { getClientErrorObject } from 'src/utils/getClientErrorObject';
+import { safeStringify } from 'src/utils/safeStringify';
 import { allowCrossDomain as domainShardingEnabled } from 'src/utils/hostNamesConfig';
 import { updateDataMask } from 'src/dataMask/actions';
 import { waitForAsyncData } from 'src/middleware/asyncEvent';
-import { ensureAppRoot } from 'src/utils/pathUtils';
-import { safeStringify } from 'src/utils/safeStringify';
-import { extendedDayjs } from '@superset-ui/core/utils/dates';
 
 export const CHART_UPDATE_STARTED = 'CHART_UPDATE_STARTED';
 export function chartUpdateStarted(queryController, latestQueryFormData, key) {
@@ -120,7 +117,6 @@ const legacyChartDataRequest = async (
   force,
   method = 'POST',
   requestParams = {},
-  parseMethod,
 ) => {
   const endpointType = getLegacyEndpointType({ resultFormat, resultType });
   const allowDomainSharding =
@@ -140,10 +136,14 @@ const legacyChartDataRequest = async (
     ...requestParams,
     url,
     postPayload: { form_data: formData },
-    parseMethod,
+    parseMethod: 'json-bigint',
   };
 
-  return SupersetClient.post(querySettings).then(({ json, response }) =>
+  const clientMethod =
+    'GET' && isFeatureEnabled(FeatureFlag.CLIENT_CACHE)
+      ? SupersetClient.get
+      : SupersetClient.post;
+  return clientMethod(querySettings).then(({ json, response }) =>
     // Make the legacy endpoint return a payload that corresponds to the
     // V1 chart data endpoint response signature.
     ({
@@ -161,9 +161,8 @@ const v1ChartDataRequest = async (
   requestParams,
   setDataMask,
   ownState,
-  parseMethod,
 ) => {
-  const payload = await buildV1ChartDataPayload({
+  const payload = buildV1ChartDataPayload({
     formData,
     resultType,
     resultFormat,
@@ -179,7 +178,7 @@ const v1ChartDataRequest = async (
   const qs = {};
   if (sliceId !== undefined) qs.form_data = `{"slice_id":${sliceId}}`;
   if (dashboardId !== undefined) qs.dashboard_id = dashboardId;
-  if (force) qs.force = force;
+  if (force !== false) qs.force = force;
 
   const allowDomainSharding =
     // eslint-disable-next-line camelcase
@@ -195,7 +194,7 @@ const v1ChartDataRequest = async (
     url,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
-    parseMethod,
+    parseMethod: 'json-bigint',
   };
 
   return SupersetClient.post(querySettings);
@@ -222,8 +221,8 @@ export async function getChartDataRequest({
       credentials: 'include',
     };
   }
-  const [useLegacyApi, parseMethod] = getQuerySettings(formData);
-  if (useLegacyApi) {
+
+  if (shouldUseLegacyApi(formData)) {
     return legacyChartDataRequest(
       formData,
       resultFormat,
@@ -231,7 +230,6 @@ export async function getChartDataRequest({
       force,
       method,
       querySettings,
-      parseMethod,
     );
   }
   return v1ChartDataRequest(
@@ -242,38 +240,31 @@ export async function getChartDataRequest({
     querySettings,
     setDataMask,
     ownState,
-    parseMethod,
   );
 }
 
 export function runAnnotationQuery({
   annotation,
-  timeout,
-  formData,
+  timeout = 60,
+  formData = null,
   key,
   isDashboardRequest = false,
   force = false,
 }) {
-  return async function (dispatch, getState) {
-    const { charts, common } = getState();
-    const sliceKey = key || Object.keys(charts)[0];
-    const queryTimeout = timeout || common.conf.SUPERSET_WEBSERVER_TIMEOUT;
-
+  return function (dispatch, getState) {
+    const sliceKey = key || Object.keys(getState().charts)[0];
     // make a copy of formData, not modifying original formData
     const fd = {
-      ...(formData || charts[sliceKey].latestQueryFormData),
+      ...(formData || getState().charts[sliceKey].latestQueryFormData),
     };
 
-    if (!annotation.sourceType) {
+    if (!requiresQuery(annotation.sourceType)) {
       return Promise.resolve();
     }
 
-    // In the original formData the `granularity` attribute represents the time grain (eg
-    // `P1D`), but in the request payload it corresponds to the name of the column where
-    // the time grain should be applied (eg, `Date`), so we need to move things around.
-    fd.time_grain_sqla = fd.time_grain_sqla || fd.granularity;
-    fd.granularity = fd.granularity_sqla;
-
+    const granularity = fd.time_grain_sqla || fd.granularity;
+    fd.time_grain_sqla = granularity;
+    fd.granularity = granularity;
     const overridesKeys = Object.keys(annotation.overrides);
     if (overridesKeys.includes('since') || overridesKeys.includes('until')) {
       annotation.overrides = {
@@ -309,19 +300,17 @@ export function runAnnotationQuery({
       fd.annotation_layers[annotationIndex].overrides = sliceFormData;
     }
 
-    const payload = await buildV1ChartDataPayload({
-      formData: fd,
-      force,
-      resultFormat: 'json',
-      resultType: 'full',
-    });
-
     return SupersetClient.post({
       url,
       signal,
-      timeout: queryTimeout * 1000,
+      timeout: timeout * 1000,
       headers: { 'Content-Type': 'application/json' },
-      jsonPayload: payload,
+      jsonPayload: buildV1ChartDataPayload({
+        formData: fd,
+        force,
+        resultFormat: 'json',
+        resultType: 'full',
+      }),
     })
       .then(({ json }) => {
         const data = json?.result?.[0]?.annotation_data?.[annotation.name];
@@ -375,80 +364,65 @@ export function addChart(chart, key) {
   return { type: ADD_CHART, chart, key };
 }
 
-export function handleChartDataResponse(response, json, useLegacyApi) {
-  if (isFeatureEnabled(FeatureFlag.GlobalAsyncQueries)) {
-    // deal with getChartDataRequest transforming the response data
-    const result = 'result' in json ? json.result : json;
-    switch (response.status) {
-      case 200:
-        // Query results returned synchronously, meaning query was already cached.
-        return Promise.resolve(result);
-      case 202:
-        // Query is running asynchronously and we must await the results
-        if (useLegacyApi) {
-          return waitForAsyncData(result[0]);
-        }
-        return waitForAsyncData(result);
-      default:
-        throw new Error(
-          `Received unexpected response status (${response.status}) while fetching chart data`,
-        );
-    }
-  }
-  return json.result;
-}
-
 export function exploreJSON(
   formData,
   force = false,
-  timeout,
+  timeout = 60,
   key,
+  method,
   dashboardId,
   ownState,
 ) {
-  return async (dispatch, getState) => {
-    const state = getState();
+  return async dispatch => {
     const logStart = Logger.getTimestamp();
     const controller = new AbortController();
-    const prevController = state.charts?.[key]?.queryController;
-    const queryTimeout =
-      timeout || state.common.conf.SUPERSET_WEBSERVER_TIMEOUT;
 
     const requestParams = {
       signal: controller.signal,
-      timeout: queryTimeout * 1000,
+      timeout: timeout * 1000,
     };
     if (dashboardId) requestParams.dashboard_id = dashboardId;
 
     const setDataMask = dataMask => {
       dispatch(updateDataMask(formData.slice_id, dataMask));
     };
-    dispatch(chartUpdateStarted(controller, formData, key));
-    /**
-     * Abort in-flight requests after the new controller has been stored in
-     * state. Delaying ensures we do not mutate the Redux state between
-     * dispatches while still cancelling the previous request promptly.
-     */
-    if (prevController) {
-      setTimeout(() => prevController.abort(), 0);
-    }
-
     const chartDataRequest = getChartDataRequest({
       setDataMask,
       formData,
       resultFormat: 'json',
       resultType: 'full',
       force,
-      method: 'POST',
+      method,
       requestParams,
       ownState,
     });
 
-    const [useLegacyApi] = getQuerySettings(formData);
+    dispatch(chartUpdateStarted(controller, formData, key));
+
     const chartDataRequestCaught = chartDataRequest
-      .then(({ response, json }) =>
-        handleChartDataResponse(response, json, useLegacyApi),
-      )
+      .then(({ response, json }) => {
+        if (isFeatureEnabled(FeatureFlag.GLOBAL_ASYNC_QUERIES)) {
+          // deal with getChartDataRequest transforming the response data
+          const result = 'result' in json ? json.result : json;
+          switch (response.status) {
+            case 200:
+              // Query results returned synchronously, meaning query was already cached.
+              return Promise.resolve(result);
+            case 202:
+              // Query is running asynchronously and we must await the results
+              if (shouldUseLegacyApi(formData)) {
+                return waitForAsyncData(result[0]);
+              }
+              return waitForAsyncData(result);
+            default:
+              throw new Error(
+                `Received unexpected response status (${response.status}) while fetching chart data`,
+              );
+          }
+        }
+
+        return json.result;
+      })
       .then(queriesResponse => {
         queriesResponse.forEach(resultItem =>
           dispatch(
@@ -466,9 +440,7 @@ export function exploreJSON(
                 formData.extra_filters && formData.extra_filters.length > 0,
               viz_type: formData.viz_type,
               data_age: resultItem.is_cached
-                ? extendedDayjs(new Date()).diff(
-                    extendedDayjs.utc(resultItem.cached_dttm),
-                  )
+                ? moment(new Date()).diff(moment.utc(resultItem.cached_dttm))
                 : null,
             }),
           ),
@@ -476,7 +448,7 @@ export function exploreJSON(
         return dispatch(chartUpdateSucceeded(queriesResponse, key));
       })
       .catch(response => {
-        if (isFeatureEnabled(FeatureFlag.GlobalAsyncQueries)) {
+        if (isFeatureEnabled(FeatureFlag.GLOBAL_ASYNC_QUERIES)) {
           return dispatch(chartUpdateFailed([response], key));
         }
 
@@ -509,7 +481,7 @@ export function exploreJSON(
       });
 
     // only retrieve annotations when calling the legacy API
-    const annotationLayers = useLegacyApi
+    const annotationLayers = shouldUseLegacyApi(formData)
       ? formData.annotation_layers || []
       : [];
     const isDashboardRequest = dashboardId > 0;
@@ -534,43 +506,74 @@ export function exploreJSON(
   };
 }
 
-export const POST_CHART_FORM_DATA = 'POST_CHART_FORM_DATA';
-export function postChartFormData(
+export const GET_SAVED_CHART = 'GET_SAVED_CHART';
+export function getSavedChart(
   formData,
   force = false,
-  timeout,
+  timeout = 60,
   key,
   dashboardId,
   ownState,
 ) {
-  return exploreJSON(formData, force, timeout, key, dashboardId, ownState);
+  /*
+   * Perform a GET request to `/explore_json`.
+   *
+   * This will return the payload of a saved chart, optionally filtered by
+   * ad-hoc or extra filters from dashboards. Eg:
+   *
+   *  GET  /explore_json?{"chart_id":1}
+   *  GET  /explore_json?{"chart_id":1,"extra_filters":"..."}
+   *
+   */
+  return exploreJSON(
+    formData,
+    force,
+    timeout,
+    key,
+    'GET',
+    dashboardId,
+    ownState,
+  );
 }
 
-export function redirectSQLLab(formData, history) {
+export const POST_CHART_FORM_DATA = 'POST_CHART_FORM_DATA';
+export function postChartFormData(
+  formData,
+  force = false,
+  timeout = 60,
+  key,
+  dashboardId,
+  ownState,
+) {
+  /*
+   * Perform a POST request to `/explore_json`.
+   *
+   * This will post the form data to the endpoint, returning a new chart.
+   *
+   */
+  return exploreJSON(
+    formData,
+    force,
+    timeout,
+    key,
+    'POST',
+    dashboardId,
+    ownState,
+  );
+}
+
+export function redirectSQLLab(formData) {
   return dispatch => {
-    getChartDataRequest({
-      formData,
-      resultFormat: 'json',
-      resultType: 'query',
-    })
+    getChartDataRequest({ formData, resultFormat: 'json', resultType: 'query' })
       .then(({ json }) => {
-        const redirectUrl = '/sqllab/';
+        const redirectUrl = '/superset/sqllab/';
         const payload = {
           datasourceKey: formData.datasource,
           sql: json.result[0].query,
         };
-        if (history) {
-          history.push({
-            pathname: redirectUrl,
-            state: {
-              requestedQuery: payload,
-            },
-          });
-        } else {
-          SupersetClient.postForm(ensureAppRoot(redirectUrl), {
-            form_data: safeStringify(payload),
-          });
-        }
+        SupersetClient.postForm(redirectUrl, {
+          form_data: safeStringify(payload),
+        });
       })
       .catch(() =>
         dispatch(addDangerToast(t('An error occurred while loading the SQL'))),
@@ -610,7 +613,6 @@ export const getDatasourceSamples = async (
   jsonPayload,
   perPage,
   page,
-  dashboardId,
 ) => {
   try {
     const searchParams = {
@@ -618,10 +620,6 @@ export const getDatasourceSamples = async (
       datasource_type: datasourceType,
       datasource_id: datasourceId,
     };
-
-    if (isDefined(dashboardId)) {
-      searchParams.dashboard_id = dashboardId;
-    }
 
     if (isDefined(perPage) && isDefined(page)) {
       searchParams.per_page = perPage;
@@ -632,7 +630,6 @@ export const getDatasourceSamples = async (
       endpoint: '/datasource/samples',
       jsonPayload,
       searchParams,
-      parseMethod: 'json-bigint',
     });
 
     return response.json.result;

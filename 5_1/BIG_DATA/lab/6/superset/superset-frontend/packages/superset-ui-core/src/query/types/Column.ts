@@ -18,7 +18,7 @@
  * under the License.
  */
 
-import { GenericDataType } from '@apache-superset/core/api/core';
+import { GenericDataType } from './QueryResponse';
 import { QueryFormColumn } from './QueryFormData';
 
 export interface AdhocColumn {
@@ -27,7 +27,6 @@ export interface AdhocColumn {
   optionName?: string;
   sqlExpression: string;
   expressionType: 'SQL';
-  isColumnReference?: boolean;
   columnType?: 'BASE_AXIS' | 'SERIES';
   timeGrain?: string;
   datasourceWarning?: boolean;
@@ -73,10 +72,6 @@ export function isAdhocColumn(column?: any): column is AdhocColumn {
     column?.label !== undefined &&
     (column?.expressionType === undefined || column?.expressionType === 'SQL')
   );
-}
-
-export function isAdhocColumnReference(column?: any): column is AdhocColumn {
-  return isAdhocColumn(column) && column?.isColumnReference === true;
 }
 
 export function isQueryFormColumn(column: any): column is QueryFormColumn {

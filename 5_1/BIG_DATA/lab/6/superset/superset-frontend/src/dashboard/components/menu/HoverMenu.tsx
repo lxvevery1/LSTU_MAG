@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unused-state */
 /**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -17,32 +16,30 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { RefObject, ReactNode, PureComponent } from 'react';
-
-import { styled } from '@apache-superset/core/ui';
+import React, { RefObject } from 'react';
+import { styled } from '@superset-ui/core';
 import cx from 'classnames';
 
 interface HoverMenuProps {
   position: 'left' | 'top';
   innerRef: RefObject<HTMLDivElement>;
-  children: ReactNode;
-  onHover?: (data: { isHovered: boolean }) => void;
+  children: React.ReactNode;
 }
 
 const HoverStyleOverrides = styled.div`
   .hover-menu {
     opacity: 0;
     position: absolute;
-    z-index: 11; // one more than DragDroppable
-    font-size: ${({ theme }) => theme.fontSize};
+    z-index: 10;
+    font-size: ${({ theme }) => theme.typography.sizes.m};
   }
 
   .hover-menu--left {
-    width: ${({ theme }) => theme.sizeUnit * 6}px;
+    width: ${({ theme }) => theme.gridUnit * 6}px;
     top: 50%;
     transform: translate(0, -50%);
-    left: ${({ theme }) => theme.sizeUnit * -7}px;
-    padding: ${({ theme }) => theme.sizeUnit * 2}px 0;
+    left: ${({ theme }) => theme.gridUnit * -7}px;
+    padding: ${({ theme }) => theme.gridUnit * 2}px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,15 +47,15 @@ const HoverStyleOverrides = styled.div`
   }
 
   .hover-menu--left > :nth-child(n):not(:only-child):not(:last-child) {
-    margin-bottom: ${({ theme }) => theme.sizeUnit * 3}px;
+    margin-bottom: ${({ theme }) => theme.gridUnit * 3}px;
   }
 
   .hover-menu--top {
-    height: ${({ theme }) => theme.sizeUnit * 6}px;
-    top: ${({ theme }) => theme.sizeUnit * -6}px;
+    height: ${({ theme }) => theme.gridUnit * 6}px;
+    top: ${({ theme }) => theme.gridUnit * -6}px;
     left: 50%;
     transform: translate(-50%);
-    padding: 0;
+    padding: 0 ${({ theme }) => theme.gridUnit * 2}px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -66,25 +63,11 @@ const HoverStyleOverrides = styled.div`
   }
 `;
 
-export default class HoverMenu extends PureComponent<HoverMenuProps> {
+export default class HoverMenu extends React.PureComponent<HoverMenuProps> {
   static defaultProps = {
     position: 'left',
     innerRef: null,
     children: null,
-  };
-
-  handleMouseEnter = () => {
-    const { onHover } = this.props;
-    if (onHover) {
-      onHover({ isHovered: true });
-    }
-  };
-
-  handleMouseLeave = () => {
-    const { onHover } = this.props;
-    if (onHover) {
-      onHover({ isHovered: false });
-    }
   };
 
   render() {
@@ -98,9 +81,6 @@ export default class HoverMenu extends PureComponent<HoverMenuProps> {
             position === 'left' && 'hover-menu--left',
             position === 'top' && 'hover-menu--top',
           )}
-          onMouseEnter={this.handleMouseEnter}
-          onMouseLeave={this.handleMouseLeave}
-          data-test="hover-menu"
         >
           {children}
         </div>

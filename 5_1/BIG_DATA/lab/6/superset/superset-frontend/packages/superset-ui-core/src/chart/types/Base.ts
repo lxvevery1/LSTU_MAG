@@ -17,49 +17,31 @@
  * under the License.
  */
 
-import { BinaryQueryObjectFilterClause, ExtraFormData } from '../../query';
+import { ExtraFormData } from '../../query';
 import { JsonObject } from '../..';
 
 export type HandlerFunction = (...args: unknown[]) => void;
 
 export enum Behavior {
-  InteractiveChart = 'INTERACTIVE_CHART',
-  NativeFilter = 'NATIVE_FILTER',
+  INTERACTIVE_CHART = 'INTERACTIVE_CHART',
+  NATIVE_FILTER = 'NATIVE_FILTER',
 
   /**
    * Include `DRILL_TO_DETAIL` behavior if plugin handles `contextmenu` event
    * when dimensions are right-clicked on.
    */
-  DrillToDetail = 'DRILL_TO_DETAIL',
-  DrillBy = 'DRILL_BY',
-}
-
-export interface ContextMenuFilters {
-  crossFilter?: {
-    dataMask: DataMask;
-    isCurrentValueSelected?: boolean;
-  };
-  drillToDetail?: BinaryQueryObjectFilterClause[];
-  drillBy?: {
-    filters: BinaryQueryObjectFilterClause[];
-    groupbyFieldName: string;
-    adhocFilterFieldName?: string;
-  };
+  DRILL_TO_DETAIL = 'DRILL_TO_DETAIL',
 }
 
 export enum AppSection {
-  Explore = 'EXPLORE',
-  Dashboard = 'DASHBOARD',
-  FilterBar = 'FILTER_BAR',
-  FilterConfigModal = 'FILTER_CONFIG_MODAL',
-  Embedded = 'EMBEDDED',
+  EXPLORE = 'EXPLORE',
+  DASHBOARD = 'DASHBOARD',
+  FILTER_BAR = 'FILTER_BAR',
+  FILTER_CONFIG_MODAL = 'FILTER_CONFIG_MODAL',
+  EMBEDDED = 'EMBEDDED',
 }
 
-export type FilterState = {
-  value?: any;
-  customColumnLabel?: string;
-  [key: string]: any;
-};
+export type FilterState = { value?: any; [key: string]: any };
 
 export type DataMask = {
   extraFormData?: ExtraFormData;
@@ -71,79 +53,37 @@ export type SetDataMaskHook = {
   ({ filterState, extraFormData, ownState }: DataMask): void;
 };
 
-/**
- * Backend-compatible filter clause for query execution
- */
-export interface QueryFilterClause {
-  col: string;
-  op: string;
-  val: string | number | string[] | number[];
-}
-
-/**
- * Backend-compatible sort specification
- */
-export interface QuerySortBy {
-  id: string;
-  key: string;
-  desc: boolean;
-}
-
-/**
- * Backend-compatible own state that will be sent to the chart data API.
- * This represents the standardized format that the backend expects.
- */
-export interface BackendOwnState {
-  sortBy?: QuerySortBy[];
-  columnOrder?: string[];
-  filters?: QueryFilterClause[];
-  [key: string]: unknown; // Allow additional properties for chart-specific needs
-}
-
-/**
- * Converter function that transforms chart-specific state to backend format.
- * Each chart plugin can implement this to convert its internal state representation
- * to the standardized backend format.
- */
-export type ChartStateConverter<TChartState = JsonObject> = (
-  chartState: TChartState,
-) => Partial<BackendOwnState>;
-
 export interface PlainObject {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
 export enum ChartLabel {
-  Deprecated = 'DEPRECATED',
-  Featured = 'FEATURED',
+  DEPRECATED = 'DEPRECATED',
+  FEATURED = 'FEATURED',
 }
 
 export const chartLabelExplanations: Record<ChartLabel, string> = {
-  [ChartLabel.Deprecated]:
+  [ChartLabel.DEPRECATED]:
     'This chart uses features or modules which are no longer actively maintained. It will eventually be replaced or removed.',
-  [ChartLabel.Featured]:
+  [ChartLabel.FEATURED]:
     'This chart was tested and verified, so the overall experience should be stable.',
 };
 
 export const chartLabelWeight: Record<ChartLabel, { weight: number }> = {
-  [ChartLabel.Deprecated]: {
+  [ChartLabel.DEPRECATED]: {
     weight: -0.1,
   },
-  [ChartLabel.Featured]: {
+  [ChartLabel.FEATURED]: {
     weight: 0.1,
   },
 };
 
 export enum AxisType {
-  Category = 'category',
-  Value = 'value',
-  Time = 'time',
-  Log = 'log',
-}
-
-export interface LegendState {
-  [key: string]: boolean;
+  category = 'category',
+  value = 'value',
+  time = 'time',
+  log = 'log',
 }
 
 export default {};

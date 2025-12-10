@@ -16,76 +16,73 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { JsonObject, LatestQueryFormData } from '@superset-ui/core';
-import { GenericDataType } from '@apache-superset/core/api/core';
-import type { ChartStatus, Datasource } from 'src/explore/types';
+import {
+  Datasource,
+  GenericDataType,
+  JsonObject,
+  QueryFormData,
+} from '@superset-ui/core';
+import { ExploreActions } from 'src/explore/actions/exploreActions';
+import { ChartStatus } from 'src/explore/types';
 
 export enum ResultTypes {
   Results = 'results',
   Samples = 'samples',
 }
 
-type SetForceQueryAction = (force: boolean) => void;
 export interface DataTablesPaneProps {
-  queryFormData: LatestQueryFormData;
+  queryFormData: QueryFormData;
   datasource: Datasource;
   queryForce: boolean;
   ownState?: JsonObject;
-  chartStatus: ChartStatus | null;
+  chartStatus: ChartStatus;
   onCollapseChange: (isOpen: boolean) => void;
-  errorMessage?: React.ReactNode;
-  setForceQuery: SetForceQueryAction;
-  canDownload: boolean;
+  errorMessage?: JSX.Element;
+  actions: ExploreActions;
 }
 
 export interface ResultsPaneProps {
   isRequest: boolean;
-  queryFormData: LatestQueryFormData;
+  queryFormData: QueryFormData;
   queryForce: boolean;
   ownState?: JsonObject;
-  errorMessage?: React.ReactNode;
-  setForceQuery?: SetForceQueryAction;
+  errorMessage?: React.ReactElement;
+  actions?: ExploreActions;
   dataSize?: number;
   // reload OriginalFormattedTimeColumns from localStorage when isVisible is true
   isVisible: boolean;
-  canDownload: boolean;
 }
 
 export interface SamplesPaneProps {
   isRequest: boolean;
   datasource: Datasource;
   queryForce: boolean;
-  setForceQuery?: SetForceQueryAction;
+  actions?: ExploreActions;
   dataSize?: number;
   // reload OriginalFormattedTimeColumns from localStorage when isVisible is true
   isVisible: boolean;
-  canDownload: boolean;
 }
 
 export interface TableControlsProps {
   data: Record<string, any>[];
   // {datasource.id}__{datasource.type}, eg: 1__table
-  datasourceId?: string;
+  datasourceId: string;
   onInputChange: (input: string) => void;
   columnNames: string[];
   columnTypes: GenericDataType[];
   isLoading: boolean;
-  rowcount: number;
-  canDownload: boolean;
 }
 
 export interface QueryResultInterface {
   colnames: string[];
   coltypes: GenericDataType[];
-  rowcount: number;
   data: Record<string, any>[][];
 }
 
 export interface SingleQueryResultPaneProp extends QueryResultInterface {
   // {datasource.id}__{datasource.type}, eg: 1__table
-  datasourceId?: string;
+  datasourceId: string;
   dataSize?: number;
   // reload OriginalFormattedTimeColumns from localStorage when isVisible is true
   isVisible: boolean;
-  canDownload: boolean;
 }

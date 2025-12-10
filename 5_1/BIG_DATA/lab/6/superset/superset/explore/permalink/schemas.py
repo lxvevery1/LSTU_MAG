@@ -18,43 +18,39 @@ from marshmallow import fields, Schema
 
 
 class ExplorePermalinkStateSchema(Schema):
-    formData = fields.Dict(  # noqa: N815
+    formData = fields.Dict(
         required=True,
         allow_none=False,
-        metadata={"description": "Chart form data"},
+        description="Chart form data",
     )
-    urlParams = fields.List(  # noqa: N815
+    urlParams = fields.List(
         fields.Tuple(
             (
-                fields.String(
-                    required=True, allow_none=True, metadata={"description": "Key"}
-                ),
-                fields.String(
-                    required=True, allow_none=True, metadata={"description": "Value"}
-                ),
+                fields.String(required=True, allow_none=True, description="Key"),
+                fields.String(required=True, allow_none=True, description="Value"),
             ),
             required=False,
             allow_none=True,
-            metadata={"description": "URL Parameter key-value pair"},
+            description="URL Parameter key-value pair",
         ),
         required=False,
         allow_none=True,
-        metadata={"description": "URL Parameters"},
+        description="URL Parameters",
     )
 
 
 class ExplorePermalinkSchema(Schema):
-    chartId = fields.Integer(  # noqa: N815
+    chartId = fields.Integer(
         required=False,
         allow_none=True,
         metadata={"description": "The id of the chart"},
     )
-    datasourceType = fields.String(  # noqa: N815
+    datasourceType = fields.String(
         required=True,
         allow_none=False,
         metadata={"description": "The type of the datasource"},
     )
-    datasourceId = fields.Integer(  # noqa: N815
+    datasourceId = fields.Integer(
         required=False,
         allow_none=True,
         metadata={"description": "The id of the datasource"},

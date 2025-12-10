@@ -18,23 +18,10 @@
  */
 
 /* eslint react/prop-types: 'off' */
+import React from 'react';
 import './color-styles.css';
 
-interface Palette {
-  colors: string[];
-  id: string;
-  label: string;
-}
-
-interface RenderPalettesProps {
-  title?: string;
-  palettes: Palette[];
-}
-
-export default function RenderPalettes({
-  title,
-  palettes,
-}: RenderPalettesProps) {
+export default function RenderPalettes({ title, palettes }) {
   return (
     <div>
       {title && <h2>{title}</h2>}

@@ -16,11 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { memo } from 'react';
+import React from 'react';
 import { t } from '@superset-ui/core';
-import { css } from '@apache-superset/core/ui';
 import { formatSelectOptions } from '@superset-ui/chart-controls';
-import { RawAntdSelect } from '@superset-ui/core/components';
 
 export type SizeOption = [number, string];
 
@@ -35,35 +33,28 @@ function DefaultSelectRenderer({
   options,
   onChange,
 }: SelectPageSizeRendererProps) {
-  const { Option } = RawAntdSelect;
-
   return (
     <span className="dt-select-page-size form-inline">
       {t('Show')}{' '}
-      <RawAntdSelect<number>
+      <select
+        className="form-control input-sm"
         value={current}
-        onChange={value => onChange(value)}
-        size="small"
-        css={theme => css`
-          width: ${theme.sizeUnit * 18}px;
-        `}
+        onBlur={() => {}}
+        onChange={e => {
+          onChange(Number((e.target as HTMLSelectElement).value));
+        }}
       >
         {options.map(option => {
           const [size, text] = Array.isArray(option)
             ? option
             : [option, option];
-          const sizeLabel = size === 0 ? t('all') : size;
           return (
-            <Option
-              key={size}
-              value={Number(size)}
-              aria-label={t('Show %s entries', sizeLabel)}
-            >
+            <option key={size} value={size}>
               {text}
-            </Option>
+            </option>
           );
         })}
-      </RawAntdSelect>{' '}
+      </select>{' '}
       {t('entries')}
     </span>
   );
@@ -79,7 +70,7 @@ function getOptionValue(x: SizeOption) {
   return Array.isArray(x) ? x[0] : x;
 }
 
-export default memo(function SelectPageSize({
+export default React.memo(function SelectPageSize({
   total,
   options: sizeOptions,
   current: currentSize,

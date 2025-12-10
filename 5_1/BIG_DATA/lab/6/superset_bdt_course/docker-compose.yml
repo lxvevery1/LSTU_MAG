@@ -67,7 +67,7 @@ services:
     depends_on:
       - superset_db
       - redis
-    command: ["celery", "worker", "--app=superset.sql_lab:celery_app", "--pool=prefork", "-O", "fair", "-c", "4"]
+    command: ["celery", "worker", "--pool=prefork", "-O", "fair", "-c", "4"]
 
   superset-beat:
     image: apache/superset:latest
@@ -89,7 +89,7 @@ services:
     depends_on:
       - superset_db
       - redis
-    command: ["celery", "beat", "--app=superset.sql_lab:celery_app"]
+    command: ["celery", "beat" ]
 
 volumes:
   superset_db_data:

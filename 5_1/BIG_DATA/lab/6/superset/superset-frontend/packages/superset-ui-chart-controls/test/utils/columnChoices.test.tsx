@@ -17,7 +17,6 @@
  * under the License.
  */
 import { DatasourceType, testQueryResponse } from '@superset-ui/core';
-import { GenericDataType } from '@apache-superset/core/api/core';
 import { columnChoices } from '../../src';
 
 describe('columnChoices()', () => {
@@ -28,34 +27,28 @@ describe('columnChoices()', () => {
         metrics: [],
         type: DatasourceType.Table,
         main_dttm_col: 'test',
-        time_grain_sqla: [],
+        time_grain_sqla: 'P1D',
         columns: [
           {
             column_name: 'fiz',
-            type: 'INT',
-            type_generic: GenericDataType.Numeric,
           },
           {
             column_name: 'about',
             verbose_name: 'right',
-            type: 'VARCHAR',
-            type_generic: GenericDataType.String,
           },
           {
             column_name: 'foo',
-            verbose_name: undefined,
-            type: 'TIMESTAMP',
-            type_generic: GenericDataType.Temporal,
+            verbose_name: 'bar',
           },
         ],
         verbose_map: {},
-        column_formats: { fiz: 'NUMERIC', about: 'STRING', foo: 'DATE' },
+        column_format: { fiz: 'NUMERIC', about: 'STRING', foo: 'DATE' },
         datasource_name: 'my_datasource',
         description: 'this is my datasource',
       }),
     ).toEqual([
+      ['foo', 'bar'],
       ['fiz', 'fiz'],
-      ['foo', 'foo'],
       ['about', 'right'],
     ]);
   });
@@ -70,43 +63,6 @@ describe('columnChoices()', () => {
       ['Column 2', 'Column 2'],
       ['Column 3', 'Column 3'],
     ]);
-  });
-
-  it('should return choices of a specific type', () => {
-    expect(columnChoices(testQueryResponse, GenericDataType.Temporal)).toEqual([
-      ['Column 2', 'Column 2'],
-    ]);
-  });
-  it('should use name when verbose_name key exists but is not defined', () => {
-    expect(
-      columnChoices({
-        id: 1,
-        metrics: [],
-        type: DatasourceType.Table,
-        main_dttm_col: 'test',
-        time_grain_sqla: [],
-        columns: [
-          {
-            column_name: 'foo',
-            verbose_name: null,
-            type: 'VARCHAR',
-            type_generic: GenericDataType.String,
-          },
-          {
-            column_name: 'bar',
-            verbose_name: null,
-            type: 'VARCHAR',
-            type_generic: GenericDataType.String,
-          },
-        ],
-        verbose_map: {},
-        column_formats: { fiz: 'NUMERIC', about: 'STRING', foo: 'DATE' },
-        datasource_name: 'my_datasource',
-        description: 'this is my datasource',
-      }),
-    ).toEqual([
-      ['bar', 'bar'],
-      ['foo', 'foo'],
-    ]);
+    expect.anything();
   });
 });

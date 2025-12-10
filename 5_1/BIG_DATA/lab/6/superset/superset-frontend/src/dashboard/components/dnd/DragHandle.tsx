@@ -16,9 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { LegacyRef } from 'react';
-import { css, styled } from '@apache-superset/core/ui';
-import { Icons } from '@superset-ui/core/components/Icons';
+import React, { LegacyRef } from 'react';
+import { css, styled } from '@superset-ui/core';
+import Icons from 'src/components/Icons';
 
 interface DragHandleProps {
   position: 'left' | 'top';
@@ -27,7 +27,7 @@ interface DragHandleProps {
 
 const DragHandleContainer = styled.div<{ position: 'left' | 'top' }>`
   ${({ theme, position }) => css`
-    height: ${theme.sizeUnit * 5}px;
+    height: ${theme.gridUnit * 5}px;
     overflow: hidden;
     cursor: move;
     ${position === 'top' &&
@@ -35,7 +35,7 @@ const DragHandleContainer = styled.div<{ position: 'left' | 'top' }>`
       transform: rotate(90deg);
     `}
     & path {
-      fill: ${theme.colorIcon};
+      fill: ${theme.colors.grayscale.base};
     }
   `}
 `;
@@ -45,7 +45,7 @@ export default function DragHandle({
 }: DragHandleProps) {
   return (
     <DragHandleContainer ref={innerRef} position={position}>
-      <Icons.Drag iconSize="xl" />
+      <Icons.Drag />
     </DragHandleContainer>
   );
 }

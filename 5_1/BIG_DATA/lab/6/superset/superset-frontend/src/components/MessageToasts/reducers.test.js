@@ -19,25 +19,26 @@
 import { ADD_TOAST, REMOVE_TOAST } from 'src/components/MessageToasts/actions';
 import messageToastsReducer from 'src/components/MessageToasts/reducers';
 
-// messageToasts reducer
-test('messageToasts reducer should return initial state', () => {
-  expect(messageToastsReducer(undefined, {})).toEqual([]);
-});
+describe('messageToasts reducer', () => {
+  it('should return initial state', () => {
+    expect(messageToastsReducer(undefined, {})).toEqual([]);
+  });
 
-test('messageToasts reducer should add a toast', () => {
-  expect(
-    messageToastsReducer([], {
-      type: ADD_TOAST,
-      payload: { text: 'test', id: 'id', type: 'test_type' },
-    }),
-  ).toEqual([{ text: 'test', id: 'id', type: 'test_type' }]);
-});
+  it('should add a toast', () => {
+    expect(
+      messageToastsReducer([], {
+        type: ADD_TOAST,
+        payload: { text: 'test', id: 'id', type: 'test_type' },
+      }),
+    ).toEqual([{ text: 'test', id: 'id', type: 'test_type' }]);
+  });
 
-test('messageToasts reducer should remove a toast', () => {
-  expect(
-    messageToastsReducer([{ id: 'id' }, { id: 'id2' }], {
-      type: REMOVE_TOAST,
-      payload: { id: 'id' },
-    }),
-  ).toEqual([{ id: 'id2' }]);
+  it('should remove a toast', () => {
+    expect(
+      messageToastsReducer([{ id: 'id' }, { id: 'id2' }], {
+        type: REMOVE_TOAST,
+        payload: { id: 'id' },
+      }),
+    ).toEqual([{ id: 'id2' }]);
+  });
 });

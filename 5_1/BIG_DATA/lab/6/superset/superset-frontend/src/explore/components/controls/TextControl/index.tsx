@@ -16,11 +16,12 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Component, ChangeEvent } from 'react';
+import React from 'react';
 import { legacyValidateNumber, legacyValidateInteger } from '@superset-ui/core';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
+import { FAST_DEBOUNCE } from 'src/constants';
 import ControlHeader from 'src/explore/components/ControlHeader';
-import { Constants, Input } from '@superset-ui/core/components';
+import { Input } from 'src/components/Input';
 
 type InputValueType = string | number;
 
@@ -29,13 +30,12 @@ export interface TextControlProps<T extends InputValueType = InputValueType> {
   disabled?: boolean;
   isFloat?: boolean;
   isInt?: boolean;
-  onChange?: (value: T, errors: any) => void;
+  onChange?: (value: T, errors: any) => {};
   onFocus?: () => {};
   placeholder?: string;
   value?: T | null;
   controlId?: string;
   renderTrigger?: boolean;
-  validationErrors?: string[];
 }
 
 export interface TextControlState {
@@ -47,7 +47,7 @@ const safeStringify = (value?: InputValueType | null) =>
 
 export default class TextControl<
   T extends InputValueType = InputValueType,
-> extends Component<TextControlProps<T>, TextControlState> {
+> extends React.Component<TextControlProps<T>, TextControlState> {
   initialValue?: TextControlProps['value'];
 
   constructor(props: TextControlProps<T>) {
@@ -85,9 +85,9 @@ export default class TextControl<
 
   debouncedOnChange = debounce((inputValue: string) => {
     this.onChange(inputValue);
-  }, Constants.FAST_DEBOUNCE);
+  }, FAST_DEBOUNCE);
 
-  onChangeWrapper = (event: ChangeEvent<HTMLInputElement>) => {
+  onChangeWrapper = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     this.setState({ value }, () => {
       this.debouncedOnChange(value);

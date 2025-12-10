@@ -16,19 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { memo, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { t, useTruncation } from '@superset-ui/core';
-import { css, useTheme } from '@apache-superset/core/ui';
-import { Icons } from '@superset-ui/core/components/Icons';
+import { css, t, useTheme } from '@superset-ui/core';
+import Icons from 'src/components/Icons';
+import { useTruncation } from 'src/hooks/useTruncation';
 import { setDirectPathToChild } from 'src/dashboard/actions/dashboardState';
-import { List } from '@superset-ui/core/components/List';
 import {
   DependencyItem,
   Row,
   RowLabel,
   RowTruncationCount,
   RowValue,
+  TooltipList,
 } from './Styles';
 import { useFilterDependencies } from './useFilterDependencies';
 import { DependencyValueProps, FilterCardRowProps } from './types';
@@ -52,33 +52,26 @@ const DependencyValue = ({
   );
 };
 
-export const DependenciesRow = memo(({ filter }: FilterCardRowProps) => {
+export const DependenciesRow = React.memo(({ filter }: FilterCardRowProps) => {
   const dependencies = useFilterDependencies(filter);
-  const [dependenciesRef, plusRef, elementsTruncated, hasHiddenElements] =
-    useTruncation();
+  const dependenciesRef = useRef<HTMLDivElement>(null);
+  const plusRef = useRef<HTMLDivElement>(null);
+  const [elementsTruncated, hasHiddenElements] = useTruncation(
+    dependenciesRef,
+    plusRef,
+  );
   const theme = useTheme();
 
   const tooltipText = useMemo(
     () =>
       elementsTruncated > 0 && dependencies ? (
-        <List
-          split={false}
-          dataSource={dependencies}
-          renderItem={dependency => (
-            <List.Item
-              compact
-              css={theme => css`
-                && .dependency-item {
-                  color: ${theme.colorWhite};
-                }
-              `}
-            >
-              <span className="dependency-item">
-                • <DependencyValue dependency={dependency} />
-              </span>
-            </List.Item>
-          )}
-        />
+        <TooltipList>
+          {dependencies.map(dependency => (
+            <li>
+              <DependencyValue dependency={dependency} />
+            </li>
+          ))}
+        </TooltipList>
       ) : null,
     [elementsTruncated, dependencies],
   );
@@ -100,11 +93,11 @@ export const DependenciesRow = memo(({ filter }: FilterCardRowProps) => {
             'Filter only displays values relevant to selections made in other filters.',
           )}
         >
-          <Icons.InfoCircleOutlined
+          <Icons.Info
             iconSize="m"
-            iconColor={theme.colorIcon}
+            iconColor={theme.colors.grayscale.light1}
             css={css`
-              margin-left: ${theme.sizeUnit}px;
+              margin-left: ${theme.gridUnit}px;
             `}
           />
         </TooltipWithTruncation>

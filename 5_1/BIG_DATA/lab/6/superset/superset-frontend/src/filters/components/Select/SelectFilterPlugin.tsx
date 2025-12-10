@@ -17,51 +17,45 @@
  * under the License.
  */
 /* eslint-disable no-param-reassign */
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   AppSection,
   DataMask,
+  DataRecordValue,
   ensureIsArray,
   ExtraFormData,
+  GenericDataType,
   getColumnLabel,
   JsonObject,
-  finestTemporalGrainFormatter,
+  smartDateDetailedFormatter,
   t,
   tn,
 } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
-import { GenericDataType } from '@apache-superset/core/api/core';
-import { debounce, isUndefined } from 'lodash';
+import { LabeledValue as AntdLabeledValue } from 'antd/lib/select';
+import debounce from 'lodash/debounce';
 import { useImmerReducer } from 'use-immer';
-import {
-  FormItem,
-  LabeledValue,
-  Select,
-  Space,
-  Constants,
-} from '@superset-ui/core/components';
-import {
-  hasOption,
-  propertyComparator,
-} from '@superset-ui/core/components/Select/utils';
+import { Select } from 'src/components';
+import { SLOW_DEBOUNCE } from 'src/constants';
+import { propertyComparator } from 'src/components/Select/utils';
 import { FilterBarOrientation } from 'src/dashboard/types';
-import { getDataRecordFormatter, getSelectExtraFormData } from '../../utils';
-import { FilterPluginStyle, StatusMessage } from '../common';
+import { uniqWith, isEqual } from 'lodash';
 import { PluginFilterSelectProps, SelectValue } from './types';
+import { FilterPluginStyle, StatusMessage, StyledFormItem } from '../common';
+import { getDataRecordFormatter, getSelectExtraFormData } from '../../utils';
 
 type DataMaskAction =
   | { type: 'ownState'; ownState: JsonObject }
   | {
       type: 'filterState';
+      __cache: JsonObject;
       extraFormData: ExtraFormData;
-      filterState: {
-        value: SelectValue;
-        label?: string;
-        excludeFilterValues?: boolean;
-      };
+      filterState: { value: SelectValue; label?: string };
     };
 
-function reducer(draft: DataMask, action: DataMaskAction) {
+function reducer(
+  draft: DataMask & { __cache?: JsonObject },
+  action: DataMaskAction,
+) {
   switch (action.type) {
     case 'ownState':
       draft.ownState = {
@@ -70,46 +64,15 @@ function reducer(draft: DataMask, action: DataMaskAction) {
       };
       return draft;
     case 'filterState':
-      if (
-        JSON.stringify(draft.extraFormData) !==
-        JSON.stringify(action.extraFormData)
-      ) {
-        draft.extraFormData = action.extraFormData;
-      }
-      if (
-        JSON.stringify(draft.filterState) !== JSON.stringify(action.filterState)
-      ) {
-        draft.filterState = { ...draft.filterState, ...action.filterState };
-      }
-
+      draft.extraFormData = action.extraFormData;
+      // eslint-disable-next-line no-underscore-dangle
+      draft.__cache = action.__cache;
+      draft.filterState = { ...draft.filterState, ...action.filterState };
       return draft;
     default:
       return draft;
   }
 }
-
-const StyledSpace = styled(Space)<{
-  inverseSelection: boolean;
-  appSection: AppSection;
-}>`
-  display: flex;
-  align-items: center;
-  width: 100%;
-
-  .exclude-select {
-    width: 80px;
-    flex-shrink: 0;
-  }
-
-  &.ant-space {
-    .ant-space-item {
-      width: ${({ inverseSelection }) => (!inverseSelection ? '100%' : 'auto')};
-    }
-  }
-`;
-
-// Keep track of orientation changes outside component with filter ID
-const orientationMap = new Map<string, FilterBarOrientation>();
 
 export default function PluginFilterSelect(props: PluginFilterSelectProps) {
   const {
@@ -131,28 +94,21 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
     parentRef,
     inputRef,
     filterBarOrientation,
-    clearAllTrigger,
-    onClearAllComplete,
   } = props;
   const {
     enableEmptyFilter,
-    creatable,
     multiSelect,
     showSearch,
     inverseSelection,
     defaultToFirstItem,
     searchAllOptions,
   } = formData;
-
   const groupby = useMemo(
     () => ensureIsArray(formData.groupby).map(getColumnLabel),
     [formData.groupby],
   );
   const [col] = groupby;
   const [initialColtypeMap] = useState(coltypeMap);
-  const [search, setSearch] = useState('');
-  const isChangedByUser = useRef(false);
-  const prevDataRef = useRef(data);
   const [dataMask, dispatchDataMask] = useImmerReducer(reducer, {
     extraFormData: {},
     filterState,
@@ -161,39 +117,10 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
   const labelFormatter = useMemo(
     () =>
       getDataRecordFormatter({
-        timeFormatter: finestTemporalGrainFormatter(data.map(el => el[col])),
+        timeFormatter: smartDateDetailedFormatter,
       }),
-    [data, col],
+    [],
   );
-  const [excludeFilterValues, setExcludeFilterValues] = useState(
-    isUndefined(filterState?.excludeFilterValues)
-      ? true
-      : filterState?.excludeFilterValues,
-  );
-
-  const prevExcludeFilterValues = useRef(excludeFilterValues);
-
-  const hasOnlyOrientationChanged = useRef(false);
-
-  useEffect(() => {
-    // Get previous orientation for this specific filter
-    const previousOrientation = orientationMap.get(formData.nativeFilterId);
-
-    // Check if only orientation changed for this filter
-    if (
-      previousOrientation !== undefined &&
-      previousOrientation !== filterBarOrientation
-    ) {
-      hasOnlyOrientationChanged.current = true;
-    } else {
-      hasOnlyOrientationChanged.current = false;
-    }
-
-    // Update orientation for this filter
-    if (filterBarOrientation) {
-      orientationMap.set(formData.nativeFilterId, filterBarOrientation);
-    }
-  }, [filterBarOrientation]);
 
   const updateDataMask = useCallback(
     (values: SelectValue) => {
@@ -203,11 +130,12 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
       const suffix = inverseSelection && values?.length ? t(' (excluded)') : '';
       dispatchDataMask({
         type: 'filterState',
+        __cache: filterState,
         extraFormData: getSelectExtraFormData(
           col,
           values,
           emptyFilter,
-          excludeFilterValues && inverseSelection,
+          inverseSelection,
         ),
         filterState: {
           ...filterState,
@@ -217,10 +145,9 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
                 .join(', ')}${suffix}`
             : undefined,
           value:
-            appSection === AppSection.FilterConfigModal && defaultToFirstItem
+            appSection === AppSection.FILTER_CONFIG_MODAL && defaultToFirstItem
               ? undefined
               : values,
-          excludeFilterValues,
         },
       });
     },
@@ -233,36 +160,52 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
       dispatchDataMask,
       enableEmptyFilter,
       inverseSelection,
-      excludeFilterValues,
       JSON.stringify(filterState),
       labelFormatter,
     ],
   );
 
   const isDisabled =
-    appSection === AppSection.FilterConfigModal && defaultToFirstItem;
+    appSection === AppSection.FILTER_CONFIG_MODAL && defaultToFirstItem;
 
-  const onSearch = useMemo(
-    () =>
-      debounce((search: string) => {
-        setSearch(search);
-        if (searchAllOptions) {
-          dispatchDataMask({
-            type: 'ownState',
-            ownState: {
-              coltypeMap: initialColtypeMap,
-              search,
-            },
-          });
-        }
-      }, Constants.SLOW_DEBOUNCE),
-    [dispatchDataMask, initialColtypeMap, searchAllOptions],
+  const debouncedOwnStateFunc = useCallback(
+    debounce((val: string) => {
+      dispatchDataMask({
+        type: 'ownState',
+        ownState: {
+          coltypeMap: initialColtypeMap,
+          search: val,
+        },
+      });
+    }, SLOW_DEBOUNCE),
+    [],
   );
 
+  const searchWrapper = useCallback(
+    (val: string) => {
+      if (searchAllOptions) {
+        debouncedOwnStateFunc(val);
+      }
+    },
+    [debouncedOwnStateFunc, searchAllOptions],
+  );
+
+  const clearSuggestionSearch = useCallback(() => {
+    if (searchAllOptions) {
+      dispatchDataMask({
+        type: 'ownState',
+        ownState: {
+          coltypeMap: initialColtypeMap,
+          search: null,
+        },
+      });
+    }
+  }, [dispatchDataMask, initialColtypeMap, searchAllOptions]);
+
   const handleBlur = useCallback(() => {
+    clearSuggestionSearch();
     unsetFocusedFilter();
-    onSearch('');
-  }, [onSearch, unsetFocusedFilter]);
+  }, [clearSuggestionSearch, unsetFocusedFilter]);
 
   const handleChange = useCallback(
     (value?: SelectValue | number | string) => {
@@ -273,10 +216,8 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
       } else {
         updateDataMask(values);
       }
-
-      isChangedByUser.current = true;
     },
-    [updateDataMask, formData.nativeFilterId, clearAllTrigger],
+    [updateDataMask],
   );
 
   const placeholderText =
@@ -295,255 +236,105 @@ export default function PluginFilterSelect(props: PluginFilterSelectProps) {
     return undefined;
   }, [filterState.validateMessage, filterState.validateStatus]);
 
-  const uniqueOptions = useMemo(() => {
-    const allOptions = new Set(data.map(el => el[col]));
-    return [...allOptions].map((value: string) => ({
-      label: labelFormatter(value, datatype),
-      value,
-      isNewOption: false,
-    }));
-  }, [data, datatype, col, labelFormatter]);
-
   const options = useMemo(() => {
-    if (search && !multiSelect && !hasOption(search, uniqueOptions, true)) {
-      uniqueOptions.unshift({
-        label: search,
-        value: search,
-        isNewOption: true,
+    const allOptions = [...data];
+    const uniqueOptions = uniqWith(allOptions, isEqual);
+    const selectOptions: { label: string; value: DataRecordValue }[] = [];
+    uniqueOptions.forEach(row => {
+      const [value] = groupby.map(col => row[col]);
+      selectOptions.push({
+        label: labelFormatter(value, datatype),
+        value,
       });
-    }
-    return uniqueOptions;
-  }, [multiSelect, search, uniqueOptions]);
+    });
+    return selectOptions;
+  }, [data, datatype, groupby, labelFormatter]);
 
   const sortComparator = useCallback(
-    (a: LabeledValue, b: LabeledValue) => {
-      // When sortMetric is specified, the backend already sorted the data correctly
-      // Don't override the backend's metric-based sorting with frontend alphabetical sorting
-      if (formData.sortMetric) {
-        return 0; // Preserve the original order from the backend
-      }
-
-      // Only apply alphabetical sorting when no sortMetric is specified
+    (a: AntdLabeledValue, b: AntdLabeledValue) => {
       const labelComparator = propertyComparator('label');
       if (formData.sortAscending) {
         return labelComparator(a, b);
       }
       return labelComparator(b, a);
     },
-    [formData.sortAscending, formData.sortMetric],
+    [formData.sortAscending],
   );
 
-  // Use effect for initialisation for filter plugin
-  // this should run only once when filter is configured & saved
-  // & shouldnt run when the component is remounted on change of
-  // orientation of filter bar
   useEffect(() => {
-    // Skip if only orientation changed
-    if (hasOnlyOrientationChanged.current) {
-      return;
-    }
-
-    // Case 1: Handle disabled state first
-    if (isDisabled) {
-      updateDataMask(null);
-      return;
-    }
-
-    if (filterState.value !== undefined) {
-      // Set the filter state value if it is defined
-      updateDataMask(filterState.value);
-      return;
-    }
-
-    // Handle the default to first Value case
-    // Skip default values when clearAllTrigger is active to prevent
-    // defaults from being applied during Clear All operation
-    if (!clearAllTrigger) {
-      if (defaultToFirstItem) {
-        // Set to first item if defaultToFirstItem is true
-        const firstItem: SelectValue = data[0]
-          ? (groupby.map(col => data[0][col]) as string[])
-          : null;
-        if (firstItem?.[0] !== undefined) {
-          updateDataMask(firstItem);
-        }
-      } else if (formData?.defaultValue) {
-        // Handle defalut value case
-        updateDataMask(formData.defaultValue);
-      }
-    }
-  }, [
-    isDisabled,
-    enableEmptyFilter,
-    defaultToFirstItem,
-    formData?.defaultValue,
-    data,
-    groupby,
-    col,
-    inverseSelection,
-    clearAllTrigger,
-  ]);
-
-  useEffect(() => {
-    const prev = prevDataRef.current;
-    const curr = data;
-
-    const hasDataChanged =
-      prev?.length !== curr?.length ||
-      prev?.some((row, i) => {
-        const prevVal = row[col];
-        const currVal = curr[i][col];
-        return typeof prevVal === 'bigint' || typeof currVal === 'bigint'
-          ? prevVal?.toString() !== currVal?.toString()
-          : prevVal !== currVal;
-      });
-
-    // If data actually changed (e.g., due to parent filter), reset flag
-    if (hasDataChanged) {
-      isChangedByUser.current = false;
-      prevDataRef.current = data;
-    }
-  }, [data, col]);
-
-  useEffect(() => {
-    if (
-      isChangedByUser.current &&
-      filterState.value?.every((value?: any) =>
-        data.some(row => row[col] === value),
-      )
-    )
-      return;
-
-    const firstItem: SelectValue = data[0]
-      ? (groupby.map(col => data[0][col]) as string[])
-      : null;
-
-    // Skip default value update when clearAllTrigger is active
-    if (
-      !clearAllTrigger &&
-      defaultToFirstItem &&
-      Object.keys(formData?.extraFormData || {}).length &&
-      filterState.value !== undefined &&
-      firstItem !== null &&
-      filterState.value !== firstItem
-    ) {
+    if (defaultToFirstItem && filterState.value === undefined) {
+      // initialize to first value if set to default to first item
+      const firstItem: SelectValue = data[0]
+        ? (groupby.map(col => data[0][col]) as string[])
+        : null;
+      // firstItem[0] !== undefined for a case when groupby changed but new data still not fetched
+      // TODO: still need repopulate default value in config modal when column changed
       if (firstItem?.[0] !== undefined) {
         updateDataMask(firstItem);
       }
+    } else if (isDisabled) {
+      // empty selection if filter is disabled
+      updateDataMask(null);
+    } else {
+      // reset data mask based on filter state
+      updateDataMask(filterState.value);
     }
   }, [
+    col,
+    isDisabled,
     defaultToFirstItem,
+    enableEmptyFilter,
+    inverseSelection,
     updateDataMask,
-    formData,
     data,
+    groupby,
     JSON.stringify(filterState.value),
-    clearAllTrigger,
   ]);
 
   useEffect(() => {
     setDataMask(dataMask);
   }, [JSON.stringify(dataMask)]);
 
-  useEffect(() => {
-    if (clearAllTrigger) {
-      dispatchDataMask({
-        type: 'filterState',
-        extraFormData: {},
-        filterState: {
-          value: undefined,
-          label: undefined,
-        },
-      });
-
-      updateDataMask(null);
-      setSearch('');
-      onClearAllComplete?.(formData.nativeFilterId);
-    }
-  }, [clearAllTrigger, onClearAllComplete, updateDataMask]);
-
-  useEffect(() => {
-    if (prevExcludeFilterValues.current !== excludeFilterValues) {
-      dispatchDataMask({
-        type: 'filterState',
-        extraFormData: getSelectExtraFormData(
-          col,
-          filterState.value,
-          !filterState.value?.length,
-          excludeFilterValues && inverseSelection,
-        ),
-        filterState: {
-          ...(filterState as {
-            value: SelectValue;
-            label?: string;
-            excludeFilterValues?: boolean;
-          }),
-          excludeFilterValues,
-        },
-      });
-      prevExcludeFilterValues.current = excludeFilterValues;
-    }
-  }, [excludeFilterValues]);
-
-  const handleExclusionToggle = (value: string) => {
-    setExcludeFilterValues(value === 'true');
-  };
-
   return (
     <FilterPluginStyle height={height} width={width}>
-      <FormItem
+      <StyledFormItem
         validateStatus={filterState.validateStatus}
         extra={formItemExtra}
       >
-        <StyledSpace
-          appSection={appSection}
-          inverseSelection={inverseSelection}
-        >
-          {appSection !== AppSection.FilterConfigModal && inverseSelection && (
-            <Select
-              className="exclude-select"
-              value={`${excludeFilterValues}`}
-              options={[
-                { value: 'true', label: t('is not') },
-                { value: 'false', label: t('is') },
-              ]}
-              onChange={handleExclusionToggle}
-            />
-          )}
-          <Select
-            name={formData.nativeFilterId}
-            allowClear
-            allowNewOptions={!searchAllOptions && creatable !== false}
-            allowSelectAll={!searchAllOptions}
-            value={filterState.value || []}
-            disabled={isDisabled}
-            getPopupContainer={
-              showOverflow
-                ? () => (parentRef?.current as HTMLElement) || document.body
-                : (trigger: HTMLElement) =>
-                    (trigger?.parentNode as HTMLElement) || document.body
-            }
-            showSearch={showSearch}
-            mode={multiSelect ? 'multiple' : 'single'}
-            placeholder={placeholderText}
-            onClear={() => onSearch('')}
-            onSearch={onSearch}
-            onBlur={handleBlur}
-            onFocus={setFocusedFilter}
-            onMouseEnter={setHoveredFilter}
-            onMouseLeave={unsetHoveredFilter}
-            // @ts-ignore
-            onChange={handleChange}
-            ref={inputRef}
-            loading={isRefreshing}
-            oneLine={filterBarOrientation === FilterBarOrientation.Horizontal}
-            invertSelection={inverseSelection && excludeFilterValues}
-            options={options}
-            sortComparator={sortComparator}
-            onOpenChange={setFilterActive}
-            className="select-container"
-          />
-        </StyledSpace>
-      </FormItem>
+        <Select
+          allowClear
+          allowNewOptions
+          allowSelectAll={!searchAllOptions}
+          // @ts-ignore
+          value={filterState.value || []}
+          disabled={isDisabled}
+          getPopupContainer={
+            showOverflow
+              ? () => (parentRef?.current as HTMLElement) || document.body
+              : (trigger: HTMLElement) =>
+                  (trigger?.parentNode as HTMLElement) || document.body
+          }
+          showSearch={showSearch}
+          mode={multiSelect ? 'multiple' : 'single'}
+          placeholder={placeholderText}
+          onSearch={searchWrapper}
+          onSelect={clearSuggestionSearch}
+          onBlur={handleBlur}
+          onFocus={setFocusedFilter}
+          onMouseEnter={setHoveredFilter}
+          onMouseLeave={unsetHoveredFilter}
+          // @ts-ignore
+          onChange={handleChange}
+          ref={inputRef}
+          loading={isRefreshing}
+          oneLine={filterBarOrientation === FilterBarOrientation.HORIZONTAL}
+          invertSelection={inverseSelection}
+          // @ts-ignore
+          options={options}
+          sortComparator={sortComparator}
+          onDropdownVisibleChange={setFilterActive}
+        />
+      </StyledFormItem>
     </FilterPluginStyle>
   );
 }

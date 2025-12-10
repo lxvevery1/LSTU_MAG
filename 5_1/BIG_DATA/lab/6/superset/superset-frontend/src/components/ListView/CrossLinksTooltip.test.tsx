@@ -16,12 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import {
-  render,
-  screen,
-  userEvent,
-  waitFor,
-} from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { render, screen, waitFor } from 'spec/helpers/testing-library';
 import CrossLinksTooltip, { CrossLinksTooltipProps } from './CrossLinksTooltip';
 
 const mockedProps = {
@@ -65,7 +62,7 @@ test('should render', () => {
 
 test('should render multiple links', async () => {
   setup();
-  await userEvent.hover(screen.getByText('Hover me'));
+  userEvent.hover(screen.getByText('Hover me'));
 
   await waitFor(() => {
     expect(screen.getByText('Test dashboard')).toBeInTheDocument();
@@ -76,9 +73,9 @@ test('should render multiple links', async () => {
   });
 });
 
-test('should not render the "+ {x} more"', async () => {
+test('should not render the "+ {x} more"', () => {
   setup();
-  await userEvent.hover(screen.getByText('Hover me'));
+  userEvent.hover(screen.getByText('Hover me'));
   expect(screen.queryByTestId('plus-more')).not.toBeInTheDocument();
 });
 
@@ -86,7 +83,7 @@ test('should render the "+ {x} more"', async () => {
   setup({
     moreItems: 3,
   });
-  await userEvent.hover(screen.getByText('Hover me'));
+  userEvent.hover(screen.getByText('Hover me'));
   expect(await screen.findByTestId('plus-more')).toBeInTheDocument();
   expect(await screen.findByText('+ 3 more')).toBeInTheDocument();
 });

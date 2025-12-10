@@ -22,18 +22,16 @@ Create Date: 2019-12-04 17:07:54.390805
 
 """
 
-import sqlalchemy as sa
-from alembic import op
-
-from superset.migrations.shared.utils import create_table
-
 # revision identifiers, used by Alembic.
 revision = "0a6f12f60c73"
 down_revision = "3325d4caccc8"
 
+import sqlalchemy as sa
+from alembic import op
+
 
 def upgrade():
-    create_table(
+    op.create_table(
         "row_level_security_filters",
         sa.Column("created_on", sa.DateTime(), nullable=True),
         sa.Column("changed_on", sa.DateTime(), nullable=True),
@@ -47,7 +45,7 @@ def upgrade():
         sa.ForeignKeyConstraint(["table_id"], ["tables.id"]),
         sa.PrimaryKeyConstraint("id"),
     )
-    create_table(
+    op.create_table(
         "rls_filter_roles",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("role_id", sa.Integer(), nullable=False),

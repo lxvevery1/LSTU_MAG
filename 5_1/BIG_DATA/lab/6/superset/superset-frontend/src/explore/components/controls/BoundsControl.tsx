@@ -16,10 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useEffect, useRef, useState } from 'react';
-import { InputNumber } from '@superset-ui/core/components';
-import { t } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
+import React, { useEffect, useRef, useState } from 'react';
+import { InputNumber } from 'src/components/Input';
+import { t, styled } from '@superset-ui/core';
 import { debounce } from 'lodash';
 import ControlHeader from 'src/explore/components/ControlHeader';
 
@@ -36,24 +35,16 @@ const StyledDiv = styled.div`
 
 const MinInput = styled(InputNumber)`
   flex: 1;
-  margin-right: ${({ theme }) => theme.sizeUnit}px;
+  margin-right: ${({ theme }) => theme.gridUnit}px;
 `;
 
 const MaxInput = styled(InputNumber)`
   flex: 1;
-  margin-left: ${({ theme }) => theme.sizeUnit}px;
+  margin-left: ${({ theme }) => theme.gridUnit}px;
 `;
 
-const parseNumber = (value: undefined | number | string | null) => {
-  if (
-    value === null ||
-    value === undefined ||
-    (typeof value === 'string' && Number.isNaN(Number.parseInt(value, 10)))
-  ) {
-    return null;
-  }
-  return Number(value);
-};
+const parseNumber = (value: undefined | number | string | null) =>
+  value === null || Number.isNaN(Number(value)) ? null : Number(value);
 
 export default function BoundsControl({
   onChange = () => {},
@@ -80,11 +71,11 @@ export default function BoundsControl({
     setMinMax([parseNumber(min), parseNumber(max)]);
   }, [min, max]);
 
-  const onMinChange = (value: number | string | undefined | null) => {
+  const onMinChange = (value: number | string | undefined) => {
     update([parseNumber(value), minMax[1]]);
   };
 
-  const onMaxChange = (value: number | string | undefined | null) => {
+  const onMaxChange = (value: number | string | undefined) => {
     update([minMax[0], parseNumber(value)]);
   };
 
@@ -95,7 +86,7 @@ export default function BoundsControl({
         <MinInput
           data-test="min-bound"
           placeholder={t('Min')}
-          // emit (string | number | undefined | null)
+          // emit (string | number | undefined)
           onChange={onMinChange}
           // accept (number | undefined)
           value={minMax[0] === null ? undefined : minMax[0]}
@@ -103,7 +94,7 @@ export default function BoundsControl({
         <MaxInput
           data-test="max-bound"
           placeholder={t('Max')}
-          // emit (number | string | undefined | null)
+          // emit (number | string | undefined)
           onChange={onMaxChange}
           // accept (number | undefined)
           value={minMax[1] === null ? undefined : minMax[1]}

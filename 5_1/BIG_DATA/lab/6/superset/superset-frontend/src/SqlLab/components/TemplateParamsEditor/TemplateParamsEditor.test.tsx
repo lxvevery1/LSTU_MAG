@@ -17,6 +17,7 @@
  * under the License.
  */
 
+import React from 'react';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Store } from 'redux';
@@ -32,13 +33,16 @@ import TemplateParamsEditor, {
   TemplateParamsEditorProps,
 } from 'src/SqlLab/components/TemplateParamsEditor';
 
-jest.mock('@superset-ui/core/components/Select/Select', () => () => (
+jest.mock('src/components/DeprecatedSelect', () => () => (
+  <div data-test="mock-deprecated-select" />
+));
+jest.mock('src/components/Select/Select', () => () => (
   <div data-test="mock-deprecated-select-select" />
 ));
-jest.mock('@superset-ui/core/components/Select/AsyncSelect', () => () => (
+jest.mock('src/components/Select/AsyncSelect', () => () => (
   <div data-test="mock-async-select" />
 ));
-jest.mock('@superset-ui/core/components/AsyncAceEditor', () => ({
+jest.mock('src/components/AsyncAceEditor', () => ({
   ConfigEditor: ({ value }: { value: string }) => (
     <div data-test="mock-async-ace-editor">{value}</div>
   ),
@@ -64,14 +68,13 @@ const setup = (
     },
   );
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('TemplateParamsEditor', () => {
-  test('should render with a title', () => {
+  it('should render with a title', () => {
     const { container } = setup();
     expect(container.querySelector('div[role="button"]')).toBeInTheDocument();
   });
 
-  test('should open a modal with the ace editor', async () => {
+  it('should open a modal with the ace editor', async () => {
     const { container, getByTestId } = setup();
     fireEvent.click(getByText(container, 'Parameters'));
     await waitFor(() => {
@@ -79,7 +82,7 @@ describe('TemplateParamsEditor', () => {
     });
   });
 
-  test('renders templateParams', async () => {
+  it('renders templateParams', async () => {
     const { container, getByTestId } = setup();
     fireEvent.click(getByText(container, 'Parameters'));
     await waitFor(() => {
@@ -90,7 +93,7 @@ describe('TemplateParamsEditor', () => {
     );
   });
 
-  test('renders code from unsaved changes', async () => {
+  it('renders code from unsaved changes', async () => {
     const expectedCode = 'custom code value';
     const { container, getByTestId } = setup(
       {},

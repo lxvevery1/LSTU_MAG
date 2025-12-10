@@ -25,11 +25,9 @@ import {
   FALSE_STRING,
 } from 'src/utils/common';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('utils/common', () => {
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('optionFromValue', () => {
-    test('converts values as expected', () => {
+    it('converts values as expected', () => {
       expect(optionFromValue(false)).toEqual({
         value: false,
         label: FALSE_STRING,
@@ -50,48 +48,46 @@ describe('utils/common', () => {
       expect(optionFromValue(5)).toEqual({ value: 5, label: '5' });
     });
   });
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('prepareCopyToClipboardTabularData', () => {
-    test('converts empty array', () => {
-      const data = [];
-      const columns = [];
-      expect(prepareCopyToClipboardTabularData(data, columns)).toEqual('');
+    it('converts empty array', () => {
+      const array = [];
+      const column = [];
+      expect(prepareCopyToClipboardTabularData(array, column)).toEqual('');
     });
-    test('converts non empty array', () => {
-      const data = [
+    it('converts non empty array', () => {
+      const array = [
         { column1: 'lorem', column2: 'ipsum' },
         { column1: 'dolor', column2: 'sit', column3: 'amet' },
       ];
-      const columns = ['column1', 'column2', 'column3'];
-      expect(prepareCopyToClipboardTabularData(data, columns)).toEqual(
-        'column1\tcolumn2\tcolumn3\nlorem\tipsum\t\ndolor\tsit\tamet\n',
+      const column = ['column1', 'column2', 'column3'];
+      expect(prepareCopyToClipboardTabularData(array, column)).toEqual(
+        'lorem\tipsum\t\ndolor\tsit\tamet\n',
       );
     });
-    test('includes 0 values and handle column objects', () => {
-      const data = [
+    it('includes 0 values', () => {
+      const array = [
         { column1: 0, column2: 0 },
         { column1: 1, column2: -1, 0: 0 },
       ];
-      const columns = [{ name: 'column1' }, { name: 'column2' }, { name: '0' }];
-      expect(prepareCopyToClipboardTabularData(data, columns)).toEqual(
-        'column1\tcolumn2\t0\n0\t0\t\n1\t-1\t0\n',
+      const column = ['column1', 'column2', '0'];
+      expect(prepareCopyToClipboardTabularData(array, column)).toEqual(
+        '0\t0\t\n1\t-1\t0\n',
       );
     });
   });
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('applyFormattingToTabularData', () => {
-    test('does not mutate empty array', () => {
+    it('does not mutate empty array', () => {
       const data = [];
       expect(applyFormattingToTabularData(data, [])).toEqual(data);
     });
-    test('does not mutate array without temporal column', () => {
+    it('does not mutate array without temporal column', () => {
       const data = [
         { column1: 'lorem', column2: 'ipsum' },
         { column1: 'dolor', column2: 'sit', column3: 'amet' },
       ];
       expect(applyFormattingToTabularData(data, [])).toEqual(data);
     });
-    test('changes formatting of columns selected for formatting', () => {
+    it('changes formatting of columns selected for formatting', () => {
       const originalData = [
         {
           __timestamp: null,

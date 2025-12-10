@@ -16,12 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ControlPanelConfig } from '@superset-ui/chart-controls';
+import { ControlPanelConfig, sections } from '@superset-ui/chart-controls';
 import { t, validateNonEmpty } from '@superset-ui/core';
 import timeGrainSqlaAnimationOverrides from '../../utilities/controls';
 import {
   filterNulls,
   autozoom,
+  dimension,
   jsColumns,
   jsDataMutator,
   jsTooltip,
@@ -33,9 +34,6 @@ import {
   pointRadiusFixed,
   multiplier,
   mapboxStyle,
-  generateDeckGLColorSchemeControls,
-  tooltipContents,
-  tooltipTemplate,
 } from '../../utilities/Shared_DeckGL';
 
 const config: ControlPanelConfig = {
@@ -51,6 +49,7 @@ const config: ControlPanelConfig = {
     },
   }),
   controlPanelSections: [
+    sections.legacyRegularTime,
     {
       label: t('Query'),
       expanded: true,
@@ -58,14 +57,15 @@ const config: ControlPanelConfig = {
         [spatial, null],
         ['row_limit', filterNulls],
         ['adhoc_filters'],
-        [tooltipContents],
-        [tooltipTemplate],
       ],
     },
     {
       label: t('Map'),
       expanded: true,
-      controlSetRows: [[mapboxStyle], [autozoom, viewport]],
+      controlSetRows: [
+        [mapboxStyle, viewport],
+        [autozoom, null],
+      ],
     },
     {
       label: t('Point Size'),
@@ -131,9 +131,22 @@ const config: ControlPanelConfig = {
     {
       label: t('Point Color'),
       controlSetRows: [
+        ['color_picker'],
         [legendPosition],
         [legendFormat],
-        ...generateDeckGLColorSchemeControls({}),
+        [
+          {
+            name: dimension.name,
+            config: {
+              ...dimension.config,
+              label: t('Categorical Color'),
+              description: t(
+                'Pick a dimension from which categorical colors are defined',
+              ),
+            },
+          },
+        ],
+        ['color_scheme'],
       ],
     },
     {

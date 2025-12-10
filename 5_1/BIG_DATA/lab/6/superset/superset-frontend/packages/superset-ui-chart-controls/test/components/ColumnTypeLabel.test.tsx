@@ -16,15 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { isValidElement } from 'react';
-import { render, screen } from '@superset-ui/core/spec';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { GenericDataType } from '@apache-superset/core/api/core';
+import { GenericDataType } from '@superset-ui/core';
+
 import { ColumnTypeLabel, ColumnTypeLabelProps } from '../../src';
 
 describe('ColumnOption', () => {
   const defaultProps = {
-    type: GenericDataType.String,
+    type: GenericDataType.STRING,
   };
 
   const props = { ...defaultProps };
@@ -34,18 +35,20 @@ describe('ColumnOption', () => {
   }
 
   it('is a valid element', () => {
-    expect(isValidElement(<ColumnTypeLabel {...defaultProps} />)).toBe(true);
+    expect(React.isValidElement(<ColumnTypeLabel {...defaultProps} />)).toBe(
+      true,
+    );
   });
   it('string type shows ABC icon', () => {
-    renderColumnTypeLabel({ type: GenericDataType.String });
+    renderColumnTypeLabel({ type: GenericDataType.STRING });
     expect(screen.getByLabelText('string type icon')).toBeVisible();
   });
   it('int type shows # icon', () => {
-    renderColumnTypeLabel({ type: GenericDataType.Numeric });
+    renderColumnTypeLabel({ type: GenericDataType.NUMERIC });
     expect(screen.getByLabelText('numeric type icon')).toBeVisible();
   });
   it('bool type shows 1|0 icon', () => {
-    renderColumnTypeLabel({ type: GenericDataType.Boolean });
+    renderColumnTypeLabel({ type: GenericDataType.BOOLEAN });
     expect(screen.getByLabelText('boolean type icon')).toBeVisible();
   });
   it('expression type shows function icon', () => {
@@ -57,7 +60,7 @@ describe('ColumnOption', () => {
     expect(screen.getByLabelText('unknown type icon')).toBeVisible();
   });
   it('datetime type displays', () => {
-    renderColumnTypeLabel({ type: GenericDataType.Temporal });
+    renderColumnTypeLabel({ type: GenericDataType.TEMPORAL });
     expect(screen.getByLabelText('temporal type icon')).toBeVisible();
   });
 });

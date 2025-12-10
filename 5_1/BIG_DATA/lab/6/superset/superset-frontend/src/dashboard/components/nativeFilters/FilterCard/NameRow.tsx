@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { useTruncation } from '@superset-ui/core';
-import { css, SupersetTheme, useTheme } from '@apache-superset/core/ui';
-import { Icons } from '@superset-ui/core/components/Icons';
-import { useFilterConfigModal } from 'src/dashboard/components/nativeFilters/FilterBar/FilterConfigurationLink/useFilterConfigModal';
+import { css, SupersetTheme, useTheme } from '@superset-ui/core';
+import Icons from 'src/components/Icons';
+import { useTruncation } from 'src/hooks/useTruncation';
 import { RootState } from 'src/dashboard/types';
 import { Row, FilterName, InternalRow } from './Styles';
 import { FilterCardRowProps } from './types';
@@ -32,7 +32,8 @@ export const NameRow = ({
   hidePopover,
 }: FilterCardRowProps & { hidePopover: () => void }) => {
   const theme = useTheme();
-  const [filterNameRef, , elementsTruncated] = useTruncation();
+  const filterNameRef = useRef<HTMLElement>(null);
+  const [elementsTruncated] = useTruncation(filterNameRef);
   const dashboardId = useSelector<RootState, number>(
     ({ dashboardInfo }) => dashboardInfo.id,
   );
@@ -41,25 +42,22 @@ export const NameRow = ({
     ({ dashboardInfo }) => dashboardInfo.dash_edit_perm,
   );
 
-  const { FilterConfigModalComponent, openFilterConfigModal } =
-    useFilterConfigModal({
-      dashboardId,
-      initialFilterId: filter.id,
-    });
-
   return (
     <Row
-      css={(theme: SupersetTheme) => css`
-        margin-bottom: ${theme.sizeUnit * 3}px;
-        justify-content: space-between;
-      `}
+      css={(theme: SupersetTheme) =>
+        css`
+          margin-bottom: ${theme.gridUnit * 3}px;
+          justify-content: space-between;
+        `
+      }
     >
       <InternalRow>
-        <Icons.FilterOutlined
-          iconSize="s"
-          css={(theme: SupersetTheme) => css`
-            margin-right: ${theme.sizeUnit}px;
-          `}
+        <Icons.FilterSmall
+          css={(theme: SupersetTheme) =>
+            css`
+              margin-right: ${theme.gridUnit}px;
+            `
+          }
         />
         <TooltipWithTruncation title={elementsTruncated ? filter.name : null}>
           <FilterName ref={filterNameRef}>{filter.name}</FilterName>
@@ -67,21 +65,13 @@ export const NameRow = ({
       </InternalRow>
       {canEdit && (
         <FilterConfigurationLink
-          onClick={() => {
-            openFilterConfigModal();
-            hidePopover();
-          }}
+          dashboardId={dashboardId}
+          onClick={hidePopover}
+          initialFilterId={filter.id}
         >
-          <Icons.EditOutlined
-            iconSize="l"
-            iconColor={theme.colorIcon}
-            css={() => css`
-              cursor: pointer;
-            `}
-          />
+          <Icons.Edit iconSize="l" iconColor={theme.colors.grayscale.light1} />
         </FilterConfigurationLink>
       )}
-      {FilterConfigModalComponent}
     </Row>
   );
 };

@@ -16,40 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import 'src/public-path';
-
-import { lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { makeApi, t, logging } from '@superset-ui/core';
-import { type SupersetThemeConfig, ThemeMode } from '@apache-superset/core/ui';
 import Switchboard from '@superset-ui/switchboard';
-import getBootstrapData, { applicationRoot } from 'src/utils/getBootstrapData';
+import getBootstrapData from 'src/utils/getBootstrapData';
 import setupClient from 'src/setup/setupClient';
-import setupPlugins from 'src/setup/setupPlugins';
-import { useUiConfig } from 'src/components/UiConfigContext';
+import { RootContextProviders } from 'src/views/RootContextProviders';
 import { store, USER_LOADED } from 'src/views/store';
-import { Loading } from '@superset-ui/core/components';
-import { ErrorBoundary } from 'src/components';
+import ErrorBoundary from 'src/components/ErrorBoundary';
+import Loading from 'src/components/Loading';
 import { addDangerToast } from 'src/components/MessageToasts/actions';
 import ToastContainer from 'src/components/MessageToasts/ToastContainer';
 import { UserWithPermissionsAndRoles } from 'src/types/bootstrapTypes';
-import setupCodeOverrides from 'src/setup/setupCodeOverrides';
-import {
-  EmbeddedContextProviders,
-  getThemeController,
-} from './EmbeddedContextProviders';
 import { embeddedApi } from './api';
-import { getDataMaskChangeTrigger } from './utils';
-
-setupPlugins();
-setupCodeOverrides({ embedded: true });
 
 const debugMode = process.env.WEBPACK_MODE === 'development';
 const bootstrapData = getBootstrapData();
 
 function log(...info: unknown[]) {
-  if (debugMode) logging.debug(`[superset]`, ...info);
+  if (debugMode) {
+    logging.debug(`[superset]`, ...info);
+  }
 }
 
 const LazyDashboardPage = lazy(
@@ -59,46 +48,19 @@ const LazyDashboardPage = lazy(
     ),
 );
 
-const EmbededLazyDashboardPage = () => {
-  const uiConfig = useUiConfig();
-
-  // Emit data mask changes to the parent window
-  if (uiConfig?.emitDataMasks) {
-    log('setting up Switchboard event emitter');
-
-    let previousDataMask = store.getState().dataMask;
-
-    store.subscribe(() => {
-      const currentState = store.getState();
-      const currentDataMask = currentState.dataMask;
-
-      // Only emit if the dataMask has changed
-      if (previousDataMask !== currentDataMask) {
-        Switchboard.emit('observeDataMask', {
-          ...currentDataMask,
-          ...getDataMaskChangeTrigger(currentDataMask, previousDataMask),
-        });
-        previousDataMask = currentDataMask;
-      }
-    });
-  }
-
-  return <LazyDashboardPage idOrSlug={bootstrapData.embedded!.dashboard_id} />;
-};
-
 const EmbeddedRoute = () => (
-  <EmbeddedContextProviders>
-    <Suspense fallback={<Loading />}>
+  <Suspense fallback={<Loading />}>
+    <RootContextProviders>
       <ErrorBoundary>
-        <EmbededLazyDashboardPage />
+        <LazyDashboardPage idOrSlug={bootstrapData.embedded!.dashboard_id} />
       </ErrorBoundary>
       <ToastContainer position="top" />
-    </Suspense>
-  </EmbeddedContextProviders>
+    </RootContextProviders>
+  </Suspense>
 );
 
 const EmbeddedApp = () => (
-  <Router basename={applicationRoot()}>
+  <Router>
     {/* todo (embedded) remove this line after uuids are deployed */}
     <Route path="/dashboard/:idOrSlug/embedded/" component={EmbeddedRoute} />
     <Route path="/embedded/:uuid/" component={EmbeddedRoute} />
@@ -115,9 +77,7 @@ function showFailureMessage(message: string) {
 
 if (!window.parent || window.parent === window) {
   showFailureMessage(
-    t(
-      'This page is intended to be embedded in an iframe, but it looks like that is not the case.',
-    ),
+    'This page is intended to be embedded in an iframe, but it looks like that is not the case.',
   );
 }
 
@@ -178,9 +138,7 @@ function start() {
       // something is most likely wrong with the guest token
       logging.error(err);
       showFailureMessage(
-        t(
-          'Something went wrong with embedded authentication. Check the dev console for details.',
-        ),
+        'Something went wrong with embedded authentication. Check the dev console for details.',
       );
     },
   );
@@ -191,7 +149,6 @@ function start() {
  */
 function setupGuestClient(guestToken: string) {
   setupClient({
-    appRoot: applicationRoot(),
     guestToken,
     guestTokenHeaderName: bootstrapData.config?.GUEST_TOKEN_HEADER_NAME,
     unauthorizedHandler: guestUnauthorizedHandler,
@@ -245,76 +202,7 @@ window.addEventListener('message', function embeddedPageInitializer(event) {
       embeddedApi.getDashboardPermalink,
     );
     Switchboard.defineMethod('getActiveTabs', embeddedApi.getActiveTabs);
-    Switchboard.defineMethod('getDataMask', embeddedApi.getDataMask);
-    Switchboard.defineMethod('getChartStates', embeddedApi.getChartStates);
-    Switchboard.defineMethod(
-      'getChartDataPayloads',
-      embeddedApi.getChartDataPayloads,
-    );
-    Switchboard.defineMethod(
-      'setThemeConfig',
-      (payload: { themeConfig: SupersetThemeConfig }) => {
-        const { themeConfig } = payload;
-        log('Received setThemeConfig request:', themeConfig);
-
-        try {
-          const themeController = getThemeController();
-          themeController.setThemeConfig(themeConfig);
-          return { success: true, message: 'Theme applied' };
-        } catch (error) {
-          logging.error('Failed to apply theme config:', error);
-          throw new Error(`Failed to apply theme config: ${error.message}`);
-        }
-      },
-    );
-
-    Switchboard.defineMethod(
-      'setThemeMode',
-      (payload: { mode: 'default' | 'dark' | 'system' }) => {
-        const { mode } = payload;
-        log('Received setThemeMode request:', mode);
-
-        try {
-          const themeController = getThemeController();
-
-          const themeModeMap: Record<string, ThemeMode> = {
-            default: ThemeMode.DEFAULT,
-            dark: ThemeMode.DARK,
-            system: ThemeMode.SYSTEM,
-          };
-
-          const themeMode = themeModeMap[mode];
-          if (!themeMode) {
-            throw new Error(`Invalid theme mode: ${mode}`);
-          }
-
-          themeController.setThemeMode(themeMode);
-          return { success: true, message: `Theme mode set to ${mode}` };
-        } catch (error) {
-          logging.debug('Theme mode not changed:', error.message);
-          return {
-            success: false,
-            message: `Theme locked to current mode`,
-            silent: true,
-          };
-        }
-      },
-    );
-
     Switchboard.start();
-  }
-});
-
-// Clean up theme controller on page unload
-window.addEventListener('beforeunload', () => {
-  try {
-    const controller = getThemeController();
-    if (controller) {
-      log('Destroying theme controller');
-      controller.destroy();
-    }
-  } catch (error) {
-    logging.warn('Failed to destroy theme controller:', error);
   }
 });
 

@@ -17,8 +17,7 @@
  * under the License.
  */
 
-import { ChartProps, QueryFormData } from '@superset-ui/core';
-import { supersetTheme } from '@apache-superset/core/ui';
+import { ChartProps, QueryFormData, supersetTheme } from '@superset-ui/core';
 import transformProps from '../../src/plugin/transformProps';
 import { MetricsLayoutEnum } from '../../src/types';
 
@@ -46,7 +45,6 @@ describe('PivotTableChart transformProps', () => {
     dateFormat: '',
     legacy_order_by: 'count',
     order_desc: true,
-    currencyFormat: { symbol: 'USD', symbolPosition: 'prefix' },
   };
   const chartProps = new ChartProps<QueryFormData>({
     formData,
@@ -92,8 +90,6 @@ describe('PivotTableChart transformProps', () => {
       dateFormatters: {},
       emitCrossFilters: false,
       columnFormats: {},
-      currencyFormats: {},
-      currencyFormat: { symbol: 'USD', symbolPosition: 'prefix' },
     });
   });
 });

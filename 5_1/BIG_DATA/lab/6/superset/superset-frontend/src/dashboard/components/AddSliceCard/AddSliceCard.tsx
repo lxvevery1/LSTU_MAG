@@ -17,37 +17,24 @@
  * under the License.
  */
 
-import {
+import React, {
   CSSProperties,
   ReactNode,
   useEffect,
   useMemo,
   useRef,
   useState,
-  PropsWithChildren,
-  RefObject,
-  FC,
 } from 'react';
-
-import { t, isFeatureEnabled, FeatureFlag } from '@superset-ui/core';
-import { css } from '@apache-superset/core/ui';
-import { Tooltip, ImageLoader } from '@superset-ui/core/components';
-import { GenericLink, usePluginContext } from 'src/components';
-import { assetUrl } from 'src/utils/assetUrl';
+import { t, isFeatureEnabled, FeatureFlag, css } from '@superset-ui/core';
+import ImageLoader from 'src/components/ListViewCard/ImageLoader';
+import { usePluginContext } from 'src/components/DynamicPlugins';
+import { Tooltip } from 'src/components/Tooltip';
+import { GenericLink } from 'src/components/GenericLink/GenericLink';
 import { Theme } from '@emotion/react';
 
-const FALLBACK_THUMBNAIL_URL = assetUrl(
-  '/static/assets/images/chart-card-fallback.svg',
-);
+const FALLBACK_THUMBNAIL_URL = '/static/assets/images/chart-card-fallback.svg';
 
-const TruncatedTextWithTooltip = ({
-  children,
-  tooltipText,
-  ...props
-}: PropsWithChildren<{
-  tooltipText?: string;
-}>) => {
-  // Uses React.useState for testing purposes
+const TruncatedTextWithTooltip: React.FC = ({ children, ...props }) => {
   const [isTruncated, setIsTruncated] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -71,33 +58,28 @@ const TruncatedTextWithTooltip = ({
     </div>
   );
 
-  return isTruncated ? (
-    <Tooltip title={tooltipText || children}>{div}</Tooltip>
-  ) : (
-    div
-  );
+  return isTruncated ? <Tooltip title={children}>{div}</Tooltip> : div;
 };
 
-const MetadataItem: FC<{
+const MetadataItem: React.FC<{
   label: ReactNode;
   value: ReactNode;
-  tooltipText?: string;
-}> = ({ label, value, tooltipText }) => (
+}> = ({ label, value }) => (
   <div
     css={(theme: Theme) => css`
-      font-size: ${theme.fontSizeSM}px;
+      font-size: ${theme.typography.sizes.s}px;
       display: flex;
       justify-content: space-between;
 
       &:not(:last-child) {
-        margin-bottom: ${theme.sizeUnit}px;
+        margin-bottom: ${theme.gridUnit}px;
       }
     `}
   >
     <span
       css={(theme: Theme) => css`
-        margin-right: ${theme.sizeUnit * 4}px;
-        color: ${theme.colorText};
+        margin-right: ${theme.gridUnit * 4}px;
+        color: ${theme.colors.grayscale.base};
       `}
     >
       {label}
@@ -107,14 +89,12 @@ const MetadataItem: FC<{
         min-width: 0;
       `}
     >
-      <TruncatedTextWithTooltip tooltipText={tooltipText}>
-        {value}
-      </TruncatedTextWithTooltip>
+      <TruncatedTextWithTooltip>{value}</TruncatedTextWithTooltip>
     </span>
   </div>
 );
 
-const SliceAddedBadgePlaceholder: FC<{
+const SliceAddedBadgePlaceholder: React.FC<{
   showThumbnails?: boolean;
   placeholderRef: (element: HTMLDivElement) => void;
 }> = ({ showThumbnails, placeholderRef }) => (
@@ -122,13 +102,14 @@ const SliceAddedBadgePlaceholder: FC<{
     ref={placeholderRef}
     css={(theme: Theme) => css`
       /* Display styles */
-      border: 1px solid ${theme.colorBorder};
-      border-radius: ${theme.borderRadius}px;
-      color: ${theme.colorPrimaryText};
-      font-size: ${theme.fontSizeXS}px;
+      border: 1px solid ${theme.colors.primary.dark1};
+      border-radius: ${theme.gridUnit}px;
+      color: ${theme.colors.primary.dark1};
+      font-size: ${theme.typography.sizes.xs}px;
+      text-transform: uppercase;
       letter-spacing: 0.02em;
-      padding: ${theme.sizeUnit / 2}px ${theme.sizeUnit * 2}px;
-      margin-left: ${theme.sizeUnit * 4}px;
+      padding: ${theme.gridUnit / 2}px ${theme.gridUnit * 2}px;
+      margin-left: ${theme.gridUnit * 4}px;
       pointer-events: none;
 
       /* Position styles */
@@ -142,19 +123,20 @@ const SliceAddedBadgePlaceholder: FC<{
   </div>
 );
 
-const SliceAddedBadge: FC<{ placeholder?: HTMLDivElement }> = ({
+const SliceAddedBadge: React.FC<{ placeholder?: HTMLDivElement }> = ({
   placeholder,
 }) => (
   <div
     css={(theme: Theme) => css`
       /* Display styles */
-      border: 1px solid ${theme.colorBorder};
-      border-radius: ${theme.borderRadius}px;
-      color: ${theme.colorPrimaryText};
-      font-size: ${theme.fontSizeXS}px;
+      border: 1px solid ${theme.colors.primary.dark1};
+      border-radius: ${theme.gridUnit}px;
+      color: ${theme.colors.primary.dark1};
+      font-size: ${theme.typography.sizes.xs}px;
+      text-transform: uppercase;
       letter-spacing: 0.02em;
-      padding: ${theme.sizeUnit / 2}px ${theme.sizeUnit * 2}px;
-      margin-left: ${theme.sizeUnit * 4}px;
+      padding: ${theme.gridUnit / 2}px ${theme.gridUnit * 2}px;
+      margin-left: ${theme.gridUnit * 4}px;
       pointer-events: none;
 
       /* Position styles */
@@ -168,17 +150,15 @@ const SliceAddedBadge: FC<{ placeholder?: HTMLDivElement }> = ({
   </div>
 );
 
-const AddSliceCard: FC<{
+const AddSliceCard: React.FC<{
   datasourceUrl?: string;
   datasourceName?: string;
-  innerRef?:
-    | RefObject<HTMLDivElement>
-    | ((node: HTMLDivElement | null) => void);
+  innerRef?: React.RefObject<HTMLDivElement>;
   isSelected?: boolean;
   lastModified?: string;
   sliceName: string;
   style?: CSSProperties;
-  thumbnailUrl?: string | null;
+  thumbnailUrl?: string;
   visType: string;
 }> = ({
   datasourceUrl,
@@ -191,11 +171,11 @@ const AddSliceCard: FC<{
   thumbnailUrl,
   visType,
 }) => {
-  const showThumbnails = isFeatureEnabled(FeatureFlag.Thumbnails);
+  const showThumbnails = isFeatureEnabled(FeatureFlag.THUMBNAILS);
   const [sliceAddedBadge, setSliceAddedBadge] = useState<HTMLDivElement>();
   const { mountedPluginMetadata } = usePluginContext();
   const vizName = useMemo(
-    () => mountedPluginMetadata[visType]?.name || t('Unknown type'),
+    () => mountedPluginMetadata[visType].name,
     [mountedPluginMetadata, visType],
   );
 
@@ -204,20 +184,22 @@ const AddSliceCard: FC<{
       <div
         data-test="chart-card"
         css={(theme: Theme) => css`
-          border: 1px solid ${theme.colorBorder};
-          border-radius: ${theme.borderRadius}px;
-          padding: ${theme.sizeUnit * 4}px;
-          margin: 0 ${theme.sizeUnit * 3}px ${theme.sizeUnit * 3}px
-            ${theme.sizeUnit * 3}px;
+          border: 1px solid ${theme.colors.grayscale.light2};
+          border-radius: ${theme.gridUnit}px;
+          background: ${theme.colors.grayscale.light5};
+          padding: ${theme.gridUnit * 4}px;
+          margin: 0 ${theme.gridUnit * 3}px
+            ${theme.gridUnit * 3}px
+            ${theme.gridUnit * 3}px;
           position: relative;
           cursor: ${isSelected ? 'not-allowed' : 'move'};
           white-space: nowrap;
           overflow: hidden;
           line-height: 1.3;
-          color: ${theme.colorText};
+          color: ${theme.colors.grayscale.dark1}
 
           &:hover {
-            //background: ${theme.colorFillTertiary};
+            background: ${theme.colors.grayscale.light4};
           }
 
           opacity: ${isSelected ? 0.4 : 'unset'};
@@ -260,8 +242,8 @@ const AddSliceCard: FC<{
             <div
               data-test="card-title"
               css={(theme: Theme) => css`
-                margin-bottom: ${theme.sizeUnit * 2}px;
-                font-weight: ${theme.fontWeightStrong};
+                margin-bottom: ${theme.gridUnit * 2}px;
+                font-weight: ${theme.typography.weights.bold};
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -292,7 +274,6 @@ const AddSliceCard: FC<{
                     datasourceName
                   )
                 }
-                tooltipText={datasourceName}
               />
               <MetadataItem label={t('Modified')} value={lastModified} />
             </div>

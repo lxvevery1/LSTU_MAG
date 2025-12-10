@@ -16,10 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { AriaAttributes } from 'react';
+import React from 'react';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only';
+import 'jest-enzyme';
 import jQuery from 'jquery';
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 // https://jestjs.io/docs/jest-object#jestmockmodulename-factory-options
 // in order to mock modules in test case, so avoid absolute import module
 import { configure as configureTranslation } from '../../packages/superset-ui-core/src/translation';
@@ -29,28 +33,29 @@ import { ResizeObserver } from './ResizeObserver';
 import setupSupersetClient from './setupSupersetClient';
 import CacheStorage from './CacheStorage';
 
+configure({ adapter: new Adapter() });
+
 const exposedProperties = ['window', 'navigator', 'document'];
 
 const { defaultView } = document;
 if (defaultView != null) {
   Object.keys(defaultView).forEach(property => {
-    if (typeof global[property as keyof typeof global] === 'undefined') {
+    if (typeof global[property] === 'undefined') {
       exposedProperties.push(property);
-      // @ts-ignore due to string-type index signature doesn't apply for `typeof globalThis`.
-      global[property] = defaultView[property as keyof typeof defaultView];
+      global[property] = defaultView[property];
     }
   });
 }
 
 const g = global as any;
-g.window ??= Object.create(window);
-g.window.location ??= { href: 'about:blank' };
-g.window.performance ??= { now: () => new Date().getTime() };
-g.window.Worker ??= Worker;
-g.window.IntersectionObserver ??= IntersectionObserver;
-g.window.ResizeObserver ??= ResizeObserver;
-g.window.featureFlags ??= {};
-g.URL.createObjectURL ??= () => '';
+g.window = g.window || {};
+g.window.location = { href: 'about:blank' };
+g.window.performance = { now: () => new Date().getTime() };
+g.window.Worker = Worker;
+g.window.IntersectionObserver = IntersectionObserver;
+g.window.ResizeObserver = ResizeObserver;
+g.window.featureFlags = {};
+g.URL.createObjectURL = () => '';
 g.caches = new CacheStorage();
 
 Object.defineProperty(window, 'matchMedia', {
@@ -86,50 +91,32 @@ jest.mock('rehype-raw', () => () => jest.fn());
 
 // Mocks the Icon component due to its async nature
 // Tests should override this when needed
-jest.mock('@superset-ui/core/components/Icons/AsyncIcon', () => ({
+jest.mock('src/components/Icons/Icon', () => ({
   __esModule: true,
   default: ({
     fileName,
     role,
     'aria-label': ariaLabel,
-    onClick,
     ...rest
   }: {
     fileName: string;
-    role?: string;
-    'aria-label'?: AriaAttributes['aria-label'];
-    onClick?: () => void;
-  }) => {
-    // Simple mock that provides the essential attributes for testing
-    const label = ariaLabel || fileName?.replace(/_/g, '-').toLowerCase() || '';
-    return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      <span
-        role={role || (onClick ? 'button' : 'img')}
-        aria-label={label}
-        data-test={label}
-        onClick={onClick}
-        {...rest}
-      />
-    );
-  },
+    role: string;
+    'aria-label': React.AriaAttributes['aria-label'];
+  }) => (
+    <span
+      role={role ?? 'img'}
+      aria-label={ariaLabel || fileName.replace('_', '-')}
+      {...rest}
+    />
+  ),
   StyledIcon: ({
-    component: Component,
     role,
     'aria-label': ariaLabel,
     ...rest
   }: {
-    component: React.ComponentType<any>;
     role: string;
-    'aria-label': AriaAttributes['aria-label'];
-  }) => (
-    <Component
-      role={role ?? 'img'}
-      alt={ariaLabel}
-      aria-label={ariaLabel}
-      {...rest}
-    />
-  ),
+    'aria-label': React.AriaAttributes['aria-label'];
+  }) => <span role={role ?? 'img'} aria-label={ariaLabel} {...rest} />,
 }));
 
 process.env.WEBPACK_MODE = 'test';

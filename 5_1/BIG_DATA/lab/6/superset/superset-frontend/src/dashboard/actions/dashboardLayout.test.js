@@ -58,7 +58,6 @@ import {
   NEW_ROW_ID,
 } from 'src/dashboard/util/constants';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('dashboardLayout actions', () => {
   const mockState = {
     dashboardState: {
@@ -86,9 +85,8 @@ describe('dashboardLayout actions', () => {
     dashboardFilters.updateLayoutComponents.restore();
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('updateComponents', () => {
-    test('should dispatch an updateLayout action', () => {
+    it('should dispatch an updateLayout action', () => {
       const { getState, dispatch } = setup();
       const nextComponents = { 1: {} };
       const thunk = updateComponents(nextComponents);
@@ -103,7 +101,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(0);
     });
 
-    test('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
+    it('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });
@@ -117,9 +115,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('deleteComponents', () => {
-    test('should dispatch an deleteComponent action', () => {
+    it('should dispatch an deleteComponent action', () => {
       const { getState, dispatch } = setup();
       const thunk = deleteComponent('id', 'parentId');
       thunk(dispatch, getState);
@@ -132,7 +129,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(1);
     });
 
-    test('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
+    it('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });
@@ -145,9 +142,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('updateDashboardTitle', () => {
-    test('should dispatch an updateComponent action for the header component', () => {
+    it('should dispatch an updateComponent action for the header component', () => {
       const { getState, dispatch } = setup();
       const thunk1 = updateDashboardTitle('new text');
       thunk1(dispatch, getState);
@@ -171,9 +167,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('createTopLevelTabs', () => {
-    test('should dispatch a createTopLevelTabs action', () => {
+    it('should dispatch a createTopLevelTabs action', () => {
       const { getState, dispatch } = setup();
       const dropResult = {};
       const thunk = createTopLevelTabs(dropResult);
@@ -187,7 +182,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(1);
     });
 
-    test('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
+    it('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });
@@ -201,9 +196,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('deleteTopLevelTabs', () => {
-    test('should dispatch a deleteTopLevelTabs action', () => {
+    it('should dispatch a deleteTopLevelTabs action', () => {
       const { getState, dispatch } = setup();
       const dropResult = {};
       const thunk = deleteTopLevelTabs(dropResult);
@@ -217,7 +211,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(1);
     });
 
-    test('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
+    it('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });
@@ -231,7 +225,6 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('resizeComponent', () => {
     const dashboardLayout = {
       ...mockState.dashboardLayout,
@@ -247,7 +240,7 @@ describe('dashboardLayout actions', () => {
       },
     };
 
-    test('should update the size of the component', () => {
+    it('should update the size of the component', () => {
       const { getState, dispatch } = setup({
         dashboardLayout,
       });
@@ -278,7 +271,7 @@ describe('dashboardLayout actions', () => {
       expect(dispatch.callCount).toBe(2);
     });
 
-    test('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
+    it('should dispatch a setUnsavedChanges action if hasUnsavedChanges=false', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
         dashboardLayout,
@@ -296,9 +289,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('handleComponentDrop', () => {
-    test('should create a component if it is new', () => {
+    it('should create a component if it is new', () => {
       const { getState, dispatch } = setup();
       const dropResult = {
         source: { id: NEW_COMPONENTS_SOURCE_ID },
@@ -323,7 +315,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(1);
     });
 
-    test('should move a component if the component is not new', () => {
+    it('should move a component if the component is not new', () => {
       const { getState, dispatch } = setup({
         dashboardLayout: {
           // if 'dragging' is not only child will dispatch deleteComponent thunk
@@ -353,7 +345,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(1);
     });
 
-    test('should dispatch a toast if the drop overflows the destination', () => {
+    it('should dispatch a toast if the drop overflows the destination', () => {
       const { getState, dispatch } = setup({
         dashboardLayout: {
           present: {
@@ -382,7 +374,7 @@ describe('dashboardLayout actions', () => {
       expect(dispatch.callCount).toBe(1);
     });
 
-    test('should delete a parent Row or Tabs if the moved child was the only child', () => {
+    it('should delete a parent Row or Tabs if the moved child was the only child', () => {
       const { getState, dispatch } = setup({
         dashboardLayout: {
           present: {
@@ -419,7 +411,7 @@ describe('dashboardLayout actions', () => {
       });
     });
 
-    test('should create top-level tabs if dropped on root', () => {
+    it('should create top-level tabs if dropped on root', () => {
       const { getState, dispatch } = setup();
       const dropResult = {
         source: { id: NEW_COMPONENTS_SOURCE_ID },
@@ -441,7 +433,7 @@ describe('dashboardLayout actions', () => {
       });
     });
 
-    test('should dispatch a toast if drop top-level tab into nested tab', () => {
+    it('should dispatch a toast if drop top-level tab into nested tab', () => {
       const { getState, dispatch } = setup({
         dashboardLayout: {
           present: {
@@ -496,9 +488,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('undoLayoutAction', () => {
-    test('should dispatch a redux-undo .undo() action', () => {
+    it('should dispatch a redux-undo .undo() action', () => {
       const { getState, dispatch } = setup({
         dashboardLayout: { past: ['non-empty'] },
       });
@@ -509,7 +500,7 @@ describe('dashboardLayout actions', () => {
       expect(dispatch.getCall(0).args[0]).toEqual(UndoActionCreators.undo());
     });
 
-    test('should dispatch a setUnsavedChanges(false) action history length is zero', () => {
+    it('should dispatch a setUnsavedChanges(false) action history length is zero', () => {
       const { getState, dispatch } = setup({
         dashboardLayout: { past: [] },
       });
@@ -521,9 +512,8 @@ describe('dashboardLayout actions', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('redoLayoutAction', () => {
-    test('should dispatch a redux-undo .redo() action', () => {
+    it('should dispatch a redux-undo .redo() action', () => {
       const { getState, dispatch } = setup();
       const thunk = redoLayoutAction();
       thunk(dispatch, getState);
@@ -534,7 +524,7 @@ describe('dashboardLayout actions', () => {
       expect(dashboardFilters.updateLayoutComponents.callCount).toEqual(1);
     });
 
-    test('should dispatch a setUnsavedChanges(true) action if hasUnsavedChanges=false', () => {
+    it('should dispatch a setUnsavedChanges(true) action if hasUnsavedChanges=false', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });

@@ -11,7 +11,7 @@ class HttpRequestScreen extends StatefulWidget {
 }
 
 class _HttpRequestScreenState extends State<HttpRequestScreen> {
-  String result = "Нажми кнопку";
+  String result = "";
 
   Future<void> sendRequest() async {
     try {
@@ -55,7 +55,7 @@ class _HttpRequestScreenState extends State<HttpRequestScreen> {
           children: [
             ElevatedButton(
               onPressed: sendRequest,
-              child: const Text("Отправить HTTP-запрос"),
+              child: const Text("Отправить HTTP-запрос (GET)"),
             ),
             const SizedBox(height: 20),
             ElevatedButton(

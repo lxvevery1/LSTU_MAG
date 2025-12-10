@@ -14,30 +14,27 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+import json
 
-import logging
-
+import pandas as pd
 from sqlalchemy import inspect, String, Text
 
 import superset.utils.database as database_utils
 from superset import db
-from superset.sql.parse import Table
-from superset.utils import json
 
-from .helpers import get_table_connector_registry, read_example_data
-
-logger = logging.getLogger(__name__)
+from .helpers import get_example_url, get_table_connector_registry
 
 
 def load_paris_iris_geojson(only_metadata: bool = False, force: bool = False) -> None:
     tbl_name = "paris_iris_mapping"
     database = database_utils.get_example_database()
-    with database.get_sqla_engine() as engine:
+    with database.get_sqla_engine_with_context() as engine:
         schema = inspect(engine).default_schema_name
-        table_exists = database.has_table(Table(tbl_name, schema))
+        table_exists = database.has_table_by_name(tbl_name)
 
         if not only_metadata and (not table_exists or force):
-            df = read_example_data("examples://paris_iris.json.gz", compression="gzip")
+            url = get_example_url("paris_iris.json.gz")
+            df = pd.read_json(url, compression="gzip")
             df["features"] = df.features.map(json.dumps)
 
             df.to_sql(
@@ -55,13 +52,14 @@ def load_paris_iris_geojson(only_metadata: bool = False, force: bool = False) ->
                 index=False,
             )
 
-    logger.debug("Creating table %s reference", tbl_name)
+    print("Creating table {} reference".format(tbl_name))
     table = get_table_connector_registry()
     tbl = db.session.query(table).filter_by(table_name=tbl_name).first()
     if not tbl:
         tbl = table(table_name=tbl_name, schema=schema)
-        db.session.add(tbl)
     tbl.description = "Map of Paris"
     tbl.database = database
     tbl.filter_select_enabled = True
+    db.session.merge(tbl)
+    db.session.commit()
     tbl.fetch_metadata()

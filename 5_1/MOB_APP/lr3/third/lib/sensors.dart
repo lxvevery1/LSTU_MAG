@@ -23,14 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
         az = event.z;
       });
     });
-
-    gyroscopeEvents.listen((GyroscopeEvent event) {
-      setState(() {
-        gx = event.x;
-        gy = event.y;
-        gz = event.z;
-      });
-    });
   }
 
   @override
@@ -45,8 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
             const Text("Акселерометр (m/s²):", style: TextStyle(fontWeight: FontWeight.bold)),
             Text("X: ${ax.toStringAsFixed(2)}  Y: ${ay.toStringAsFixed(2)}  Z: ${az.toStringAsFixed(2)}"),
             const SizedBox(height: 20),
-            const Text("Гироскоп (rad/s):", style: TextStyle(fontWeight: FontWeight.bold)),
-            Text("X: ${gx.toStringAsFixed(2)}  Y: ${gy.toStringAsFixed(2)}  Z: ${gz.toStringAsFixed(2)}"),
           ],
         ),
       ),

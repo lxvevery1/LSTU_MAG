@@ -16,17 +16,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useState, useEffect, useRef, MouseEvent } from 'react';
+import React, { MouseEvent } from 'react';
 import {
   t,
   getNumberFormatter,
-  getTimeFormatter,
-  SMART_DATE_VERBOSE_ID,
+  smartDateVerboseFormatter,
   computeMaxFontSize,
   BRAND_COLOR,
+  styled,
   BinaryQueryObjectFilterClause,
 } from '@superset-ui/core';
-import { styled, useTheme } from '@apache-superset/core/ui';
 import Echart from '../components/Echart';
 import { BigNumberVizProps } from './types';
 import { EventHandlers } from '../types';
@@ -35,7 +34,6 @@ const defaultNumberFormatter = getNumberFormatter();
 
 const PROPORTION = {
   // text size: proportion of the chart container sans trendline
-  METRIC_NAME: 0.125,
   KICKER: 0.1,
   HEADER: 0.3,
   SUBHEADER: 0.125,
@@ -43,68 +41,41 @@ const PROPORTION = {
   TRENDLINE: 0.3,
 };
 
-function BigNumberVis({
-  className = '',
-  headerFormatter = defaultNumberFormatter,
-  formatTime = getTimeFormatter(SMART_DATE_VERBOSE_ID),
-  headerFontSize = PROPORTION.HEADER,
-  kickerFontSize = PROPORTION.KICKER,
-  metricNameFontSize = PROPORTION.METRIC_NAME,
-  showMetricName = true,
-  mainColor = BRAND_COLOR,
-  showTimestamp = false,
-  showTrendLine = false,
-  startYAxisAtZero = true,
-  subheader = '',
-  subheaderFontSize = PROPORTION.SUBHEADER,
-  subtitleFontSize = PROPORTION.SUBHEADER,
-  timeRangeFixed = false,
-  ...props
-}: BigNumberVizProps) {
-  const theme = useTheme();
+class BigNumberVis extends React.PureComponent<BigNumberVizProps> {
+  static defaultProps = {
+    className: '',
+    headerFormatter: defaultNumberFormatter,
+    formatTime: smartDateVerboseFormatter,
+    headerFontSize: PROPORTION.HEADER,
+    kickerFontSize: PROPORTION.KICKER,
+    mainColor: BRAND_COLOR,
+    showTimestamp: false,
+    showTrendLine: false,
+    startYAxisAtZero: true,
+    subheader: '',
+    subheaderFontSize: PROPORTION.SUBHEADER,
+    timeRangeFixed: false,
+  };
 
-  // Convert state to hooks
-  const [elementsRendered, setElementsRendered] = useState(false);
-
-  // Create refs for each component to measure heights
-  const metricNameRef = useRef<HTMLDivElement>(null);
-  const kickerRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const subheaderRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLDivElement>(null);
-
-  // Convert componentDidMount
-  useEffect(() => {
-    // Wait for elements to render and then calculate heights
-    const timeout = setTimeout(() => {
-      setElementsRendered(true);
-    }, 0);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  // Convert componentDidUpdate - trigger re-render when height or trendline changes
-  useEffect(() => {
-    // Re-render when height or showTrendLine changes
-  }, [props.height, showTrendLine]);
-
-  const getClassName = () => {
+  getClassName() {
+    const { className, showTrendLine, bigNumberFallback } = this.props;
     const names = `superset-legacy-chart-big-number ${className} ${
-      props.bigNumberFallback ? 'is-fallback-value' : ''
+      bigNumberFallback ? 'is-fallback-value' : ''
     }`;
     if (showTrendLine) return names;
     return `${names} no-trendline`;
-  };
+  }
 
-  const createTemporaryContainer = () => {
+  createTemporaryContainer() {
     const container = document.createElement('div');
-    container.className = getClassName();
+    container.className = this.getClassName();
     container.style.position = 'absolute'; // so it won't disrupt page layout
     container.style.opacity = '0'; // and not visible
     return container;
-  };
+  }
 
-  const renderFallbackWarning = () => {
-    const { bigNumberFallback } = props;
+  renderFallbackWarning() {
+    const { bigNumberFallback, formatTime, showTimestamp } = this.props;
     if (!formatTime || !bigNumberFallback || showTimestamp) return null;
     return (
       <span
@@ -118,53 +89,21 @@ function BigNumberVis({
         {t('Not up to date')}
       </span>
     );
-  };
+  }
 
-  const renderMetricName = (maxHeight: number) => {
-    const { metricName, width } = props;
-    if (!showMetricName || !metricName) return null;
-
-    const text = metricName;
-
-    const container = createTemporaryContainer();
-    document.body.append(container);
-    const fontSize = computeMaxFontSize({
-      text,
-      maxWidth: width,
-      maxHeight,
-      className: 'metric-name',
-      container,
-    });
-    container.remove();
-
-    return (
-      <div
-        ref={metricNameRef}
-        className="metric-name"
-        style={{
-          fontSize,
-          height: 'auto',
-        }}
-      >
-        {text}
-      </div>
-    );
-  };
-
-  const renderKicker = (maxHeight: number) => {
-    const { timestamp, width } = props;
+  renderKicker(maxHeight: number) {
+    const { timestamp, showTimestamp, formatTime, width } = this.props;
     if (
       !formatTime ||
       !showTimestamp ||
       typeof timestamp === 'string' ||
-      typeof timestamp === 'bigint' ||
       typeof timestamp === 'boolean'
     )
       return null;
 
     const text = timestamp === null ? '' : formatTime(timestamp);
 
-    const container = createTemporaryContainer();
+    const container = this.createTemporaryContainer();
     document.body.append(container);
     const fontSize = computeMaxFontSize({
       text,
@@ -177,101 +116,82 @@ function BigNumberVis({
 
     return (
       <div
-        ref={kickerRef}
         className="kicker"
         style={{
           fontSize,
-          height: 'auto',
+          height: maxHeight,
         }}
       >
         {text}
       </div>
     );
-  };
+  }
 
-  const renderHeader = (maxHeight: number) => {
-    const { bigNumber, width, colorThresholdFormatters, onContextMenu } = props;
+  renderHeader(maxHeight: number) {
+    const { bigNumber, headerFormatter, width } = this.props;
     // @ts-ignore
     const text = bigNumber === null ? t('No data') : headerFormatter(bigNumber);
 
-    const hasThresholdColorFormatter =
-      Array.isArray(colorThresholdFormatters) &&
-      colorThresholdFormatters.length > 0;
-
-    let numberColor;
-    if (hasThresholdColorFormatter) {
-      colorThresholdFormatters!.forEach(formatter => {
-        const formatterResult = bigNumber
-          ? formatter.getColorFromValue(bigNumber as number)
-          : false;
-        if (formatterResult) {
-          numberColor = formatterResult;
-        }
-      });
-    } else {
-      numberColor = theme.colorText;
-    }
-
-    const container = createTemporaryContainer();
+    const container = this.createTemporaryContainer();
     document.body.append(container);
     const fontSize = computeMaxFontSize({
       text,
-      maxWidth: width * 0.9, // reduced it's max width
+      maxWidth: width - 8, // Decrease 8px for more precise font size
       maxHeight,
       className: 'header-line',
       container,
     });
     container.remove();
 
-    const handleContextMenu = (e: MouseEvent<HTMLDivElement>) => {
-      if (onContextMenu) {
+    const onContextMenu = (e: MouseEvent<HTMLDivElement>) => {
+      if (this.props.onContextMenu) {
         e.preventDefault();
-        onContextMenu(e.nativeEvent.clientX, e.nativeEvent.clientY);
+        this.props.onContextMenu(e.nativeEvent.clientX, e.nativeEvent.clientY);
       }
     };
 
     return (
       <div
-        ref={headerRef}
         className="header-line"
         style={{
-          display: 'flex',
-          alignItems: 'center',
           fontSize,
-          height: 'auto',
-          color: numberColor,
+          height: maxHeight,
         }}
-        onContextMenu={handleContextMenu}
+        onContextMenu={onContextMenu}
       >
         {text}
       </div>
     );
-  };
+  }
 
-  const rendermetricComparisonSummary = (maxHeight: number) => {
-    const { width } = props;
+  renderSubheader(maxHeight: number) {
+    const { bigNumber, subheader, width, bigNumberFallback } = this.props;
     let fontSize = 0;
 
-    const text = subheader;
-
+    const NO_DATA_OR_HASNT_LANDED = t(
+      'No data after filtering or data is NULL for the latest time record',
+    );
+    const NO_DATA = t(
+      'Try applying different filters or ensuring your datasource has data',
+    );
+    let text = subheader;
+    if (bigNumber === null) {
+      text = bigNumberFallback ? NO_DATA : NO_DATA_OR_HASNT_LANDED;
+    }
     if (text) {
-      const container = createTemporaryContainer();
+      const container = this.createTemporaryContainer();
       document.body.append(container);
-      try {
-        fontSize = computeMaxFontSize({
-          text,
-          maxWidth: width * 0.9,
-          maxHeight,
-          className: 'subheader-line',
-          container,
-        });
-      } finally {
-        container.remove();
-      }
+      fontSize = computeMaxFontSize({
+        text,
+        maxWidth: width,
+        maxHeight,
+        className: 'subheader-line',
+        container,
+      });
+      container.remove();
 
       return (
         <div
-          ref={subheaderRef}
           className="subheader-line"
           style={{
             fontSize,
@@ -283,65 +203,10 @@ function BigNumberVis({
       );
     }
     return null;
-  };
+  }
 
-  const renderSubtitle = (maxHeight: number) => {
-    const { subtitle, width, bigNumber, bigNumberFallback } = props;
-    let fontSize = 0;
-
-    const NO_DATA_OR_HASNT_LANDED = t(
-      'No data after filtering or data is NULL for the latest time record',
-    );
-    const NO_DATA = t(
-      'Try applying different filters or ensuring your datasource has data',
-    );
-
-    let text = subtitle;
-    if (bigNumber === null) {
-      text =
-        subtitle || (bigNumberFallback ? NO_DATA : NO_DATA_OR_HASNT_LANDED);
-    }
-
-    if (text) {
-      const container = createTemporaryContainer();
-      document.body.append(container);
-      fontSize = computeMaxFontSize({
-        text,
-        maxWidth: width * 0.9,
-        maxHeight,
-        className: 'subtitle-line',
-        container,
-      });
-      container.remove();
-
-      return (
-        <>
-          <div
-            ref={subtitleRef}
-            className="subtitle-line subheader-line"
-            style={{
-              fontSize: `${fontSize}px`,
-              height: maxHeight,
-            }}
-          >
-            {text}
-          </div>
-        </>
-      );
-    }
-    return null;
-  };
-
-  const renderTrendline = (maxHeight: number) => {
-    const {
-      width,
-      trendLineData,
-      echartOptions,
-      refs,
-      onContextMenu,
-      formData,
-      xValueFormatter,
-    } = props;
+  renderTrendline(maxHeight: number) {
+    const { width, trendLineData, echartOptions, refs } = this.props;
 
     // if can't find any non-null values, no point rendering the trendline
     if (!trendLineData?.some(d => d[1] !== null)) {
@@ -350,22 +215,24 @@ function BigNumberVis({
 
     const eventHandlers: EventHandlers = {
       contextmenu: eventParams => {
-        if (onContextMenu) {
+        if (this.props.onContextMenu) {
           eventParams.event.stop();
           const { data } = eventParams;
           if (data) {
             const pointerEvent = eventParams.event.event;
-            const drillToDetailFilters: BinaryQueryObjectFilterClause[] = [];
-            drillToDetailFilters.push({
-              col: formData?.granularitySqla,
-              grain: formData?.timeGrainSqla,
+            const filters: BinaryQueryObjectFilterClause[] = [];
+            filters.push({
+              col: this.props.formData?.granularitySqla,
+              grain: this.props.formData?.timeGrainSqla,
               op: '==',
               val: data[0],
-              formattedVal: xValueFormatter?.(data[0]),
+              formattedVal: this.props.xValueFormatter?.(data[0]),
             });
-            onContextMenu(pointerEvent.clientX, pointerEvent.clientY, {
-              drillToDetail: drillToDetailFilters,
-            });
+            this.props.onContextMenu(
+              pointerEvent.clientX,
+              pointerEvent.clientY,
+              filters,
+            );
           }
         }
       },
@@ -382,119 +249,59 @@ function BigNumberVis({
         />
       )
     );
-  };
+  }
 
-  const getTotalElementsHeight = () => {
-    const marginPerElement = 8; // theme.sizeUnit = 4, so margin-bottom = 8px
+  render() {
+    const {
+      showTrendLine,
+      height,
+      kickerFontSize,
+      headerFontSize,
+      subheaderFontSize,
+    } = this.props;
+    const className = this.getClassName();
 
-    const refs = [
-      metricNameRef,
-      kickerRef,
-      headerRef,
-      subheaderRef,
-      subtitleRef,
-    ];
+    if (showTrendLine) {
+      const chartHeight = Math.floor(PROPORTION.TRENDLINE * height);
+      const allTextHeight = height - chartHeight;
 
-    // Filter refs to only those with a current element
-    const visibleRefs = refs.filter(ref => ref.current);
-
-    const totalHeight = visibleRefs.reduce((sum, ref, index) => {
-      const height = ref.current?.offsetHeight || 0;
-      const margin = index < visibleRefs.length - 1 ? marginPerElement : 0;
-      return sum + height + margin;
-    }, 0);
-
-    return totalHeight;
-  };
-
-  const shouldApplyOverflow = (availableHeight: number) => {
-    if (!elementsRendered) return false;
-    const totalHeight = getTotalElementsHeight();
-    return totalHeight > availableHeight;
-  };
-
-  const { height } = props;
-  const componentClassName = getClassName();
-
-  if (showTrendLine) {
-    const chartHeight = Math.floor(PROPORTION.TRENDLINE * height);
-    const allTextHeight = height - chartHeight;
-    const overflow = shouldApplyOverflow(allTextHeight);
+      return (
+        <div className={className}>
+          <div className="text-container" style={{ height: allTextHeight }}>
+            {this.renderFallbackWarning()}
+            {this.renderKicker(
+              Math.ceil(
+                (kickerFontSize || 0) * (1 - PROPORTION.TRENDLINE) * height,
+              ),
+            )}
+            {this.renderHeader(
+              Math.ceil(headerFontSize * (1 - PROPORTION.TRENDLINE) * height),
+            )}
+            {this.renderSubheader(
+              Math.ceil(
+                subheaderFontSize * (1 - PROPORTION.TRENDLINE) * height,
+              ),
+            )}
+          </div>
+          {this.renderTrendline(chartHeight)}
+        </div>
+      );
+    }
 
     return (
-      <div className={componentClassName}>
-        <div
-          className="text-container"
-          style={{
-            height: allTextHeight,
-            ...(overflow
-              ? {
-                  display: 'block',
-                  boxSizing: 'border-box',
-                  overflowX: 'hidden',
-                  overflowY: 'auto',
-                  width: '100%',
-                }
-              : {}),
-          }}
-        >
-          {renderFallbackWarning()}
-          {renderMetricName(
-            Math.ceil(
-              (metricNameFontSize || 0) * (1 - PROPORTION.TRENDLINE) * height,
-            ),
-          )}
-          {renderKicker(
-            Math.ceil(
-              (kickerFontSize || 0) * (1 - PROPORTION.TRENDLINE) * height,
-            ),
-          )}
-          {renderHeader(
-            Math.ceil(headerFontSize * (1 - PROPORTION.TRENDLINE) * height),
-          )}
-          {rendermetricComparisonSummary(
-            Math.ceil(subheaderFontSize * (1 - PROPORTION.TRENDLINE) * height),
-          )}
-          {renderSubtitle(
-            Math.ceil(subtitleFontSize * (1 - PROPORTION.TRENDLINE) * height),
-          )}
-        </div>
-        {renderTrendline(chartHeight)}
+      <div className={className} style={{ height }}>
+        {this.renderFallbackWarning()}
+        {this.renderKicker((kickerFontSize || 0) * height)}
+        {this.renderHeader(Math.ceil(headerFontSize * height))}
+        {this.renderSubheader(Math.ceil(subheaderFontSize * height))}
       </div>
     );
   }
-  const overflow = shouldApplyOverflow(height);
-  return (
-    <div
-      className={componentClassName}
-      style={{
-        height,
-        ...(overflow
-          ? {
-              display: 'block',
-              boxSizing: 'border-box',
-              overflowX: 'hidden',
-              overflowY: 'auto',
-              width: '100%',
-            }
-          : {}),
-      }}
-    >
-      <div className="text-container">
-        {renderFallbackWarning()}
-        {renderMetricName((metricNameFontSize || 0) * height)}
-        {renderKicker((kickerFontSize || 0) * height)}
-        {renderHeader(Math.ceil(headerFontSize * height))}
-        {rendermetricComparisonSummary(Math.ceil(subheaderFontSize * height))}
-        {renderSubtitle(Math.ceil(subtitleFontSize * height))}
-      </div>
-    </div>
-  );
 }
 
-const StyledBigNumberVis = styled(BigNumberVis)`
+export default styled(BigNumberVis)`
   ${({ theme }) => `
-    font-family: ${theme.fontFamily};
+    font-family: ${theme.typography.families.sansSerif};
     position: relative;
     display: flex;
     flex-direction: column;
@@ -511,29 +318,22 @@ const StyledBigNumberVis = styled(BigNumberVis)`
       justify-content: center;
       align-items: flex-start;
       .alert {
-        font-size: ${theme.fontSizeSM};
+        font-size: ${theme.typography.sizes.s};
         margin: -0.5em 0 0.4em;
         line-height: 1;
-        padding: ${theme.sizeUnit}px;
-        border-radius: ${theme.borderRadius}px;
+        padding: ${theme.gridUnit}px;
+        border-radius: ${theme.gridUnit}px;
       }
     }
 
     .kicker {
       line-height: 1em;
-      margin-bottom: ${theme.sizeUnit * 2}px;
-    }
-
-    .metric-name {
-      line-height: 1em;
-      margin-bottom: ${theme.sizeUnit * 2}px;
+      padding-bottom: 2em;
     }
 
     .header-line {
       position: relative;
       line-height: 1em;
-      white-space: nowrap;
-      margin-bottom:${theme.sizeUnit * 2}px;
       span {
         position: absolute;
         bottom: 0;
@@ -542,22 +342,15 @@ const StyledBigNumberVis = styled(BigNumberVis)`
 
     .subheader-line {
       line-height: 1em;
-      margin-bottom: ${theme.sizeUnit * 2}px;
-    }
-
-    .subtitle-line {
-      line-height: 1em;
-      margin-bottom: ${theme.sizeUnit * 2}px;
+      padding-bottom: 0;
     }
 
     &.is-fallback-value {
       .kicker,
       .header-line,
       .subheader-line {
-        opacity: 60%;
+        opacity: ${theme.opacity.mediumHeavy};
       }
     }
   `}
 `;
-
-export default StyledBigNumberVis;

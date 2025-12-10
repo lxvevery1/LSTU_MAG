@@ -16,17 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { render, screen, userEvent } from 'spec/helpers/testing-library';
-import AdhocFilter from 'src/explore/components/controls/FilterControl/AdhocFilter';
+import React from 'react';
+import { render, screen } from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
+import AdhocFilter, {
+  EXPRESSION_TYPES,
+  CLAUSES,
+} from 'src/explore/components/controls/FilterControl/AdhocFilter';
 import AdhocFilterPopoverTrigger from '.';
-import { Clauses, ExpressionTypes } from '../types';
 
 const simpleAdhocFilter = new AdhocFilter({
-  expressionType: ExpressionTypes.Simple,
+  expressionType: EXPRESSION_TYPES.SIMPLE,
   subject: 'value',
   operator: '>',
   comparator: '10',
-  clause: Clauses.Where,
+  clause: CLAUSES.WHERE,
 });
 
 const mockedProps = {

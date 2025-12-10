@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { GenericDataType } from '@apache-superset/core/api/core';
+import { GenericDataType } from '@superset-ui/core';
 import { noOp } from 'src/utils/common';
 import { DEFAULT_FORM_DATA, PluginFilterSelectChartProps } from './types';
 
@@ -44,8 +44,6 @@ export default function transformProps(
     setFocusedFilter = noOp,
     unsetFocusedFilter = noOp,
     setFilterActive = noOp,
-    clearAllTrigger,
-    onClearAllComplete,
   } = hooks;
   const [queryData] = queriesData;
   const { colnames = [], coltypes = [], data = [] } = queryData || {};
@@ -73,7 +71,5 @@ export default function transformProps(
     inputRef,
     filterBarOrientation: displaySettings?.filterBarOrientation,
     isOverflowingFilterBar: displaySettings?.isOverflowingFilterBar,
-    clearAllTrigger,
-    onClearAllComplete,
   };
 }

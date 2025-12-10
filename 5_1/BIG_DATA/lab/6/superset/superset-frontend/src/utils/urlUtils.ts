@@ -33,7 +33,7 @@ import { getActiveFilters } from '../dashboard/util/activeDashboardFilters';
 import serializeActiveFilterValues from '../dashboard/util/serializeActiveFilterValues';
 
 export type UrlParamType = 'string' | 'number' | 'boolean' | 'object' | 'rison';
-export type UrlParam = (typeof URL_PARAMS)[keyof typeof URL_PARAMS];
+export type UrlParam = typeof URL_PARAMS[keyof typeof URL_PARAMS];
 export function getUrlParam(
   param: UrlParam & { type: 'string' },
 ): string | null;
@@ -123,13 +123,8 @@ function getChartUrlParams(excludedUrlParams?: string[]): UrlParamEntries {
   return getUrlParamEntries(urlParams);
 }
 
-export function getDashboardUrlParams(
-  extraExcludedParams: string[] = [],
-): UrlParamEntries {
-  const urlParams = getUrlParams([
-    ...RESERVED_DASHBOARD_URL_PARAMS,
-    ...extraExcludedParams,
-  ]);
+function getDashboardUrlParams(): UrlParamEntries {
+  const urlParams = getUrlParams(RESERVED_DASHBOARD_URL_PARAMS);
   const filterBoxFilters = getActiveFilters();
   if (!isEmpty(filterBoxFilters))
     urlParams.append(
@@ -161,8 +156,6 @@ export function getDashboardPermalink({
   dataMask,
   activeTabs,
   anchor, // the anchor part of the link which corresponds to the tab/chart id
-  chartStates, // chart-level customizations (optional)
-  includeChartState = false, // whether to include chart state in permalink (FALSE by default)
 }: {
   dashboardId: string | number;
   /**
@@ -178,28 +171,14 @@ export function getDashboardPermalink({
    * and highlighted upon page load.
    */
   anchor?: string;
-  /**
-   * Chart-level state (column order, sorting, filtering, etc.)
-   */
-  chartStates?: JsonObject;
-  /**
-   * Whether to include chart state in the permalink (default: false)
-   */
-  includeChartState?: boolean;
 }) {
-  const payload: JsonObject = {
+  // only encode filter box state if non-empty
+  return getPermalink(`/api/v1/dashboard/${dashboardId}/permalink`, {
     urlParams: getDashboardUrlParams(),
     dataMask,
     activeTabs,
     anchor,
-  };
-
-  // Only include chart states when explicitly requested AND when they exist
-  if (includeChartState && chartStates && Object.keys(chartStates).length > 0) {
-    payload.chartStates = chartStates;
-  }
-
-  return getPermalink(`/api/v1/dashboard/${dashboardId}/permalink`, payload);
+  });
 }
 
 const externalUrlRegex =
@@ -226,17 +205,4 @@ export function parseUrl(url: string) {
     return `//${url}`;
   }
   return url;
-}
-
-export function toQueryString(params: Record<string, any>): string {
-  const queryParts: string[] = [];
-  Object.keys(params).forEach(key => {
-    const value = params[key];
-    if (value !== null && value !== undefined) {
-      queryParts.push(
-        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`,
-      );
-    }
-  });
-  return queryParts.length > 0 ? `?${queryParts.join('&')}` : '';
 }

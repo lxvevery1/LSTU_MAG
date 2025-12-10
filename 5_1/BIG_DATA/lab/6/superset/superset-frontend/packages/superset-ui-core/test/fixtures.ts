@@ -16,8 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { AdhocMetric } from '@superset-ui/core';
-import { GenericDataType } from '@apache-superset/core/api/core';
+import { AdhocMetric, GenericDataType } from '@superset-ui/core';
 
 export const NUM_METRIC: AdhocMetric = {
   expressionType: 'SIMPLE',
@@ -25,7 +24,7 @@ export const NUM_METRIC: AdhocMetric = {
   column: {
     id: 336,
     type: 'BIGINT',
-    type_generic: GenericDataType.Numeric,
+    type_generic: GenericDataType.NUMERIC,
     column_name: 'num',
     verbose_name: null,
     description: null,

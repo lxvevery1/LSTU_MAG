@@ -16,53 +16,103 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { FunctionComponent, useEffect, useState, ChangeEvent } from 'react';
-import { t } from '@superset-ui/core';
-import { styled, css } from '@apache-superset/core/ui';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { UploadChangeParam, UploadFile } from 'antd/lib/upload/interface';
+import { styled, t } from '@superset-ui/core';
+
+import Button from 'src/components/Button';
+import Modal from 'src/components/Modal';
+import { Upload } from 'src/components';
 import { useImportResource } from 'src/views/CRUD/hooks';
-import {
-  Upload,
-  type UploadChangeParam,
-  type UploadFile,
-} from '@superset-ui/core/components/Upload';
-import { Button, Input, Modal } from '@superset-ui/core/components';
-import { ModalTitleWithIcon } from 'src/components/ModalTitleWithIcon';
-import { ImportErrorAlert } from './ImportErrorAlert';
-import type { ImportModelsModalProps } from './types';
+import { ImportResourceName } from 'src/views/CRUD/types';
+import ErrorAlert from './ErrorAlert';
 
 const HelperMessage = styled.div`
   display: block;
-  color: ${({ theme }) => theme.colorTextSecondary};
-  font-size: ${({ theme }) => theme.fontSizeSM}px;
+  color: ${({ theme }) => theme.colors.grayscale.base};
+  font-size: ${({ theme }) => theme.typography.sizes.s}px;
 `;
 
-const StyledContainer = styled.div`
-  ${({ theme }) => css`
-    padding-top: ${theme.sizeUnit * 2}px;
-    padding-bottom: ${theme.sizeUnit * 2}px;
+const StyledInputContainer = styled.div`
+  padding-bottom: ${({ theme }) => theme.gridUnit * 2}px;
+  padding-top: ${({ theme }) => theme.gridUnit * 2}px;
 
-    & > div {
-      margin: ${theme.sizeUnit}px 0;
+  & > div {
+    margin: ${({ theme }) => theme.gridUnit}px 0;
+  }
+
+  &.extra-container {
+    padding-top: 8px;
+  }
+
+  .confirm-overwrite {
+    margin-bottom: ${({ theme }) => theme.gridUnit * 2}px;
+  }
+
+  .input-container {
+    display: flex;
+    align-items: center;
+
+    label {
+      display: flex;
+      margin-right: ${({ theme }) => theme.gridUnit * 2}px;
     }
 
-    .confirm-overwrite {
-      margin-bottom: ${theme.sizeUnit * 2}px;
+    i {
+      margin: 0 ${({ theme }) => theme.gridUnit}px;
     }
-    input[type='text'],
-    input[type='number'] {
-      &[name='name'] {
-        flex: 0 1 auto;
-        width: 40%;
-      }
+  }
 
-      &[name='sqlalchemy_uri'] {
-        margin-right: ${theme.sizeUnit * 3}px;
-      }
+  input,
+  textarea {
+    flex: 1 1 auto;
+  }
+
+  textarea {
+    height: 160px;
+    resize: none;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: ${({ theme }) => theme.colors.grayscale.light1};
+  }
+
+  textarea,
+  input[type='text'],
+  input[type='number'] {
+    padding: ${({ theme }) => theme.gridUnit * 1.5}px
+      ${({ theme }) => theme.gridUnit * 2}px;
+    border-style: none;
+    border: 1px solid ${({ theme }) => theme.colors.grayscale.light2};
+    border-radius: ${({ theme }) => theme.gridUnit}px;
+
+    &[name='name'] {
+      flex: 0 1 auto;
+      width: 40%;
     }
-  `}
+
+    &[name='sqlalchemy_uri'] {
+      margin-right: ${({ theme }) => theme.gridUnit * 3}px;
+    }
+  }
 `;
 
-export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
+export interface ImportModelsModalProps {
+  resourceName: ImportResourceName;
+  resourceLabel: string;
+  passwordsNeededMessage: string;
+  confirmOverwriteMessage: string;
+  addDangerToast: (msg: string) => void;
+  addSuccessToast: (msg: string) => void;
+  onModelImport: () => void;
+  show: boolean;
+  onHide: () => void;
+  passwordFields?: string[];
+  setPasswordFields?: (passwordFields: string[]) => void;
+}
+
+const ImportModelsModal: FunctionComponent<ImportModelsModalProps> = ({
   resourceName,
   resourceLabel,
   passwordsNeededMessage,
@@ -72,12 +122,6 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
   onHide,
   passwordFields = [],
   setPasswordFields = () => {},
-  sshTunnelPasswordFields = [],
-  setSSHTunnelPasswordFields = () => {},
-  sshTunnelPrivateKeyFields = [],
-  setSSHTunnelPrivateKeyFields = () => {},
-  sshTunnelPrivateKeyPasswordFields = [],
-  setSSHTunnelPrivateKeyPasswordFields = () => {},
 }) => {
   const [isHidden, setIsHidden] = useState<boolean>(true);
   const [passwords, setPasswords] = useState<Record<string, string>>({});
@@ -87,14 +131,6 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const [importingModel, setImportingModel] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>();
-  const [sshTunnelPasswords, setSSHTunnelPasswords] = useState<
-    Record<string, string>
-  >({});
-  const [sshTunnelPrivateKeys, setSSHTunnelPrivateKeys] = useState<
-    Record<string, string>
-  >({});
-  const [sshTunnelPrivateKeyPasswords, setSSHTunnelPrivateKeyPasswords] =
-    useState<Record<string, string>>({});
 
   const clearModal = () => {
     setFileList([]);
@@ -104,12 +140,6 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
     setConfirmedOverwrite(false);
     setImportingModel(false);
     setErrorMessage('');
-    setSSHTunnelPasswordFields([]);
-    setSSHTunnelPrivateKeyFields([]);
-    setSSHTunnelPrivateKeyPasswordFields([]);
-    setSSHTunnelPasswords({});
-    setSSHTunnelPrivateKeys({});
-    setSSHTunnelPrivateKeyPasswords({});
   };
 
   const handleErrorMsg = (msg: string) => {
@@ -117,13 +147,7 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
   };
 
   const {
-    state: {
-      alreadyExists,
-      passwordsNeeded,
-      sshPasswordNeeded,
-      sshPrivateKeyNeeded,
-      sshPrivateKeyPasswordNeeded,
-    },
+    state: { alreadyExists, passwordsNeeded },
     importResource,
   } = useImportResource(resourceName, resourceLabel, handleErrorMsg);
 
@@ -141,27 +165,6 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
     }
   }, [alreadyExists, setNeedsOverwriteConfirm]);
 
-  useEffect(() => {
-    setSSHTunnelPasswordFields(sshPasswordNeeded);
-    if (sshPasswordNeeded.length > 0) {
-      setImportingModel(false);
-    }
-  }, [sshPasswordNeeded, setSSHTunnelPasswordFields]);
-
-  useEffect(() => {
-    setSSHTunnelPrivateKeyFields(sshPrivateKeyNeeded);
-    if (sshPrivateKeyNeeded.length > 0) {
-      setImportingModel(false);
-    }
-  }, [sshPrivateKeyNeeded, setSSHTunnelPrivateKeyFields]);
-
-  useEffect(() => {
-    setSSHTunnelPrivateKeyPasswordFields(sshPrivateKeyPasswordNeeded);
-    if (sshPrivateKeyPasswordNeeded.length > 0) {
-      setImportingModel(false);
-    }
-  }, [sshPrivateKeyPasswordNeeded, setSSHTunnelPrivateKeyPasswordFields]);
-
   // Functions
   const hide = () => {
     setIsHidden(true);
@@ -178,9 +181,6 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
     importResource(
       fileList[0].originFileObj,
       passwords,
-      sshTunnelPasswords,
-      sshTunnelPrivateKeys,
-      sshTunnelPrivateKeyPasswords,
       confirmedOverwrite,
     ).then(result => {
       if (result) {
@@ -204,121 +204,36 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
     return false;
   };
 
-  const confirmOverwrite = (event: ChangeEvent<HTMLInputElement>) => {
+  const confirmOverwrite = (event: React.ChangeEvent<HTMLInputElement>) => {
     const targetValue = (event.currentTarget?.value as string) ?? '';
     setConfirmedOverwrite(targetValue.toUpperCase() === t('OVERWRITE'));
   };
 
   const renderPasswordFields = () => {
-    if (
-      passwordFields.length === 0 &&
-      sshTunnelPasswordFields.length === 0 &&
-      sshTunnelPrivateKeyFields.length === 0 &&
-      sshTunnelPrivateKeyPasswordFields.length === 0
-    ) {
+    if (passwordFields.length === 0) {
       return null;
     }
-
-    const files = [
-      ...new Set([
-        ...passwordFields,
-        ...sshTunnelPasswordFields,
-        ...sshTunnelPrivateKeyFields,
-        ...sshTunnelPrivateKeyPasswordFields,
-      ]),
-    ];
 
     return (
       <>
         <h5>{t('Database passwords')}</h5>
         <HelperMessage>{passwordsNeededMessage}</HelperMessage>
-        {files.map(fileName => (
-          <>
-            {passwordFields?.indexOf(fileName) >= 0 && (
-              <StyledContainer key={`password-for-${fileName}`}>
-                <div className="control-label">
-                  {t('%s PASSWORD', fileName.slice(10))}
-                  <span className="required">*</span>
-                </div>
-                <Input
-                  name={`password-${fileName}`}
-                  autoComplete={`password-${fileName}`}
-                  type="password"
-                  value={passwords[fileName]}
-                  onChange={event =>
-                    setPasswords({
-                      ...passwords,
-                      [fileName]: event.target.value,
-                    })
-                  }
-                />
-              </StyledContainer>
-            )}
-            {sshTunnelPasswordFields?.indexOf(fileName) >= 0 && (
-              <StyledContainer key={`ssh_tunnel_password-for-${fileName}`}>
-                <div className="control-label">
-                  {t('%s SSH TUNNEL PASSWORD', fileName.slice(10))}
-                  <span className="required">*</span>
-                </div>
-                <Input
-                  name={`ssh_tunnel_password-${fileName}`}
-                  autoComplete={`ssh_tunnel_password-${fileName}`}
-                  type="password"
-                  value={sshTunnelPasswords[fileName]}
-                  onChange={event =>
-                    setSSHTunnelPasswords({
-                      ...sshTunnelPasswords,
-                      [fileName]: event.target.value,
-                    })
-                  }
-                  data-test="ssh_tunnel_password"
-                />
-              </StyledContainer>
-            )}
-            {sshTunnelPrivateKeyFields?.indexOf(fileName) >= 0 && (
-              <StyledContainer key={`ssh_tunnel_private_key-for-${fileName}`}>
-                <div className="control-label">
-                  {t('%s SSH TUNNEL PRIVATE KEY', fileName.slice(10))}
-                  <span className="required">*</span>
-                </div>
-                <Input.TextArea
-                  name={`ssh_tunnel_private_key-${fileName}`}
-                  autoComplete={`ssh_tunnel_private_key-${fileName}`}
-                  value={sshTunnelPrivateKeys[fileName]}
-                  onChange={event =>
-                    setSSHTunnelPrivateKeys({
-                      ...sshTunnelPrivateKeys,
-                      [fileName]: event.target.value,
-                    })
-                  }
-                  data-test="ssh_tunnel_private_key"
-                />
-              </StyledContainer>
-            )}
-            {sshTunnelPrivateKeyPasswordFields?.indexOf(fileName) >= 0 && (
-              <StyledContainer
-                key={`ssh_tunnel_private_key_password-for-${fileName}`}
-              >
-                <div className="control-label">
-                  {t('%s SSH TUNNEL PRIVATE KEY PASSWORD', fileName.slice(10))}
-                  <span className="required">*</span>
-                </div>
-                <Input
-                  name={`ssh_tunnel_private_key_password-${fileName}`}
-                  autoComplete={`ssh_tunnel_private_key_password-${fileName}`}
-                  type="password"
-                  value={sshTunnelPrivateKeyPasswords[fileName]}
-                  onChange={event =>
-                    setSSHTunnelPrivateKeyPasswords({
-                      ...sshTunnelPrivateKeyPasswords,
-                      [fileName]: event.target.value,
-                    })
-                  }
-                  data-test="ssh_tunnel_private_key_password"
-                />
-              </StyledContainer>
-            )}
-          </>
+        {passwordFields.map(fileName => (
+          <StyledInputContainer key={`password-for-${fileName}`}>
+            <div className="control-label">
+              {fileName}
+              <span className="required">*</span>
+            </div>
+            <input
+              name={`password-${fileName}`}
+              autoComplete={`password-${fileName}`}
+              type="password"
+              value={passwords[fileName]}
+              onChange={event =>
+                setPasswords({ ...passwords, [fileName]: event.target.value })
+              }
+            />
+          </StyledInputContainer>
         ))}
       </>
     );
@@ -331,18 +246,18 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
 
     return (
       <>
-        <StyledContainer>
+        <StyledInputContainer>
           <div className="confirm-overwrite">{confirmOverwriteMessage}</div>
           <div className="control-label">
             {t('Type "%s" to confirm', t('OVERWRITE'))}
           </div>
-          <Input
+          <input
             data-test="overwrite-modal-input"
             id="overwrite"
             type="text"
             onChange={confirmOverwrite}
           />
-        </StyledContainer>
+        </StyledInputContainer>
       </>
     );
   };
@@ -364,12 +279,12 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
       onHandledPrimaryAction={onUpload}
       onHide={hide}
       primaryButtonName={needsOverwriteConfirm ? t('Overwrite') : t('Import')}
-      primaryButtonStyle={needsOverwriteConfirm ? 'danger' : 'primary'}
+      primaryButtonType={needsOverwriteConfirm ? 'danger' : 'primary'}
       width="750px"
       show={show}
-      title={<ModalTitleWithIcon title={t('Import %s', resourceLabel)} />}
+      title={<h4>{t('Import %s', resourceLabel)}</h4>}
     >
-      <StyledContainer>
+      <StyledInputContainer>
         <Upload
           name="modelFile"
           id="modelFile"
@@ -384,16 +299,11 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
         >
           <Button loading={importingModel}>{t('Select file')}</Button>
         </Upload>
-      </StyledContainer>
+      </StyledInputContainer>
       {errorMessage && (
-        <ImportErrorAlert
+        <ErrorAlert
           errorMessage={errorMessage}
-          showDbInstallInstructions={
-            passwordFields.length > 0 ||
-            sshTunnelPasswordFields.length > 0 ||
-            sshTunnelPrivateKeyFields.length > 0 ||
-            sshTunnelPrivateKeyPasswordFields.length > 0
-          }
+          showDbInstallInstructions={passwordFields.length > 0}
         />
       )}
       {renderPasswordFields()}
@@ -402,4 +312,4 @@ export const ImportModal: FunctionComponent<ImportModelsModalProps> = ({
   );
 };
 
-export type { ImportModelsModalProps };
+export default ImportModelsModal;

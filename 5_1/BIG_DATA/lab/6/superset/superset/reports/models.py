@@ -15,10 +15,8 @@
 # specific language governing permissions and limitations
 # under the License.
 """A collection of ORM sqlalchemy models for Superset"""
+import enum
 
-from typing import Any, Optional
-
-import prison
 from cron_descriptor import get_description
 from flask_appbuilder import Model
 from flask_appbuilder.models.decorators import renders
@@ -28,7 +26,6 @@ from sqlalchemy import (
     DateTime,
     Float,
     ForeignKey,
-    Index,
     Integer,
     String,
     Table,
@@ -44,31 +41,28 @@ from superset.models.dashboard import Dashboard
 from superset.models.helpers import AuditMixinNullable, ExtraJSONMixin
 from superset.models.slice import Slice
 from superset.reports.types import ReportScheduleExtra
-from superset.utils.backports import StrEnum
-from superset.utils.core import MediumText
 
 metadata = Model.metadata  # pylint: disable=no-member
 
 
-class ReportScheduleType(StrEnum):
+class ReportScheduleType(str, enum.Enum):
     ALERT = "Alert"
     REPORT = "Report"
 
 
-class ReportScheduleValidatorType(StrEnum):
+class ReportScheduleValidatorType(str, enum.Enum):
     """Validator types for alerts"""
 
     NOT_NULL = "not null"
     OPERATOR = "operator"
 
 
-class ReportRecipientType(StrEnum):
+class ReportRecipientType(str, enum.Enum):
     EMAIL = "Email"
     SLACK = "Slack"
-    SLACKV2 = "SlackV2"
 
 
-class ReportState(StrEnum):
+class ReportState(str, enum.Enum):
     SUCCESS = "Success"
     WORKING = "Working"
     ERROR = "Error"
@@ -76,20 +70,19 @@ class ReportState(StrEnum):
     GRACE = "On Grace"
 
 
-class ReportDataFormat(StrEnum):
-    PDF = "PDF"
-    PNG = "PNG"
-    CSV = "CSV"
+class ReportDataFormat(str, enum.Enum):
+    VISUALIZATION = "PNG"
+    DATA = "CSV"
     TEXT = "TEXT"
 
 
-class ReportCreationMethod(StrEnum):
+class ReportCreationMethod(str, enum.Enum):
     CHARTS = "charts"
     DASHBOARDS = "dashboards"
     ALERTS_REPORTS = "alerts_reports"
 
 
-class ReportSourceFormat(StrEnum):
+class ReportSourceFormat(str, enum.Enum):
     CHART = "chart"
     DASHBOARD = "dashboard"
 
@@ -98,23 +91,16 @@ report_schedule_user = Table(
     "report_schedule_user",
     metadata,
     Column("id", Integer, primary_key=True),
+    Column("user_id", Integer, ForeignKey("ab_user.id"), nullable=False),
     Column(
-        "user_id",
-        Integer,
-        ForeignKey("ab_user.id", ondelete="CASCADE"),
-        nullable=False,
-    ),
-    Column(
-        "report_schedule_id",
-        Integer,
-        ForeignKey("report_schedule.id", ondelete="CASCADE"),
-        nullable=False,
+        "report_schedule_id", Integer, ForeignKey("report_schedule.id"), nullable=False
     ),
     UniqueConstraint("user_id", "report_schedule_id"),
 )
 
 
-class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
+class ReportSchedule(Model, AuditMixinNullable, ExtraJSONMixin):
+
     """
     Report Schedules, supports alerts and reports
     """
@@ -133,8 +119,8 @@ class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
         String(255), server_default=ReportCreationMethod.ALERTS_REPORTS
     )
     timezone = Column(String(100), default="UTC", nullable=False)
-    report_format = Column(String(50), default=ReportDataFormat.PNG)
-    sql = Column(MediumText())
+    report_format = Column(String(50), default=ReportDataFormat.VISUALIZATION)
+    sql = Column(Text())
     # (Alerts/Reports) M-O to chart
     chart_id = Column(Integer, ForeignKey("slices.id"), nullable=True)
     chart = relationship(Slice, backref="report_schedules", foreign_keys=[chart_id])
@@ -146,21 +132,17 @@ class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
     # (Alerts) M-O to database
     database_id = Column(Integer, ForeignKey("dbs.id"), nullable=True)
     database = relationship(Database, foreign_keys=[database_id])
-    owners = relationship(
-        security_manager.user_model,
-        secondary=report_schedule_user,
-        passive_deletes=True,
-    )
+    owners = relationship(security_manager.user_model, secondary=report_schedule_user)
 
     # (Alerts) Stamped last observations
     last_eval_dttm = Column(DateTime)
     last_state = Column(String(50), default=ReportState.NOOP)
     last_value = Column(Float)
-    last_value_row_json = Column(MediumText())
+    last_value_row_json = Column(Text)
 
     # (Alerts) Observed value validation related columns
     validator_type = Column(String(100))
-    validator_config_json = Column(MediumText(), default="{}")
+    validator_config_json = Column(Text, default="{}")
 
     # Log retention
     log_retention = Column(Integer, default=90)
@@ -172,12 +154,7 @@ class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
     # (Reports) When generating a screenshot, bypass the cache?
     force_screenshot = Column(Boolean, default=False)
 
-    custom_width = Column(Integer, nullable=True)
-    custom_height = Column(Integer, nullable=True)
-
     extra: ReportScheduleExtra  # type: ignore
-
-    email_subject = Column(String(255))
 
     def __repr__(self) -> str:
         return str(self.name)
@@ -185,117 +162,6 @@ class ReportSchedule(AuditMixinNullable, ExtraJSONMixin, Model):
     @renders("crontab")
     def crontab_humanized(self) -> str:
         return get_description(self.crontab)
-
-    def get_native_filters_params(self) -> str:
-        params: dict[str, Any] = {}
-        dashboard = self.extra.get("dashboard")
-        if dashboard and dashboard.get("nativeFilters"):
-            for filter in dashboard.get("nativeFilters") or []:  # type: ignore
-                params = {
-                    **params,
-                    **self._generate_native_filter(
-                        filter["nativeFilterId"],
-                        filter["filterType"],
-                        filter["columnName"],
-                        filter["filterValues"],
-                    ),
-                }
-        # hack(hughhh): workaround for escaping prison not handling quotes right
-        rison = prison.dumps(params)
-        rison = rison.replace("'", "%27")
-        return rison
-
-    def _generate_native_filter(
-        self,
-        native_filter_id: str,
-        filter_type: str,
-        column_name: str,
-        values: list[Optional[str]],
-    ) -> dict[str, Any]:
-        if filter_type == "filter_time":
-            # For select filters, we need to use the "IN" operator
-            return {
-                native_filter_id or "": {
-                    "id": native_filter_id or "",
-                    "extraFormData": {"time_range": values[0]},
-                    "filterState": {"value": values[0]},
-                    "ownState": {},
-                }
-            }
-        elif filter_type == "filter_timegrain":
-            return {
-                native_filter_id or "": {
-                    "id": native_filter_id or "",
-                    "extraFormData": {
-                        "time_grain_sqla": values[0],  # grain
-                    },
-                    "filterState": {
-                        # "label": "30 second", # grain_label
-                        "value": values  # grain
-                    },
-                    "ownState": {},
-                }
-            }
-
-        elif filter_type == "filter_timecolumn":
-            return {
-                native_filter_id or "": {
-                    "extraFormData": {
-                        "granularity_sqla": values[0]  # column_name
-                    },
-                    "filterState": {
-                        "value": values  # column_name
-                    },
-                }
-            }
-
-        elif filter_type == "filter_select":
-            return {
-                native_filter_id or "": {
-                    "id": native_filter_id or "",
-                    "extraFormData": {
-                        "filters": [
-                            {"col": column_name or "", "op": "IN", "val": values or []}
-                        ]
-                    },
-                    "filterState": {
-                        "label": column_name or "",
-                        "validateStatus": False,
-                        "value": values or [],
-                    },
-                    "ownState": {},
-                }
-            }
-        elif filter_type == "filter_range":
-            # For range filters, values should be [min, max] or [value] for single value
-            min_val = values[0] if len(values) > 0 else None
-            max_val = values[1] if len(values) > 1 else None
-
-            filters = []
-            if min_val is not None:
-                filters.append({"col": column_name or "", "op": ">=", "val": min_val})
-            if max_val is not None:
-                filters.append({"col": column_name or "", "op": "<=", "val": max_val})
-
-            return {
-                native_filter_id or "": {
-                    "id": native_filter_id or "",
-                    "extraFormData": {"filters": filters},
-                    "filterState": {
-                        "value": [min_val, max_val],
-                        "label": f"{min_val} ≤ x ≤ {max_val}"
-                        if min_val and max_val
-                        else f"x ≥ {min_val}"
-                        if min_val
-                        else f"x ≤ {max_val}"
-                        if max_val
-                        else "",
-                    },
-                    "ownState": {},
-                }
-            }
-
-        return {}
 
 
 class ReportRecipients(Model, AuditMixinNullable):
@@ -306,7 +172,7 @@ class ReportRecipients(Model, AuditMixinNullable):
     __tablename__ = "report_recipient"
     id = Column(Integer, primary_key=True)
     type = Column(String(50), nullable=False)
-    recipient_config_json = Column(MediumText(), default="{}")
+    recipient_config_json = Column(Text, default="{}")
     report_schedule_id = Column(
         Integer, ForeignKey("report_schedule.id"), nullable=False
     )
@@ -316,12 +182,9 @@ class ReportRecipients(Model, AuditMixinNullable):
         foreign_keys=[report_schedule_id],
     )
 
-    __table_args__ = (
-        Index("ix_report_recipient_report_schedule_id", report_schedule_id),
-    )
-
 
 class ReportExecutionLog(Model):  # pylint: disable=too-few-public-methods
+
     """
     Report Execution Log, hold the result of the report execution with timestamps,
     last observation and possible error messages
@@ -338,7 +201,7 @@ class ReportExecutionLog(Model):  # pylint: disable=too-few-public-methods
 
     # (Alerts) Observed values
     value = Column(Float)
-    value_row_json = Column(MediumText())
+    value_row_json = Column(Text)
 
     state = Column(String(50), nullable=False)
     error_message = Column(Text)
@@ -350,9 +213,4 @@ class ReportExecutionLog(Model):  # pylint: disable=too-few-public-methods
         ReportSchedule,
         backref=backref("logs", cascade="all,delete,delete-orphan"),
         foreign_keys=[report_schedule_id],
-    )
-
-    __table_args__ = (
-        Index("ix_report_execution_log_report_schedule_id", report_schedule_id),
-        Index("ix_report_execution_log_start_dttm", start_dttm),
     )

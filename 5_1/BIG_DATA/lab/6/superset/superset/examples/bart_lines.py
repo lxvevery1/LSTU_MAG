@@ -14,32 +14,28 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-import logging
+import json
 
+import pandas as pd
 import polyline
 from sqlalchemy import inspect, String, Text
 
 from superset import db
-from superset.sql.parse import Table
-from superset.utils import json
 
-from ..utils.database import get_example_database  # noqa: TID252
-from .helpers import get_table_connector_registry, read_example_data
-
-logger = logging.getLogger(__name__)
+from ..utils.database import get_example_database
+from .helpers import get_example_url, get_table_connector_registry
 
 
 def load_bart_lines(only_metadata: bool = False, force: bool = False) -> None:
     tbl_name = "bart_lines"
     database = get_example_database()
-    with database.get_sqla_engine() as engine:
+    with database.get_sqla_engine_with_context() as engine:
         schema = inspect(engine).default_schema_name
-        table_exists = database.has_table(Table(tbl_name, schema))
+        table_exists = database.has_table_by_name(tbl_name)
 
         if not only_metadata and (not table_exists or force):
-            df = read_example_data(
-                "examples://bart-lines.json.gz", encoding="latin-1", compression="gzip"
-            )
+            url = get_example_url("bart-lines.json.gz")
+            df = pd.read_json(url, encoding="latin-1", compression="gzip")
             df["path_json"] = df.path.map(json.dumps)
             df["polyline"] = df.path.map(polyline.encode)
             del df["path"]
@@ -59,13 +55,14 @@ def load_bart_lines(only_metadata: bool = False, force: bool = False) -> None:
                 index=False,
             )
 
-    logger.debug("Creating table %s reference", tbl_name)
+    print("Creating table {} reference".format(tbl_name))
     table = get_table_connector_registry()
     tbl = db.session.query(table).filter_by(table_name=tbl_name).first()
     if not tbl:
         tbl = table(table_name=tbl_name, schema=schema)
-        db.session.add(tbl)
     tbl.description = "BART lines"
     tbl.database = database
     tbl.filter_select_enabled = True
+    db.session.merge(tbl)
+    db.session.commit()
     tbl.fetch_metadata()

@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Store } from 'redux';
@@ -29,10 +30,13 @@ import RunQueryActionButton, {
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
-jest.mock('@superset-ui/core/components/Select/Select', () => () => (
+jest.mock('src/components/DeprecatedSelect', () => () => (
+  <div data-test="mock-deprecated-select" />
+));
+jest.mock('src/components/Select/Select', () => () => (
   <div data-test="mock-deprecated-select-select" />
 ));
-jest.mock('@superset-ui/core/components/Select/AsyncSelect', () => () => (
+jest.mock('src/components/Select/AsyncSelect', () => () => (
   <div data-test="mock-deprecated-async-select" />
 ));
 
@@ -53,17 +57,17 @@ const setup = (props?: Partial<RunQueryActionButtonProps>, store?: Store) =>
     ...(store && { store }),
   });
 
-test('renders a single Button', () => {
+it('renders a single Button', () => {
   const { getByRole } = setup({}, mockStore(initialState));
   expect(getByRole('button')).toBeInTheDocument();
 });
 
-test('renders a label for Run Query', () => {
+it('renders a label for Run Query', () => {
   const { getByText } = setup({}, mockStore(initialState));
   expect(getByText('Run')).toBeInTheDocument();
 });
 
-test('renders a label for Selected Query', () => {
+it('renders a label for Selected Query', () => {
   const { getByText } = setup(
     {},
     mockStore({
@@ -80,7 +84,7 @@ test('renders a label for Selected Query', () => {
   expect(getByText('Run selection')).toBeInTheDocument();
 });
 
-test('disable button when sql from unsaved changes is empty', () => {
+it('disable button when sql from unsaved changes is empty', () => {
   const { getByRole } = setup(
     {},
     mockStore({
@@ -98,7 +102,7 @@ test('disable button when sql from unsaved changes is empty', () => {
   expect(button).toBeDisabled();
 });
 
-test('disable button when selectedText only contains blank contents', () => {
+it('disable button when selectedText only contains blank contents', () => {
   const { getByRole } = setup(
     {},
     mockStore({
@@ -116,7 +120,7 @@ test('disable button when selectedText only contains blank contents', () => {
   expect(button).toBeDisabled();
 });
 
-test('enable default button for unrelated unsaved changes', () => {
+it('enable default button for unrelated unsaved changes', () => {
   const { getByRole } = setup(
     {},
     mockStore({
@@ -134,7 +138,7 @@ test('enable default button for unrelated unsaved changes', () => {
   expect(button).toBeEnabled();
 });
 
-test('dispatch runQuery on click', async () => {
+it('dispatch runQuery on click', async () => {
   const runQuery = jest.fn();
   const { getByRole } = setup({ runQuery }, mockStore(initialState));
   const button = getByRole('button');
@@ -143,7 +147,7 @@ test('dispatch runQuery on click', async () => {
   await waitFor(() => expect(runQuery).toHaveBeenCalledTimes(1));
 });
 
-test('dispatch stopQuery on click while running state', async () => {
+it('dispatch stopQuery on click while running state', async () => {
   const stopQuery = jest.fn();
   const { getByRole } = setup(
     { queryState: 'running', stopQuery },

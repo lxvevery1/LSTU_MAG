@@ -16,15 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { styled } from '@apache-superset/core/ui';
-import { FormItem } from '@superset-ui/core/components';
+import { styled } from '@superset-ui/core';
 import { PluginFilterStylesProps } from './types';
-
-export const RESPONSIVE_WIDTH = 0;
+import FormItem from '../../components/Form/FormItem';
 
 export const FilterPluginStyle = styled.div<PluginFilterStylesProps>`
   min-height: ${({ height }) => height}px;
-  width: ${({ width }) => (width === RESPONSIVE_WIDTH ? '100%' : `${width}px`)};
+  width: ${({ width }) => width}px;
 `;
 
 export const StyledFormItem = styled(FormItem)`
@@ -34,24 +32,7 @@ export const StyledFormItem = styled(FormItem)`
 `;
 
 export const StatusMessage = styled.div<{
-  status?: 'error' | 'warning' | 'info' | 'help';
-  centerText?: boolean;
+  status?: 'error' | 'warning' | 'info';
 }>`
-  color: ${({ theme, status = 'error' }) => {
-    if (status === 'help') {
-      return theme.colorTextSecondary;
-    }
-    switch (status) {
-      case 'error':
-        return theme.colorError;
-      case 'warning':
-        return theme.colorWarning;
-      case 'info':
-        return theme.colorInfo;
-      default:
-        return theme.colorError;
-    }
-  }};
-  text-align: ${({ centerText }) => (centerText ? 'center' : 'left')};
-  width: 100%;
+  color: ${({ theme, status = 'error' }) => theme.colors[status]?.base};
 `;

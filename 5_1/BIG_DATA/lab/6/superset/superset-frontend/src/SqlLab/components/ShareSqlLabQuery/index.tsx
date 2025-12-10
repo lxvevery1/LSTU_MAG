@@ -16,41 +16,55 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { t, getClientErrorObject, SupersetClient } from '@superset-ui/core';
-import { css } from '@apache-superset/core/ui';
-import { Button } from '@superset-ui/core/components';
-import { CopyToClipboard } from 'src/components';
-import { Icons } from '@superset-ui/core/components/Icons';
+import React from 'react';
+import { t, useTheme, styled } from '@superset-ui/core';
+import Button from 'src/components/Button';
+import Icons from 'src/components/Icons';
 import withToasts from 'src/components/MessageToasts/withToasts';
+import CopyToClipboard from 'src/components/CopyToClipboard';
+import { storeQuery } from 'src/utils/common';
+import { getClientErrorObject } from 'src/utils/getClientErrorObject';
+import { FeatureFlag, isFeatureEnabled } from 'src/featureFlags';
 import useQueryEditor from 'src/SqlLab/hooks/useQueryEditor';
-import { LOG_ACTIONS_SQLLAB_COPY_LINK } from 'src/logger/LogUtils';
-import useLogAction from 'src/logger/useLogAction';
 
 interface ShareSqlLabQueryProps {
   queryEditorId: string;
   addDangerToast: (msg: string) => void;
 }
 
+const StyledIcon = styled(Icons.Link)`
+  &:first-of-type {
+    margin: 0;
+    display: flex;
+    svg {
+      margin: 0;
+    }
+  }
+`;
+
 const ShareSqlLabQuery = ({
   queryEditorId,
   addDangerToast,
 }: ShareSqlLabQueryProps) => {
-  const logAction = useLogAction({ queryEditorId });
-  const { dbId, name, schema, autorun, sql, templateParams } = useQueryEditor(
-    queryEditorId,
-    ['dbId', 'name', 'schema', 'autorun', 'sql', 'templateParams'],
-  );
+  const theme = useTheme();
 
-  const getCopyUrlForPermalink = (callback: Function) => {
+  const { dbId, name, schema, autorun, sql, remoteId, templateParams } =
+    useQueryEditor(queryEditorId, [
+      'dbId',
+      'name',
+      'schema',
+      'autorun',
+      'sql',
+      'remoteId',
+      'templateParams',
+    ]);
+
+  const getCopyUrlForKvStore = (callback: Function) => {
     const sharedQuery = { dbId, name, schema, autorun, sql, templateParams };
 
-    return SupersetClient.post({
-      endpoint: '/api/v1/sqllab/permalink',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(sharedQuery),
-    })
-      .then(({ json }) => {
-        callback(json.url);
+    return storeQuery(sharedQuery)
+      .then(shortUrl => {
+        callback(shortUrl);
       })
       .catch(response => {
         getClientErrorObject(response).then(() => {
@@ -59,38 +73,58 @@ const ShareSqlLabQuery = ({
       });
   };
 
+  const getCopyUrlForSavedQuery = (callback: Function) => {
+    let savedQueryToastContent;
+
+    if (remoteId) {
+      savedQueryToastContent = `${
+        window.location.origin + window.location.pathname
+      }?savedQueryId=${remoteId}`;
+      callback(savedQueryToastContent);
+    } else {
+      savedQueryToastContent = t('Please save the query to enable sharing');
+      callback(savedQueryToastContent);
+    }
+  };
   const getCopyUrl = (callback: Function) => {
-    logAction(LOG_ACTIONS_SQLLAB_COPY_LINK, {
-      shortcut: false,
-    });
-    return getCopyUrlForPermalink(callback);
+    if (isFeatureEnabled(FeatureFlag.SHARE_QUERIES_VIA_KV_STORE)) {
+      return getCopyUrlForKvStore(callback);
+    }
+    return getCopyUrlForSavedQuery(callback);
   };
 
-  const buildButton = () => {
-    const tooltip = t('Copy query link to your clipboard');
+  const buildButton = (canShare: boolean) => {
+    const tooltip = canShare
+      ? t('Copy query link to your clipboard')
+      : t('Save the query to enable this feature');
     return (
-      <Button
-        buttonSize="small"
-        buttonStyle="secondary"
-        tooltip={tooltip}
-        css={css`
-          span > :first-of-type {
-            margin-right: 0;
+      <Button buttonSize="small" tooltip={tooltip} disabled={!canShare}>
+        <StyledIcon
+          iconColor={
+            canShare ? theme.colors.primary.base : theme.colors.grayscale.base
           }
-        `}
-      >
-        <Icons.LinkOutlined iconSize="m" />
+          iconSize="xl"
+        />
         {t('Copy link')}
       </Button>
     );
   };
 
+  const canShare =
+    !!remoteId || isFeatureEnabled(FeatureFlag.SHARE_QUERIES_VIA_KV_STORE);
+
   return (
-    <CopyToClipboard
-      getText={getCopyUrl}
-      wrapped={false}
-      copyNode={buildButton()}
-    />
+    <>
+      {canShare ? (
+        <CopyToClipboard
+          getText={getCopyUrl}
+          wrapped={false}
+          copyNode={buildButton(canShare)}
+        />
+      ) : (
+        buildButton(canShare)
+      )}
+    </>
   );
 };
 

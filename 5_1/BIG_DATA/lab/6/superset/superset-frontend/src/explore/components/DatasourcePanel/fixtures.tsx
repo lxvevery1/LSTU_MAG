@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { GenericDataType } from '@apache-superset/core/api/core';
+import { GenericDataType } from '@superset-ui/core';
 
 export const columns = [
   {
@@ -26,11 +26,10 @@ export const columns = [
     filterable: true,
     groupby: true,
     id: 516,
-    uuid: '516',
     is_dttm: false,
     python_date_format: null,
     type: 'DOUBLE',
-    type_generic: GenericDataType.Numeric,
+    type_generic: GenericDataType.NUMERIC,
     verbose_name: null,
   },
   {
@@ -41,11 +40,10 @@ export const columns = [
     filterable: true,
     groupby: true,
     id: 477,
-    uuid: '477',
     is_dttm: false,
     python_date_format: null,
     type: 'VARCHAR',
-    type_generic: GenericDataType.String,
+    type_generic: GenericDataType.STRING,
     verbose_name: null,
   },
   {
@@ -54,12 +52,11 @@ export const columns = [
     expression: null,
     filterable: true,
     groupby: true,
-    id: 517,
-    uuid: '517',
+    id: 516,
     is_dttm: false,
     python_date_format: null,
     type: 'INT',
-    type_generic: GenericDataType.Numeric,
+    type_generic: GenericDataType.NUMERIC,
     verbose_name: null,
   },
 ];
@@ -73,7 +70,6 @@ const metricsFiltered = {
       description: null,
       expression: '',
       id: 56,
-      uuid: '56',
       is_certified: true,
       metric_name: 'metric_end_certified',
       verbose_name: '',
@@ -88,7 +84,6 @@ const metricsFiltered = {
       description: null,
       expression: '',
       id: 57,
-      uuid: '57',
       is_certified: false,
       metric_name: 'metric_end',
       verbose_name: '',

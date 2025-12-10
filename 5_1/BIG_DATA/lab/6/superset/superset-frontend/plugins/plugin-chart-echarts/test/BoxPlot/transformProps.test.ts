@@ -16,8 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ChartProps, SqlaFormData } from '@superset-ui/core';
-import { supersetTheme } from '@apache-superset/core/ui';
+import { ChartProps, SqlaFormData, supersetTheme } from '@superset-ui/core';
 import { EchartsBoxPlotChartProps } from '../../src/BoxPlot/types';
 import transformProps from '../../src/BoxPlot/transformProps';
 
@@ -32,7 +31,6 @@ describe('BoxPlot transformProps', () => {
     whiskerOptions: 'Tukey',
     yAxisFormat: 'SMART_NUMBER',
     viz_type: 'my_chart',
-    zoomable: true,
   };
   const chartProps = new ChartProps({
     formData,
@@ -77,13 +75,6 @@ describe('BoxPlot transformProps', () => {
         width: 800,
         height: 600,
         echartOptions: expect.objectContaining({
-          dataZoom: expect.arrayContaining([
-            {
-              moveOnMouseWheel: true,
-              type: 'inside',
-              zoomOnMouseWheel: false,
-            },
-          ]),
           series: expect.arrayContaining([
             expect.objectContaining({
               name: 'boxplot',

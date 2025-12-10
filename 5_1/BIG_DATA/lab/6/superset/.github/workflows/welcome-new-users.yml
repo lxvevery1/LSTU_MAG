@@ -6,16 +6,16 @@ on:
 
 jobs:
   welcome:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     permissions:
       pull-requests: write
 
     steps:
       - name: Welcome Message
-        uses: actions/first-interaction@v3
+        uses: actions/first-interaction@v1
         continue-on-error: true
         with:
-          repo-token: ${{ github.token }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
           pr-message: |-
             Congrats on making your first PR and thank you for contributing to Superset! :tada: :heart:
 

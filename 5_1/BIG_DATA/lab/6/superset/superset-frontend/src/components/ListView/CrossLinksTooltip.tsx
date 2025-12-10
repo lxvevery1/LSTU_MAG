@@ -16,14 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { ReactNode } from 'react';
-import { t } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
+import React from 'react';
+import { styled, t } from '@superset-ui/core';
+import { Tooltip } from 'src/components/Tooltip';
 import { Link } from 'react-router-dom';
-import { Tooltip } from '@superset-ui/core/components';
 
 export type CrossLinksTooltipProps = {
-  children: ReactNode;
+  children: React.ReactNode;
   crossLinks: { to: string; title: string }[];
   moreItems?: number;
   show: boolean;
@@ -31,7 +30,7 @@ export type CrossLinksTooltipProps = {
 
 const StyledLinkedTooltip = styled.div`
   .link {
-    color: ${({ theme }) => theme.colorLink};
+    color: ${({ theme }) => theme.colors.grayscale.light5};
     display: block;
     text-decoration: underline;
   }

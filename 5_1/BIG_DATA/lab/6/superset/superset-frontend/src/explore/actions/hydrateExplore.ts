@@ -27,14 +27,10 @@ import { getChartKey } from 'src/explore/exploreUtils';
 import { getControlsState } from 'src/explore/store';
 import { Dispatch } from 'redux';
 import {
-  Currency,
   ensureIsArray,
   getCategoricalSchemeRegistry,
-  getColumnLabel,
   getSequentialSchemeRegistry,
   NO_TIME_RANGE,
-  QueryFormColumn,
-  VizType,
 } from '@superset-ui/core';
 import {
   getFormDataFromControls,
@@ -69,7 +65,7 @@ export const hydrateExplore =
     const initialSlice = slice ?? fallbackSlice;
     const initialFormData = form_data ?? initialSlice?.form_data;
     if (!initialFormData.viz_type) {
-      const defaultVizType = common?.conf.DEFAULT_VIZ_TYPE || VizType.Table;
+      const defaultVizType = common?.conf.DEFAULT_VIZ_TYPE || 'table';
       initialFormData.viz_type =
         getUrlParam(URL_PARAMS.vizType) || defaultVizType;
     }
@@ -77,35 +73,10 @@ export const hydrateExplore =
       initialFormData.time_range =
         common?.conf?.DEFAULT_TIME_FILTER || NO_TIME_RANGE;
     }
-    if (
-      initialFormData.include_time &&
-      initialFormData.granularity_sqla &&
-      !initialFormData.groupby?.some(
-        (col: QueryFormColumn) =>
-          getColumnLabel(col) ===
-          getColumnLabel(initialFormData.granularity_sqla!),
-      )
-    ) {
-      initialFormData.groupby = [
-        initialFormData.granularity_sqla,
-        ...ensureIsArray(initialFormData.groupby),
-      ];
-      initialFormData.granularity_sqla = undefined;
-    }
-
     if (dashboardId) {
       initialFormData.dashboardId = dashboardId;
     }
-
     const initialDatasource = dataset;
-    initialDatasource.currency_formats = Object.fromEntries(
-      (initialDatasource.metrics ?? [])
-        .filter(metric => !!metric.currency)
-        .map((metric): [string, Currency] => [
-          metric.metric_name,
-          metric.currency!,
-        ]),
-    );
 
     const initialExploreState = {
       form_data: initialFormData,

@@ -20,13 +20,13 @@ import {
   ChartProps,
   DataRecord,
   extractTimegrain,
+  GenericDataType,
   getTimeFormatter,
   getTimeFormatterForGranularity,
   QueryFormData,
-  SMART_DATE_ID,
+  smartDateFormatter,
   TimeFormats,
 } from '@superset-ui/core';
-import { GenericDataType } from '@apache-superset/core/api/core';
 import { getColorFormatters } from '@superset-ui/chart-controls';
 import { DateFormatter } from '../types';
 
@@ -79,9 +79,8 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
     rawFormData,
     hooks: { setDataMask = () => {}, onContextMenu },
     filterState,
-    datasource: { verboseMap = {}, columnFormats = {}, currencyFormats = {} },
+    datasource: { verboseMap = {}, columnFormats = {} },
     emitCrossFilters,
-    theme,
   } = chartProps;
   const { data, colnames, coltypes } = queriesData[0];
   const {
@@ -97,16 +96,12 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
     rowSubtotalPosition,
     colSubtotalPosition,
     colTotals,
-    colSubTotals,
     rowTotals,
-    rowSubTotals,
     valueFormat,
     dateFormat,
     metricsLayout,
     conditionalFormatting,
     timeGrainSqla,
-    currencyFormat,
-    allowRenderHtml,
   } = formData;
   const { selectedFilters } = filterState;
   const granularity = extractTimegrain(rawFormData);
@@ -114,7 +109,7 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
   const dateFormatters = colnames
     .filter(
       (colname: string, index: number) =>
-        coltypes[index] === GenericDataType.Temporal,
+        coltypes[index] === GenericDataType.TEMPORAL,
     )
     .reduce(
       (
@@ -122,7 +117,7 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
         temporalColname: string,
       ) => {
         let formatter: DateFormatter | undefined;
-        if (dateFormat === SMART_DATE_ID) {
+        if (dateFormat === smartDateFormatter.id) {
           if (granularity) {
             // time column use formats based on granularity
             formatter = getTimeFormatterForGranularity(granularity);
@@ -142,11 +137,7 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
       },
       {},
     );
-  const metricColorFormatters = getColorFormatters(
-    conditionalFormatting,
-    data,
-    theme,
-  );
+  const metricColorFormatters = getColorFormatters(conditionalFormatting, data);
 
   return {
     width,
@@ -164,22 +155,17 @@ export default function transformProps(chartProps: ChartProps<QueryFormData>) {
     rowSubtotalPosition,
     colSubtotalPosition,
     colTotals,
-    colSubTotals,
     rowTotals,
-    rowSubTotals,
     valueFormat,
-    currencyFormat,
     emitCrossFilters,
     setDataMask,
     selectedFilters,
     verboseMap,
     columnFormats,
-    currencyFormats,
     metricsLayout,
     metricColorFormatters,
     dateFormatters,
     onContextMenu,
     timeGrainSqla,
-    allowRenderHtml,
   };
 }

@@ -22,7 +22,6 @@ import {
   DASHBOARD_ROOT_ID,
 } from 'src/dashboard/util/constants';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('findFirstParentContainer', () => {
   const mockGridLayout = {
     DASHBOARD_VERSION_KEY: 'v2',
@@ -115,11 +114,11 @@ describe('findFirstParentContainer', () => {
     DASHBOARD_VERSION_KEY: 'v2',
   };
 
-  test('should return grid root', () => {
+  it('should return grid root', () => {
     expect(findFirstParentContainerId(mockGridLayout)).toBe(DASHBOARD_GRID_ID);
   });
 
-  test('should return first tab', () => {
+  it('should return first tab', () => {
     const tabsId = mockTabsLayout[DASHBOARD_ROOT_ID].children[0];
     const firstTabId = mockTabsLayout[tabsId].children[0];
     expect(findFirstParentContainerId(mockTabsLayout)).toBe(firstTabId);

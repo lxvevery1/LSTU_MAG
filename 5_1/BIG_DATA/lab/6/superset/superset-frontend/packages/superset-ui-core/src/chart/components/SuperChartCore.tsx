@@ -18,7 +18,7 @@
  */
 
 /* eslint-disable react/jsx-sort-default-props */
-import { PureComponent } from 'react';
+import * as React from 'react';
 import { t } from '@superset-ui/core';
 import { createSelector } from 'reselect';
 import getChartComponentRegistry from '../registries/ChartComponentRegistrySingleton';
@@ -78,80 +78,35 @@ export type Props = {
   onRenderFailure?: HandlerFunction;
 };
 
-export default class SuperChartCore extends PureComponent<Props, {}> {
+export default class SuperChartCore extends React.PureComponent<Props, {}> {
   /**
    * The HTML element that wraps all chart content
    */
   container?: HTMLElement | null;
 
   /**
-   * memoized function so it will not recompute and return previous value
+   * memoized function so it will not recompute
+   * and return previous value
    * unless one of
    * - preTransformProps
+   * - transformProps
+   * - postTransformProps
    * - chartProps
    * is changed.
    */
-  preSelector = createSelector(
-    [
-      (input: {
-        chartProps: ChartProps;
-        preTransformProps?: PreTransformProps;
-      }) => input.chartProps,
-      input => input.preTransformProps,
-    ],
-    (chartProps, pre = IDENTITY) => pre(chartProps),
+  processChartProps = createSelector(
+    (input: {
+      chartProps: ChartProps;
+      preTransformProps?: PreTransformProps;
+      transformProps?: TransformProps;
+      postTransformProps?: PostTransformProps;
+    }) => input.chartProps,
+    input => input.preTransformProps,
+    input => input.transformProps,
+    input => input.postTransformProps,
+    (chartProps, pre = IDENTITY, transform = IDENTITY, post = IDENTITY) =>
+      post(transform(pre(chartProps))),
   );
-
-  /**
-   * memoized function so it will not recompute and return previous value
-   * unless one of the input arguments have changed.
-   */
-  transformSelector = createSelector(
-    [
-      (input: { chartProps: ChartProps; transformProps?: TransformProps }) =>
-        input.chartProps,
-      input => input.transformProps,
-    ],
-    (preprocessedChartProps, transform = IDENTITY) =>
-      transform(preprocessedChartProps),
-  );
-
-  /**
-   * memoized function so it will not recompute and return previous value
-   * unless one of the input arguments have changed.
-   */
-  postSelector = createSelector(
-    [
-      (input: {
-        chartProps: ChartProps;
-        postTransformProps?: PostTransformProps;
-      }) => input.chartProps,
-      input => input.postTransformProps,
-    ],
-    (transformedChartProps, post = IDENTITY) => post(transformedChartProps),
-  );
-
-  /**
-   * Using each memoized function to retrieve the computed chartProps
-   */
-  processChartProps = ({
-    chartProps,
-    preTransformProps,
-    transformProps,
-    postTransformProps,
-  }: {
-    chartProps: ChartProps;
-    preTransformProps?: PreTransformProps;
-    transformProps?: TransformProps;
-    postTransformProps?: PostTransformProps;
-  }) =>
-    this.postSelector({
-      chartProps: this.transformSelector({
-        chartProps: this.preSelector({ chartProps, preTransformProps }),
-        transformProps,
-      }),
-      postTransformProps,
-    });
 
   /**
    * memoized function so it will not recompute
@@ -162,11 +117,9 @@ export default class SuperChartCore extends PureComponent<Props, {}> {
    * is changed.
    */
   private createLoadableRenderer = createSelector(
-    [
-      (input: { chartType: string; overrideTransformProps?: TransformProps }) =>
-        input.chartType,
-      input => input.overrideTransformProps,
-    ],
+    (input: { chartType: string; overrideTransformProps?: TransformProps }) =>
+      input.chartType,
+    input => input.overrideTransformProps,
     (chartType, overrideTransformProps) => {
       if (chartType) {
         const Renderer = createLoadableRenderer({

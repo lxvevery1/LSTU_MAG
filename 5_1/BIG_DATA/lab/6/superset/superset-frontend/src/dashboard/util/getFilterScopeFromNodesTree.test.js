@@ -18,9 +18,8 @@
  */
 import getFilterScopeFromNodesTree from 'src/dashboard/util/getFilterScopeFromNodesTree';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('getFilterScopeFromNodesTree', () => {
-  test('should return empty scope', () => {
+  it('should return empty scope', () => {
     const nodes = [];
     expect(
       getFilterScopeFromNodesTree({
@@ -31,7 +30,7 @@ describe('getFilterScopeFromNodesTree', () => {
     ).toEqual({});
   });
 
-  test('should return scope for simple grid', () => {
+  it('should return scope for simple grid', () => {
     const nodes = [
       {
         label: 'All dashboard',
@@ -71,7 +70,6 @@ describe('getFilterScopeFromNodesTree', () => {
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('should return scope for tabbed dashboard', () => {
     // this is a commonly used layout for dashboard:
     // - Tab 1
@@ -286,7 +284,7 @@ describe('getFilterScopeFromNodesTree', () => {
       },
     ];
 
-    test('root level tab scope', () => {
+    it('root level tab scope', () => {
       const checkedChartIds = [106];
       expect(
         getFilterScopeFromNodesTree({
@@ -300,7 +298,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('global scope', () => {
+    it('global scope', () => {
       const checkedChartIds = [106, 104, 101, 102, 103, 105];
       expect(
         getFilterScopeFromNodesTree({
@@ -314,7 +312,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('row level tab scope', () => {
+    it('row level tab scope', () => {
       const checkedChartIds = [103, 105];
       expect(
         getFilterScopeFromNodesTree({
@@ -328,7 +326,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('mixed row level and root level scope', () => {
+    it('mixed row level and root level scope', () => {
       const checkedChartIds = [103, 105, 106];
       expect(
         getFilterScopeFromNodesTree({
@@ -342,7 +340,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('mixed row level tab and chart scope', () => {
+    it('mixed row level tab and chart scope', () => {
       const checkedChartIds = [103, 105, 102];
       expect(
         getFilterScopeFromNodesTree({
@@ -356,7 +354,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('exclude sub-tab', () => {
+    it('exclude sub-tab', () => {
       const checkedChartIds = [103, 104, 105];
       expect(
         getFilterScopeFromNodesTree({
@@ -370,7 +368,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('exclude top-tab', () => {
+    it('exclude top-tab', () => {
       const checkedChartIds = [106, 109];
       expect(
         getFilterScopeFromNodesTree({
@@ -384,7 +382,7 @@ describe('getFilterScopeFromNodesTree', () => {
       });
     });
 
-    test('exclude nested sub-tab', () => {
+    it('exclude nested sub-tab', () => {
       // another layout for test:
       // - filter_109
       // - chart_106

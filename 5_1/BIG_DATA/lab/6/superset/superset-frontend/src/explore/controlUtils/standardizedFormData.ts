@@ -81,8 +81,6 @@ export const publicControls = [
   // advanced analytics - resample
   'resample_rule', // via sections.advancedAnalytics
   'resample_method', // via sections.advancedAnalytics
-  // dashboard context
-  'dashboardId', // preserve dashboard context when changing viz type
 ];
 
 export class StandardizedFormData {
@@ -195,7 +193,7 @@ export class StandardizedFormData {
     controlsState: ControlStateMapping;
   } {
     /*
-     * Transform form_data between different viz. Return new form_data and controlsState.
+     * Transfrom form_data between different viz. Return new form_data and controlsState.
      * 1. get memorized form_data by viz type or get previous form_data
      * 2. collect public control values
      * 3. generate initial targetControlsState
@@ -205,7 +203,7 @@ export class StandardizedFormData {
      * 7. to refresh validator message
      * */
     const latestFormData = this.getLatestFormData(targetVizType);
-    const publicFormData: Record<string, any> = {};
+    const publicFormData = {};
     publicControls.forEach(key => {
       if (key in exploreState.form_data) {
         publicFormData[key] = exploreState.form_data[key];
@@ -218,10 +216,6 @@ export class StandardizedFormData {
     });
     const targetFormData = {
       ...getFormDataFromControls(targetControlsState),
-      // Preserve dashboard context when switching viz types.
-      ...(publicFormData.dashboardId && {
-        dashboardId: publicFormData.dashboardId,
-      }),
       standardizedFormData: this.serialize(),
     };
 

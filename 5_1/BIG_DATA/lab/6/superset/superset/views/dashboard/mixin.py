@@ -21,6 +21,7 @@ from superset.dashboards.filters import DashboardAccessFilter
 
 
 class DashboardMixin:  # pylint: disable=too-few-public-methods
+
     list_title = _("Dashboards")
     show_title = _("Show Dashboard")
     add_title = _("Add Dashboard")
@@ -88,5 +89,5 @@ class DashboardMixin:  # pylint: disable=too-few-public-methods
         "json_metadata": _("JSON Metadata"),
     }
 
-    def pre_delete(self, item: "DashboardMixin") -> None:
+    def pre_delete(self, item: "DashboardMixin") -> None:  # pylint: disable=no-self-use
         security_manager.raise_for_ownership(item)

@@ -16,19 +16,19 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
 import fetchMock from 'fetch-mock';
+import userEvent from '@testing-library/user-event';
 import {
-  screen,
   render,
-  userEvent,
   waitForElementToBeRemoved,
   waitFor,
 } from 'spec/helpers/testing-library';
-import { ChartMetadata, ChartPlugin, VizType } from '@superset-ui/core';
+import { exploreActions } from 'src/explore/actions/exploreActions';
+import { ChartMetadata, ChartPlugin } from '@superset-ui/core';
 import { ResultsPaneOnDashboard } from '../components';
 import { createResultsPaneOnDashboardProps } from './fixture';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('ResultsPaneOnDashboard', () => {
   // render and render errorMessage
   fetchMock.post(
@@ -50,8 +50,6 @@ describe('ResultsPaneOnDashboard', () => {
           ],
           colnames: ['__timestamp', 'genre'],
           coltypes: [2, 1],
-          rowcount: 2,
-          sql_rowcount: 2,
         },
       ],
     },
@@ -80,14 +78,12 @@ describe('ResultsPaneOnDashboard', () => {
           data: [{ genre: 'Action' }, { genre: 'Horror' }],
           colnames: ['genre'],
           coltypes: [1],
-          rowcount: 2,
-          sql_rowcount: 2,
         },
       ],
     },
   );
 
-  const setForceQuery = jest.fn();
+  const setForceQuery = jest.spyOn(exploreActions, 'setForceQuery');
 
   afterAll(() => {
     fetchMock.reset();
@@ -123,7 +119,7 @@ describe('ResultsPaneOnDashboard', () => {
       useRedux: true,
     });
     expect(await findByText('0 rows')).toBeVisible();
-    expect(await findByText('Bad request')).toBeVisible();
+    expect(await findByText('Bad Request')).toBeVisible();
   });
 
   test('force query, render and search', async () => {
@@ -132,7 +128,7 @@ describe('ResultsPaneOnDashboard', () => {
       queryForce: true,
     });
     const { queryByText, getByPlaceholderText } = render(
-      <ResultsPaneOnDashboard {...props} setForceQuery={setForceQuery} />,
+      <ResultsPaneOnDashboard {...props} />,
       {
         useRedux: true,
       },
@@ -163,61 +159,16 @@ describe('ResultsPaneOnDashboard', () => {
       metadata,
       Chart: FakeChart,
     });
-    plugin.configure({ key: VizType.MixedTimeseries }).register();
+    plugin.configure({ key: 'mixed_timeseries' }).register();
 
     const props = createResultsPaneOnDashboardProps({
       sliceId: 196,
-      vizType: VizType.MixedTimeseries,
+      vizType: 'mixed_timeseries',
     });
-
-    render(<ResultsPaneOnDashboard {...props} />, {
+    const { findByText } = render(<ResultsPaneOnDashboard {...props} />, {
       useRedux: true,
     });
-
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole('status', { name: 'Loading' }),
-    );
-
-    const tab1 = document.querySelector('[data-node-key="results"]');
-    const tab2 = document.querySelector('[data-node-key="results 2"]');
-
-    expect(tab1).toBeVisible();
-    expect(tab2).toBeVisible();
-  });
-
-  test('dynamic number of results pane', async () => {
-    const FakeChart = () => <span>test</span>;
-    const metadata = new ChartMetadata({
-      name: 'test-chart',
-      thumbnail: '',
-      dynamicQueryObjectCount: true,
-    });
-
-    const plugin = new ChartPlugin({
-      metadata,
-      Chart: FakeChart,
-    });
-    plugin.configure({ key: VizType.MixedTimeseries }).register();
-
-    const props = createResultsPaneOnDashboardProps({
-      sliceId: 196,
-      vizType: VizType.MixedTimeseries,
-    });
-
-    render(<ResultsPaneOnDashboard {...props} />, {
-      useRedux: true,
-    });
-
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole('status', { name: 'Loading' }),
-    );
-
-    const tab1 = document.querySelector('[data-node-key="results"]');
-    const tab2 = document.querySelector('[data-node-key="results 2"]');
-    const tab3 = document.querySelector('[data-node-key="results 3"]');
-
-    expect(tab1).toBeVisible();
-    expect(tab2).toBeVisible();
-    expect(tab3).toBeNull();
+    expect(await findByText('Results')).toBeVisible();
+    expect(await findByText('Results 2')).toBeVisible();
   });
 });

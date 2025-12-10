@@ -17,20 +17,22 @@
  * under the License.
  */
 import sinon from 'sinon';
-import { SupersetClient, isFeatureEnabled } from '@superset-ui/core';
-import { waitFor } from 'spec/helpers/testing-library';
+import { SupersetClient } from '@superset-ui/core';
+import { waitFor } from '@testing-library/react';
 
 import {
+  removeSliceFromDashboard,
   SAVE_DASHBOARD_STARTED,
   saveDashboardRequest,
   SET_OVERRIDE_CONFIRM,
 } from 'src/dashboard/actions/dashboardState';
+import { REMOVE_FILTER } from 'src/dashboard/actions/dashboardFilters';
+import * as featureFlags from 'src/featureFlags';
 import { UPDATE_COMPONENTS_PARENTS_LIST } from 'src/dashboard/actions/dashboardLayout';
 import {
   DASHBOARD_GRID_ID,
   SAVE_TYPE_OVERWRITE,
   SAVE_TYPE_OVERWRITE_CONFIRMED,
-  SAVE_TYPE_NEWDASHBOARD,
 } from 'src/dashboard/util/constants';
 import {
   filterId,
@@ -38,19 +40,7 @@ import {
 } from 'spec/fixtures/mockSliceEntities';
 import { emptyFilters } from 'spec/fixtures/mockDashboardFilters';
 import mockDashboardData from 'spec/fixtures/mockDashboardData';
-import { navigateTo } from 'src/utils/navigationUtils';
 
-jest.mock('@superset-ui/core', () => ({
-  ...jest.requireActual('@superset-ui/core'),
-  isFeatureEnabled: jest.fn(),
-}));
-
-jest.mock('src/utils/navigationUtils', () => ({
-  navigateTo: jest.fn(),
-  navigateWithState: jest.fn(),
-}));
-
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('dashboardState actions', () => {
   const mockState = {
     dashboardState: {
@@ -69,7 +59,6 @@ describe('dashboardState actions', () => {
       present: mockDashboardData.positions,
       future: {},
     },
-    charts: {},
   };
   const newDashboardData = mockDashboardData;
 
@@ -109,9 +98,8 @@ describe('dashboardState actions', () => {
     return { getState, dispatch, state };
   }
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('saveDashboardRequest', () => {
-    test('should dispatch UPDATE_COMPONENTS_PARENTS_LIST action', () => {
+    it('should dispatch UPDATE_COMPONENTS_PARENTS_LIST action', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });
@@ -124,7 +112,7 @@ describe('dashboardState actions', () => {
       expect(dispatch.getCall(1).args[0].type).toBe(SAVE_DASHBOARD_STARTED);
     });
 
-    test('should post dashboard data with updated redux state', () => {
+    it('should post dashboard data with updated redux state', () => {
       const { getState, dispatch } = setup({
         dashboardState: { hasUnsavedChanges: false },
       });
@@ -146,26 +134,25 @@ describe('dashboardState actions', () => {
       const thunk = saveDashboardRequest(newDashboardData, 1, 'save_dash');
       thunk(dispatch, getState);
       expect(postStub.callCount).toBe(1);
-      const { jsonPayload } = postStub.getCall(0).args[0];
-      const parsedJsonMetadata = JSON.parse(jsonPayload.json_metadata);
-      expect(
-        parsedJsonMetadata.positions[DASHBOARD_GRID_ID].parents,
-      ).toStrictEqual(mockParentsList);
+      const { postPayload } = postStub.getCall(0).args[0];
+      expect(postPayload.data.positions[DASHBOARD_GRID_ID].parents).toBe(
+        mockParentsList,
+      );
     });
 
-    // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
     describe('FeatureFlag.CONFIRM_DASHBOARD_DIFF', () => {
+      let isFeatureEnabledMock;
       beforeEach(() => {
-        isFeatureEnabled.mockImplementation(
-          feature => feature === 'CONFIRM_DASHBOARD_DIFF',
-        );
+        isFeatureEnabledMock = jest
+          .spyOn(featureFlags, 'isFeatureEnabled')
+          .mockImplementation(feature => feature === 'CONFIRM_DASHBOARD_DIFF');
       });
 
       afterEach(() => {
-        isFeatureEnabled.mockRestore();
+        isFeatureEnabledMock.mockRestore();
       });
 
-      test('dispatches SET_OVERRIDE_CONFIRM when an inspect value has diff', async () => {
+      it('dispatches SET_OVERRIDE_CONFIRM when an inspect value has diff', async () => {
         const id = 192;
         const { getState, dispatch } = setup();
         const thunk = saveDashboardRequest(
@@ -184,7 +171,7 @@ describe('dashboardState actions', () => {
         ).toBe(id);
       });
 
-      test('should post dashboard data with after confirm the overwrite values', async () => {
+      it('should post dashboard data with after confirm the overwrite values', async () => {
         const id = 192;
         const { getState, dispatch } = setup();
         const confirmedDashboardData = {
@@ -204,34 +191,15 @@ describe('dashboardState actions', () => {
         expect(body).toBe(JSON.stringify(confirmedDashboardData));
       });
     });
+  });
 
-    test('should navigate to the new dashboard after Save As', async () => {
-      const newDashboardId = 999;
-      const { getState, dispatch } = setup({
-        dashboardState: { hasUnsavedChanges: true },
-      });
+  it('should dispatch removeFilter if a removed slice is a filter_box', () => {
+    const { getState, dispatch } = setup(mockState);
+    const thunk = removeSliceFromDashboard(filterId);
+    thunk(dispatch, getState);
 
-      postStub.restore();
-      postStub = sinon.stub(SupersetClient, 'post').resolves({
-        json: {
-          result: {
-            ...mockDashboardData,
-            id: newDashboardId,
-          },
-        },
-      });
-
-      const thunk = saveDashboardRequest(
-        newDashboardData,
-        null,
-        SAVE_TYPE_NEWDASHBOARD,
-      );
-      await thunk(dispatch, getState);
-
-      await waitFor(() => expect(postStub.callCount).toBe(1));
-      expect(navigateTo).toHaveBeenCalledWith(
-        `/superset/dashboard/${newDashboardId}/`,
-      );
-    });
+    const removeFilter = dispatch.getCall(0).args[0];
+    removeFilter(dispatch, getState);
+    expect(dispatch.getCall(3).args[0].type).toBe(REMOVE_FILTER);
   });
 });

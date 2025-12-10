@@ -16,16 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { PureComponent } from 'react';
+import React from 'react';
 import cx from 'classnames';
-import { t } from '@superset-ui/core';
-import { css, styled } from '@apache-superset/core/ui';
+import { css, styled, t } from '@superset-ui/core';
 
 import backgroundStyleOptions from 'src/dashboard/util/backgroundStyleOptions';
 import PopoverDropdown, {
   OptionProps,
   OnChangeHandler,
-} from '@superset-ui/core/components/PopoverDropdown';
+} from 'src/components/PopoverDropdown';
 
 interface BackgroundStyleDropdownProps {
   id: string;
@@ -36,35 +35,39 @@ interface BackgroundStyleDropdownProps {
 const BackgroundStyleOption = styled.div`
   ${({ theme }) => css`
     display: inline-block;
+
     &:before {
       content: '';
       width: 1em;
       height: 1em;
-      margin-right: ${theme.sizeUnit * 2}px;
+      margin-right: ${theme.gridUnit * 2}px;
       display: inline-block;
       vertical-align: middle;
     }
-    &.background-style-option.background--white {
+
+    &.background--white {
       padding-left: 0;
       background: transparent;
+
       &:before {
-        background: ${theme.colorBgContainer};
-        border: 1px solid ${theme.colorBorder};
+        background: ${theme.colors.grayscale.light5};
+        border: 1px solid ${theme.colors.grayscale.light2};
       }
     }
+
     /* Create the transparent rect icon */
     &.background--transparent:before {
-      background-image:
-        linear-gradient(45deg, ${theme.colorTextLabel} 25%, transparent 25%),
-        linear-gradient(-45deg, ${theme.colorTextLabel} 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, ${theme.colorTextLabel} 75%),
-        linear-gradient(-45deg, transparent 75%, ${theme.colorTextLabel} 75%);
-      background-size: ${theme.sizeUnit * 2}px ${theme.sizeUnit * 2}px;
-      background-position:
-        0 0,
-        0 ${theme.sizeUnit}px,
-        ${theme.sizeUnit}px ${-theme.sizeUnit}px,
-        ${-theme.sizeUnit}px 0px;
+      background-image: linear-gradient(
+          45deg,
+          ${theme.colors.text.label} 25%,
+          transparent 25%
+        ),
+        linear-gradient(-45deg, ${theme.colors.text.label} 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, ${theme.colors.text.label} 75%),
+        linear-gradient(-45deg, transparent 75%, ${theme.colors.text.label} 75%);
+      background-size: ${theme.gridUnit * 2}px ${theme.gridUnit * 2}px;
+      background-position: 0 0, 0 ${theme.gridUnit}px,
+        ${theme.gridUnit}px ${-theme.gridUnit}px, ${-theme.gridUnit}px 0px;
     }
   `}
 `;
@@ -90,7 +93,7 @@ function renderOption(option: OptionProps) {
   );
 }
 
-export default class BackgroundStyleDropdown extends PureComponent<BackgroundStyleDropdownProps> {
+export default class BackgroundStyleDropdown extends React.PureComponent<BackgroundStyleDropdownProps> {
   render() {
     const { id, value, onChange } = this.props;
     return (

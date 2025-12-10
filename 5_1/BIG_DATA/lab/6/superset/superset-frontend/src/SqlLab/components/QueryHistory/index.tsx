@@ -16,21 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useEffect, useMemo, useState } from 'react';
-import { shallowEqual, useSelector } from 'react-redux';
-import { useInView } from 'react-intersection-observer';
-import { omit } from 'lodash';
-import { EmptyState, Skeleton } from '@superset-ui/core/components';
-import { t, FeatureFlag, isFeatureEnabled } from '@superset-ui/core';
-import { styled, css, useTheme } from '@apache-superset/core/ui';
+import React from 'react';
+import { EmptyStateMedium } from 'src/components/EmptyState';
+import { t, styled, QueryResponse } from '@superset-ui/core';
 import QueryTable from 'src/SqlLab/components/QueryTable';
-import { SqlLabRootState } from 'src/SqlLab/types';
-import { useEditorQueriesQuery } from 'src/hooks/apiResources/queries';
-import useEffectEvent from 'src/hooks/useEffectEvent';
-import useQueryEditor from 'src/SqlLab/hooks/useQueryEditor';
 
 interface QueryHistoryProps {
-  queryEditorId: string | number;
+  queries: QueryResponse[];
   displayLimit: number;
   latestQueryId: string | undefined;
 }
@@ -46,114 +38,34 @@ const StyledEmptyStateWrapper = styled.div`
   }
 `;
 
-const getEditorQueries = (
-  queries: SqlLabRootState['sqlLab']['queries'],
-  queryEditorId: string | number,
-) =>
-  Object.values(queries).filter(
-    ({ sqlEditorId }) => String(sqlEditorId) === String(queryEditorId),
-  );
-
 const QueryHistory = ({
-  queryEditorId,
+  queries,
   displayLimit,
   latestQueryId,
-}: QueryHistoryProps) => {
-  const { id, tabViewId } = useQueryEditor(String(queryEditorId), [
-    'tabViewId',
-  ]);
-  const theme = useTheme();
-  const editorId = tabViewId ?? id;
-  const [ref, hasReachedBottom] = useInView({ threshold: 0 });
-  const [pageIndex, setPageIndex] = useState(0);
-  const queries = useSelector(
-    ({ sqlLab: { queries } }: SqlLabRootState) => queries,
-    shallowEqual,
-  );
-  const {
-    currentData: data,
-    isLoading,
-    isFetching,
-  } = useEditorQueriesQuery(
-    { editorId, pageIndex },
-    {
-      skip: !isFeatureEnabled(FeatureFlag.SqllabBackendPersistence),
-    },
-  );
-  const editorQueries = useMemo(
-    () =>
-      data
-        ? getEditorQueries(
-            omit(
-              queries,
-              data.result.map(({ id }) => id),
-            ),
-            editorId,
-          )
-            .concat(data.result)
-            .reverse()
-        : getEditorQueries(queries, editorId),
-    [queries, data, editorId],
-  );
-
-  const loadNext = useEffectEvent(() => {
-    setPageIndex(pageIndex + 1);
-  });
-
-  const loadedDataCount = data?.result.length || 0;
-  const totalCount = data?.count || 0;
-
-  useEffect(() => {
-    if (hasReachedBottom && loadedDataCount < totalCount) {
-      loadNext();
-    }
-  }, [hasReachedBottom, loadNext, loadedDataCount, totalCount]);
-
-  if (!editorQueries.length && isLoading) {
-    return <Skeleton active />;
-  }
-
-  return editorQueries.length > 0 ? (
-    <div
-      css={css`
-        padding-left: ${theme.sizeUnit * 4}px;
-      `}
-    >
-      <QueryTable
-        columns={[
-          'state',
-          'started',
-          'duration',
-          'progress',
-          'rows',
-          'sql',
-          'results',
-          'actions',
-        ]}
-        queries={editorQueries}
-        displayLimit={displayLimit}
-        latestQueryId={latestQueryId}
-      />
-      {data && loadedDataCount < totalCount && (
-        <div
-          ref={ref}
-          css={css`
-            position: relative;
-            top: -150px;
-          `}
-        />
-      )}
-      {isFetching && <Skeleton active />}
-    </div>
+}: QueryHistoryProps) =>
+  queries.length > 0 ? (
+    <QueryTable
+      columns={[
+        'state',
+        'started',
+        'duration',
+        'progress',
+        'rows',
+        'sql',
+        'results',
+        'actions',
+      ]}
+      queries={queries}
+      displayLimit={displayLimit}
+      latestQueryId={latestQueryId}
+    />
   ) : (
     <StyledEmptyStateWrapper>
-      <EmptyState
+      <EmptyStateMedium
         title={t('Run a query to display query history')}
-        size="medium"
         image="document.svg"
       />
     </StyledEmptyStateWrapper>
   );
-};
 
 export default QueryHistory;

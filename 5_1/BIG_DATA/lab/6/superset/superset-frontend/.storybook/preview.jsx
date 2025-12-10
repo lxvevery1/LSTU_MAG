@@ -16,36 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { withJsx } from '@mihkeleidast/storybook-addon-source';
-import { exampleThemes } from '@superset-ui/core';
-import { themeObject, css } from '@apache-superset/core/ui';
+import React from 'react';
+import { addDecorator } from '@storybook/react';
+import { jsxDecorator } from 'storybook-addon-jsx';
+import { addParameters } from '@storybook/react';
+import WithPaddings from 'storybook-addon-paddings';
+import { supersetTheme, ThemeProvider } from '@superset-ui/core';
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import reducerIndex from 'spec/helpers/reducerIndex';
-import { Global } from '@emotion/react';
-import { App, Layout, Space, Content } from 'antd';
+import { GlobalStyles } from '../src/GlobalStyles';
 
 import 'src/theme.ts';
 import './storybook.css';
-
-export const GlobalStylesOverrides = () => (
-  <Global
-    styles={css`
-      html,
-      body,
-      #storybook-root {
-        margin: 0 !important;
-        padding: 0 !important;
-        min-height: 100vh !important;
-      }
-
-      .ant-app {
-        min-height: 100vh !important;
-      }
-    `}
-  />
-);
 
 const store = createStore(
   combineReducers(reducerIndex),
@@ -53,40 +37,14 @@ const store = createStore(
   compose(applyMiddleware(thunk)),
 );
 
-export const globalTypes = {
-  theme: {
-    name: 'Theme',
-    description: 'Global theme for components',
-    defaultValue: 'superset',
-    toolbar: {
-      icon: 'paintbrush',
-      items: Object.keys(exampleThemes),
-    },
-  },
-};
-
-const themeDecorator = (Story, context) => {
-  const themeKey = context.globals.theme || 'superset';
-  themeObject.setConfig(exampleThemes[themeKey]);
-
-  return (
-    <themeObject.SupersetThemeProvider>
-      <App>
-        <GlobalStylesOverrides />
-        <Layout
-          style={{
-            minHeight: '100vh',
-            width: '100%',
-            padding: 24,
-            backgroundColor: themeObject.theme.colorBgBase,
-          }}
-        >
-          <Story {...context} />
-        </Layout>
-      </App>
-    </themeObject.SupersetThemeProvider>
-  );
-};
+const themeDecorator = Story => (
+  <ThemeProvider theme={supersetTheme}>
+    <>
+      <GlobalStyles />
+      <Story />
+    </>
+  </ThemeProvider>
+);
 
 const providerDecorator = Story => (
   <Provider store={store}>
@@ -94,9 +52,12 @@ const providerDecorator = Story => (
   </Provider>
 );
 
-export const decorators = [withJsx, themeDecorator, providerDecorator];
+addDecorator(jsxDecorator);
+addDecorator(themeDecorator);
+addDecorator(providerDecorator);
+addDecorator(WithPaddings);
 
-export const parameters = {
+addParameters({
   paddings: {
     values: [
       { name: 'None', value: '0px' },
@@ -126,5 +87,5 @@ export const parameters = {
       ],
     },
   },
-  controls: { expanded: true, sort: 'alpha', disableSaveFromUI: true },
-};
+  controls: { expanded: true, sort: 'alpha' },
+});

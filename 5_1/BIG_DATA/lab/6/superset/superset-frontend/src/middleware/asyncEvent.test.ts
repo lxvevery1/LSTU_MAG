@@ -18,17 +18,11 @@
  */
 import fetchMock from 'fetch-mock';
 import WS from 'jest-websocket-mock';
-import { parseErrorJson, isFeatureEnabled } from '@superset-ui/core';
+import sinon from 'sinon';
+import * as featureFlags from 'src/featureFlags';
+import { parseErrorJson } from 'src/utils/getClientErrorObject';
 import * as asyncEvent from 'src/middleware/asyncEvent';
 
-jest.mock('@superset-ui/core', () => ({
-  ...jest.requireActual('@superset-ui/core'),
-  isFeatureEnabled: jest.fn(),
-}));
-
-const mockedIsFeatureEnabled = isFeatureEnabled as jest.Mock;
-
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('asyncEvent middleware', () => {
   const asyncPendingEvent = {
     status: 'pending',
@@ -87,21 +81,20 @@ describe('asyncEvent middleware', () => {
 
   const EVENTS_ENDPOINT = 'glob:*/api/v1/async_event/*';
   const CACHED_DATA_ENDPOINT = 'glob:*/api/v1/chart/data/*';
+  let featureEnabledStub: any;
 
   beforeEach(async () => {
-    mockedIsFeatureEnabled.mockImplementation(
-      featureFlag => featureFlag === 'GLOBAL_ASYNC_QUERIES',
-    );
+    featureEnabledStub = sinon.stub(featureFlags, 'isFeatureEnabled');
+    featureEnabledStub.withArgs('GLOBAL_ASYNC_QUERIES').returns(true);
   });
 
   afterEach(() => {
     fetchMock.reset();
-    mockedIsFeatureEnabled.mockRestore();
+    featureEnabledStub.restore();
   });
 
-  afterAll(() => fetchMock.reset());
+  afterAll(fetchMock.reset);
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('polling transport', () => {
     const config = {
       GLOBAL_ASYNC_QUERIES_TRANSPORT: 'polling',
@@ -121,36 +114,31 @@ describe('asyncEvent middleware', () => {
       asyncEvent.init(config);
     });
 
-    test('resolves with chart data on event done status', async () => {
-      const actualResolved =
-        await asyncEvent.waitForAsyncData(asyncPendingEvent);
-      expect(actualResolved).toEqual([chartData]);
+    it('resolves with chart data on event done status', async () => {
+      await expect(
+        asyncEvent.waitForAsyncData(asyncPendingEvent),
+      ).resolves.toEqual([chartData]);
 
       expect(fetchMock.calls(EVENTS_ENDPOINT)).toHaveLength(1);
       expect(fetchMock.calls(CACHED_DATA_ENDPOINT)).toHaveLength(1);
     });
 
-    test('rejects on event error status', async () => {
+    it('rejects on event error status', async () => {
       fetchMock.reset();
       fetchMock.get(EVENTS_ENDPOINT, {
         status: 200,
         body: { result: [asyncErrorEvent] },
       });
-      const errorResponse = parseErrorJson(asyncErrorEvent);
-      let error: any = null;
-      try {
-        await asyncEvent.waitForAsyncData(asyncPendingEvent);
-      } catch (err) {
-        error = err;
-      } finally {
-        expect(error).toEqual(errorResponse);
-      }
+      const errorResponse = await parseErrorJson(asyncErrorEvent);
+      await expect(
+        asyncEvent.waitForAsyncData(asyncPendingEvent),
+      ).rejects.toEqual(errorResponse);
 
       expect(fetchMock.calls(EVENTS_ENDPOINT)).toHaveLength(1);
       expect(fetchMock.calls(CACHED_DATA_ENDPOINT)).toHaveLength(0);
     });
 
-    test('rejects on cached data fetch error', async () => {
+    it('rejects on cached data fetch error', async () => {
       fetchMock.reset();
       fetchMock.get(EVENTS_ENDPOINT, {
         status: 200,
@@ -160,21 +148,16 @@ describe('asyncEvent middleware', () => {
         status: 400,
       });
 
-      let error = '';
-      try {
-        await asyncEvent.waitForAsyncData(asyncPendingEvent);
-      } catch (err) {
-        [{ error }] = err;
-      } finally {
-        expect(error).toEqual('Bad request');
-      }
+      const errorResponse = [{ error: 'Bad Request' }];
+      await expect(
+        asyncEvent.waitForAsyncData(asyncPendingEvent),
+      ).rejects.toEqual(errorResponse);
 
       expect(fetchMock.calls(EVENTS_ENDPOINT)).toHaveLength(1);
       expect(fetchMock.calls(CACHED_DATA_ENDPOINT)).toHaveLength(1);
     });
   });
 
-  // eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
   describe('ws transport', () => {
     let wsServer: WS;
     const config = {
@@ -201,7 +184,7 @@ describe('asyncEvent middleware', () => {
       WS.clean();
     });
 
-    test('resolves with chart data on event done status', async () => {
+    it('resolves with chart data on event done status', async () => {
       await wsServer.connected;
 
       const promise = asyncEvent.waitForAsyncData(asyncPendingEvent);
@@ -214,14 +197,14 @@ describe('asyncEvent middleware', () => {
       expect(fetchMock.calls(EVENTS_ENDPOINT)).toHaveLength(0);
     });
 
-    test('rejects on event error status', async () => {
+    it('rejects on event error status', async () => {
       await wsServer.connected;
 
       const promise = asyncEvent.waitForAsyncData(asyncPendingEvent);
 
       wsServer.send(JSON.stringify(asyncErrorEvent));
 
-      const errorResponse = parseErrorJson(asyncErrorEvent);
+      const errorResponse = await parseErrorJson(asyncErrorEvent);
 
       await expect(promise).rejects.toEqual(errorResponse);
 
@@ -229,7 +212,7 @@ describe('asyncEvent middleware', () => {
       expect(fetchMock.calls(EVENTS_ENDPOINT)).toHaveLength(0);
     });
 
-    test('rejects on cached data fetch error', async () => {
+    it('rejects on cached data fetch error', async () => {
       fetchMock.reset();
       fetchMock.get(CACHED_DATA_ENDPOINT, {
         status: 400,
@@ -241,20 +224,15 @@ describe('asyncEvent middleware', () => {
 
       wsServer.send(JSON.stringify(asyncDoneEvent));
 
-      let error = '';
-      try {
-        await promise;
-      } catch (err) {
-        [{ error }] = err;
-      } finally {
-        expect(error).toEqual('Bad request');
-      }
+      const errorResponse = [{ error: 'Bad Request' }];
+
+      await expect(promise).rejects.toEqual(errorResponse);
 
       expect(fetchMock.calls(CACHED_DATA_ENDPOINT)).toHaveLength(1);
       expect(fetchMock.calls(EVENTS_ENDPOINT)).toHaveLength(0);
     });
 
-    test('resolves when events are received before listener', async () => {
+    it('resolves when events are received before listener', async () => {
       await wsServer.connected;
 
       wsServer.send(JSON.stringify(asyncDoneEvent));

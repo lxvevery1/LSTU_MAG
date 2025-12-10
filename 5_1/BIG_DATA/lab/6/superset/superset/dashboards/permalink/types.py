@@ -14,15 +14,14 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
-from typing import Any, Optional, TypedDict
+from typing import Any, Dict, List, Optional, Tuple, TypedDict
 
 
-class DashboardPermalinkState(TypedDict, total=False):
-    dataMask: Optional[dict[str, Any]]
-    activeTabs: Optional[list[str]]
+class DashboardPermalinkState(TypedDict):
+    dataMask: Optional[Dict[str, Any]]
+    activeTabs: Optional[List[str]]
     anchor: Optional[str]
-    urlParams: Optional[list[tuple[str, str]]]
-    chartStates: Optional[dict[str, Any]]
+    urlParams: Optional[List[Tuple[str, str]]]
 
 
 class DashboardPermalinkValue(TypedDict):

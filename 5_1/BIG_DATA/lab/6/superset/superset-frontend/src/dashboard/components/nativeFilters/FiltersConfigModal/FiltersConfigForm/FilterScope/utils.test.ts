@@ -17,14 +17,12 @@
  * under the License.
  */
 import { Layout } from 'src/dashboard/types';
-import { VizType } from '@superset-ui/core';
 import { buildTree } from './utils';
 
 // The types defined for Layout and sub elements is not compatible with the data we get back fro a real dashboard layout
 // This test file is using data from a real example dashboard to test real world data sets.  ts-ignore is set for this entire file
 // until we can reconcile adjusting types to match the actual data structures used
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('Ensure buildTree does not throw runtime errors when encountering an invalid node', () => {
   const node = {
     children: ['TABS-97PVJa11D_'],
@@ -401,7 +399,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       chartUpdateStartTime: 1673046994590,
       latestQueryFormData: {
         datasource: '20__table',
-        viz_type: VizType.Table,
+        viz_type: 'table',
         slice_id: 78,
         url_params: {},
         granularity_sqla: 'year',
@@ -487,7 +485,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           Sports: '#8FD3E4',
           Strategy: '#A1A6BD',
         },
-        shared_label_colors: [],
+        shared_label_colors: {},
         color_scheme: 'supersetColors',
         extra_filters: [
           {
@@ -642,7 +640,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Table,
+        viz_type: 'table',
         slice_id: 78,
         url_params: {},
         granularity_sqla: 'year',
@@ -685,7 +683,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       chartUpdateStartTime: 1673046994633,
       latestQueryFormData: {
         datasource: '20__table',
-        viz_type: VizType.Heatmap,
+        viz_type: 'heatmap',
         slice_id: 93,
         url_params: {},
         granularity_sqla: 'year',
@@ -712,7 +710,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         queryFields: {
           metric: 'metrics',
         },
-        shared_label_colors: [],
+        shared_label_colors: {},
         color_scheme: 'supersetColors',
         extra_filters: [
           {
@@ -734,7 +732,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           errors: [],
           form_data: {
             datasource: '20__table',
-            viz_type: VizType.Heatmap,
+            viz_type: 'heatmap',
             slice_id: 93,
             url_params: {},
             granularity_sqla: 'year',
@@ -761,12 +759,13 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
             queryFields: {
               metric: 'metrics',
             },
-            shared_label_colors: [],
+            shared_label_colors: {},
             color_scheme: 'supersetColors',
             dashboardId: 9,
             applied_time_extras: {},
             where: '',
             having: '',
+            having_filters: [],
             filters: [],
           },
           is_cached: false,
@@ -2843,7 +2842,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Heatmap,
+        viz_type: 'heatmap',
         slice_id: 93,
         url_params: {},
         granularity_sqla: 'year',
@@ -2887,7 +2886,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Line,
+        viz_type: 'line',
         slice_id: 95,
         url_params: {
           preselect_filters:
@@ -2990,7 +2989,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       chartUpdateStartTime: 1673046994566,
       latestQueryFormData: {
         datasource: '20__table',
-        viz_type: VizType.Area,
+        viz_type: 'area',
         slice_id: 103,
         url_params: {
           preselect_filters:
@@ -3048,7 +3047,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           groupby: 'groupby',
           metrics: 'metrics',
         },
-        shared_label_colors: [],
+        shared_label_colors: {},
         extra_filters: [
           {
             col: '__time_range',
@@ -3069,7 +3068,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           errors: [],
           form_data: {
             datasource: '20__table',
-            viz_type: VizType.Area,
+            viz_type: 'area',
             slice_id: 103,
             url_params: {
               preselect_filters:
@@ -3127,11 +3126,12 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
               groupby: 'groupby',
               metrics: 'metrics',
             },
-            shared_label_colors: [],
+            shared_label_colors: {},
             dashboardId: 9,
             applied_time_extras: {},
             where: '',
             having: '',
+            having_filters: [],
             filters: [],
           },
           is_cached: false,
@@ -16267,7 +16267,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Area,
+        viz_type: 'area',
         slice_id: 103,
         url_params: {
           preselect_filters:
@@ -16390,7 +16390,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       chartUpdateStartTime: 1673046994648,
       latestQueryFormData: {
         datasource: '20__table',
-        viz_type: VizType.Bar,
+        viz_type: 'dist_bar',
         slice_id: 113,
         url_params: {},
         granularity_sqla: 'year',
@@ -16516,7 +16516,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           groupby: 'groupby',
           metrics: 'metrics',
         },
-        shared_label_colors: [],
+        shared_label_colors: {},
         extra_filters: [
           {
             col: '__time_range',
@@ -16537,7 +16537,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           errors: [],
           form_data: {
             datasource: '20__table',
-            viz_type: VizType.Bar,
+            viz_type: 'dist_bar',
             slice_id: 113,
             url_params: {},
             granularity_sqla: 'year',
@@ -16663,11 +16663,12 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
               groupby: 'groupby',
               metrics: 'metrics',
             },
-            shared_label_colors: [],
+            shared_label_colors: {},
             dashboardId: 9,
             applied_time_extras: {},
             where: '',
             having: '',
+            having_filters: [],
             filters: [
               {
                 col: 'rank',
@@ -17080,7 +17081,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Bar,
+        viz_type: 'dist_bar',
         slice_id: 113,
         url_params: {},
         granularity_sqla: 'year',
@@ -17224,7 +17225,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Bar,
+        viz_type: 'dist_bar',
         slice_id: 120,
         url_params: {
           preselect_filters:
@@ -17410,7 +17411,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       chartUpdateStartTime: 1673046994604,
       latestQueryFormData: {
         datasource: '20__table',
-        viz_type: VizType.Pie,
+        viz_type: 'pie',
         slice_id: 123,
         url_params: {},
         granularity_sqla: 'year',
@@ -17525,7 +17526,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           Sports: '#8FD3E4',
           Strategy: '#A1A6BD',
         },
-        shared_label_colors: [],
+        shared_label_colors: {},
         extra_filters: [
           {
             col: '__time_range',
@@ -17591,7 +17592,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Pie,
+        viz_type: 'pie',
         slice_id: 123,
         url_params: {},
         granularity_sqla: 'year',
@@ -17663,12 +17664,12 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       chartUpdateStartTime: 1673046994618,
       latestQueryFormData: {
         datasource: '20__table',
-        viz_type: VizType.Treemap,
+        viz_type: 'treemap',
         slice_id: 125,
         url_params: {},
         granularity_sqla: 'year',
         time_range: 'No filter',
-        metric: 'count',
+        metrics: ['count'],
         adhoc_filters: [],
         groupby: ['platform'],
         row_limit: 10,
@@ -17680,7 +17681,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           groupby: 'groupby',
           metrics: 'metrics',
         },
-        shared_label_colors: [],
+        shared_label_colors: {},
         extra_filters: [
           {
             col: '__time_range',
@@ -17700,12 +17701,12 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
           errors: [],
           form_data: {
             datasource: '20__table',
-            viz_type: VizType.Treemap,
+            viz_type: 'treemap',
             slice_id: 125,
             url_params: {},
             granularity_sqla: 'year',
             time_range: 'No filter',
-            metric: 'count',
+            metrics: ['count'],
             adhoc_filters: [],
             groupby: ['platform'],
             row_limit: 10,
@@ -17717,11 +17718,12 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
               groupby: 'groupby',
               metrics: 'metrics',
             },
-            shared_label_colors: [],
+            shared_label_colors: {},
             dashboardId: 9,
             applied_time_extras: {},
             where: '',
             having: '',
+            having_filters: [],
             filters: [],
           },
           is_cached: false,
@@ -17789,12 +17791,12 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Treemap,
+        viz_type: 'treemap',
         slice_id: 125,
         url_params: {},
         granularity_sqla: 'year',
         time_range: 'No filter',
-        metric: 'count',
+        metrics: ['count'],
         adhoc_filters: [],
         groupby: ['platform'],
         row_limit: 10,
@@ -17857,6 +17859,63 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         },
       },
     },
+    '127': {
+      id: 127,
+      chartAlert: null,
+      chartStatus: 'loading',
+      chartStackTrace: null,
+      chartUpdateEndTime: null,
+      chartUpdateStartTime: 0,
+      latestQueryFormData: {},
+      sliceFormData: null,
+      queryController: null,
+      queriesResponse: null,
+      triggerQuery: true,
+      lastRendered: 0,
+      form_data: {
+        datasource: '20__table',
+        viz_type: 'filter_box',
+        slice_id: 127,
+        url_params: {
+          preselect_filters:
+            '{"1389": {"platform": ["PS", "PS2", "PS3", "PS4"], "genre": null, "__time_range": "No filter"}}',
+        },
+        granularity_sqla: 'Year',
+        time_range: 'No filter',
+        filter_configs: [
+          {
+            asc: true,
+            clearable: true,
+            column: 'platform',
+            key: 's3ItH9vhG',
+            label: 'Platform',
+            multiple: true,
+            searchAllOptions: false,
+          },
+          {
+            asc: true,
+            clearable: true,
+            column: 'genre',
+            key: '202hDeMsG',
+            label: 'Genre',
+            multiple: true,
+            searchAllOptions: false,
+          },
+          {
+            asc: true,
+            clearable: true,
+            column: 'publisher',
+            key: '5Os6jsJFK',
+            label: 'Publisher',
+            multiple: true,
+            searchAllOptions: false,
+          },
+        ],
+        date_filter: true,
+        adhoc_filters: [],
+        queryFields: {},
+      },
+    },
     '131': {
       id: 131,
       chartAlert: null,
@@ -17872,7 +17931,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Treemap,
+        viz_type: 'treemap',
         slice_id: 131,
         url_params: {
           preselect_filters:
@@ -17880,7 +17939,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         },
         granularity_sqla: 'year',
         time_range: 'No filter',
-        metric: 'count',
+        metrics: ['count'],
         adhoc_filters: [],
         groupby: ['genre'],
         row_limit: null,
@@ -17963,7 +18022,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
       lastRendered: 0,
       form_data: {
         datasource: '20__table',
-        viz_type: VizType.Table,
+        viz_type: 'table',
         slice_id: 132,
         url_params: {},
         granularity_sqla: 'year',
@@ -18048,7 +18107,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
   ];
 
   const initiallyExcludedCharts: number[] = [];
-  test('Succeeds with valid', () => {
+  it('Succeeds with valid', () => {
     expect(() => {
       buildTree(
         // @ts-ignore
@@ -18060,10 +18119,10 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         initiallyExcludedCharts,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
   });
 
-  test('Avoids runtime error with invalid inputs', () => {
+  it('Avoids runtime error with invalid inputs', () => {
     expect(() => {
       buildTree(
         // @ts-expect-error
@@ -18075,7 +18134,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         initiallyExcludedCharts,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
 
     expect(() => {
       buildTree(
@@ -18088,7 +18147,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         initiallyExcludedCharts,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
 
     expect(() => {
       buildTree(
@@ -18101,7 +18160,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         initiallyExcludedCharts,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
 
     expect(() => {
       buildTree(
@@ -18114,7 +18173,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         initiallyExcludedCharts,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
 
     expect(() => {
       buildTree(
@@ -18127,7 +18186,7 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         initiallyExcludedCharts,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
 
     expect(() => {
       buildTree(
@@ -18140,6 +18199,6 @@ describe('Ensure buildTree does not throw runtime errors when encountering an in
         null,
         () => 'Fake title',
       );
-    }).not.toThrow();
+    }).not.toThrowError();
   });
 });

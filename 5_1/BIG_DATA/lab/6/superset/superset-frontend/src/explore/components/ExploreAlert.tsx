@@ -17,27 +17,78 @@
  * under the License.
  */
 
-import { forwardRef, RefObject, MouseEvent } from 'react';
-import { Button } from '@superset-ui/core/components';
-import { ErrorAlert } from 'src/components';
-import { styled } from '@apache-superset/core/ui';
+import React, { forwardRef, RefObject } from 'react';
+import { css, styled } from '@superset-ui/core';
+import Button from 'src/components/Button';
 
 interface ControlPanelAlertProps {
   title: string;
-  bodyText: React.ReactNode;
-  primaryButtonAction?: (e: MouseEvent) => void;
-  secondaryButtonAction?: (e: MouseEvent) => void;
+  bodyText: string;
+  primaryButtonAction?: (e: React.MouseEvent) => void;
+  secondaryButtonAction?: (e: React.MouseEvent) => void;
   primaryButtonText?: string;
   secondaryButtonText?: string;
   type: 'info' | 'warning' | 'error';
   className?: string;
 }
 
+const AlertContainer = styled.div`
+  ${({ theme }) => css`
+    margin: ${theme.gridUnit * 4}px;
+    padding: ${theme.gridUnit * 4}px;
+
+    border: 1px solid ${theme.colors.info.base};
+    background-color: ${theme.colors.info.light2};
+    border-radius: 2px;
+
+    color: ${theme.colors.info.dark2};
+    font-size: ${theme.typography.sizes.m}px;
+
+    p {
+      margin-bottom: ${theme.gridUnit}px;
+    }
+
+    & a,
+    & span[role='button'] {
+      color: inherit;
+      text-decoration: underline;
+      &:hover {
+        color: ${theme.colors.info.dark1};
+      }
+    }
+
+    &.alert-type-warning {
+      border-color: ${theme.colors.alert.base};
+      background-color: ${theme.colors.alert.light2};
+
+      p {
+        color: ${theme.colors.alert.dark2};
+      }
+
+      & a:hover,
+      & span[role='button']:hover {
+        color: ${theme.colors.alert.dark1};
+      }
+    }
+  `}
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin-top: ${({ theme }) => theme.sizeUnit * 4}px;
+  button {
+    line-height: 1;
+  }
 `;
+
+const Title = styled.p`
+  font-weight: ${({ theme }) => theme.typography.weights.bold};
+`;
+
+const typeChart = {
+  warning: 'warning',
+  danger: 'danger',
+};
 
 export const ExploreAlert = forwardRef(
   (
@@ -53,26 +104,29 @@ export const ExploreAlert = forwardRef(
     }: ControlPanelAlertProps,
     ref: RefObject<HTMLDivElement>,
   ) => (
-    <ErrorAlert
-      errorType={title}
-      message={bodyText}
-      type={type}
-      className={className}
-      closable={false}
-      showIcon
-    >
+    <AlertContainer className={`alert-type-${type} ${className}`} ref={ref}>
+      <Title>{title}</Title>
+      <p>{bodyText}</p>
       {primaryButtonText && primaryButtonAction && (
         <ButtonContainer>
           {secondaryButtonAction && secondaryButtonText && (
-            <Button buttonStyle="secondary" onClick={secondaryButtonAction}>
+            <Button
+              buttonStyle="link"
+              buttonSize="small"
+              onClick={secondaryButtonAction}
+            >
               {secondaryButtonText}
             </Button>
           )}
-          <Button buttonStyle="secondary" onClick={primaryButtonAction}>
+          <Button
+            buttonStyle={type in typeChart ? typeChart[type] : 'primary'}
+            buttonSize="small"
+            onClick={primaryButtonAction}
+          >
             {primaryButtonText}
           </Button>
         </ButtonContainer>
       )}
-    </ErrorAlert>
+    </AlertContainer>
   ),
 );

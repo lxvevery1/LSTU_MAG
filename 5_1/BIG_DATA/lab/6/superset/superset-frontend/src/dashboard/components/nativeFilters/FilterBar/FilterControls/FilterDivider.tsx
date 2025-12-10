@@ -17,11 +17,12 @@
  * under the License.
  */
 
-import { useCSSTextTruncation, truncationCSS } from '@superset-ui/core';
-import { css, useTheme } from '@apache-superset/core/ui';
-import { Icons } from '@superset-ui/core/components/Icons';
-import { Tooltip } from '@superset-ui/core/components';
+import { css, useTheme } from '@superset-ui/core';
+import React from 'react';
+import Icons from 'src/components/Icons';
+import { Tooltip } from 'src/components/Tooltip';
 import { FilterBarOrientation } from 'src/dashboard/types';
+import { useCSSTextTruncation, truncationCSS } from 'src/hooks/useTruncation';
 import { FilterDividerProps } from './types';
 
 const VerticalDivider = ({ title, description }: FilterDividerProps) => (
@@ -41,9 +42,9 @@ const HorizontalDivider = ({ title, description }: FilterDividerProps) => {
       css={css`
         display: flex;
         align-items: center;
-        height: ${6 * theme.sizeUnit}px;
-        border-left: 1px solid ${theme.colorSplit};
-        padding-left: ${4 * theme.sizeUnit}px;
+        height: ${6 * theme.gridUnit}px;
+        border-left: 1px solid ${theme.colors.grayscale.light2};
+        padding-left: ${4 * theme.gridUnit}px;
 
         .filter-item-wrapper:first-child & {
           border-left: none;
@@ -56,11 +57,11 @@ const HorizontalDivider = ({ title, description }: FilterDividerProps) => {
           ref={titleRef}
           css={css`
             ${truncationCSS};
-            max-width: ${theme.sizeUnit * 32.5}px;
-            font-size: ${theme.fontSize}px;
-            font-weight: ${theme.fontWeightNormal};
+            max-width: ${theme.gridUnit * 32.5}px;
+            font-size: ${theme.typography.sizes.m}px;
+            font-weight: ${theme.typography.weights.normal};
             margin: 0;
-            color: ${theme.colorText};
+            color: ${theme.colors.grayscale.dark1};
           `}
         >
           {title}
@@ -71,8 +72,9 @@ const HorizontalDivider = ({ title, description }: FilterDividerProps) => {
           <Icons.BookOutlined
             data-test="divider-description-icon"
             iconSize="l"
+            iconColor={theme.colors.grayscale.base}
             css={css`
-              margin: 0 ${theme.sizeUnit * 1.5}px;
+              margin: 0 ${theme.gridUnit * 1.5}px;
               vertical-align: unset;
               line-height: unset;
             `}
@@ -97,9 +99,9 @@ const HorizontalOverflowDivider = ({
   return (
     <div
       css={css`
-        border-top: 1px solid ${theme.colorSplit};
-        padding-top: ${theme.sizeUnit * 4}px;
-        margin-bottom: ${theme.sizeUnit * 4}px;
+        border-top: 1px solid ${theme.colors.grayscale.light2};
+        padding-top: ${theme.gridUnit * 4}px;
+        margin-bottom: ${theme.gridUnit * 4}px;
       `}
     >
       <Tooltip overlay={titleIsTruncated ? <strong>{title}</strong> : null}>
@@ -108,10 +110,10 @@ const HorizontalOverflowDivider = ({
           css={css`
             ${truncationCSS};
             display: block;
-            color: ${theme.colorText};
-            font-weight: ${theme.fontWeightNormal};
-            font-size: ${theme.fontSize}px;
-            margin: 0 0 ${theme.sizeUnit}px 0;
+            color: ${theme.colors.grayscale.dark1};
+            font-weight: ${theme.typography.weights.normal};
+            font-size: ${theme.typography.sizes.m}px;
+            margin: 0 0 ${theme.gridUnit}px 0;
           `}
         >
           {title}
@@ -125,9 +127,9 @@ const HorizontalOverflowDivider = ({
             css={css`
               ${truncationCSS};
               display: block;
-              font-size: ${theme.fontSizeSM}px;
-              color: ${theme.colorTextDescription};
-              margin: ${theme.sizeUnit}px 0 0 0;
+              font-size: ${theme.typography.sizes.s}px;
+              color: ${theme.colors.grayscale.base};
+              margin: ${theme.gridUnit}px 0 0 0;
             `}
           >
             {description}
@@ -141,10 +143,10 @@ const HorizontalOverflowDivider = ({
 const FilterDivider = ({
   title,
   description,
-  orientation = FilterBarOrientation.Vertical,
+  orientation = FilterBarOrientation.VERTICAL,
   overflow = false,
 }: FilterDividerProps) => {
-  if (orientation === FilterBarOrientation.Horizontal) {
+  if (orientation === FilterBarOrientation.HORIZONTAL) {
     if (overflow) {
       return (
         <HorizontalOverflowDivider title={title} description={description} />

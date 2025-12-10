@@ -67,7 +67,6 @@ const fakePluginControls = {
   ],
 };
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('getControlsForVizType', () => {
   beforeEach(() => {
     getChartControlPanelRegistry().registerValue(
@@ -76,7 +75,7 @@ describe('getControlsForVizType', () => {
     );
   });
 
-  test('returns a map of the controls', () => {
+  it('returns a map of the controls', () => {
     expect(
       JSON.stringify(getControlsForVizType('chart_controls_inventory_fake')),
     ).toEqual(

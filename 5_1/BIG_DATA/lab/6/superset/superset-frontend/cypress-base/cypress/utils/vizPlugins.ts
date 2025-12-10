@@ -49,7 +49,6 @@ export function isLegacyChart(vizType: string): boolean {
   return !V1_PLUGINS.includes(vizType);
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isLegacyResponse(response: any): boolean {
   return !response.result;
 }
@@ -65,9 +64,9 @@ export function getChartDataRouteForSlice(slice: Slice) {
   const isLegacy = isLegacyChart(vizType);
   const formData = encodeURIComponent(`{"slice_id":${slice.slice_id}}`);
   if (isLegacy) {
-    return `**/superset/explore_json/?*${formData}*`;
+    return `/superset/explore_json/?*${formData}*`;
   }
-  return `**/api/v1/chart/data?*${formData}*`;
+  return `/api/v1/chart/data?*${formData}*`;
 }
 
 export function getChartAlias(slice: Slice): string {

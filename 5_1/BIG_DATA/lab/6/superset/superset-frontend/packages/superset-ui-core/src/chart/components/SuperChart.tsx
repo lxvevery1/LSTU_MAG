@@ -17,20 +17,12 @@
  * under the License.
  */
 
-import {
-  ReactNode,
-  RefObject,
-  ComponentType,
-  PureComponent,
-  Fragment,
-} from 'react';
-
-import {
-  ErrorBoundary,
+import React, { ReactNode, RefObject } from 'react';
+import ErrorBoundary, {
   ErrorBoundaryProps,
   FallbackProps,
 } from 'react-error-boundary';
-import { ParentSize } from '@visx/responsive';
+import { ParentSize } from '@vx/responsive';
 import { createSelector } from 'reselect';
 import { withTheme } from '@emotion/react';
 import { parseLength, Dimension } from '../../dimension';
@@ -39,8 +31,6 @@ import SuperChartCore, { Props as SuperChartCoreProps } from './SuperChartCore';
 import DefaultFallbackComponent from './FallbackComponent';
 import ChartProps, { ChartPropsConfig } from '../models/ChartProps';
 import NoResultsComponent from './NoResultsComponent';
-import { isMatrixifyEnabled } from '../types/matrixify';
-import MatrixifyGridRenderer from './Matrixify/MatrixifyGridRenderer';
 
 const defaultProps = {
   FallbackComponent: DefaultFallbackComponent,
@@ -68,7 +58,7 @@ export type Props = Omit<SuperChartCoreProps, 'chartProps'> &
     /** enable "No Results" message if empty result set */
     enableNoResults?: boolean;
     /** Component to render when there are unexpected errors */
-    FallbackComponent?: ComponentType<FallbackPropsWithDimension>;
+    FallbackComponent?: React.ComponentType<FallbackPropsWithDimension>;
     /** Event listener for unexpected errors from chart */
     onErrorBoundary?: ErrorBoundaryProps['onError'];
     /** Prop for form plugins using superchart */
@@ -90,21 +80,17 @@ export type Props = Omit<SuperChartCoreProps, 'chartProps'> &
      * when using dynamic width or height
      * because it will clash with auto-sizing.
      */
-    Wrapper?: ComponentType<WrapperProps>;
+    Wrapper?: React.ComponentType<WrapperProps>;
     /**
      * Component to display when query returns no results.
      * If not defined, NoResultsComponent is used
      */
     noResults?: ReactNode;
-    /**
-     * Determines is the context menu related to the chart is open
-     */
-    inContextMenu?: boolean;
   };
 
 type PropsWithDefault = Props & Readonly<typeof defaultProps>;
 
-class SuperChart extends PureComponent<Props, {}> {
+class SuperChart extends React.PureComponent<Props, {}> {
   /**
    * SuperChart's core
    */
@@ -113,14 +99,13 @@ class SuperChart extends PureComponent<Props, {}> {
   private createChartProps = ChartProps.createSelector();
 
   private parseDimension = createSelector(
-    [
-      ({ width }: { width: string | number; height: string | number }) => width,
-      ({ height }) => height,
-    ],
+    ({ width }: { width: string | number; height: string | number }) => width,
+    ({ height }) => height,
     (width, height) => {
       // Parse them in case they are % or 'auto'
       const widthInfo = parseLength(width);
       const heightInfo = parseLength(height);
+
       const boxHeight = heightInfo.isDynamic
         ? `${heightInfo.multiplier * 100}%`
         : heightInfo.value;
@@ -141,7 +126,7 @@ class SuperChart extends PureComponent<Props, {}> {
         heightInfo.isDynamic &&
         widthInfo.multiplier === 1 &&
         heightInfo.multiplier === 1
-          ? Fragment
+          ? React.Fragment
           : ({ children }: { children: ReactNode }) => (
               <div style={style}>{children}</div>
             );
@@ -188,47 +173,8 @@ class SuperChart extends PureComponent<Props, {}> {
       theme,
     });
 
-    // Check if Matrixify is enabled - use rawFormData (snake_case)
-    const matrixifyEnabled = isMatrixifyEnabled(chartProps.rawFormData);
-
-    if (matrixifyEnabled) {
-      // When matrixify is enabled, queriesData is expected to be empty
-      // since each cell fetches its own data via StatefulChart
-      const matrixifyChart = (
-        <MatrixifyGridRenderer
-          formData={chartProps.rawFormData}
-          datasource={chartProps.datasource}
-          width={width}
-          height={height}
-          hooks={chartProps.hooks}
-        />
-      );
-
-      // Apply wrapper if provided
-      const wrappedChart = Wrapper ? (
-        <Wrapper width={width} height={height}>
-          {matrixifyChart}
-        </Wrapper>
-      ) : (
-        matrixifyChart
-      );
-
-      // Include error boundary unless disabled
-      return disableErrorBoundary === true ? (
-        wrappedChart
-      ) : (
-        <ErrorBoundary
-          FallbackComponent={props => (
-            <FallbackComponent width={width} height={height} {...props} />
-          )}
-          onError={onErrorBoundary}
-        >
-          {wrappedChart}
-        </ErrorBoundary>
-      );
-    }
-
-    // Check for no results only for non-matrixified charts
+    let chart;
+    // Render the no results component if the query data is null or empty
     const noResultQueries =
       enableNoResults &&
       (!queriesData ||
@@ -237,8 +183,6 @@ class SuperChart extends PureComponent<Props, {}> {
           .every(
             ({ data }) => !data || (Array.isArray(data) && data.length === 0),
           ));
-
-    let chart;
     if (noResultQueries) {
       chart = noResults || (
         <NoResultsComponent
@@ -276,7 +220,7 @@ class SuperChart extends PureComponent<Props, {}> {
       chart
     ) : (
       <ErrorBoundary
-        FallbackComponent={props => (
+        FallbackComponent={(props: FallbackProps) => (
           <FallbackComponent width={width} height={height} {...props} />
         )}
         onError={onErrorBoundary}

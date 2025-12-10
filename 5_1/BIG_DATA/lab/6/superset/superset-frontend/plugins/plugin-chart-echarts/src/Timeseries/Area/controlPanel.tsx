@@ -16,11 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+import React from 'react';
 import { t } from '@superset-ui/core';
 import {
   ControlPanelConfig,
   ControlPanelsContainerProps,
-  ControlSubSectionHeader,
   D3_TIME_FORMAT_DOCS,
   getStandardizedControls,
   sections,
@@ -34,16 +34,8 @@ import {
   onlyTotalControl,
   showValueControl,
   richTooltipSection,
-  seriesOrderSection,
-  percentageThresholdControl,
-  xAxisLabelRotation,
-  xAxisLabelInterval,
-  truncateXAxis,
-  xAxisBounds,
-  minorTicks,
-  forceMaxInterval,
 } from '../../controls';
-import { AreaChartStackControlOptions } from '../../constants';
+import { AreaChartExtraControlsOptions } from '../../constants';
 
 const {
   logAxis,
@@ -55,10 +47,13 @@ const {
   seriesType,
   truncateYAxis,
   yAxisBounds,
+  zoomable,
+  xAxisLabelRotation,
 } = DEFAULT_FORM_DATA;
 const config: ControlPanelConfig = {
   controlPanelSections: [
-    sections.echartsTimeSeriesQueryWithXAxisSort,
+    sections.genericTime,
+    sections.echartsTimeSeriesQuery,
     sections.advancedAnalyticsControls,
     sections.annotationsAndLayersControls,
     sections.forecastIntervalControls,
@@ -67,9 +62,7 @@ const config: ControlPanelConfig = {
       label: t('Chart Options'),
       expanded: true,
       controlSetRows: [
-        ...seriesOrderSection,
         ['color_scheme'],
-        ['time_shift_color'],
         [
           {
             name: 'seriesType',
@@ -114,14 +107,13 @@ const config: ControlPanelConfig = {
               type: 'SelectControl',
               label: t('Stacked Style'),
               renderTrigger: true,
-              choices: AreaChartStackControlOptions,
+              choices: AreaChartExtraControlsOptions,
               default: null,
               description: t('Stack series on top of each other'),
             },
           },
         ],
         [onlyTotalControl],
-        [percentageThresholdControl],
         [
           {
             name: 'show_extra_controls',
@@ -132,7 +124,7 @@ const config: ControlPanelConfig = {
               default: false,
               description: t(
                 'Whether to show extra controls or not. Extra controls ' +
-                  'include things like making multiBar charts stacked ' +
+                  'include things like making mulitBar charts stacked ' +
                   'or side by side.',
               ),
             },
@@ -170,10 +162,20 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [minorTicks],
-        ['zoomable'],
+        [
+          {
+            name: 'zoomable',
+            config: {
+              type: 'CheckboxControl',
+              label: t('Data Zoom'),
+              default: zoomable,
+              renderTrigger: true,
+              description: t('Enable data zooming controls'),
+            },
+          },
+        ],
         ...legendSection,
-        [<ControlSubSectionHeader>{t('X Axis')}</ControlSubSectionHeader>],
+        [<div className="section-header">{t('X Axis')}</div>],
         [
           {
             name: 'x_axis_time_format',
@@ -184,14 +186,30 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [xAxisLabelRotation],
-        [xAxisLabelInterval],
-        [forceMaxInterval],
+        [
+          {
+            name: 'xAxisLabelRotation',
+            config: {
+              type: 'SelectControl',
+              freeForm: true,
+              clearable: false,
+              label: t('Rotate x axis label'),
+              choices: [
+                [0, '0°'],
+                [45, '45°'],
+              ],
+              default: xAxisLabelRotation,
+              renderTrigger: true,
+              description: t(
+                'Input field supports custom rotation. e.g. 30 for 30°',
+              ),
+            },
+          },
+        ],
         ...richTooltipSection,
         // eslint-disable-next-line react/jsx-key
-        [<ControlSubSectionHeader>{t('Y Axis')}</ControlSubSectionHeader>],
+        [<div className="section-header">{t('Y Axis')}</div>],
         ['y_axis_format'],
-        ['currency_format'],
         [
           {
             name: 'logAxis',
@@ -216,8 +234,6 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        [truncateXAxis],
-        [xAxisBounds],
         [
           {
             name: 'truncateYAxis',

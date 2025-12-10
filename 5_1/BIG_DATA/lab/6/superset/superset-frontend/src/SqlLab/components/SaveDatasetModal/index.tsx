@@ -17,34 +17,23 @@
  * under the License.
  */
 
-import { useCallback, useState, FormEvent } from 'react';
-import { ModalTitleWithIcon } from 'src/components/ModalTitleWithIcon';
-import { Radio, RadioChangeEvent } from '@superset-ui/core/components/Radio';
+import React, { useCallback, useState } from 'react';
+import { Radio } from 'src/components/Radio';
+import { RadioChangeEvent, AsyncSelect } from 'src/components';
+import { Input } from 'src/components/Input';
+import StyledModal from 'src/components/Modal';
+import Button from 'src/components/Button';
 import {
-  AsyncSelect,
-  Button,
-  Checkbox,
-  Modal,
-  Input,
-  type SelectValue,
-  Icons,
-  Flex,
-} from '@superset-ui/core/components';
-import {
+  styled,
   t,
   SupersetClient,
   JsonResponse,
   JsonObject,
   QueryResponse,
   QueryFormData,
-  VizType,
-  FeatureFlag,
-  isFeatureEnabled,
-  getClientErrorObject,
 } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
-import { extendedDayjs as dayjs } from '@superset-ui/core/utils/dates';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 import rison from 'rison';
 import { createDatasource } from 'src/SqlLab/actions/sqlLab';
 import { addDangerToast } from 'src/components/MessageToasts/actions';
@@ -53,13 +42,15 @@ import {
   DatasetRadioState,
   EXPLORE_CHART_DEFAULT,
   DatasetOwner,
+  SqlLabExploreRootState,
+  getInitialState,
   SqlLabRootState,
 } from 'src/SqlLab/types';
 import { mountExploreUrl } from 'src/explore/exploreUtils';
 import { postFormData } from 'src/explore/exploreUtils/formData';
 import { URL_PARAMS } from 'src/constants';
-import { isEmpty } from 'lodash';
-import { clearDatasetCache } from 'src/utils/cachedSupersetGet';
+import { SelectValue } from 'antd/lib/select';
+import { isEmpty, isString } from 'lodash';
 
 interface QueryDatabase {
   id?: number;
@@ -70,7 +61,6 @@ export type ExploreQuery = QueryResponse & {
 };
 
 export interface ISimpleColumn {
-  column_name?: string | null;
   name?: string | null;
   type?: string | null;
   is_dttm?: boolean | null;
@@ -88,7 +78,6 @@ export interface ISaveableDatasource {
   dbId: number;
   sql: string;
   templateParams?: string | object | null;
-  catalog?: string | null;
   schema?: string | null;
   database?: Database;
 }
@@ -105,50 +94,32 @@ interface SaveDatasetModalProps {
 }
 
 const Styles = styled.div`
-  ${({ theme }) => `
-    .sdm-body {
-      padding: ${theme.sizeUnit * 4}px ${theme.sizeUnit * 6}px;
-    }
-
-    .sdm-prompt {
-      margin-bottom: ${theme.sizeUnit * 4}px;
-      color: ${theme.colorTextSecondary};
-    }
-
-    .sdm-radio-group {
-      display: flex;
-      flex-direction: column;
-      gap: ${theme.sizeUnit * 6}px;
-    }
-
-    .sdm-radio-option {
-      display: flex;
-      flex-direction: column;
-      gap: ${theme.sizeUnit * 3}px;
-    }
-
-    .sdm-radio {
-      margin: 0;
-      .ant-radio {
-        margin-right: ${theme.sizeUnit * 2}px;
-      }
-      .ant-radio-wrapper {
-        color: ${theme.colorText};
-      }
-    }
-
-    .sdm-form-field {
-      margin-left: 0;
-      max-width: 400px;
-    }
-
-    .sdm-overwrite-msg {
-      padding: ${theme.sizeUnit * 4}px ${theme.sizeUnit * 6}px;
-      text-align: center;
-      color: ${theme.colorText};
-    }
-  `}
+  .sdm-body {
+    margin: 0 8px;
+  }
+  .sdm-input {
+    margin-left: 45px;
+    width: 401px;
+  }
+  .sdm-autocomplete {
+    width: 401px;
+    align-self: center;
+  }
+  .sdm-radio {
+    display: block;
+    height: 30px;
+    margin: 10px 0px;
+    line-height: 30px;
+  }
+  .sdm-overwrite-msg {
+    margin: 7px;
+  }
+  .sdm-overwrite-container {
+    flex: 1 1 auto;
+    display: flex;
+  }
 `;
+
 const updateDataset = async (
   dbId: number,
   datasetId: number,
@@ -171,9 +142,6 @@ const updateDataset = async (
     headers,
     body,
   });
-
-  clearDatasetCache(datasetId);
-
   return data.json.result;
 };
 
@@ -190,14 +158,14 @@ export const SaveDatasetModal = ({
   formData = {},
 }: SaveDatasetModalProps) => {
   const defaultVizType = useSelector<SqlLabRootState, string>(
-    state => state.common?.conf?.DEFAULT_VIZ_TYPE || VizType.Table,
+    state => state.common?.conf?.DEFAULT_VIZ_TYPE || 'table',
   );
 
   const getDefaultDatasetName = () =>
-    `${datasource?.name || UNTITLED} ${dayjs().format('L HH:mm:ss')}`;
+    `${datasource?.name || UNTITLED} ${moment().format('MM/DD/YYYY HH:mm:ss')}`;
   const [datasetName, setDatasetName] = useState(getDefaultDatasetName());
   const [newOrOverwrite, setNewOrOverwrite] = useState(
-    DatasetRadioState.SaveNew,
+    DatasetRadioState.SAVE_NEW,
   );
   const [shouldOverwriteDataset, setShouldOverwriteDataset] = useState(false);
   const [datasetToOverwrite, setDatasetToOverwrite] = useState<
@@ -206,12 +174,11 @@ export const SaveDatasetModal = ({
   const [selectedDatasetToOverwrite, setSelectedDatasetToOverwrite] = useState<
     SelectValue | undefined
   >(undefined);
-  const [loading, setLoading] = useState<boolean>(false);
 
-  const user = useSelector<SqlLabRootState, User>(state => state.user);
+  const user = useSelector<SqlLabExploreRootState, User>(user =>
+    getInitialState(user),
+  );
   const dispatch = useDispatch<(dispatch: any) => Promise<JsonObject>>();
-  const [includeTemplateParameters, setIncludeTemplateParameters] =
-    useState(false);
 
   const createWindow = (url: string) => {
     if (openWindow) {
@@ -222,7 +189,7 @@ export const SaveDatasetModal = ({
   };
   const formDataWithDefaults = {
     ...EXPLORE_CHART_DEFAULT,
-    ...formData,
+    ...(formData || {}),
   };
   const handleOverwriteDataset = async () => {
     // if user wants to overwrite a dataset we need to prompt them
@@ -230,52 +197,38 @@ export const SaveDatasetModal = ({
       setShouldOverwriteDataset(true);
       return;
     }
-    setLoading(true);
-
-    try {
-      const [, key] = await Promise.all([
-        updateDataset(
-          datasource?.dbId,
-          datasetToOverwrite?.datasetid,
-          datasource?.sql,
-          datasource?.columns?.map(
-            (d: { column_name: string; type: string; is_dttm: boolean }) => ({
-              column_name: d.column_name,
-              type: d.type,
-              is_dttm: d.is_dttm,
-            }),
-          ),
-          datasetToOverwrite?.owners?.map((o: DatasetOwner) => o.id),
-          true,
-        ),
-        postFormData(datasetToOverwrite.datasetid, 'table', {
-          ...formDataWithDefaults,
-          datasource: `${datasetToOverwrite.datasetid}__table`,
-          ...(defaultVizType === VizType.Table && {
-            all_columns: datasource?.columns?.map(column => column.column_name),
+    const [, key] = await Promise.all([
+      updateDataset(
+        datasource?.dbId,
+        datasetToOverwrite?.datasetid,
+        datasource?.sql,
+        datasource?.columns?.map(
+          (d: { name: string; type: string; is_dttm: boolean }) => ({
+            column_name: d.name,
+            type: d.type,
+            is_dttm: d.is_dttm,
           }),
+        ),
+        datasetToOverwrite?.owners?.map((o: DatasetOwner) => o.id),
+        true,
+      ),
+      postFormData(datasetToOverwrite.datasetid, 'table', {
+        ...formDataWithDefaults,
+        datasource: `${datasetToOverwrite.datasetid}__table`,
+        ...(defaultVizType === 'table' && {
+          all_columns: datasource?.columns?.map(column => column.name),
         }),
-      ]);
-      setLoading(false);
+      }),
+    ]);
 
-      const url = mountExploreUrl(null, {
-        [URL_PARAMS.formDataKey.name]: key,
-      });
-      createWindow(url);
+    const url = mountExploreUrl(null, {
+      [URL_PARAMS.formDataKey.name]: key,
+    });
+    createWindow(url);
 
-      setShouldOverwriteDataset(false);
-      setDatasetName(getDefaultDatasetName());
-      onHide();
-    } catch (error) {
-      setLoading(false);
-      getClientErrorObject(error).then((e: { error: string }) => {
-        dispatch(
-          addDangerToast(
-            e.error || t('An error occurred while overwriting the dataset'),
-          ),
-        );
-      });
-    }
+    setShouldOverwriteDataset(false);
+    setDatasetName(getDefaultDatasetName());
+    onHide();
   };
 
   const loadDatasetOverwriteOptions = useCallback(
@@ -299,7 +252,7 @@ export const SaveDatasetModal = ({
       });
 
       return SupersetClient.get({
-        endpoint: `/api/v1/dataset/?q=${queryParams}`,
+        endpoint: `/api/v1/dataset?q=${queryParams}`,
       }).then(response => ({
         data: response.json.result.map(
           (r: { table_name: string; id: number; owners: [DatasetOwner] }) => ({
@@ -316,54 +269,43 @@ export const SaveDatasetModal = ({
   );
 
   const handleSaveInDataset = () => {
-    setLoading(true);
     const selectedColumns = datasource?.columns ?? [];
 
     // The filters param is only used to test jinja templates.
     // Remove the special filters entry from the templateParams
     // before saving the dataset.
     let templateParams;
-    if (
-      typeof datasource?.templateParams === 'string' &&
-      includeTemplateParameters
-    ) {
-      try {
-        const p = JSON.parse(datasource.templateParams);
+    if (isString(datasource?.templateParams)) {
+      const p = JSON.parse(datasource.templateParams);
+      /* eslint-disable-next-line no-underscore-dangle */
+      if (p._filters) {
         /* eslint-disable-next-line no-underscore-dangle */
-        if (p._filters) {
-          /* eslint-disable-next-line no-underscore-dangle */
-          delete p._filters;
-        }
+        delete p._filters;
+        // eslint-disable-next-line no-param-reassign
         templateParams = JSON.stringify(p);
-      } catch (e) {
-        // malformed templateParams, do not include it
-        templateParams = undefined;
       }
     }
 
     dispatch(
       createDatasource({
+        schema: datasource.schema,
         sql: datasource.sql,
         dbId: datasource.dbId || datasource?.database?.id,
-        catalog: datasource?.catalog,
-        schema: datasource?.schema,
         templateParams,
         datasourceName: datasetName,
+        columns: selectedColumns,
       }),
     )
-      .then((data: { id: number }) => {
-        clearDatasetCache(data.id);
-
-        return postFormData(data.id, 'table', {
+      .then((data: { table_id: number }) =>
+        postFormData(data.table_id, 'table', {
           ...formDataWithDefaults,
-          datasource: `${data.id}__table`,
-          ...(defaultVizType === VizType.Table && {
-            all_columns: selectedColumns.map(column => column.column_name),
+          datasource: `${data.table_id}__table`,
+          ...(defaultVizType === 'table' && {
+            all_columns: selectedColumns.map(column => column.name),
           }),
-        });
-      })
+        }),
+      )
       .then((key: string) => {
-        setLoading(false);
         const url = mountExploreUrl(null, {
           [URL_PARAMS.formDataKey.name]: key,
         });
@@ -372,7 +314,6 @@ export const SaveDatasetModal = ({
         onHide();
       })
       .catch(() => {
-        setLoading(false);
         addDangerToast(t('An error occurred saving dataset'));
       });
   };
@@ -382,7 +323,7 @@ export const SaveDatasetModal = ({
     setSelectedDatasetToOverwrite(value);
   };
 
-  const handleDatasetNameChange = (e: FormEvent<HTMLInputElement>) => {
+  const handleDatasetNameChange = (e: React.FormEvent<HTMLInputElement>) => {
     // @ts-expect-error
     setDatasetName(e.target.value);
   };
@@ -393,9 +334,9 @@ export const SaveDatasetModal = ({
   };
 
   const disableSaveAndExploreBtn =
-    (newOrOverwrite === DatasetRadioState.SaveNew &&
+    (newOrOverwrite === DatasetRadioState.SAVE_NEW &&
       datasetName.length === 0) ||
-    (newOrOverwrite === DatasetRadioState.OverwriteDataset &&
+    (newOrOverwrite === DatasetRadioState.OVERWRITE_DATASET &&
       isEmpty(selectedDatasetToOverwrite));
 
   const filterAutocompleteOption = (
@@ -404,43 +345,22 @@ export const SaveDatasetModal = ({
   ) => option.value.toLowerCase().includes(inputValue.toLowerCase());
 
   return (
-    <Modal
+    <StyledModal
       show={visible}
-      name={t('Save or Overwrite Dataset')}
-      title={
-        <ModalTitleWithIcon
-          title={t('Save or Overwrite Dataset')}
-          icon={<Icons.SaveOutlined />}
-          data-test="save-or-overwrite-dataset-title"
-        />
-      }
+      title={t('Save or Overwrite Dataset')}
       onHide={onHide}
       footer={
-        <Flex align="center" justify="flex-end" gap="8px">
-          {isFeatureEnabled(FeatureFlag.EnableTemplateProcessing) && (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Checkbox
-                checked={includeTemplateParameters}
-                onChange={e =>
-                  setIncludeTemplateParameters(e.target.checked ?? false)
-                }
-              />
-              <span style={{ marginLeft: '5px' }}>
-                {t('Include Template Parameters')}
-              </span>
-            </div>
-          )}
-          {newOrOverwrite === DatasetRadioState.SaveNew && (
+        <>
+          {newOrOverwrite === DatasetRadioState.SAVE_NEW && (
             <Button
               disabled={disableSaveAndExploreBtn}
               buttonStyle="primary"
               onClick={handleSaveInDataset}
-              loading={loading}
             >
               {buttonTextOnSave}
             </Button>
           )}
-          {newOrOverwrite === DatasetRadioState.OverwriteDataset && (
+          {newOrOverwrite === DatasetRadioState.OVERWRITE_DATASET && (
             <>
               {shouldOverwriteDataset && (
                 <Button onClick={handleOverwriteCancel}>{t('Back')}</Button>
@@ -450,13 +370,12 @@ export const SaveDatasetModal = ({
                 buttonStyle="primary"
                 onClick={handleOverwriteDataset}
                 disabled={disableSaveAndExploreBtn}
-                loading={loading}
               >
                 {buttonTextOnOverwrite}
               </Button>
             </>
           )}
-        </Flex>
+        </>
       }
     >
       <Styles>
@@ -470,27 +389,21 @@ export const SaveDatasetModal = ({
                 setNewOrOverwrite(Number(e.target.value));
               }}
               value={newOrOverwrite}
-              className="sdm-radio-group"
             >
-              <div className="sdm-radio-option">
-                <Radio className="sdm-radio" value={1}>
-                  {t('Save as new')}
-                </Radio>
-                <div className="sdm-form-field">
-                  <Input
-                    value={datasetName}
-                    onChange={handleDatasetNameChange}
-                    disabled={newOrOverwrite !== 1}
-                    placeholder={t('Dataset name')}
-                  />
-                </div>
-              </div>
-
-              <div className="sdm-radio-option">
+              <Radio className="sdm-radio" value={1}>
+                {t('Save as new')}
+                <Input
+                  className="sdm-input"
+                  value={datasetName}
+                  onChange={handleDatasetNameChange}
+                  disabled={newOrOverwrite !== 1}
+                />
+              </Radio>
+              <div className="sdm-overwrite-container">
                 <Radio className="sdm-radio" value={2}>
                   {t('Overwrite existing')}
                 </Radio>
-                <div className="sdm-form-field">
+                <div className="sdm-autocomplete">
                   <AsyncSelect
                     allowClear
                     showSearch
@@ -514,6 +427,6 @@ export const SaveDatasetModal = ({
           </div>
         )}
       </Styles>
-    </Modal>
+    </StyledModal>
   );
 };

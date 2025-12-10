@@ -16,8 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { reactify } from '@superset-ui/core';
-import { styled } from '@apache-superset/core/ui';
+import React from 'react';
+import { reactify, styled } from '@superset-ui/core';
 import PropTypes from 'prop-types';
 import Component from './Chord';
 
@@ -45,14 +45,14 @@ export default styled(Chord)`
       pointer-events: all;
     }
     .superset-legacy-chart-chord svg .group path {
-      fill-opacity: 60%;
+      fill-opacity: ${theme.opacity.mediumHeavy};
     }
     .superset-legacy-chart-chord svg path.chord {
-      stroke: ${theme.colorText};
+      stroke: ${theme.colors.grayscale.dark2};
       stroke-width: 0.25px;
     }
     .superset-legacy-chart-chord svg #circle:hover path.fade {
-      opacity: 10%;
+      opacity:  ${theme.opacity.light};
     }
   `}
 `;

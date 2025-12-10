@@ -19,7 +19,6 @@
 import chartReducer, { chart } from 'src/components/Chart/chartReducer';
 import * as actions from 'src/components/Chart/chartAction';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('chart reducers', () => {
   const chartKey = 1;
   let testChart;
@@ -32,13 +31,13 @@ describe('chart reducers', () => {
     charts = { [chartKey]: testChart };
   });
 
-  test('should update endtime on fail', () => {
+  it('should update endtime on fail', () => {
     const newState = chartReducer(charts, actions.chartUpdateStopped(chartKey));
     expect(newState[chartKey].chartUpdateEndTime).toBeGreaterThan(0);
     expect(newState[chartKey].chartStatus).toEqual('stopped');
   });
 
-  test('should update endtime on timeout', () => {
+  it('should update endtime on timeout', () => {
     const newState = chartReducer(
       charts,
       actions.chartUpdateFailed(

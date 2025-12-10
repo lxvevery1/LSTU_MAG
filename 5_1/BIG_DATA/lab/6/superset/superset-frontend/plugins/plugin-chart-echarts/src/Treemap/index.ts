@@ -17,20 +17,16 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { Behavior, t } from '@superset-ui/core';
+import { Behavior, ChartMetadata, ChartPlugin, t } from '@superset-ui/core';
 import buildQuery from './buildQuery';
 import controlPanel from './controlPanel';
 import transformProps from './transformProps';
 import thumbnail from './images/thumbnail.png';
-import thumbnailDark from './images/thumbnail-dark.png';
 import example1 from './images/treemap_v2_1.png';
-import example1Dark from './images/treemap_v2_1-dark.png';
 import example2 from './images/treemap_v2_2.jpg';
-import example2Dark from './images/treemap_v2_2-dark.jpg';
 import { EchartsTreemapChartProps, EchartsTreemapFormData } from './types';
-import { EchartsChartPlugin } from '../types';
 
-export default class EchartsTreemapChartPlugin extends EchartsChartPlugin<
+export default class EchartsTreemapChartPlugin extends ChartPlugin<
   EchartsTreemapFormData,
   EchartsTreemapChartProps
 > {
@@ -49,34 +45,26 @@ export default class EchartsTreemapChartPlugin extends EchartsChartPlugin<
       buildQuery,
       controlPanel,
       loadChart: () => import('./EchartsTreemap'),
-      metadata: {
-        behaviors: [
-          Behavior.InteractiveChart,
-          Behavior.DrillToDetail,
-          Behavior.DrillBy,
-        ],
+      metadata: new ChartMetadata({
+        behaviors: [Behavior.INTERACTIVE_CHART, Behavior.DRILL_TO_DETAIL],
         category: t('Part of a Whole'),
         credits: ['https://echarts.apache.org'],
         description: t(
           'Show hierarchical relationships of data, with the value represented by area, showing proportion and contribution to the whole.',
         ),
-        exampleGallery: [
-          { url: example1, urlDark: example1Dark },
-          { url: example2, urlDark: example2Dark },
-        ],
+        exampleGallery: [{ url: example1 }, { url: example2 }],
         name: t('Treemap'),
         tags: [
+          t('Aesthetic'),
           t('Categorical'),
           t('Comparison'),
           t('ECharts'),
           t('Multi-Levels'),
           t('Percentages'),
           t('Proportional'),
-          t('Featured'),
         ],
         thumbnail,
-        thumbnailDark,
-      },
+      }),
       transformProps,
     });
   }

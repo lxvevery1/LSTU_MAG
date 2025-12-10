@@ -16,15 +16,17 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { render, screen, userEvent } from 'spec/helpers/testing-library';
+import React from 'react';
+import { render, screen } from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
 import PublishedStatus from '.';
 
 const defaultProps = {
   dashboardId: 1,
   isPublished: false,
   savePublished: jest.fn(),
-  userCanEdit: false,
-  userCanSave: false,
+  canEdit: false,
+  canSave: false,
 };
 
 test('renders with unpublished status and readonly permissions', async () => {
@@ -43,8 +45,8 @@ test('renders with unpublished status and write permissions', async () => {
   render(
     <PublishedStatus
       {...defaultProps}
-      userCanEdit
-      userCanSave
+      canEdit
+      canSave
       savePublished={savePublished}
     />,
   );
@@ -68,8 +70,8 @@ test('renders with published status and write permissions', async () => {
     <PublishedStatus
       {...defaultProps}
       isPublished
-      userCanEdit
-      userCanSave
+      canEdit
+      canSave
       savePublished={savePublished}
     />,
   );

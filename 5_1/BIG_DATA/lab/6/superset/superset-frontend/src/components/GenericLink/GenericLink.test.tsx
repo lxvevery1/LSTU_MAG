@@ -17,8 +17,9 @@
  * under the License.
  */
 
+import React from 'react';
 import { render, screen } from 'spec/helpers/testing-library';
-import { GenericLink } from '.';
+import { GenericLink } from './GenericLink';
 
 test('renders', () => {
   render(<GenericLink to="/explore">Link to Explore</GenericLink>, {

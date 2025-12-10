@@ -17,25 +17,26 @@
  * under the License.
  */
 
-import { act, render, screen, userEvent } from 'spec/helpers/testing-library';
+import React from 'react';
+import { render, screen } from 'spec/helpers/testing-library';
+import userEvent from '@testing-library/user-event';
 import { stateWithoutNativeFilters } from 'spec/fixtures/mockStore';
+import * as mockCore from '@superset-ui/core';
 import { testWithId } from 'src/utils/testUtils';
-import { Preset, makeApi } from '@superset-ui/core';
+import { FeatureFlag } from 'src/featureFlags';
+import { Preset } from '@superset-ui/core';
 import { TimeFilterPlugin, SelectFilterPlugin } from 'src/filters/components';
+import { DATE_FILTER_TEST_KEY } from 'src/explore/components/controls/DateFilterControl';
 import fetchMock from 'fetch-mock';
+import { waitFor } from '@testing-library/react';
 import { FilterBarOrientation } from 'src/dashboard/types';
 import { FILTER_BAR_TEST_ID } from './utils';
 import FilterBar from '.';
 import { FILTERS_CONFIG_MODAL_TEST_ID } from '../FiltersConfigModal/FiltersConfigModal';
 
 jest.useFakeTimers();
-
-jest.mock('@superset-ui/core', () => ({
-  ...jest.requireActual('@superset-ui/core'),
-  makeApi: jest.fn(),
-}));
-
-const mockedMakeApi = makeApi as jest.Mock;
+// @ts-ignore
+mockCore.makeApi = jest.fn();
 
 class MainPreset extends Preset {
   constructor() {
@@ -74,12 +75,12 @@ const getTestId = testWithId<string>(FILTER_BAR_TEST_ID, true);
 const getModalTestId = testWithId<string>(FILTERS_CONFIG_MODAL_TEST_ID, true);
 
 const FILTER_NAME = 'Time filter 1';
+const FILTER_SET_NAME = 'New filter set';
 
 const addFilterFlow = async () => {
-  // open filter config modals
+  // open filter config modal
   userEvent.click(screen.getByTestId(getTestId('collapsable')));
-  userEvent.click(screen.getByLabelText('setting'));
-  userEvent.click(screen.getByText('Add or edit filters'));
+  userEvent.click(screen.getByTestId(getTestId('create-filter')));
   // select filter
   userEvent.click(screen.getByText('Value'));
   userEvent.click(screen.getByText('Time range'));
@@ -89,7 +90,38 @@ const addFilterFlow = async () => {
   // await screen.findByText('All filters (1)');
 };
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
+const addFilterSetFlow = async () => {
+  // add filter set
+  userEvent.click(screen.getByText('Filter sets (0)'));
+
+  // check description
+  expect(screen.getByText('Filters (1)')).toBeInTheDocument();
+  expect(screen.getByText(FILTER_NAME)).toBeInTheDocument();
+
+  expect(screen.getAllByText('No filter').length).toBe(1);
+
+  // apply filters
+  expect(screen.getByTestId(getTestId('new-filter-set-button'))).toBeEnabled();
+
+  // create filter set
+  userEvent.click(screen.getByText('Create new filter set'));
+  userEvent.click(screen.getByText('Create'));
+
+  // check filter set created
+  expect(await screen.findByRole('img', { name: 'check' })).toBeInTheDocument();
+  expect(screen.getByTestId(getTestId('filter-set-wrapper'))).toHaveAttribute(
+    'data-selected',
+    'true',
+  );
+};
+
+const changeFilterValue = async () => {
+  userEvent.click(screen.getAllByText('No filter')[0]);
+  userEvent.click(screen.getByDisplayValue('Last day'));
+  expect(await screen.findByText(/2021-04-13/)).toBeInTheDocument();
+  userEvent.click(screen.getByTestId(DATE_FILTER_TEST_KEY.applyButton));
+};
+
 describe('FilterBar', () => {
   new MainPreset().register();
   const toggleFiltersBar = jest.fn();
@@ -120,6 +152,30 @@ describe('FilterBar', () => {
               "cascadeParentIds":[],
               "scope":{"rootPath":["ROOT_ID"],"excluded":[]}
             }],
+            "filter_sets_configuration":[{
+              "name":"${FILTER_SET_NAME}",
+              "id":"${json.filter_sets_configuration?.[0].id}",
+              "nativeFilters":{
+                "${filterId}":{
+                  "id":"${filterId}",
+                  "name":"${FILTER_NAME}",
+                  "filterType":"filter_time",
+                  "targets":[{}],
+                  "defaultDataMask":{"filterState":{},"extraFormData":{}},
+                  "controlValues":{},
+                  "cascadeParentIds":[],
+                  "scope":{"rootPath":["ROOT_ID"],"excluded":[]}
+                }
+              },
+              "dataMask":{
+                "${filterId}":{
+                  "extraFormData":{},
+                  "filterState":{},
+                  "ownState":{},
+                  "id":"${filterId}"
+                }
+              }
+            }]
           }`,
       },
     };
@@ -157,13 +213,14 @@ describe('FilterBar', () => {
       { overwriteRoutes: true },
     );
 
-    mockedMakeApi.mockReturnValue(mockApi);
+    // @ts-ignore
+    mockCore.makeApi = jest.fn(() => mockApi);
   });
 
   const renderWrapper = (props = closedBarProps, state?: object) =>
     render(
       <FilterBar
-        orientation={FilterBarOrientation.Vertical}
+        orientation={FilterBarOrientation.VERTICAL}
         verticalConfig={{
           width: 280,
           height: 400,
@@ -179,49 +236,45 @@ describe('FilterBar', () => {
       },
     );
 
-  test('should render', () => {
+  it('should render', () => {
     const { container } = renderWrapper();
     expect(container).toBeInTheDocument();
   });
 
-  test('should render the "Actions" heading', () => {
+  it('should render the "Filters" heading', () => {
     renderWrapper();
-    expect(screen.getByText('Actions')).toBeInTheDocument();
+    expect(screen.getByText('Filters')).toBeInTheDocument();
   });
 
-  test('should render the "Clear all" option', () => {
+  it('should render the "Clear all" option', () => {
     renderWrapper();
     expect(screen.getByText('Clear all')).toBeInTheDocument();
   });
 
-  test('should render the "Apply filters" option', () => {
+  it('should render the "Apply filters" option', () => {
     renderWrapper();
     expect(screen.getByText('Apply filters')).toBeInTheDocument();
   });
 
-  test('should render the collapse icon', () => {
+  it('should render the collapse icon', () => {
     renderWrapper();
-    expect(
-      screen.getByRole('img', { name: 'vertical-align' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'collapse' })).toBeInTheDocument();
   });
 
-  test('should render the filter icon', () => {
+  it('should render the filter icon', () => {
     renderWrapper();
     expect(screen.getByRole('img', { name: 'filter' })).toBeInTheDocument();
   });
 
-  test('should toggle', () => {
+  it('should toggle', () => {
     renderWrapper();
-    const collapse = screen.getByRole('img', {
-      name: 'vertical-align',
-    });
+    const collapse = screen.getByRole('img', { name: 'collapse' });
     expect(toggleFiltersBar).not.toHaveBeenCalled();
     userEvent.click(collapse);
     expect(toggleFiltersBar).toHaveBeenCalled();
   });
 
-  test('open filter bar', () => {
+  it('open filter bar', () => {
     renderWrapper();
     expect(screen.getByTestId(getTestId('filter-icon'))).toBeInTheDocument();
     expect(screen.getByTestId(getTestId('expand-button'))).toBeInTheDocument();
@@ -230,7 +283,7 @@ describe('FilterBar', () => {
     expect(toggleFiltersBar).toHaveBeenCalledWith(true);
   });
 
-  test('no edit filter button by disabled permissions', () => {
+  it('no edit filter button by disabled permissions', () => {
     renderWrapper(openedBarProps, {
       ...stateWithoutNativeFilters,
       dashboardInfo: { metadata: {} },
@@ -241,7 +294,7 @@ describe('FilterBar', () => {
     ).not.toBeInTheDocument();
   });
 
-  test('close filter bar', () => {
+  it('close filter bar', () => {
     renderWrapper(openedBarProps);
     const collapseButton = screen.getByTestId(getTestId('collapse-button'));
 
@@ -251,14 +304,14 @@ describe('FilterBar', () => {
     expect(toggleFiltersBar).toHaveBeenCalledWith(false);
   });
 
-  test('no filters', () => {
+  it('no filters', () => {
     renderWrapper(openedBarProps, stateWithoutNativeFilters);
 
     expect(screen.getByTestId(getTestId('clear-button'))).toBeDisabled();
     expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
   });
 
-  test('renders dividers', async () => {
+  it('renders dividers', async () => {
     const divider = {
       id: 'NATIVE_FILTER_DIVIDER-1',
       type: 'DIVIDER',
@@ -282,10 +335,6 @@ describe('FilterBar', () => {
 
     renderWrapper(openedBarProps, stateWithDivider);
 
-    await act(async () => {
-      jest.advanceTimersByTime(1000); // 1s
-    });
-
     const title = await screen.findByText('Select time range');
     const description = await screen.findByText('Select year/month etc..');
 
@@ -296,7 +345,12 @@ describe('FilterBar', () => {
     expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
   });
 
-  test('create filter and apply it flow', async () => {
+  it('create filter and apply it flow', async () => {
+    // @ts-ignore
+    global.featureFlags = {
+      [FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET]: true,
+      [FeatureFlag.DASHBOARD_NATIVE_FILTERS]: true,
+    };
     renderWrapper(openedBarProps, stateWithoutNativeFilters);
     expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
 
@@ -305,49 +359,87 @@ describe('FilterBar', () => {
     expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
   });
 
-  test('should render without errors with proper state setup', () => {
-    const stateWithFilter = {
-      ...stateWithoutNativeFilters,
-      dashboardInfo: {
-        id: 1,
-      },
-      dataMask: {
-        'test-filter': {
-          id: 'test-filter',
-          filterState: { value: undefined },
-          extraFormData: {},
-        },
-      },
-      nativeFilters: {
-        filters: {
-          'test-filter': {
-            id: 'test-filter',
-            name: 'Test Filter',
-            filterType: 'filter_select',
-            targets: [{ datasetId: 1, column: { name: 'test_column' } }],
-            defaultDataMask: {
-              filterState: { value: undefined },
-              extraFormData: {},
-            },
-            controlValues: {
-              enableEmptyFilter: true,
-            },
-            cascadeParentIds: [],
-            scope: {
-              rootPath: ['ROOT_ID'],
-              excluded: [],
-            },
-            type: 'NATIVE_FILTER',
-            description: '',
-            chartsInScope: [],
-            tabsInScope: [],
-          },
-        },
-        filtersState: {},
-      },
+  // disable due to filter sets not detecting changes in metadata properly
+  it.skip('add and apply filter set', async () => {
+    // @ts-ignore
+    global.featureFlags = {
+      [FeatureFlag.DASHBOARD_NATIVE_FILTERS]: true,
+      [FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET]: true,
     };
+    renderWrapper(openedBarProps, stateWithoutNativeFilters);
 
-    const { container } = renderWrapper(openedBarProps, stateWithFilter);
-    expect(container).toBeInTheDocument();
+    await addFilterFlow();
+
+    userEvent.click(screen.getByTestId(getTestId('apply-button')));
+
+    await addFilterSetFlow();
+
+    // change filter
+    expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
+    userEvent.click(await screen.findByText('All filters (1)'));
+    await changeFilterValue();
+    await waitFor(() => expect(screen.getAllByText('Last day').length).toBe(2));
+
+    // apply new filter value
+    userEvent.click(screen.getByTestId(getTestId('apply-button')));
+    await waitFor(() =>
+      expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled(),
+    );
+
+    // applying filter set
+    userEvent.click(screen.getByText('Filter Sets (1)'));
+    expect(
+      await screen.findByText('Create new filter set'),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId(getTestId('filter-set-wrapper')),
+    ).not.toHaveAttribute('data-selected', 'true');
+    userEvent.click(screen.getByTestId(getTestId('filter-set-wrapper')));
+    userEvent.click(screen.getAllByText('Filters (1)')[1]);
+    expect(await screen.findByText('No filter')).toBeInTheDocument();
+    userEvent.click(screen.getByTestId(getTestId('apply-button')));
+    expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
+  });
+
+  // disable due to filter sets not detecting changes in metadata properly
+  it.skip('add and edit filter set', async () => {
+    // @ts-ignore
+    global.featureFlags = {
+      [FeatureFlag.DASHBOARD_NATIVE_FILTERS_SET]: true,
+      [FeatureFlag.DASHBOARD_NATIVE_FILTERS]: true,
+    };
+    renderWrapper(openedBarProps, stateWithoutNativeFilters);
+
+    await addFilterFlow();
+
+    userEvent.click(screen.getByTestId(getTestId('apply-button')));
+
+    await addFilterSetFlow();
+
+    userEvent.click(screen.getByTestId(getTestId('filter-set-menu-button')));
+    userEvent.click(screen.getByText('Edit'));
+
+    await changeFilterValue();
+
+    // apply new changes and save them
+    await waitFor(() =>
+      expect(
+        screen.getByTestId(getTestId('filter-set-edit-save')),
+      ).toBeDisabled(),
+    );
+    expect(screen.getByTestId(getTestId('apply-button'))).toBeEnabled();
+    userEvent.click(screen.getByTestId(getTestId('apply-button')));
+    expect(screen.getByTestId(getTestId('apply-button'))).toBeDisabled();
+
+    expect(screen.getByTestId(getTestId('filter-set-edit-save'))).toBeEnabled();
+    userEvent.click(screen.getByTestId(getTestId('filter-set-edit-save')));
+    expect(screen.queryByText('Save')).not.toBeInTheDocument();
+
+    expect(
+      Object.values(
+        JSON.parse(mockApi.mock.calls[2][0].json_metadata)
+          .filter_sets_configuration[0].dataMask as object,
+      )[0]?.filterState?.value,
+    ).toBe('Last day');
   });
 });

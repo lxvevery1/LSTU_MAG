@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import type { TreeSeriesOption } from 'echarts/charts';
+import { TreeSeriesOption } from 'echarts';
 import { EchartsTreeFormData } from './types';
 
 export const DEFAULT_TREE_SERIES_OPTION: TreeSeriesOption = {
@@ -27,6 +27,7 @@ export const DEFAULT_TREE_SERIES_OPTION: TreeSeriesOption = {
   animation: true,
   animationDuration: 500,
   animationEasing: 'cubicOut',
+  lineStyle: { color: 'source', width: 1.5 },
 };
 
 export const DEFAULT_FORM_DATA: Partial<EchartsTreeFormData> = {
@@ -42,5 +43,4 @@ export const DEFAULT_FORM_DATA: Partial<EchartsTreeFormData> = {
   nodeLabelPosition: 'left',
   childLabelPosition: 'bottom',
   emphasis: 'descendant',
-  initialTreeDepth: 2,
 };

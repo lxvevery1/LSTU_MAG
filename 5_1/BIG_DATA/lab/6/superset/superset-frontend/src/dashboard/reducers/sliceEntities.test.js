@@ -19,18 +19,17 @@
 import {
   FETCH_ALL_SLICES_FAILED,
   FETCH_ALL_SLICES_STARTED,
-  ADD_SLICES,
+  SET_ALL_SLICES,
 } from 'src/dashboard/actions/sliceEntities';
 
 import sliceEntitiesReducer from 'src/dashboard/reducers/sliceEntities';
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('sliceEntities reducer', () => {
-  test('should return initial state', () => {
+  it('should return initial state', () => {
     expect(sliceEntitiesReducer({}, {})).toEqual({});
   });
 
-  test('should set loading when fetching slices', () => {
+  it('should set loading when fetching slices', () => {
     expect(
       sliceEntitiesReducer(
         { isLoading: false },
@@ -39,10 +38,10 @@ describe('sliceEntities reducer', () => {
     ).toBe(true);
   });
 
-  test('should set slices', () => {
+  it('should set slices', () => {
     const result = sliceEntitiesReducer(
       { slices: { a: {} } },
-      { type: ADD_SLICES, payload: { slices: { 1: {}, 2: {} } } },
+      { type: SET_ALL_SLICES, payload: { slices: { 1: {}, 2: {} } } },
     );
 
     expect(result.slices).toEqual({
@@ -53,7 +52,7 @@ describe('sliceEntities reducer', () => {
     expect(result.isLoading).toBe(false);
   });
 
-  test('should set an error on error', () => {
+  it('should set an error on error', () => {
     const result = sliceEntitiesReducer(
       {},
       {

@@ -16,8 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { render, screen, userEvent } from 'spec/helpers/testing-library';
-import { Indicator } from 'src/dashboard/components/nativeFilters/selectors';
+import userEvent from '@testing-library/user-event';
+import React from 'react';
+import { render, screen } from 'spec/helpers/testing-library';
+import { Indicator } from 'src/dashboard/components/FiltersBadge/selectors';
 import FilterIndicator from '.';
 
 const createProps = () => ({
@@ -41,7 +43,7 @@ test('Should render', () => {
   render(<FilterIndicator {...props} />);
 
   expect(
-    screen.getByRole('button', { name: 'search Vaccine Approach' }),
+    screen.getByRole('button', { name: 'Vaccine Approach' }),
   ).toBeInTheDocument();
   expect(screen.getByRole('img')).toBeInTheDocument();
 });
@@ -50,11 +52,9 @@ test('Should call "onClick"', () => {
   const props = createProps();
   render(<FilterIndicator {...props} />);
 
-  expect(props.onClick).toHaveBeenCalledTimes(0);
-  userEvent.click(
-    screen.getByRole('button', { name: 'search Vaccine Approach' }),
-  );
-  expect(props.onClick).toHaveBeenCalledTimes(1);
+  expect(props.onClick).toBeCalledTimes(0);
+  userEvent.click(screen.getByRole('button', { name: 'Vaccine Approach' }));
+  expect(props.onClick).toBeCalledTimes(1);
 });
 
 test('Should render "value"', () => {
@@ -64,7 +64,7 @@ test('Should render "value"', () => {
 
   expect(
     screen.getByRole('button', {
-      name: 'search Vaccine Approach: any, string',
+      name: 'Vaccine Approach: any, string',
     }),
   ).toBeInTheDocument();
 });

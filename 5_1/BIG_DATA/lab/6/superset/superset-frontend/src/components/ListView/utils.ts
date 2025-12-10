@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import { useEffect, useMemo, useState, ReactNode } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   useFilters,
   usePagination,
@@ -35,11 +35,11 @@ import {
 
 import rison from 'rison';
 import { isEqual } from 'lodash';
+import { PartialStylesConfig } from 'src/components/DeprecatedSelect';
 import {
-  ListViewFetchDataConfig as FetchDataConfig,
-  ListViewFilter as Filter,
-  ListViewFilterValue as FilterValue,
-  InnerFilterValue,
+  FetchDataConfig,
+  Filter,
+  FilterValue,
   InternalFilter,
   SortColumn,
   ViewModeType,
@@ -48,31 +48,22 @@ import {
 // Define custom RisonParam for proper encoding/decoding; note that
 // %, &, +, and # must be encoded to avoid breaking the url
 const RisonParam: QueryParamConfig<string, any> = {
-  encode: (data?: any | null) => {
-    if (data === undefined || data === null) return undefined;
-
-    const cleanData = JSON.parse(
-      JSON.stringify(data, (key, value) =>
-        value === undefined ? null : value,
-      ),
-    );
-
-    return rison
-      .encode(cleanData)
-      .replace(/%/g, '%25')
-      .replace(/&/g, '%26')
-      .replace(/\+/g, '%2B')
-      .replace(/#/g, '%23');
-  },
+  encode: (data?: any | null) =>
+    data === undefined
+      ? undefined
+      : rison
+          .encode(data)
+          .replace(/%/g, '%25')
+          .replace(/&/g, '%26')
+          .replace(/\+/g, '%2B')
+          .replace(/#/g, '%23'),
   decode: (dataStr?: string | string[]) =>
     dataStr === undefined || Array.isArray(dataStr)
       ? undefined
       : rison.decode(dataStr),
 };
 
-export const SELECT_WIDTH = 176;
-export const RANGE_WIDTH = 300;
-export const WIDER_DROPDOWN_WIDTH = '300px';
+export const SELECT_WIDTH = 200;
 
 export class ListViewError extends Error {
   name = 'ListViewError';
@@ -148,7 +139,7 @@ export function convertFiltersRison(
   list: Filter[],
 ): FilterValue[] {
   const filters: FilterValue[] = [];
-  const refs: Record<string, FilterValue> = {};
+  const refs = {};
 
   Object.keys(filterObj).forEach(id => {
     const filter: FilterValue = {
@@ -197,8 +188,8 @@ interface UseListViewConfig {
   initialFilters?: Filter[];
   bulkSelectColumnConfig?: {
     id: string;
-    Header: (conf: any) => ReactNode;
-    Cell: (conf: any) => ReactNode;
+    Header: (conf: any) => React.ReactNode;
+    Cell: (conf: any) => React.ReactNode;
   };
   renderCard?: boolean;
   defaultViewMode?: ViewModeType;
@@ -230,7 +221,7 @@ export function useListViewState({
       query.sortColumn && query.sortOrder
         ? [{ id: query.sortColumn, desc: query.sortOrder === 'desc' }]
         : initialSort,
-    [initialSort, query.sortColumn, query.sortOrder],
+    [query.sortColumn, query.sortOrder],
   );
 
   const initialState = {
@@ -248,7 +239,7 @@ export function useListViewState({
   );
 
   const columnsWithSelect = useMemo(() => {
-    // add exact filter type so filters with falsy values are not filtered out
+    // add exact filter type so filters with falsey values are not filtered out
     const columnsWithFilter = columns.map(f => ({ ...f, filter: 'exact' }));
     return bulkSelectMode
       ? [bulkSelectColumnConfig, ...columnsWithFilter]
@@ -266,30 +257,29 @@ export function useListViewState({
     pageCount,
     gotoPage,
     setAllFilters,
-    setSortBy,
     selectedFlatRows,
     toggleAllRowsSelected,
     state: { pageIndex, pageSize, sortBy, filters },
   } = useTable(
     {
       columns: columnsWithSelect,
+      count,
       data,
       disableFilters: true,
       disableSortRemove: true,
-      initialState: initialState as any,
+      initialState,
       manualFilters: true,
       manualPagination: true,
       manualSortBy: true,
       autoResetFilters: false,
       pageCount: Math.ceil(count / initialPageSize),
-      ...({ count } as any),
     },
     useFilters,
     useSortBy,
     usePagination,
     useRowState,
     useRowSelect,
-  ) as any;
+  );
 
   const [internalFilters, setInternalFilters] = useState<InternalFilter[]>(
     query.filters && initialFilters.length
@@ -310,7 +300,7 @@ export function useListViewState({
 
   useEffect(() => {
     // From internalFilters, produce a simplified obj
-    const filterObj: Record<string, InnerFilterValue> = {};
+    const filterObj = {};
 
     internalFilters.forEach(filter => {
       if (
@@ -326,7 +316,7 @@ export function useListViewState({
       filters: Object.keys(filterObj).length ? filterObj : undefined,
       pageIndex,
     };
-    if (sortBy?.[0]?.id !== undefined && sortBy[0].id !== null) {
+    if (sortBy[0]) {
       queryParams.sortColumn = sortBy[0].id;
       queryParams.sortOrder = sortBy[0].desc ? 'desc' : 'asc';
     }
@@ -384,7 +374,6 @@ export function useListViewState({
     rows,
     selectedFlatRows,
     setAllFilters,
-    setSortBy,
     state: { pageIndex, pageSize, sortBy, filters, internalFilters, viewMode },
     toggleAllRowsSelected,
     applyFilterValue,
@@ -392,3 +381,21 @@ export function useListViewState({
     query,
   };
 }
+
+export const filterSelectStyles: PartialStylesConfig = {
+  container: (provider, { getValue }) => ({
+    ...provider,
+    // dynamic width based on label string length
+    minWidth: `${Math.min(
+      12,
+      Math.max(5, 3 + getValue()[0].label.length / 2),
+    )}em`,
+  }),
+  control: provider => ({
+    ...provider,
+    borderWidth: 0,
+    boxShadow: 'none',
+    cursor: 'pointer',
+    backgroundColor: 'transparent',
+  }),
+};

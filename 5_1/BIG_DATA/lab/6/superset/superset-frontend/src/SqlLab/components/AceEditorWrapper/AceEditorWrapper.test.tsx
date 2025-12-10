@@ -16,39 +16,33 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import reducerIndex from 'spec/helpers/reducerIndex';
-import { render, waitFor, createStore } from 'spec/helpers/testing-library';
+import React from 'react';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
+import { render, waitFor } from 'spec/helpers/testing-library';
 import { QueryEditor } from 'src/SqlLab/types';
 import { Store } from 'redux';
 import { initialState, defaultQueryEditor } from 'src/SqlLab/fixtures';
 import AceEditorWrapper from 'src/SqlLab/components/AceEditorWrapper';
-import {
-  FullSQLEditor,
-  type AsyncAceEditorProps,
-} from '@superset-ui/core/components';
-import {
-  queryEditorSetCursorPosition,
-  queryEditorSetDb,
-} from 'src/SqlLab/actions/sqlLab';
-import fetchMock from 'fetch-mock';
+import { AsyncAceEditorProps } from 'src/components/AsyncAceEditor';
 
-fetchMock.get('glob:*/api/v1/database/*/function_names/', {
-  function_names: [],
-});
+const middlewares = [thunk];
+const mockStore = configureStore(middlewares);
 
-jest.mock('@superset-ui/core/components/Select/Select', () => () => (
+jest.mock('src/components/DeprecatedSelect', () => () => (
+  <div data-test="mock-deprecated-select" />
+));
+jest.mock('src/components/Select/Select', () => () => (
   <div data-test="mock-deprecated-select-select" />
 ));
-jest.mock('@superset-ui/core/components/Select/AsyncSelect', () => () => (
+jest.mock('src/components/Select/AsyncSelect', () => () => (
   <div data-test="mock-deprecated-async-select" />
 ));
 
-jest.mock('@superset-ui/core/components/AsyncAceEditor', () => ({
-  FullSQLEditor: jest
-    .fn()
-    .mockImplementation((props: AsyncAceEditorProps) => (
-      <div data-test="react-ace">{JSON.stringify(props)}</div>
-    )),
+jest.mock('src/components/AsyncAceEditor', () => ({
+  FullSQLEditor: (props: AsyncAceEditorProps) => (
+    <div data-test="react-ace">{JSON.stringify(props)}</div>
+  ),
 }));
 
 const setup = (queryEditor: QueryEditor, store?: Store) =>
@@ -57,10 +51,10 @@ const setup = (queryEditor: QueryEditor, store?: Store) =>
       queryEditorId={queryEditor.id}
       height="100px"
       hotkeys={[]}
+      database={{}}
       onChange={jest.fn()}
       onBlur={jest.fn()}
       autocomplete
-      onCursorPositionChange={jest.fn()}
     />,
     {
       useRedux: true,
@@ -68,15 +62,9 @@ const setup = (queryEditor: QueryEditor, store?: Store) =>
     },
   );
 
-// eslint-disable-next-line no-restricted-globals -- TODO: Migrate from describe blocks
 describe('AceEditorWrapper', () => {
-  beforeEach(() => {
-    (FullSQLEditor as any as jest.Mock).mockClear();
-  });
-
-  test('renders ace editor including sql value', async () => {
-    const store = createStore(initialState, reducerIndex);
-    const { getByTestId } = setup(defaultQueryEditor, store);
+  it('renders ace editor including sql value', async () => {
+    const { getByTestId } = setup(defaultQueryEditor, mockStore(initialState));
     await waitFor(() => expect(getByTestId('react-ace')).toBeInTheDocument());
 
     expect(getByTestId('react-ace')).toHaveTextContent(
@@ -84,10 +72,11 @@ describe('AceEditorWrapper', () => {
     );
   });
 
-  test('renders current sql for unrelated unsaved changes', () => {
+  it('renders current sql for unrelated unsaved changes', () => {
     const expectedSql = 'SELECT updated_column\nFROM updated_table\nWHERE';
-    const store = createStore(
-      {
+    const { getByTestId } = setup(
+      defaultQueryEditor,
+      mockStore({
         ...initialState,
         sqlLab: {
           ...initialState.sqlLab,
@@ -96,10 +85,8 @@ describe('AceEditorWrapper', () => {
             sql: expectedSql,
           },
         },
-      },
-      reducerIndex,
+      }),
     );
-    const { getByTestId } = setup(defaultQueryEditor, store);
 
     expect(getByTestId('react-ace')).not.toHaveTextContent(
       JSON.stringify({ value: expectedSql }).slice(1, -1),
@@ -107,20 +94,5 @@ describe('AceEditorWrapper', () => {
     expect(getByTestId('react-ace')).toHaveTextContent(
       JSON.stringify({ value: defaultQueryEditor.sql }).slice(1, -1),
     );
-  });
-
-  test('skips rerendering for updating cursor position', () => {
-    const store = createStore(initialState, reducerIndex);
-    setup(defaultQueryEditor, store);
-
-    expect(FullSQLEditor).toHaveBeenCalled();
-    const renderCount = (FullSQLEditor as any as jest.Mock).mock.calls.length;
-    const updatedCursorPosition = { row: 1, column: 9 };
-    store.dispatch(
-      queryEditorSetCursorPosition(defaultQueryEditor, updatedCursorPosition),
-    );
-    expect(FullSQLEditor).toHaveBeenCalledTimes(renderCount);
-    store.dispatch(queryEditorSetDb(defaultQueryEditor, 2));
-    expect(FullSQLEditor).toHaveBeenCalledTimes(renderCount + 1);
   });
 });
