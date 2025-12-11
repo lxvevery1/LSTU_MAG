@@ -1,118 +1,108 @@
 #!/usr/bin/env python3
-"""
-Variant #17
-Correlation:
-    X = HPL Rmax
-    Y = HPCG-efficiency = HPCG_Rmax / Power
-For lists:
-    32 → 2008.11
-    33 → 2009.06
-"""
 
 import os
 import re
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from lxml import etree
 from tabulate import tabulate
 
 XML_DIR = "xml"
+XML_FILE = "TOP500_202511.xml"
 
-LISTS = {
-    32: (2008, 11),
-    33: (2009, 6),
-}
-
-OUT_PLOT = "variant17_scatter.png"
+OUT_PLOT = "accelerator_boxplot_202511.png"
 
 
-def load_xml(year, month):
-    fname = f"TOP500_{year}{month:02d}.xml"
+def load_xml(fname):
     path = os.path.join(XML_DIR, fname)
     if not os.path.exists(path):
-        print(f"[ERR] no file: {path}")
+        print(f"[ERR] missing XML file: {path}")
         return None
     with open(path, "rb") as f:
         return etree.fromstring(f.read())
 
 
-def parse_list(root, list_id):
+def classify_accelerator(text):
+    if not text:
+        return "Other"
+    t = text.upper()
+
+    if re.search(r"NVIDIA|A100|H100|P100|V100|H200", t):
+        return "NVIDIA"
+
+    if "AMD" in t or "INSTINCT" in t:
+        return "AMD"
+
+    if "XEON PHI" in t or "INTEL" in t:
+        return "Intel"
+
+    return "Other"
+
+
+def parse_list(root):
     ns = {"top500": root.nsmap.get("top500")}
 
     rows = []
+
     for site in root.findall("top500:site", namespaces=ns):
+        computer = site.findtext("top500:computer", default="", namespaces=ns)
+        rpeak = site.findtext("top500:r-peak", default="", namespaces=ns)
+
         try:
-            rmax = float(site.findtext("top500:r-max", namespaces=ns))
-            power = float(site.findtext("top500:power", namespaces=ns))
-
-            hpcg_rmax = site.findtext("top500:hpcg-r-max", namespaces=ns)
-            if not hpcg_rmax:
-                continue
-            hpcg_rmax = float(hpcg_rmax)
-            if hpcg_rmax <= 0 or power <= 0:
-                continue
-
-            rows.append({
-                "list": list_id,
-                "rmax_hpl": rmax,
-                "power": power,
-                "hpcg_rmax": hpcg_rmax,
-                "hpcg_eff": hpcg_rmax / power
-            })
+            rpeak_val = float(rpeak)
         except:
             continue
+
+        accel = classify_accelerator(computer)
+
+        rows.append({
+            "accelerator": accel,
+            "rpeak": rpeak_val
+        })
 
     return rows
 
 
-def scatter(df, label, ax):
-    x = df["rmax_hpl"]
-    y = df["hpcg_eff"]
-
-    ax.scatter(x, y, alpha=0.7)
-    ax.set_xlabel("HPL Rmax")
-    ax.set_ylabel("HPCG Efficiency (HPCG_Rmax / Power)")
-    ax.set_title(f"Scatter — {label}")
-
-    corr = np.corrcoef(x, y)[0, 1]
-    ax.text(0.05, 0.95, f"Pearson: {corr:.3f}",
-            transform=ax.transAxes, va="top")
-
-    return corr
+# === форматирование чисел ===
+def fmt(x):
+    try:
+        return f"{x:,.3f}".replace(",", " ")
+    except:
+        return x
 
 
 def main():
-    all_rows = []
+    root = load_xml(XML_FILE)
+    if root is None:
+        return
 
-    for list_id, (yy, mm) in LISTS.items():
-        root = load_xml(yy, mm)
-        if root is None:
-            continue
-        rows = parse_list(root, list_id)
-        print(f"[OK] List {list_id} parsed: {len(rows)} valid rows")
-        all_rows.extend(rows)
+    rows = parse_list(root)
+    df = pd.DataFrame(rows)
 
-    df = pd.DataFrame(all_rows)
-    print("\n=== Parsed table ===")
-    print(tabulate(df.head(10), headers="keys", tablefmt="github", floatfmt=".3f"))
+    # оставляем только три основные группы
+    df = df[df["accelerator"].isin(["NVIDIA", "AMD", "Intel"])]
 
-    df32 = df[df["list"] == 32]
-    df33 = df[df["list"] == 33]
+    print("\n=== Parsed accelerator data (first 10 rows) ===")
+    print(tabulate(df.head(10).map(fmt), headers="keys", tablefmt="github"))
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
-    c32 = scatter(df32, "List #32 (2008.11)", ax1)
-    c33 = scatter(df33, "List #33 (2009.06)", ax2)
-
-    plt.tight_layout()
+    # === boxplot ===
+    plt.figure(figsize=(10, 6))
+    df.boxplot(column="rpeak", by="accelerator")
+    plt.title("Rpeak Boxplot by Accelerator (TOP500 2025-11)")
+    plt.suptitle("")
+    plt.ylabel("Rpeak")
     plt.savefig(OUT_PLOT, dpi=150)
     plt.close()
 
-    print(f"\n[PLOT] saved: {OUT_PLOT}")
+    print(f"\n[PLOT] saved as {OUT_PLOT}")
 
-    print("\n=== Correlations ===")
-    print(f"2008.11 (List32): {c32:.4f}")
-    print(f"2009.06 (List33): {c33:.4f}")
+    # === stats ===
+    stats = df.groupby("accelerator")["rpeak"].agg(
+        ["count", "mean", "std", "min", "max", "median"]
+    )
+
+    print("\n=== Statistics by accelerator ===")
+    print(tabulate(stats.map(fmt), headers="keys", tablefmt="github"))
 
 
 if __name__ == "__main__":
