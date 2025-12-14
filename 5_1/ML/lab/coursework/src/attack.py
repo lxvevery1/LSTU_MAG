@@ -77,7 +77,7 @@ class SurrogateMLP(nn.Module):
             nn.Linear(n_in, 64),
             nn.ReLU(),
             nn.Linear(64, 32),
-            nn.ReLU(),
+            nn.Sigmoid(),
             nn.Linear(32, 2),
         )
 
@@ -101,7 +101,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(surrogate.parameters(), lr=1e-3)
 
 # Train surrogate for modest epochs
-epochs = 60
+epochs = 120
 for epoch in range(epochs):
     surrogate.train()
     optimizer.zero_grad()
@@ -169,23 +169,6 @@ print(
     accuracy_score(y_val, preds_rf_clean),
     "AUC:",
     roc_auc_score(y_val, proba_rf_clean),
-)
-# LR/SVM clean use scaled
-preds_lr_clean = logreg.predict(X_val_scaled)
-proba_lr_clean = logreg.predict_proba(X_val_scaled)[:, 1]
-print(
-    "LR clean Acc:",
-    accuracy_score(y_val, preds_lr_clean),
-    "AUC:",
-    roc_auc_score(y_val, proba_lr_clean),
-)
-preds_svm_clean = svm.predict(X_val_scaled)
-proba_svm_clean = svm.predict_proba(X_val_scaled)[:, 1]
-print(
-    "SVM clean Acc:",
-    accuracy_score(y_val, preds_svm_clean),
-    "AUC:",
-    roc_auc_score(y_val, proba_svm_clean),
 )
 
 for eps in eps_list:

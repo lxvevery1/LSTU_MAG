@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  14 DEC 2025 14:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  14 DEC 2025 16:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1436,16 +1436,20 @@ Package pdftex.def Info: pic7.png  used on input line 411.
 
 
 [14 <./pic7.png>]
-Overfull \hbox (12.49124pt too wide) in paragraph at lines 480--480
+
+[15]
+
+[16]
+Overfull \hbox (12.49124pt too wide) in paragraph at lines 534--534
 []\T2A/cmtt/m/n/14.4 X_train, X_val, y_train, y_val, df, scaler = get_processed
 _data([] 
  []
 
 
 
-[15]
+[17]
 
-[16] (./coursework.aux)
+[18] (./coursework.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1462,11 +1466,11 @@ Package rerunfilecheck Info: File `coursework.out' has not changed.
 (rerunfilecheck)             Checksum: AA1C31DD031E301A4726ACFAC738DBCA;1205.
  ) 
 Here is how much of TeX's memory you used:
- 22293 strings out of 474645
- 344034 string characters out of 5759192
+ 22295 strings out of 474645
+ 344000 string characters out of 5759192
  760283 words of memory out of 5000000
- 44808 multiletter control sequences out of 15000+600000
- 588024 words of font info for 141 fonts, out of 8000000 for 9000
+ 44804 multiletter control sequences out of 15000+600000
+ 588170 words of font info for 143 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  80i,7n,93p,1007b,727s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf
@@ -1480,10 +1484,10 @@ exs.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/
 texmf-dist/fonts/type1/public/newtx/txsym.pfb></usr/share/texmf-dist/fonts/type
 1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.p
 fb>
-Output written on coursework.pdf (16 pages, 1334034 bytes).
+Output written on coursework.pdf (18 pages, 1339590 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 52 named destinations out of 1000 (max. 500000)
+ 254 PDF objects out of 1000 (max. 8388607)
+ 191 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
  24161 words of extra memory for PDF output out of 24883 (max. 10000000)
 
