@@ -75,10 +75,13 @@ def evasion_attack(X_orig, allowed_idx, magnitude=0.05):
         # random perturbation in [-magnitude*range, +magnitude*range]
         perturb = (np.random.rand(X_orig.shape[0]) * 2 - 1) * magnitude * f_range
         X_adv[:, idx] += perturb
+    # clip to original bounds
     # project one-hot groups row-by-row
     for i in range(X_adv.shape[0]):
         X_adv[i] = project_onehot_row(X_adv[i], onehot_groups, feature_names)
-    # clip to original bounds
+        X_adv[i] = project_semantic_constraints(X_adv[i], feature_names)
+
+    # clip to original observed bounds
     X_adv = np.minimum(np.maximum(X_adv, orig_min), orig_max)
     return X_adv
 
@@ -106,7 +109,7 @@ def project_semantic_constraints(row_arr, feature_names):
     return arr
 
 # Run evasion attack
-eps_magnitude_list = [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.75, 1.0, 2.0, 5.0, 10.0]  # fraction of range
+eps_magnitude_list = [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 ]  # fraction of range
 results = []
 
 X_val_np = X_val.values  # original unscaled
@@ -128,14 +131,6 @@ for mag in eps_magnitude_list:
     )
     x_adv = X_adv[0]
     x_adv_df = pd.Series(x_adv, index=feature_names)
-
-    # project one-hot groups row-by-row
-    for i in range(X_adv.shape[0]):
-        X_adv[i] = project_onehot_row(X_adv[i], onehot_groups, feature_names)
-        X_adv[i] = project_semantic_constraints(X_adv[i], feature_names)
-
-    # clip to original observed bounds
-    X_adv = np.minimum(np.maximum(X_adv, orig_min), orig_max)
 
     delta = x_adv_df - x_orig_df
 
