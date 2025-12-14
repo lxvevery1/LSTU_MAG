@@ -1,0 +1,9 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание, конкретизированное вариантом}{3}{section.1}%
+\contentsline {section}{\numberline {2}Описание исследуемых характеристик и показателей}{5}{section.2}%
+\contentsline {section}{\numberline {3}Исходные данные}{6}{section.3}%
+\contentsline {section}{\numberline {4}Использованные программные средства}{6}{section.4}%
+\contentsline {section}{\numberline {5}Группировка систем по заданному признаку. Построение диаграмм.}{8}{section.5}%
+\contentsline {section}{\numberline {6}Результат сравнения групп}{10}{section.6}%
+\contentsline {section}{\numberline {7}Задание 2. Упорядочивание списка по заданному показателю. Анализ архитектурных характеристик компьютеров верхней и нижней части списка}{11}{section.7}%
+\contentsline {section}{\numberline {8}Выводы по результатам исследования}{15}{section.8}%

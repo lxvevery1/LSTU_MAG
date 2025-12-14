@@ -74,24 +74,54 @@ def split_data(df, test_size=0.2, random_state=42):
     return X_train, X_val, y_train, y_val
 
 def get_processed_data(data_dir="titanic/", test_size=0.2, random_state=42):
-    """
-    Main function to get all processed data.
+    # ---------------- Load data ----------------
+    df = pd.read_csv(data_dir + "train.csv")
 
-    Parameters:
-    -----------
-    data_dir : str
-        Directory containing the data file
-    test_size : float
-        Proportion of data for validation set
-    random_state : int
-        Random seed for reproducibility
+    # ---------------- Basic sanity filtering ----------------
+    # Age: realistic bounds
+    df = df[(df["Age"].isna()) | ((df["Age"] >= 0) & (df["Age"] <= 100))]
 
-    Returns:
-    --------
-    tuple : (X_train, X_val, y_train, y_val, df)
-    """
-    df = load_and_preprocess_data(data_dir)
-    X_train, X_val, y_train, y_val = split_data(df, test_size, random_state)
+    # Sex: only valid categories
+    df = df[df["Sex"].isin(["male", "female"])]
+
+    # Fare: remove extreme outliers
+    df = df[(df["Fare"] >= 0) & (df["Fare"] <= 5000)]
+
+    # Pclass: only valid classes
+    df = df[df["Pclass"].isin([1, 2, 3])]
+
+    # ---------------- Cabin processing ----------------
+    df["Cabin"] = df["Cabin"].fillna("Unknown")
+    df["Deck"] = df["Cabin"].str[0]
+
+    df["CabinNumber"] = (
+        df["Cabin"]
+        .str.extract(r"(\d+)", expand=False)
+        .fillna(-1)
+        .astype(int)
+    )
+
+    df = pd.get_dummies(df, columns=["Deck"], drop_first=True)
+    df = df.drop(columns=["Cabin"])
+
+    # ---------------- Drop useless columns ----------------
+    df = df.drop(columns=["PassengerId", "Name", "Ticket"])
+
+    # ---------------- Missing values ----------------
+    df["Age"] = df["Age"].fillna(df["Age"].median())
+    df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
+
+    # ---------------- Encoding ----------------
+    df["Sex"] = df["Sex"].map({"male": 0, "female": 1})
+    df = pd.get_dummies(df, columns=["Embarked"], drop_first=True)
+
+    # ---------------- Split ----------------
+    X = df.drop(columns=["Survived"])
+    y = df["Survived"]
+
+    X_train, X_val, y_train, y_val = split_data(df)
+
+    # ---------------- Scaling ----------------
     scaler = StandardScaler()
 
     return X_train, X_val, y_train, y_val, df, scaler

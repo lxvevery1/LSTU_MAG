@@ -8,9 +8,9 @@ from lxml import etree
 from tabulate import tabulate
 
 XML_DIR = "xml"
-XML_FILE = "TOP500_202511.xml"
+XML_FILE = "TOP500_201711.xml"
 
-OUT_PLOT = "accelerator_boxplot_202511.png"
+OUT_PLOT = "accelerator_boxplot_201711.png"
 
 
 def load_xml(fname):
@@ -88,7 +88,7 @@ def main():
     # === boxplot ===
     plt.figure(figsize=(10, 6))
     df.boxplot(column="rpeak", by="accelerator")
-    plt.title("Rpeak Boxplot by Accelerator (TOP500 2025-11)")
+    plt.title("Rpeak Boxplot by Accelerator (TOP500 2017-11)")
     plt.suptitle("")
     plt.ylabel("Rpeak")
     plt.savefig(OUT_PLOT, dpi=150)
