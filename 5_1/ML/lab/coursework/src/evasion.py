@@ -18,7 +18,7 @@ X_train, X_val, y_train, y_val, df, scaler = get_processed_data(
 scaler, dt, gnb, logreg, rf, svm = load_models_from_file()
 
 feature_names = list(X_train.columns)
-allowed_features = ["Parch", "Age", "Pclass"]
+allowed_features = ["Sex", "Age", "Pclass"]
 allowed_idx = [feature_names.index(f) for f in allowed_features if f in feature_names]
 
 onehot_groups = []
@@ -104,42 +104,22 @@ def project_semantic_constraints(row_arr, feature_names):
     if "Parch" in feature_names:
         i = feature_names.index("Parch")
         arr[i] = int(round(arr[i]))
-        arr[i] = min(max(arr[i], 0), 10)
+        arr[i] = min(max(arr[i], 0), 100)
 
+    # Sex: uint in [0,1]
+    if "Sex" in feature_names:
+        i = feature_names.index("Sex")
+        arr[i] = int(round(arr[i]))
+        arr[i] = min(max(arr[i], 0), 1)
     return arr
 
 # Run evasion attack
-eps_magnitude_list = [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5 ]  # fraction of range
+eps_magnitude_list = [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]  # fraction of range
 results = []
 
 X_val_np = X_val.values  # original unscaled
 
-# ===================== TRACE SINGLE OBJECT =====================
-sample_idx = 0  # first validation sample
 
-x_orig = X_val_np[sample_idx].copy()
-x_orig_df = pd.Series(x_orig, index=feature_names)
-
-print("\n=== ORIGINAL SAMPLE ===")
-print(x_orig_df[allowed_features])
-
-for mag in eps_magnitude_list:
-    X_adv = evasion_attack(
-        X_val_np[sample_idx:sample_idx+1],
-        allowed_idx,
-        magnitude=mag
-    )
-    x_adv = X_adv[0]
-    x_adv_df = pd.Series(x_adv, index=feature_names)
-
-    delta = x_adv_df - x_orig_df
-
-    print(f"\n=== EVASION magnitude = {mag:.3f} ===")
-    print("Modified values:")
-    print(x_adv_df[allowed_features])
-
-    print("Delta (adv - orig):")
-    print(delta[allowed_features])
 
 for mag in eps_magnitude_list:
     X_adv = evasion_attack(X_val_np, allowed_idx, magnitude=mag)
@@ -157,3 +137,39 @@ for mag in eps_magnitude_list:
         "RF_auc": auc_rf,
     })
     print(f"mag={mag:.3f} RF acc {acc_rf:.4f}")
+
+
+# ===================== TABULAR TRACE FOR SINGLE OBJECT =====================
+
+# prettier output: limit float precision
+pd.set_option("display.float_format", "{:.3f}".format)
+print("\n=== EVASION TRACE (single sample) ===")
+sample_idx = 0  # first validation sample
+
+x_orig = X_val_np[sample_idx].copy()
+x_orig_s = pd.Series(x_orig, index=feature_names)
+
+rows = []
+
+for mag in eps_magnitude_list:
+    X_adv = evasion_attack(
+        X_val_np[sample_idx:sample_idx+1],
+        allowed_idx,
+        magnitude=mag
+    )
+    x_adv = X_adv[0]
+    x_adv_s = pd.Series(x_adv, index=feature_names)
+
+    row = {
+        "magnitude": mag,
+    }
+
+    for f in allowed_features:
+        row[f"{f}_orig"] = x_orig_s[f]
+        row[f"{f}_adv"] = x_adv_s[f]
+        row[f"{f}_delta"] = x_adv_s[f] - x_orig_s[f]
+
+    rows.append(row)
+
+trace_df = pd.DataFrame(rows)
+print(trace_df)
