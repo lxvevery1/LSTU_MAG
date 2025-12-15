@@ -18,7 +18,7 @@ X_train, X_val, y_train, y_val, df, scaler = get_processed_data(
 scaler, dt, gnb, logreg, rf, svm = load_models_from_file()
 
 feature_names = list(X_train.columns)
-allowed_features = ["Sex", "Age", "Pclass"]
+allowed_features = ["Fare"]
 allowed_idx = [feature_names.index(f) for f in allowed_features if f in feature_names]
 
 onehot_groups = []
@@ -111,6 +111,13 @@ def project_semantic_constraints(row_arr, feature_names):
         i = feature_names.index("Sex")
         arr[i] = int(round(arr[i]))
         arr[i] = min(max(arr[i], 0), 1)
+
+    # Fare: float in [0,1]
+    if "Fare" in feature_names:
+        i = feature_names.index("Fare")
+        arr[i] = float(round(arr[i]))
+        arr[i] = min(max(arr[i], 0), 3000)
+
     return arr
 
 # Run evasion attack
@@ -136,7 +143,7 @@ for mag in eps_magnitude_list:
         "RF_acc": acc_rf,
         "RF_auc": auc_rf,
     })
-    print(f"mag={mag:.3f} RF acc {acc_rf:.4f}")
+    print(f"mag={mag:.3f} RF acc/auc {acc_rf:.4f}/{auc_rf:.4f}")
 
 
 # ===================== TABULAR TRACE FOR SINGLE OBJECT =====================
