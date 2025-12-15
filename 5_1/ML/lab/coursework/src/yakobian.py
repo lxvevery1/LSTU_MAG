@@ -45,7 +45,7 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
 # ---------------- Train ----------------
-for epoch in range(75):
+for epoch in range(50):
     optimizer.zero_grad()
     out = model(X_train_t)
     loss = criterion(out, y_train_t)

@@ -18,7 +18,7 @@ X_train, X_val, y_train, y_val, df, scaler = get_processed_data(
 scaler, dt, gnb, logreg, rf, svm = load_models_from_file()
 
 feature_names = list(X_train.columns)
-allowed_features = ["Fare"]
+allowed_features = ["Sex", "Age", "Pclass"]
 allowed_idx = [feature_names.index(f) for f in allowed_features if f in feature_names]
 
 onehot_groups = []
