@@ -5,5 +5,5 @@
 \contentsline {section}{\numberline {4}Программа для обучения модели}{5}{section.4}%
 \contentsline {section}{\numberline {5}Анализ уязвимостей модели}{7}{section.5}%
 \contentsline {section}{\numberline {6}Атакующие алгоритмы}{9}{section.6}%
-\contentsline {section}{\numberline {7}Выводы}{20}{section.7}%
-\contentsline {section}{\numberline {8}Список источников}{21}{section.8}%
+\contentsline {section}{\numberline {7}Вывод}{19}{section.7}%
+\contentsline {section}{\numberline {8}Список источников}{20}{section.8}%
