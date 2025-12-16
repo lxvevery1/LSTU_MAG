@@ -1,0 +1,10 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
+\contentsline {section}{\numberline {2}Задание}{3}{section.2}%
+\contentsline {section}{\numberline {3}Описание суперкомпьютерной системы}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Основные характеристики}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Основные технико-эксплуатационные показатели}{4}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Подробное описание характеристик}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Эффективность архитектуры по различным тестам}{5}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Анализ архитектуры суперкомпьютерной системы}{6}{section.4}%
+\contentsline {section}{\numberline {5}Вывод}{7}{section.5}%
