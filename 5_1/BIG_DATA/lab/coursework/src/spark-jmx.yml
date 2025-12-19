@@ -1,0 +1,4 @@
+startDelaySeconds: 0
+hostPort: spark-master:7071
+rules:
+  - pattern: ".*"

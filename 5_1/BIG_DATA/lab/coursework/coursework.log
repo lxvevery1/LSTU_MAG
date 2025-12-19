@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  18 DEC 2025 13:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  19 DEC 2025 18:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1112,6 +1112,22 @@ Package shellesc Info: Restricted shell escape enabled on input line 77.
 \@float@every@listing=\toks46
 \c@listing=\count362
 )
+(/usr/share/texmf-dist/tex/latex/totcount/totcount.sty
+Package: totcount 2011/01/25 v1.2 package for gettingthe total value of LaTeX c
+ounters
+)
+(/usr/share/texmf-dist/tex/latex/lastpage/lastpage.sty
+Package: lastpage 2025/01/27 v2.1e lastpage: 2.09 or 2e? (HMM)
+
+(/usr/share/texmf-dist/tex/latex/lastpage/lastpage2e.sty
+Package: lastpage2e 2025/01/27 v2.1e Decide which 2e lastpage version to use (H
+MM)
+
+(/usr/share/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
+Package: lastpagemodern 2025-01-27 v2.1e Refers to last page's name (HMM; JPG)
+\c@lastpagecount=\count363
+) 
+))
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: 
 * paper: a4paper
@@ -1144,65 +1160,68 @@ Package shellesc Info: Restricted shell escape enabled on input line 77.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+\c@figure@totc=\count364
+\c@table@totc=\count365
+\c@page@totc=\count366
 LaTeX Font Info:    Trying to load font information for T2A+ntxtlf on input lin
-e 57.
-LaTeX Font Info:    No file T2Antxtlf.fd. on input line 57.
+e 64.
+LaTeX Font Info:    No file T2Antxtlf.fd. on input line 64.
 
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/m/n' undefined
-(Font)              using `T2A/cmr/m/n' instead on input line 57.
+(Font)              using `T2A/cmr/m/n' instead on input line 64.
 
 (./coursework.aux)
 \openout1 = `coursework.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 57.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 64.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
- 57.
+ 64.
  (/usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 64.
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-57.
+64.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 64.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 57.
+ 64.
 
 (/usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 64.
 LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
-e 57.
+e 64.
 
 (/usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Info: Redefining \th on input line 57.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Info: Redefining \th on input line 64.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1238,28 +1257,28 @@ LaTeX Info: Redefining \th on input line 57.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 57.
+Package hyperref Info: Link coloring OFF on input line 64.
 (./coursework.out) (./coursework.out)
 \@outlinefile=\write4
 \openout4 = `coursework.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 57.
-Package microtype Info: Applying patch `item' on input line 57.
-Package microtype Info: Applying patch `toc' on input line 57.
-Package microtype Info: Applying patch `eqnum' on input line 57.
+LaTeX Info: Redefining \microtypecontext on input line 64.
+Package microtype Info: Applying patch `item' on input line 64.
+Package microtype Info: Applying patch `toc' on input line 64.
+Package microtype Info: Applying patch `eqnum' on input line 64.
 
 
-Package microtype Warning: Unable to apply patch `footnote' on input line 57.
+Package microtype Warning: Unable to apply patch `footnote' on input line 64.
 
-Package microtype Info: Applying patch `verbatim' on input line 57.
-LaTeX Info: Redefining \microtypesetup on input line 57.
+Package microtype Info: Applying patch `verbatim' on input line 64.
+LaTeX Info: Redefining \microtypesetup on input line 64.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 57.
+LaTeX Info: Redefining \showhyphens on input line 64.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1273,16 +1292,16 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count363
+\scratchcounter=\count367
 \scratchdimen=\dimen289
 \scratchbox=\box75
-\nofMPsegments=\count364
-\nofMParguments=\count365
+\nofMPsegments=\count368
+\nofMParguments=\count369
 \everyMPshowfont=\toks47
-\MPscratchCnt=\count366
+\MPscratchCnt=\count370
 \MPscratchDim=\dimen290
-\MPnumerator=\count367
-\makeMPintoPDFobject=\count368
+\MPnumerator=\count371
+\makeMPintoPDFobject=\count372
 \everyMPtoPDFconversion=\toks48
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1293,108 +1312,108 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count369
+\c@lstlisting=\count373
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@mv@tabular=\count370
-\c@mv@boldtabular=\count371
-LaTeX Info: Command `\dddot' is already robust on input line 57.
-LaTeX Info: Command `\ddddot' is already robust on input line 57.
-<~/programmer/++Programmer/5_1/LSTU.jpg, id=48, 42.705pt x 63.729pt>
+\c@mv@tabular=\count374
+\c@mv@boldtabular=\count375
+LaTeX Info: Command `\dddot' is already robust on input line 64.
+LaTeX Info: Command `\ddddot' is already robust on input line 64.
+<~/programmer/++Programmer/5_1/LSTU.jpg, id=64, 42.705pt x 63.729pt>
 File: ~/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
 <use ~/programmer/++Programmer/5_1/LSTU.jpg>
 Package pdftex.def Info: ~/programmer/++Programmer/5_1/LSTU.jpg  used on input 
-line 62.
+line 69.
 (pdftex.def)             Requested size: 42.70488pt x 63.72884pt.
 
-Overfull \hbox (38.15495pt too wide) in paragraph at lines 62--63
+Overfull \hbox (38.15495pt too wide) in paragraph at lines 69--70
 [][] 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+minntx on input lin
-e 72.
+e 79.
 (/usr/share/texmf-dist/tex/latex/newtx/ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `minntx' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-72.
+79.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-72.
+79.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-72.
+79.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 14.4pt on input line 72.
+(Font)              scaled to size 14.4pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.5pt on input line 72.
+(Font)              scaled to size 10.5pt on input line 79.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.9pt on input line 72.
+(Font)              scaled to size 7.9pt on input line 79.
 
-Overfull \hbox (50.0771pt too wide) in paragraph at lines 60--73
+Overfull \hbox (50.0771pt too wide) in paragraph at lines 67--80
 []$[]$ 
  []
 
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/b/n' undefined
-(Font)              using `T2A/ntxtlf/m/n' instead on input line 79.
+(Font)              using `T2A/ntxtlf/m/n' instead on input line 86.
 
 
 
@@ -1417,6 +1436,26 @@ Overfull \hbox (2.64145pt too wide) detected at line 12
 \T2A/ntxtlf/b/n/14.4 10.  
  []
 
+
+Overfull \hbox (2.64145pt too wide) detected at line 13
+\T2A/ntxtlf/b/n/14.4 11.  
+ []
+
+
+Overfull \hbox (2.64145pt too wide) detected at line 14
+\T2A/ntxtlf/b/n/14.4 12.  
+ []
+
+
+Overfull \hbox (2.64145pt too wide) detected at line 15
+\T2A/ntxtlf/b/n/14.4 13.  
+ []
+
+
+Overfull \hbox (2.64145pt too wide) detected at line 16
+\T2A/ntxtlf/b/n/14.4 14.  
+ []
+
 )
 \tf@toc=\write5
 \openout5 = `coursework.toc'.
@@ -1432,28 +1471,28 @@ Overfull \hbox (2.64145pt too wide) detected at line 12
 [5]
 
 [6]
-<pic2.png, id=89, 1112.155pt x 280.04625pt>
+<pic2.png, id=111, 1112.155pt x 280.04625pt>
 File: pic2.png Graphic file (type png)
 <use pic2.png>
-Package pdftex.def Info: pic2.png  used on input line 194.
+Package pdftex.def Info: pic2.png  used on input line 202.
 (pdftex.def)             Requested size: 355.08984pt x 89.41151pt.
 
-Overfull \hbox (19.46864pt too wide) in paragraph at lines 200--202
+Overfull \hbox (19.46864pt too wide) in paragraph at lines 208--210
 \T2A/ntxtlf/b/n/14.4 (-20) compose, где вы-пол-н€-ет-с€ за-пуск кон-тей-не-ров 
 с ука-за-ни-ем ре-жи-ма "detached". 
  []
 
-<pic1.png, id=92, 1798.72pt x 132.495pt>
+<pic1.png, id=114, 1798.72pt x 132.495pt>
 File: pic1.png Graphic file (type png)
 <use pic1.png>
-Package pdftex.def Info: pic1.png  used on input line 205.
+Package pdftex.def Info: pic1.png  used on input line 213.
 (pdftex.def)             Requested size: 355.08984pt x 26.15483pt.
 
 
 [7 <./pic2.png> <./pic1.png>]
 
 [8]
-Overfull \hbox (25.70338pt too wide) in paragraph at lines 244--249
+Overfull \hbox (25.70338pt too wide) in paragraph at lines 252--257
 []\T2A/ntxtlf/b/n/14.4 (-20) јрхитектура Apache Spark ос-но-ва-на на мо-де-ли Њ
 ве-ду-щий^^Uисполнительњ,
  []
@@ -1462,7 +1501,7 @@ Overfull \hbox (25.70338pt too wide) in paragraph at lines 244--249
 
 [9]
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-273.
+281.
  (/usr/share/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
@@ -1473,141 +1512,229 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 [10]
-Overfull \hbox (78.26653pt too wide) in paragraph at lines 318--318
+Overfull \hbox (78.26653pt too wide) in paragraph at lines 343--343
 []\T2A/cmtt/m/n/14.4 # контейнер не будет запущен, пока spark-master не закончи
 т запуск удачно[] 
  []
 
-<sparkm.png, id=118, 1878.01625pt x 581.17125pt>
+
+
+[11]
+Overfull \hbox (48.70172pt too wide) in paragraph at lines 344--351
+\T2A/ntxtlf/b/n/14.4 (-20) ра-бо-че-го уз-ла (Worker) пу-тЉм за-пус-ка клас-са 
+org.apache.spark.deploy.worker.Worker.
+ []
+
+<sparkm.png, id=144, 1878.01625pt x 581.17125pt>
 File: sparkm.png Graphic file (type png)
 <use sparkm.png>
-Package pdftex.def Info: sparkm.png  used on input line 324.
+Package pdftex.def Info: sparkm.png  used on input line 368.
 (pdftex.def)             Requested size: 355.08984pt x 109.88274pt.
 
 
-[11 <./sparkm.png>]
-Overfull \hbox (6.04846pt too wide) in paragraph at lines 336--337
+[12]
+
+[13 <./sparkm.png>]
+Overfull \hbox (6.04846pt too wide) in paragraph at lines 385--391
 []\T2A/ntxtlf/b/n/14.4 (-20) ќснову ар-хи-тек-ту-ры Kafka со-став-л€-ет мо-дель
  пуб-ли-ка-ции^^Uподписки,
  []
 
 
 
-[12]
-Overfull \hbox (21.11574pt too wide) in paragraph at lines 345--347
+[14]
+Overfull \hbox (21.11574pt too wide) in paragraph at lines 409--412
 \T2A/ntxtlf/b/n/14.4 (-20) вить сле-ду-ю-щий блок тек-ста в кон-фи-гу-ра-ци-он-
 ный файл \T2A/cmtt/m/n/14.4 docker_compose.yml
  []
 
 
-Overfull \hbox (195.20036pt too wide) in paragraph at lines 367--367
+Overfull \hbox (195.20036pt too wide) in paragraph at lines 432--432
 []      \T2A/cmtt/m/n/14.4 KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,
 PLAINTEXT_HOST://localhost:9092[] 
  []
 
 
-Overfull \hbox (187.892pt too wide) in paragraph at lines 367--367
+Overfull \hbox (187.892pt too wide) in paragraph at lines 432--432
 []      \T2A/cmtt/m/n/14.4 KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAI
 NTEXT,PLAINTEXT_HOST:PLAINTEXT[] 
  []
 
 
-Overfull \hbox (7.33026pt too wide) in paragraph at lines 369--371
+Overfull \hbox (25.41484pt too wide) in paragraph at lines 434--440
+[]\T2A/ntxtlf/b/n/14.4 (-20) ¬ раз-де-ле environment за-да-ют-с€ ос-нов-ные па-
+ра-мет-ры ра-бо-ты ZooKeeper.
+ []
+
+
+
+[15]
+Overfull \hbox (7.33026pt too wide) in paragraph at lines 447--449
 \T2A/ntxtlf/b/n/14.4 (-20) Kafka слу-ша-ет под-клю-че-ни€. ѕа-ра-метр \T2A/cmtt
 /m/n/14.4 KAFKA_CFG_ADVERTISED_LISTENERS
  []
 
 
-
-[13]
-Overfull \hbox (48.72855pt too wide) in paragraph at lines 372--375
+Overfull \hbox (48.72855pt too wide) in paragraph at lines 450--453
 \T2A/ntxtlf/b/n/14.4 (-20) до-ба-вить сле-ду-ю-щий блок тек-ста в кон-фи-гу-ра-
 ци-он-ный файл \T2A/cmtt/m/n/14.4 docker_compose.yml
  []
 
 
 
-[14]
-<kafdrop.png, id=140, 948.54375pt x 723.70375pt>
+[16]
+
+[17]
+<kafdrop.png, id=175, 948.54375pt x 723.70375pt>
 File: kafdrop.png Graphic file (type png)
 <use kafdrop.png>
-Package pdftex.def Info: kafdrop.png  used on input line 413.
+Package pdftex.def Info: kafdrop.png  used on input line 501.
 (pdftex.def)             Requested size: 355.08984pt x 270.91339pt.
 
 
-[15 <./kafdrop.png>]
+[18 <./kafdrop.png>]
 
-[16]
-Overfull \hbox (21.11574pt too wide) in paragraph at lines 456--459
+[19]
+
+[20]
+
+[21]
+Overfull \hbox (21.11574pt too wide) in paragraph at lines 580--583
 \T2A/ntxtlf/b/n/14.4 (-20) вить сле-ду-ю-щий блок тек-ста в кон-фи-гу-ра-ци-он-
 ный файл \T2A/cmtt/m/n/14.4 docker_compose.yml
  []
 
 
 
-[17]
-<namenode.png, id=158, 1113.15875pt x 1014.79124pt>
+[22]
+<namenode.png, id=201, 1113.15875pt x 1014.79124pt>
 File: namenode.png Graphic file (type png)
 <use namenode.png>
-Package pdftex.def Info: namenode.png  used on input line 512.
+Package pdftex.def Info: namenode.png  used on input line 636.
 (pdftex.def)             Requested size: 355.08984pt x 323.71786pt.
 
 
-[18]
+[23]
 
-[19 <./namenode.png>]
-Overfull \hbox (0.78615pt too wide) in paragraph at lines 527--532
+[24 <./namenode.png>]
+Overfull \hbox (0.78615pt too wide) in paragraph at lines 651--656
 \T2A/ntxtlf/b/n/14.4 (-20) под-клю-че-ни€ к раз-но-об-раз-ным ис-точ-ни-кам дан
 -ных, та-ким как Prometheus,
  []
 
 
 
-[20]
+[25]
 
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 573--578
-[]\T2A/ntxtlf/b/n/14.4 (+20) Ќамиот ƒ.≈. —хе-мы атак на мо-де-ли ма-шин-но-го о
-бу-че-
+[26]
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+<logs-cycle.png, id=223, 1391.1975pt x 413.545pt>
+File: logs-cycle.png Graphic file (type png)
+<use logs-cycle.png>
+Package pdftex.def Info: logs-cycle.png  used on input line 709.
+(pdftex.def)             Requested size: 355.08984pt x 105.55038pt.
+
+
+[27{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<spark_master_running.png, id=231, 1932.21875pt x 521.95pt>
+File: spark_master_running.png Graphic file (type png)
+<use spark_master_running.png>
+Package pdftex.def Info: spark_master_running.png  used on input line 720.
+(pdftex.def)             Requested size: 355.08984pt x 95.91412pt.
+<spark_worker_running.png, id=233, 1924.18875pt x 415.5525pt>
+File: spark_worker_running.png Graphic file (type png)
+<use spark_worker_running.png>
+Package pdftex.def Info: spark_worker_running.png  used on input line 730.
+(pdftex.def)             Requested size: 355.08984pt x 76.68578pt.
+<spark_metrix_raw.png, id=235, 1644.1425pt x 862.22125pt>
+File: spark_metrix_raw.png Graphic file (type png)
+<use spark_metrix_raw.png>
+Package pdftex.def Info: spark_metrix_raw.png  used on input line 740.
+(pdftex.def)             Requested size: 355.08984pt x 186.21596pt.
+
+
+[28 <./logs-cycle.png> <./spark_master_running.png> <./spark_worker_running.png
+>]
+<spark_metrix_grafana.png, id=250, 1914.15125pt x 1064.97874pt>
+File: spark_metrix_grafana.png Graphic file (type png)
+<use spark_metrix_grafana.png>
+Package pdftex.def Info: spark_metrix_grafana.png  used on input line 749.
+(pdftex.def)             Requested size: 355.08984pt x 197.55424pt.
+<spark_master_finish.png, id=252, 1906.12125pt x 524.96124pt>
+File: spark_master_finish.png Graphic file (type png)
+<use spark_master_finish.png>
+Package pdftex.def Info: spark_master_finish.png  used on input line 759.
+(pdftex.def)             Requested size: 355.08984pt x 97.78917pt.
+<spark_worker_finish.png, id=254, 1920.17375pt x 439.6425pt>
+File: spark_worker_finish.png Graphic file (type png)
+<use spark_worker_finish.png>
+Package pdftex.def Info: spark_worker_finish.png  used on input line 769.
+(pdftex.def)             Requested size: 355.08984pt x 81.29904pt.
+
+
+[29 <./spark_metrix_raw.png> <./spark_metrix_grafana.png> <./spark_master_finis
+h.png>]
+
+[30 <./spark_worker_finish.png>]
+
+[31]
+Underfull \hbox (badness 1755) in paragraph at lines 807--810
+[]\T2A/ntxtlf/b/n/14.4 (+20) Grafana [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па
+ к дан-ным:
  []
 
 
-Underfull \hbox (badness 7631) in paragraph at lines 573--578
-\T2A/ntxtlf/b/n/14.4 (+20) ни€ [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па к дан
--ным:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 573--578
-\T2A/ntxtlf/m/n/14.4 (+11) https://cyberleninka.ru/article/n/shemy-atak-na-mode
-li-mashinnogo-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 584--587
-[]\T2A/ntxtlf/b/n/14.4 (+20) Titanic: Machine Learning from Disaster [Ёлек-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 584--587
-\T2A/ntxtlf/b/n/14.4 (+20) трон-ный ре-сурс] / –е-жим до-сту-па к дан-ным:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 584--587
-\T2A/ntxtlf/b/n/14.4 (+20) https://www.kaggle.com/competitions/titanic/code, св
-о-бод-ный
+Underfull \hbox (badness 2781) in paragraph at lines 811--814
+[]\T2A/ntxtlf/b/n/14.4 (+20) Docker [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па 
+к дан-ным:
  []
 
 
 
-[22]
+[32]
 
-[23]
-runsystem(latexminted cleantemp  --timestamp 20251218131817 79B5CB42426BD5D23A8
+[33]
+
+[34]
+Overfull \hbox (195.20036pt too wide) in paragraph at lines 1014--1014
+[]      \T2A/cmtt/m/n/14.4 KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,
+PLAINTEXT_HOST://localhost:9092[] 
+ []
+
+
+Overfull \hbox (187.892pt too wide) in paragraph at lines 1014--1014
+[]      \T2A/cmtt/m/n/14.4 KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAI
+NTEXT,PLAINTEXT_HOST:PLAINTEXT[] 
+ []
+
+
+
+[35]
+
+[36]
+
+[37]
+Overfull \hbox (27.10797pt too wide) in paragraph at lines 1014--1014
+[]      \T2A/cmtt/m/n/14.4 - "--web.enable-lifecycle"   # позвол€ет reload конф
+игурации[] 
+ []
+
+
+
+[38]
+
+[39]
+
+[40]
+runsystem(latexminted cleantemp  --timestamp 20251219183238 79B5CB42426BD5D23A8
 4E74BD758166F)...executed safely (allowed).
 
- (./coursework.aux)
+ 
+enddocument/afterlastpage (AED): lastpage setting LastPage.
+(./coursework.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1616,28 +1743,25 @@ L3 programming layer <2020/03/25>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `coursework.out' has not changed.
-(rerunfilecheck)             Checksum: 3DEC9E7B68A0A2894D7A7496057CD828;1240.
+(rerunfilecheck)             Checksum: C8C3701C5A618F05FF79B54A56D2F7B0;1822.
  ) 
 Here is how much of TeX's memory you used:
- 26356 strings out of 474645
- 460884 string characters out of 5759192
- 982220 words of memory out of 5000000
- 48867 multiletter control sequences out of 15000+600000
- 578515 words of font info for 110 fonts, out of 8000000 for 9000
+ 26598 strings out of 474645
+ 466174 string characters out of 5759192
+ 986619 words of memory out of 5000000
+ 49053 multiletter control sequences out of 15000+600000
+ 578958 words of font info for 113 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 80i,7n,93p,1007b,740s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,7n,93p,1007b,743s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/t
 exmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts
 /type1/public/cm-super/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/c
 m-super/sftt1440.pfb>
-Output written on coursework.pdf (23 pages, 499114 bytes).
+Output written on coursework.pdf (40 pages, 1261302 bytes).
 PDF statistics:
- 225 PDF objects out of 1000 (max. 8388607)
- 179 compressed objects within 2 object streams
- 49 named destinations out of 1000 (max. 500000)
- 13943 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 367 PDF objects out of 1000 (max. 8388607)
+ 288 compressed objects within 3 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 14522 words of extra memory for PDF output out of 17280 (max. 10000000)
 

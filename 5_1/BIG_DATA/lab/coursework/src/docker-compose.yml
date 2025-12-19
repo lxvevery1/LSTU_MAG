@@ -10,6 +10,14 @@ services:
       - "8080:8080"
     networks:
       - spark-net
+    environment:
+      - SPARK_DAEMON_JAVA_OPTS=
+          -Dcom.sun.management.jmxremote
+          -Dcom.sun.management.jmxremote.port=7071
+          -Dcom.sun.management.jmxremote.rmi.port=7071
+          -Dcom.sun.management.jmxremote.authenticate=false
+          -Dcom.sun.management.jmxremote.ssl=false
+          -Djava.rmi.server.hostname=spark-master
 
   spark-worker:
     image: apache/spark:latest
@@ -22,7 +30,28 @@ services:
       - "8081:8081"
     networks:
       - spark-net
+    environment:
+      - SPARK_DAEMON_JAVA_OPTS=
+          -Dcom.sun.management.jmxremote
+          -Dcom.sun.management.jmxremote.port=7071
+          -Dcom.sun.management.jmxremote.rmi.port=7071
+          -Dcom.sun.management.jmxremote.authenticate=false
+          -Dcom.sun.management.jmxremote.ssl=false
+          -Djava.rmi.server.hostname=spark-worker
 
+  # spark jmx export
+  spark-exporter:
+    image: bitnami/jmx-exporter:latest
+    container_name: spark-exporter
+    ports:
+      - "9091:9091"
+    volumes:
+      - ./spark-jmx.yml:/opt/jmx-exporter/config.yml:ro
+    command:
+      - "9091"
+      - "/opt/jmx-exporter/config.yml"
+    networks:
+      - spark-net
 
   # kafka + zookeeper + kafdrop
   zookeeper:
@@ -59,6 +88,7 @@ services:
       - "9009:9009"
     environment:
       KAFKA_BROKER_CONNECT: kafka:29092
+      SERVER_PORT: 9009
       JVM_OPTS: "-Xms32M -Xmx64M"
       SERVER_SERVLET_CONTEXTPATH: "/"
     networks:

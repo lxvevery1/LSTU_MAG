@@ -2,11 +2,15 @@
 \contentsline {section}{\numberline {1}Аннотация}{3}{section.1}%
 \contentsline {section}{\numberline {2}Задание кафедры}{4}{section.2}%
 \contentsline {section}{\numberline {3}Docker}{5}{section.3}%
-\contentsline {section}{\numberline {4}Docker Compose}{6}{section.4}%
+\contentsline {section}{\numberline {4}Docker Compose}{7}{section.4}%
 \contentsline {section}{\numberline {5}Spark}{8}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Архитектура}{9}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Apache Kafka}{12}{section.6}%
-\contentsline {section}{\numberline {7}Apache Hadoop}{16}{section.7}%
-\contentsline {section}{\numberline {8}Grafana}{20}{section.8}%
-\contentsline {section}{\numberline {9}Вывод}{21}{section.9}%
-\contentsline {section}{\numberline {10}Список источников}{22}{section.10}%
+\contentsline {section}{\numberline {6}Apache Kafka}{14}{section.6}%
+\contentsline {section}{\numberline {7}Node exporter}{19}{section.7}%
+\contentsline {section}{\numberline {8}Zookeeper}{19}{section.8}%
+\contentsline {section}{\numberline {9}Spark Exporter}{20}{section.9}%
+\contentsline {section}{\numberline {10}Apache Hadoop}{21}{section.10}%
+\contentsline {section}{\numberline {11}Grafana}{25}{section.11}%
+\contentsline {section}{\numberline {12}Демонстрация работы системы}{27}{section.12}%
+\contentsline {section}{\numberline {13}Вывод}{31}{section.13}%
+\contentsline {section}{\numberline {14}Список источников}{32}{section.14}%
