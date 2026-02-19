@@ -9,7 +9,7 @@
 #include <iostream>
 
 double sigm(double x) {
-    double s = x / (1 + (x));
+    double s = x / (1 + pow(std::exp(1), -x));
     return s;
 }
 
