@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TODO LIST Presentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Inter',sans-serif;
+    background:#000;
+    color:#fff;
+    overflow:hidden;
+}
+
+/* Slides */
+section{
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    transition:all 1s ease;
+}
+
+.container{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    padding:0 8vw;
+    transition:all 1s ease;
+}
+
+.text-block{
+    text-align:center;
+    transition:all 1s ease;
+}
+
+h1{
+    font-size:72px;
+    font-weight:800;
+    margin-bottom:20px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1s ease;
+}
+
+.subtitle{
+    font-size:32px;
+    font-weight:300;
+    opacity:0.9;
+    transition:all 1s ease;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#00d4ff,#ff2d55);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* Phone */
+.phone{
+    width:320px;
+    height:640px;
+    background:#111;
+    border-radius:40px;
+    padding:15px;
+    margin-left:80px;
+    box-shadow:0 0 60px rgba(0,212,255,.4);
+    opacity:0;
+    transform:translateX(100px) scale(.9);
+    transition:all 1s ease;
+}
+
+.screen{
+    width:100%;
+    height:100%;
+    background:#fff;
+    border-radius:30px;
+    padding:20px;
+    color:#000;
+}
+
+/* Activated State */
+.reveal .container{
+    justify-content:space-between;
+}
+
+.reveal .text-block{
+    text-align:left;
+}
+
+.reveal h1{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.reveal .phone{
+    opacity:1;
+    transform:translateX(0) scale(1);
+}
+
+/* Footer hint */
+.footer{
+    position:fixed;
+    bottom:20px;
+    right:30px;
+    font-size:14px;
+    opacity:.4;
+}
+section.active{
+    opacity:1;
+    transform:scale(1);
+    z-index:2;
+}
+
+.text{
+    max-width:45%;
+}
+
+h1{
+    font-size:70px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+h2{
+    font-size:48px;
+    margin-bottom:20px;
+}
+p{
+    font-size:24px;
+    opacity:.85;
+    margin:10px 0;
+}
+
+.gradient{
+    background:linear-gradient(90deg,#00d4ff,#ff2d55);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* iPhone mockup */
+.phone{
+    width:320px;
+    height:640px;
+    background:#111;
+    border-radius:40px;
+    padding:15px;
+    box-shadow:0 0 60px rgba(0,212,255,.4);
+    position:relative;
+    transition:all .6s ease;
+}
+.screen{
+    width:100%;
+    height:100%;
+    background:#fff;
+    border-radius:30px;
+    overflow:hidden;
+    position:relative;
+    color:#000;
+    padding:20px;
+    font-size:16px;
+}
+.statusbar{
+    font-size:12px;
+    opacity:.5;
+    margin-bottom:10px;
+}
+
+/* Screen UI Elements */
+.task{
+    background:#f2f2f2;
+    padding:10px;
+    border-radius:12px;
+    margin-bottom:8px;
+    transition:.4s;
+}
+.task.hot{
+    background:#ff2d55;
+    color:#fff;
+    animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(255,45,85,.6)}
+    70%{box-shadow:0 0 0 15px rgba(255,45,85,0)}
+    100%{box-shadow:0 0 0 0 rgba(255,45,85,0)}
+}
+
+.calendar-day{
+    display:inline-block;
+    width:36px;
+    height:36px;
+    line-height:36px;
+    margin:4px;
+    border-radius:10px;
+    background:#eee;
+}
+.calendar-day.active{
+    background:#000;
+    color:#fff;
+}
+
+.notification{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    right:20px;
+    background:#000;
+    color:#fff;
+    padding:12px;
+    border-radius:16px;
+    font-size:14px;
+    opacity:0;
+    transform:translateY(20px);
+    transition:.5s;
+}
+.notification.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* Footer */
+.footer{
+    position:fixed;
+    bottom:20px;
+    right:30px;
+    font-size:14px;
+    opacity:.4;
+}
+</style>
+</head>
+<body>
+
+<!-- Slide 1 -->
+
+<section id="slide1">
+    <div class="container">
+        <div class="text-block">
+            <h1 class="gradient">TODO LIST</h1>
+            <div class="subtitle">iOS приложение нового поколения</div>
+        </div>
+
+        <div class="phone">
+            <div class="screen" id="screen">
+                <h3>Сегодня</h3>
+                <div style="background:#f2f2f2;padding:10px;border-radius:12px;margin-top:10px;">Встреча 12:00</div>
+                <div style="background:#f2f2f2;padding:10px;border-radius:12px;margin-top:8px;">Спортзал 18:00</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+let revealed = false;
+const slide = document.getElementById("slide1");
+
+document.addEventListener("click", () => {
+    if(!revealed){
+        slide.classList.add("reveal");
+        revealed = true;
+    }
+});
+</script>
+
+<!-- Slide 2 -->
+<section data-screen="calendar">
+<div class="text">
+    <h2>Календарь</h2>
+    <p>Выберите день.</p>
+    <p>Мгновенно увидьте задачи.</p>
+</div>
+<div class="phone">
+    <div class="screen"></div>
+</div>
+</section>
+
+<!-- Slide 3 -->
+<section data-screen="tasks">
+<div class="text">
+    <h2>Список задач</h2>
+    <p>Добавляйте.</p>
+    <p>Редактируйте.</p>
+    <p>Контролируйте.</p>
+</div>
+<div class="phone">
+    <div class="screen"></div>
+</div>
+</section>
+
+<!-- Slide 4 -->
+<section data-screen="hot">
+<div class="text">
+    <h2 class="gradient">Hot Deadlines</h2>
+    <p>Самое важное — всегда на виду.</p>
+</div>
+<div class="phone">
+    <div class="screen"></div>
+</div>
+</section>
+
+<!-- Slide 5 -->
+<section data-screen="notification">
+<div class="text">
+    <h2>Уведомления</h2>
+    <p>В нужный момент.</p>
+    <p>Без компромиссов.</p>
+</div>
+<div class="phone">
+    <div class="screen"></div>
+</div>
+</section>
+
+<div class="footer">← → или клик</div>
+
+<script>
+const slides=document.querySelectorAll("section");
+let current=0;
+
+function renderScreen(type,screen){
+    screen.innerHTML="";
+    screen.innerHTML+='<div class="statusbar">9:41</div>';
+
+    if(type==="home"){
+        screen.innerHTML+='<h3>Сегодня</h3>';
+        screen.innerHTML+='<div class="task">Встреча 12:00</div>';
+        screen.innerHTML+='<div class="task">Спортзал 18:00</div>';
+    }
+
+    if(type==="calendar"){
+        screen.innerHTML+='<h3>Март</h3>';
+        for(let i=1;i<=14;i++){
+            screen.innerHTML+=`<div class="calendar-day ${i===5?'active':''}">${i}</div>`;
+        }
+    }
+
+    if(type==="tasks"){
+        screen.innerHTML+='<h3>5 марта</h3>';
+        screen.innerHTML+='<div class="task">Подготовить презентацию</div>';
+        screen.innerHTML+='<div class="task">Ответить на письма</div>';
+        screen.innerHTML+='<div class="task">Купить билеты</div>';
+    }
+
+    if(type==="hot"){
+        screen.innerHTML+='<h3>Срочные</h3>';
+        screen.innerHTML+='<div class="task hot">Сдать проект — 2ч</div>';
+        screen.innerHTML+='<div class="task">Остальные задачи</div>';
+    }
+
+    if(type==="notification"){
+        screen.innerHTML+='<h3>Сегодня</h3>';
+        screen.innerHTML+='<div class="task">Встреча 12:00</div>';
+        screen.innerHTML+='<div class="notification show">Через 10 минут: Встреча</div>';
+    }
+}
+
+function showSlide(index){
+    slides[current].classList.remove("active");
+    current=(index+slides.length)%slides.length;
+    slides[current].classList.add("active");
+
+    const screen=slides[current].querySelector(".screen");
+    const type=slides[current].dataset.screen;
+    renderScreen(type,screen);
+}
+
+document.addEventListener("keydown",e=>{
+    if(e.key==="ArrowRight"||e.key===" ")showSlide(current+1);
+    if(e.key==="ArrowLeft")showSlide(current-1);
+});
+document.addEventListener("click",()=>showSlide(current+1));
+
+renderScreen("home",document.querySelector(".screen"));
+</script>
+
+</body>
+</html>

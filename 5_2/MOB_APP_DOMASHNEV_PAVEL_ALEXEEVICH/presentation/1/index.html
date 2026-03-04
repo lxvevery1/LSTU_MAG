@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TODO LIST — iOS App</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Inter', sans-serif;
+    background:#000;
+    color:#fff;
+    overflow:hidden;
+}
+
+section {
+    height:100vh;
+    width:100vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:60px;
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    transform:scale(0.95);
+    transition:all 0.8s ease;
+}
+
+section.active {
+    opacity:1;
+    transform:scale(1);
+    z-index:1;
+}
+
+h1 {
+    font-size:72px;
+    font-weight:800;
+    letter-spacing:-2px;
+    margin-bottom:20px;
+}
+
+h2 {
+    font-size:48px;
+    font-weight:600;
+    margin-bottom:30px;
+}
+
+p {
+    font-size:28px;
+    font-weight:300;
+    max-width:900px;
+    line-height:1.4;
+    margin:10px 0;
+    opacity:0.9;
+}
+
+.highlight {
+    color:#00d4ff;
+}
+
+.gradient {
+    background:linear-gradient(90deg,#00d4ff,#ff2d55);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.footer {
+    position:fixed;
+    bottom:20px;
+    right:30px;
+    font-size:14px;
+    opacity:0.5;
+}
+</style>
+</head>
+<body>
+
+<section class="active">
+    <h1 class="gradient">TODO LIST</h1>
+    <p>iOS приложение нового поколения для планирования задач</p>
+</section>
+
+<section>
+    <h2>Каждый день — десятки задач</h2>
+    <p>Мы забываем. Мы откладываем. Мы теряем фокус.</p>
+</section>
+
+<section>
+    <h2>Решение</h2>
+    <p>Простой интерфейс.</p>
+    <p>Мощная логика.</p>
+    <p class="highlight">Полный контроль над вашим днем.</p>
+</section>
+
+<section>
+    <h2>Календарь</h2>
+    <p>Выберите любой день.</p>
+    <p>Мгновенно увидьте список задач.</p>
+    <p>Интуитивная навигация в стиле iOS.</p>
+</section>
+
+<section>
+    <h2>Список задач</h2>
+    <p>Создание и редактирование за секунды.</p>
+    <p>Приоритеты и дедлайны.</p>
+    <p>Чистый минималистичный дизайн.</p>
+</section>
+
+<section>
+    <h2 class="highlight">Hot Deadlines</h2>
+    <p>Самые срочные задачи — всегда на виду.</p>
+    <p>Цветовая индикация срочности.</p>
+    <p>Таймер обратного отсчета.</p>
+</section>
+
+<section>
+    <h2>Уведомления</h2>
+    <p>Напоминания точно в нужный момент.</p>
+    <p>Гибкая настройка времени.</p>
+    <p>Ничего больше не будет забыто.</p>
+</section>
+
+<section>
+    <h2>Перенос задач</h2>
+    <p>Drag & Drop между днями.</p>
+    <p>Автоматическое обновление дедлайнов.</p>
+    <p>Абсолютная гибкость.</p>
+</section>
+
+<section>
+    <h2>Создано для iOS</h2>
+    <p>Swift + SwiftUI.</p>
+    <p>Поддержка Dark Mode.</p>
+    <p>Идеальная производительность.</p>
+</section>
+
+<section>
+    <h1 class="gradient">Stay Focused.</h1>
+    <h1 class="gradient">Get Things Done.</h1>
+</section>
+
+<div class="footer">
+    Используйте ← → или пробел для переключения слайдов
+</div>
+
+<script>
+const slides = document.querySelectorAll("section");
+let current = 0;
+
+function showSlide(index) {
+    slides[current].classList.remove("active");
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add("active");
+}
+
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === " ") showSlide(current + 1);
+    if (e.key === "ArrowLeft") showSlide(current - 1);
+});
+
+document.addEventListener("click", () => showSlide(current + 1));
+</script>
+
+</body>
+</html>
