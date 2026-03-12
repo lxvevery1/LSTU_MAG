@@ -28,48 +28,68 @@ void apply_zeros(float* sig, const size_t size, const int padding) {
     }
 }
 
-float* convolution(float* sig, const size_t sig_size, const float* core,
-                   const size_t core_size, const int stride = 1, const int padding = 1) {
-    size_t output_size = (sig_size - core_size) / stride + 1;
+float* convolution(float* sig, size_t sig_size, const float* core, size_t core_size,
+                   int stride = 1, int padding = 0, bool same = false) {
+    if (same)
+        padding = core_size; // игнор  padding
+
+    size_t padded_size = sig_size + padding * 2;
+
+    float* padded = new float[padded_size]{0};
+
+    for (size_t i = 0; i < sig_size; i++)
+        padded[i + padding] = sig[i];
+
+    size_t output_size = (padded_size - core_size) / stride + 1;
 
     float* res = new float[output_size];
 
-    for (size_t i = 0; i <= sig_size - core_size; i += stride) {
+    for (size_t i = 0; i <= padded_size - core_size; i += stride) {
         float sum = 0;
+
         for (size_t j = 0; j < core_size; j++)
-            sum += sig[i + j] * core[j];
+            sum += padded[i + j] * core[j];
 
         res[i / stride] = sum;
     }
 
+    // если режим same — обрезаем центр
+    if (same) {
+        float* same_res = new float[sig_size];
+
+        size_t start = (output_size - sig_size) / 2;
+
+        for (size_t i = 0; i < sig_size; i++)
+            same_res[i] = res[i + start];
+
+        print_arr(same_res, sig_size);
+
+        delete[] padded;
+        delete[] res;
+
+        return same_res;
+    }
+
     print_arr(res, output_size);
+
+    delete[] padded;
     return res;
 }
 
 void task1() {
-    const float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
+    float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
     const float* core = new float[3]{0.5, 1, 0.5};
 
-    float* sig_test = new float[10]{1, 2, 3, 4, 5, 5, 4, 3, 2, 1};
-    const float* core_test = new float[3]{-1, 0, 1};
-
-    float* layer = new float[10]{1, 0, 2, 0, 3, 0, 4, 0, 5, 0};
-    const float* yadro = new float[3]{0.5, 1, 0.5};
-
-    convolution(layer, 10, yadro, 3, 1, 0);
+    convolution(sig, 10, core, 3, 1, 0);
     putchar('\n');
 }
 
 void task2() {
     float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
-    float* sig_test = new float[10]{1, 2, 3, 4, 5, 5, 4, 3, 2, 1};
-
-    float* layer = new float[10]{1, 0, 2, 0, 3, 0, 4, 0, 5, 0};
-    const float* yadro = new float[2]{-1, 1};
-
     const float* core = new float[2]{-1, 1};
-    const float* core_test = new float[3]{-1, 0, 1};
-    convolution(layer, 10, yadro, 2, 2, 0);
+
+    // add zeros
+    convolution(sig, 10, core, 2, 2, 0, true);
     putchar('\n');
 }
 
@@ -79,12 +99,24 @@ void task3() {
     float* sig1 = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
     float* sig2 = new float[10]{6, 12, 3, 9, 15, 6, 18, 9, 21, 12};
 
+    std::cout << "convolution 1: " << '\n';
     auto res1 = convolution(sig1, 10, core1, 2);
+    std::cout << "convolution 2: " << '\n';
     auto res2 = convolution(sig2, 10, core2, 2);
+
     float* res = new float[10];
+    std::cout << "result : " << '\n';
     for (int i = 0; i < 10; i++) {
         res[i] = res1[i] + res2[i];
     }
+
+    auto res3 = convolution(sig2, 10, core1, 2);
+    auto res4 = convolution(sig1, 10, core2, 2);
+    std::cout << "result : " << '\n';
+    for (int i = 0; i < 10; i++) {
+        res[i] = res3[i] + res4[i];
+    }
+
     print_arr(res, 10);
     putchar('\n');
 }
@@ -110,9 +142,6 @@ void task5() {
     const float* core1 = new float[3]{0.5, 1, 0.5};
     const float* core2 = new float[2]{-1, 1};
     float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
-
-    float* layer = new float[10]{1, 0, 2, 0, 3, 0, 4, 0, 5, 0};
-    const float* yadro = new float[3]{-0.5, 1, 0.5};
 
     auto first = convolution(sig, 10, core1, 3);
     relu(first, 10);
