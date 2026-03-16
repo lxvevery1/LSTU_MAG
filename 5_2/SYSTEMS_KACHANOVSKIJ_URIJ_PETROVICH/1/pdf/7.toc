@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание кафедры}{3}{section.1}%
+\contentsline {section}{\numberline {2}Особенность варианта}{3}{section.2}%
+\contentsline {section}{\numberline {3}Gaphor}{4}{section.3}%
+\contentsline {section}{\numberline {4}Начало работы}{4}{section.4}%
+\contentsline {section}{\numberline {5}Вывод}{15}{section.5}%
