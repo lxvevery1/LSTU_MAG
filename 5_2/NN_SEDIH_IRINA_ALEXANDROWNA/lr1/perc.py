@@ -33,6 +33,11 @@
 
 import numpy as np
 
+def norm(X):
+    X_mean = X.mean()
+    X_std = X.std()
+    return (X - X_mean) / X_std
+
 # 1. Запустите код генерации данных из вашего варианта.
 seed = 17
 np.random.seed(seed)
@@ -40,12 +45,14 @@ np.random.seed(seed)
 X = np.random.uniform(0, 4*np.pi, 600).reshape(-1, 1)
 y = np.sin(X) + 0.3*np.sin(5*X) + np.random.normal(0, 0.1, X.shape)
 
+# для true графика (в исходном пространстве!)
 X_sorted = np.sort(X, axis=0)
 y_true = np.sin(X_sorted) + 0.3*np.sin(5*X_sorted)
 
-# Создание графика
 from graphic import graphics
 g = graphics()
+
+# график ДО нормализации
 g.draw_datagraph(X, y, X_sorted, y_true)
 
 # 2. Разделите данные на обучающую, проверочную и тестовую выборки (80/10/10).
@@ -62,6 +69,13 @@ X_train, X_temp, y_train, y_temp = train_test_split(
 X_val, X_test, y_val, y_test = train_test_split(
     X_temp, y_temp, test_size=0.5, random_state=random_state
 )
+
+X_mean = X_train.mean()
+X_std = X_train.std()
+
+X_train = (X_train - X_mean) / X_std
+X_val   = (X_val   - X_mean) / X_std
+X_test  = (X_test  - X_mean) / X_std
 
 # 3. Реализуйте класс MLP
 from mlp import MLP
@@ -81,7 +95,12 @@ print("Test MSE:", test_loss)
 g.draw_loss(loss_history)
 
 X_plot = np.linspace(0, 4*np.pi, 400).reshape(-1,1)
-y_pred = model.forward(X_plot)
+
+# нормализуем для модели
+X_plot_norm = (X_plot - X_mean) / X_std
+
+y_pred = model.forward(X_plot_norm)
 y_true = np.sin(X_plot) + 0.3*np.sin(5*X_plot)
 
+# передаём ИСХОДНЫЙ X (не нормализованный)
 g.def_prediction(X_plot, y_true, X, y, y_pred)
