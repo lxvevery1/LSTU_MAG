@@ -2,7 +2,7 @@ import numpy as np
 
 class MLP:
 
-    def __init__(self, input_size, hidden1, hidden2, output_size, lr=0.001):
+    def __init__(self, input_size, hidden1, hidden2, output_size, lr=0.02):
 
         self.lr = lr
 
@@ -21,11 +21,23 @@ class MLP:
     def relu(self, x):
         return np.maximum(0, x)
 
+    def relu_d(self, x):
+        return (x > 0).astype(float)
+
+
     def tanh(self, x):
         return np.tanh(x)
 
-    def relu_derivative(self, x):
-        return (x > 0).astype(float)
+    def tanh_d(self, x):
+        return 1 - np.tanh(x) ** 2
+
+
+    def sigmoid(self, x):
+        return 1 / (1 + np.exp(-x))
+
+    def sigmoid_d(self, x):
+        return self.sigmoid(x)
+
 
 
     def mse(self, y_pred, y_true):
@@ -38,7 +50,7 @@ class MLP:
         self.A1 = self.relu(self.Z1)
 
         self.Z2 = self.A1 @ self.W2 + self.b2
-        self.A2 = self.relu(self.Z2)
+        self.A2 = self.tanh(self.Z2)
 
         self.Z3 = self.A2 @ self.W3 + self.b3
         self.A3 = self.Z3  # Linear
@@ -57,12 +69,12 @@ class MLP:
         db3 = np.sum(dZ3, axis=0, keepdims=True)
 
         dA2 = dZ3 @ self.W3.T
-        dZ2 = dA2 * self.relu_derivative(self.Z2)
+        dZ2 = dA2 * self.tanh_d(self.Z2)
         dW2 = self.A1.T @ dZ2
         db2 = np.sum(dZ2, axis=0, keepdims=True)
 
         dA1 = dZ2 @ self.W2.T
-        dZ1 = dA1 * self.relu_derivative(self.Z1)
+        dZ1 = dA1 * self.relu_d(self.Z1)
         dW1 = X.T @ dZ1
         db1 = np.sum(dZ1, axis=0, keepdims=True)
 
@@ -91,3 +103,5 @@ class MLP:
 
             if epoch % 200 == 0:
                 print(f"epoch {epoch}, loss {loss:.6f}")
+
+        return self.loss_history

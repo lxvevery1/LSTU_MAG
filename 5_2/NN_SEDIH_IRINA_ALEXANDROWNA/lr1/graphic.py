@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 
 class graphics:
     def draw_datagraph(self, X, y, X_sorted, y_true):
@@ -16,16 +15,14 @@ class graphics:
         plt.tight_layout()
         plt.show()
 
-    def draw_loss(self, model, X_train, y_train):
-        X_plot = np.linspace(0, 4*np.pi, 400).reshape(-1,1)
-        y_plot = model.forward(X_plot)
+    def draw_loss(self, loss_history):
+        plt.figure(figsize=(10, 6))
 
-        plt.figure(figsize=(10,6))
+        plt.plot(loss_history, linewidth=2)
+        plt.title("Loss over epochs")
+        plt.xlabel("Epoch")
+        plt.ylabel("Loss")
 
-        plt.scatter(X_train, y_train, s=10, alpha=0.3, label="train")
-        plt.plot(X_plot, y_plot, linewidth=3, label="MLP prediction")
-
-        plt.legend()
         plt.grid()
         plt.show()
 

@@ -22,8 +22,8 @@
 # 4. Обучите сеть, сохраняя историю ошибок.
 # 5. Визуализируйте:
 #  - График Loss по эпохам
-#  --- Для классификации: разделяющую поверхность и accuracy
-#  - Для регрессии: график «предсказание vs истина»
+#  - график «предсказание vs истина»
+#  - график аппроксимации
 # 6. Сделайте выводы о том, как функция активации влияет на способность сети обучаться при использовании MSE для классификации.
 # 7. Обратите внимание на скорость сходимости и итоговую точность.
 
@@ -67,8 +67,8 @@ X_val, X_test, y_val, y_test = train_test_split(
 from mlp import MLP
 
 # 4. Обучите сеть, сохраняя историю ошибок.
-model = MLP(1, 64, 32, 1, lr=0.001)
-model.train(X_train, y_train, epochs=800)
+model = MLP(1, 64, 32, 1, lr=0.01)
+loss_history = model.train(X_train, y_train, epochs=800)
 
 # Проверка на test
 y_pred = model.forward(X_test)
@@ -78,7 +78,7 @@ test_loss = model.mse(y_pred, y_test)
 print("Test MSE:", test_loss)
 
 # 4. Визуализация
-g.draw_loss(model, X_train, y_train)
+g.draw_loss(loss_history)
 
 X_plot = np.linspace(0, 4*np.pi, 400).reshape(-1,1)
 y_pred = model.forward(X_plot)
