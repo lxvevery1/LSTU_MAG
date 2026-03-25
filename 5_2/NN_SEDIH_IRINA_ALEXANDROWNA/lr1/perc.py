@@ -81,7 +81,7 @@ X_test  = (X_test  - X_mean) / X_std
 from mlp import MLP
 
 # 4. Обучите сеть, сохраняя историю ошибок.
-model = MLP(1, 64, 32, 1, lr=0.01)
+model = MLP(1, 64, 32, 1, lr=0.02)
 loss_history = model.train(X_train, y_train, epochs=800)
 
 # Проверка на test

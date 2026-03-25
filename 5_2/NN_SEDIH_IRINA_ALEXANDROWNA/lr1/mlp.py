@@ -39,7 +39,6 @@ class MLP:
         return self.sigmoid(x)
 
 
-
     def mse(self, y_pred, y_true):
         return np.mean((y_pred - y_true) ** 2)
 
@@ -50,7 +49,7 @@ class MLP:
         self.A1 = self.relu(self.Z1)
 
         self.Z2 = self.A1 @ self.W2 + self.b2
-        self.A2 = self.tanh(self.Z2)
+        self.A2 = self.sigmoid(self.Z2)
 
         self.Z3 = self.A2 @ self.W3 + self.b3
         self.A3 = self.Z3  # Linear
@@ -69,7 +68,7 @@ class MLP:
         db3 = np.sum(dZ3, axis=0, keepdims=True)
 
         dA2 = dZ3 @ self.W3.T
-        dZ2 = dA2 * self.tanh_d(self.Z2)
+        dZ2 = dA2 * self.sigmoid_d(self.Z2)
         dW2 = self.A1.T @ dZ2
         db2 = np.sum(dZ2, axis=0, keepdims=True)
 
