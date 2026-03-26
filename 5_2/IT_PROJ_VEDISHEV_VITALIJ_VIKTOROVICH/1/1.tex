@@ -1,0 +1,120 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{newtxtext,newtxmath}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+
+\title{Отчёт по "Управление ИТ-проектами"}
+\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
+
+\begin{document}
+
+\setstretch{1.5}
+\noindent
+\begin{minipage}[t]{0.01\textwidth}
+    \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
+\end{minipage}%
+\begin{minipage}[c]{1.1\linewidth}
+    \centering
+    {\small
+    МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ \\[1em]
+    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\
+    ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+    «ЛИПЕЦКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»
+    }
+\end{minipage}%
+
+\vspace{3em}
+
+\noindent
+\hspace{1em}%
+\begin{minipage}[t]{0.8\textwidth}
+\textbf{Институт} \hspace{2em} компьютерных наук \\
+\textbf{Кафедра} \hspace{2em} автоматизированных систем управления
+\end{minipage}
+
+
+\vspace{6em}
+
+\begin{center}
+\textbf{Практическая работа №1} \\
+по дисциплине \\ <<Управление ИТ-проектами>>
+\end{center}
+
+\vspace{6em}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
+    Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
+Руководитель & \\
+К.т.н., доцент & \makebox[4cm]{\hrulefill} & Ведищев В.В. \\
+\end{tabular*}
+
+\vfill
+\begin{center}
+    Липецк, 2026
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Выбор темы}
+
+В качестве темы проекта выбрана разработка системы удалённого обмена сообщениями в реальном времени с поддержкой текстовой и голосовой связи, ориентированной на использование в корпоративной среде.
+
+Актуальность данной темы обусловлена необходимостью обеспечения защищённой коммуникации между сотрудниками организации без зависимости от внешних централизованных сервисов. Использование сторонних платформ создаёт риски утечки конфиденциальной информации, а также накладывает ограничения, связанные с доступностью и контролем данных.
+
+Разрабатываемая система предполагает функционирование внутри корпоративной сети, что позволяет:
+\begin{itemize}
+\item повысить уровень информационной безопасности за счёт полного контроля над инфраструктурой;
+\item увеличить скорость передачи данных благодаря использованию локальных сетевых ресурсов;
+\item обеспечить интеграцию с внутренними сервисами организации;
+\item реализовать специализированные сценарии использования (например, передача изображений на проекторы внутри сети).
+\end{itemize}
+
+Проект требует междисциплинарного подхода и включает компетенции в области защиты информации, фронтенд- и бэкенд-разработки, а также сетевых технологий.
+
+\section{Формулирование цели}
+
+Целью проекта является разработка эффективной и безопасной системы обмена сообщениями в реальном времени для корпоративной среды, обеспечивающей текстовую и голосовую коммуникацию без использования внешних централизованных сервисов.
+
+\end{document}

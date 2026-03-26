@@ -1,0 +1,143 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{newtxtext,newtxmath}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\titleformat{\subsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\subsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+
+\title{Отчёт по "Управление ИТ-проектами"}
+\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
+
+\begin{document}
+
+\setstretch{1.5}
+\noindent
+\begin{minipage}[t]{0.01\textwidth}
+    \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
+\end{minipage}%
+\begin{minipage}[c]{1.1\linewidth}
+    \centering
+    {\small
+    МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ \\[1em]
+    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\
+    ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+    «ЛИПЕЦКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»
+    }
+\end{minipage}%
+
+\vspace{3em}
+
+\noindent
+\hspace{1em}%
+\begin{minipage}[t]{0.8\textwidth}
+\textbf{Институт} \hspace{2em} компьютерных наук \\
+\textbf{Кафедра} \hspace{2em} автоматизированных систем управления
+\end{minipage}
+
+
+\vspace{6em}
+
+\begin{center}
+\textbf{Практическая работа №2} \\
+по дисциплине \\ <<Управление ИТ-проектами>>
+\end{center}
+
+\vspace{6em}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
+    Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
+Руководитель & \\
+К.т.н., доцент & \makebox[4cm]{\hrulefill} & Ведищев В.В. \\
+\end{tabular*}
+
+\vfill
+\begin{center}
+    Липецк, 2026
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Неформальное описание проекта}
+
+Разрабатываемая система представляет собой корпоративное приложение для обмена
+сообщениями в режиме реального времени, предназначенное для использования
+внутри локальной сети организации.
+
+Основная задача системы — обеспечить сотрудникам возможность безопасной и
+быстрой коммуникации без использования сторонних интернет-сервисов.
+Пользователи смогут обмениваться текстовыми сообщениями, осуществлять голосовую
+связь, а также передавать файлы, включая изображения и другие данные,
+необходимые для работы.
+
+Система ориентирована на работу в пределах корпоративной сети, что позволяет
+существенно повысить скорость передачи данных и снизить задержки. Например,
+пользователь сможет мгновенно отправить изображение на проектор или другое
+устройство отображения, подключённое к той же сети.
+
+Особое внимание уделяется безопасности: все данные должны передаваться в
+зашифрованном виде, а доступ к системе — строго контролироваться.
+Предусматривается разграничение прав пользователей и ведение журнала действий.
+
+С технической точки зрения система может быть реализована по клиент-серверной с
+использованием современных сетевых протоколов, обеспечивающих передачу данных в
+реальном времени.
+
+\newpage
+\section{Требования к проекту}
+
+\textbf{Технические требования}
+\begin{itemize}
+\item работа системы в рамках корпоративной сети (LAN);
+\item развёртывание на локальных серверах;
+\item использование протоколов реального времени (TCP, UDP);
+\item интеграция с корпоративными системами аутентификации.
+\end{itemize}
+
+\end{document}

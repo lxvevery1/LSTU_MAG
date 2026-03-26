@@ -1,0 +1,169 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{newtxtext,newtxmath}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\titleformat{\subsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\subsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+
+\title{Отчёт по "Управление ИТ-проектами"}
+\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
+
+\begin{document}
+
+\setstretch{1.5}
+\noindent
+\begin{minipage}[t]{0.01\textwidth}
+    \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
+\end{minipage}%
+\begin{minipage}[c]{1.1\linewidth}
+    \centering
+    {\small
+    МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ \\[1em]
+    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\
+    ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+    «ЛИПЕЦКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»
+    }
+\end{minipage}%
+
+\vspace{3em}
+
+\noindent
+\hspace{1em}%
+\begin{minipage}[t]{0.8\textwidth}
+\textbf{Институт} \hspace{2em} компьютерных наук \\
+\textbf{Кафедра} \hspace{2em} автоматизированных систем управления
+\end{minipage}
+
+
+\vspace{6em}
+
+\begin{center}
+\textbf{Практическая работа №3} \\
+по дисциплине \\ <<Управление ИТ-проектами>>
+\end{center}
+
+\vspace{6em}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
+    Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
+Руководитель & \\
+К.т.н., доцент & \makebox[4cm]{\hrulefill} & Ведищев В.В. \\
+\end{tabular*}
+
+\vfill
+\begin{center}
+    Липецк, 2026
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Выдача задания}
+
+В рамках индивидуального домашнего задания поставлена задача разработки
+собственного ИТ-проекта, ориентированного на решение актуальной прикладной
+проблемы в корпоративной среде.
+
+Сформулированное задание заключается в создании системы удалённого обмена
+сообщениями в реальном времени с поддержкой текстовой и голосовой связи.
+Ключевым условием является функционирование системы внутри корпоративной сети
+без зависимости от внешних централизованных сервисов.
+
+Проект должен учитывать требования к:
+\begin{itemize}
+\item высокой скорости передачи данных;
+\item обеспечению информационной безопасности;
+\item устойчивости к сбоям;
+\item удобству использования.
+\end{itemize}
+
+Дополнительно требуется предусмотреть возможность расширения функциональности
+системы и её интеграции с существующей IT-инфраструктурой организации.
+
+\section{Утверждение спецификации требований}
+
+На основе анализа задачи была сформирована и утверждена спецификация требований
+к разрабатываемой системе.
+
+Спецификация включает следующие ключевые положения:
+
+\subsection{Функциональные требования}
+
+Система должна обеспечивать:
+\begin{itemize}
+    \item обмен текстовыми сообщениями в режиме реального времени;
+    \item поддержку голосовой связи между пользователями;
+    \item передачу файлов внутри корпоративной сети;
+    \item возможность отправки данных на устройства отображения (например, проекторы);
+    \item регистрацию и аутентификацию пользователей;
+    \item разграничение прав доступа (роли пользователей);
+\end{itemize}
+
+\subsection{Нефункциональные требования}
+
+\textbf{Производительность:}
+\begin{itemize}
+    \item минимальные задержки при передаче сообщений и голосовых данных;
+    \item эффективное использование пропускной способности локальной сети;
+    \item поддержка одновременной работы большого количества пользователей.
+\end{itemize}
+
+\textbf{Безопасность:}
+\begin{itemize}
+    \item шифрование передаваемых данных;
+    \item защита от несанкционированного доступа;
+    \item контроль прав пользователей;
+\end{itemize}
+
+\textbf{Удобство использования:}
+\begin{itemize}
+    \item простой и понятный интерфейс;
+\end{itemize}
+
+\end{document}
