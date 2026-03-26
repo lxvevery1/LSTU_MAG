@@ -4,3 +4,4 @@
 \contentsline {subsection}{\numberline {2.1}ReLU + ReLU}{3}{subsection.2.1}%
 \contentsline {subsection}{\numberline {2.2}ReLU + Tanh}{5}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}ReLU + Sigmoid}{7}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Вывод}{9}{section.3}%

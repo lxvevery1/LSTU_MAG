@@ -2,7 +2,7 @@ import numpy as np
 
 class MLP:
 
-    def __init__(self, input_size, hidden1, hidden2, output_size, lr=0.02):
+    def __init__(self, input_size, hidden1, hidden2, hidden3, output_size, lr=0.02):
 
         self.lr = lr
 
@@ -13,9 +13,12 @@ class MLP:
         self.W2 = np.random.randn(hidden1, hidden2) * np.sqrt(2 / hidden1)
         self.b2 = np.zeros((1, hidden2))
 
+        self.W3 = np.random.randn(hidden2, hidden3) * np.sqrt(1 / hidden2)
+        self.b3 = np.zeros((1, hidden3))
+
         # Linear output
-        self.W3 = np.random.randn(hidden2, output_size) * np.sqrt(1 / hidden2)
-        self.b3 = np.zeros((1, output_size))
+        self.W4 = np.random.randn(hidden3, output_size) * np.sqrt(1 / hidden3)
+        self.b4 = np.zeros((1, output_size))
 
 
     def relu(self, x):
@@ -49,26 +52,34 @@ class MLP:
         self.A1 = self.relu(self.Z1)
 
         self.Z2 = self.A1 @ self.W2 + self.b2
-        self.A2 = self.sigmoid(self.Z2)
+        self.A2 = self.tanh(self.Z2)
 
         self.Z3 = self.A2 @ self.W3 + self.b3
-        self.A3 = self.Z3  # Linear
+        self.A3 = self.relu(self.Z3)
 
-        return self.A3
+        self.Z4 = self.A3 @ self.W4 + self.b4
+        self.A4 = self.Z4  # Linear
+
+        return self.A4
 
 
     def backward(self, X, y):
 
         m = X.shape[0]
 
-        y_pred = self.A3
+        y_pred = self.A4
 
-        dZ3 = (y_pred - y) * 2 / m
+        dZ4 = (y_pred - y) * 2 / m
+        dW4 = self.A3.T @ dZ4
+        db4 = np.sum(dZ4, axis=0, keepdims=True)
+
+        dA3 = dZ4 @ self.W4.T
+        dZ3 = dA3 * self.relu_d(self.Z3)
         dW3 = self.A2.T @ dZ3
         db3 = np.sum(dZ3, axis=0, keepdims=True)
 
         dA2 = dZ3 @ self.W3.T
-        dZ2 = dA2 * self.sigmoid_d(self.Z2)
+        dZ2 = dA2 * self.tanh_d(self.Z2)
         dW2 = self.A1.T @ dZ2
         db2 = np.sum(dZ2, axis=0, keepdims=True)
 
@@ -78,6 +89,9 @@ class MLP:
         db1 = np.sum(dZ1, axis=0, keepdims=True)
 
         # update weights
+        self.W4 -= self.lr * dW4
+        self.b4 -= self.lr * db4
+
         self.W3 -= self.lr * dW3
         self.b3 -= self.lr * db3
 
