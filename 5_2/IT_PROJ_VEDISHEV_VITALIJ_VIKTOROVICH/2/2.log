@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  23 MAR 2026 11:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  29 MAR 2026 22:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1186,7 +1186,7 @@ Package caption Info: End \AtBeginDocument code.
 \c@mv@boldtabular=\count341
 LaTeX Info: Command `\dddot' is already robust on input line 53.
 LaTeX Info: Command `\ddddot' is already robust on input line 53.
-<~/programmer/++Programmer/5_1/LSTU.jpg, id=12, 42.705pt x 63.729pt>
+<~/programmer/++Programmer/5_1/LSTU.jpg, id=36, 42.705pt x 63.729pt>
 File: ~/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
 <use ~/programmer/++Programmer/5_1/LSTU.jpg>
 Package pdftex.def Info: ~/programmer/++Programmer/5_1/LSTU.jpg  used on input 
@@ -1303,7 +1303,7 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 
 
 [2]
-Overfull \hbox (10.59398pt too wide) in paragraph at lines 113--118
+Overfull \hbox (10.59398pt too wide) in paragraph at lines 127--132
 \T2A/ntxtlf/b/n/14.4 (-20) без-опас-ной и быст-рой ком-му-ни-ка-ции без ис-поль
 -зо-ва-ния сто-рон-них интернет-
  []
@@ -1312,15 +1312,21 @@ Overfull \hbox (10.59398pt too wide) in paragraph at lines 113--118
 
 [3]
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 137.
+e 158.
  (/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 137.
+(Font)              scaled to size 14.4pt on input line 158.
 
 
-[4{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}] (./2.aux)
+[4]
+
+[5{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
+
+[6]
+
+[7] (./2.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1330,24 +1336,24 @@ L3 programming layer <2020/03/25>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `2.out' has not changed.
-(rerunfilecheck)             Checksum: F3097F2D830738390B77D6C79E712F44;478.
+(rerunfilecheck)             Checksum: 64D0DFEE6E79FE21F9604E0BDB7ABDE0;1868.
  ) 
 Here is how much of TeX's memory you used:
- 21901 strings out of 474645
- 337950 string characters out of 5759192
- 756208 words of memory out of 5000000
- 44555 multiletter control sequences out of 15000+600000
- 576904 words of font info for 87 fonts, out of 8000000 for 9000
+ 21947 strings out of 474645
+ 338453 string characters out of 5759192
+ 757212 words of memory out of 5000000
+ 44564 multiletter control sequences out of 15000+600000
+ 577926 words of font info for 101 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 80i,7n,93p,998b,488s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,7n,93p,998b,565s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf
 -dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/typ
 e1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
 per/sfrm2074.pfb>
-Output written on 2.pdf (4 pages, 58207 bytes).
+Output written on 2.pdf (7 pages, 64941 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
- 7 named destinations out of 1000 (max. 500000)
- 15382 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 106 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
+ 16 named destinations out of 1000 (max. 500000)
+ 15430 words of extra memory for PDF output out of 17280 (max. 10000000)
 
