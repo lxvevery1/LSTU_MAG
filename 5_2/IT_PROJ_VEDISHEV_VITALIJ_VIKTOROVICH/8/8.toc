@@ -1,0 +1,5 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Планирование версий программного продукта}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Фазы процесса разработки}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Планирование и построение дерева версий}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Средства контроля версий}{5}{subsection.1.3}%
