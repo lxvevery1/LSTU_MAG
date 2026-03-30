@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  23 MAR 2026 11:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  30 MAR 2026 14:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1186,7 +1186,7 @@ Package caption Info: End \AtBeginDocument code.
 \c@mv@boldtabular=\count341
 LaTeX Info: Command `\dddot' is already robust on input line 53.
 LaTeX Info: Command `\ddddot' is already robust on input line 53.
-<~/programmer/++Programmer/5_1/LSTU.jpg, id=4, 42.705pt x 63.729pt>
+<~/programmer/++Programmer/5_1/LSTU.jpg, id=20, 42.705pt x 63.729pt>
 File: ~/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
 <use ~/programmer/++Programmer/5_1/LSTU.jpg>
 Package pdftex.def Info: ~/programmer/++Programmer/5_1/LSTU.jpg  used on input 
@@ -1288,33 +1288,255 @@ LaTeX Font Warning: Font shape `T2A/ntxtlf/b/n' undefined
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
 /enc/dvips/cm-super/cm-super-t2a.enc} </home/stanik/programmer/++Programmer/5_1
-/LSTU.jpg>] (./3.toc)
+/LSTU.jpg>] (./3.toc
+LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
+e 1.
+ (/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
+File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
+)
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 1.
+)
 \tf@toc=\write4
 \openout4 = `3.toc'.
 
 
 
 [2]
+
+[3]
+Overfull \hbox (9.1472pt too wide) in alignment at lines 128--132
+ [] [] [] 
+ []
+
+
+Overfull \hbox (9.1472pt too wide) in alignment at lines 132--136
+ [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Разрешение/запрет
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--142
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Отправка тек-сто-вых
+ []
+
+
+Underfull \hbox (badness 1038) in paragraph at lines 142--142
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Текст со-об-ще-ния, ID
+ []
+
+
+Underfull \hbox (badness 3138) in paragraph at lines 154--154
+[]|\T2A/ntxtlf/b/n/14.4 (+20) События (ло-гин, от-
+ []
+
+
+Overfull \hbox (85.7268pt too wide) in paragraph at lines 156--157
+[]|\T2A/ntxtlf/b/n/14.4 (-20) Созданный/обновлјнный/удалјнный
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--160
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Обработка от-клю-че-
+ []
+
+
+Overfull \hbox (9.1472pt too wide) in alignment at lines 136--162
+ [] [] [] 
+ []
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Выходные
+ []
+
+
+Overfull \hbox (21.54718pt too wide) in alignment at lines 166--170
+ [] [] [] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--173
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Выходные
+ []
+
+
+Overfull \hbox (21.54718pt too wide) in alignment at lines 170--174
+ [] [] [] [] 
+ []
+
+
+Overfull \hbox (12.6773pt too wide) in paragraph at lines 176--176
+[]|\T2A/ntxtlf/b/n/14.4 (-20) Производительность| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--176
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Сообщения,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--176
+\T2A/ntxtlf/b/n/14.4 (+20) фай-лы,
+ []
+
+
+Overfull \hbox (1.5784pt too wide) in paragraph at lines 176--177
+[]|\T2A/ntxtlf/b/n/14.4 (-20) Доставленные
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+\T2A/ntxtlf/b/n/14.4 (+20) со-об-ще-ни-я/-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+\T2A/ntxtlf/b/n/14.4 (+20) фай-лы,
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 178--178
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Использование со-вре-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
+\T2A/ntxtlf/b/n/14.4 (+20) мен-ных ал-го-рит-мов
+ []
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 178--178
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Любые пе-ре-
+ []
+
+
+Overfull \hbox (18.0165pt too wide) in paragraph at lines 178--179
+[]|\T2A/ntxtlf/b/n/14.4 (-20) Зашифрованный
+ []
+
+
+Underfull \hbox (badness 6708) in paragraph at lines 178--179
+\T2A/ntxtlf/b/n/14.4 (+20) се-те-вой тра-
+ []
+
+
+Underfull \hbox (badness 1043) in paragraph at lines 180--180
+\T2A/ntxtlf/b/n/14.4 (+20) рект-но ра-бо-тать при
+ []
+
+
+Underfull \hbox (badness 3568) in paragraph at lines 180--180
+\T2A/ntxtlf/b/n/14.4 (+20) тия, со-об-ще-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Корректная
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+\T2A/ntxtlf/b/n/14.4 (+20) ра-бо-та без
+ []
+
+
+Overfull \hbox (4.46591pt too wide) in paragraph at lines 182--182
+[]|\T2A/ntxtlf/b/n/14.4 (-20) Масштабируемость| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Новые под-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
+\T2A/ntxtlf/b/n/14.4 (+20) клю-че-ния
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--182
+\T2A/ntxtlf/b/n/14.4 (+20) поль-зо-ва-те-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Стабильная
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+\T2A/ntxtlf/b/n/14.4 (+20) про-из-во-ди-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
+\T2A/ntxtlf/b/n/14.4 (+20) тель-ность
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--186
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Запросы
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--186
+\T2A/ntxtlf/b/n/14.4 (+20) от кли-ен-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--186
+\T2A/ntxtlf/b/n/14.4 (+20) тов раз-ных
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+[]|\T2A/ntxtlf/b/n/14.4 (+20) Корректная
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+\T2A/ntxtlf/b/n/14.4 (+20) ра-бо-та при-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+\T2A/ntxtlf/b/n/14.4 (+20) ло-же-ний на
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 186--187
+\T2A/ntxtlf/b/n/14.4 (+20) всех под-дер-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+\T2A/ntxtlf/b/n/14.4 (+20) жи-ва-е-мых
+ []
+
+
+Overfull \hbox (21.54718pt too wide) in alignment at lines 174--188
+ [] [] [] [] 
+ []
+
+[5]
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 120.
+e 194.
  (/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 120.
+(Font)              scaled to size 14.4pt on input line 194.
 
 
-[3{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
+[6{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
 
-[4] (./3.aux
-LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
-e 8.
- (/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
-File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
-)
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 8.
-)
+[7] (./3.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -1323,31 +1545,25 @@ L3 programming layer <2020/03/25>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `3.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `3.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  583CCF4478974E1BDC69EAC2F9D70FF6;1008.
+Package rerunfilecheck Info: File `3.out' has not changed.
+(rerunfilecheck)             Checksum: C08F0E72BF152A21FDF5DCEE792A138E;1080.
  ) 
 Here is how much of TeX's memory you used:
- 21899 strings out of 474645
- 337965 string characters out of 5759192
- 756212 words of memory out of 5000000
- 44555 multiletter control sequences out of 15000+600000
- 576758 words of font info for 85 fonts, out of 8000000 for 9000
+ 21931 strings out of 474645
+ 338314 string characters out of 5759192
+ 766333 words of memory out of 5000000
+ 44564 multiletter control sequences out of 15000+600000
+ 577415 words of font info for 94 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 80i,7n,93p,998b,567s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,7n,93p,998b,643s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf
 -dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/typ
 e1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
 per/sfrm2074.pfb>
-Output written on 3.pdf (4 pages, 57767 bytes).
+Output written on 3.pdf (7 pages, 66100 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
- 15366 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 88 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
+ 15398 words of extra memory for PDF output out of 17280 (max. 10000000)
 

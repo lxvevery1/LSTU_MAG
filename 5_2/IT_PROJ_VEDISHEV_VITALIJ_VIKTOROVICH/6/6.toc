@@ -1,0 +1,8 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Основное содержание SWOT-анализа}{3}{section.1}%
+\contentsline {section}{\numberline {2}Сильные стороны}{3}{section.2}%
+\contentsline {section}{\numberline {3}Слабые стороны, проблемы}{4}{section.3}%
+\contentsline {section}{\numberline {4}Возможности}{4}{section.4}%
+\contentsline {section}{\numberline {5}События внешней среды как возможности и как угрозы}{5}{section.5}%
+\contentsline {section}{\numberline {6}Анализ конкурентных сил}{5}{section.6}%
+\contentsline {section}{\numberline {7}Использование результатов SWOT-анализа}{6}{section.7}%

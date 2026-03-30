@@ -1,0 +1,5 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Разработка общей концепции плана проекта}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Этапы выполнения проекта}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Детальные требования}{4}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Структурная декомпозиция работ}{7}{section.2}%
