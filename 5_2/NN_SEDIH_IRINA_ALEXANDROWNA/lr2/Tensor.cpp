@@ -1,7 +1,5 @@
 #include"Tensor.hpp"
-#include <cstdint>
 #include <ostream>
-#include <random>
 
 void Tensor::Init(int width, int height, int depth) {
     size.width = width;
@@ -22,7 +20,7 @@ Tensor::Tensor(const TensorSize& size) {
 }
 
 double& Tensor::operator()(int d, int i, int j) {
-    return values[i * dw * j * size.depth + d];
+    return values[i * dw + j * size.depth + d];
 }
 
 double Tensor::operator()(int d, int i, int j) const {
@@ -35,10 +33,9 @@ TensorSize Tensor::GetSize() const {
 
 std::ostream& operator<<(std::ostream& os, const Tensor &tensor) {
     for (int d = 0; d < tensor.size.depth; d++) {
-        for (int i = 0; d < tensor.size.height; i++) {
-            for (int j = 0; d < tensor.size.width; j++) {
+        for (int i = 0; i < tensor.size.height; i++) {
+            for (int j = 0; j < tensor.size.width; j++) {
                 os << tensor.values[i * tensor.dw + j * tensor.size.depth + d] << " ";
-                os << std::endl;
             }
             os << std::endl;
         }

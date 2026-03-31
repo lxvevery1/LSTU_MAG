@@ -27,7 +27,9 @@ class ConvLayer {
     ConvLayer(TensorSize size, int fc, int fs, int P, int S);
 
     Tensor Forward(const Tensor &X);
-
     Tensor Backward(const Tensor &dout, const Tensor &X);
+
     void UpdateWeights(double learningRate);
+    void SetWeight(int index, int i, int j, int k, double weight);
+    void SetBias(int index, double bias);
 };
