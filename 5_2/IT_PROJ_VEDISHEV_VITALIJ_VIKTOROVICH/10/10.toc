@@ -1,0 +1,4 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Примеры систем командной разработки}{3}{section.1}%
+\contentsline {section}{\numberline {2}Организация взаимодействия}{3}{section.2}%
+\contentsline {section}{\numberline {3}Контроль версий}{4}{section.3}%

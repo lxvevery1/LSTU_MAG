@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Управление разработкой через инструмент «тикетов»}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Понятие «тикет»}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Понятие «характеристики взаимодействия»}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Этапы управления разработкой}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Поддержка итеративности этапов разработки}{4}{subsection.1.4}%

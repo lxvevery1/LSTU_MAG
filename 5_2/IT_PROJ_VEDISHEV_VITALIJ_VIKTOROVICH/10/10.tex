@@ -1,0 +1,132 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{newtxtext,newtxmath}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\titleformat{\subsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\subsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+
+\title{Отчёт по "Управление ИТ-проектами"}
+\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
+
+\begin{document}
+
+\setstretch{1.5}
+\noindent
+\begin{minipage}[t]{0.01\textwidth}
+    \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
+\end{minipage}%
+\begin{minipage}[c]{1.1\linewidth}
+    \centering
+    {\small
+    МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ \\[1em]
+    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\
+    ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+    «ЛИПЕЦКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»
+    }
+\end{minipage}%
+
+\vspace{3em}
+
+\noindent
+\hspace{1em}%
+\begin{minipage}[t]{0.8\textwidth}
+\textbf{Институт} \hspace{2em} компьютерных наук \\
+\textbf{Кафедра} \hspace{2em} автоматизированных систем управления
+\end{minipage}
+
+
+\vspace{6em}
+
+\begin{center}
+\textbf{Практическая работа №10} \\
+по дисциплине \\ <<Управление ИТ-проектами>>
+\end{center}
+
+\vspace{6em}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
+    Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
+Руководитель & \\
+К.т.н., доцент & \makebox[4cm]{\hrulefill} & Ведищев В.В. \\
+\end{tabular*}
+
+\vfill
+\begin{center}
+    Липецк, 2026
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Примеры систем командной разработки}
+
+Для организации совместной разработки программных продуктов используются специализированные системы, обеспечивающие хранение кода, управление изменениями и координацию участников проекта. К таким системам относятся GitLab, GitHub, Bitbucket, а также системы управления задачами, такие как Jira.
+
+В рамках данного проекта основным инструментом является система контроля версий Git, размещённая на платформе GitHub. Она обеспечивает централизованное хранение исходного кода, управление ветками и поддержку совместной работы разработчиков.
+
+\section{Организация взаимодействия}
+
+Взаимодействие внутри команды организуется через систему контроля версий и систему управления задачами. Каждая задача фиксируется в трекере, после чего назначается ответственному исполнителю.
+
+Разработка ведётся в отдельных ветках, соответствующих функциональности или исправлению ошибок. Бэкенд- и фронтенд-разработчики работают параллельно, согласуя интерфейсы взаимодействия. После завершения работы изменения проходят процедуру проверки, что позволяет выявить ошибки до интеграции в основную ветку.
+
+Специалист по информационной безопасности участвует в проверке изменений, связанных с обработкой данных и механизмами защиты. Тестировщик проверяет реализованный функционал и формирует отчёты об ошибках. Системный администратор обеспечивает работоспособность инфраструктуры и участвует в развёртывании системы.
+
+Таким образом, взаимодействие строится на принципах распределённой разработки с централизованным контролем изменений.
+
+\section{Контроль версий}
+
+Контроль версий осуществляется с использованием Git. Основная ветка проекта содержит стабильную версию системы, в то время как разработка ведётся в отдельных ветках, создаваемых для реализации конкретных задач.
+
+Используется модель ветвления, включающая ветки \texttt{main}, \texttt{develop}, \texttt{feature/*}, \texttt{bugfix/*} и \texttt{hotfix/*}. Это позволяет изолировать изменения, упростить их тестирование и контролировать процесс интеграции.
+
+Каждое изменение фиксируется в виде коммита с описанием выполненной работы. Перед объединением изменений в основную ветку проводится проверка кода, а также тестирование. Для обозначения стабильных версий используются теги, соответствующие принятой схеме версионирования.
+
+Данный подход обеспечивает отслеживаемость изменений, возможность возврата к предыдущим версиям и повышение качества разработки программного продукта.
+\end{document}
