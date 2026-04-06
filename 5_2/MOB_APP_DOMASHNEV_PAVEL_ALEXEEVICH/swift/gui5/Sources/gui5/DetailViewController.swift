@@ -12,8 +12,14 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+            view.backgroundColor = .systemBackground
 
+            textView.backgroundColor = .systemBackground
+            textView.textColor = .label
+
+            nameLabel.textColor = .label
+            specLabel.textColor = .secondaryLabel
+            qualLabel.textColor = .secondaryLabel
         setupUI()
         configure()
     }

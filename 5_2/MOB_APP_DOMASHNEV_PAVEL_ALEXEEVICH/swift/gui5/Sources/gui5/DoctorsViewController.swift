@@ -41,13 +41,11 @@ class DoctorsViewController: UITableViewController {
             cell.nameLabel.text = doctor.name
             cell.specLabel.text = doctor.specialization
 
-            // Загрузка картинки через путь (как требуют)
             if let path = Bundle.module.path(forResource: doctor.imageName, ofType: "png"),
                 let image = UIImage(contentsOfFile: path) {
                     cell.doctorImageView.image = image
                 }
 
-        // Кнопка "Инфо"
         cell.onInfoTapped = { [weak self] in
             let vc = DetailViewController()
                 vc.doctor = doctor
