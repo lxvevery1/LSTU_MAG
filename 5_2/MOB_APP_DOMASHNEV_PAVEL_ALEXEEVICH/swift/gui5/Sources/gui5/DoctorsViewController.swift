@@ -25,8 +25,8 @@ class DoctorsViewController: UITableViewController {
         super.viewDidLoad()
         title = "Врачи"
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        tableView.rowHeight = 100
+        tableView.register(DoctorCell.self, forCellReuseIdentifier: "DoctorCell")
+        tableView.rowHeight = 120
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,21 +36,23 @@ class DoctorsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let doctor = doctors[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DoctorCell", for: indexPath) as! DoctorCell
 
-        var content = cell.defaultContentConfiguration()
-        content.text = doctor.name
-        content.secondaryText = doctor.specialization
+            cell.nameLabel.text = doctor.name
+            cell.specLabel.text = doctor.specialization
 
-        if let path = Bundle.main.path(forResource: "doctor1", ofType: "png"),
-            let image = UIImage(contentsOfFile: path) {
+            // Загрузка картинки через путь (как требуют)
+            if let path = Bundle.module.path(forResource: doctor.imageName, ofType: "png"),
+                let image = UIImage(contentsOfFile: path) {
+                    cell.doctorImageView.image = image
+                }
 
-                content.image = image
-                content.imageProperties.maximumSize = CGSize(width: 60, height: 60)
-            }
-
-        cell.contentConfiguration = content
-        cell.accessoryType = .disclosureIndicator
+        // Кнопка "Инфо"
+        cell.onInfoTapped = { [weak self] in
+            let vc = DetailViewController()
+                vc.doctor = doctor
+                self?.navigationController?.pushViewController(vc, animated: true)
+        }
 
         return cell
     }

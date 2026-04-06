@@ -34,7 +34,7 @@ class DoctorCell: UITableViewCell {
         specLabel.textColor = .gray
         specLabel.font = .systemFont(ofSize: 14)
 
-        appointButton.setTitle("Записаться", for: .normal)
+        appointButton.setTitle("Записаться на прием", for: .normal)
         infoButton.setTitle("Инфо", for: .normal)
 
         appointButton.backgroundColor = UIColor.systemTeal

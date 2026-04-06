@@ -63,7 +63,7 @@ class DetailViewController: UIViewController {
     }
 
     func configure() {
-        if let path = Bundle.main.path(forResource: doctor.imageName, ofType: "png"),
+        if let path = Bundle.module.path(forResource: doctor.imageName, ofType: "png"),
             let image = UIImage(contentsOfFile: path) {
 
                 imageView.image = image
