@@ -63,7 +63,13 @@ class DetailViewController: UIViewController {
     }
 
     func configure() {
-        imageView.image = UIImage(named: doctor.imageName)
+        if let path = Bundle.main.path(forResource: doctor.imageName, ofType: "png"),
+            let image = UIImage(contentsOfFile: path) {
+
+                imageView.image = image
+            } else {
+                imageView.image = nil
+            }
         nameLabel.text = doctor.name
         specLabel.text = doctor.specialization
         qualLabel.text = doctor.qualification

@@ -41,7 +41,13 @@ class DoctorsViewController: UITableViewController {
         var content = cell.defaultContentConfiguration()
         content.text = doctor.name
         content.secondaryText = doctor.specialization
-        content.image = UIImage(named: doctor.imageName)
+
+        if let path = Bundle.main.path(forResource: "doctor1", ofType: "png"),
+            let image = UIImage(contentsOfFile: path) {
+
+                content.image = image
+                content.imageProperties.maximumSize = CGSize(width: 60, height: 60)
+            }
 
         cell.contentConfiguration = content
         cell.accessoryType = .disclosureIndicator

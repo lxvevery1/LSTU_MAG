@@ -1,0 +1,27 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "gui5",
+          "kind" : "fileSystem",
+          "location" : "/home/stanik/programmer/++Programmer/5_2/MOB_APP_DOMASHNEV_PAVEL_ALEXEEVICH/swift/gui5/Sources/gui5",
+          "name" : "gui5"
+        },
+        "state" : {
+          "name" : "fileSystem",
+          "path" : "/home/stanik/programmer/++Programmer/5_2/MOB_APP_DOMASHNEV_PAVEL_ALEXEEVICH/swift/gui5/Sources/gui5"
+        },
+        "subpath" : "gui5"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

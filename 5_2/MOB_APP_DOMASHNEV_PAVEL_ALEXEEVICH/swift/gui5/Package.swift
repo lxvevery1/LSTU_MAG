@@ -18,7 +18,10 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "gui5"
+            name: "gui5",
+            resources: [
+                .process("Resources")
+            ]
         ),
     ]
 )
