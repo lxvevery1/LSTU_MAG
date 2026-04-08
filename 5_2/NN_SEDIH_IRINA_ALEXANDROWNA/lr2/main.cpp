@@ -13,6 +13,8 @@
 #include <iostream>
 #include "Tensor.hpp"
 #include "ConvLayer.hpp"
+#include "MaxPoolingLayer.hpp"
+#include "ReLU.hpp"
 
 void example00() {
     TensorSize inputSize{3, 5, 5};
@@ -114,6 +116,19 @@ void example00() {
     Tensor Y = conv.Forward(X);
 
     std::cout << "Output:\n" << Y << std::endl;
+
+    // ===== ReLU =====
+    ReLULayer relu(Y.GetSize());
+    Tensor Yrelu = relu.Forward(Y);
+    std::cout << "After ReLU:\n" << Yrelu << std::endl;
+
+    // ===== Pooling =====
+    MaxPoolingLayer pool(Y.GetSize(), 2);
+    Tensor Ypool = pool.Forward(Y);
+
+    std::cout << "After MaxPooling:\n" << Ypool << std::endl;;
+
+    // ===== Activation func =====
 }
 
 void example01() {
@@ -152,6 +167,5 @@ void example01() {
 
 int main() {
     example00();
-    example01();
     return 0;
 }

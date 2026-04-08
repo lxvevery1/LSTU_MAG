@@ -177,6 +177,30 @@ MaxPoolingLayer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.s
 .PHONY : MaxPoolingLayer.cpp.s
 
+ReLU.o: ReLU.cpp.o
+.PHONY : ReLU.o
+
+# target to build an object file
+ReLU.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/ReLU.cpp.o
+.PHONY : ReLU.cpp.o
+
+ReLU.i: ReLU.cpp.i
+.PHONY : ReLU.i
+
+# target to preprocess a source file
+ReLU.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/ReLU.cpp.i
+.PHONY : ReLU.cpp.i
+
+ReLU.s: ReLU.cpp.s
+.PHONY : ReLU.s
+
+# target to generate assembly for a file
+ReLU.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/ReLU.cpp.s
+.PHONY : ReLU.cpp.s
+
 Tensor.o: Tensor.cpp.o
 .PHONY : Tensor.o
 
@@ -240,6 +264,9 @@ help:
 	@echo "... MaxPoolingLayer.o"
 	@echo "... MaxPoolingLayer.i"
 	@echo "... MaxPoolingLayer.s"
+	@echo "... ReLU.o"
+	@echo "... ReLU.i"
+	@echo "... ReLU.s"
 	@echo "... Tensor.o"
 	@echo "... Tensor.i"
 	@echo "... Tensor.s"

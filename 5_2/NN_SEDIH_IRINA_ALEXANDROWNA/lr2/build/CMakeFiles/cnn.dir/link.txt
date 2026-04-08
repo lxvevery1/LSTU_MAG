@@ -1,1 +1,1 @@
-/sbin/c++  -Wall -Wextra -O2 -Wl,--dependency-file=CMakeFiles/cnn.dir/link.d CMakeFiles/cnn.dir/main.cpp.o CMakeFiles/cnn.dir/Tensor.cpp.o CMakeFiles/cnn.dir/ConvLayer.cpp.o CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o -o cnn
+/sbin/c++  -Wall -Wextra -Wl,--dependency-file=CMakeFiles/cnn.dir/link.d CMakeFiles/cnn.dir/main.cpp.o CMakeFiles/cnn.dir/Tensor.cpp.o CMakeFiles/cnn.dir/ConvLayer.cpp.o CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o CMakeFiles/cnn.dir/ReLU.cpp.o -o cnn
