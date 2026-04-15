@@ -183,4 +183,7 @@ CMakeFiles/cnn.dir/main.cpp.o: \
  /usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/MaxPoolingLayer.hpp \
- /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.hpp
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.hpp \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.hpp \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.hpp \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.hpp

@@ -4,9 +4,12 @@ cnn: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
   CMakeFiles/cnn.dir/main.cpp.o \
   CMakeFiles/cnn.dir/Tensor.cpp.o \
+  CMakeFiles/cnn.dir/Matrix.cpp.o \
   CMakeFiles/cnn.dir/ConvLayer.cpp.o \
   CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o \
   CMakeFiles/cnn.dir/ReLU.cpp.o \
+  CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o \
+  CMakeFiles/cnn.dir/CrossEntropy.cpp.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libm.so \
@@ -45,11 +48,17 @@ CMakeFiles/cnn.dir/main.cpp.o:
 
 CMakeFiles/cnn.dir/Tensor.cpp.o:
 
+CMakeFiles/cnn.dir/Matrix.cpp.o:
+
 CMakeFiles/cnn.dir/ConvLayer.cpp.o:
 
 CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o:
 
 CMakeFiles/cnn.dir/ReLU.cpp.o:
+
+CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o:
+
+CMakeFiles/cnn.dir/CrossEntropy.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libstdc++.so:
 

@@ -153,6 +153,78 @@ ConvLayer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/ConvLayer.cpp.s
 .PHONY : ConvLayer.cpp.s
 
+CrossEntropy.o: CrossEntropy.cpp.o
+.PHONY : CrossEntropy.o
+
+# target to build an object file
+CrossEntropy.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/CrossEntropy.cpp.o
+.PHONY : CrossEntropy.cpp.o
+
+CrossEntropy.i: CrossEntropy.cpp.i
+.PHONY : CrossEntropy.i
+
+# target to preprocess a source file
+CrossEntropy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/CrossEntropy.cpp.i
+.PHONY : CrossEntropy.cpp.i
+
+CrossEntropy.s: CrossEntropy.cpp.s
+.PHONY : CrossEntropy.s
+
+# target to generate assembly for a file
+CrossEntropy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/CrossEntropy.cpp.s
+.PHONY : CrossEntropy.cpp.s
+
+FullyConnectedLayer.o: FullyConnectedLayer.cpp.o
+.PHONY : FullyConnectedLayer.o
+
+# target to build an object file
+FullyConnectedLayer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o
+.PHONY : FullyConnectedLayer.cpp.o
+
+FullyConnectedLayer.i: FullyConnectedLayer.cpp.i
+.PHONY : FullyConnectedLayer.i
+
+# target to preprocess a source file
+FullyConnectedLayer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.i
+.PHONY : FullyConnectedLayer.cpp.i
+
+FullyConnectedLayer.s: FullyConnectedLayer.cpp.s
+.PHONY : FullyConnectedLayer.s
+
+# target to generate assembly for a file
+FullyConnectedLayer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.s
+.PHONY : FullyConnectedLayer.cpp.s
+
+Matrix.o: Matrix.cpp.o
+.PHONY : Matrix.o
+
+# target to build an object file
+Matrix.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Matrix.cpp.o
+.PHONY : Matrix.cpp.o
+
+Matrix.i: Matrix.cpp.i
+.PHONY : Matrix.i
+
+# target to preprocess a source file
+Matrix.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Matrix.cpp.i
+.PHONY : Matrix.cpp.i
+
+Matrix.s: Matrix.cpp.s
+.PHONY : Matrix.s
+
+# target to generate assembly for a file
+Matrix.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Matrix.cpp.s
+.PHONY : Matrix.cpp.s
+
 MaxPoolingLayer.o: MaxPoolingLayer.cpp.o
 .PHONY : MaxPoolingLayer.o
 
@@ -261,6 +333,15 @@ help:
 	@echo "... ConvLayer.o"
 	@echo "... ConvLayer.i"
 	@echo "... ConvLayer.s"
+	@echo "... CrossEntropy.o"
+	@echo "... CrossEntropy.i"
+	@echo "... CrossEntropy.s"
+	@echo "... FullyConnectedLayer.o"
+	@echo "... FullyConnectedLayer.i"
+	@echo "... FullyConnectedLayer.s"
+	@echo "... Matrix.o"
+	@echo "... Matrix.i"
+	@echo "... Matrix.s"
 	@echo "... MaxPoolingLayer.o"
 	@echo "... MaxPoolingLayer.i"
 	@echo "... MaxPoolingLayer.s"

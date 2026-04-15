@@ -20,8 +20,8 @@ Tensor MaxPoolingLayer::Forward(const Tensor &X) {
 
     // проходимся по каждому из каналов
     for (int d = 0; d < inputSize.depth; d++) {
-        for (int i = 0; i < inputSize.height; i += scale) {
-            for (int j = 0; j < inputSize.width; j += scale) {
+        for (int i = 0; i + scale < inputSize.height; i += scale) { // раньше здесь был UB
+            for (int j = 0; j + scale < inputSize.width; j += scale) { // раньше здесь был UB
                 double max = X(d, i, j); // начальное значение максимума - значение первой клетки подматрицы
 
                 // проходимся по подматрице и ищем максимум и его координаты
@@ -29,9 +29,7 @@ Tensor MaxPoolingLayer::Forward(const Tensor &X) {
                     for (int x = j; x < j + scale; x++) {
                         double value = X(d, y, x); // получаем значение входного тензора
 
-                        // если очередное значение больше максимального
-                        if (value > max)
-                            max = value; // обновляем максимум
+                        max = std::max(value, max);
                     }
                 }
 

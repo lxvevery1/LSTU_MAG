@@ -1,4 +1,5 @@
 #include <random>
+#include "Optimizer.hpp"
 #include"Tensor.hpp"
 
 class ConvLayer {
@@ -29,7 +30,8 @@ class ConvLayer {
     Tensor Forward(const Tensor &X);
     Tensor Backward(const Tensor &dout, const Tensor &X);
 
-    void UpdateWeights(double learningRate);
+    void UpdateWeights(Optimizer& opt);
     void SetWeight(int index, int i, int j, int k, double weight);
+    int GetWeightsSize() const;
     void SetBias(int index, double bias);
 };

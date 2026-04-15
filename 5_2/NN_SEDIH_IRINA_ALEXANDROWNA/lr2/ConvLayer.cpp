@@ -1,4 +1,5 @@
 #include"ConvLayer.hpp"
+#include "Optimizer.hpp"
 #include <iostream>
 
 ConvLayer::ConvLayer(TensorSize size, int fc, int fs, int P, int S) : distribution(0.0, sqrt(2.0 / (fs * fs * size.depth))) {
@@ -151,19 +152,12 @@ Tensor ConvLayer::Backward(const Tensor &dout, const Tensor &X) {
 }
 
 // обновление весовых коэффициентов
-void ConvLayer::UpdateWeights(double learningRate) {
+void ConvLayer::UpdateWeights(Optimizer& opt) {
     for (int index = 0; index < fc; index++) {
-        for (int i = 0; i < fs; i++) {
-            for (int j = 0; j < fs; j++) {
-                for (int d = 0; d < fd; d++) {
-                    W[index](d, i, j) -= learningRate * dW[index](d, i, j); // вычитаем градиент, умноженный на скорость обучения
-                    dW[index](d, i, j) = 0; // обнуляем градиент фильтра
-                }
-            }
-        }
+        opt.Update(W[index], dW[index]);
+        opt.UpdateBias(b[index], db[index]);
 
-        b[index] -= learningRate * db[index]; // вычитаем градиент, умноженный на скорость обучения
-        db[index] = 0; // обнуляем градиент веса смещения
+        db[index] = 0;
     }
 }
 
@@ -173,4 +167,8 @@ void ConvLayer::SetWeight(int index, int i, int j, int k, double weight) {
 
 void ConvLayer::SetBias(int index, double bias) {
     b[index] = bias;
+}
+
+int ConvLayer::GetWeightsSize() const {
+    return fc * fs * fs * fd;
 }

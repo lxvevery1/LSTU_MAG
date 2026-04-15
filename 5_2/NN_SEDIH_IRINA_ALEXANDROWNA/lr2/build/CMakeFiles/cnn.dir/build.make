@@ -100,10 +100,24 @@ CMakeFiles/cnn.dir/Tensor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/Tensor.cpp.s"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.cpp -o CMakeFiles/cnn.dir/Tensor.cpp.s
 
+CMakeFiles/cnn.dir/Matrix.cpp.o: CMakeFiles/cnn.dir/flags.make
+CMakeFiles/cnn.dir/Matrix.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp
+CMakeFiles/cnn.dir/Matrix.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cnn.dir/Matrix.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/Matrix.cpp.o -MF CMakeFiles/cnn.dir/Matrix.cpp.o.d -o CMakeFiles/cnn.dir/Matrix.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp
+
+CMakeFiles/cnn.dir/Matrix.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cnn.dir/Matrix.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp > CMakeFiles/cnn.dir/Matrix.cpp.i
+
+CMakeFiles/cnn.dir/Matrix.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/Matrix.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp -o CMakeFiles/cnn.dir/Matrix.cpp.s
+
 CMakeFiles/cnn.dir/ConvLayer.cpp.o: CMakeFiles/cnn.dir/flags.make
 CMakeFiles/cnn.dir/ConvLayer.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.cpp
 CMakeFiles/cnn.dir/ConvLayer.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cnn.dir/ConvLayer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cnn.dir/ConvLayer.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/ConvLayer.cpp.o -MF CMakeFiles/cnn.dir/ConvLayer.cpp.o.d -o CMakeFiles/cnn.dir/ConvLayer.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.cpp
 
 CMakeFiles/cnn.dir/ConvLayer.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/cnn.dir/ConvLayer.cpp.s: cmake_force
 CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o: CMakeFiles/cnn.dir/flags.make
 CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/MaxPoolingLayer.cpp
 CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o -MF CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o.d -o CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/MaxPoolingLayer.cpp
 
 CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.i: cmake_force
@@ -131,7 +145,7 @@ CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.s: cmake_force
 CMakeFiles/cnn.dir/ReLU.cpp.o: CMakeFiles/cnn.dir/flags.make
 CMakeFiles/cnn.dir/ReLU.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp
 CMakeFiles/cnn.dir/ReLU.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cnn.dir/ReLU.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cnn.dir/ReLU.cpp.o"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/ReLU.cpp.o -MF CMakeFiles/cnn.dir/ReLU.cpp.o.d -o CMakeFiles/cnn.dir/ReLU.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp
 
 CMakeFiles/cnn.dir/ReLU.cpp.i: cmake_force
@@ -142,26 +156,60 @@ CMakeFiles/cnn.dir/ReLU.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/ReLU.cpp.s"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp -o CMakeFiles/cnn.dir/ReLU.cpp.s
 
+CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o: CMakeFiles/cnn.dir/flags.make
+CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.cpp
+CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o -MF CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o.d -o CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.cpp
+
+CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.cpp > CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.i
+
+CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.cpp -o CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.s
+
+CMakeFiles/cnn.dir/CrossEntropy.cpp.o: CMakeFiles/cnn.dir/flags.make
+CMakeFiles/cnn.dir/CrossEntropy.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp
+CMakeFiles/cnn.dir/CrossEntropy.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/cnn.dir/CrossEntropy.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/CrossEntropy.cpp.o -MF CMakeFiles/cnn.dir/CrossEntropy.cpp.o.d -o CMakeFiles/cnn.dir/CrossEntropy.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp
+
+CMakeFiles/cnn.dir/CrossEntropy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cnn.dir/CrossEntropy.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp > CMakeFiles/cnn.dir/CrossEntropy.cpp.i
+
+CMakeFiles/cnn.dir/CrossEntropy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/CrossEntropy.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp -o CMakeFiles/cnn.dir/CrossEntropy.cpp.s
+
 # Object files for target cnn
 cnn_OBJECTS = \
 "CMakeFiles/cnn.dir/main.cpp.o" \
 "CMakeFiles/cnn.dir/Tensor.cpp.o" \
+"CMakeFiles/cnn.dir/Matrix.cpp.o" \
 "CMakeFiles/cnn.dir/ConvLayer.cpp.o" \
 "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o" \
-"CMakeFiles/cnn.dir/ReLU.cpp.o"
+"CMakeFiles/cnn.dir/ReLU.cpp.o" \
+"CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o" \
+"CMakeFiles/cnn.dir/CrossEntropy.cpp.o"
 
 # External object files for target cnn
 cnn_EXTERNAL_OBJECTS =
 
 cnn: CMakeFiles/cnn.dir/main.cpp.o
 cnn: CMakeFiles/cnn.dir/Tensor.cpp.o
+cnn: CMakeFiles/cnn.dir/Matrix.cpp.o
 cnn: CMakeFiles/cnn.dir/ConvLayer.cpp.o
 cnn: CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o
 cnn: CMakeFiles/cnn.dir/ReLU.cpp.o
+cnn: CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o
+cnn: CMakeFiles/cnn.dir/CrossEntropy.cpp.o
 cnn: CMakeFiles/cnn.dir/build.make
 cnn: CMakeFiles/cnn.dir/compiler_depend.ts
 cnn: CMakeFiles/cnn.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable cnn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable cnn"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cnn.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -8,164 +8,257 @@
    6. Оптимизаторы - SGD, Momentum, NAG, RMSprop, Adam, Nadam, AdamW
    7. Регуляризация - Dropout, Batch Normalization, L2 регуляризация
 
+   Вариант 17: Двухканальный вход
+   Архитектура:
+   - Вход 1 (оригинал, 28x28x1) -> Conv2D (1->8, 3x3, padding: 1) -> ReLU
+   - Вход 2 (градиенты Sobel, 28x28x1) -> Conv2D (1->8, 3x3, padding: 1) -> ReLU
+   - Concat по каналам (16 каналов) -> Conv2D (16->32, 3x3, padding: 1) -> ReLU
+   -> MaxPool2D (2x2) -> Flatten -> Dense (14*14*32 = 6272->128) -> ReLU ->
+   Dense (128->10) -> Softmax
+
+   Оптимизаторы для сравнения: SGD, Momentum SGD, Adam
+   Параметры эксперимента:
+   - Сравнить с одноканальной архитектурой (только оригинал)
+   - Исследовать влияние различных предобработок второго канала (Sobel, Canny, Laplacian)
+   - Построить графики важности разных каналов (буду использовать pbplots.h)
+   - Сравнить точность на тестовой выборке
+   - Сделать вывод о том, как многоканальность влияет на сходимость разных оптимизаторов
 
 */
+
 #include <iostream>
 #include "Tensor.hpp"
 #include "ConvLayer.hpp"
 #include "MaxPoolingLayer.hpp"
 #include "ReLU.hpp"
+#include "FullyConnectedLayer.hpp"
+#include "CrossEntropy.hpp"
 
-void example00() {
-    TensorSize inputSize{3, 5, 5};
-    ConvLayer conv(inputSize, 2, 3, 1, 2);
+Tensor Concat(const Tensor& A, const Tensor& B) {
+    TensorSize sizeA = A.GetSize();
+    TensorSize sizeB = B.GetSize();
 
-    // ===== INPUT =====
-    Tensor X(inputSize);
+    if (sizeA.height != sizeB.height || sizeA.width != sizeB.width)
+        throw std::runtime_error("Concat size mismatch");
 
-    // channel 0
-    double c0[5][5] = {
-        {1,2,0,1,0},
-        {2,0,0,0,1},
-        {1,2,2,0,2},
-        {2,2,2,0,1},
-        {2,0,1,0,1}
-    };
+    TensorSize outSize;
+    outSize.depth = sizeA.depth + sizeB.depth;
+    outSize.height = sizeA.height;
+    outSize.width = sizeA.width;
 
-    // channel 1
-    double c1[5][5] = {
-        {1,2,2,1,2},
-        {0,2,2,0,2},
-        {1,2,2,1,1},
-        {2,2,0,1,0},
-        {2,2,1,0,0}
-    };
+    Tensor out(outSize);
 
-    // channel 2
-    double c2[5][5] = {
-        {0,2,0,1,1},
-        {2,0,2,1,1},
-        {2,0,1,2,1},
-        {0,1,0,1,2},
-        {1,0,1,2,1}
-    };
+    // copy A
+    for (int d = 0; d < sizeA.depth; d++)
+        for (int i = 0; i < sizeA.height; i++)
+            for (int j = 0; j < sizeA.width; j++)
+                out(d, i, j) = A(d, i, j);
 
-    for (int i = 0; i < 5; i++)
-        for (int j = 0; j < 5; j++) {
-            X(0,i,j) = c0[i][j];
-            X(1,i,j) = c1[i][j];
-            X(2,i,j) = c2[i][j];
-        }
+    // copy B
+    for (int d = 0; d < sizeB.depth; d++)
+        for (int i = 0; i < sizeB.height; i++)
+            for (int j = 0; j < sizeB.width; j++)
+                out(d + sizeA.depth, i, j) = B(d, i, j);
 
-    // ===== FILTER 0 =====
-    double w0[3][3][3] = {
-        {
-            {-1,1,1},
-            {-1,1,1},
-            {0,0,1}
-        },
-        {
-            {0,-1,1},
-            {-1,0,-1},
-            {1,0,0}
-        },
-        {
-            {1,-1,0},
-            {-1,0,-1},
-            {0,1,-1}
-        }
-    };
+    return out;
+}
 
-    // ===== FILTER 1 =====
-    double w1[3][3][3] = {
-        {
-            {0,0,-1},
-            {1,0,0},
-            {0,-1,0}
-        },
-        {
-            {1,-1,0},
-            {-1,1,0},
-            {-1,1,1}
-        },
-        {
-            {1,0,1},
-            {1,-1,1},
-            {-1,0,0}
-        }
-    };
+Tensor Flatten(const Tensor& X) {
+    TensorSize size = X.GetSize();
 
-    // записываем веса
-    for (int d = 0; d < 3; d++)
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 3; j++) {
-                conv.SetWeight(0, d, i, j, w0[d][i][j]);
-                conv.SetWeight(1, d, i, j, w1[d][i][j]);
+    int total = size.depth * size.height * size.width;
+
+    Tensor out(1, 1, total);
+
+    for (int d = 0; d < size.depth; d++)
+        for (int i = 0; i < size.height; i++)
+            for (int j = 0; j < size.width; j++) {
+                int idx = d * size.height * size.width + i * size.width + j;
+                out.AtFlat(idx) = X(d, i, j);
             }
+
+    return out;
+}
+
+Tensor Softmax(const Tensor& X) {
+    TensorSize size = X.GetSize();
+    Tensor out(size);
+
+    double maxVal = X.AtFlat(0);
+    for (int i = 1; i < size.depth; i++)
+        if (X.AtFlat(i) > maxVal)
+            maxVal = X.AtFlat(i);
+
+    double sum = 0;
+    for (int i = 0; i < size.depth; i++) {
+        double e = exp(X.AtFlat(i) - maxVal);
+        out.AtFlat(i) = e;
+        sum += e;
+    }
+
+    for (int i = 0; i < size.depth; i++)
+        out.AtFlat(i) /= sum;
+
+    return out;
+}
+
+Tensor Sobel(const Tensor& X) {
+    TensorSize size = X.GetSize();
+    Tensor out(size);
+
+    int K[3][3] = {
+        {-1,0,1},
+        {-2,0,2},
+        {-1,0,1}
+    };
+
+    for (int i = 1; i < size.height - 1; i++) {
+        for (int j = 1; j < size.width - 1; j++) {
+            double sum = 0;
+
+            for (int ki = 0; ki < 3; ki++)
+                for (int kj = 0; kj < 3; kj++)
+                    sum += X(0, i + ki - 1, j + kj - 1) * K[ki][kj];
+
+            out(0, i, j) = sum;
         }
     }
 
-
-    // bias
-    conv.SetBias(0, 1);
-    conv.SetBias(1, 0);
-
-    // ===== FORWARD =====
-    Tensor Y = conv.Forward(X);
-
-    std::cout << "Output:\n" << Y << std::endl;
-
-    // ===== ReLU =====
-    ReLULayer relu(Y.GetSize());
-    Tensor Yrelu = relu.Forward(Y);
-    std::cout << "After ReLU:\n" << Yrelu << std::endl;
-
-    // ===== Pooling =====
-    MaxPoolingLayer pool(Y.GetSize(), 2);
-    Tensor Ypool = pool.Forward(Y);
-
-    std::cout << "After MaxPooling:\n" << Ypool << std::endl;;
-
-    // ===== Activation func =====
+    return out;
 }
 
-void example01() {
-    TensorSize inputSize{1, 4, 4};
-    ConvLayer conv(inputSize, 1, 3, 0, 1);
+// ===== NETWORK =====
+ConvLayer *conv1;
+ConvLayer *conv2;
+ConvLayer *conv3;
 
+ReLULayer *relu1;
+ReLULayer *relu2;
+ReLULayer *relu3;
+
+MaxPoolingLayer *pool;
+
+FullyConnectedLayer *fc1;
+FullyConnectedLayer *fc2;
+
+TensorSize inputSize{1,28,28};
+
+void Init() {
+    // ===== NETWORK =====
+    conv1 = new ConvLayer(inputSize, 8, 3, 1, 1);
+    conv2 = new ConvLayer(inputSize, 8, 3, 1, 1);
+
+    relu1 = new ReLULayer({8,28,28});
+    relu2 = new ReLULayer({8,28,28});
+
+    conv3 = new ConvLayer({16,28,28}, 32, 3, 1, 1);
+    relu3 = new ReLULayer({32,28,28});
+
+    pool = new MaxPoolingLayer({32,28,28}, 2);
+
+    fc1 = new FullyConnectedLayer({32,14,14}, 128, "relu");
+    fc2 = new FullyConnectedLayer({1,1,128}, 10, "none");
+}
+
+double Learn() {
     Tensor X(inputSize);
 
-    double c0[4][4] = {
-        {4,5,8,7},
-        {1,8,8,8},
-        {3,6,6,4},
-        {6,5,7,8},
-    };
+    // фиксированный input (важно!)
+    for (int i = 0; i < 28; i++)
+        for (int j = 0; j < 28; j++)
+            X(0,i,j) = (i + j) % 2;
 
-    for (int i = 0; i < 4; i++)
-        for (int j = 0; j < 4; j++)
-            X(0,i,j) = c0[i][j];
+    int label = 3;
 
-    double w0[3][3] = {
-        {1,4,1},
-        {1,4,3},
-        {3,3,1}
-    };
+    // ===== Sobel =====
+    Tensor X2 = Sobel(X);
 
-    for (int i = 0; i < 3; i++)
-        for (int j = 0; j < 3; j++)
-            conv.SetWeight(0, 0, i, j, w0[i][j]);
+    // ===== FORWARD =====
+    Tensor Y1 = conv1->Forward(X);
+    Tensor Y1r = relu1->Forward(Y1);
 
-    conv.SetBias(0, 0);
+    Tensor Y2 = conv2->Forward(X2);
+    Tensor Y2r = relu2->Forward(Y2);
 
-    Tensor Y = conv.Forward(X);
+    Tensor Ycat = Concat(Y1r, Y2r);
 
-    std::cout << "Forward:\n" << Y << std::endl;
+    Tensor Y3 = conv3->Forward(Ycat);
+    Tensor Y3r = relu3->Forward(Y3);
+
+    Tensor Ypool = pool->Forward(Y3r);
+
+    Tensor Yflat = Flatten(Ypool);
+
+    Tensor Yfc1 = fc1->Forward(Yflat);
+    Tensor Yfc2 = fc2->Forward(Yfc1);
+
+    Tensor Ysoft = Softmax(Yfc2);
+
+    // ===== LOSS =====
+    double loss = CrossEntropy::CrossEntropyLoss(Ysoft, label);
+
+    // ===== BACKWARD =====
+    Tensor dY = CrossEntropy::CrossEntropyBackward(Ysoft, label);
+
+    Tensor d_fc2 = fc2->Backward(dY, Yfc1);
+    Tensor d_fc1 = fc1->Backward(d_fc2, Yflat);
+
+    Tensor d_pool = d_fc1.Unflatten(Ypool.GetSize());
+
+    Tensor d_conv3r = pool->Backward(d_pool, Y3r);
+    Tensor d_conv3 = relu3->Backward(d_conv3r, Y3);
+
+    Tensor d_cat = conv3->Backward(d_conv3, Ycat);
+
+    // split
+    Tensor dY1(Y1r.GetSize());
+    Tensor dY2(Y2r.GetSize());
+
+    int offset = Y1r.GetSize().depth;
+
+    for (int d = 0; d < Y1r.GetSize().depth; d++)
+        for (int i = 0; i < Y1r.GetSize().height; i++)
+            for (int j = 0; j < Y1r.GetSize().width; j++)
+                dY1(d,i,j) = d_cat(d,i,j);
+
+    for (int d = 0; d < Y2r.GetSize().depth; d++)
+        for (int i = 0; i < Y2r.GetSize().height; i++)
+            for (int j = 0; j < Y2r.GetSize().width; j++)
+                dY2(d,i,j) = d_cat(d + offset,i,j);
+
+    Tensor d1 = relu1->Backward(dY1, Y1);
+    conv1->Backward(d1, X);
+
+    Tensor d2 = relu2->Backward(dY2, Y2);
+    conv2->Backward(d2, X2);
+
+    // ===== UPDATE =====
+    double lr = 0.0001;
+    double beta = 0.9;
+
+    Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
+    Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
+
+    Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
+    Momentum opt_c2(lr, beta, conv2->GetWeightsSize());
+    Momentum opt_c3(lr, beta, conv3->GetWeightsSize());
+
+    fc1->UpdateWeights(opt_fc1);
+    fc2->UpdateWeights(opt_fc2);
+    conv1->UpdateWeights(opt_c1);
+    conv2->UpdateWeights(opt_c2);
+    conv3->UpdateWeights(opt_c3);
+
+    return loss;
 }
 
 int main() {
-    example00();
+    Init();
+
+    for (int epoch = 0; epoch < 50; epoch++) {
+        double loss = Learn();
+        std::cout << "Epoch " << epoch << " Loss: " << loss << std::endl;
+    }
+
     return 0;
 }

@@ -85,12 +85,12 @@ clean: CMakeFiles/cnn.dir/clean
 CMakeFiles/cnn.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target cnn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target cnn"
 .PHONY : CMakeFiles/cnn.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cnn.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cnn.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles 0
 .PHONY : CMakeFiles/cnn.dir/rule
@@ -102,7 +102,7 @@ cnn: CMakeFiles/cnn.dir/rule
 # codegen rule for target.
 CMakeFiles/cnn.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Finished codegen for target cnn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Finished codegen for target cnn"
 .PHONY : CMakeFiles/cnn.dir/codegen
 
 # clean rule for target.

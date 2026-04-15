@@ -1,4 +1,5 @@
 #include"Tensor.hpp"
+#include <cmath>
 #include <ostream>
 
 void Tensor::Init(int width, int height, int depth) {
@@ -29,6 +30,30 @@ double Tensor::operator()(int d, int i, int j) const {
 
 TensorSize Tensor::GetSize() const {
     return size;
+}
+
+double& Tensor::AtFlat(int idx) {
+    return values[idx];
+}
+
+double Tensor::AtFlat(int idx) const {
+    return values[idx];
+}
+
+Tensor Tensor::Unflatten(TensorSize size) {
+    Tensor out(size);
+
+    for (int d = 0; d < size.depth; d++)
+        for (int i = 0; i < size.height; i++)
+            for (int j = 0; j < size.width; j++) {
+                int idx = d * size.height * size.width
+                        + i * size.width
+                        + j;
+
+                out(d,i,j) = this->AtFlat(idx);
+            }
+
+    return out;
 }
 
 std::ostream& operator<<(std::ostream& os, const Tensor &tensor) {
