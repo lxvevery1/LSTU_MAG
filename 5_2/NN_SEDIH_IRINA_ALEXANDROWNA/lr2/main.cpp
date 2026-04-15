@@ -234,14 +234,14 @@ double Learn() {
 
     // ===== UPDATE =====
     double lr = 0.001;
-    double beta = 0.8;
+    double beta = 0.9;
 
     static Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
     static Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
 
-    Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
-    Momentum opt_c2(lr, beta, conv2->GetWeightsSize());
-    Momentum opt_c3(lr, beta, conv3->GetWeightsSize());
+    static Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
+    static Momentum opt_c2(lr, beta, conv2->GetWeightsSize());
+    static Momentum opt_c3(lr, beta, conv3->GetWeightsSize());
 
     fc1->UpdateWeights(opt_fc1);
     fc2->UpdateWeights(opt_fc2);
