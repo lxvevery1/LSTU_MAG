@@ -10,6 +10,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/cnn.dir/Matrix.cpp.o.d"
   "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o"
   "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o.d"
+  "CMakeFiles/cnn.dir/Optimizer.cpp.o"
+  "CMakeFiles/cnn.dir/Optimizer.cpp.o.d"
   "CMakeFiles/cnn.dir/ReLU.cpp.o"
   "CMakeFiles/cnn.dir/ReLU.cpp.o.d"
   "CMakeFiles/cnn.dir/Tensor.cpp.o"

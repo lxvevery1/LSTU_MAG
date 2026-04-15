@@ -16,6 +16,7 @@ set(SOURCES
     ReLU.cpp
     FullyConnectedLayer.cpp
     CrossEntropy.cpp
+    Optimizer.cpp
 )
 
 set(HEADERS
@@ -26,6 +27,7 @@ set(HEADERS
     ReLU.hpp
     FullyConnectedLayer.hpp
     CrossEntropy.hpp
+    Optimizer.hpp
 )
 
 add_executable(cnn ${SOURCES} ${HEADERS})

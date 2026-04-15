@@ -249,6 +249,30 @@ MaxPoolingLayer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.s
 .PHONY : MaxPoolingLayer.cpp.s
 
+Optimizer.o: Optimizer.cpp.o
+.PHONY : Optimizer.o
+
+# target to build an object file
+Optimizer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Optimizer.cpp.o
+.PHONY : Optimizer.cpp.o
+
+Optimizer.i: Optimizer.cpp.i
+.PHONY : Optimizer.i
+
+# target to preprocess a source file
+Optimizer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Optimizer.cpp.i
+.PHONY : Optimizer.cpp.i
+
+Optimizer.s: Optimizer.cpp.s
+.PHONY : Optimizer.s
+
+# target to generate assembly for a file
+Optimizer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Optimizer.cpp.s
+.PHONY : Optimizer.cpp.s
+
 ReLU.o: ReLU.cpp.o
 .PHONY : ReLU.o
 
@@ -345,6 +369,9 @@ help:
 	@echo "... MaxPoolingLayer.o"
 	@echo "... MaxPoolingLayer.i"
 	@echo "... MaxPoolingLayer.s"
+	@echo "... Optimizer.o"
+	@echo "... Optimizer.i"
+	@echo "... Optimizer.s"
 	@echo "... ReLU.o"
 	@echo "... ReLU.i"
 	@echo "... ReLU.s"

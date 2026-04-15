@@ -156,7 +156,6 @@ void ConvLayer::UpdateWeights(Optimizer& opt) {
     for (int index = 0; index < fc; index++) {
         opt.Update(W[index], dW[index]);
         opt.UpdateBias(b[index], db[index]);
-
         db[index] = 0;
     }
 }

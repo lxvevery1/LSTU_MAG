@@ -24,6 +24,7 @@ class Tensor {
 
     public:
     Tensor(int width, int height, int depth);
+    Tensor(int flatSize) : size{flatSize, 1, 1}, values(flatSize) {};
     Tensor(const TensorSize &size);
     double& operator()(int d, int i, int j);
     double operator()(int d, int i, int j) const;

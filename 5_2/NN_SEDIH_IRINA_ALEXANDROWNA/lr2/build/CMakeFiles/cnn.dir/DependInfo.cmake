@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.cpp" "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o" "gcc" "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp" "CMakeFiles/cnn.dir/Matrix.cpp.o" "gcc" "CMakeFiles/cnn.dir/Matrix.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/MaxPoolingLayer.cpp" "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o" "gcc" "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o.d"
+  "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Optimizer.cpp" "CMakeFiles/cnn.dir/Optimizer.cpp.o" "gcc" "CMakeFiles/cnn.dir/Optimizer.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp" "CMakeFiles/cnn.dir/ReLU.cpp.o" "gcc" "CMakeFiles/cnn.dir/ReLU.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.cpp" "CMakeFiles/cnn.dir/Tensor.cpp.o" "gcc" "CMakeFiles/cnn.dir/Tensor.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/main.cpp" "CMakeFiles/cnn.dir/main.cpp.o" "gcc" "CMakeFiles/cnn.dir/main.cpp.o.d"

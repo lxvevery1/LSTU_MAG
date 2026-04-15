@@ -28,7 +28,7 @@ class Momentum : public Optimizer {
     Tensor v;
 
 public:
-    Momentum(double lr, double beta, TensorSize size);
+    Momentum(double lr, double beta, int size);
     void Update(Tensor& W, Tensor& dW) override;
 };
 
@@ -37,7 +37,7 @@ class Adam : public Optimizer {
     Tensor m, v;
 
 public:
-    Adam(double lr, TensorSize size);
+    Adam(double lr, int size);
     void Update(Tensor& W, Tensor& dW) override;
 };
 
