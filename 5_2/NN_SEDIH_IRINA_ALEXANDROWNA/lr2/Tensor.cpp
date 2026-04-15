@@ -1,4 +1,5 @@
 #include"Tensor.hpp"
+#include"Matrix.hpp"
 #include <cmath>
 #include <ostream>
 
@@ -66,4 +67,20 @@ std::ostream& operator<<(std::ostream& os, const Tensor &tensor) {
         }
     }
     return os;
+}
+
+Matrix Tensor::ToMatrix(const Tensor& t)
+{
+    TensorSize size = t.GetSize();
+
+    Matrix m(size.height, size.width);
+
+    int idx = 0;
+    for (int i = 0; i < size.height; i++) {
+        for (int j = 0; j < size.width; j++) {
+            m(i, j) = t.AtFlat(idx++);
+        }
+    }
+
+    return m;
 }

@@ -1,5 +1,6 @@
 #include "FullyConnectedLayer.hpp"
 #include "Optimizer.hpp"
+#include "Tensor.hpp"
 
 FullyConnectedLayer::FullyConnectedLayer(TensorSize size, int outputs, const
         std::string& activationType) : W(outputs, size.height * size.width *
@@ -141,8 +142,15 @@ Tensor FullyConnectedLayer::Backward(const Tensor &dout, const Tensor &X) {
 
 
 // обновление весовых коэффициентов
-void FullyConnectedLayer::UpdateWeights(Optimizer& opt) {
-    opt.Update(W, dW);
+void FullyConnectedLayer::UpdateWeights(Optimizer& opt)
+{
+    Tensor Wt = Matrix::ToTensor(W);
+    Tensor dWt = Matrix::ToTensor(dW);
+
+    opt.Update(Wt, dWt);
+
+    W = Tensor::ToMatrix(Wt);
+    dW = Tensor::ToMatrix(dWt);
 
     for (int i = 0; i < outputs; i++) {
         opt.UpdateBias(b[i], db[i]);

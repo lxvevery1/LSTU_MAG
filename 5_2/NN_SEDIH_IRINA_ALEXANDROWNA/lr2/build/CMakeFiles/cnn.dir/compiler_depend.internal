@@ -4,6 +4,8 @@
 CMakeFiles/cnn.dir/ConvLayer.cpp.o
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.cpp
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.hpp
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.hpp
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Optimizer.hpp
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.hpp
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h

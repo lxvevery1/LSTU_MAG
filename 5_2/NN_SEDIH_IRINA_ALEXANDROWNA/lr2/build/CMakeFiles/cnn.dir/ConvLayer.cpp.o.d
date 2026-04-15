@@ -138,7 +138,9 @@ CMakeFiles/cnn.dir/ConvLayer.cpp.o: \
  /usr/include/c++/15.2.1/bits/stl_numeric.h \
  /usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
  /usr/include/c++/15.2.1/pstl/execution_defs.h \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Optimizer.hpp \
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.hpp \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.hpp \
  /usr/include/c++/15.2.1/ostream /usr/include/c++/15.2.1/bits/ostream.h \
  /usr/include/c++/15.2.1/ios /usr/include/c++/15.2.1/exception \
  /usr/include/c++/15.2.1/bits/exception_ptr.h \

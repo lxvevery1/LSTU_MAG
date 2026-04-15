@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Matrix.hpp"
 #include <ostream>
 #include <vector>
 
@@ -30,6 +31,8 @@ class Tensor {
     double& AtFlat(int idx);
     double AtFlat(int idx) const;
     Tensor Unflatten(TensorSize size);
+
+    static Matrix ToMatrix(const Tensor& t);
 
     friend std::ostream& operator<<(std::ostream& os, const Tensor &tensor);
 };

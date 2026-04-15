@@ -3,6 +3,8 @@
 
 CMakeFiles/cnn.dir/ConvLayer.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.cpp \
   /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.hpp \
+  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.hpp \
+  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Optimizer.hpp \
   /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.hpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -1756,6 +1758,8 @@ CMakeFiles/cnn.dir/CrossEntropy.cpp.o:
 
 /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.cpp:
 
+/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp:
+
 /usr/include/c++/15.2.1/bits/postypes.h:
 
 /usr/include/c++/15.2.1/bits/ostream_insert.h:
@@ -1876,9 +1880,7 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 
 /usr/include/bits/types/__locale_t.h:
 
-/usr/include/bits/libc-header-start.h:
-
-/usr/include/c++/15.2.1/ostream:
+/usr/include/bits/types/__fpos64_t.h:
 
 /usr/include/bits/iscanonical.h:
 
@@ -1893,6 +1895,10 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 /usr/include/bits/atomic_wide_counter.h:
 
 /usr/include/c++/15.2.1/pstl/execution_defs.h:
+
+/usr/include/time.h:
+
+/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp:
 
 /usr/include/bits/locale.h:
 
@@ -1934,7 +1940,21 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/ctype_base.h:
 
-/usr/include/c++/15.2.1/bits/random.h:
+/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h:
+
+/usr/include/asm-generic/int-ll64.h:
+
+/usr/include/bits/mathcalls-macros.h:
+
+/usr/include/c++/15.2.1/bits/allocator.h:
+
+/usr/include/c++/15.2.1/bits/locale_facets.tcc:
+
+/usr/include/asm/posix_types_64.h:
+
+/usr/include/bits/time.h:
+
+/usr/include/asm/posix_types.h:
 
 /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.cpp:
 
@@ -1949,22 +1969,6 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 /usr/include/c++/15.2.1/bit:
 
 /usr/include/c++/15.2.1/bits/basic_ios.h:
-
-/usr/include/bits/mathcalls-macros.h:
-
-/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h:
-
-/usr/include/asm-generic/int-ll64.h:
-
-/usr/include/c++/15.2.1/bits/allocator.h:
-
-/usr/include/c++/15.2.1/bits/locale_facets.tcc:
-
-/usr/include/asm/posix_types_64.h:
-
-/usr/include/bits/time.h:
-
-/usr/include/asm/posix_types.h:
 
 /usr/include/asm-generic/posix_types.h:
 
@@ -1996,6 +2000,10 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 
 /usr/include/bits/floatn.h:
 
+/usr/include/bits/libc-header-start.h:
+
+/usr/include/c++/15.2.1/ostream:
+
 /usr/include/bits/mathcalls-narrow.h:
 
 /usr/include/bits/pthread_stack_min-dynamic.h:
@@ -2007,8 +2015,6 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 /usr/include/gnu/stubs.h:
 
 /usr/include/bits/select.h:
-
-/usr/include/bits/types/__fpos64_t.h:
 
 /usr/include/bits/types/error_t.h:
 
@@ -2022,6 +2028,10 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 
 /usr/include/c++/15.2.1/bits/functional_hash.h:
 
+/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.hpp:
+
+/usr/include/bits/types/cookie_io_functions_t.h:
+
 /usr/include/c++/15.2.1/bits/stl_algobase.h:
 
 /usr/include/c++/15.2.1/cstdlib:
@@ -2033,6 +2043,8 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o:
 
 /usr/include/c++/15.2.1/bits/charconv.h:
+
+/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Optimizer.hpp:
 
 /usr/include/bits/mathcalls-helper-functions.h:
 
@@ -2059,6 +2071,8 @@ CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o:
 /usr/include/bits/sched.h:
 
 /usr/include/bits/types/__FILE.h:
+
+/usr/include/c++/15.2.1/bits/random.h:
 
 /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++allocator.h:
 
@@ -2270,18 +2284,8 @@ CMakeFiles/cnn.dir/ConvLayer.cpp.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdint.h:
 
-/usr/include/time.h:
-
-/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp:
-
 /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.hpp:
 
 /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.hpp:
 
-/usr/include/bits/types/cookie_io_functions_t.h:
-
-/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.hpp:
-
 /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp:
-
-/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp:

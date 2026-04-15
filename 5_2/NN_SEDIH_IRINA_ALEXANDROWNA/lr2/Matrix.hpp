@@ -1,4 +1,8 @@
+#pragma once
+
 #include <vector>
+
+class Tensor; //forward declaration
 
 class Matrix {
     int rows; // число строк
@@ -10,4 +14,6 @@ public:
 
     double& operator()(int i, int j); // индексация
     double operator()(int i, int j) const; // индексация
+
+    static Tensor ToTensor(const Matrix& m);
 };
