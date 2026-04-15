@@ -233,11 +233,11 @@ double Learn() {
     conv2->Backward(d2, X2);
 
     // ===== UPDATE =====
-    double lr = 0.0001;
-    double beta = 0.9;
+    double lr = 0.001;
+    double beta = 0.8;
 
-    Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
-    Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
+    static Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
+    static Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
 
     Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
     Momentum opt_c2(lr, beta, conv2->GetWeightsSize());
@@ -255,7 +255,7 @@ double Learn() {
 int main() {
     Init();
 
-    for (int epoch = 0; epoch < 50; epoch++) {
+    for (int epoch = 0; epoch < 10; epoch++) {
         double loss = Learn();
         std::cout << "Epoch " << epoch << " Loss: " << loss << std::endl;
     }
