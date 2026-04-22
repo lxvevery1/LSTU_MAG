@@ -38,6 +38,12 @@
 #include "./pbplots/pbPlots.hpp"
 #include "./pbplots/supportLib.hpp"
 
+enum OPTIMIZER {
+    Adam,
+    SGD,
+    MomentumSGD
+};
+
 Tensor Concat(const Tensor& A, const Tensor& B) {
     TensorSize sizeA = A.GetSize();
     TensorSize sizeB = B.GetSize();
@@ -151,7 +157,29 @@ std::vector<double> channelImportance1;
 std::vector<double> channelImportance2;
 std::vector<double> channelImportance3;
 
-void Init() {
+void Init1() {
+    // ===== NETWORK =====
+    conv1 = new ConvLayer(inputSize, 8, 3, 1, 1);
+    conv2 = new ConvLayer(inputSize, 8, 3, 1, 1);
+
+    relu1 = new ReLULayer({8,28,28});
+    relu2 = new ReLULayer({8,28,28});
+
+    conv3 = new ConvLayer({8,28,28}, 32, 3, 1, 1);
+    relu3 = new ReLULayer({32,28,28});
+
+    pool = new MaxPoolingLayer({32,28,28}, 2);
+
+    fc1 = new FullyConnectedLayer({32,14,14}, 128, "relu");
+    fc2 = new FullyConnectedLayer({1,1,128}, 10, "none");
+
+    channelImportance1.resize(8, 0.0);
+    channelImportance2.resize(8, 0.0);
+    channelImportance3.resize(32, 0.0);
+}
+
+
+void Init2() {
     // ===== NETWORK =====
     conv1 = new ConvLayer(inputSize, 8, 3, 1, 1);
     conv2 = new ConvLayer(inputSize, 8, 3, 1, 1);
@@ -172,14 +200,111 @@ void Init() {
     channelImportance3.resize(32, 0.0);
 }
 
+double Learn1(OPTIMIZER opt)
+{
+    Tensor X(inputSize);
 
-enum OPTIMIZER {
-    Adam,
-    SGD,
-    MomentumSGD
-};
+    for (int i = 0; i < 28; i++)
+        for (int j = 0; j < 28; j++)
+            X(0,i,j) = (i + j) % 2;
 
-double Learn(OPTIMIZER opt) {
+    int label = 3;
+
+    // ===== FORWARD =====
+    Tensor Y1  = conv1->Forward(X);
+    Tensor Y1r = relu1->Forward(Y1);
+
+    Tensor Y3  = conv3->Forward(Y1r);
+    Tensor Y3r = relu3->Forward(Y3);
+
+    Tensor Ypool = pool->Forward(Y3r);
+
+    Tensor Yflat = Flatten(Ypool);
+
+    Tensor Yfc1 = fc1->Forward(Yflat);
+    Tensor Yfc2 = fc2->Forward(Yfc1);
+
+    Tensor Ysoft = Softmax(Yfc2);
+
+    // ===== LOSS =====
+    double loss = CrossEntropy::CrossEntropyLoss(Ysoft, label);
+
+    // ===== BACKWARD =====
+    Tensor dY = CrossEntropy::CrossEntropyBackward(Ysoft, label);
+
+    Tensor d_fc2 = fc2->Backward(dY, Yfc1);
+    Tensor d_fc1 = fc1->Backward(d_fc2, Yflat);
+
+    Tensor d_pool = d_fc1.Unflatten(Ypool.GetSize());
+
+    Tensor d_conv3r = pool->Backward(d_pool, Y3r);
+    Tensor d_conv3  = relu3->Backward(d_conv3r, Y3);
+
+    Tensor d_Y1r = conv3->Backward(d_conv3, Y1r);
+    Tensor d_Y1  = relu1->Backward(d_Y1r, Y1);
+
+    conv1->Backward(d_Y1, X);
+
+    // ===== UPDATE =====
+    double lr = 0.001;
+    double beta = 0.9;
+
+    switch (opt)
+    {
+        case MomentumSGD:
+        {
+            static Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
+            static Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
+
+            static Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
+            static Momentum opt_c3(lr, beta, conv3->GetWeightsSize());
+
+            fc1->UpdateWeights(opt_fc1);
+            fc2->UpdateWeights(opt_fc2);
+            conv1->UpdateWeights(opt_c1);
+            conv3->UpdateWeights(opt_c3);
+            break;
+        }
+
+        case Adam:
+        {
+            static class Adam opt_fc1_adam(lr, fc1->GetWeightsSize());
+            static class Adam opt_fc2_adam(lr, fc2->GetWeightsSize());
+
+            static class Adam opt_c1_adam(lr, conv1->GetWeightsSize());
+            static class Adam opt_c3_adam(lr, conv3->GetWeightsSize());
+
+            fc1->UpdateWeights(opt_fc1_adam);
+            fc2->UpdateWeights(opt_fc2_adam);
+            conv1->UpdateWeights(opt_c1_adam);
+            conv3->UpdateWeights(opt_c3_adam);
+            break;
+        }
+
+        case SGD:
+        {
+            static class SGD opt_fc1_sgd(lr);
+            static class SGD opt_fc2_sgd(lr);
+
+            static class SGD opt_c1_sgd(lr);
+            static class SGD opt_c3_sgd(lr);
+
+            fc1->UpdateWeights(opt_fc1_sgd);
+            fc2->UpdateWeights(opt_fc2_sgd);
+            conv1->UpdateWeights(opt_c1_sgd);
+            conv3->UpdateWeights(opt_c3_sgd);
+            break;
+        }
+
+        default:
+            std::cerr << "Unknown optimizer\n";
+            break;
+    }
+
+    return loss;
+}
+
+double Learn2(OPTIMIZER opt) {
     Tensor X(inputSize);
 
     for (int i = 0; i < 28; i++)
@@ -309,61 +434,98 @@ double Learn(OPTIMIZER opt) {
     return loss;
 }
 
-std::vector<double> losses;
+std::vector<double> losses1;
+std::vector<double> losses2;
 
-int main() {
-    Init();
-
-    for (int epoch = 0; epoch < 10; epoch++) {
-        double loss = Learn(MomentumSGD);
-        losses.push_back(loss);
-        std::cout << "Epoch " << epoch << " Loss: " << loss << std::endl;
-    }
+void plot(const std::vector<double>& losses1,
+          const std::vector<double>& losses2)
+{
 #pragma region Plot
 
     RGBABitmapImageReference* imageReference = CreateRGBABitmapImageReference();
 
-    std::vector<double> epochs;
-    for (int i = 0; i < losses.size(); i++)
-        epochs.push_back(i);
+    std::vector<double> epochs1, epochs2;
+    std::vector<double> scaled1, scaled2;
 
-    std::vector<double> scaledLosses;
-    scaledLosses.reserve(losses.size());
+    auto normalize = [](const std::vector<double>& in, std::vector<double>& out)
+    {
+        double maxLoss = *std::max_element(in.begin(), in.end());
+        double minLoss = *std::min_element(in.begin(), in.end());
 
-    double maxLoss = *std::max_element(losses.begin(), losses.end());
-    double minLoss = *std::min_element(losses.begin(), losses.end());
+        double range = maxLoss - minLoss;
+        if (range < 1e-9) range = 1.0;
 
-    double range = maxLoss - minLoss;
-    if (range < 1e-9) range = 1.0;
+        for (double l : in) {
+            double norm = (l - minLoss) / range;
+            out.push_back(norm * 0.1);
+        }
+    };
 
-    for (double l : losses) {
-        double norm = (l - minLoss) / range; // [0..1]
-        scaledLosses.push_back(norm * 0.01);   // [0..0.1]
-    }
-    ScatterPlotSeries* series = GetDefaultScatterPlotSeriesSettings();
-    series->xs = &epochs;
-    series->ys = &scaledLosses;
-    series->lineType = toVector(L"solid");
-    series->color = CreateRGBColor(0, 0, 1); // blue
+    // ===== epochs =====
+    for (int i = 0; i < losses1.size(); i++)
+        epochs1.push_back(i);
 
+    for (int i = 0; i < losses2.size(); i++)
+        epochs2.push_back(i);
+
+    // ===== normalize losses =====
+    normalize(losses1, scaled1);
+    normalize(losses2, scaled2);
+
+    // ===== series 1 (1-channel) =====
+    ScatterPlotSeries* series1 = GetDefaultScatterPlotSeriesSettings();
+    series1->xs = &epochs1;
+    series1->ys = &scaled1;
+    series1->lineType = toVector(L"solid");
+    series1->color = CreateRGBColor(0, 0, 1); // blue
+
+    // ===== series 2 (2-channel) =====
+    ScatterPlotSeries* series2 = GetDefaultScatterPlotSeriesSettings();
+    series2->xs = &epochs2;
+    series2->ys = &scaled2;
+    series2->lineType = toVector(L"solid");
+    series2->color = CreateRGBColor(1, 0, 0); // red
+
+    // ===== settings =====
     ScatterPlotSettings* settings = GetDefaultScatterPlotSettings();
     settings->width = 900;
     settings->height = 500;
-    settings->title = toVector(L"Optimizer comparison (Loss per epoch)");
+    settings->title = toVector(L"Single vs Dual channel loss comparison");
     settings->xLabel = toVector(L"Epoch");
     settings->yLabel = toVector(L"Loss");
 
-    settings->scatterPlotSeries->push_back(series);
+    settings->scatterPlotSeries->push_back(series1);
+    settings->scatterPlotSeries->push_back(series2);
 
     DrawScatterPlotFromSettings(imageReference, settings, NULL);
 
     std::vector<double>* pngData = ConvertToPNG(imageReference->image);
-    WriteToFile(pngData, "optimizers_comparison.png");
+    WriteToFile(pngData, "single_vs_dual.png");
 
     std::cout << "\nPlot generated\n";
 
     DeleteImage(imageReference->image);
 
 #pragma endregion
+}
+
+int main() {
+    Init1();
+
+    const int EPOCH = 10;
+    for (int epoch = 0; epoch < EPOCH; epoch++) {
+        double loss = Learn1(MomentumSGD);
+        losses1.push_back(loss);
+    }
+
+    Init2();
+
+    for (int epoch = 0; epoch < EPOCH; epoch++) {
+        double loss = Learn2(MomentumSGD);
+        losses2.push_back(loss);
+    }
+
+    plot(losses1, losses2);
+
     return 0;
 }
