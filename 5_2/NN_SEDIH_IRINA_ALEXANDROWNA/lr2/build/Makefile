@@ -345,6 +345,54 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+pbplots/pbPlots.o: pbplots/pbPlots.cpp.o
+.PHONY : pbplots/pbPlots.o
+
+# target to build an object file
+pbplots/pbPlots.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o
+.PHONY : pbplots/pbPlots.cpp.o
+
+pbplots/pbPlots.i: pbplots/pbPlots.cpp.i
+.PHONY : pbplots/pbPlots.i
+
+# target to preprocess a source file
+pbplots/pbPlots.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.i
+.PHONY : pbplots/pbPlots.cpp.i
+
+pbplots/pbPlots.s: pbplots/pbPlots.cpp.s
+.PHONY : pbplots/pbPlots.s
+
+# target to generate assembly for a file
+pbplots/pbPlots.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.s
+.PHONY : pbplots/pbPlots.cpp.s
+
+pbplots/supportLib.o: pbplots/supportLib.cpp.o
+.PHONY : pbplots/supportLib.o
+
+# target to build an object file
+pbplots/supportLib.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o
+.PHONY : pbplots/supportLib.cpp.o
+
+pbplots/supportLib.i: pbplots/supportLib.cpp.i
+.PHONY : pbplots/supportLib.i
+
+# target to preprocess a source file
+pbplots/supportLib.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/pbplots/supportLib.cpp.i
+.PHONY : pbplots/supportLib.cpp.i
+
+pbplots/supportLib.s: pbplots/supportLib.cpp.s
+.PHONY : pbplots/supportLib.s
+
+# target to generate assembly for a file
+pbplots/supportLib.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/pbplots/supportLib.cpp.s
+.PHONY : pbplots/supportLib.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -381,6 +429,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... pbplots/pbPlots.o"
+	@echo "... pbplots/pbPlots.i"
+	@echo "... pbplots/pbPlots.s"
+	@echo "... pbplots/supportLib.o"
+	@echo "... pbplots/supportLib.i"
+	@echo "... pbplots/supportLib.s"
 .PHONY : help
 
 

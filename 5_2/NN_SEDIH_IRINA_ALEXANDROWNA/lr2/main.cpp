@@ -26,13 +26,17 @@
 
 */
 
+#include <algorithm>
 #include <iostream>
+#include "Optimizer.hpp"
 #include "Tensor.hpp"
 #include "ConvLayer.hpp"
 #include "MaxPoolingLayer.hpp"
 #include "ReLU.hpp"
 #include "FullyConnectedLayer.hpp"
 #include "CrossEntropy.hpp"
+#include "./pbplots/pbPlots.hpp"
+#include "./pbplots/supportLib.hpp"
 
 Tensor Concat(const Tensor& A, const Tensor& B) {
     TensorSize sizeA = A.GetSize();
@@ -143,6 +147,10 @@ FullyConnectedLayer *fc2;
 
 TensorSize inputSize{1,28,28};
 
+std::vector<double> channelImportance1;
+std::vector<double> channelImportance2;
+std::vector<double> channelImportance3;
+
 void Init() {
     // ===== NETWORK =====
     conv1 = new ConvLayer(inputSize, 8, 3, 1, 1);
@@ -158,12 +166,22 @@ void Init() {
 
     fc1 = new FullyConnectedLayer({32,14,14}, 128, "relu");
     fc2 = new FullyConnectedLayer({1,1,128}, 10, "none");
+
+    channelImportance1.resize(8, 0.0);
+    channelImportance2.resize(8, 0.0);
+    channelImportance3.resize(32, 0.0);
 }
 
-double Learn() {
+
+enum OPTIMIZER {
+    Adam,
+    SGD,
+    MomentumSGD
+};
+
+double Learn(OPTIMIZER opt) {
     Tensor X(inputSize);
 
-    // фиксированный input (важно!)
     for (int i = 0; i < 28; i++)
         for (int j = 0; j < 28; j++)
             X(0,i,j) = (i + j) % 2;
@@ -236,29 +254,116 @@ double Learn() {
     double lr = 0.001;
     double beta = 0.9;
 
-    static Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
-    static Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
+    switch (opt)
+    {
+        case MomentumSGD:
 
-    static Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
-    static Momentum opt_c2(lr, beta, conv2->GetWeightsSize());
-    static Momentum opt_c3(lr, beta, conv3->GetWeightsSize());
+            static Momentum opt_fc1(lr, beta, fc1->GetWeightsSize());
+            static Momentum opt_fc2(lr, beta, fc2->GetWeightsSize());
 
-    fc1->UpdateWeights(opt_fc1);
-    fc2->UpdateWeights(opt_fc2);
-    conv1->UpdateWeights(opt_c1);
-    conv2->UpdateWeights(opt_c2);
-    conv3->UpdateWeights(opt_c3);
+            static Momentum opt_c1(lr, beta, conv1->GetWeightsSize());
+            static Momentum opt_c2(lr, beta, conv2->GetWeightsSize());
+            static Momentum opt_c3(lr, beta, conv3->GetWeightsSize());
+            fc1->UpdateWeights(opt_fc1);
+            fc2->UpdateWeights(opt_fc2);
+            conv1->UpdateWeights(opt_c1);
+            conv2->UpdateWeights(opt_c2);
+            conv3->UpdateWeights(opt_c3);
+            break;
+
+        case Adam:
+            static class Adam opt_fc1_adam(lr, fc1->GetWeightsSize());
+            static class Adam opt_fc2_adam(lr, fc2->GetWeightsSize());
+
+            static class Adam opt_c1_adam(lr, conv1->GetWeightsSize());
+            static class Adam opt_c2_adam(lr, conv2->GetWeightsSize());
+            static class Adam opt_c3_adam(lr, conv3->GetWeightsSize());
+            fc1->UpdateWeights(opt_fc1_adam);
+            fc2->UpdateWeights(opt_fc2_adam);
+            conv1->UpdateWeights(opt_c1_adam);
+            conv2->UpdateWeights(opt_c2_adam);
+            conv3->UpdateWeights(opt_c3_adam);
+            break;
+
+        case SGD:
+            static class SGD opt_fc1_sgd(lr);
+            static class SGD opt_fc2_sgd(lr);
+
+            static class SGD opt_c1_sgd(lr);
+            static class SGD opt_c2_sgd(lr);
+            static class SGD opt_c3_sgd(lr);
+
+            fc1->UpdateWeights(opt_fc1_sgd);
+            fc2->UpdateWeights(opt_fc2_sgd);
+            conv1->UpdateWeights(opt_c1_sgd);
+            conv2->UpdateWeights(opt_c2_sgd);
+            conv3->UpdateWeights(opt_c3_sgd);
+
+            break;
+
+        default:
+            std::cerr << "I dunno this optimizer\n";
+            break;
+    }
 
     return loss;
 }
+
+std::vector<double> losses;
 
 int main() {
     Init();
 
     for (int epoch = 0; epoch < 10; epoch++) {
-        double loss = Learn();
+        double loss = Learn(MomentumSGD);
+        losses.push_back(loss);
         std::cout << "Epoch " << epoch << " Loss: " << loss << std::endl;
     }
+#pragma region Plot
 
+    RGBABitmapImageReference* imageReference = CreateRGBABitmapImageReference();
+
+    std::vector<double> epochs;
+    for (int i = 0; i < losses.size(); i++)
+        epochs.push_back(i);
+
+    std::vector<double> scaledLosses;
+    scaledLosses.reserve(losses.size());
+
+    double maxLoss = *std::max_element(losses.begin(), losses.end());
+    double minLoss = *std::min_element(losses.begin(), losses.end());
+
+    double range = maxLoss - minLoss;
+    if (range < 1e-9) range = 1.0;
+
+    for (double l : losses) {
+        double norm = (l - minLoss) / range; // [0..1]
+        scaledLosses.push_back(norm * 0.01);   // [0..0.1]
+    }
+    ScatterPlotSeries* series = GetDefaultScatterPlotSeriesSettings();
+    series->xs = &epochs;
+    series->ys = &scaledLosses;
+    series->lineType = toVector(L"solid");
+    series->color = CreateRGBColor(0, 0, 1); // blue
+
+    ScatterPlotSettings* settings = GetDefaultScatterPlotSettings();
+    settings->width = 900;
+    settings->height = 500;
+    settings->title = toVector(L"Optimizer comparison (Loss per epoch)");
+    settings->xLabel = toVector(L"Epoch");
+    settings->yLabel = toVector(L"Loss");
+
+    settings->scatterPlotSeries->push_back(series);
+
+    DrawScatterPlotFromSettings(imageReference, settings, NULL);
+
+    std::vector<double>* pngData = ConvertToPNG(imageReference->image);
+    WriteToFile(pngData, "optimizers_comparison.png");
+
+    std::cout << "\nPlot generated\n";
+
+    DeleteImage(imageReference->image);
+
+#pragma endregion
     return 0;
 }

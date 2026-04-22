@@ -17,6 +17,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.cpp" "CMakeFiles/cnn.dir/ReLU.cpp.o" "gcc" "CMakeFiles/cnn.dir/ReLU.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Tensor.cpp" "CMakeFiles/cnn.dir/Tensor.cpp.o" "gcc" "CMakeFiles/cnn.dir/Tensor.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/main.cpp" "CMakeFiles/cnn.dir/main.cpp.o" "gcc" "CMakeFiles/cnn.dir/main.cpp.o.d"
+  "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.cpp" "CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o" "gcc" "CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o.d"
+  "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/supportLib.cpp" "CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o" "gcc" "CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o.d"
   "" "cnn" "gcc" "CMakeFiles/cnn.dir/link.d"
   )
 

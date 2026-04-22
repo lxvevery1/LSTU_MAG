@@ -198,6 +198,34 @@ CMakeFiles/cnn.dir/Optimizer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/Optimizer.cpp.s"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Optimizer.cpp -o CMakeFiles/cnn.dir/Optimizer.cpp.s
 
+CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o: CMakeFiles/cnn.dir/flags.make
+CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.cpp
+CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o -MF CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o.d -o CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.cpp
+
+CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.cpp > CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.i
+
+CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.cpp -o CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.s
+
+CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o: CMakeFiles/cnn.dir/flags.make
+CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/supportLib.cpp
+CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o: CMakeFiles/cnn.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o -MF CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o.d -o CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o -c /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/supportLib.cpp
+
+CMakeFiles/cnn.dir/pbplots/supportLib.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/cnn.dir/pbplots/supportLib.cpp.i"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/supportLib.cpp > CMakeFiles/cnn.dir/pbplots/supportLib.cpp.i
+
+CMakeFiles/cnn.dir/pbplots/supportLib.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/cnn.dir/pbplots/supportLib.cpp.s"
+	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/supportLib.cpp -o CMakeFiles/cnn.dir/pbplots/supportLib.cpp.s
+
 # Object files for target cnn
 cnn_OBJECTS = \
 "CMakeFiles/cnn.dir/main.cpp.o" \
@@ -208,7 +236,9 @@ cnn_OBJECTS = \
 "CMakeFiles/cnn.dir/ReLU.cpp.o" \
 "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o" \
 "CMakeFiles/cnn.dir/CrossEntropy.cpp.o" \
-"CMakeFiles/cnn.dir/Optimizer.cpp.o"
+"CMakeFiles/cnn.dir/Optimizer.cpp.o" \
+"CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o" \
+"CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o"
 
 # External object files for target cnn
 cnn_EXTERNAL_OBJECTS =
@@ -222,10 +252,12 @@ cnn: CMakeFiles/cnn.dir/ReLU.cpp.o
 cnn: CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o
 cnn: CMakeFiles/cnn.dir/CrossEntropy.cpp.o
 cnn: CMakeFiles/cnn.dir/Optimizer.cpp.o
+cnn: CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o
+cnn: CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o
 cnn: CMakeFiles/cnn.dir/build.make
 cnn: CMakeFiles/cnn.dir/compiler_depend.ts
 cnn: CMakeFiles/cnn.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable cnn"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable cnn"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cnn.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

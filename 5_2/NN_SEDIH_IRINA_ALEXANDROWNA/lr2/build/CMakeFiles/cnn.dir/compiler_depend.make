@@ -1819,6 +1819,7 @@ CMakeFiles/cnn.dir/Tensor.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SED
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
 CMakeFiles/cnn.dir/main.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/main.cpp \
+  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.hpp \
   /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.hpp \
   /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.hpp \
   /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.hpp \
@@ -1910,8 +1911,10 @@ CMakeFiles/cnn.dir/main.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH
   /usr/include/bits/wchar.h \
   /usr/include/bits/wctype-wchar.h \
   /usr/include/bits/wordsize.h \
+  /usr/include/c++/15.2.1/algorithm \
   /usr/include/c++/15.2.1/backward/binders.h \
   /usr/include/c++/15.2.1/bit \
+  /usr/include/c++/15.2.1/bits/algorithmfwd.h \
   /usr/include/c++/15.2.1/bits/alloc_traits.h \
   /usr/include/c++/15.2.1/bits/allocator.h \
   /usr/include/c++/15.2.1/bits/basic_ios.h \
@@ -1956,15 +1959,18 @@ CMakeFiles/cnn.dir/main.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH
   /usr/include/c++/15.2.1/bits/requires_hosted.h \
   /usr/include/c++/15.2.1/bits/specfun.h \
   /usr/include/c++/15.2.1/bits/std_abs.h \
+  /usr/include/c++/15.2.1/bits/stl_algo.h \
   /usr/include/c++/15.2.1/bits/stl_algobase.h \
   /usr/include/c++/15.2.1/bits/stl_bvector.h \
   /usr/include/c++/15.2.1/bits/stl_construct.h \
   /usr/include/c++/15.2.1/bits/stl_function.h \
+  /usr/include/c++/15.2.1/bits/stl_heap.h \
   /usr/include/c++/15.2.1/bits/stl_iterator.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/15.2.1/bits/stl_iterator_base_types.h \
   /usr/include/c++/15.2.1/bits/stl_numeric.h \
   /usr/include/c++/15.2.1/bits/stl_pair.h \
+  /usr/include/c++/15.2.1/bits/stl_tempbuf.h \
   /usr/include/c++/15.2.1/bits/stl_uninitialized.h \
   /usr/include/c++/15.2.1/bits/stl_vector.h \
   /usr/include/c++/15.2.1/bits/streambuf.tcc \
@@ -1986,6 +1992,7 @@ CMakeFiles/cnn.dir/main.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH
   /usr/include/c++/15.2.1/cstdint \
   /usr/include/c++/15.2.1/cstdio \
   /usr/include/c++/15.2.1/cstdlib \
+  /usr/include/c++/15.2.1/cstring \
   /usr/include/c++/15.2.1/cwchar \
   /usr/include/c++/15.2.1/cwctype \
   /usr/include/c++/15.2.1/debug/assertions.h \
@@ -2006,6 +2013,7 @@ CMakeFiles/cnn.dir/main.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH
   /usr/include/c++/15.2.1/numeric \
   /usr/include/c++/15.2.1/ostream \
   /usr/include/c++/15.2.1/pstl/execution_defs.h \
+  /usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h \
   /usr/include/c++/15.2.1/pstl/glue_numeric_defs.h \
   /usr/include/c++/15.2.1/pstl/pstl_config.h \
   /usr/include/c++/15.2.1/random \
@@ -2062,6 +2070,8 @@ CMakeFiles/cnn.dir/main.cpp.o: /home/stanik/programmer/++Programmer/5_2/NN_SEDIH
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/sys/cdefs.h \
   /usr/include/sys/select.h \
   /usr/include/sys/single_threaded.h \
@@ -2097,8 +2107,14 @@ cnn: /usr/lib/Scrt1.o \
   CMakeFiles/cnn.dir/Optimizer.cpp.o \
   CMakeFiles/cnn.dir/ReLU.cpp.o \
   CMakeFiles/cnn.dir/Tensor.cpp.o \
-  CMakeFiles/cnn.dir/main.cpp.o
+  CMakeFiles/cnn.dir/main.cpp.o \
+  CMakeFiles/cnn.dir/supportLib/supportLib.cpp.o \
+  CMakeFiles/cnn.dir/usr/include/pbplots/pbPlots.cpp.o
 
+
+CMakeFiles/cnn.dir/usr/include/pbplots/pbPlots.cpp.o:
+
+CMakeFiles/cnn.dir/supportLib/supportLib.cpp.o:
 
 CMakeFiles/cnn.dir/main.cpp.o:
 
@@ -2135,6 +2151,18 @@ CMakeFiles/cnn.dir/CrossEntropy.cpp.o:
 /usr/lib/crti.o:
 
 /usr/lib/Scrt1.o:
+
+/usr/include/string.h:
+
+/usr/include/c++/15.2.1/pstl/glue_algorithm_defs.h:
+
+/usr/include/c++/15.2.1/cstring:
+
+/usr/include/c++/15.2.1/bits/algorithmfwd.h:
+
+/usr/include/c++/15.2.1/algorithm:
+
+/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/pbplots/pbPlots.hpp:
 
 /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/main.cpp:
 
@@ -2358,7 +2386,11 @@ CMakeFiles/cnn.dir/Matrix.cpp.o:
 
 /usr/include/c++/15.2.1/bits/locale_classes.tcc:
 
+/usr/include/strings.h:
+
 /usr/include/c++/15.2.1/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/15.2.1/bits/stl_tempbuf.h:
 
 /usr/include/stdc-predef.h:
 
@@ -2487,6 +2519,8 @@ CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o:
 /usr/include/asm-generic/errno.h:
 
 /usr/include/c++/15.2.1/bits/stl_vector.h:
+
+/usr/include/c++/15.2.1/bits/stl_heap.h:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -2639,6 +2673,8 @@ CMakeFiles/cnn.dir/ConvLayer.cpp.o:
 /usr/include/linux/sched/types.h:
 
 /usr/include/linux/stddef.h:
+
+/usr/include/c++/15.2.1/bits/stl_algo.h:
 
 /usr/include/c++/15.2.1/bits/stl_uninitialized.h:
 

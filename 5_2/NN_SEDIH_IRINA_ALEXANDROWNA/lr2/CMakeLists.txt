@@ -17,6 +17,8 @@ set(SOURCES
     FullyConnectedLayer.cpp
     CrossEntropy.cpp
     Optimizer.cpp
+    ./pbplots/pbPlots.cpp
+    ./pbplots/supportLib.cpp
 )
 
 set(HEADERS
@@ -28,6 +30,8 @@ set(HEADERS
     FullyConnectedLayer.hpp
     CrossEntropy.hpp
     Optimizer.hpp
+    ./pbplots/pbPlots.hpp
+    ./pbplots/supportLib.hpp
 )
 
 add_executable(cnn ${SOURCES} ${HEADERS})

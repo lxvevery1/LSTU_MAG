@@ -18,6 +18,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/cnn.dir/Tensor.cpp.o.d"
   "CMakeFiles/cnn.dir/main.cpp.o"
   "CMakeFiles/cnn.dir/main.cpp.o.d"
+  "CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o"
+  "CMakeFiles/cnn.dir/pbplots/pbPlots.cpp.o.d"
+  "CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o"
+  "CMakeFiles/cnn.dir/pbplots/supportLib.cpp.o.d"
   "cnn"
   "cnn.pdb"
 )
