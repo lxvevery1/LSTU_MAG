@@ -1,0 +1,14 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание кафедры}{3}{section.1}%
+\contentsline {section}{\numberline {2}Описание проектируемой системы}{3}{section.2}%
+\contentsline {section}{\numberline {3}Диаграмма требований}{4}{section.3}%
+\contentsline {section}{\numberline {4}Акторы и варианты использования системы}{8}{section.4}%
+\contentsline {section}{\numberline {5}Диаграмма вариантов использования}{9}{section.5}%
+\contentsline {section}{\numberline {6}Описание основных вариантов использования}{10}{section.6}%
+\contentsline {subsection}{\numberline {6.1}UC1: Авторизация пользователя}{10}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}UC2: Отправка текстового сообщения}{10}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}UC3: Голосовая связь}{11}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}UC4: Передача файлов}{11}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Функциональные требования системы}{12}{section.7}%
+\contentsline {section}{\numberline {8}Нефункциональные требования системы}{13}{section.8}%
+\contentsline {section}{\numberline {9}Вывод}{14}{section.9}%
