@@ -506,7 +506,7 @@ int main() {
     Init1();
 
     const int datasetSize = 10;
-    const int EPOCH = 10;
+    const int EPOCH = 20;
 
     for (int epoch = 0; epoch < EPOCH; epoch++) {
         double totalLoss = 0;
