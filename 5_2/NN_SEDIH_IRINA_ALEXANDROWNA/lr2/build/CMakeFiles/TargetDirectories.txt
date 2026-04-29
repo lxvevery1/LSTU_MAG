@@ -1,3 +1,0 @@
-/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles/cnn.dir
-/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles/edit_cache.dir
-/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/build/CMakeFiles/rebuild_cache.dir
