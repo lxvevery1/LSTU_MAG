@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ConvLayer.cpp" "CMakeFiles/cnn.dir/ConvLayer.cpp.o" "gcc" "CMakeFiles/cnn.dir/ConvLayer.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.cpp" "CMakeFiles/cnn.dir/CrossEntropy.cpp.o" "gcc" "CMakeFiles/cnn.dir/CrossEntropy.cpp.o.d"
+  "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Data.cpp" "CMakeFiles/cnn.dir/Data.cpp.o" "gcc" "CMakeFiles/cnn.dir/Data.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.cpp" "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o" "gcc" "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Matrix.cpp" "CMakeFiles/cnn.dir/Matrix.cpp.o" "gcc" "CMakeFiles/cnn.dir/Matrix.cpp.o.d"
   "/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/MaxPoolingLayer.cpp" "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o" "gcc" "CMakeFiles/cnn.dir/MaxPoolingLayer.cpp.o.d"

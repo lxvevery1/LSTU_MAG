@@ -35,6 +35,7 @@
 #include "ReLU.hpp"
 #include "FullyConnectedLayer.hpp"
 #include "CrossEntropy.hpp"
+#include "Data.hpp"
 #include "./pbplots/pbPlots.hpp"
 #include "./pbplots/supportLib.hpp"
 
@@ -157,7 +158,14 @@ std::vector<double> channelImportance1;
 std::vector<double> channelImportance2;
 std::vector<double> channelImportance3;
 
+std::vector<Tensor> images;
+std::vector<int> labels;
+
 void Init1() {
+    images = Data::LoadImages("../data/train-images.idx3-ubyte");
+    std::cout << "Images: " << images.size() << std::endl;
+    labels = Data::LoadLabels("../data/train-labels.idx1-ubyte");
+    std::cout << "Labels: " << labels.size() << std::endl;
     // ===== NETWORK =====
     conv1 = new ConvLayer(inputSize, 8, 3, 1, 1);
     conv2 = new ConvLayer(inputSize, 8, 3, 1, 1);
@@ -200,16 +208,8 @@ void Init2() {
     channelImportance3.resize(32, 0.0);
 }
 
-double Learn1(OPTIMIZER opt)
+double Learn1(const Tensor& X, int label, OPTIMIZER opt)
 {
-    Tensor X(inputSize);
-
-    for (int i = 0; i < 28; i++)
-        for (int j = 0; j < 28; j++)
-            X(0,i,j) = (i + j) % 2;
-
-    int label = 3;
-
     // ===== FORWARD =====
     Tensor Y1  = conv1->Forward(X);
     Tensor Y1r = relu1->Forward(Y1);
@@ -304,15 +304,8 @@ double Learn1(OPTIMIZER opt)
     return loss;
 }
 
-double Learn2(OPTIMIZER opt) {
-    Tensor X(inputSize);
-
-    for (int i = 0; i < 28; i++)
-        for (int j = 0; j < 28; j++)
-            X(0,i,j) = (i + j) % 2;
-
-    int label = 3;
-
+double Learn2(const Tensor& X, int label, OPTIMIZER opt)
+{
     // ===== Sobel =====
     Tensor X2 = Sobel(X);
 
@@ -512,17 +505,37 @@ void plot(const std::vector<double>& losses1,
 int main() {
     Init1();
 
+    const int datasetSize = 10;
     const int EPOCH = 10;
+
     for (int epoch = 0; epoch < EPOCH; epoch++) {
-        double loss = Learn1(MomentumSGD);
-        losses1.push_back(loss);
+        double totalLoss = 0;
+
+        for (int i = 0; i < datasetSize; i++)
+        {
+            totalLoss += Learn1(images[i], labels[i], MomentumSGD);
+        }
+
+        double avgLoss = totalLoss / datasetSize;
+        losses1.push_back(avgLoss);
+
+        std::cout << "Epoch (one layer) " << epoch << " loss: " << avgLoss << std::endl;
     }
 
     Init2();
 
     for (int epoch = 0; epoch < EPOCH; epoch++) {
-        double loss = Learn2(MomentumSGD);
-        losses2.push_back(loss);
+        double totalLoss = 0;
+
+        for (int i = 0; i < datasetSize; i++)
+        {
+            totalLoss += Learn2(images[i], labels[i], MomentumSGD);
+        }
+
+        double avgLoss = totalLoss / datasetSize;
+        losses2.push_back(avgLoss);
+
+        std::cout << "Epoch (double layer)" << epoch << " loss: " << avgLoss << std::endl;
     }
 
     plot(losses1, losses2);

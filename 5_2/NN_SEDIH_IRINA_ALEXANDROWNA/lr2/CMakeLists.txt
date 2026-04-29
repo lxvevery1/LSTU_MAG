@@ -17,6 +17,7 @@ set(SOURCES
     FullyConnectedLayer.cpp
     CrossEntropy.cpp
     Optimizer.cpp
+    Data.cpp
     ./pbplots/pbPlots.cpp
     ./pbplots/supportLib.cpp
 )
@@ -30,6 +31,7 @@ set(HEADERS
     FullyConnectedLayer.hpp
     CrossEntropy.hpp
     Optimizer.hpp
+    Data.hpp
     ./pbplots/pbPlots.hpp
     ./pbplots/supportLib.hpp
 )

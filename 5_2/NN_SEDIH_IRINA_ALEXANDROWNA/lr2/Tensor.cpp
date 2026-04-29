@@ -1,6 +1,5 @@
 #include"Tensor.hpp"
 #include"Matrix.hpp"
-#include <cmath>
 #include <ostream>
 
 void Tensor::Init(int width, int height, int depth) {

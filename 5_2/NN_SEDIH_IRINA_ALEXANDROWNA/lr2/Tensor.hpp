@@ -20,10 +20,10 @@ class Tensor {
     TensorSize size;
     std::vector<double> values;
     int dw;
-    void Init(int width, int height, int depth);
+    void Init(int depth, int height, int width);
 
     public:
-    Tensor(int width, int height, int depth);
+    Tensor(int depth, int height, int width);
     Tensor(int flatSize) : size{flatSize, 1, 1}, values(flatSize) {};
     Tensor(const TensorSize &size);
     double& operator()(int d, int i, int j);

@@ -177,6 +177,30 @@ CrossEntropy.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/CrossEntropy.cpp.s
 .PHONY : CrossEntropy.cpp.s
 
+Data.o: Data.cpp.o
+.PHONY : Data.o
+
+# target to build an object file
+Data.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Data.cpp.o
+.PHONY : Data.cpp.o
+
+Data.i: Data.cpp.i
+.PHONY : Data.i
+
+# target to preprocess a source file
+Data.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Data.cpp.i
+.PHONY : Data.cpp.i
+
+Data.s: Data.cpp.s
+.PHONY : Data.s
+
+# target to generate assembly for a file
+Data.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cnn.dir/build.make CMakeFiles/cnn.dir/Data.cpp.s
+.PHONY : Data.cpp.s
+
 FullyConnectedLayer.o: FullyConnectedLayer.cpp.o
 .PHONY : FullyConnectedLayer.o
 
@@ -408,6 +432,9 @@ help:
 	@echo "... CrossEntropy.o"
 	@echo "... CrossEntropy.i"
 	@echo "... CrossEntropy.s"
+	@echo "... Data.o"
+	@echo "... Data.i"
+	@echo "... Data.s"
 	@echo "... FullyConnectedLayer.o"
 	@echo "... FullyConnectedLayer.i"
 	@echo "... FullyConnectedLayer.s"

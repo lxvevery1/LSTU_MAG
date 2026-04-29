@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/cnn.dir/ConvLayer.cpp.o.d"
   "CMakeFiles/cnn.dir/CrossEntropy.cpp.o"
   "CMakeFiles/cnn.dir/CrossEntropy.cpp.o.d"
+  "CMakeFiles/cnn.dir/Data.cpp.o"
+  "CMakeFiles/cnn.dir/Data.cpp.o.d"
   "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o"
   "CMakeFiles/cnn.dir/FullyConnectedLayer.cpp.o.d"
   "CMakeFiles/cnn.dir/Matrix.cpp.o"

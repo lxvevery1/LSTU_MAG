@@ -194,11 +194,12 @@ CMakeFiles/cnn.dir/main.cpp.o: \
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/ReLU.hpp \
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/FullyConnectedLayer.hpp \
  /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/CrossEntropy.hpp \
- /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/./pbplots/pbPlots.hpp \
- /usr/include/c++/15.2.1/cstring /usr/include/string.h \
- /usr/include/strings.h \
- /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/./pbplots/supportLib.hpp \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/Data.hpp \
  /usr/include/c++/15.2.1/fstream /usr/include/c++/15.2.1/bits/codecvt.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/basic_file.h \
  /usr/include/c++/15.2.1/x86_64-pc-linux-gnu/bits/c++io.h \
- /usr/include/c++/15.2.1/bits/fstream.tcc
+ /usr/include/c++/15.2.1/bits/fstream.tcc \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/./pbplots/pbPlots.hpp \
+ /usr/include/c++/15.2.1/cstring /usr/include/string.h \
+ /usr/include/strings.h \
+ /home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr2/./pbplots/supportLib.hpp
