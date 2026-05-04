@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/nixos.org) (preloaded format=pdflatex 1980.1.1)  3 MAY 2026 15:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025/nixos.org) (preloaded format=pdflatex 1980.1.1)  4 MAY 2026 10:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1299,7 +1299,7 @@ Package caption Info: End \AtBeginDocument code.
 \c@mv@boldtabular=\count354
 LaTeX Info: Command `\dddot' is already robust on input line 53.
 LaTeX Info: Command `\ddddot' is already robust on input line 53.
-<~/gitrepos/LSTU_MAG/5_2/LSTU.jpg, id=24, 42.705pt x 63.729pt>
+<~/gitrepos/LSTU_MAG/5_2/LSTU.jpg, id=28, 42.705pt x 63.729pt>
 File: ~/gitrepos/LSTU_MAG/5_2/LSTU.jpg Graphic file (type jpg)
 <use ~/gitrepos/LSTU_MAG/5_2/LSTU.jpg>
 Package pdftex.def Info: ~/gitrepos/LSTU_MAG/5_2/LSTU.jpg  used on input line 5
@@ -1440,20 +1440,14 @@ L3 programming layer <2020/03/25>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `13.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `13.out':
-(rerunfilecheck)             Before: F6AC2983686E029D99D834537233E53E;1695
-(rerunfilecheck)             After:  F46C9676168B22CBDBE675EE9C40D66F;2240.
+Package rerunfilecheck Info: File `13.out' has not changed.
+(rerunfilecheck)             Checksum: F46C9676168B22CBDBE675EE9C40D66F;2240.
  ) 
 Here is how much of TeX's memory you used:
- 21895 strings out of 467535
- 354963 string characters out of 5388798
+ 21896 strings out of 467535
+ 354979 string characters out of 5388798
  774668 words of memory out of 5000000
- 50426 multiletter control sequences out of 15000+600000
+ 50427 multiletter control sequences out of 15000+600000
  646231 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,79p,999b,510s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1464,10 +1458,10 @@ per/sfrm1440.pfb></nix/store/56vq9r21wl8m731rsri7nh3l4ipih7jj-texlive-2025-r782
 34-final-env-texmfdist/fonts/type1/public/cm-super/sfrm2074.pfb></nix/store/56v
 q9r21wl8m731rsri7nh3l4ipih7jj-texlive-2025-r78234-final-env-texmfdist/fonts/typ
 e1/public/cm-super/sftt1440.pfb>
-Output written on 13.pdf (5 pages, 87096 bytes).
+Output written on 13.pdf (5 pages, 87195 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 84 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  12 named destinations out of 1000 (max. 500000)
- 13870 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 13878 words of extra memory for PDF output out of 14400 (max. 10000000)
 
