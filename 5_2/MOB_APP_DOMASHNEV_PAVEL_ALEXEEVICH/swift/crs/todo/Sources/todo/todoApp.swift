@@ -4,7 +4,7 @@ import SwiftUI
 struct todoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppRootView()
         }
     }
 }

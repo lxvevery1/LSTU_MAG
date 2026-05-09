@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct ContentView: View {
+struct AppRootView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        #if os(iOS)
+        MainTabContainerView()
+            .ignoresSafeArea()
+        #else
+        Text("ToDo app is available on iOS.")
+            .padding()
+        #endif
     }
 }
