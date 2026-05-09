@@ -82,7 +82,11 @@ final class TasksTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        dependencies.store.delete(taskID: tasks[indexPath.row].id)
+        let taskID = tasks[indexPath.row].id
+        dependencies.store.delete(taskID: taskID)
+        Task {
+            try? await dependencies.api.deleteTask(id: taskID)
+        }
         reloadData()
     }
 }
