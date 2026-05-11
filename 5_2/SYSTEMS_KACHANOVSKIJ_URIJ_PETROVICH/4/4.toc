@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание кафедры}{3}{section.1}%
+\contentsline {section}{\numberline {2}Описание проектируемой системы}{3}{section.2}%
+\contentsline {section}{\numberline {3}Диаграммы блоков}{4}{section.3}%
+\contentsline {section}{\numberline {4}Структурные и поведенческие характеристики блоков}{5}{section.4}%
+\contentsline {section}{\numberline {5}Модель взаимодействия основных частей системы}{6}{section.5}%

@@ -427,8 +427,21 @@ double Learn2(const Tensor& X, int label, OPTIMIZER opt)
     return loss;
 }
 
+inline const char* ToString(OPTIMIZER opt)
+{
+    switch (opt)
+    {
+        case MomentumSGD:   return "MomentumSGD";
+        case SGD:   return "SGD";
+        case Adam: return "Adam";
+        default:      return "[Unknown Optimizer]";
+    }
+}
+
 std::vector<double> losses1;
 std::vector<double> losses2;
+
+const OPTIMIZER opt = MomentumSGD;
 
 void plot(const std::vector<double>& losses1,
           const std::vector<double>& losses2)
@@ -493,33 +506,32 @@ void plot(const std::vector<double>& losses1,
     DrawScatterPlotFromSettings(imageReference, settings, NULL);
 
     std::vector<double>* pngData = ConvertToPNG(imageReference->image);
-    WriteToFile(pngData, "single_vs_dual.png");
+    WriteToFile(pngData, "single_vs_dual_" + std::string(ToString(opt)) + ".png");
 
     std::cout << "\nPlot generated\n";
 
     DeleteImage(imageReference->image);
-
-#pragma endregion
 }
+#pragma endregion
 
 int main() {
     Init1();
 
     const int datasetSize = 10;
-    const int EPOCH = 20;
+    const int EPOCH = 10;
 
     for (int epoch = 0; epoch < EPOCH; epoch++) {
         double totalLoss = 0;
 
         for (int i = 0; i < datasetSize; i++)
         {
-            totalLoss += Learn1(images[i], labels[i], MomentumSGD);
+            totalLoss += Learn1(images[i], labels[i], opt);
         }
 
         double avgLoss = totalLoss / datasetSize;
         losses1.push_back(avgLoss);
 
-        std::cout << "Epoch (one layer) " << epoch << " loss: " << avgLoss << std::endl;
+        std::cout << ToString(opt) << " Epoch (one layer) " << epoch << " loss: " << avgLoss << std::endl;
     }
 
     Init2();
@@ -529,13 +541,13 @@ int main() {
 
         for (int i = 0; i < datasetSize; i++)
         {
-            totalLoss += Learn2(images[i], labels[i], MomentumSGD);
+            totalLoss += Learn2(images[i], labels[i], opt);
         }
 
         double avgLoss = totalLoss / datasetSize;
         losses2.push_back(avgLoss);
 
-        std::cout << "Epoch (double layer)" << epoch << " loss: " << avgLoss << std::endl;
+        std::cout << ToString(opt) << "Epoch (double layer)" << epoch << " loss: " << avgLoss << std::endl;
     }
 
     plot(losses1, losses2);

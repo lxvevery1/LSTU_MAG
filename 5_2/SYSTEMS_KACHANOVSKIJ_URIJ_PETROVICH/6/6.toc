@@ -1,0 +1,4 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание кафедры}{3}{section.1}%
+\contentsline {section}{\numberline {2}Описание проектируемой системы}{3}{section.2}%
+\contentsline {section}{\numberline {3}Диаграммы}{4}{section.3}%

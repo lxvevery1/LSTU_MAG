@@ -1,0 +1,1842 @@
+[
+  {
+    "id": "a586b996-2b03-44be-b3b8-6724357dd71a",
+    "title": "Attacking projectile",
+    "notes": "",
+    "isDone": false,
+    "category": "PrettyFly",
+    "updatedAt": "2026-05-10T14:41:13.662647Z"
+  },
+  {
+    "id": "5fee4350-0885-487b-93bf-c17e256788b4",
+    "title": "Facing objects as independent script",
+    "notes": "",
+    "isDone": true,
+    "category": "PrettyFly",
+    "updatedAt": "2026-05-10T14:41:13.662675Z"
+  },
+  {
+    "id": "b4af261f-8f27-493b-b34e-0c775951a5dd",
+    "title": "Improve killable logic",
+    "notes": "",
+    "isDone": true,
+    "category": "PrettyFly",
+    "updatedAt": "2026-05-10T14:41:13.662685Z"
+  },
+  {
+    "id": "013651f4-d691-425c-ad34-b474bde34a96",
+    "title": "HUD",
+    "notes": "",
+    "isDone": true,
+    "category": "PrettyFly",
+    "updatedAt": "2026-05-10T14:41:13.662694Z"
+  },
+  {
+    "id": "3a17c1d9-d0a2-4032-b1d2-0cb5dbaac00f",
+    "title": "valera_350",
+    "notes": "",
+    "isDone": false,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662704Z"
+  },
+  {
+    "id": "07b3688f-c5ad-4ebd-95a7-65a0ae8a14b6",
+    "title": "nekit_400",
+    "notes": "",
+    "isDone": false,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662710Z"
+  },
+  {
+    "id": "e828ea2f-e764-43bf-a75f-b0fe3148b800",
+    "title": "vanek_8000-1000+500-3000",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662719Z"
+  },
+  {
+    "id": "223df5f1-8659-4d74-bfdb-ec5569f8ce3f",
+    "title": "vanek_1500(1700)",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662725Z"
+  },
+  {
+    "id": "4b9acb55-d1b1-4542-b6a5-88f89e899133",
+    "title": "vanek_3500(3700)",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662731Z"
+  },
+  {
+    "id": "04f37e6d-eb55-492b-b03a-d5fcbef9c2a1",
+    "title": "vanek_4000",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662736Z"
+  },
+  {
+    "id": "95693d15-e4e0-4aa3-ba61-a34064dbcece",
+    "title": "Никитос торчит мне 3k+300-500-700-300",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662742Z"
+  },
+  {
+    "id": "63f6b63f-dacf-4a3f-b0f2-cf241e846830",
+    "title": "vanek_1500_2000",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662748Z"
+  },
+  {
+    "id": "7666d774-1aa4-492c-be8b-214f9faa0d71",
+    "title": "vanek 1000+300+300$",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662754Z"
+  },
+  {
+    "id": "6cfe51dd-e2d1-4b34-82f0-036db8167c78",
+    "title": "valera 700",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662759Z"
+  },
+  {
+    "id": "5a4835c3-172f-4fbf-a230-be69dea26951",
+    "title": "vanek 700",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662765Z"
+  },
+  {
+    "id": "ac55f853-ec8b-4260-aeab-1844e9f93931",
+    "title": "Valera 400g",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662770Z"
+  },
+  {
+    "id": "ccd74c8f-62bd-4408-ad19-bc1d5f4af87b",
+    "title": "vanek 200rub",
+    "notes": "",
+    "isDone": true,
+    "category": "Долги ($)",
+    "updatedAt": "2026-05-10T14:41:13.662776Z"
+  },
+  {
+    "id": "62751cd3-e5c9-492e-b906-af0d57ca791c",
+    "title": "ЧЕТВЕРГ_ТЕСТ#1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662782Z"
+  },
+  {
+    "id": "cd7e4f5f-1a9a-41d2-a45b-5c357154557f",
+    "title": "ANDROID_STUDIO",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662787Z"
+  },
+  {
+    "id": "bd4b08ff-c0bc-4603-878d-f1e09fc15f85",
+    "title": "БЛОК_СХЕМА",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662793Z"
+  },
+  {
+    "id": "15d728d3-358b-4054-8e0c-6f635423ef20",
+    "title": "ML",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662799Z"
+  },
+  {
+    "id": "1fb1ded7-2042-49e9-924a-2765a038ef43",
+    "title": "1. Паспорт 2. Снилс 3. Диплом",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662809Z"
+  },
+  {
+    "id": "c18e44d4-9d3e-4b72-ae0b-d601e355952c",
+    "title": "EXAM",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662817Z"
+  },
+  {
+    "id": "5ba37d33-0fb4-492d-9711-1a4a9f999334",
+    "title": "заказ(сервер)",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662824Z"
+  },
+  {
+    "id": "bc54e07b-c7e8-45e2-9946-0e06ce11c533",
+    "title": "удаляй несуществующие элементы при сейве",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662847Z"
+  },
+  {
+    "id": "2b0d4c44-8a77-4291-a753-8b7d28a2d3e8",
+    "title": "DIPLOM_PROGRAM",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662854Z"
+  },
+  {
+    "id": "b8af78f0-9af8-4389-9d1f-936951cd92d5",
+    "title": "прошить презентации",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662863Z"
+  },
+  {
+    "id": "07dbab50-1a18-4f04-bbab-4ca370bcb8e0",
+    "title": "скинь гаеву",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662869Z"
+  },
+  {
+    "id": "f42c94a4-3ad0-46d1-9fae-43ee71b7678b",
+    "title": "fix презент + отчет",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662876Z"
+  },
+  {
+    "id": "c026e3a2-700f-4ca5-b865-60efa2071973",
+    "title": "ХАРАКТЕРИСТИКА",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662882Z"
+  },
+  {
+    "id": "adea1ace-e276-4847-8f41-6f7d9a59ce5c",
+    "title": "сегодня в 9",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662888Z"
+  },
+  {
+    "id": "f1d9e625-6513-4b47-98d7-2566bc2b445f",
+    "title": "fix 3.3",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662895Z"
+  },
+  {
+    "id": "bb83abd9-2db9-4d2f-92d1-aec698057ea0",
+    "title": "сегодня в 12",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662902Z"
+  },
+  {
+    "id": "c78cd7ee-978b-4594-af23-7c42502218f3",
+    "title": "пнд-вт с 15:00",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662908Z"
+  },
+  {
+    "id": "a6ea4f36-867b-4ba5-aedd-917f8bb27cc2",
+    "title": "новаый_пункт_диаграмма_модулей",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662915Z"
+  },
+  {
+    "id": "154710f4-9fc2-468a-afef-87f3bd75d952",
+    "title": "контроль ПО - руководство польз + флешка",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662921Z"
+  },
+  {
+    "id": "2b0428e9-efc2-48ad-ae42-d7b4ad0c89a6",
+    "title": "Администратор-Оператор",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662928Z"
+  },
+  {
+    "id": "b076bd82-e171-4e87-b20b-18e28f29db17",
+    "title": "администратор-бд->администратор->Оператор БД (в терминологии заказсчика оператор называется Администратором)",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662936Z"
+  },
+  {
+    "id": "830a2477-c1cf-4057-bb4f-9bcdbc475111",
+    "title": "заказы",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662943Z"
+  },
+  {
+    "id": "1d7fb8e6-272a-4a0b-afe3-611a612cbb60",
+    "title": "savecrud для tabs",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662949Z"
+  },
+  {
+    "id": "b9dd45e9-d7ed-403f-9fcf-63f5a000db0b",
+    "title": "practice_2",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662954Z"
+  },
+  {
+    "id": "0219a192-0f84-47dc-98de-83cf4bcc981e",
+    "title": "отчет",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662961Z"
+  },
+  {
+    "id": "1175825e-0f1b-43fc-b82d-9371c7819623",
+    "title": "презентация",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662966Z"
+  },
+  {
+    "id": "fa68bff8-9cf0-4aaa-a39f-9d2ce2b9fb9f",
+    "title": "DES",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662972Z"
+  },
+  {
+    "id": "2d31cc41-9696-4c91-91e8-2cb27fdf2213",
+    "title": "Econonics_lr3",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662977Z"
+  },
+  {
+    "id": "8b8a4598-07dc-4b0a-9b88-fb90852c64b0",
+    "title": "vigenere",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662985Z"
+  },
+  {
+    "id": "47dae52d-7274-4d78-9aa1-362bdbc9ccec",
+    "title": "[PAS] Exam",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.662991Z"
+  },
+  {
+    "id": "83a9d673-2e40-4697-b6b5-7deeb09a14c3",
+    "title": "practice",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663000Z"
+  },
+  {
+    "id": "6b8c0948-b6c9-47bd-8997-1bf903c44e28",
+    "title": "[KS] coursa4",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663006Z"
+  },
+  {
+    "id": "51b0e573-20d7-4531-a528-b64dedba23a0",
+    "title": "[KS] print",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663010Z"
+  },
+  {
+    "id": "cf3f5fd8-dad8-41f2-9462-d78b9e0561b4",
+    "title": "[PAS] IDZ",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663016Z"
+  },
+  {
+    "id": "8452a4d4-c80f-4705-96fa-19842a722373",
+    "title": "[ASPA] ELEVATOR",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663022Z"
+  },
+  {
+    "id": "676d2e48-3f1b-4c88-bf8b-eb02b3ba3e1d",
+    "title": "[SII] presentation",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663027Z"
+  },
+  {
+    "id": "27f295cf-64c1-49ef-a1f1-ede62419857d",
+    "title": "pr4",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663035Z"
+  },
+  {
+    "id": "bfe9373e-93a3-4eea-bc2c-f18dd96f733b",
+    "title": "[SII] 9.12 CW",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663042Z"
+  },
+  {
+    "id": "76d4d6f1-7ff2-4ae0-bd95-93b0c380f07d",
+    "title": "[PAS] LR3",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663049Z"
+  },
+  {
+    "id": "0e94efbc-ed0f-4a69-96e3-f966200052a2",
+    "title": "[SII] LR3 otchet",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663056Z"
+  },
+  {
+    "id": "93ac626e-dcef-4712-b91e-d5adab4a8acb",
+    "title": "[TOAU] HW4",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663063Z"
+  },
+  {
+    "id": "4cb3e6f3-0052-474a-a581-afbdd64e459a",
+    "title": "[TOAU] LR2 14.11 + output Z",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663069Z"
+  },
+  {
+    "id": "4204eb51-182a-4aa3-b187-38cdd3e7ff92",
+    "title": "[ASPA] Светофор",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663074Z"
+  },
+  {
+    "id": "3f81b873-b220-4a8a-bb52-a5a68a9cf0ad",
+    "title": "[ASPA] Система уравнений для опред. значений выпуска",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663079Z"
+  },
+  {
+    "id": "ac150c6c-1626-48a2-8e39-36f328407864",
+    "title": "[ASPA] Diagram",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663085Z"
+  },
+  {
+    "id": "5d8df551-49b9-439e-b010-34803af61c9e",
+    "title": "[AIS] TEST FW",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663090Z"
+  },
+  {
+    "id": "98906a7a-29fb-4905-b1dd-28db56c387e9",
+    "title": "[TOAU] HW3",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663096Z"
+  },
+  {
+    "id": "cda879bc-efdc-4fb8-b748-760c89d6a6de",
+    "title": "[PAS] ЛР1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663104Z"
+  },
+  {
+    "id": "17f27608-6b06-4c78-91a3-87ec304a6d9e",
+    "title": "[PAS] титульник по лр1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663112Z"
+  },
+  {
+    "id": "be01a5c4-fb1d-47e8-b722-07e810a52a50",
+    "title": "[PAS] 4 октября - сдача первой практики",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663118Z"
+  },
+  {
+    "id": "faa1066c-48b1-4c6a-8d37-d122d3f0b0b3",
+    "title": "[CN] Загрузить лр2",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663123Z"
+  },
+  {
+    "id": "ce64bdeb-0480-4adc-9d23-42a439a8fa50",
+    "title": "[TOAU] Некст Практика - ДЗ",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663129Z"
+  },
+  {
+    "id": "9e5b6678-c4db-4073-b7eb-3056c8289eed",
+    "title": "[AIS] TEST NEXT LECTION",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663134Z"
+  },
+  {
+    "id": "26bacb28-c7df-4f7b-b253-a886b0425bb1",
+    "title": "[ASPA] DrawIO",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663141Z"
+  },
+  {
+    "id": "0df3d019-951f-419e-ae7b-304df0bff766",
+    "title": "[SII] LR1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663148Z"
+  },
+  {
+    "id": "bd58da8c-2a9f-442d-9f77-52772cdca445",
+    "title": "Дима должен методички",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663157Z"
+  },
+  {
+    "id": "08149b8c-574f-4bdc-a1f9-625f782e10c2",
+    "title": "[TOAU, 04.10] лр1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663164Z"
+  },
+  {
+    "id": "324a14be-3d4e-4635-a711-df8e2a0b3e8b",
+    "title": "[Качановский] Методичка - photo",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663172Z"
+  },
+  {
+    "id": "0a37596d-94be-4b0d-b7dd-9740e7c24e8e",
+    "title": "[SII] Test",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663179Z"
+  },
+  {
+    "id": "e5c032f8-631e-460a-8963-3e1497af684f",
+    "title": "[Домашнев] Схема лр2",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663187Z"
+  },
+  {
+    "id": "f483616c-0296-4da4-b511-d41be8e5e3d8",
+    "title": "[TOAU] ДЗ1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663194Z"
+  },
+  {
+    "id": "b2cd383b-9ab2-4ec6-9e6d-10e8e3230781",
+    "title": "[CN] ЛР1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663202Z"
+  },
+  {
+    "id": "6230bbfe-9f64-4895-b0e2-bc9504558314",
+    "title": "[Домашнев] Закачай бэкап",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663209Z"
+  },
+  {
+    "id": "871a806d-fb8f-41f9-ab3c-7a0b5a032820",
+    "title": "[Сараев] ЛР1",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663216Z"
+  },
+  {
+    "id": "25b80269-65fc-4788-9c06-6589c3c88d8b",
+    "title": "[Домашнев] ЛР1 (print)",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663223Z"
+  },
+  {
+    "id": "5ddba002-e03a-4cd4-a906-7d747b38d1c1",
+    "title": "[Домашнев] Тест по NETBIOS",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663230Z"
+  },
+  {
+    "id": "05708449-80c7-4314-8d82-ec30b40f3083",
+    "title": "Пора работать",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663236Z"
+  },
+  {
+    "id": "d42a305c-192c-42ca-9623-f7180d097c43",
+    "title": "[Ведищев] Какая-то методичка",
+    "notes": "",
+    "isDone": true,
+    "category": "Учеба",
+    "updatedAt": "2026-05-10T14:41:13.663245Z"
+  },
+  {
+    "id": "8ba23e17-5aee-4613-b857-60cd87d5465e",
+    "title": "отскок",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663251Z"
+  },
+  {
+    "id": "92985c17-2fa1-447a-98bb-ca3ad5554a26",
+    "title": "партиклы",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663257Z"
+  },
+  {
+    "id": "1bd443a8-3d04-45bb-9944-e98521361a74",
+    "title": "angle_clamp",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663262Z"
+  },
+  {
+    "id": "149fe708-f971-4b5c-8744-67a4c4f69174",
+    "title": "restore_procedure",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663267Z"
+  },
+  {
+    "id": "41b8b039-c285-4bcf-82e7-24e29c9a4b6d",
+    "title": "ammo_visual",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663273Z"
+  },
+  {
+    "id": "ff2aa894-e35f-4632-80ba-bdbc420ad7a7",
+    "title": "head forses",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663277Z"
+  },
+  {
+    "id": "2edfd529-1763-43c6-adb8-26c94cf17804",
+    "title": "360_hint",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663283Z"
+  },
+  {
+    "id": "778da68e-076b-47ed-9caa-b1a5d9902b79",
+    "title": "branch_merge",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663289Z"
+  },
+  {
+    "id": "dfbb138a-9ed9-4f88-b350-a4c04ebd9988",
+    "title": "sniper_scope",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663294Z"
+  },
+  {
+    "id": "fa4c784e-ca42-4b14-a24f-394f67dee7ab",
+    "title": "Отскок_chainsaw",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663300Z"
+  },
+  {
+    "id": "cfb7ab4b-c274-4dae-84bc-d398a1540a87",
+    "title": "katana_anim",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663306Z"
+  },
+  {
+    "id": "f724aac9-e524-4f82-a084-252e3df3108d",
+    "title": "mglove_anim",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663314Z"
+  },
+  {
+    "id": "64aff039-b187-4ada-bd89-22477dcfb4fc",
+    "title": "teleport_afk",
+    "notes": "",
+    "isDone": false,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663318Z"
+  },
+  {
+    "id": "1457f199-0e42-4e20-8a79-b4c9b337b7d0",
+    "title": "fps_torso",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663327Z"
+  },
+  {
+    "id": "320e2690-3a16-46d2-9d02-e331690da954",
+    "title": "restore",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663334Z"
+  },
+  {
+    "id": "3f845efc-1042-4979-86c2-65dc888e2604",
+    "title": "лиши_владения",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663339Z"
+  },
+  {
+    "id": "cbe87b9e-b715-43b2-bf3b-34b5460b7b80",
+    "title": "MOVE_ORIGIN",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663346Z"
+  },
+  {
+    "id": "acf95b36-32d8-4418-a29b-617171488410",
+    "title": "ragdoll_ik",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663353Z"
+  },
+  {
+    "id": "22867652-8ca6-4f73-8cea-cfb38a8200a4",
+    "title": "neck",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663360Z"
+  },
+  {
+    "id": "ae1827ad-748d-4129-9e08-df767d569f40",
+    "title": "standart_weapon_clin",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663370Z"
+  },
+  {
+    "id": "80944568-39d3-464b-a1f1-aa567ca961c5",
+    "title": "item switch tp",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663377Z"
+  },
+  {
+    "id": "f90ddf51-3bdd-4066-a059-23a241a4f604",
+    "title": "reverse_gear",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663385Z"
+  },
+  {
+    "id": "a788db4b-e0f2-451f-be77-17fcda9a8fc9",
+    "title": "multiplayer",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663392Z"
+  },
+  {
+    "id": "8d6d9dc9-c377-433c-af1f-0ee09fe96f9d",
+    "title": "weight",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663399Z"
+  },
+  {
+    "id": "647f9735-f097-4bfe-8325-ca068d6ff5f8",
+    "title": "forces",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663407Z"
+  },
+  {
+    "id": "e0796514-2d25-47b5-9f24-8871e4141bb8",
+    "title": "bonker",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663414Z"
+  },
+  {
+    "id": "da09a0c0-fb5b-4f55-890f-c4263a84baa5",
+    "title": "project_inertia",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663421Z"
+  },
+  {
+    "id": "083c441d-eaad-4811-8030-62afbe65ee63",
+    "title": "snip_rif",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663428Z"
+  },
+  {
+    "id": "f081e709-737b-4dfd-9f12-c6aced3bba63",
+    "title": "equipment_smoother",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663432Z"
+  },
+  {
+    "id": "31932eb6-534b-4648-9839-5ea26d0a7389",
+    "title": "smoother",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663438Z"
+  },
+  {
+    "id": "07f5532a-94fb-49bb-ba68-384ae4bc16b6",
+    "title": "climb",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663444Z"
+  },
+  {
+    "id": "ce3de3bb-2460-4ff4-aaaf-3679aec0b715",
+    "title": "procedural_collisions",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663450Z"
+  },
+  {
+    "id": "792cbb45-38c8-4c45-8914-1fe725ed765d",
+    "title": "collar_fix",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663455Z"
+  },
+  {
+    "id": "51f5bae9-dcf4-4796-944b-b13a75550e60",
+    "title": "merge",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663460Z"
+  },
+  {
+    "id": "a7ed6d11-50bf-4802-9a4e-00b73f48152c",
+    "title": "speed curve",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663466Z"
+  },
+  {
+    "id": "a5bdfc4e-987d-4a2f-b3a2-a5ef90c081ff",
+    "title": "wishdir",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663471Z"
+  },
+  {
+    "id": "2b757dfc-4af0-4f09-8abc-5d5292cdb719",
+    "title": "floors problem",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663477Z"
+  },
+  {
+    "id": "1416e315-106e-4094-a50e-f9180498338e",
+    "title": "circularka",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663482Z"
+  },
+  {
+    "id": "98ad1944-6b80-4147-affd-0dff0c2a453d",
+    "title": "sync_weapons",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663493Z"
+  },
+  {
+    "id": "9038978c-8a35-449a-9af0-88a24a0b2920",
+    "title": "inventory_item_second_pickup",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663500Z"
+  },
+  {
+    "id": "82e03a0f-6713-47c4-bb59-36e209aae485",
+    "title": "movement_anim_sync",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663507Z"
+  },
+  {
+    "id": "6baa72bc-6bff-410f-8abd-fc72a50689a7",
+    "title": "sync_rb",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663514Z"
+  },
+  {
+    "id": "53272e32-b449-45ec-8c50-8b7324fc1a38",
+    "title": "hit",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663521Z"
+  },
+  {
+    "id": "0a161d41-0b89-419f-996c-96ea67645c38",
+    "title": "drop",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663527Z"
+  },
+  {
+    "id": "b9f5533e-63eb-40ec-80a3-da891414b2a1",
+    "title": "why pivot body not always rotating",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663532Z"
+  },
+  {
+    "id": "ba55e14f-5efd-4f7f-81d4-33d688232ef9",
+    "title": "predicted_pickup",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663538Z"
+  },
+  {
+    "id": "6b3f9a8e-51ab-4c2e-b6b3-57248fc623c2",
+    "title": "pickup_stored_item",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663543Z"
+  },
+  {
+    "id": "0a14073b-dab0-4e85-ad29-8ad7616be757",
+    "title": "INIT_stored_item_on_clients",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663548Z"
+  },
+  {
+    "id": "28e59df1-8553-4a0b-a2cd-0c626bdd636d",
+    "title": "mp_inventory",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663554Z"
+  },
+  {
+    "id": "a2110467-c914-4f6a-bfaf-39d16fd736f1",
+    "title": "ECS_ROPE",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663559Z"
+  },
+  {
+    "id": "bc1c61e6-4da8-4a5d-87d7-cb31dec8b09b",
+    "title": "cable_lasso",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663564Z"
+  },
+  {
+    "id": "3d7162e7-5836-450a-a415-4516e52cb9cf",
+    "title": "neto_iimvmt",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663570Z"
+  },
+  {
+    "id": "d52cc21a-68bb-419c-974e-d0ab3de486aa",
+    "title": "NO_inv_items",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663575Z"
+  },
+  {
+    "id": "f9d9cfec-0b2d-487e-ab1b-ee79d00f6e09",
+    "title": "magic_glove",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663581Z"
+  },
+  {
+    "id": "fb131c82-1f15-46a5-ac74-5d996831ea6d",
+    "title": "BAT_KNOCK",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663586Z"
+  },
+  {
+    "id": "a577362e-0730-4d33-8b8f-9bcdd438f221",
+    "title": "LAMPA_NORMAL_COMBINED",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663592Z"
+  },
+  {
+    "id": "17ebab33-d2eb-480c-8e5a-306e3173d20f",
+    "title": "SHIELD_OF_TIME",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663596Z"
+  },
+  {
+    "id": "90ed9190-0fbc-406a-96b7-daa9be7bce66",
+    "title": "БОРОЗДА",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663602Z"
+  },
+  {
+    "id": "176f1ad2-e897-4879-9fa0-0759d21c99bc",
+    "title": "SILENCER",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663612Z"
+  },
+  {
+    "id": "e69f602a-aef3-4a5f-a5a3-98f28578ed73",
+    "title": "SPHERE_OF_TIME",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663619Z"
+  },
+  {
+    "id": "522f85e7-0b8a-4644-bb0a-4d400dc139d8",
+    "title": "chainsaw_перегрев",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663626Z"
+  },
+  {
+    "id": "8256575e-16d6-4021-a685-b737ac5a53f5",
+    "title": "weapon_better_hide_collide",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663632Z"
+  },
+  {
+    "id": "a1b5eba8-f488-44fc-aa71-d40714b1ff28",
+    "title": "chainsaw_ride_anim",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663636Z"
+  },
+  {
+    "id": "1d70d799-8017-4adc-9b2a-166d671391a0",
+    "title": "HIDE_X_ROT_FIX",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663642Z"
+  },
+  {
+    "id": "8a736ad5-82c5-44ad-937b-1ce1957fb6d3",
+    "title": "SMOOTH_REPLICATE_TRANSFORM",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663651Z"
+  },
+  {
+    "id": "59452974-9208-43c7-8ab4-725fba864789",
+    "title": "SMOOTH_MVMT_EXIT",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663656Z"
+  },
+  {
+    "id": "2bbbc1d4-cc5d-4a85-8f3b-ea1a24e657f5",
+    "title": "SWAY_ALWAYS",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663662Z"
+  },
+  {
+    "id": "60908005-d737-490e-83f4-9f4f4314d947",
+    "title": "SEVERAL_SWING_STRIKE_ANIM",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663667Z"
+  },
+  {
+    "id": "7a98d77e-3c09-4d24-876a-f01cdbc88d41",
+    "title": "camerastate_pthertransforms",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663673Z"
+  },
+  {
+    "id": "cee78b85-8a51-471b-8e25-3b91a4f6a198",
+    "title": "inventory_items_on_back",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663678Z"
+  },
+  {
+    "id": "bf618ae3-b52a-4f03-a397-5dc8e8bc8d21",
+    "title": "LAMPA_MODEL",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663683Z"
+  },
+  {
+    "id": "f0d938a8-e984-4af4-9560-b6db0eec0c5a",
+    "title": "KILLABLE_LAMP",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663689Z"
+  },
+  {
+    "id": "49bbb081-7b82-4ab5-85a4-e1956d08c0ea",
+    "title": "SWAY_INHERITANCE_STRIKE",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663696Z"
+  },
+  {
+    "id": "912fe0f4-226f-46c0-bb76-8a08767d1129",
+    "title": "HEAD_IN_THE_WALL",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663702Z"
+  },
+  {
+    "id": "694a16fd-0529-4c7d-bcc8-049f28f05f28",
+    "title": "ROCKET_LAUNCHER_CHARGE_ZOOM",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663707Z"
+  },
+  {
+    "id": "0a8f3fae-f833-41ec-9c04-ddbf42816db7",
+    "title": "PEDESTAL_ITEM_LEVITATION_Y_FIX",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663712Z"
+  },
+  {
+    "id": "46cf3620-75dc-4821-90f9-2f6a01f6dcbd",
+    "title": "STATUS EFFECT",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663718Z"
+  },
+  {
+    "id": "15592103-587b-4676-8737-430c055d516f",
+    "title": "MVMNT_STATES",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663727Z"
+  },
+  {
+    "id": "84a7d304-8db4-4814-ae1a-c05db5af7448",
+    "title": "sphere_boom_vfx",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663734Z"
+  },
+  {
+    "id": "a6dc8044-c252-493d-975a-2ab4da2041b8",
+    "title": "lamp_idle_anim",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663741Z"
+  },
+  {
+    "id": "b204bb94-e40e-4bdf-a30a-8d6623cd2b23",
+    "title": "2_HEAD",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663749Z"
+  },
+  {
+    "id": "f22ce2c4-df13-4fdb-8ab5-e852f4c7e8dc",
+    "title": "HEAD_ROTATION",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663755Z"
+  },
+  {
+    "id": "853a33d9-1a3a-41d9-9ccd-10c7dd61a7ce",
+    "title": "smooth_lamp_animation_transition",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663760Z"
+  },
+  {
+    "id": "80304eca-4f1e-4526-9fd3-be9f1cfed265",
+    "title": "only_jump_to_-z",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663766Z"
+  },
+  {
+    "id": "3f61699a-c489-48a0-b603-97012aa2c3e8",
+    "title": "ROTATE_BODY_TO_VELOCITY_VEC",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663771Z"
+  },
+  {
+    "id": "4b131b6d-7865-4031-b87b-19a6516e2bf4",
+    "title": "items_input_on_add",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663777Z"
+  },
+  {
+    "id": "20088058-f070-48ce-bc8a-f9834b1ba7a2",
+    "title": "Equipment (full stack)",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663782Z"
+  },
+  {
+    "id": "7d2a459e-21d5-4f54-a96d-aff4b5f639d2",
+    "title": "equipment (reveal, without hide)",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663788Z"
+  },
+  {
+    "id": "6d1be42d-2ebd-4527-ae6a-abd504591782",
+    "title": "masks",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663794Z"
+  },
+  {
+    "id": "987bbd87-76bd-4139-b7ac-fa45d9f7f21e",
+    "title": "bullet refactor",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663801Z"
+  },
+  {
+    "id": "3d3af46f-8858-4278-97bb-69ef9f1d84b3",
+    "title": "fix_knife_fbx",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663807Z"
+  },
+  {
+    "id": "0202aec5-8cd2-4b8c-a49d-16e6415b1880",
+    "title": "inventory item",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663813Z"
+  },
+  {
+    "id": "98f51541-50fe-462e-8019-8f87eb2c6f45",
+    "title": "normali",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663819Z"
+  },
+  {
+    "id": "6c217855-ed7e-487c-8166-17a331add002",
+    "title": "fix_player_resurrect",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663823Z"
+  },
+  {
+    "id": "c871d875-d711-4bd8-b8dc-41b8a3ddc1a3",
+    "title": "fix_scope_hide_bug",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663843Z"
+  },
+  {
+    "id": "24e5afc3-f216-4286-b034-290ff16047ee",
+    "title": "movement_full_configs",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663851Z"
+  },
+  {
+    "id": "2100fef8-ac31-44af-bf7f-4298e6c9b2c5",
+    "title": "prefabs",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663858Z"
+  },
+  {
+    "id": "8a38337c-0c05-4af0-ad4c-c7150619867f",
+    "title": "shotgun",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663867Z"
+  },
+  {
+    "id": "9ed392d5-922e-469a-be69-6bc032136672",
+    "title": "death-не_отключай_surf_controller",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663875Z"
+  },
+  {
+    "id": "11ad89a7-c6d8-4b3a-9be0-c6dfadd24733",
+    "title": "third_person_view",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663883Z"
+  },
+  {
+    "id": "33f87502-b677-4c39-88ee-e12db395883b",
+    "title": "check_awake_transform",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663890Z"
+  },
+  {
+    "id": "22a7543f-5a8b-403f-80e8-a7e977b539df",
+    "title": "pickup",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663897Z"
+  },
+  {
+    "id": "2d18537f-04b8-4b06-b394-d360666edde4",
+    "title": "SCRIPTABLE_OBJECTS (O_O)",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663904Z"
+  },
+  {
+    "id": "d9890b6e-e522-47a8-aa35-81862e9752c9",
+    "title": "cfg: knife",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663911Z"
+  },
+  {
+    "id": "3d96a025-3d22-46cf-8d03-4009ae17721e",
+    "title": "cfg: jumper",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663917Z"
+  },
+  {
+    "id": "0a87f268-c1ef-4653-b626-222b8a82905c",
+    "title": "cfg: cosmos",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663925Z"
+  },
+  {
+    "id": "b2dfad4f-e4de-44a0-943f-fff50ffae143",
+    "title": "drop items on death",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663930Z"
+  },
+  {
+    "id": "bbcd56d8-cc93-427e-9ee9-8e962338dd6e",
+    "title": "fix swing spam",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663936Z"
+  },
+  {
+    "id": "d4846845-c095-4942-a4e6-7fbfd888f48f",
+    "title": "scriptable_object_melee",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663940Z"
+  },
+  {
+    "id": "589529f7-5abe-4b42-8353-b730a1d77821",
+    "title": "scriptable_object_inputtable",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663947Z"
+  },
+  {
+    "id": "84c23c8d-adc0-4132-86b4-db49b741d1d3",
+    "title": "scriptable_object_weapon",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663951Z"
+  },
+  {
+    "id": "7d99b601-cb0e-4772-bb0b-76c8bdc59d4d",
+    "title": "каждой_пушке_свой_дроп",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663957Z"
+  },
+  {
+    "id": "c7a91570-bc85-4854-a80c-906e4e347ced",
+    "title": "крутой_дроп",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663962Z"
+  },
+  {
+    "id": "1ea562c3-cb8a-4d1e-817b-accb0a9a2a94",
+    "title": "2 hands 2 guns",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663967Z"
+  },
+  {
+    "id": "e9aa8a6d-251f-4469-bb8d-e2a89b226947",
+    "title": "movement_sniper_rifle",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663972Z"
+  },
+  {
+    "id": "06a68438-6007-4b55-8c08-055b4b7a37fb",
+    "title": "bullets_stops",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663981Z"
+  },
+  {
+    "id": "957b4a8b-4f0f-49d1-99fb-02997182302c",
+    "title": "bullets_damage",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663989Z"
+  },
+  {
+    "id": "012d2682-2093-4153-a1de-5481e715d5a6",
+    "title": "ranged",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.663995Z"
+  },
+  {
+    "id": "0515258b-1fd8-487a-bf44-c9f8efda085d",
+    "title": "scriptable_objects&interfaces",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664001Z"
+  },
+  {
+    "id": "c00d8f66-70f5-460a-afd1-924be3e5c21e",
+    "title": "pool_obj(for_floating_dmg)",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664007Z"
+  },
+  {
+    "id": "3ac75759-8024-4f8d-9df3-bfab03c15e89",
+    "title": "inventory_items_transition",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664012Z"
+  },
+  {
+    "id": "533b5e29-b123-4447-8ad8-8f6bc2490283",
+    "title": "inventory",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664018Z"
+  },
+  {
+    "id": "78a0306a-2800-482f-8a49-895950733680",
+    "title": "chainsaw_msm",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664023Z"
+  },
+  {
+    "id": "135c4d9f-f70c-4cbc-9ef5-e29f574ec255",
+    "title": "knife_anim",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664029Z"
+  },
+  {
+    "id": "921ef11b-6462-45b1-8141-035b436e06fc",
+    "title": "weapon_sm",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664034Z"
+  },
+  {
+    "id": "be470f4f-d484-4683-835a-cc4f7438e337",
+    "title": "knife",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664039Z"
+  },
+  {
+    "id": "c924875a-3134-44c6-b9f4-ec69d34dd305",
+    "title": "chainsaw_hide",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664045Z"
+  },
+  {
+    "id": "bca27f12-d454-47b7-966a-7941ae40d792",
+    "title": "chainsaw!",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664050Z"
+  },
+  {
+    "id": "9822b895-81f6-48b1-a04b-0fbbaada0a43",
+    "title": "split_weaponMovement_class",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664055Z"
+  },
+  {
+    "id": "4b0d8b58-6689-4614-8736-6683ab5bc0d3",
+    "title": "split_damagaeble_class",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664062Z"
+  },
+  {
+    "id": "9553e0ff-b91a-423c-8a45-37f5d0c10555",
+    "title": "replace_model_on_death",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664238Z"
+  },
+  {
+    "id": "662997c8-23d4-4c0c-b67e-4afc0b3b320d",
+    "title": "LMB/RMB_lagging?",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664246Z"
+  },
+  {
+    "id": "f72537ba-6bdb-4bab-8361-a42da687c1bc",
+    "title": "fix_levitation!!!",
+    "notes": "",
+    "isDone": true,
+    "category": "skillers",
+    "updatedAt": "2026-05-10T14:41:13.664251Z"
+  },
+  {
+    "id": "4e884362-ba2a-4e82-a4a8-86177ee123a6",
+    "title": "формулирование цели",
+    "notes": "",
+    "isDone": true,
+    "category": "IT_proj",
+    "updatedAt": "2026-05-10T14:41:13.664258Z"
+  },
+  {
+    "id": "8c2dea80-3acf-4cb3-9a37-df873b1ffdad",
+    "title": "выбор темы",
+    "notes": "",
+    "isDone": true,
+    "category": "IT_proj",
+    "updatedAt": "2026-05-10T14:41:13.664263Z"
+  },
+  {
+    "id": "bfd0ecd6-ac4e-4902-b8d9-7d9fef77c07d",
+    "title": "Формирование проектных команд",
+    "notes": "",
+    "isDone": true,
+    "category": "IT_proj",
+    "updatedAt": "2026-05-10T14:41:13.664271Z"
+  },
+  {
+    "id": "62920ef0-cc2e-490f-b687-8904d82b1765",
+    "title": "ОС анализ Zephyr",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664280Z"
+  },
+  {
+    "id": "53644e94-0f43-4e14-8daa-114b2a4b702c",
+    "title": "ядро",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664285Z"
+  },
+  {
+    "id": "2c3d07f5-d02e-4652-b91f-5f101808f4c5",
+    "title": "основные концепции",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664290Z"
+  },
+  {
+    "id": "cac8929f-b7f4-42a3-9ff2-c81f08eda43c",
+    "title": "база знаний привязана к верилятор + opentit",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664294Z"
+  },
+  {
+    "id": "9c0d3006-5729-4c8f-a00d-154876335fae",
+    "title": "описание что такое зефир. Основные особенности.",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664308Z"
+  },
+  {
+    "id": "374985da-2ff9-4a8c-b3be-1dd371cf8536",
+    "title": "тулчейн",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664314Z"
+  },
+  {
+    "id": "2cea5fa9-e20e-4600-b1a1-c576832c8245",
+    "title": "handbook как с зефиром стартовать в общем случае",
+    "notes": "",
+    "isDone": false,
+    "category": "Zephyr",
+    "updatedAt": "2026-05-10T14:41:13.664319Z"
+  },
+  {
+    "id": "4cec5ca8-fb83-4c1b-97b8-bf66942a0f01",
+    "title": "рассказать о опыте верилятор с выводом зефира",
+    "notes": "",
+    "isDone": true,
+    "category": "zephyr_fix",
+    "updatedAt": "2026-05-10T14:41:13.664325Z"
+  },
+  {
+    "id": "d839cc26-ad2d-4523-a95b-0f9d83f933b5",
+    "title": "сделать доклад по выполненной работе с демонстрацией",
+    "notes": "",
+    "isDone": true,
+    "category": "zephyr_fix",
+    "updatedAt": "2026-05-10T14:41:13.664331Z"
+  }
+]

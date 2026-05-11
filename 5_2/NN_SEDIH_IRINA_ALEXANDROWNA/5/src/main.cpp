@@ -31,7 +31,7 @@ void apply_zeros(float* sig, const size_t size, const int padding) {
 float* convolution(float* sig, size_t sig_size, const float* core, size_t core_size,
                    int stride = 1, int padding = 0, bool same = false) {
     if (same)
-        padding = core_size; // игнор  padding
+        padding = ( core_size - 1 ) / 2; // игнор  padding
 
     size_t padded_size = sig_size + padding * 2;
 
@@ -48,7 +48,7 @@ float* convolution(float* sig, size_t sig_size, const float* core, size_t core_s
         float sum = 0;
 
         for (size_t j = 0; j < core_size; j++)
-            sum += padded[i + j] * core[j];
+            sum += padded[i + j] * core[core_size - 1 - j];
 
         res[i / stride] = sum;
     }
@@ -82,6 +82,9 @@ void task1() {
 
     convolution(sig, 10, core, 3, 1, 0);
     putchar('\n');
+
+    delete[] sig;
+    delete[] core;
 }
 
 void task2() {
@@ -91,6 +94,9 @@ void task2() {
     // add zeros
     convolution(sig, 10, core, 2, 2, 0, true);
     putchar('\n');
+
+    delete[] sig;
+    delete[] core;
 }
 
 void task3() {
@@ -118,7 +124,14 @@ void task3() {
     }
 
     print_arr(res, 10);
+
     putchar('\n');
+
+    delete[] core1;
+    delete[] core2;
+    delete[] sig1;
+    delete[] sig2;
+    delete[] res;
 }
 
 float relu(float x) { return std::max(0.0f, x); }
@@ -136,6 +149,9 @@ void task4() {
     relu(res, 10);
     print_arr(res, 10);
     putchar('\n');
+
+    delete[] sig;
+    delete[] core;
 }
 
 void task5() {
@@ -150,6 +166,10 @@ void task5() {
     relu(second, 10);
 
     putchar('\n');
+
+    delete[] sig;
+    delete[] core1;
+    delete[] core2;
 }
 
 int main() {

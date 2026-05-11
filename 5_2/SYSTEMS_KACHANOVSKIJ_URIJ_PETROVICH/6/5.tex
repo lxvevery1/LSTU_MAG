@@ -1,0 +1,152 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{newtxtext,newtxmath}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+
+\title{Отчёт по дисциплине "Системная инженерия"}
+\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
+
+\begin{document}
+
+\setstretch{1.5}
+\noindent
+\begin{minipage}[t]{0.01\textwidth}
+    \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
+\end{minipage}%
+\begin{minipage}[c]{1.1\linewidth}
+    \centering
+    {\small
+    МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ \\[1em]
+    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\
+    ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+    «ЛИПЕЦКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»
+    }
+\end{minipage}%
+
+\vspace{3em}
+
+\noindent
+\hspace{1em}%
+\begin{minipage}[t]{0.8\textwidth}
+\textbf{Институт} \hspace{2em} компьютерных наук \\
+\textbf{Кафедра} \hspace{2em} автоматизированных систем управления
+\end{minipage}
+
+
+\vspace{6em}
+
+\begin{center}
+\textbf{Домашнее задание №5} \\
+по дисциплине \\ <<Системная инженерия>>
+\end{center}
+
+\vspace{6em}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
+    Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
+Руководитель & \\
+Профессор, канд. тех. наук & \makebox[4cm]{\hrulefill} & Качановский Ю.П. \\
+\end{tabular*}
+
+\vfill
+\begin{center}
+    Липецк, 2026
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Задание кафедры}
+\begin{sloppypar}
+    1. По описанию процессов из ГОСТ Р 57193-2025 Системная и программная инженерия. Процессы жизненного цикла систем построить IDEF0-диаграммы процесса (контекстная диаграмма и диаграмма декомпозиции 1 уровня)
+    2. Для одного из действий заданного процесс построить карту подпроцесса (по возможности) или IDEF0-диаграмму декомпозиции 2-го уровня
+Варианты:
+\end{sloppypar}
+
+\section{Описание проектируемой системы}
+
+Система корпоративного обмена сообщениями в реальном времени
+Предназначена для организации защищённой текстовой и голосовой связи внутри корпоративной сети без использования внешних централизованных сервисов, с минимальной зависимостью от внешней инфраструктуры.
+
+Объектом управления является коммуникационная инфраструктура организации, включающая серверы, клиентские устройства пользователей и сетевые каналы передачи данных. С помощью клиентского приложения пользователь получает доступ к текстовым чатам, голосовым каналам и передаче файлов. Управление системой осуществляется через интерфейс, позволяющий создавать каналы связи, отправлять сообщения, подключаться к голосовым сессиям и обмениваться данными.
+
+Внутри системы осуществляется постоянное установление и поддержание соединений между клиентами и сервером. Сервер обрабатывает входящие сообщения, управляет сессиями пользователей и обеспечивает маршрутизацию данных. Передача текстовых сообщений происходит в режиме реального времени, а голосовая связь реализуется через потоковую передачу данных с учётом минимизации задержек.
+
+Система также выполняет контроль доступа и защиту данных. Аутентификация пользователей, шифрование передаваемой информации и разграничение прав доступа обеспечивают безопасность взаимодействия. При передаче файлов система контролирует целостность данных и управляет их доставкой между участниками.
+
+Таким образом, система обеспечивает автоматизированное управление процессом корпоративной коммуникации, поддерживая стабильный обмен данными, безопасность и высокую скорость взаимодействия внутри сети организации.
+
+\section{Диаграммы}
+
+Контекстная диаграмма представлена на рисунке 1.
+
+\begin{figure}[H]
+    \label{fig:1}
+    \centering
+    \includegraphics[width=0.78\textwidth]{context.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Контекстная диаграмма}
+\end{figure}
+
+Диаграмма декомпозиции представлена на рисунке 2.
+
+\begin{figure}[H]
+    \label{fig:2}
+    \centering
+    \includegraphics[width=0.78\textwidth]{decompose.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Диаграмма декомпозиции}
+\end{figure}
+
+IDEF0:A2 диаграмма управления конфигурацией (вариант 5) представлена на рисунке 3.
+
+\begin{figure}[H]
+    \label{fig:3}
+    \centering
+    \includegraphics[width=0.78\textwidth]{config.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Диаграмма конфигурации}
+\end{figure}
+
+\end{document}
