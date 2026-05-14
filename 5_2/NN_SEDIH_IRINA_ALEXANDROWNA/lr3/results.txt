@@ -1,0 +1,238 @@
+stanik@archlinux::/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/lr3::main > ./venv/bin/python rnn.py
+vocab_size: 98
+train_tokens: 2322797
+sample text: #endif
+
+
+
+#include "ofApp.h"
+
+
+//--------------------------------------------------------------
+
+void ofApp::setup(){
+
+    ofBackground(50, 0);
+
+
+    bAnimate = false;
+
+    bAnimateMouse = false;
+
+    animationPosition = 0;
+
+    currentModel = 0;
+
+
+    model.loadModel("astroBoy_walk.dae", true);
+
+
+meta: {'max_train_rows': 60000, 'max_val_rows': 10000, 'max_test_rows': 10000, 'max_chars_per_row': 2000, 'max_total_chars': 0, 'vocab_size': 98}
+
+Гиперпараметры: T=128 B=128 d=24 H=96 lr=0.002 Adam(β1=0.9,β2=0.999,ε=1e-08) clip=5 epochs≤20 patience=6 steps/epoch=120 eval_batches=20
+
+[LSTM] epoch 1/20  train_ppl=33.31  val_ppl=27.99  val_top1=0.2033
+[LSTM] epoch 2/20  train_ppl=17.86  val_ppl=18.50  val_top1=0.2987
+[LSTM] epoch 3/20  train_ppl=12.67  val_ppl=14.80  val_top1=0.3415
+[LSTM] epoch 4/20  train_ppl=10.37  val_ppl=12.63  val_top1=0.3823
+[LSTM] epoch 5/20  train_ppl=8.83  val_ppl=11.47  val_top1=0.4056
+[LSTM] epoch 6/20  train_ppl=7.92  val_ppl=10.56  val_top1=0.4260
+[LSTM] epoch 7/20  train_ppl=7.10  val_ppl=9.79  val_top1=0.4448
+[LSTM] epoch 8/20  train_ppl=6.45  val_ppl=9.12  val_top1=0.4618
+[LSTM] epoch 9/20  train_ppl=6.03  val_ppl=8.74  val_top1=0.4757
+[LSTM] epoch 10/20  train_ppl=5.68  val_ppl=8.34  val_top1=0.4878
+[LSTM] epoch 11/20  train_ppl=5.37  val_ppl=8.10  val_top1=0.4979
+[LSTM] epoch 12/20  train_ppl=5.18  val_ppl=8.02  val_top1=0.4966
+[LSTM] epoch 13/20  train_ppl=4.96  val_ppl=7.60  val_top1=0.5118
+[LSTM] epoch 14/20  train_ppl=4.81  val_ppl=7.55  val_top1=0.5168
+[LSTM] epoch 15/20  train_ppl=4.61  val_ppl=7.54  val_top1=0.5155
+[LSTM] epoch 16/20  train_ppl=4.53  val_ppl=7.11  val_top1=0.5293
+[LSTM] epoch 17/20  train_ppl=4.40  val_ppl=7.01  val_top1=0.5354
+[LSTM] epoch 18/20  train_ppl=4.34  val_ppl=7.10  val_top1=0.5338
+[LSTM] epoch 19/20  train_ppl=4.27  val_ppl=6.92  val_top1=0.5377
+[LSTM] epoch 20/20  train_ppl=4.18  val_ppl=6.97  val_top1=0.5356
+matplotlib не установлен — графики пропущены. Локально: ./venv/bin/python -m pip install matplotlib
+[GRU] epoch 1/20  train_ppl=29.73  val_ppl=23.47  val_top1=0.2373
+[GRU] epoch 2/20  train_ppl=14.48  val_ppl=15.17  val_top1=0.3413
+[GRU] epoch 3/20  train_ppl=10.64  val_ppl=12.49  val_top1=0.3932
+[GRU] epoch 4/20  train_ppl=8.33  val_ppl=10.77  val_top1=0.4319
+[GRU] epoch 5/20  train_ppl=6.98  val_ppl=9.56  val_top1=0.4559
+[GRU] epoch 6/20  train_ppl=6.10  val_ppl=8.73  val_top1=0.4775
+[GRU] epoch 7/20  train_ppl=5.48  val_ppl=8.30  val_top1=0.4909
+[GRU] epoch 8/20  train_ppl=5.15  val_ppl=7.73  val_top1=0.5081
+[GRU] epoch 9/20  train_ppl=4.84  val_ppl=7.61  val_top1=0.5122
+[GRU] epoch 10/20  train_ppl=4.62  val_ppl=7.55  val_top1=0.5139
+[GRU] epoch 11/20  train_ppl=4.45  val_ppl=7.20  val_top1=0.5281
+[GRU] epoch 12/20  train_ppl=4.27  val_ppl=6.97  val_top1=0.5372
+[GRU] epoch 13/20  train_ppl=4.19  val_ppl=6.91  val_top1=0.5419
+[GRU] epoch 14/20  train_ppl=4.10  val_ppl=6.79  val_top1=0.5437
+[GRU] epoch 15/20  train_ppl=3.98  val_ppl=6.69  val_top1=0.5479
+[GRU] epoch 16/20  train_ppl=3.92  val_ppl=6.80  val_top1=0.5469
+[GRU] epoch 17/20  train_ppl=3.88  val_ppl=6.71  val_top1=0.5502
+[GRU] epoch 18/20  train_ppl=3.85  val_ppl=6.53  val_top1=0.5551
+[GRU] epoch 19/20  train_ppl=3.74  val_ppl=6.49  val_top1=0.5575
+[GRU] epoch 20/20  train_ppl=3.76  val_ppl=6.45  val_top1=0.5589
+matplotlib не установлен — графики пропущены. Локально: ./venv/bin/python -m pip install matplotlib
+
+=== Таблица (лучшая эпоха по val, веса перезагружены из checkpoint) ===
+LSTM  best_epoch=19  val_ppl=6.83 top1/5/10=0.5404/0.7572/0.8401  test_ppl=5.36 top1/5/10=0.5901/0.7959/0.8666
+GRU   best_epoch=20  val_ppl=6.46 top1/5/10=0.5579/0.7723/0.8484  test_ppl=5.07 top1/5/10=0.6127/0.8040/0.8690
+
+=== Автодополнение (LSTM): top-10 следующего символа ===
+
+--- prefix #1 (60 chars) ---
+'he lambda will re-post itself during the first ten\n\n      //'
+   1. ' '     p=0.6719
+   2. ':'     p=0.2250
+   3. '\n'    p=0.0442
+   4. '/'     p=0.0246
+   5. '.'     p=0.0060
+   6. '-'     p=0.0042
+   7. 'w'     p=0.0017
+   8. 'i'     p=0.0016
+   9. 'x'     p=0.0015
+  10. "'"     p=0.0014
+
+--- prefix #2 (23 chars) ---
+'evelopment.\n\n// -------'
+   1. '-'     p=0.9953
+   2. '\n'    p=0.0015
+   3. ' '     p=0.0005
+   4. '2'     p=0.0003
+   5. '+'     p=0.0003
+   6. '1'     p=0.0002
+   7. '_'     p=0.0002
+   8. 'S'     p=0.0002
+   9. 'F'     p=0.0002
+  10. 'g'     p=0.0001
+
+--- prefix #3 (33 chars) ---
+'od[j]->mParmValue[k].c_str());\n\n\t'
+   1. '\t'    p=0.4977
+   2. 's'     p=0.1555
+   3. '}'     p=0.0657
+   4. 'E'     p=0.0448
+   5. '/'     p=0.0372
+   6. 'e'     p=0.0303
+   7. 'i'     p=0.0218
+   8. ' '     p=0.0176
+   9. '#'     p=0.0131
+  10. '\n'    p=0.0116
+
+--- prefix #4 (31 chars) ---
+'    case Ot::e_VOID: {\n\n       '
+   1. ' '     p=0.9951
+   2. 'i'     p=0.0007
+   3. '/'     p=0.0007
+   4. 'r'     p=0.0004
+   5. 's'     p=0.0004
+   6. 'b'     p=0.0003
+   7. 'c'     p=0.0003
+   8. 'p'     p=0.0002
+   9. '"'     p=0.0001
+  10. '}'     p=0.0001
+
+--- prefix #5 (30 chars) ---
+' bslstl::SharedPtrNilDeleter()'
+   1. ')'     p=0.2743
+   2. ';'     p=0.2507
+   3. ' '     p=0.1543
+   4. ','     p=0.1148
+   5. '.'     p=0.0815
+   6. '\n'    p=0.0430
+   7. ':'     p=0.0172
+   8. '('     p=0.0116
+   9. '['     p=0.0092
+  10. '{'     p=0.0068
+
+--- prefix #6 (68 chars) ---
+'LS_ASSERT(0);\n\n    }\n\n}\n\n\nvoid TypeInfo::setConstraint(const Constra'
+   1. 'c'     p=0.1665
+   2. 't'     p=0.1517
+   3. 'n'     p=0.1447
+   4. 'r'     p=0.1101
+   5. 'y'     p=0.0774
+   6. 'd'     p=0.0553
+   7. 'b'     p=0.0505
+   8. 'g'     p=0.0428
+   9. 'm'     p=0.0417
+  10. 'x'     p=0.0311
+
+--- prefix #7 (75 chars) ---
+'("c/d.txt", xlogStripFilename("/a/b/c/d.txt", "/x/y:1/2:/a/b"));\n\n  EXPECT_'
+   1. 'T'     p=0.2864
+   2. 'E'     p=0.1886
+   3. 'R'     p=0.0642
+   4. 'C'     p=0.0492
+   5. 'S'     p=0.0428
+   6. 'N'     p=0.0397
+   7. 'V'     p=0.0383
+   8. 'D'     p=0.0372
+   9. 'W'     p=0.0302
+  10. 'I'     p=0.0266
+
+--- prefix #8 (36 chars) ---
+'oryNameForFile(\n\n          "buck-out'
+   1. ' '     p=0.3656
+   2. 'p'     p=0.1566
+   3. 'i'     p=0.0511
+   4. '_'     p=0.0424
+   5. 'e'     p=0.0326
+   6. 'h'     p=0.0306
+   7. '.'     p=0.0304
+   8. 't'     p=0.0267
+   9. ','     p=0.0266
+  10. '('     p=0.0193
+
+--- prefix #9 (69 chars) ---
+"defines 'result_type' as 'R', 'FuncRt2<R>' that defines\n\n        //: "
+   1. ' '     p=0.6595
+   2. 'r'     p=0.0327
+   3. '"'     p=0.0319
+   4. '1'     p=0.0297
+   5. 'b'     p=0.0256
+   6. '2'     p=0.0194
+   7. 'T'     p=0.0193
+   8. '3'     p=0.0132
+   9. '5'     p=0.0115
+  10. '/'     p=0.0112
+
+--- prefix #10 (73 chars) ---
+'\n\n\t\t\t{\n\n\t\t\t\t// skip typedefs..\n\n\t\t\t\twhile (s != ";") NEXTTOKEN;\n\n\t\t\t}\n\n\t\t'
+   1. '\t'    p=0.7177
+   2. '}'     p=0.0391
+   3. 'i'     p=0.0390
+   4. '/'     p=0.0285
+   5. 'e'     p=0.0251
+   6. 's'     p=0.0201
+   7. 'c'     p=0.0132
+   8. 'E'     p=0.0128
+   9. 'b'     p=0.0105
+  10. 'y'     p=0.0087
+
+--- prefix #11 (50 chars) ---
+'ss eastl::string_map<Align32>;\n\n\nstatic const char'
+   1. ' '     p=0.5672
+   2. 'c'     p=0.0467
+   3. 'i'     p=0.0417
+   4. 'r'     p=0.0342
+   5. '&'     p=0.0241
+   6. 'n'     p=0.0226
+   7. ':'     p=0.0199
+   8. 's'     p=0.0198
+   9. 'g'     p=0.0196
+  10. 'e'     p=0.0179
+
+--- prefix #12 (34 chars) ---
+'INT)\n\n, d_linkedVariable_p(variabl'
+   1. 'e'     p=0.9707
+   2. 'y'     p=0.0085
+   3. 'l'     p=0.0030
+   4. ' '     p=0.0024
+   5. '_'     p=0.0023
+   6. 'o'     p=0.0018
+   7. 'f'     p=0.0012
+   8. ';'     p=0.0010
+   9. ','     p=0.0009
+  10. ':'     p=0.0008
+.
