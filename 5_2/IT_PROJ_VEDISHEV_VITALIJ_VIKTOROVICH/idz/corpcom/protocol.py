@@ -14,6 +14,8 @@ class MsgType(StrEnum):
     AUTH_ERR = "auth_err"
     TEXT = "text"
     VOICE = "voice"
+    VOICE_START = "voice_start"
+    VOICE_END = "voice_end"
     IMAGE = "image"
     PING = "ping"
     PONG = "pong"
@@ -60,15 +62,26 @@ def text_message(room: str, sender: str, content: str) -> str:
     )
 
 
-def voice_message(room: str, sender: str, pcm: bytes) -> str:
+def voice_message(room: str, sender: str, pcm: bytes, seq: int) -> str:
     return dumps(
         {
             "type": MsgType.VOICE,
             "room": room,
             "sender": sender,
+            "seq": seq,
             "data": b64_encode(pcm),
         }
     )
+
+
+def voice_start_message(room: str, sender: str) -> str:
+    return dumps(
+        {"type": MsgType.VOICE_START, "room": room, "sender": sender}
+    )
+
+
+def voice_end_message(room: str, sender: str) -> str:
+    return dumps({"type": MsgType.VOICE_END, "room": room, "sender": sender})
 
 
 def image_message(room: str, sender: str, filename: str, image: bytes) -> str:

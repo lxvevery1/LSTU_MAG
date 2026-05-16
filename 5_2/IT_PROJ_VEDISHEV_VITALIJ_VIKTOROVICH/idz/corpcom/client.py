@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CorpCom — клиент ПК: текст, голос (PTT), отправка изображения на проектор."""
+"""CorpCom — клиент ПК: текст, голос в реальном времени, изображение на проектор."""
 
 from __future__ import annotations
 
@@ -15,14 +15,22 @@ import websockets
 from PIL import Image, ImageTk
 
 from corpcom import config
-from corpcom.protocol import MsgType, auth_message, dumps, image_message, loads, text_message
+from corpcom.protocol import (
+    MsgType,
+    auth_message,
+    image_message,
+    loads,
+    text_message,
+    voice_end_message,
+    voice_message,
+    voice_start_message,
+)
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger("corpcom.client")
 
 try:
-    import numpy as np
-    import sounddevice as sd
+    from corpcom.voice import VoiceEngine
 
     HAS_AUDIO = True
 except ImportError:
@@ -33,7 +41,7 @@ class CorpComClient:
     def __init__(self, root: tk.Tk) -> None:
         self.root = root
         self.root.title("CorpCom — корпоративный клиент")
-        self.root.geometry("720x560")
+        self.root.geometry("760x600")
 
         self.ws: websockets.WebSocketClientProtocol | None = None
         self.loop: asyncio.AbstractEventLoop | None = None
@@ -41,10 +49,18 @@ class CorpComClient:
         self.connected = False
         self.my_name = ""
         self.ui_queue: queue.Queue[tuple[str, object]] = queue.Queue()
+
+        self.voice_streaming = False
         self.ptt_active = False
+        self.voice_seq = 0
+        self.voice_out: asyncio.Queue[bytes] | None = None
+        self._voice_sender_task: asyncio.Task[None] | None = None
+        self.voice: VoiceEngine | None = None
+        if HAS_AUDIO:
+            self.voice = VoiceEngine(self._on_voice_captured)
 
         self._build_ui()
-        self.root.after(100, self._drain_ui_queue)
+        self.root.after(80, self._drain_ui_queue)
 
     def _build_ui(self) -> None:
         conn = ttk.LabelFrame(self.root, text="Подключение (LAN)")
@@ -78,10 +94,45 @@ class CorpComClient:
         self.status_var = tk.StringVar(value="Отключено")
         ttk.Label(self.root, textvariable=self.status_var).pack(anchor=tk.W, padx=10)
 
+        voice_frame = ttk.LabelFrame(self.root, text="Голос в реальном времени")
+        voice_frame.pack(fill=tk.X, padx=8, pady=4)
+
+        self.voice_status_var = tk.StringVar(
+            value="Микрофон выкл" if HAS_AUDIO else "Установите: pip install sounddevice numpy (через ./setup.sh)"
+        )
+        ttk.Label(voice_frame, textvariable=self.voice_status_var).pack(side=tk.LEFT, padx=8)
+
+        self.btn_mic = ttk.Button(
+            voice_frame,
+            text="Включить микрофон",
+            command=self.toggle_voice_stream,
+            state=tk.NORMAL if HAS_AUDIO else tk.DISABLED,
+        )
+        self.btn_mic.pack(side=tk.LEFT, padx=4, pady=4)
+
+        self.btn_ptt = ttk.Button(
+            voice_frame,
+            text="PTT (удерживать)",
+            state=tk.NORMAL if HAS_AUDIO else tk.DISABLED,
+        )
+        self.btn_ptt.pack(side=tk.LEFT, padx=4, pady=4)
+        if HAS_AUDIO:
+            self.btn_ptt.bind("<ButtonPress-1>", lambda _e: self._start_ptt())
+            self.btn_ptt.bind("<ButtonRelease-1>", lambda _e: self._stop_ptt())
+
+        self.listen_var = tk.BooleanVar(value=True)
+        ttk.Checkbutton(
+            voice_frame,
+            text="Слышать собеседников",
+            variable=self.listen_var,
+            command=self._toggle_listen,
+            state=tk.NORMAL if HAS_AUDIO else tk.DISABLED,
+        ).pack(side=tk.LEFT, padx=8)
+
         chat_frame = ttk.LabelFrame(self.root, text="Чат")
         chat_frame.pack(fill=tk.BOTH, expand=True, padx=8, pady=4)
 
-        self.chat = scrolledtext.ScrolledText(chat_frame, state=tk.DISABLED, height=16)
+        self.chat = scrolledtext.ScrolledText(chat_frame, state=tk.DISABLED, height=14)
         self.chat.pack(fill=tk.BOTH, expand=True, padx=4, pady=4)
 
         row = ttk.Frame(chat_frame)
@@ -94,17 +145,6 @@ class CorpComClient:
 
         tools = ttk.LabelFrame(self.root, text="Медиа")
         tools.pack(fill=tk.X, padx=8, pady=4)
-
-        self.btn_ptt = ttk.Button(
-            tools,
-            text="Голос (удерживать)" if HAS_AUDIO else "Голос (нет sounddevice)",
-            state=tk.NORMAL if HAS_AUDIO else tk.DISABLED,
-        )
-        self.btn_ptt.pack(side=tk.LEFT, padx=4, pady=4)
-        if HAS_AUDIO:
-            self.btn_ptt.bind("<ButtonPress-1>", lambda _e: self.start_ptt())
-            self.btn_ptt.bind("<ButtonRelease-1>", lambda _e: self.stop_ptt())
-
         ttk.Button(tools, text="Изображение на проектор", command=self.send_image).pack(
             side=tk.LEFT, padx=4, pady=4
         )
@@ -118,6 +158,21 @@ class CorpComClient:
         self.chat.insert(tk.END, line + "\n")
         self.chat.see(tk.END)
         self.chat.configure(state=tk.DISABLED)
+
+    def _toggle_listen(self) -> None:
+        if self.voice:
+            self.voice.set_listening(self.listen_var.get())
+
+    def _on_voice_captured(self, pcm: bytes) -> None:
+        if not self.loop or not self.voice_out:
+            return
+        try:
+            self.loop.call_soon_threadsafe(self.voice_out.put_nowait, pcm)
+        except asyncio.QueueFull:
+            pass
+
+    def _room(self) -> str:
+        return self.room_var.get().strip() or config.DEFAULT_ROOM
 
     def toggle_connect(self) -> None:
         if self.connected:
@@ -133,7 +188,7 @@ class CorpComClient:
             messagebox.showerror("Ошибка", "Некорректный порт")
             return
         name = self.name_var.get().strip() or "user"
-        room = self.room_var.get().strip() or config.DEFAULT_ROOM
+        room = self._room()
         token = self.token_var.get()
 
         self.my_name = name
@@ -151,6 +206,7 @@ class CorpComClient:
         self, host: str, port: int, token: str, name: str, room: str
     ) -> None:
         uri = f"ws://{host}:{port}"
+        self.voice_out = asyncio.Queue(maxsize=64)
         try:
             async with websockets.connect(
                 uri,
@@ -158,22 +214,36 @@ class CorpComClient:
                 max_size=config.MAX_IMAGE_BYTES + 512 * 1024,
             ) as ws:
                 self.ws = ws
-                await ws.send(
-                    auth_message(token, "user", name, room)
-                )
+                await ws.send(auth_message(token, "user", name, room))
                 raw = await ws.recv()
                 msg = loads(raw)  # type: ignore[arg-type]
                 if msg.get("type") == MsgType.AUTH_ERR:
                     self.ui_queue.put(("error", msg.get("reason", "auth failed")))
                     return
                 self.ui_queue.put(("connected", msg))
-                recv_task = asyncio.create_task(self._recv_loop(ws))
-                await recv_task
+                self._voice_sender_task = asyncio.create_task(self._voice_sender(ws))
+                await self._recv_loop(ws)
         except Exception as exc:
             self.ui_queue.put(("error", str(exc)))
         finally:
+            if self._voice_sender_task:
+                self._voice_sender_task.cancel()
+            self._voice_sender_task = None
+            self.voice_out = None
             self.ws = None
             self.ui_queue.put(("disconnected", None))
+
+    async def _voice_sender(self, ws: websockets.WebSocketClientProtocol) -> None:
+        assert self.voice_out is not None
+        room = self._room()
+        while True:
+            pcm = await self.voice_out.get()
+            if not self.ws:
+                continue
+            self.voice_seq += 1
+            await ws.send(
+                voice_message(room, self.my_name, pcm, self.voice_seq)
+            )
 
     async def _recv_loop(self, ws: websockets.WebSocketClientProtocol) -> None:
         async for raw in ws:
@@ -182,6 +252,7 @@ class CorpComClient:
             self.ui_queue.put(("message", loads(raw)))
 
     def disconnect(self) -> None:
+        self._stop_voice_stream()
         if self.loop and self.ws:
             asyncio.run_coroutine_threadsafe(self.ws.close(), self.loop)
 
@@ -194,10 +265,17 @@ class CorpComClient:
                     self.btn_connect.configure(text="Отключить", state=tk.NORMAL)
                     self.status_var.set(f"В сети: {payload.get('room')}")
                     self._append_chat("[система] Подключено к CorpCom")
+                    if self.voice and self.listen_var.get():
+                        self.voice.set_listening(True)
                 elif kind == "disconnected":
                     self.connected = False
+                    self._stop_voice_stream()
+                    if self.voice:
+                        self.voice.shutdown()
                     self.btn_connect.configure(text="Подключить", state=tk.NORMAL)
+                    self.btn_mic.configure(text="Включить микрофон")
                     self.status_var.set("Отключено")
+                    self.voice_status_var.set("Микрофон выкл")
                     self._append_chat("[система] Отключено")
                 elif kind == "error":
                     messagebox.showerror("CorpCom", str(payload))
@@ -206,12 +284,12 @@ class CorpComClient:
                     self._handle_message(payload)  # type: ignore[arg-type]
         except queue.Empty:
             pass
-        self.root.after(100, self._drain_ui_queue)
+        self.root.after(80, self._drain_ui_queue)
 
     def _handle_message(self, msg: dict) -> None:
         t = msg.get("type")
+        sender = msg.get("sender", "?")
         if t == MsgType.TEXT:
-            sender = msg.get("sender", "?")
             if sender == self.my_name:
                 return
             self._append_chat(f"[{sender}] {msg.get('content', '')}")
@@ -220,20 +298,18 @@ class CorpComClient:
         elif t == MsgType.CLIENT_LIST:
             clients = ", ".join(msg.get("clients", []))
             self.status_var.set(f"В сети | участники: {clients}")
-        elif t == MsgType.VOICE and HAS_AUDIO:
-            sender = msg.get("sender", "?")
-            if sender == self.my_name:
-                return
+        elif t == MsgType.VOICE_START and sender != self.my_name:
+            self._append_chat(f"[голос] {sender} говорит…")
+        elif t == MsgType.VOICE_END and sender != self.my_name:
+            self._append_chat(f"[голос] {sender} закончил")
+        elif t == MsgType.VOICE and sender != self.my_name and self.voice:
             from corpcom.protocol import b64_decode
 
-            pcm = b64_decode(msg["data"])
-            arr = np.frombuffer(pcm, dtype=np.int16)
-            sd.play(arr, config.SAMPLE_RATE, blocking=False)
+            self.voice.play_remote(b64_decode(msg["data"]))
         elif t == MsgType.IMAGE:
             from corpcom.protocol import b64_decode
 
             data = b64_decode(msg["data"])
-            sender = msg.get("sender", "?")
             self._show_preview(data)
             self._append_chat(f"[изображение] от {sender}: {msg.get('filename', '')}")
 
@@ -249,8 +325,7 @@ class CorpComClient:
         text = self.msg_var.get().strip()
         if not text:
             return
-        room = self.room_var.get().strip()
-        payload = text_message(room, self.my_name, text)
+        payload = text_message(self._room(), self.my_name, text)
         asyncio.run_coroutine_threadsafe(self.ws.send(payload), self.loop)
         self._append_chat(f"[я] {text}")
         self.msg_var.set("")
@@ -275,37 +350,65 @@ class CorpComClient:
             return
         import os
 
-        room = self.room_var.get().strip()
-        payload = image_message(room, self.my_name, os.path.basename(path), data)
+        payload = image_message(
+            self._room(), self.my_name, os.path.basename(path), data
+        )
         asyncio.run_coroutine_threadsafe(self.ws.send(payload), self.loop)
         self._append_chat(f"[я] отправлено на проектор: {os.path.basename(path)}")
 
-    def start_ptt(self) -> None:
-        if not HAS_AUDIO or not self.connected or self.ptt_active:
+    def _send_voice_signal(self, factory) -> None:
+        if self.ws and self.loop:
+            asyncio.run_coroutine_threadsafe(
+                self.ws.send(factory(self._room(), self.my_name)), self.loop
+            )
+
+    def toggle_voice_stream(self) -> None:
+        if not HAS_AUDIO or not self.connected:
+            messagebox.showinfo("CorpCom", "Подключитесь к серверу")
+            return
+        if self.voice_streaming:
+            self._stop_voice_stream()
+        else:
+            self._start_voice_stream()
+
+    def _start_voice_stream(self) -> None:
+        if not self.voice or self.voice_streaming:
+            return
+        self.voice_streaming = True
+        self.voice.start_tx()
+        self._send_voice_signal(voice_start_message)
+        self.btn_mic.configure(text="Выключить микрофон")
+        self.voice_status_var.set("Микрофон вкл — идёт передача")
+        self._append_chat("[голос] Микрофон включён")
+
+    def _stop_voice_stream(self) -> None:
+        if not self.voice_streaming:
+            return
+        self.voice_streaming = False
+        if self.voice:
+            self.voice.stop_tx()
+        self._send_voice_signal(voice_end_message)
+        self.btn_mic.configure(text="Включить микрофон")
+        self.voice_status_var.set("Микрофон выкл")
+
+    def _start_ptt(self) -> None:
+        if not HAS_AUDIO or not self.connected or self.ptt_active or self.voice_streaming:
+            return
+        if not self.voice:
             return
         self.ptt_active = True
-        threading.Thread(target=self._ptt_capture_loop, daemon=True).start()
+        self.voice.start_tx()
+        self._send_voice_signal(voice_start_message)
+        self.voice_status_var.set("PTT: говорите…")
 
-    def stop_ptt(self) -> None:
+    def _stop_ptt(self) -> None:
+        if not self.ptt_active:
+            return
         self.ptt_active = False
-
-    def _ptt_capture_loop(self) -> None:
-        from corpcom.protocol import voice_message
-
-        room = self.room_var.get().strip()
-        while self.ptt_active and self.ws and self.loop:
-            rec = sd.rec(
-                config.VOICE_CHUNK_SAMPLES,
-                samplerate=config.SAMPLE_RATE,
-                channels=config.CHANNELS,
-                dtype="int16",
-            )
-            sd.wait()
-            if not self.ptt_active:
-                break
-            pcm = rec.tobytes()
-            payload = voice_message(room, self.my_name, pcm)
-            asyncio.run_coroutine_threadsafe(self.ws.send(payload), self.loop)
+        if self.voice:
+            self.voice.stop_tx()
+        self._send_voice_signal(voice_end_message)
+        self.voice_status_var.set("Микрофон выкл")
 
 
 def main() -> None:

@@ -9,7 +9,7 @@ AUTH_TOKEN = os.environ.get("CORPCOM_TOKEN", "corp-secret-change-me")
 # Голос: PCM 16-bit mono
 SAMPLE_RATE = 16_000
 CHANNELS = 1
-VOICE_CHUNK_MS = 40
+VOICE_CHUNK_MS = 20  # меньше задержка для голоса в реальном времени
 VOICE_CHUNK_SAMPLES = SAMPLE_RATE * VOICE_CHUNK_MS // 1000
 
 DEFAULT_ROOM = "general"

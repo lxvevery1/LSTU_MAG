@@ -151,18 +151,28 @@ async def handle(ws: WebSocketServerProtocol) -> None:
                 await hub.broadcast(peer.room, payload, exclude=ws, roles={"user"})
                 continue
 
-            if mtype == MsgType.VOICE:
-                blob = data.get("data")
-                if not blob:
-                    continue
-                payload = dumps(
-                    {
-                        "type": MsgType.VOICE,
-                        "room": peer.room,
-                        "sender": peer.name,
-                        "data": blob,
-                    }
-                )
+            if mtype in (MsgType.VOICE, MsgType.VOICE_START, MsgType.VOICE_END):
+                if mtype == MsgType.VOICE:
+                    blob = data.get("data")
+                    if not blob:
+                        continue
+                    payload = dumps(
+                        {
+                            "type": MsgType.VOICE,
+                            "room": peer.room,
+                            "sender": peer.name,
+                            "seq": int(data.get("seq") or 0),
+                            "data": blob,
+                        }
+                    )
+                else:
+                    payload = dumps(
+                        {
+                            "type": mtype,
+                            "room": peer.room,
+                            "sender": peer.name,
+                        }
+                    )
                 await hub.broadcast(peer.room, payload, exclude=ws, roles={"user"})
                 continue
 
