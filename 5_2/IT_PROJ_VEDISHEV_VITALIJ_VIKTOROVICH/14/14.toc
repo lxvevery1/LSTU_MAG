@@ -1,0 +1,7 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Составление плана управления качеством программного продукта}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Ответственность за качество. Контроль качества}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Подготовка и проведение инспектирования}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}План контроля качества – состав}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Верификация}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Валидация}{6}{subsection.1.5}%
