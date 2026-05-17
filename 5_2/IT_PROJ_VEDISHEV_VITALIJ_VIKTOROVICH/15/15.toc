@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Использование метрик качества для текущей оценки достижений}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Количественные характеристики качества программного продукта}{3}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Метод «Черного ящика»}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Метод «Белого ящика»}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Примеры метрик качества}{4}{subsection.1.4}%
