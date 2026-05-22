@@ -1,0 +1,5 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Эффект бабочки в строке кода}{3}{section.1}%
+\contentsline {section}{\numberline {2}Маленькая студия и большие надежды}{4}{section.2}%
+\contentsline {section}{\numberline {3} Орден единомышленников }{5}{section.3}%
+\contentsline {section}{\numberline {4} Вовлеченность как компас }{6}{section.4}%
