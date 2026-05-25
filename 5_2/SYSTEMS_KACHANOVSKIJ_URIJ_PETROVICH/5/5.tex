@@ -20,6 +20,7 @@
 \usepackage{float}
 \usepackage{tocloft}
 \usepackage{titlesec}
+\usepackage{enumitem}
 \usepackage{newtxtext,newtxmath}
 
 \titleformat{\section}        % форматируем \section
@@ -29,6 +30,30 @@
   {}                           % перед заголовком можно добавить что-то
 \titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
 
+\titleformat{\subsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+
+\titleformat{\subsubsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+
+\titleformat{\item}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\theitem.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+\titlespacing*{\subsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+\titlespacing*{\subsubsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+\setlist[enumerate]{
+    leftmargin=2.5cm,
+    itemindent=0cm
+}
 \captionsetup{justification=centering}
 \renewcommand{\ttdefault}{cmtt}
 \keepXColumns
@@ -231,12 +256,13 @@
 
 \section{Диаграммы деятельности}
 
+На следующих диаграммах красным цветом выделены сложные действия.
 Диаграмма деятельности авторизации пользователя представлена на рисунке 2.
 
 \begin{figure}[H]
     \label{fig:2}
     \centering
-    \includegraphics[width=0.78\textwidth]{1.png}
+    \includegraphics[width=1\textwidth]{1.png}
     \refstepcounter{figure}
     \caption*{Рисунок \thefigure\ — Диаграмма деятельности авторизации}
 \end{figure}
@@ -247,9 +273,53 @@
 \begin{figure}[H]
     \label{fig:3}
     \centering
-    \includegraphics[width=0.78\textwidth]{2.png}
+    \includegraphics[width=1\textwidth]{2.png}
     \refstepcounter{figure}
     \caption*{Рисунок \thefigure\ — Диаграмма деятельности отправки сообщения}
+\end{figure}
+
+\section{Декомпозиция}
+
+\subsection{Авторизация пользователя}
+Диаграмма декомпозиции проверки учетных данных представлена на рисунке 4.
+
+\begin{figure}[H]
+    \label{fig:4}
+    \centering
+    \includegraphics[width=1\textwidth]{d11.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Даиграмма декомпозиции проверки учетных данных}
+\end{figure}
+
+Диаграмма декомпозиции создания пользовательской сессии представлена на рисунке 5.
+
+\begin{figure}[H]
+    \label{fig:5}
+    \centering
+    \includegraphics[width=1\textwidth]{d12.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Диаграмма декомпозиции создания пользовательской сессии}
+\end{figure}
+
+\subsection{Отправка сообщения}
+Диаграмма декомпозиции маршрутизации сообщения представлена на рисунке 6.
+
+\begin{figure}[H]
+    \label{fig:6}
+    \centering
+    \includegraphics[width=1\textwidth]{d21.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Диаграмма декомпозиции маршрутизации сообщения}
+\end{figure}
+
+Диаграмма декомпозиции повторной отправки сообщения представлена на рисунке 7.
+
+\begin{figure}[H]
+    \label{fig:7}
+    \centering
+    \includegraphics[width=1\textwidth]{d22.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Диаграмма декомпозиции повторной отправки сообщения после потери соединения}
 \end{figure}
 
 \end{document}
