@@ -1,44 +1,4 @@
-\documentclass[14pt,a4paper]{extarticle}
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
-\usepackage{lmodern}
-\usepackage{geometry}
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{longtable}
-\usepackage{ltablex}
-\usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage{indentfirst}
-\usepackage{microtype}
-\usepackage{graphicx}
-\usepackage{setspace}
-\usepackage{listings}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{tocloft}
-\usepackage{titlesec}
-\usepackage{newtxtext,newtxmath}
-
-\titleformat{\section}        % форматируем \section
-  {\normalfont\bfseries}      % стиль: обычный + жирный
-  {\thesection.}              % номер секции с точкой
-  {2mm}                       % расстояние между номером и текстом
-  {}                           % перед заголовком можно добавить что-то
-\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
-
-\captionsetup{justification=centering}
-\renewcommand{\ttdefault}{cmtt}
-\keepXColumns
-\setlength{\parindent}{3em}
-\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
-
-\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
-\setlength{\cftbeforesecskip}{0.5em}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+\input{uni}
 
 \title{Отчёт по дисциплине "Системная инженерия"}
 \author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
@@ -73,7 +33,7 @@
 \vspace{6em}
 
 \begin{center}
-\textbf{Домашнее задание №6} \\
+\textbf{Домашнее задание №5} \\
 по дисциплине \\ <<Системная инженерия>>
 \end{center}
 
@@ -101,7 +61,7 @@
 \begin{sloppypar}
     1. По описанию процессов из ГОСТ Р 57193-2025 Системная и программная инженерия. Процессы жизненного цикла систем построить IDEF0-диаграммы процесса (контекстная диаграмма и диаграмма декомпозиции 1 уровня)
     2. Для одного из действий заданного процесс построить карту подпроцесса (по возможности) или IDEF0-диаграмму декомпозиции 2-го уровня
-Варианты:
+Вариант 16: Процесс комплексирования
 \end{sloppypar}
 
 \section{Описание проектируемой системы}
@@ -119,7 +79,12 @@
 
 \section{Диаграммы}
 
-Контекстная диаграмма представлена на рисунке 1.
+Процесс комплексирования предназначен для объединения реализованных компонентов
+корпоративной системы обмена сообщениями в единую функционирующую программную
+систему, обеспечивающую совместную работу механизмов аутентификации, текстовой
+и голосовой связи, передачи файлов, хранения данных и обеспечения безопасности.
+
+Контекстная IDEF0-диаграмма представлена на рисунке 1.
 
 \begin{figure}[H]
     \label{fig:1}
@@ -129,24 +94,24 @@
     \caption*{Рисунок \thefigure\ — Контекстная диаграмма}
 \end{figure}
 
-Диаграмма декомпозиции представлена на рисунке 2.
+Диаграмма IDEF0-декомпозиции представлена на рисунке 2.
 
 \begin{figure}[H]
     \label{fig:2}
     \centering
-    \includegraphics[width=0.78\textwidth]{decompose.png}
+    \includegraphics[width=0.78\textwidth]{decompose1.png}
     \refstepcounter{figure}
     \caption*{Рисунок \thefigure\ — Диаграмма декомпозиции}
 \end{figure}
 
-IDEF0:A2 диаграмма управления конфигурацией (вариант 5) представлена на рисунке 3.
+IDEF0 диаграмма второго уровня - проверка взаимодействия компонентов представлена на рисунке 3.
 
 \begin{figure}[H]
     \label{fig:3}
     \centering
-    \includegraphics[width=0.78\textwidth]{config.png}
+    \includegraphics[width=0.78\textwidth]{decompose2.png}
     \refstepcounter{figure}
-    \caption*{Рисунок \thefigure\ — Диаграмма конфигурации}
+    \caption*{Рисунок \thefigure\ — Диаграмма проверки взаимодействия компонентов}
 \end{figure}
 
 \end{document}
