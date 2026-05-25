@@ -172,7 +172,7 @@ GRU   best_epoch=20  val_ppl=6.46 top1/5/10=0.5579/0.7723/0.8484  test_ppl=5.07 
   10. 'I'     p=0.0266
 
 --- prefix #8 (36 chars) ---
-'oryNameForFile(\n\n          "buck-out'
+'oryNameForFile(\n\n          "buck-o'
    1. ' '     p=0.3656
    2. 'p'     p=0.1566
    3. 'i'     p=0.0511

@@ -226,3 +226,165 @@ c_idle.c
 произошло, не требуя от потока определения объекта синхронизации ядра, такого
 как семафор. Пробуждение потока, который не находится в спящем режиме,
 разрешено, но не имеет никакого эффекта.
+
+
+# Memory
+
+https://chrispinetinega.com/course_zephyr_rtos_rpi_4b/chapter_09_memory_management/
+
+Встраиваемые системы используют иерархическую архитектуру памяти,
+оптимизированную с точки зрения производительности, энергопотребления и
+ограничений по стоимости:
+
+Основные типы памяти
+
+Статическая оперативная память (SRAM)
+
+    Основная рабочая память для выполнения операций в рантайме
+    Максимальная скорость доступа с минимальной задержкой
+    Ограниченный объем (обычно в диапазоне от КБ до Мбайт)
+    Содержит системную кучу, стеки потоков и глобальные переменные
+    Адресуемые непосредственно процессором
+
+Флэш-память
+
+    Энергонезависимое хранилище для программного кода и констант
+    Возможности Execute-in-place (XIP) снижают требования к SRAM
+    Увеличенная емкость, но значительно более медленные операции записи
+    Организация по секторам/страницам для эффективного управления
+
+Кэш-память
+
+    Высокоскоростной буфер между процессором и основной памятью
+    Кэширование команд и данных повышает производительность выполнения
+    Программирование с поддержкой кэширования повышает эффективность системы
+    Критически важно для высокопроизводительных встраиваемых приложений
+
+Архитектура компоновки памяти Zephyr
+
+Zephyr организует системную память в четко определенные области, каждая из которых служит определенным целям:
+./memory_regions.png
+
+
+
+Стратегии распределения памяти
+
+
+
+Статическое распределение памяти
+
+Статическое распределение обеспечивает предсказуемое распределение памяти во время компиляции:
+
+Характеристики:
+
+    Память, выделяемая во время компиляции
+    Нулевые затраты на выделение памяти во время выполнения
+    Детерминированные шаблоны использования памяти
+    Отсутствие риска сбоев в распределении
+    Оптимально для систем реального времени
+
+    // Global arrays with compile-time allocation
+    static uint8_t sensor_buffer[1024];
+    static struct sensor_data readings[MAX_SENSORS];
+
+    // Thread stacks allocated statically
+    K_THREAD_STACK_DEFINE(sensor_thread_stack, 2048);
+    K_THREAD_STACK_DEFINE(control_thread_stack, 1536);
+
+
+Динамическое распределение обеспечивает гибкость во время выполнения за счет сложности:
+
+Преимущества:
+
+    Гибкое использование памяти в зависимости от потребностей среды выполнения
+    Эффективное использование памяти
+    Поддержка структур данных переменного размера
+    Обеспечивает сложное управление памятью
+
+Проблемы:
+
+    Возможные сбои в распределении
+    Фрагментация памяти с течением времени
+    Накладные расходы во время выполнения операций распределения
+    Повышенная сложность обработки ошибок
+
+        I00001 test_rom.c:190] kChipInfo: scm_revision=54697461
+        I00002 test_rom.c:267] Test ROM complete, jumping to flash (addr: 20000400)!
+        *** Booting Zephyr OS build v4.3.0-8152-gcfa8a7bc6a9e ***
+        System heap sample
+
+        allocated 0, free 196, max allocated 0, heap size 256
+        allocated 156, free 36, max allocated 156, heap size 256
+        allocated 100, free 92, max allocated 156, heap size 256
+        allocated 0, free 196, max allocated 156, heap size 256
+        1 static heap(s) allocated:
+                0 - address 0x10000034 allocated 12, free 180, max allocated 12, heap size 256
+        3 heap(s) allocated (including static):
+                0 - address 0x10000034 allocated 12, free 180, max allocated 12, heap size 256
+                1 - address 0x1000036c allocated 0, free 60676, max allocated 0, heap size 256
+                2 - address 0x10000250 allocated 0, free 196, max allocated 156, heap size 256
+
+
+...
+
+// API
+// static
+
+    K_HEAP_DEFINE macro
+
+// runtime
+
+    static uint8_t heap_memory[8192];
+    static struct k_heap custom_heap;
+
+    void initialize_custom_heap(void)
+    {
+        k_heap_init(&custom_heap, heap_memory, sizeof(heap_memory));
+    }
+
+// alloc
+    void *k_heap_alloc(struct k_heap *h, size_t bytes, k_timeout_t timeout);
+
+    // Example usage
+    void *buffer = k_heap_alloc(&app_heap, 256, K_FOREVER);
+    if (buffer == NULL) {
+        // Handle allocation failure
+        return -ENOMEM;
+    }
+
+
+// calloc
+    void *k_heap_calloc(struct k_heap *h, size_t num, size_t size, k_timeout_t timeout);
+
+    // Allocate array of structures, initialized to zero
+    struct sensor_reading *readings = k_heap_calloc(&app_heap,
+                                                   NUM_SENSORS,
+                                                   sizeof(struct sensor_reading),
+                                                   K_NO_WAIT);
+
+// free
+
+    void k_heap_free(struct k_heap *h, void *mem);
+
+    // Always free allocated memory
+    k_heap_free(&app_heap, buffer);
+    buffer = NULL;  // Prevent accidental reuse
+
+
+// stdlib.h malloc
+
+    // Standard malloc/free with system heap
+    void *ptr = malloc(512);
+    if (ptr != NULL) {
+        // Use allocated memory
+        free(ptr);
+    }
+
+    // Calloc for zero-initialized arrays
+    int *array = calloc(100, sizeof(int));
+    free(array);
+
+    // Realloc for dynamic resizing
+    char *buffer = malloc(256);
+    buffer = realloc(buffer, 512);  // Expand to 512 bytes
+    free(buffer);
