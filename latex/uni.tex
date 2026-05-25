@@ -1,0 +1,66 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{newtxtext,newtxmath}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\titleformat{\subsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+
+\titleformat{\subsubsection}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesubsubsection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+
+\titleformat{\item}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\theitem.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+\titlespacing*{\subsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+\titlespacing*{\subsubsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+\setlist[enumerate]{
+    leftmargin=2.5cm,
+    itemindent=0cm
+}
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}

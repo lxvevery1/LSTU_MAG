@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  25 MAY 2026 12:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.16)  25 MAY 2026 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,6 +6,7 @@ entering extended mode
 (./5.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
+(/home/stanik/texmf/tex/latex/staniktools/uni.tex
 (/usr/share/texmf-dist/tex/latex/extsizes/extarticle.cls
 Document Class: extarticle 1996/10/08 v1.0 Non Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/extsizes/size14.clo
@@ -790,7 +791,8 @@ LaTeX Font Info:    Setting ntxLF sub-encoding to TS1/0 on input line 24.
 LaTeX Font Info:    Setting ntxTLF sub-encoding to TS1/0 on input line 24.
 LaTeX Font Info:    Setting ntxOsF sub-encoding to TS1/0 on input line 24.
 LaTeX Font Info:    Setting ntxTOsF sub-encoding to TS1/0 on input line 24.
- (./binhex.tex)
+
+(/home/stanik/texmf/tex/latex/staniktools/binhex.tex)
 \ntx@tmpcnta=\count318
 \ntx@cnt=\count319
 
@@ -899,7 +901,8 @@ LaTeX Info: Redefining \] on input line 2954.
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
 )
 \tx@cntz=\count332
- (./binhex.tex)
+
+(/home/stanik/texmf/tex/latex/staniktools/binhex.tex)
 \tx@Isdigit=\count333
 \tx@IsAlNum=\count334
 \tx@tA=\toks38
@@ -1038,65 +1041,66 @@ LaTeX Info: Redefining \not on input line 2995.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+)
 LaTeX Font Info:    Trying to load font information for T2A+ntxtlf on input lin
-e 71.
-LaTeX Font Info:    No file T2Antxtlf.fd. on input line 71.
+e 6.
+LaTeX Font Info:    No file T2Antxtlf.fd. on input line 6.
 
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/m/n' undefined
-(Font)              using `T2A/cmr/m/n' instead on input line 71.
+(Font)              using `T2A/cmr/m/n' instead on input line 6.
 
 (./5.aux)
 \openout1 = `5.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 71.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 6.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
- 71.
+ 6.
  (/usr/share/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 6.
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-71.
+6.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 6.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 71.
+ 6.
 
 (/usr/share/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 6.
 LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
-e 71.
+e 6.
 
 (/usr/share/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Info: Redefining \th on input line 71.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Info: Redefining \th on input line 6.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1132,28 +1136,26 @@ LaTeX Info: Redefining \th on input line 71.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 71.
-(./5.out) (./5.out)
+Package hyperref Info: Link coloring OFF on input line 6.
 \@outlinefile=\write3
 \openout3 = `5.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 71.
-Package microtype Info: Applying patch `item' on input line 71.
-Package microtype Info: Applying patch `toc' on input line 71.
-Package microtype Info: Applying patch `eqnum' on input line 71.
+LaTeX Info: Redefining \microtypecontext on input line 6.
+Package microtype Info: Applying patch `item' on input line 6.
+Package microtype Info: Applying patch `toc' on input line 6.
+Package microtype Info: Applying patch `eqnum' on input line 6.
 
+Package microtype Warning: Unable to apply patch `footnote' on input line 6.
 
-Package microtype Warning: Unable to apply patch `footnote' on input line 71.
-
-Package microtype Info: Applying patch `verbatim' on input line 71.
-LaTeX Info: Redefining \microtypesetup on input line 71.
+Package microtype Info: Applying patch `verbatim' on input line 6.
+LaTeX Info: Redefining \microtypesetup on input line 6.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 71.
+LaTeX Info: Redefining \showhyphens on input line 6.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1193,102 +1195,102 @@ Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@mv@tabular=\count342
 \c@mv@boldtabular=\count343
-LaTeX Info: Command `\dddot' is already robust on input line 71.
-LaTeX Info: Command `\ddddot' is already robust on input line 71.
-<~/programmer/++Programmer/5_1/LSTU.jpg, id=68, 42.705pt x 63.729pt>
+LaTeX Info: Command `\dddot' is already robust on input line 6.
+LaTeX Info: Command `\ddddot' is already robust on input line 6.
+<~/programmer/++Programmer/5_1/LSTU.jpg, id=4, 42.705pt x 63.729pt>
 File: ~/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
 <use ~/programmer/++Programmer/5_1/LSTU.jpg>
 Package pdftex.def Info: ~/programmer/++Programmer/5_1/LSTU.jpg  used on input 
-line 76.
+line 11.
 (pdftex.def)             Requested size: 42.70488pt x 63.72884pt.
 
-Overfull \hbox (38.15495pt too wide) in paragraph at lines 76--77
+Overfull \hbox (38.15495pt too wide) in paragraph at lines 11--12
 [][] 
  []
 
 LaTeX Font Info:    Trying to load font information for OT1+minntx on input lin
-e 86.
+e 21.
 (/usr/share/texmf-dist/tex/latex/newtx/ot1minntx.fd
 File: ot1minntx.fd 2023/09/09 v1.1 font definition file for OT1/minntx
 )
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `minntx' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-86.
+21.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2024/04/09 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-86.
+21.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2023/08/16 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-86.
+21.
 
 (/usr/share/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 14.4pt on input line 86.
+(Font)              scaled to size 14.4pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.5pt on input line 86.
+(Font)              scaled to size 10.5pt on input line 21.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 7.9pt on input line 86.
+(Font)              scaled to size 7.9pt on input line 21.
 
-Overfull \hbox (50.0771pt too wide) in paragraph at lines 74--87
+Overfull \hbox (50.0771pt too wide) in paragraph at lines 9--22
 []$[]$ 
  []
 
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/b/n' undefined
-(Font)              using `T2A/ntxtlf/m/n' instead on input line 93.
+(Font)              using `T2A/ntxtlf/m/n' instead on input line 28.
 
 
 
@@ -1297,15 +1299,8 @@ LaTeX Font Warning: Font shape `T2A/ntxtlf/b/n' undefined
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
 /enc/dvips/cm-super/cm-super-t2a.enc} </home/stanik/programmer/++Programmer/5_1
-/LSTU.jpg>] (./5.toc
-LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
-e 1.
- (/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
-File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
-)
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 1.
-)
+/LSTU.jpg>]
+No file 5.toc.
 \tf@toc=\write4
 \openout4 = `5.toc'.
 
@@ -1314,10 +1309,10 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 [2]
 
 [3]
-<usecase.png, id=101, 1618.045pt x 511.9125pt>
+<usecase.png, id=23, 1618.045pt x 511.9125pt>
 File: usecase.png Graphic file (type png)
 <use usecase.png>
-Package pdftex.def Info: usecase.png  used on input line 158.
+Package pdftex.def Info: usecase.png  used on input line 93.
 (pdftex.def)             Requested size: 355.08984pt x 112.33989pt.
 
 
@@ -1328,79 +1323,95 @@ Package pdftex.def Info: usecase.png  used on input line 158.
 [6]
 
 [7]
-<1.png, id=152, 1590.94376pt x 1120.185pt>
+<1.png, id=83, 1590.94376pt x 1120.185pt>
 File: 1.png Graphic file (type png)
 <use 1.png>
-Package pdftex.def Info: 1.png  used on input line 265.
+Package pdftex.def Info: 1.png  used on input line 200.
 (pdftex.def)             Requested size: 455.24411pt x 320.538pt.
 
 
 [8]
-<2.png, id=163, 2299.59125pt x 835.12pt>
+<2.png, id=95, 2299.59125pt x 835.12pt>
 File: 2.png Graphic file (type png)
 <use 2.png>
-Package pdftex.def Info: 2.png  used on input line 276.
+Package pdftex.def Info: 2.png  used on input line 211.
 (pdftex.def)             Requested size: 455.24411pt x 165.32623pt.
-<d11.png, id=164, 1309.89375pt x 626.34pt>
+<d11.png, id=96, 1309.89375pt x 626.34pt>
 File: d11.png Graphic file (type png)
 <use d11.png>
-Package pdftex.def Info: d11.png  used on input line 289.
+Package pdftex.def Info: d11.png  used on input line 224.
 (pdftex.def)             Requested size: 455.24411pt x 217.67401pt.
 
 
 [9 <./1.png> <./2.png>]
-<d12.png, id=175, 665.48625pt x 475.7775pt>
+<d12.png, id=108, 665.48625pt x 475.7775pt>
 File: d12.png Graphic file (type png)
 <use d12.png>
-Package pdftex.def Info: d12.png  used on input line 299.
+Package pdftex.def Info: d12.png  used on input line 234.
 (pdftex.def)             Requested size: 455.24411pt x 325.47003pt.
 
 
 [10 <./d11.png>]
-<d21.png, id=183, 1433.355pt x 517.935pt>
+<d21.png, id=117, 1433.355pt x 517.935pt>
 File: d21.png Graphic file (type png)
 <use d21.png>
-Package pdftex.def Info: d21.png  used on input line 310.
+Package pdftex.def Info: d21.png  used on input line 245.
 (pdftex.def)             Requested size: 455.24411pt x 164.4939pt.
 
 
 [11 <./d12.png>]
-<d22.png, id=191, 635.37375pt x 612.2875pt>
+<d22.png, id=126, 635.37375pt x 612.2875pt>
 File: d22.png Graphic file (type png)
 <use d22.png>
-Package pdftex.def Info: d22.png  used on input line 320.
+Package pdftex.def Info: d22.png  used on input line 255.
 (pdftex.def)             Requested size: 455.24411pt x 438.71652pt.
 
 
 [12 <./d21.png>]
 
-[13 <./d22.png>] (./5.aux)
+[13 <./d22.png>] (./5.aux
+LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
+e 8.
+ (/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
+File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
+)
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 8.
+)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
 
-
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `5.out' has not changed.
-(rerunfilecheck)             Checksum: E4FC9D49E9585DE5B8B721F4DFB5A7C6;4279.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `5.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `5.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  E4FC9D49E9585DE5B8B721F4DFB5A7C6;4279.
  ) 
 Here is how much of TeX's memory you used:
- 22376 strings out of 474645
- 345144 string characters out of 5759192
- 765674 words of memory out of 5000000
- 44941 multiletter control sequences out of 15000+600000
+ 22358 strings out of 474645
+ 345160 string characters out of 5759192
+ 764906 words of memory out of 5000000
+ 44925 multiletter control sequences out of 15000+600000
  577183 words of font info for 95 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 80i,7n,93p,998b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 85i,7n,96p,998b,604s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/t
 exmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts
 /type1/public/cm-super/sfrm2074.pfb>
-Output written on 5.pdf (13 pages, 226641 bytes).
+Output written on 5.pdf (13 pages, 224235 bytes).
 PDF statistics:
- 244 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
+ 178 PDF objects out of 1000 (max. 8388607)
+ 140 compressed objects within 2 object streams
  79 named destinations out of 1000 (max. 500000)
- 13481 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 13353 words of extra memory for PDF output out of 14400 (max. 10000000)
 
