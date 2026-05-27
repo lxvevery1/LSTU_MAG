@@ -1,0 +1,13 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
+\contentsline {section}{\numberline {2}Задание}{3}{section.2}%
+\contentsline {section}{\numberline {3}Исходный датасет}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Предобработка данных}{4}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Программа для обучения модели}{5}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Архитектура ResNet-18}{5}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Depthwise Separable Convolution}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Процесс обучения}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Методика бенчмарка}{8}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Результаты экспериментов}{8}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Вывод}{8}{section.5}%
+\contentsline {section}{\numberline {6}Список источников}{10}{section.6}%
