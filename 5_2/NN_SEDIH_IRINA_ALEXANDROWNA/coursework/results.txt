@@ -1,0 +1,52 @@
+stanik@archlinux::/home/stanik/programmer/++Programmer/5_2/NN_SEDIH_IRINA_ALEXANDROWNA/coursework::main > python main.py --epochs 20 --batch-size 128 --lr 0.1 --device-train auto --cpu-threads 8 --benchmark-warmup 50 --benchmark-repeats 300
+=== Training standard ResNet-18 ===
+Epoch   1/20  loss=2.0247  test_acc=40.75%  best=40.75%
+Epoch   2/20  loss=1.3681  test_acc=56.83%  best=56.83%
+Epoch   3/20  loss=1.0053  test_acc=64.61%  best=64.61%
+Epoch   4/20  loss=0.7999  test_acc=74.26%  best=74.26%
+Epoch   5/20  loss=0.6714  test_acc=75.29%  best=75.29%
+Epoch   6/20  loss=0.5964  test_acc=76.69%  best=76.69%
+Epoch   7/20  loss=0.5538  test_acc=77.41%  best=77.41%
+Epoch   8/20  loss=0.5197  test_acc=77.49%  best=77.49%
+Epoch   9/20  loss=0.4926  test_acc=78.19%  best=78.19%
+Epoch  10/20  loss=0.4772  test_acc=79.51%  best=79.51%
+Epoch  11/20  loss=0.3117  test_acc=88.86%  best=88.86%
+Epoch  12/20  loss=0.2568  test_acc=89.48%  best=89.48%
+Epoch  13/20  loss=0.2300  test_acc=89.84%  best=89.84%
+Epoch  14/20  loss=0.2124  test_acc=90.06%  best=90.06%
+Epoch  15/20  loss=0.2004  test_acc=89.83%  best=90.06%
+^[Epoch  16/20  loss=0.1663  test_acc=90.73%  best=90.73%
+Epoch  17/20  loss=0.1594  test_acc=91.01%  best=91.01%
+Epoch  18/20  loss=0.1557  test_acc=91.01%  best=91.01%
+Epoch  19/20  loss=0.1506  test_acc=91.08%  best=91.08%
+Epoch  20/20  loss=0.1493  test_acc=91.09%  best=91.09%
+
+=== Training depthwise-separable ResNet-18 ===
+Epoch   1/20  loss=1.8617  test_acc=42.81%  best=42.81%
+Epoch   2/20  loss=1.4059  test_acc=48.58%  best=48.58%
+Epoch   3/20  loss=1.1830  test_acc=59.80%  best=59.80%
+Epoch   4/20  loss=0.9695  test_acc=59.78%  best=59.80%
+Epoch   5/20  loss=0.8469  test_acc=57.99%  best=59.80%
+Epoch   6/20  loss=0.7354  test_acc=71.62%  best=71.62%
+Epoch   7/20  loss=0.6668  test_acc=71.88%  best=71.88%
+Epoch   8/20  loss=0.6253  test_acc=71.69%  best=71.88%
+Epoch   9/20  loss=0.5952  test_acc=73.24%  best=73.24%
+Epoch  10/20  loss=0.5739  test_acc=71.87%  best=73.24%
+Epoch  11/20  loss=0.3795  test_acc=87.49%  best=87.49%
+Epoch  12/20  loss=0.3211  test_acc=87.91%  best=87.91%
+Epoch  13/20  loss=0.2919  test_acc=88.29%  best=88.29%
+Epoch  14/20  loss=0.2713  test_acc=88.80%  best=88.80%
+Epoch  15/20  loss=0.2565  test_acc=88.12%  best=88.80%
+Epoch  16/20  loss=0.2123  test_acc=89.36%  best=89.36%
+Epoch  17/20  loss=0.2020  test_acc=89.62%  best=89.62%
+Epoch  18/20  loss=0.1985  test_acc=89.47%  best=89.62%
+Epoch  19/20  loss=0.1939  test_acc=89.64%  best=89.64%
+Epoch  20/20  loss=0.1898  test_acc=89.81%  best=89.81%
+
+=== CPU benchmark (batch=1, 32×32) ===
+Model                            Params      Size (MB)  Latency (ms)    Test acc (%)
+-------------------------------  ----------  ---------  --------------  ------------
+ResNet-18 (standard)             11,173,962  42.699     27.533 ± 2.329  91.09
+ResNet-18 (depthwise-separable)  1,438,565   5.569      6.932 ± 0.164   89.81
+
+Separable vs standard: latency 3.97× faster, size 7.67× smaller, accuracy Δ +1.28 pp
