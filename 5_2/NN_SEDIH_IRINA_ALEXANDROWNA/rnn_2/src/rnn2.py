@@ -131,25 +131,7 @@ Why = np.array([[0.5, 0.3],
 
 by = np.zeros(4)
 
-def log_word_contributions(epoch):
-    print(f"\n=== Epoch {epoch} ===")
-
-    for word in ['садовник', 'сажает', 'дерево']:
-        x = embeddings[word]
-
-        f_c = Wfx @ x
-        i_c = Wix @ x
-        c_c = Wcx @ x
-        o_c = Wox @ x
-
-        print(f"\nСлово: {word}")
-        print(f"  f = [{f_c[0]:.3f}, {f_c[1]:.3f}]")
-        print(f"  i = [{i_c[0]:.3f}, {i_c[1]:.3f}]")
-        print(f"  c~ = [{c_c[0]:.3f}, {c_c[1]:.3f}]")
-        print(f"  o = [{o_c[0]:.3f}, {o_c[1]:.3f}]")
-
-
-for epoch in range(90):
+for epoch in range(200):
 
     # ===== FORWARD =====
     xs, hs, cs = {}, {}, {}
@@ -267,7 +249,7 @@ for epoch in range(90):
         param -= lr * dparam
 
     if epoch % 10 == 0:
-        log_word_contributions(epoch)
+        print(f"\ -----ЭПОХА {epoch}-----")
         for t in range(len(words)):
             x = embeddings[words[t]]
 
@@ -278,8 +260,15 @@ for epoch in range(90):
             o = sigmoid(Wox @ x + Woh @ h + bo)
             h = o * tanh(c)
 
+
+            print(f"\nСлово: {words[t]}")
+            print(f"  f = [{f[0]:.3f}, {f[1]:.3f}]")
+            print(f"  i = [{i[0]:.3f}, {i[1]:.3f}]")
+            print(f"  c~ = [{c[0]:.3f}, {c[1]:.3f}]")
+            print(f"  o = [{o[0]:.3f}, {o[1]:.3f}]")
+
             y = Why @ h + by
             p = softmax(y)
 
             pred = np.argmax(p)
-            print(f"{words[t]} -> {idx_to_word[pred]}")
+            print(f"{words[t]} -> {idx_to_word[pred]} (p = { p })")

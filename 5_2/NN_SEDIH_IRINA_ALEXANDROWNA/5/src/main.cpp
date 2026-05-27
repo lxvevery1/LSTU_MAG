@@ -1,15 +1,7 @@
 // последовательность с переходом через 0
 
+#include <algorithm>
 #include <iostream>
-
-float calc(const float* filter, const float* sig, const int size) {
-    float result = 0;
-    for (int i = 0; i < size; i++)
-        result += sig[i] * filter[i];
-    return result;
-}
-
-float task_test(const float* sig, const float* core) { return calc(sig, core, 3); }
 
 void print_arr(const float* arr, const int size) {
     for (int i = 0; i < size; i++) {
@@ -18,165 +10,170 @@ void print_arr(const float* arr, const int size) {
     putchar('\n');
 }
 
-void apply_zeros(float* sig, const size_t size, const int padding) {
-    for (int i = 0; i < padding; i++) {
-        sig[i] = 0;
+// Одномерная свёртка.
+// same=true: padding вычисляется так, чтобы output_size == sig_size (независимо от stride).
+// out_size (если не nullptr) получает фактический размер выходного массива.
+float* convolution(const float* sig, size_t sig_size, const float* core, size_t core_size,
+                   int stride = 1, int padding = 0, bool same = false,
+                   size_t* out_size = nullptr) {
+    int pad_left = padding;
+    int pad_right = padding;
+
+    if (same) {
+        // total_pad такой, чтобы (sig_size + total_pad - core_size) / stride + 1 == sig_size
+        int total_pad = std::max(0, (int)((sig_size - 1) * stride + core_size - sig_size));
+        pad_left = total_pad / 2;
+        pad_right = total_pad - pad_left;
     }
 
-    for (int i = size - padding; i < size; i++) {
-        sig[i] = 0;
-    }
-}
-
-float* convolution(float* sig, size_t sig_size, const float* core, size_t core_size,
-                   int stride = 1, int padding = 0, bool same = false) {
-    if (same)
-        padding = ( core_size - 1 ) / 2; // игнор  padding
-
-    size_t padded_size = sig_size + padding * 2;
-
-    float* padded = new float[padded_size]{0};
+    size_t padded_size = sig_size + pad_left + pad_right;
+    float* padded = new float[padded_size]{};
 
     for (size_t i = 0; i < sig_size; i++)
-        padded[i + padding] = sig[i];
+        padded[i + pad_left] = sig[i];
 
     size_t output_size = (padded_size - core_size) / stride + 1;
-
     float* res = new float[output_size];
 
     for (size_t i = 0; i <= padded_size - core_size; i += stride) {
         float sum = 0;
-
         for (size_t j = 0; j < core_size; j++)
             sum += padded[i + j] * core[core_size - 1 - j];
-
         res[i / stride] = sum;
     }
 
-    // если режим same — обрезаем центр
-    if (same) {
-        float* same_res = new float[sig_size];
-
-        size_t start = (output_size - sig_size) / 2;
-
-        for (size_t i = 0; i < sig_size; i++)
-            same_res[i] = res[i + start];
-
-        print_arr(same_res, sig_size);
-
-        delete[] padded;
-        delete[] res;
-
-        return same_res;
-    }
-
     print_arr(res, output_size);
+
+    if (out_size)
+        *out_size = output_size;
 
     delete[] padded;
     return res;
 }
 
+// ─── Задание 1: базовая свёртка без паддинга, stride=1 ───
 void task1() {
-    float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
-    const float* core = new float[3]{0.5, 1, 0.5};
+    float sig[] = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
+    const float core[] = {0.5f, 1.0f, 0.5f};
 
-    convolution(sig, 10, core, 3, 1, 0);
+    float* res = convolution(sig, 10, core, 3);
     putchar('\n');
-
-    delete[] sig;
-    delete[] core;
-}
-
-void task2() {
-    float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
-    const float* core = new float[2]{-1, 1};
-
-    // add zeros
-    convolution(sig, 10, core, 2, 2, 0, true);
-    putchar('\n');
-
-    delete[] sig;
-    delete[] core;
-}
-
-void task3() {
-    const float* core1 = new float[2]{1, -1};
-    const float* core2 = new float[2]{0.5, 0.5};
-    float* sig1 = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
-    float* sig2 = new float[10]{6, 12, 3, 9, 15, 6, 18, 9, 21, 12};
-
-    std::cout << "convolution 1: " << '\n';
-    auto res1 = convolution(sig1, 10, core1, 2);
-    std::cout << "convolution 2: " << '\n';
-    auto res2 = convolution(sig2, 10, core2, 2);
-
-    float* res = new float[10];
-    std::cout << "result : " << '\n';
-    for (int i = 0; i < 10; i++) {
-        res[i] = res1[i] + res2[i];
-    }
-
-    auto res3 = convolution(sig2, 10, core1, 2);
-    auto res4 = convolution(sig1, 10, core2, 2);
-    std::cout << "result : " << '\n';
-    for (int i = 0; i < 10; i++) {
-        res[i] = res3[i] + res4[i];
-    }
-
-    print_arr(res, 10);
-
-    putchar('\n');
-
-    delete[] core1;
-    delete[] core2;
-    delete[] sig1;
-    delete[] sig2;
     delete[] res;
 }
 
+// ─── Задание 2: same-паддинг, stride=2 ───
+void task2() {
+    float sig[] = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
+    const float core[] = {-1.0f, 1.0f};
+
+    float* res = convolution(sig, 10, core, 2, 2, 0, true);
+    putchar('\n');
+    delete[] res;
+}
+
+// ─── Задание 3: два канала, два ядра, поэлементное сложение ───
+void task3() {
+    const float core1[] = {1.0f, -1.0f};
+    const float core2[] = {0.5f, 0.5f};
+    float sig1[] = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
+    float sig2[] = {6, 12, 3, 9, 15, 6, 18, 9, 21, 12};
+
+    size_t out_sz;
+
+    std::cout << "convolution 1 (core1 on sig1):\n";
+    float* res1 = convolution(sig1, 10, core1, 2, 1, 0, false, &out_sz);
+
+    std::cout << "convolution 2 (core2 on sig2):\n";
+    float* res2 = convolution(sig2, 10, core2, 2, 1, 0, false, &out_sz);
+
+    float* sum12 = new float[out_sz];
+    std::cout << "sum (core1*sig1 + core2*sig2):\n";
+    for (size_t i = 0; i < out_sz; i++)
+        sum12[i] = res1[i] + res2[i];
+    print_arr(sum12, out_sz);
+
+    // меняем ядра местами
+    std::cout << "convolution 3 (core1 on sig2):\n";
+    float* res3 = convolution(sig2, 10, core1, 2, 1, 0, false, &out_sz);
+
+    std::cout << "convolution 4 (core2 on sig1):\n";
+    float* res4 = convolution(sig1, 10, core2, 2, 1, 0, false, &out_sz);
+
+    std::cout << "sum (core1*sig2 + core2*sig1):\n";
+    for (size_t i = 0; i < out_sz; i++)
+        sum12[i] = res3[i] + res4[i];
+    print_arr(sum12, out_sz);
+
+    putchar('\n');
+
+    delete[] res1;
+    delete[] res2;
+    delete[] res3;
+    delete[] res4;
+    delete[] sum12;
+}
+
+// ─── ReLU ───
 float relu(float x) { return std::max(0.0f, x); }
 void relu(float* x, const int size) {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
         x[i] = relu(x[i]);
-    }
 }
 
+// ─── Задание 4: свёртка + ReLU, same-паддинг, stride=1 ───
 void task4() {
-    float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
-    const float* core = new float[3]{1, -2, 1};
+    float sig[] = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
+    const float core[] = {1.0f, -2.0f, 1.0f};
 
-    auto res = convolution(sig, 10, core, 2, 1, 0);
-    relu(res, 10);
-    print_arr(res, 10);
+    size_t out_sz;
+    float* res = convolution(sig, 10, core, 3, 1, 0, true, &out_sz);
+    relu(res, out_sz);
+    std::cout << "after ReLU: ";
+    print_arr(res, out_sz);
     putchar('\n');
 
-    delete[] sig;
-    delete[] core;
+    delete[] res;
 }
 
+// ─── Задание 5: каскад из двух свёрток с ReLU ───
 void task5() {
-    const float* core1 = new float[3]{0.5, 1, 0.5};
-    const float* core2 = new float[2]{-1, 1};
-    float* sig = new float[10]{-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
+    const float core1[] = {0.5f, 1.0f, 0.5f};
+    const float core2[] = {-1.0f, 1.0f};
+    float sig[] = {-5, -4, -3, -2, -1, 0, 1, 2, 3, 4};
 
-    auto first = convolution(sig, 10, core1, 3);
-    relu(first, 10);
+    size_t out_sz;
 
-    auto second = convolution(first, 10, core2, 2, 2, 0);
-    relu(second, 10);
+    // Первая свёртка: same, stride=1
+    std::cout << "step 1 (same conv + ReLU):\n";
+    float* first = convolution(sig, 10, core1, 3, 1, 0, true, &out_sz);
+    relu(first, out_sz);
+    std::cout << "after ReLU: ";
+    print_arr(first, out_sz);
+
+    // Вторая свёртка: без паддинга, stride=2
+    std::cout << "step 2 (no-pad conv, stride=2 + ReLU):\n";
+    float* second = convolution(first, out_sz, core2, 2, 2, 0, false, &out_sz);
+    relu(second, out_sz);
+    std::cout << "after ReLU: ";
+    print_arr(second, out_sz);
 
     putchar('\n');
 
-    delete[] sig;
-    delete[] core1;
-    delete[] core2;
+    delete[] first;
+    delete[] second;
 }
 
+// ─── main ───
 int main() {
+    std::cout << "task1 Базовая свёртка без паддинга, stride=1\n";
     task1();
+    std::cout << "task2 Same-паддинг, stride=2\n";
     task2();
+    std::cout << "task3 Два канала, два ядра, поэлементное сложение\n";
     task3();
+    std::cout << "task4 Свёртка + ReLU, same-паддинг, stride=1\n";
     task4();
+    std::cout << "task5 Каскад из двух свёрток с ReLU\n";
     task5();
 
     return 0;
