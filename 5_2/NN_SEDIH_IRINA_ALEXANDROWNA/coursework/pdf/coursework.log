@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  28 MAY 2026 14:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  28 MAY 2026 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1308,24 +1308,14 @@ LaTeX Font Warning: Font shape `T2A/ntxtlf/b/n' undefined
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
 /enc/dvips/cm-super/cm-super-t2a.enc} </home/stanik/programmer/++Programmer/5_1
 /LSTU.jpg>]
-Overfull \hbox (8.21568pt too wide) in alignment at lines 86--91
+Overfull \hbox (8.21568pt too wide) in alignment at lines 85--90
 [] [] [] 
  []
 
-[2]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 97.
- (/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
-File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
-)
-LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 97.
- [3{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf-
-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}] [4] (./coursework.toc
+[2] [3] (./coursework.toc
 LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
 e 1.
-
-(/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
+ (/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
@@ -1334,41 +1324,19 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 \tf@toc=\write4
 \openout4 = `coursework.toc'.
 
- [5]
-
-LaTeX Warning: Citation `mobilenet' on page 6 undefined on input line 170.
-
-
-LaTeX Warning: Citation `xception' on page 6 undefined on input line 170.
-
-
-LaTeX Warning: Citation `resnet' on page 6 undefined on input line 172.
-
-[6] [7]
-
-LaTeX Warning: Citation `lenet' on page 8 undefined on input line 198.
-
-
-LaTeX Warning: Citation `alexnet' on page 8 undefined on input line 198.
-
+[4] [5{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}] [6]
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/m/it' undefined
-(Font)              using `T2A/ntxtlf/m/n' instead on input line 198.
+(Font)              using `T2A/ntxtlf/m/n' instead on input line 167.
 
 
-Overfull \hbox (0.75835pt too wide) in paragraph at lines 205--206
+Overfull \hbox (0.75835pt too wide) in paragraph at lines 174--175
 []\T2A/ntxtlf/b/n/14.4 (-20) “акой под-ход обес-пе-чи-ва-ет бо-га-тое пред-став
 -ле-ние при-зна-ков за счЉт
  []
 
-
-LaTeX Warning: Citation `mobilenet' on page 8 undefined on input line 209.
-
-
-LaTeX Warning: Citation `xception' on page 8 undefined on input line 209.
-
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-212.
+181.
 (/usr/share/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
@@ -1376,51 +1344,34 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T2A).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [8]
+ [7]
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
+e 207.
 
-LaTeX Warning: Citation `mobilenet' on page 9 undefined on input line 235.
+(/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
+File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
+)
+LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
+(Font)              scaled to size 14.4pt on input line 207.
 
-
-Overfull \hbox (9.05779pt too wide) in paragraph at lines 239--240
+Overfull \hbox (9.05779pt too wide) in paragraph at lines 208--209
 []\T2A/ntxtlf/b/n/14.4 (-20) введены два ги-пер-па-ра-мет-ра ^^V width multipli
 er $\OML/ntxmi/m/it/14.4 $ \T2A/ntxtlf/b/n/14.4 (-20) и resolution multiplier
  []
 
-
-LaTeX Warning: Citation `xception' on page 9 undefined on input line 245.
-
-[9]
-
-LaTeX Warning: Citation `resnet' on page 10 undefined on input line 249.
-
-
-LaTeX Warning: Citation `efficientnet' on page 10 undefined on input line 255.
-
-
-Overfull \hbox (20.72673pt too wide) in paragraph at lines 255--256
+[8{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
+Overfull \hbox (21.10786pt too wide) in paragraph at lines 224--225
 []\T2A/ntxtlf/b/n/14.4 (-20) EfficientNet [[]] (Tan M., Le Q.V., 2019) ис-поль-
 зу-ет нейро-архитектурный
  []
 
-[10]
-
-LaTeX Warning: Citation `resnext' on page 11 undefined on input line 262.
-
-
-Overfull \hbox (18.79703pt too wide) in paragraph at lines 276--292
+[9]
+Overfull \hbox (18.79703pt too wide) in paragraph at lines 246--262
  [][] 
  []
 
-[11] [12]
-
-LaTeX Warning: Citation `cifar10' on page 13 undefined on input line 302.
-
-[13]
-
-LaTeX Warning: Citation `resnet' on page 14 undefined on input line 329.
-
-[14]
-Overfull \hbox (36.21068pt too wide) in paragraph at lines 347--348
+[10] [11] [12] [13]
+Overfull \hbox (36.21068pt too wide) in paragraph at lines 317--318
 []\T2A/ntxtlf/b/n/14.4 (-20)  лассификатор: AdaptiveAvgPool2d($\OT1/ntxtlf/m/n/
 14.4 (-20) 1 \LMS/ntxsy/m/n/14.4 ^^B \OT1/ntxtlf/m/n/14.4 (-20) 1$\T2A/ntxtlf/b
 /n/14.4 (-20) ) $\LMS/ntxsy/m/n/14.4 !$ \T2A/ntxtlf/b/n/14.4 (-20) Flatten $\LM
@@ -1428,55 +1379,61 @@ S/ntxsy/m/n/14.4 !$ \T2A/ntxtlf/b/n/14.4 (-20) Linear($\OT1/ntxtlf/m/n/14.4 (-2
 0) 512 \LMS/ntxsy/m/n/14.4 !
  []
 
-
-LaTeX Warning: Citation `mobilenet' on page 15 undefined on input line 368.
-
-[15] [16]
-Overfull \hbox (41.60481pt too wide) in paragraph at lines 405--406
+[14] [15]
+Overfull \hbox (41.60481pt too wide) in paragraph at lines 375--376
 []\T2A/ntxtlf/b/n/14.4 (-20) ѕодсчитываетс€ сум-ма \T2A/cmtt/m/n/14.4 numel() \
 T2A/ntxtlf/b/n/14.4 (-20) всех тен-зо-ров с \T2A/cmtt/m/n/14.4 requires_grad=Tr
 ue\T2A/ntxtlf/b/n/14.4 (-20) . 
  []
 
-[17]
 
-LaTeX Warning: Citation `mobilenet' on page 18 undefined on input line 455.
+Package caption Warning: \label without proper reference on input line 417.
+See the caption package documentation for explanation.
 
-[18] [19] [20]
-Underfull \hbox (badness 2894) in paragraph at lines 501--504
+
+LaTeX Warning: Reference `tab:results' on page 16 undefined on input line 382.
+
+[16] [17] [18]
+Underfull \hbox (badness 2205) in paragraph at lines 441--444
+[]\T2A/ntxtlf/b/n/14.4 (+20) Chollet F. Xception: Deep Learning with Depthwise 
+Separable
+ []
+
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 463--466
 []\T2A/ntxtlf/b/n/14.4 (+20) CIFAR-10 ^^V Canadian Institute for Advanced Resea
 rch
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 501--504
+Underfull \hbox (badness 10000) in paragraph at lines 463--466
 \T2A/ntxtlf/b/n/14.4 (+20) [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па к дан-ным
 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--508
+Underfull \hbox (badness 10000) in paragraph at lines 467--470
 []\T2A/ntxtlf/b/n/14.4 (+20) PyTorch Documentation: torchvision.datasets.CIFAR1
 0
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--508
+Underfull \hbox (badness 10000) in paragraph at lines 467--470
 \T2A/ntxtlf/b/n/14.4 (+20) [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па к дан-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 505--508
+Underfull \hbox (badness 10000) in paragraph at lines 467--470
 \T2A/ntxtlf/b/n/14.4 (+20) ным: https://pytorch.org/vision/stable/generated/
  []
 
-[21] [22]
-Overfull \hbox (6.6431pt too wide) in paragraph at lines 686--686
+[20] [21]
+Overfull \hbox (6.6431pt too wide) in paragraph at lines 648--648
 []                \T2A/cmtt/m/n/10 nn.Conv2d(self.in_channels, out_channels, 1,
  stride=stride, bias=False),[] 
  []
 
-[23] [24] [25] [26] (./coursework.aux
+[22] [23] [24] [25] (./coursework.aux
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.0pt on input line 8.
 )
@@ -1491,13 +1448,16 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `coursework.out' has not changed.
 (rerunfilecheck)             Checksum: EECDFF7F3B775680CD805040119E62F3;4650.
  ) 
 Here is how much of TeX's memory you used:
- 22574 strings out of 468980
- 349042 string characters out of 5462461
- 797138 words of memory out of 5000000
+ 22569 strings out of 468980
+ 349089 string characters out of 5462461
+ 796912 words of memory out of 5000000
  50636 multiletter control sequences out of 15000+600000
  660078 words of font info for 187 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
@@ -1511,10 +1471,10 @@ usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf
 e1/public/cm-super/sftt1440.pfb></usr/share/texmf-dist/fonts/type1/public/newtx
 /txmiaX.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/txsys.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on coursework.pdf (26 pages, 262081 bytes).
+Output written on coursework.pdf (25 pages, 261344 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 320 compressed objects within 4 object streams
- 105 named destinations out of 1000 (max. 500000)
+ 382 PDF objects out of 1000 (max. 8388607)
+ 328 compressed objects within 4 object streams
+ 100 named destinations out of 1000 (max. 500000)
  26814 words of extra memory for PDF output out of 29859 (max. 10000000)
 

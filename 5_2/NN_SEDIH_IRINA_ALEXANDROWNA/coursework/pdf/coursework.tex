@@ -67,17 +67,16 @@
     Студенту: Станиславчуку С.М. группы М-РИТ-25-1. \\
     Тема: <<Сравнительный анализ стандартных и~depthwise separable свёрток в~архитектуре ResNet-18 на примере классификации CIFAR-10>>. \\
     Содержание расчетно-пояснительной записки:
-\noindent
     \begin{enumerate}
         \item Титульный лист
         \item Задание кафедры
         \item Аннотация
-        \item Содержание
+        \item Оглавление
         \item Введение
         \item Основная часть
         \item Заключение
-        \item Список испточников
-        \item Приложения
+        \item Список источников
+        \item Приложение
     \end{enumerate}
 \end{sloppypar}
 
@@ -89,36 +88,6 @@
     Руководитель: & \makebox[4cm]{\hrulefill} & Седых И.А. \\[2em]
     Задание принял к исполнению: & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\
 \end{tabular*}
-
-\newpage
-
-\textbf{Исходные данные:}
-\begin{itemize}
-    \item датасет CIFAR-10 (60~000 цветных изображений, 10 классов);
-    \item архитектура ResNet-18, адаптированная для изображений $32 \times 32$;
-    \item PyTorch, torchvision.
-\end{itemize}
-
-\vspace{1em}
-
-\textbf{Перечень подлежащих разработке вопросов:}
-\begin{enumerate}
-    \item Изучить архитектуру ResNet-18 и принцип depthwise separable свёрток в~стиле MobileNet.
-    \item Реализовать два варианта модели: стандартный ResNet-18 и~ResNet-18 с~заменой всех свёрток на depthwise separable.
-    \item Обучить обе модели на датасете CIFAR-10 в идентичных условиях.
-    \item Выполнить сравнительный анализ по метрикам: Test Accuracy, количество параметров, размер сериализованной модели, латентность инференса на~CPU.
-    \item Сделать вывод о~компромиссе между точностью и~эффективностью при использовании depthwise separable свёрток.
-\end{enumerate}
-
-\vspace{1em}
-
-\textbf{Перечень графического материала:}
-\begin{itemize}
-    \item таблица сравнения метрик стандартной и separable моделей;
-    \item структурная схема BasicBlock.
-\end{itemize}
-
-\vfill
 
 \thispagestyle{empty}
 
@@ -271,7 +240,8 @@ EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует н
 
 \begin{table}[H]
     \centering
-    \caption{Сравнение подходов к~повышению эффективности CNN.}
+    \refstepcounter{table}
+    \caption*{\raggedleft Таблица \thetable\ --- Сравнение подходов к~повышению эффективности CNN}
     \label{tab:lit_comparison}
     \begin{tabular}{|l|c|c|c|}
         \hline
@@ -359,7 +329,7 @@ EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует н
         $\to$ сложение с skip-connection($x$) $\to$ ReLU $\to$ выход
     }}
     \refstepcounter{figure}
-    \caption*{Рисунок \thefigure\ -- Структура BasicBlock — базового остаточного блока ResNet-18.}
+    \caption*{Рисунок \thefigure\ --- Структура BasicBlock — базового остаточного блока ResNet-18.}
     \label{fig:basicblock}
 \end{figure}
 
@@ -413,7 +383,7 @@ EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует н
 
 \begin{table}[H]
     \centering
-    \caption{Сравнение стандартного и depthwise separable ResNet-18.}
+    \caption*{\raggedleft Таблица \thetable\ --- Сравнение стандартного и depthwise separable ResNet-18}
     \label{tab:results}
     \begin{tabular}{|l|c|c|}
         \hline
@@ -429,7 +399,7 @@ EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует н
 
 \begin{table}[H]
     \centering
-    \caption{Относительные показатели separable-модели.}
+    \caption*{\raggedleft Таблица \thetable\ --- Относительные показатели separable-модели}
     \label{tab:relative}
     \begin{tabular}{|l|c|}
         \hline
@@ -459,44 +429,36 @@ EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует н
 \newpage
 \section{Список источников}
 
-\begin{enumerate}
+\begin{thebibliography}{99}
     \begin{sloppypar}
-        \item He~K., Zhang~X., Ren~S., Sun~J. Deep Residual Learning for Image Recognition //
+        \bibitem{resnet} He~K., Zhang~X., Ren~S., Sun~J. Deep Residual Learning for Image Recognition //
             Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition
             (CVPR). — 2016. — P.~770--778.
-            \label{resnet}
 
-        \item Howard~A.G. et~al. MobileNets: Efficient Convolutional Neural Networks for
+        \bibitem{mobilenet} Howard~A.G. et~al. MobileNets: Efficient Convolutional Neural Networks for
             Mobile Vision Applications // arXiv preprint arXiv:1704.04861. — 2017.
-            \label{mobilenet}
 
-        \item Chollet~F. Xception: Deep Learning with Depthwise Separable Convolutions //
+        \bibitem{xception} Chollet~F. Xception: Deep Learning with Depthwise Separable Convolutions //
             Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition
             (CVPR). — 2017. — P.~1251--1258.
-            \label{xception}
 
-        \item Krizhevsky~A. Learning Multiple Layers of Features from Tiny Images //
+        \bibitem{cifar10} Krizhevsky~A. Learning Multiple Layers of Features from Tiny Images //
             Technical Report, University of Toronto. — 2009.
-            \label{cifar10}
 
-        \item Tan~M., Le~Q.V. EfficientNet: Rethinking Model Scaling for Convolutional
+        \bibitem{efficientnet} Tan~M., Le~Q.V. EfficientNet: Rethinking Model Scaling for Convolutional
             Neural Networks // Proceedings of the 36th International Conference on Machine
             Learning (ICML). — 2019. — P.~6105--6114.
-            \label{efficientnet}
 
-        \item Xie~S. et~al. Aggregated Residual Transformations for Deep Neural Networks //
+        \bibitem{resnext} Xie~S. et~al. Aggregated Residual Transformations for Deep Neural Networks //
             Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition
             (CVPR). — 2017. — P.~1492--1500.
-            \label{resnext}
 
-        \item LeCun~Y. et~al. Gradient-Based Learning Applied to Document Recognition //
+        \bibitem{lenet} LeCun~Y. et~al. Gradient-Based Learning Applied to Document Recognition //
             Proceedings of the IEEE. — 1998. — Vol.~86, No.~11. — P.~2278--2324.
-            \label{lenet}
 
-        \item Krizhevsky~A., Sutskever~I., Hinton~G.E. ImageNet Classification with Deep
+        \bibitem{alexnet} Krizhevsky~A., Sutskever~I., Hinton~G.E. ImageNet Classification with Deep
             Convolutional Neural Networks // Advances in Neural Information Processing
             Systems (NeurIPS). — 2012. — P.~1097--1105.
-            \label{alexnet}
 
         \item CIFAR-10 — Canadian Institute for Advanced Research [Электронный ресурс] /
             Режим доступа к данным: https://www.cs.toronto.edu/~kriz/cifar.html,
@@ -506,7 +468,7 @@ EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует н
             Режим доступа к данным: https://pytorch.org/vision/stable/generated/
             torchvision.datasets.CIFAR10.html, свободный.
     \end{sloppypar}
-\end{enumerate}
+\end{thebibliography}
 
 \newpage
 \section*{Приложение 1. Код программы}
