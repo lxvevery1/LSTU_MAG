@@ -1,0 +1,1120 @@
+\documentclass[14pt,a4paper]{extarticle}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english,russian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{indentfirst}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{tocloft}
+\usepackage{titlesec}
+\usepackage{newtxtext,newtxmath}
+\usepackage{eqexpl}
+
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+
+\titleformat{\section}        % форматируем \section
+  {\normalfont\bfseries}      % стиль: обычный + жирный
+  {\thesection.}              % номер секции с точкой
+  {2mm}                       % расстояние между номером и текстом
+  {}                           % перед заголовком можно добавить что-то
+\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
+
+\captionsetup{justification=centering}
+\renewcommand{\ttdefault}{cmtt}
+\keepXColumns
+\setlength{\parindent}{3em}
+\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
+
+\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
+\setlength{\cftbeforesecskip}{0.5em}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+
+\title{Отчёт по Машинному обучению}
+\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
+
+\begin{document}
+
+\setstretch{1.5}
+\noindent
+\begin{minipage}[t]{0.01\textwidth}
+    \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
+\end{minipage}%
+\begin{minipage}[c]{1.1\linewidth}
+    \centering
+    {\small
+    МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РФ \\[1em]
+    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ БЮДЖЕТНОЕ \\
+    ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ \\
+    «ЛИПЕЦКИЙ ГОСУДАРСТВЕННЫЙ ТЕХНИЧЕСКИЙ УНИВЕРСИТЕТ»
+    }
+\end{minipage}%
+
+\vspace{3em}
+
+\noindent
+\hspace{1em}%
+\begin{minipage}[t]{0.8\textwidth}
+\textbf{Институт} \hspace{2em} компьютерных наук \\
+\textbf{Кафедра} \hspace{2em} автоматизированных систем управления
+\end{minipage}
+
+\vspace{6em}
+
+\begin{center}
+    Курсовая работа \\
+    по дисциплине: <<Машинное обучение>> \\
+    на тему: <<Атаки в системах машинного обучения>>
+\end{center}
+
+\vspace{6em}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
+    Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
+Руководитель & \\
+Доцент, д.т.н. & \makebox[4cm]{\hrulefill} & Сараев П.В. \\
+\end{tabular*}
+
+\vfill
+\begin{center}
+    Липецк, 2025
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Цель работы}
+
+Реализовать и проанализировать модель машинного обучения, решающую задачу
+классификации, а также исследовать её устойчивость к атаке уклонением.
+
+\section{Задание}
+\begin{sloppypar}
+    Выбранная тематика: 8. Атаки в системах машинного обучения.\\
+\end{sloppypar}
+
+\newpage
+\section{Исходный датасет}
+    В качестве задания, был выбран датасет, использующийся в соревновании
+    <<Titanic - Machine Learning from Disaster>> с сервиса $kaggle.com$, тематикой
+    которого, как видно из названия, является крушение одноименного судна.
+
+    Датасет включает в себя всех пассажиров "Титаника\", находящихся на нем в момент крушения.
+    Задача соревнования: обучить модель таким образом, чтобы она могла определить по входным данным
+    пассажира спасется он или нет в результате крушения.
+
+\begin{enumerate}
+    \setlength{\itemindent}{2em}
+    \item \texttt{survival} — факт выживания (0 — нет, 1 — да)
+    \item \texttt{pclass} — класс билета (1 — первый, 2 — второй, 3 — третий)
+    \item \texttt{sex} — пол пассажира
+    \item \texttt{age} — возраст
+    \item \texttt{sibsp} — количество супругов и детей на борту
+    \item \texttt{parch} — количество родителей и детей на борту
+    \item \texttt{ticket} — номер билета
+    \item \texttt{fare} — стоимость проезда
+    \item \texttt{cabin} — номер каюты
+    \item \texttt{embarked} — порт посадки
+    (C — Шербур, Q — Квинстаун, S — Саутгемптон)
+\end{enumerate}
+
+    Пояснение к переменным: \\
+    \indent pclass: показатель социально-экономического статуса
+    \begin{itemize}
+        \setlength{\itemindent}{2em}
+        \item 1-й - Высший
+        \item 2-й - Средний
+        \item 3-й - Нижний
+    \end{itemize}
+
+    age: возраст указывается дробно, если он меньше 1.
+    sibsp: набор данных определеяет семейные отношения следующим образом:
+        Дети - брат, сестра, сводный брат, сводная сестра.
+        Супруг - муж, жена
+
+    parch: Набор данных определяет семейные отношения следующим образом:
+        Родитель - мать, отец
+        Ребенок - дочь, сын, падчерица, пасынок (Некоторые дети путешествовали
+        только с няней, для них parch = 0) \\
+
+    Датасет состоит из двух частей: train и test, оба в формате .csv.
+    Файл train.csv состоит из 418 записей (пассажиров), test.csv из 891.
+
+\section{Программа для обучения модели}
+
+Так как модель следует обучить предугадыванию выживания, то возможны лишь два
+исхода для пассажира: выживет или нет. Правильным решением для такой задачи
+будет использование методов классификации для обучения модели. Всего будет 2
+класса: выживший (1) и невыживший (0). Таким образом, задача является бинарной классификацией.
+
+Для обучения модели была реализована программа на языке Python с использованием
+библиотек \texttt{pandas}, \texttt{scikit-learn}, \texttt{numpy}, \texttt{joblib}.
+
+\begin{itemize}
+    \item \texttt{pandas} — для загрузки датасета, обработки пропущенных значений и преобразования признаков;
+    \item \texttt{numpy} — для выполнения численных операций и работы с массивами данных;
+    \item \texttt{scikit-learn} — для реализации алгоритмов машинного обучения, разбиения данных на обучающую и тестовую выборки, а также оценки качества модели;
+    \item \texttt{joblib} — для сохранения и последующей загрузки обученной модели.
+\end{itemize}
+
+На первом этапе выполняется загрузка данных и их предварительная обработка.
+Из датасета удаляются признаки, не оказывающие существенного влияния на результат
+классификации (идентификаторы пассажиров, имена и номера билетов).
+Пропущенные значения возраста заменяются медианным значением,
+а отсутствующие данные о порте посадки — наиболее часто встречающимся значением.
+
+Категориальные признаки, такие как пол пассажира и порт посадки, преобразуются
+в числовой формат с использованием бинарного кодирования.
+Информация о каюте дополнительно обрабатывается: из строкового значения
+выделяется палуба и числовой номер каюты, что позволяет сохранить полезные
+пространственные характеристики расположения пассажиров на судне.
+
+В качестве модели классификации был выбран алгоритм \textit{Random Forest},
+основанный на ансамбле решающих деревьев.
+Данный алгоритм обладает устойчивостью к выбросам,
+не требует масштабирования признаков и способен эффективно
+обрабатывать нелинейные зависимости между входными данными.
+
+Обучение модели производится на обучающей выборке с последующим разделением
+данных на тренировочную и валидационную части.
+Качество классификации оценивается с использованием метрик точности (Accuracy)
+и площади под ROC-кривой (AUC). Результаты выполнения программы представлены на
+рисунке \ref{fig:teach}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic1.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Результат выполнения обученной модели}
+    \label{fig:teach}
+\end{figure}
+
+Как видно из рисунка, показатель точности достаточно высокий $\approx 0.7989$
+Таким образом, определение класса для большинства объектов выборки прошло успешно.
+А показатель AUC еще выше $\approx 0.8358$, что свидетельствует о высокой
+способности модели различать пассажиров, выживших и погибших в результате крушения.
+Как раз та самая точность, на которой будут заметны результаты атак.
+
+\section{Анализ уязвимостей модели}
+
+Несмотря на достаточно высокие значения метрик качества, модель машинного обучения
+может обладать рядом уязвимостей, связанных с особенностями обучающего датасета,
+предобработки данных и используемого алгоритма.
+
+Под уязвимостью в данном случае понимается возможность искусственного изменения
+входных данных таким образом, чтобы модель выдала неверный результат, либо
+снижение устойчивости предсказаний при незначительных изменениях признаков.
+
+Зависимость от ключевых признаков.
+
+График самых влиятельных на результат признаков представлен на рисунке \ref{fig:important}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic2.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — График с самыми влиятельными признаками}
+    \label{fig:important}
+\end{figure}
+
+В данной модели наибольшее влияние на результат классификации
+оказывают признаки \texttt{Sex}, \texttt{Fare} и \texttt{Age} с влиянием $>= 0.2$.
+\texttt{CabinNumber}, \texttt{Pclass} и остальные признаки имеют не такое большое влияние на результат $<= 0.07$.
+
+Это означает, что модель сильно полагается на ограниченное количество признаков.
+
+Отсутствие гладкости предсказаний.
+
+Random Forest формирует решение на основе набора пороговых условий,
+что приводит к скачкообразному изменению результата при небольших изменениях входных данных.
+Уязвимостью может быть даже незначительное изменение одного признака (например, возраста на 1-2 года)
+может изменить путь прохождения по деревьям и привести к противоположному результату классификации.
+
+\section{Атакующие алгоритмы}
+
+Теперь, когда уязвимости известны, нужно выбрать атакующие алгоритмы.
+
+Начну с того, зачем вообще нужно проводить атаку на модель.
+
+Системы машинного обучения в своей основе являются строго зависимыми от данных,
+что влечёт за собой ряд существенных последствий. Любые изменения во входных
+данных неизбежно отражаются на поведении модели. При этом обучение моделей
+машинного обучения осуществляется лишь на ограниченном подмножестве данных —
+тренировочном наборе. На этапе эксплуатации модель начинает взаимодействовать с
+реальными данными, представляющими генеральную совокупность. Эти данные по
+своим статистическим характеристикам могут в целом отличаться от тех, которые
+использовались при обучении и тестировании модели. График аппроксимации функции
+при наличии подменных данных представлен на рисунке~\ref{fig:approx}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic3.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — График аппроксимации функции}
+    \label{fig:approx}
+\end{figure}
+
+Модель стремится аппроксимировать неизвестную зависимость, изображённую на
+графике красной линией. Синим цветом на рисунке обозначены данные
+тренировочного набора.
+
+Данные тренировочного набора хорошо обобщаются моделью, и аппроксимирующая
+зелёная прямая демонстрирует высокие значения метрик до тех пор, пока реальные
+данные сохраняют сходные характеристики с обучающим набором. Однако при
+изменении свойств входных данных величина потерь начинает возрастать. Таким
+образом, изменение распределения данных напрямую приводит к изменению поведения
+модели. При этом такие изменённые данные остаются полностью легитимными для
+модели и не выходят за рамки допустимого входного пространства.
+
+Следовательно, в процессе эксплуатации модель машинного обучения может
+демонстрировать значения метрик, существенно отличающиеся от достигнутых на
+этапе тестирования. На рисунке 3 показан наиболее простой вид расхождения между
+реальными и тренировочными данными — ковариантный сдвиг. Вместе с тем
+наибольшую опасность для корректной работы модели представляет так называемый
+сдвиг концепции, заключающийся в изменении зависимости между входными и
+выходными переменными.
+
+Дополнительно возникает вопрос о наличии противоборствующей стороны, которая
+целенаправленно подбирает такие входные данные, способные негативно повлиять на
+работу модели. Разница между аппроксимирующей прямой и истинной функцией на
+рисунке 3 соответствует величине потерь. Поведение функции потерь стандартным
+образом определяется её производной по входным данным. Для многомерного
+пространства признаков такими характеристиками являются частные производные, а
+их совокупность образует якобиан. На рисунке 3 представлена иллюстрация атак
+уклонения, основанных на целенаправленных модификациях входных данных, которые
+приводят к изменению результата классификации после добавления к корректно
+распознаваемому изображению шума, вычисленного с использованием якобиана
+функции потерь.
+
+Следует отметить, что подобные модификации входных данных тесно связаны с
+проблемой устойчивости моделей машинного обучения. Как правило, алгоритм, в
+котором ошибка, присутствующая во входных данных или возникающая в процессе
+вычислений, не возрастает или увеличивается незначительно на каждом шаге,
+считается устойчивым. В противном случае, когда погрешность существенно
+накапливается от шага к шагу, алгоритм классифицируется как неустойчивый. Таким
+образом, устойчивость алгоритма представляет собой количественную меру его
+чувствительности к изменениям исходных данных. На рисунке~\ref{fig:panda} приведён пример
+того, как незначительное изменение входных данных может приводить к
+существенному снижению результативности модели.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic4.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Враждебная атака с применением шума}
+    \label{fig:panda}
+\end{figure}
+
+Вот только есть один нюанс. Как упоминалось ранее, модель использует алгоритм Random Forest.
+Выражение для предсказания одного дерева в ансамбле Random Forest представлено в формуле~\eqref{eq:tree}.
+
+\begin{equation}
+    f_{\text{DT}}(x) = \sum_{k} c_k * 1_{x \in R_k}
+    \label{eq:tree}
+\end{equation}
+
+\eqexplSetIntro{где:}
+\eqexplSetItemWidth{13mm}
+\eqexplSetSpace{4mm}
+\begin{eqexpl}
+    \item{$R_k \subset \R^d$} области признакового пространства, соответствующие листьям дерева,
+    \item{$c_k \in [0, 1]$} значение предсказания в листе,
+    \item{$1_{x \in R_k}$} индикаторная функция, показывающая, что $x$ попадает в лист $R_k$.
+\end{eqexpl}
+
+Данная функция недифференцируема. Для иллюстрации была использована выборка
+случайных чисел с дополнительным ограничением $y = x > 30$.
+График функции приведён на рисунке~\ref{fig:rf}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic5.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Предсказание одного дерева Random Forest для $x > 30$}
+    \label{fig:rf}
+\end{figure}
+
+Поскольку модели на основе деревьев решений недифференцируемы, прямое
+вычисление якобиана функции потерь для них невозможно. В связи с этим
+используется surrogate-модель на основе нейронной сети, аппроксимирующая
+границу решений исходного классификатора. В отличие от Random Forest, нейронная
+сеть задаёт гладкую и дифференцируемую функцию, что позволяет вычислять
+производные функции потерь по входным признакам и анализировать
+чувствительность модели к малым возмущениям входных данных.
+
+График функции surrogate-модели нейронной сети представлен на рисунке~\ref{fig:nn}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic6.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Предсказание surrogate-модели на основе нейронной сети}
+    \label{fig:nn}
+\end{figure}
+
+Такое поведение функции можно объяснить тем, что Surrogate NN использует функцию активации.
+Функции активации привносят нелинейность в сеть, позволяя ей моделировать сложные структуры данных.
+конкретно в моем примере, это функция $ReLU$~\eqref{eq:relu}. А в качестве функции затухания используется $Sigmoid$~\eqref{eq:sigmoid}
+
+\begin{equation}
+    ReLU(x) = max(0,x)
+    \label{eq:relu}
+\end{equation}
+
+\begin{equation}
+    \sigma(x) = \frac{1}{1+e^{-x}}
+    \label{eq:sigmoid}
+\end{equation}
+
+Теперь для выявления характеристик, чувствительность которых основана на якобиане, напишу программу
+(см. Приложение 3). Результатом данной программы будет список характеристики с высокой чувствительностью по якобиану для рассматриваемой модели Random Forest.
+Выполненная программа представлена на рисунке \ref{fig:sensitive}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic7.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Характеристики с высокой чувствительностью по якобиану}
+    \label{fig:sensitive}
+\end{figure}
+
+В качестве атакующего алгоритма будет использован Adversarial ( attack ).
+
+Классификация атак уклонением.
+При атаке узлоумышленник не может влять ни на обучающее данные (атака отравлением),
+ни каким-либо образом изменять параметры модели. Злоумышленник может лишь иметь
+доступ к инофрмации об архитектуре и веса модели или про её поведение на различных входах.
+Можно декомпозировать модель угроз на следующие аспекты: знания злоумышленника о модели,
+возможность напрямую конртолировать вход модели, цель злоумышленника, итеративная мощность атаки.
+
+Классификаций атак есть множество. Разберу классификации на основе знаний злоумышленника о модели.
+
+Атаки в режиме белого ящика (white-box). В этой модели угроз злоумышленник обладает значительной
+информацией о внутреннем устрйостве модели. Чаще всего предполагается знание архитектуры модели и значения
+всех её параметров. Это самая сильная модель уггроз.
+
+Чаще всего информация об архмтектуре и параметрах модели используется для
+вычисление градиента выхода моедли по её входу.
+
+Атаки в режиме черного ящика (black-box). В таких атаках не предполагается
+детального знания об архитектуре и параметрах модели. Однако предполагается
+взаимодействие с моделью и возможность наблюдать её выход в зависиомтси от
+посылаемого ей входа. Можно разделить на 3 вида:
+
+\renewcommand{\labelitemi}{-}
+\begin{itemize}
+    \item Атаки на основе выходного распределения модели. Имеются в виду
+        предсказанные моделью вероятности или логиты. Во многих случаях суть
+        данных атак сводится к численной оценке градиента, так как прямое его
+        вычисление невозможно при отсутствии доступа к параметрам модели. В
+        других случаях используются оптимизированные алгоритмы, не требующие
+        градиента, такие как эволюционные алгоритмы или случайный поиск.
+
+    \item Атаки на основе решения модели. Предполагается наличие доступа к
+        предсказанной моделью метке. Чаще всего такие атаки основываются на
+        лучайной инициализации и постепенном приближении к оригинальному
+        изображению.
+
+    \item Атаки на основе переносимости. Состязательные примеры могут быть
+        успешно перенесены с одной модели на другую. В этой модели угроз
+        предполагается наличие доступа или к полному датасету, на котором
+        обучалась модель, или к его части для обучения модели-суррогата, для
+        которой и будут синтезироваться состязательные примеры, а затем
+        переноситься н атакуемую модель.
+\end{itemize}
+
+В этой работе рассмотрим атаку на основе переноса.
+
+Атака будет осуществляться следующим образом. Имея доступ к входным данным
+($x_{ train }$, $x_{ test }$, $y_{ train }$, $y_{ test }$) и к выходам целевой модели,
+обучается суррогатная модель, аппроксимирующая поведение целевого классификатора.
+Далее состязательные примеры синтезируются для суррогатной модели и переносятся
+на целевую модель за счёт свойства переносимости состязательных примеров.
+
+Обучение суррогатной модели основано на анализе направлений, в которых выходы
+модели изменяются наиболее существенно. Эти направления определяются с помощью
+якобиана суррогатной модели $J_f = [\partial f_i(x)/\partial x_j]_{ij}$.
+
+Обучение суррогата проводится итеративно. На каждой эпохе текущая выборка входных
+данных отправляется на разметку целевой модели, после чего суррогатная модель
+дообучается на полученных выходных распределениях.
+
+Благодаря переносимости состязательных примеров между различными классами моделей
+(например, между нейронными сетями и линейными классификаторами), предложенная
+атака может быть реализована даже при отсутствии информации о внутреннем устройстве
+целевой модели.
+
+Атаки уклонением (Adversarial attacks) - это разновидность умышленного
+воздействия на модель, при котором происходит изменение данных с целью
+получения неверного результата.
+
+Для атаки создается состязательный набор для действующей системы, при работе с которым модель
+будет функционировать некорректно. Целью подобных атак является получение неверной классификации
+или идентификации каких-либо объектов.
+
+Чаще всего данным атакам подвергаются сети в системах компьютерного зрения,
+чтобы запутать модель в процессе распознавания или определния объектов
+посредством наложения небольшого шума, неуловимого человеком.
+
+Этот вид атак облаадет особенностями, делающими уязвимыми множество систем, в которых используются алгоритмы
+машинного обучения. Во-первых, состязательныме примеры могут быть сгенерированы
+для большинства датасетов, следовательно, атака может быть совершена на модель
+вне зависимости от её архитектуры.
+
+Во-вторых, состязательные данные могут быть
+найдены в физическом мире, к примеру, при некачественной фотосъемке объекта,
+который необходимо распознать или классифицировать.
+
+Пример работы программы представлен на рисунках \ref{fig:evasion} и \ref{fig:epsilon}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic8.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Точность модели после совершения атаки при различных $\epsilon$}
+    \label{fig:evasion}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.78\textwidth]{pic9.png}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ — Результат выполнения атаки (изменение данных первого пассажира)}
+    \label{fig:epsilon}
+\end{figure}
+
+Рассмотрим пример подмены характеристик первого пассажира из валидационной выборки.
+Изначально объект имеет следующие значения: возраст 24 года, класс обслуживания — 3, пол — мужской.
+
+При малых значениях параметра возмущения $\epsilon_{ mag }$ (0.01–0.1) атака действует
+крайне аккуратно. Изменения либо отсутствуют, либо сводятся к незначительным
+целочисленным сдвигам возраста на 1–3 года, что укладывается в естественную
+вариативность данных и не нарушает семантику объекта. Предсказание модели при
+этом, как правило, сохраняется.
+
+По мере увеличения $\epsilon_{ mag }$ до диапазона 0.2–0.5 изменения становятся заметно
+более агрессивными: возраст может увеличиваться или уменьшаться на десятки лет,
+что уже оказывает существенное влияние на решение классификатора, несмотря на
+формальную допустимость значений.
+
+При больших значениях $\epsilon_{ mag }$ (1.0 и выше) наблюдается резкий рост амплитуды
+подмены признаков. Возраст пассажира может принимать крайние значения диапазона
+(0 или 80 лет), а класс обслуживания изменяется с третьего на первый. Такие
+модификации приводят к смене решения модели и демонстрируют, что для успешного
+уклонения достаточно манипулировать небольшим числом наиболее чувствительных
+характеристик.
+
+Начиная с $\epsilon_{ mag }$ равным 3.0, начинается меняться даже пол человека. Такая атака уже врядли
+останется незамеченной, но безусловно, как видно из рисунка, модель начинает
+ошибаться крайне часто. Я напоминаю, что модель должна определить один из двух
+исходов, что означает что при результат в 50\%, модель начинает выбирать
+решение буквально наугад.
+
+Таким образом, атака имеет двухфазный характер: на малых $\epsilon_{ mag }$ она действует
+скрытно и почти незаметно, а при увеличении параметра возмущения переходит в
+агрессивный режим, быстро разрушая корректность предсказаний модели.
+
+\section{Вывод}
+
+В ходе выполненной работы были изучены методы анализа устойчивости моделей
+машинного обучения, включая подходы к обучению суррогатных моделей и реализации
+атак уклонения. В рамках практической части были разработаны программные
+средства для обучения исходной модели, выявления её уязвимостей, построения
+суррогатной модели, а также генерации уклоняющих входных данных. Полученные
+результаты показали, что использование суррогатной дифференцируемой модели
+позволяет эффективно анализировать чувствительность недифференцируемых
+алгоритмов, таких как Random Forest, и выявлять признаки, изменения которых
+приводят к наибольшему снижению качества классификации. Тем самым было
+продемонстрировано, что даже модели, демонстрирующие высокие значения метрик на
+тестовых данных, могут быть уязвимы к малым, но целенаправленным изменениям
+входных данных, что подтверждает необходимость проведения анализа устойчивости
+моделей машинного обучения на этапе их разработки и эксплуатации.
+
+\newpage
+\section{Список источников}
+
+\begin{enumerate}
+        \begin{sloppypar}
+        \item Намиот Д.Е. Схемы атак на модели машинного обучения
+            [Электронный ресурс] /
+            Режим доступа к данным:
+            https://cyberleninka.ru/article/n/shemy-atak-na-modeli-mashinnogo-obucheniya/viewer,
+            свободный — 14.12.2025.
+
+        \item Костюмов В.В Обзор и систематизация атак уклонением
+            на модели компьютерного зрения [Электронный ресурс] /
+            Режим доступа к данным:
+            https://cyberleninka.ru/article/n/obzor-i-sistematizatsiya-atak-ukloneniem-na-modeli-kompyuternogo-zreniya/viewer,
+            свободный — 14.12.2025.
+        \item Titanic: Machine Learning from Disaster [Электронный ресурс] /
+            Режим доступа к данным: https://www.kaggle.com/competitions/titanic/code,
+            свободный — 14.12.2025.
+
+        \item Feedforward Neural Network [Электронный ресурс] /
+            Режим доступа к данным: https://www.geeksforgeeks.org/deep-learning/feedforward-neural-network/,
+            свободный — 14.12.2025.
+        \end{sloppypar}
+\end{enumerate}
+
+\newpage
+\section*{Приложение 1. Код программы data\_preprocessing.py}
+
+\footnotesize
+\setlength{\baselineskip}{0.25\baselineskip}
+
+\begin{verbatim}
+
+import pandas as pd
+import joblib
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+def load_and_preprocess_data(data_dir="titanic/"):
+    """
+    Load and preprocess Titanic data.
+
+    Parameters:
+    -----------
+    data_dir : str
+        Directory containing the data file
+
+    Returns:
+    --------
+    tuple : (X_train, X_val, y_train, y_val, df)
+    """
+    # ---------------- Load data ----------------
+    df = pd.read_csv(data_dir + "train.csv")
+
+    # ---------------- Cabin processing ----------------
+    df["Cabin"] = df["Cabin"].fillna("Unknown")
+
+    # Deck = первая буква
+    df["Deck"] = df["Cabin"].str[0]
+
+    # Числовая часть каюты
+    df["CabinNumber"] = (
+        df["Cabin"].str.extract(r"(\d+)", expand=False).fillna(-1).astype(int)
+    )
+
+    df = pd.get_dummies(df, columns=["Deck"], drop_first=True)
+    df = df.drop(columns=["Cabin"])
+
+    # ---------------- Basic cleaning ----------------
+    df = df.drop(columns=["PassengerId", "Name", "Ticket"])
+
+    df["Age"] = df["Age"].fillna(df["Age"].median())
+    df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
+
+    df["Sex"] = df["Sex"].map({"male": 0, "female": 1})
+    df = pd.get_dummies(df, columns=["Embarked"], drop_first=True)
+
+    return df
+
+def split_data(df, test_size=0.2, random_state=42):
+    """
+    Split data into training and validation sets.
+
+    Parameters:
+    -----------
+    df : pandas.DataFrame
+        Preprocessed dataframe with 'Survived' column
+    test_size : float
+        Proportion of data for validation set
+    random_state : int
+        Random seed for reproducibility
+
+    Returns:
+    --------
+    tuple : (X_train, X_val, y_train, y_val)
+    """
+    # ---------------- Feature/target split ----------------
+    X = df.drop(columns=["Survived"])
+    y = df["Survived"]
+
+    # ---------------- Train/val split ----------------
+    X_train, X_val, y_train, y_val = train_test_split(
+        X, y, test_size=test_size, stratify=y, random_state=random_state
+    )
+
+    return X_train, X_val, y_train, y_val
+
+def get_processed_data(data_dir="titanic/", test_size=0.2, random_state=42):
+    # ---------------- Load data ----------------
+    df = pd.read_csv(data_dir + "train.csv")
+
+    # ---------------- Basic sanity filtering ----------------
+    # Age: realistic bounds
+    df = df[(df["Age"].isna()) | ((df["Age"] >= 0) & (df["Age"] <= 100))]
+
+    # Sex: only valid categories
+    df = df[df["Sex"].isin(["male", "female"])]
+
+    # Fare: remove extreme outliers
+    df = df[(df["Fare"] >= 0) & (df["Fare"] <= 5000)]
+
+    # Pclass: only valid classes
+    df = df[df["Pclass"].isin([1, 2, 3])]
+
+    # ---------------- Cabin processing ----------------
+    df["Cabin"] = df["Cabin"].fillna("Unknown")
+    df["Deck"] = df["Cabin"].str[0]
+
+    df["CabinNumber"] = (
+        df["Cabin"]
+        .str.extract(r"(\d+)", expand=False)
+        .fillna(-1)
+        .astype(int)
+    )
+
+    df = pd.get_dummies(df, columns=["Deck"], drop_first=True)
+    df = df.drop(columns=["Cabin"])
+
+    # ---------------- Drop useless columns ----------------
+    df = df.drop(columns=["PassengerId", "Name", "Ticket"])
+
+    # ---------------- Missing values ----------------
+    df["Age"] = df["Age"].fillna(df["Age"].median())
+    df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
+
+    # ---------------- Encoding ----------------
+    df["Sex"] = df["Sex"].map({"male": 0, "female": 1})
+    df = pd.get_dummies(df, columns=["Embarked"], drop_first=True)
+
+    # ---------------- Split ----------------
+    X = df.drop(columns=["Survived"])
+    y = df["Survived"]
+
+    X_train, X_val, y_train, y_val = split_data(df)
+
+    # ---------------- Scaling ----------------
+    scaler = StandardScaler()
+
+    return X_train, X_val, y_train, y_val, df, scaler
+
+def load_models_from_file(data_dir="models/"):
+    scaler = joblib.load(data_dir + "scaler.pkl")
+    dt = joblib.load(data_dir + "decision_tree.pkl")
+    gnb = joblib.load(data_dir + "gaussian_nb.pkl")
+    logreg = joblib.load(data_dir + "logreg.pkl")
+    rf = joblib.load(data_dir + "random_forest.pkl")
+    svm = joblib.load(data_dir + "svm.pkl")
+
+    return scaler, dt, gnb, logreg, rf, svm
+
+
+\end{verbatim}
+
+\section*{Приложение 2. Код программы random\_forest.py}
+
+\begin{verbatim}
+
+import pandas as pd
+import numpy as np
+import os
+import joblib
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, roc_auc_score
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.svm import SVC
+
+from data_preprocessing import get_processed_data
+
+# ---------------------------------------------------------
+# Prepare output dir
+# ---------------------------------------------------------
+os.makedirs("models", exist_ok=True)
+
+# ---------------------------------------------------------
+# Load data
+# ---------------------------------------------------------
+X_train, X_val, y_train, y_val, df, scaler = get_processed_data(
+    data_dir="titanic/", test_size=0.2, random_state=42
+)
+
+X_train_scaled = scaler.fit_transform(X_train)
+X_val_scaled = scaler.transform(X_val)
+
+# Save scaler
+joblib.dump(scaler, "models/scaler.pkl")
+
+
+# ============================================================
+# Random Forest
+# ============================================================
+rf = RandomForestClassifier(n_estimators=400, random_state=42)
+rf.fit(X_train, y_train)
+
+pred_rf = rf.predict(X_val)
+proba_rf = rf.predict_proba(X_val)[:, 1]
+
+print("=== Random Forest ===")
+print("Acc:", accuracy_score(y_val, pred_rf))
+print("AUC:", roc_auc_score(y_val, proba_rf))
+print()
+
+joblib.dump(rf, "models/random_forest.pkl")
+
+
+\end{verbatim}
+\section*{Приложение 3. Код программы diff.py}
+
+\begin{verbatim}
+
+import numpy as np
+import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
+
+# ----- Generate simple 1D dataset (Age only) -----
+np.random.seed(42)
+X = np.linspace(0, 80, 400).reshape(-1, 1)
+y = (X[:, 0] > 30).astype(int)  # simple threshold rule
+
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# ----- Train Random Forest -----
+rf = RandomForestClassifier(n_estimators=50, max_depth=3, random_state=42)
+rf.fit(X, y)
+rf_pred = rf.predict_proba(X)[:, 1]
+
+# ----- Train Surrogate NN -----
+class Surrogate(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(1, 32),
+            nn.ReLU(),
+            nn.Linear(32, 1),
+            nn.Sigmoid()
+        )
+
+    def forward(self, x):
+        return self.net(x)
+
+model = Surrogate()
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+loss_fn = nn.BCELoss()
+
+X_t = torch.tensor(X_scaled, dtype=torch.float32)
+y_t = torch.tensor(y.reshape(-1, 1), dtype=torch.float32)
+
+for _ in range(200):
+    optimizer.zero_grad()
+    out = model(X_t)
+    loss = loss_fn(out, y_t)
+    loss.backward()
+    optimizer.step()
+
+with torch.no_grad():
+    nn_pred = model(X_t).numpy().ravel()
+
+# ----- Plot Random Forest -----
+plt.figure()
+plt.plot(X[:, 0], rf_pred)
+plt.xlabel("Age")
+plt.ylabel("P(Survive)")
+plt.title("Random Forest: piecewise-constant (non-differentiable)")
+plt.show()
+
+# ----- Plot Surrogate NN -----
+plt.figure()
+plt.plot(X[:, 0], nn_pred)
+plt.xlabel("Age")
+plt.ylabel("P(Survive)")
+plt.title("Surrogate NN: smooth & differentiable")
+plt.show()
+
+\end{verbatim}
+
+
+\section*{Приложение 4. Код программы yakobian.py}
+
+\begin{verbatim}
+
+import torch
+import torch.nn as nn
+import numpy as np
+import pandas as pd
+from sklearn.metrics import accuracy_score
+from data_preprocessing import get_processed_data
+
+# ---------------- Setup ----------------
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+X_train, X_val, y_train, y_val, df, scaler = get_processed_data()
+feature_names = list(X_train.columns)
+
+# scale for surrogate
+X_train_scaled = scaler.fit_transform(X_train)
+X_val_scaled = scaler.transform(X_val)
+
+X_train_t = torch.tensor(X_train_scaled, dtype=torch.float32).to(device)
+y_train_t = torch.tensor(y_train.values, dtype=torch.long).to(device)
+X_val_t = torch.tensor(X_val_scaled, dtype=torch.float32).to(device)
+y_val_t = torch.tensor(y_val.values, dtype=torch.long).to(device)
+
+seed = 42
+np.random.seed(seed)
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+
+# ---------------- Surrogate NN ----------------
+class SurrogateMLP(nn.Module):
+    def __init__(self, n):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(n, 64),
+            nn.ReLU(),
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 2),
+        )
+
+    def forward(self, x):
+        return self.net(x)
+
+model = SurrogateMLP(X_train.shape[1]).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+# ---------------- Train ----------------
+for epoch in range(75):
+    optimizer.zero_grad()
+    out = model(X_train_t)
+    loss = criterion(out, y_train_t)
+    loss.backward()
+    optimizer.step()
+
+# ---------------- Jacobian-based sensitivity ----------------
+model.eval()
+X_val_t.requires_grad = True
+
+logits = model(X_val_t)
+loss = criterion(logits, y_val_t)
+loss.backward()
+
+jacobian_abs = X_val_t.grad.abs().cpu().numpy()
+
+# mean sensitivity per feature
+feature_sensitivity = jacobian_abs.mean(axis=0)
+
+sensitivity_df = pd.DataFrame({
+    "feature": feature_names,
+    "jacobian_sensitivity": feature_sensitivity
+}).sort_values(by="jacobian_sensitivity", ascending=False)
+
+print("\nMost vulnerable features (Jacobian-based):")
+print(sensitivity_df.head(10))
+
+\end{verbatim}
+
+\section*{Приложение 5. Код программы adversarial\_attack.py}
+
+\begin{verbatim}
+
+from data_preprocessing import get_processed_data
+from data_preprocessing import load_models_from_file
+import torch
+import numpy as np
+import pandas as pd
+from sklearn.metrics import accuracy_score, roc_auc_score
+
+seed = 42
+np.random.seed(seed)
+torch.manual_seed(seed)
+torch.cuda.manual_seed_all(seed)
+
+X_train, X_val, y_train, y_val, df, scaler = get_processed_data(
+    test_size=0.2, random_state=seed
+)
+
+
+scaler, dt, gnb, logreg, rf, svm = load_models_from_file()
+
+feature_names = list(X_train.columns)
+allowed_features = ["Sex", "Age", "Pclass"]
+allowed_idx = [feature_names.index(f) for f in allowed_features if f in feature_names]
+
+onehot_groups = []
+# Simple heuristic: columns that start with same prefix before '_' and are categorical dummies
+prefixes = {}
+for col in feature_names:
+    if "_" in col:
+        p = col.split("_")[0]
+        prefixes.setdefault(p, []).append(col)
+for p, cols in prefixes.items():
+    if len(cols) > 1:
+        onehot_groups.append(cols)
+# filter out numeric groups accidentally included (keep likely categorical groups)
+# e.g., Deck_, Embarked_
+onehot_groups = [
+    g for g in onehot_groups if any(c.startswith(("Deck", "Embarked")) for c in g)
+]
+print("One-hot groups:", onehot_groups)
+
+# bounds for clipping in original space
+X_all = pd.concat([X_train, X_val], axis=0)
+orig_min = X_all.min().values
+orig_max = X_all.max().values
+
+# for rounding/validating one-hot: function that sets max index to 1 others to 0
+def project_onehot_row(row_arr, group_cols, feature_names):
+    arr = row_arr.copy()
+    for group in group_cols:
+        idxs = [feature_names.index(c) for c in group]
+        if max(arr[idxs]) <= 0:
+            # nothing positive -> keep original argmax (to avoid all zeros)
+            # set the max among original (use current values)
+            arg = int(np.argmax(arr[idxs]))
+        else:
+            arg = int(np.argmax(arr[idxs]))
+        for j, idx in enumerate(idxs):
+            arr[idx] = 1.0 if j == arg else 0.0
+    return arr
+
+# ---------------- Evasion attack generation ----------------
+def evasion_attack(X_orig, allowed_idx, magnitude=0.05):
+    """
+    Simple evasion attack: add random perturbations to allowed features within given magnitude.
+    X_orig: np.array (n_samples, n_features) in original (unscaled) space
+    allowed_idx: list of feature indices allowed to perturb
+    magnitude: fraction of the feature range to perturb
+    """
+    X_adv = X_orig.copy()
+    for idx in allowed_idx:
+        # compute feature range
+        f_min = X_all.iloc[:, idx].min()
+        f_max = X_all.iloc[:, idx].max()
+        f_range = f_max - f_min
+        # random perturbation in [-magnitude*range, +magnitude*range]
+        perturb = (np.random.rand(X_orig.shape[0]) * 2 - 1) * magnitude * f_range
+        X_adv[:, idx] += perturb
+    # clip to original bounds
+    # project one-hot groups row-by-row
+    for i in range(X_adv.shape[0]):
+        X_adv[i] = project_onehot_row(X_adv[i], onehot_groups, feature_names)
+        X_adv[i] = project_semantic_constraints(X_adv[i], feature_names)
+
+    # clip to original observed bounds
+    X_adv = np.minimum(np.maximum(X_adv, orig_min), orig_max)
+    return X_adv
+
+def project_semantic_constraints(row_arr, feature_names):
+    arr = row_arr.copy()
+
+    # Age: uint >= 0
+    if "Age" in feature_names:
+        i = feature_names.index("Age")
+        arr[i] = int(round(arr[i]))
+        arr[i] = max(arr[i], 0)
+
+    # Pclass: uint in {1,2,3}
+    if "Pclass" in feature_names:
+        i = feature_names.index("Pclass")
+        arr[i] = int(round(arr[i]))
+        arr[i] = min(max(arr[i], 1), 3)
+
+    # Parch: uint in [0,10]
+    if "Parch" in feature_names:
+        i = feature_names.index("Parch")
+        arr[i] = int(round(arr[i]))
+        arr[i] = min(max(arr[i], 0), 100)
+
+    # Sex: uint in [0,1]
+    if "Sex" in feature_names:
+        i = feature_names.index("Sex")
+        arr[i] = int(round(arr[i]))
+        arr[i] = min(max(arr[i], 0), 1)
+    return arr
+
+# Run evasion attack
+eps_magnitude_list = [0.01, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]  # fraction of range
+results = []
+
+X_val_np = X_val.values  # original unscaled
+
+
+
+for mag in eps_magnitude_list:
+    X_adv = evasion_attack(X_val_np, allowed_idx, magnitude=mag)
+    X_adv_df = pd.DataFrame(X_adv, columns=X_train.columns)
+
+    # RF
+    preds_rf_adv = rf.predict(X_adv_df)
+    proba_rf_adv = rf.predict_proba(X_adv_df)[:, 1]
+    acc_rf = accuracy_score(y_val, preds_rf_adv)
+    auc_rf = roc_auc_score(y_val, proba_rf_adv)
+
+    results.append({
+        "magnitude": mag,
+        "RF_acc": acc_rf,
+        "RF_auc": auc_rf,
+    })
+    print(f"mag={mag:.3f} RF acc {acc_rf:.4f}")
+
+
+# ===================== TABULAR TRACE FOR SINGLE OBJECT =====================
+
+# prettier output: limit float precision
+pd.set_option("display.float_format", "{:.3f}".format)
+print("\n=== EVASION TRACE (single sample) ===")
+sample_idx = 0  # first validation sample
+
+x_orig = X_val_np[sample_idx].copy()
+x_orig_s = pd.Series(x_orig, index=feature_names)
+
+rows = []
+
+for mag in eps_magnitude_list:
+    X_adv = evasion_attack(
+        X_val_np[sample_idx:sample_idx+1],
+        allowed_idx,
+        magnitude=mag
+    )
+    x_adv = X_adv[0]
+    x_adv_s = pd.Series(x_adv, index=feature_names)
+
+    row = {
+        "magnitude": mag,
+    }
+
+    for f in allowed_features:
+        row[f"{f}_orig"] = x_orig_s[f]
+        row[f"{f}_adv"] = x_adv_s[f]
+        row[f"{f}_delta"] = x_adv_s[f] - x_orig_s[f]
+
+    rows.append(row)
+
+trace_df = pd.DataFrame(rows)
+print(trace_df)
+
+\end{verbatim}
+
+\end{document}

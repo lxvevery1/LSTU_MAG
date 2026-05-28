@@ -1,11 +1,13 @@
 \input{uni}
 
-\title{Отчёт по дисциплине «Нейронные сети и глубокое обучение»}
-\author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
-
+% ======================================================================
 \begin{document}
 
 \setstretch{1.5}
+
+% ----------------------------------------------------------------------
+% Титульный лист
+% ----------------------------------------------------------------------
 \noindent
 \begin{minipage}[t]{0.01\textwidth}
     \includegraphics{~/programmer/++Programmer/5_1/LSTU.jpg}
@@ -29,12 +31,13 @@
 \textbf{Кафедра} \hspace{2em} автоматизированных систем управления
 \end{minipage}
 
-
 \vspace{6em}
 
 \begin{center}
-\textbf{Курсовая работа} \\
-по дисциплине \\ <<Нейронные сети и глубокое обучение>>
+    Курсовая работа \\
+    по дисциплине: <<Нейронные сети и глубокое обучение>> \\
+    на тему: <<Сравнительный анализ стандартных и~depthwise separable свёрток\\
+    в~архитектуре ResNet-18 на примере классификации CIFAR-10>>
 \end{center}
 
 \vspace{6em}
@@ -43,7 +46,7 @@
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r }
     Студент М-РИТ-25-1 & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\[2em]
 Руководитель & \\
-Профессор, д. тех. наук & \makebox[4cm]{\hrulefill} & Седых И.А. \\
+Профессор, д.т.н. & \makebox[4cm]{\hrulefill} & Седых И.А. \\
 \end{tabular*}
 
 \vfill
@@ -53,21 +56,246 @@
 
 \thispagestyle{empty}
 
+% ----------------------------------------------------------------------
+% Задание кафедры
+% ----------------------------------------------------------------------
+\newpage
+\section*{Задание кафедры}
+
+\begin{sloppypar}
+\noindent
+    Студенту: Станиславчуку С.М. группы М-РИТ-25-1. \\
+    Тема: <<Сравнительный анализ стандартных и~depthwise separable свёрток в~архитектуре ResNet-18 на примере классификации CIFAR-10>>. \\
+    Содержание расчетно-пояснительной записки:
+\noindent
+    \begin{enumerate}
+        \item Титульный лист
+        \item Задание кафедры
+        \item Аннотация
+        \item Содержание
+        \item Введение
+        \item Основная часть
+        \item Заключение
+        \item Список испточников
+        \item Приложения
+    \end{enumerate}
+\end{sloppypar}
+
+\vspace{1em}
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l c r}
+    Дата выдачи задания: & \makebox[4cm]{\hrulefill} & \\[2em]
+    Срок сдачи работы: & \makebox[4cm]{\hrulefill} & \\[2em]
+    Руководитель: & \makebox[4cm]{\hrulefill} & Седых И.А. \\[2em]
+    Задание принял к исполнению: & \makebox[4cm]{\hrulefill} & Станиславчук С.М. \\
+\end{tabular*}
+
+\newpage
+
+\textbf{Исходные данные:}
+\begin{itemize}
+    \item датасет CIFAR-10 (60~000 цветных изображений, 10 классов);
+    \item архитектура ResNet-18, адаптированная для изображений $32 \times 32$;
+    \item PyTorch, torchvision.
+\end{itemize}
+
+\vspace{1em}
+
+\textbf{Перечень подлежащих разработке вопросов:}
+\begin{enumerate}
+    \item Изучить архитектуру ResNet-18 и принцип depthwise separable свёрток в~стиле MobileNet.
+    \item Реализовать два варианта модели: стандартный ResNet-18 и~ResNet-18 с~заменой всех свёрток на depthwise separable.
+    \item Обучить обе модели на датасете CIFAR-10 в идентичных условиях.
+    \item Выполнить сравнительный анализ по метрикам: Test Accuracy, количество параметров, размер сериализованной модели, латентность инференса на~CPU.
+    \item Сделать вывод о~компромиссе между точностью и~эффективностью при использовании depthwise separable свёрток.
+\end{enumerate}
+
+\vspace{1em}
+
+\textbf{Перечень графического материала:}
+\begin{itemize}
+    \item таблица сравнения метрик стандартной и separable моделей;
+    \item структурная схема BasicBlock.
+\end{itemize}
+
+\vfill
+
+\thispagestyle{empty}
+
+% ----------------------------------------------------------------------
+% Аннотация
+% ----------------------------------------------------------------------
+\newpage
+\section*{Аннотация}
+
+\begin{sloppypar}
+    Тема курсового проекта: <<Сравнительный анализ стандартных и~depthwise separable свёрток в~архитектуре ResNet-18 на примере классификации CIFAR-10>>.
+
+    С. numpages; Ил. numPics; Табл. Numtable; Литература назв. numLit; Приложение numПриложений;
+
+    В~данной курсовой работе исследуется эффективность замены
+    стандартных свёрточных слоёв на разделенные по глубине (depthwise separable convolutions)
+    в~архитектуре ResNet-18. Обучение и~оценка проводятся на датасете
+    CIFAR-10. Реализованы два варианта модели: стандартный ResNet-18
+    и~модифицированный, в~котором все свёртки
+    заменены на разделенные-по-глубине блоки. Проведено сравнение по четырём ключевым
+    метрикам: точность классификации на тестовой выборке, количество обучаемых параметров, размер сериализованной
+    модели и влияние на~CPU. Результаты показывают, что
+    depthwise separable вариант существенно сокращает число параметров,
+    уменьшает размер модели и~ускоряет
+    инференс на~CPU при небольшом падении точности. Работа
+    включает обзор литературы по эффективным архитектурам свёрточных
+    нейронных сетей, описание реализованной архитектуры, методики
+    обучения и~бенчмаркинга, анализ полученных результатов.
+\end{sloppypar}
+
+\thispagestyle{empty}
+
+% ----------------------------------------------------------------------
+% Оглавление
+% ----------------------------------------------------------------------
 \newpage
 \tableofcontents
 \newpage
 
-\section{Цель работы}
+% ----------------------------------------------------------------------
+% Введение
+% ----------------------------------------------------------------------
+\section{Введение}
 
-\begin{sloppypar}
-    Исследование эффективности замены стандартных свёрток на depthwise separable convolutions в архитектуре ResNet-18. Сравнение двух вариантов модели — стандартного и с depthwise separable свёртками — по точности классификации, времени инференса на CPU и размеру модели. Обучение и оценка проводятся на датасете CIFAR-10.
-\end{sloppypar}
+\subsection{Актуальность}
 
-\section{Задание}
-\begin{sloppypar}
-    Реализовать ResNet-18 для классификации изображений CIFAR-10 в двух вариантах: со~стандартными свёрточными слоями и с~depthwise separable свёртками (в~стиле MobileNet). Обучить обе модели. Измерить и сравнить следующие метрики: точность на тестовой выборке (Test Accuracy,~\%), латентность инференса на~CPU~(Latency,~мс), количество параметров~(Params) и~сериализованный размер модели~(Size,~МБ). Сделать вывод о~компромиссе между точностью и~эффективностью.
-\end{sloppypar}
+Свёрточные нейронные сети (CNN) являются основой современных систем компьютерного зрения, обеспечивая высокое качество в~задачах классификации, детекции и~сегментации изображений. Однако рост точности моделей часто сопровождается значительным увеличением их вычислительной сложности и~объёма памяти, необходимого для хранения параметров. Это создаёт серьёзные ограничения при развёртывании CNN на~устройствах с~ограниченными ресурсами: мобильных телефонах, встраиваемых системах, одноплатных компьютерах и~CPU-серверах без~GPU-ускорения.
 
+Одним из~наиболее успешных направлений повышения эффективности CNN является использование depthwise separable convolutions~\cite{mobilenet,xception}, впервые получивших широкую известность в~архитектуре MobileNet. Идея заключается в~факторизации стандартной свёртки на две операции: depthwise (пространственная свёртка, применяемая независимо к~каждому каналу) и~pointwise (свёртка $1\times1$, смешивающая каналы). Такой подход позволяет радикально сократить как число параметров, так и~количество вычислительных операций при незначительном снижении точности.
+
+Архитектура ResNet~\cite{resnet} с~остаточными связями (skip-connections) стала де-факто стандартом для многих задач компьютерного зрения благодаря способности обучать очень глубокие сети без~деградации качества. Сочетание идеологии ResNet с~depthwise separable свёртками представляет практический интерес: позволяет~ли такая модификация сохранить преимущества остаточного обучения при существенном сокращении вычислительных затрат?
+
+\subsection{Цель работы}
+
+Целью данной курсовой работы является сравнительный анализ эффективности стандартных и~depthwise separable свёрток в~архитектуре ResNet-18 на~примере задачи классификации изображений датасета CIFAR-10.
+
+\subsection{Задачи}
+
+Для достижения поставленной цели необходимо решить следующие задачи:
+
+\begin{enumerate}
+    \item Изучить архитектуру ResNet-18, принцип работы остаточных связей и~адаптацию сети для входного разрешения $32\times32$~(CIFAR-10).
+    \item Изучить устройство depthwise separable convolution в~стиле MobileNet и~её теоретический выигрыш по~числу параметров и~операций.
+    \item Реализовать на~PyTorch два варианта ResNet-18: стандартный и~с~заменой всех свёрток $3\times3$ и~$1\times1$ на~depthwise separable блоки.
+    \item Обучить обе модели на~датасете CIFAR-10 в~идентичных условиях (гиперпараметры, аугментация, планировщик learning rate).
+    \item Выполнить бенчмарк на~CPU: измерить количество параметров, размер сериализованной модели и~латентность инференса для каждого варианта.
+    \item Провести сравнительный анализ полученных метрик и~сделать вывод о~компромиссе между точностью и~эффективностью.
+\end{enumerate}
+
+% ----------------------------------------------------------------------
+% Обзор литературы
+% ----------------------------------------------------------------------
+\section{Обзор литературы}
+
+\subsection{Стандартные свёрточные нейронные сети}
+
+Традиционные свёрточные нейронные сети, начиная с~архитектуры LeNet-5~\cite{lenet} и~AlexNet~\cite{alexnet}, используют полносвязные по~каналам свёрточные слои. В~стандартном свёрточном слое каждый выходной канал формируется как взвешенная сумма \textit{всех} входных каналов, свёрнутых с~соответствующим ядром. Для слоя с~$C_{in}$ входными каналами, $C_{out}$ выходными каналами и~ядром размера $k \times k$ число параметров составляет:
+
+\begin{equation}
+    P_{std} = k^2 \cdot C_{in} \cdot C_{out}.
+    \label{eq:params_std}
+\end{equation}
+
+Такой подход обеспечивает богатое представление признаков за~счёт полного взаимодействия между каналами, однако квадратичная зависимость от~числа каналов приводит к~быстрому росту параметров и~вычислений при масштабировании сети.
+
+\subsection{Depthwise Separable Convolution}
+
+Depthwise separable convolution~\cite{mobilenet,xception} делит стандартную свёртку на два этапа:
+
+\begin{enumerate}
+    \item \textbf{Depthwise convolution} — свёртка $k \times k$, применяемая независимо к~каждому входному каналу (\texttt{groups}~=~$C_{in}$). Количество выходных каналов равно количеству входных. Этот этап выполняет пространственную фильтрацию без~смешивания каналов.
+    \item \textbf{Pointwise convolution} — свёртка $1 \times 1$, смешивающая информацию между каналами и~изменяющая их количество до~требуемого $C_{out}$.
+\end{enumerate}
+
+Суммарное число параметров depthwise separable блока составляет:
+
+\begin{equation}
+    P_{ds} = k^2 \cdot C_{in} + C_{in} \cdot C_{out}.
+    \label{eq:params_ds}
+\end{equation}
+
+Отношение числа параметров стандартной свёртки к~depthwise separable:
+
+\begin{equation}
+    \frac{P_{std}}{P_{ds}} = \frac{k^2 \cdot C_{in} \cdot C_{out}}{k^2 \cdot C_{in} + C_{in} \cdot C_{out}}
+        = \frac{k^2 \cdot C_{out}}{k^2 + C_{out}}.
+    \label{eq:ratio}
+\end{equation}
+
+При $C_{out} \gg k^2$ сокращение стремится к~$k^2$. Для типичного случая $k=3$ и~$C_{out}=64$ получаем $\frac{9\cdot64}{9+64} \approx 7.9$~раз.
+
+\subsection{MobileNet}
+
+MobileNet~\cite{mobilenet} — семейство эффективных архитектур, построенных целиком на~depthwise separable свёртках. Авторы (Howard~A.G. et~al., 2017) продемонстрировали, что на~ImageNet MobileNet достигает точности, сопоставимой с~полноценными CNN (VGG-16, GoogleNet), при~радикально меньшем числе параметров и~вычислительных затратах. Ключевые особенности:
+
+\begin{itemize}
+    \item все стандартные свёртки заменены на depthwise separable;
+    \item введены два гиперпараметра — width multiplier $\alpha$ и~resolution multiplier $\rho$ для~тонкого контроля компромисса между точностью и~скоростью;
+    \item архитектура ориентирована на~мобильные и~встраиваемые приложения.
+\end{itemize}
+
+\subsection{Xception}
+
+Xception~\cite{xception} (Chollet~F., 2017) — архитектура, предложенная как экстремальная версия Inception, в~которой cross-channel correlations и~spatial correlations разделены полностью. В~отличие от~MobileNet, где depthwise идёт перед pointwise, Xception меняет порядок: сначала pointwise ($1\times1$), затем depthwise. Авторы показали, что на~ImageNet Xception превосходит Inception~V3 при~меньшем числе параметров.
+
+\subsection{ResNet и остаточное обучение}
+
+ResNet~\cite{resnet} (He~K. et~al., 2016) решает проблему деградации точности при~увеличении глубины сети через механизм skip-connections (остаточных связей). Вместо того чтобы обучать прямое отображение $\mathcal{H}(x)$, остаточный блок обучает невязку $\mathcal{F}(x) = \mathcal{H}(x) - x$, после чего выход формируется как $\mathcal{H}(x) = \mathcal{F}(x) + x$. Это позволяет эффективно обучать сети глубиной 50, 101 и~152 слоя.
+
+ResNet-18 — облегчённая версия для~менее ресурсоёмких задач, состоящая из~четырёх групп остаточных блоков с~конфигурацией каналов $[64, 128, 256, 512]$ и~двумя BasicBlock в~каждой группе.
+
+\subsection{EfficientNet и~NAS-архитектуры}
+
+EfficientNet~\cite{efficientnet} (Tan~M., Le~Q.V., 2019) использует нейро-архитектурный поиск (NAS) для~нахождения оптимального баланса между глубиной, шириной и~разрешением сети. EfficientNet-B0 активно применяет depthwise separable свёртки в~сочетании с~механизмом squeeze-and-excitation (SE). Результаты показывают state-of-the-art точность при~значительно меньших вычислительных затратах по~сравнению с~предшественниками.
+
+\subsection{Другие подходы к~повышению эффективности CNN}
+
+Помимо depthwise separable свёрток, существует ряд альтернативных методов:
+
+\begin{itemize}
+    \item \textbf{Group convolution} — обобщение depthwise convolution, где каналы разбиваются на~$G$ групп. При~$G=C_{in}$ сводится к~depthwise convolution. Используется в~ResNeXt~\cite{resnext}.
+    \item \textbf{Channel pruning} — удаление наименее значимых каналов после обучения. Позволяет сократить модель без~изменения архитектуры.
+    \item \textbf{Quantization} — переход от~32-битных весов к~8-битным или даже бинарным, что снижает объём памяти и~ускоряет вычисления за~счёт целочисленной арифметики.
+    \item \textbf{Knowledge Distillation} — обучение компактной модели (student) на~выходах большой модели (teacher), позволяющее малой сети воспроизводить поведение большой.
+\end{itemize}
+
+\subsection{Сравнительная таблица подходов}
+
+В~таблице~\ref{tab:lit_comparison} приведено сравнение рассмотренных подходов по~ключевым характеристикам.
+
+\begin{table}[H]
+    \centering
+    \caption{Сравнение подходов к~повышению эффективности CNN.}
+    \label{tab:lit_comparison}
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Подход} & \textbf{Сокращение} & \textbf{Сохранение} & \textbf{Сложность} \\
+        & \textbf{параметров} & \textbf{точности} & \textbf{реализации} \\
+        \hline
+        Depthwise Separable (MobileNet) & $\sim8\times$ & высокая & средняя \\
+        \hline
+        Group Convolution (ResNeXt) & $\sim G\times$ & высокая & низкая \\
+        \hline
+        Channel Pruning & $2$--$5\times$ & средняя & высокая \\
+        \hline
+        Quantization (INT8) & $4\times$ (память) & высокая & средняя \\
+        \hline
+        Knowledge Distillation & варьируется & средняя & средняя \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Среди рассмотренных подходов depthwise separable convolution выделяется оптимальным балансом между сокращением параметров, сохранением точности и~простотой реализации, что обуславливает выбор данного метода для~модификации ResNet-18 в~рамках настоящей работы.
+
+% ----------------------------------------------------------------------
+% Исходный датасет
+% ----------------------------------------------------------------------
 \newpage
 \section{Исходный датасет}
 
@@ -91,7 +319,8 @@
     \item \textbf{Для тестовой выборки} аугментация не применяется — только нормализация.
 \end{enumerate}
 
-Загрузка данных осуществляется через библиотеку \texttt{torchvision.datasets.CIFAR10} с автоматической загрузкой при первом обращении. Данные подаются в модель батчами размера $128$.
+Загрузка данных осуществляется через библиотеку \\
+\texttt{torchvision.datasets.CIFAR10} с автоматической загрузкой при первом обращении. Данные подаются в модель батчами размера $128$.
 
 \section{Программа для обучения модели}
 
@@ -114,11 +343,13 @@
 \begin{enumerate}
     \item \textbf{Начальный блок:} Conv2d($3 \to 64$, $3 \times 3$, stride~=~1, padding~=~1) $\to$ BatchNorm2d $\to$ ReLU.
     \item \textbf{Четыре Residual-блока} (\texttt{layer1}--\texttt{layer4}) с конфигурацией каналов $[64, 128, 256, 512]$ и числом BasicBlock-ов $[2, 2, 2, 2]$ соответственно. В~блоках \texttt{layer2}--\texttt{layer4} применяется страйд 2 для понижения пространственного разрешения.
-    \item \textbf{BasicBlock} (рис.~\ref{fig:basicblock}): два свёрточных слоя $3\times3$ с BatchNorm и ReLU между ними, а также skip-connection (остаточная связь), прибавляющая вход блока к его выходу. Если размерности входа и выхода не совпадают (из-за изменения числа каналов или страйда), к skip-connection применяется понижающая свёртка $1 \times 1$ с BatchNorm.
+    \item \textbf{BasicBlock:} два свёрточных слоя $3\times3$ с BatchNorm и ReLU между ними, а также skip-connection (остаточная связь), прибавляющая вход блока к его выходу. Если размерности входа и выхода не совпадают (из-за изменения числа каналов или страйда), к skip-connection применяется понижающая свёртка $1 \times 1$ с BatchNorm.
     \item \textbf{Классификатор:} AdaptiveAvgPool2d($1 \times 1$) $\to$ Flatten $\to$ Linear($512 \to 10$).
 \end{enumerate}
 
-\begin{figure}[h]
+Структура BasicBlock представлена на рисунке \ref{fig:basicblock}.
+
+\begin{figure}[H]
     \centering
     \fbox{\parbox{0.85\textwidth}{
         \textbf{BasicBlock} \\
@@ -127,7 +358,8 @@
         $\to$ Conv2d($C_{out} \to C_{out}$, $3\times3$) $\to$ BatchNorm \\
         $\to$ сложение с skip-connection($x$) $\to$ ReLU $\to$ выход
     }}
-    \caption{Структура BasicBlock — базового остаточного блока ResNet-18.}
+    \refstepcounter{figure}
+    \caption*{Рисунок \thefigure\ -- Структура BasicBlock — базового остаточного блока ResNet-18.}
     \label{fig:basicblock}
 \end{figure}
 
@@ -147,7 +379,7 @@
     \item \textbf{Depthwise separable:} $k^2 \cdot C_{in} + C_{in} \cdot C_{out}$ параметров.
 \end{itemize}
 
-При $k = 3$, $C_{in} = C_{out} = 64$ сокращение составляет примерно $\frac{9 \cdot 64 \cdot 64}{9 \cdot 64 + 64 \cdot 64} \approx 7.9$ раз для данного слоя.
+При $k = 3$, $C_{in} = C_{out} = 64$ сокращение составляет примерно $7.9$ раз для данного слоя.
 
 \subsection{Процесс обучения}
 
@@ -170,16 +402,16 @@
 После обучения для каждой модели выполняются замеры на CPU:
 
 \begin{enumerate}
-    \item \textbf{Количество параметров:} подсчитывается сумма \texttt{numel()} всех тензоров с \texttt{requires\_grad=True}.
-    \item \textbf{Размер модели:} сериализация \texttt{state\_dict()} в буфер через \texttt{torch.save}, размер буфера в мегабайтах.
-    \item \textbf{Латентность инференса:} измеряется время одного прямого прохода (batch size = 1, вход $3\times32\times32$) на CPU. Выполняется $50$ прогревочных прогонов, затем $300$ замеров. Результат — среднее арифметическое $\pm$ стандартное отклонение в миллисекундах.
+    \item Подсчитывается сумма \texttt{numel()} всех тензоров с \texttt{requires\_grad=True}.
+    \item Сериализация \texttt{state\_dict()} в буфер через \texttt{torch.save}, размер буфера в мегабайтах.
+    \item Измеряется время одного прямого прохода (batch size = 1, вход $3\times32\times32$) на CPU. Выполняется $50$ прогревочных прогонов, затем $300$ замеров. Результат — среднее арифметическое $\pm$ стандартное отклонение в миллисекундах.
 \end{enumerate}
 
 \subsection{Результаты экспериментов}
 
-Обучение проводилось на GPU (NVIDIA), бенчмарк — на CPU с фиксированным числом потоков (\texttt{OMP\_NUM\_THREADS=1}, \texttt{torch.set\_num\_threads(1)}). Результаты приведены в таблице~\ref{tab:results}.
+Обучение проводилось на GPU NVIDIA GTX 1660 TI (для использования CUDA ядер), бенчмарк — на CPU с фиксированным числом потоков (\texttt{OMP\_NUM\_THREADS=8}, \texttt{torch.set\_num\_threads(8)}). Результаты приведены в таблице~\ref{tab:results}.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Сравнение стандартного и depthwise separable ResNet-18.}
     \label{tab:results}
@@ -195,7 +427,7 @@
     \end{tabular}
 \end{table}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \caption{Относительные показатели separable-модели.}
     \label{tab:relative}
@@ -238,9 +470,33 @@
             Mobile Vision Applications // arXiv preprint arXiv:1704.04861. — 2017.
             \label{mobilenet}
 
+        \item Chollet~F. Xception: Deep Learning with Depthwise Separable Convolutions //
+            Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition
+            (CVPR). — 2017. — P.~1251--1258.
+            \label{xception}
+
         \item Krizhevsky~A. Learning Multiple Layers of Features from Tiny Images //
             Technical Report, University of Toronto. — 2009.
             \label{cifar10}
+
+        \item Tan~M., Le~Q.V. EfficientNet: Rethinking Model Scaling for Convolutional
+            Neural Networks // Proceedings of the 36th International Conference on Machine
+            Learning (ICML). — 2019. — P.~6105--6114.
+            \label{efficientnet}
+
+        \item Xie~S. et~al. Aggregated Residual Transformations for Deep Neural Networks //
+            Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition
+            (CVPR). — 2017. — P.~1492--1500.
+            \label{resnext}
+
+        \item LeCun~Y. et~al. Gradient-Based Learning Applied to Document Recognition //
+            Proceedings of the IEEE. — 1998. — Vol.~86, No.~11. — P.~2278--2324.
+            \label{lenet}
+
+        \item Krizhevsky~A., Sutskever~I., Hinton~G.E. ImageNet Classification with Deep
+            Convolutional Neural Networks // Advances in Neural Information Processing
+            Systems (NeurIPS). — 2012. — P.~1097--1105.
+            \label{alexnet}
 
         \item CIFAR-10 — Canadian Institute for Advanced Research [Электронный ресурс] /
             Режим доступа к данным: https://www.cs.toronto.edu/~kriz/cifar.html,
@@ -249,10 +505,6 @@
         \item PyTorch Documentation: torchvision.datasets.CIFAR10 [Электронный ресурс] /
             Режим доступа к данным: https://pytorch.org/vision/stable/generated/
             torchvision.datasets.CIFAR10.html, свободный.
-
-        \item Chollet~F. Xception: Deep Learning with Depthwise Separable Convolutions //
-            Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition
-            (CVPR). — 2017. — P.~1251--1258.
     \end{sloppypar}
 \end{enumerate}
 
