@@ -1,51 +1,4 @@
-\documentclass[14pt,a4paper]{extarticle}
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
-\usepackage{lmodern}
-\usepackage{geometry}
-\usepackage{array}
-\usepackage{tabularx}
-\usepackage{longtable}
-\usepackage{ltablex}
-\usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage{indentfirst}
-\usepackage{microtype}
-\usepackage{graphicx}
-\usepackage{setspace}
-\usepackage{listings}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{tocloft}
-\usepackage{titlesec}
-\usepackage{newtxtext,newtxmath}
-
-\titleformat{\section}        % форматируем \section
-  {\normalfont\bfseries}      % стиль: обычный + жирный
-  {\thesection.}              % номер секции с точкой
-  {2mm}                       % расстояние между номером и текстом
-  {}                           % перед заголовком можно добавить что-то
-\titlespacing*{\section}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
-
-\titleformat{\subsection}        % форматируем \section
-  {\normalfont\bfseries}      % стиль: обычный + жирный
-  {\thesubsection.}              % номер секции с точкой
-  {2mm}                       % расстояние между номером и текстом
-  {}                           % перед заголовком можно добавить что-то
-\titlespacing*{\subsection}{1.5cm}{*3}{*1}  % {отступ слева}{отступ сверху}{отступ снизу}
-
-\captionsetup{justification=centering}
-\renewcommand{\ttdefault}{cmtt}
-\keepXColumns
-\setlength{\parindent}{3em}
-\newgeometry{left=2.5cm,right=2.5cm,top=3cm,bottom=2.5cm}
-
-\renewcommand{\contentsname}{\hspace*{4em}{\smallСодержание}}
-\setlength{\cftbeforesecskip}{0.5em}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand{\cftsecaftersnum}{.\hspace{2mm}}
+\input{uni}
 
 \title{Отчёт по "Управление ИТ-проектами"}
 \author{Выполнил студент группы М-РИТ-25-1, Станиславчук Сергей}
@@ -104,7 +57,20 @@
 \tableofcontents
 \newpage
 
-\section{Введение}
+\section{Задание}
+
+1. Реализовать forward pass  для обеих архитектур вручную (LSTM, GRU) на numpy.
+Использование автоматического дифференцирования (autograd, PyTorch backward и аналоги)
+запрещено.
+2. Инициализация весов: равномерная U(-k, k), где k = 1/sqrt(H); смещения инициализи-
+ровать нулями.
+3. Оптимизация: Adam. Параметры Adam и gradient clipping требуется явно указать в
+отчёте.
+4. Разбивка корпуса на train / val / test выдаётся готовой в составе варианта и не изменяет-
+ся.
+5. Обучение вести до лучшего результата на валидации, но не более N эпох, где N указано
+в варианте. В отчёте необходимо указать эпоху, на которой достигнут лучший результат
+на validation.
 
 \section{Архитектуры и требования к реализации}
 
@@ -473,122 +439,82 @@ accuracy позволяет оценить различия между архи�
 кода, включая пробелы, отступы, символы пунктуации, закрывающие конструкции, а
 также характерные последовательности символов языка программирования.
 
-Примеры предсказаний модели LSTM приведены в таблице~\ref{tab:autocomplete_lstm}.
+В таблице~\ref{tab:compare_top2} приведено сравнение Top-2 предсказаний следующего символа для моделей LSTM и GRU с указанием соответствующих вероятностей.
 
 \begin{table}[H]
 \centering
-\caption{Примеры автодополнения модели LSTM}
-\label{tab:autocomplete_lstm}
+\caption{Сравнение Top-2 предсказаний следующего символа для моделей LSTM и GRU}
+\label{tab:compare_top2}
 \small
-\begin{tabular}{p{0.42\textwidth}|p{0.48\textwidth}}
+\begin{tabular}{p{0.22\textwidth}|p{0.34\textwidth}|p{0.34\textwidth}}
 \hline
 \textbf{Префикс} &
-\textbf{Top-10 следующего символа}
-\\
+\textbf{LSTM Top-2 (вероятности)} &
+\textbf{GRU Top-2 (вероятности)} \\
 \hline
 
-\texttt{//}
-&
-\texttt{' '} ($p=0.672$),
-\texttt{:} ($0.225$),
-\texttt{\textbackslash n} ($0.044$),
-\texttt{/} ($0.025$),
-\texttt{.} ($0.006$),
-\texttt{-} ($0.004$),
-\texttt{w} ($0.002$),
-\texttt{i} ($0.002$),
-\texttt{x} ($0.002$),
-\texttt{'} ($0.001$)
-\\
+\texttt{//} &
+\texttt{' '} ($0.672$), \texttt{:} ($0.225$) &
+\texttt{' '} ($0.872$), \texttt{:} ($0.090$) \\
 \hline
 
-\texttt{// -------}
-&
-\texttt{-} ($0.995$),
-\texttt{\textbackslash n} ($0.002$),
-\texttt{' '} ($0.001$),
-\texttt{2} ($<0.001$),
-\texttt{+} ($<0.001$),
-\texttt{1} ($<0.001$),
-\texttt{\_} ($<0.001$),
-\texttt{S} ($<0.001$),
-\texttt{F} ($<0.001$),
-\texttt{g} ($<0.001$)
-\\
+\texttt{// -------} &
+\texttt{-} ($0.995$), \texttt{\textbackslash n} ($0.002$) &
+\texttt{-} ($0.994$), \texttt{\textbackslash n} ($0.003$) \\
 \hline
 
-\texttt{case Ot::e\_VOID:\{}
-&
-\texttt{' '} ($0.995$),
-\texttt{i} ($<0.001$),
-\texttt{/} ($<0.001$),
-\texttt{r} ($<0.001$),
-\texttt{s} ($<0.001$),
-\texttt{b} ($<0.001$),
-\texttt{c} ($<0.001$),
-\texttt{p} ($<0.001$),
-\texttt{"} ($<0.001$),
-\\
+\texttt{);...\textbackslash t} &
+\texttt{\textbackslash t} ($0.498$), \texttt{s} ($0.156$) &
+\texttt{\textbackslash t} ($0.610$), \texttt{\}} ($0.106$) \\
 \hline
 
-\texttt{SharedPtrNilDeleter()}
-&
-\texttt{)} ($0.274$),
-\texttt{;} ($0.251$),
-\texttt{' '} ($0.154$),
-\texttt{,} ($0.115$),
-\texttt{.} ($0.082$),
-\texttt{\textbackslash n} ($0.043$),
-\texttt{:} ($0.017$),
-\texttt{(} ($0.012$),
-\texttt{[} ($0.009$),
-\texttt{\{} ($0.007$)
-\\
+\texttt{case ... e\_VOID: \{} &
+\texttt{' '} ($0.995$), \texttt{i} ($<0.001$) &
+\texttt{' '} ($0.999$), \texttt{/} ($<0.001$) \\
 \hline
 
-\texttt{EXPECT\_}
-&
-\texttt{T} ($0.286$),
-\texttt{E} ($0.189$),
-\texttt{R} ($0.064$),
-\texttt{C} ($0.049$),
-\texttt{S} ($0.043$),
-\texttt{N} ($0.040$),
-\texttt{V} ($0.038$),
-\texttt{D} ($0.037$),
-\texttt{W} ($0.030$),
-\texttt{I} ($0.027$)
-\\
+\texttt{...Deleter()} &
+\texttt{)} ($0.274$), \texttt{;} ($0.251$) &
+\texttt{;} ($0.288$), \texttt{)} ($0.271$) \\
 \hline
 
-\texttt{variabl}
-&
-\texttt{e} ($0.971$),
-\texttt{y} ($0.009$),
-\texttt{l} ($0.003$),
-\texttt{' '} ($0.002$),
-\texttt{\_} ($0.002$),
-\texttt{o} ($0.002$),
-\texttt{f} ($0.001$),
-\texttt{;} ($0.001$),
-\texttt{,} ($0.001$),
-\texttt{:} ($0.001$)
-\\
+\texttt{...Constra} &
+\texttt{c} ($0.167$), \texttt{t} ($0.152$) &
+\texttt{y} ($0.240$), \texttt{i} ($0.161$) \\
+\hline
+
+\texttt{EXPECT\_} &
+\texttt{T} ($0.286$), \texttt{E} ($0.189$) &
+\texttt{E} ($0.547$), \texttt{F} ($0.087$) \\
+\hline
+
+\texttt{...buck-o} &
+\texttt{' '} ($0.366$), \texttt{p} ($0.157$) &
+\texttt{p} ($0.445$), \texttt{\_} ($0.100$) \\
+\hline
+
+\texttt{//: } &
+\texttt{' '} ($0.660$), \texttt{r} ($0.033$) &
+\texttt{' '} ($0.889$), \texttt{1} ($0.025$) \\
+\hline
+
+\texttt{...\}\textbackslash t\textbackslash t} &
+\texttt{\textbackslash t} ($0.718$), \texttt{\}} ($0.039$) &
+\texttt{\textbackslash t} ($0.534$), \texttt{\}} ($0.139$) \\
+\hline
+
+\texttt{static const char} &
+\texttt{' '} ($0.567$), \texttt{c} ($0.047$) &
+\texttt{' '} ($0.588$), \texttt{d} ($0.067$) \\
+\hline
+
+\texttt{...variabl} &
+\texttt{e} ($0.971$), \texttt{y} ($0.009$) &
+\texttt{e} ($0.981$), \texttt{a} ($0.007$) \\
 \hline
 
 \end{tabular}
 \end{table}
-
-Как видно из таблицы, модель уверенно восстанавливает синтаксические закономерности программного кода. В ряде случаев вероятность правильного продолжения превышает $0.95$, например при генерации повторяющихся разделителей (\texttt{// -------}) или завершении идентификаторов. Для конструкций, допускающих несколько корректных продолжений, распределение вероятностей оказывается более разреженным, что отражает неоднозначность контекста.
-
-Наиболее уверенно модель предсказывает:
-\begin{itemize}
-    \item пробелы и символы форматирования;
-    \item отступы и символы переноса строки;
-    \item закрывающие скобки и разделители;
-    \item продолжения типичных идентификаторов и ключевых слов;
-    \item элементы тестовых и синтаксических конструкций.
-\end{itemize}
 
 \section{Вывод}
 
