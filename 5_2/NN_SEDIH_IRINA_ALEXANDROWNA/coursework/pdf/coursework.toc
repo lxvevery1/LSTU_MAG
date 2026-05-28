@@ -1,24 +1,27 @@
 \babel@toc {russian}{}\relax 
-\contentsline {section}{\numberline {1}Введение}{5}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Актуальность}{5}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Цель работы}{6}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Задачи}{6}{subsection.1.3}%
-\contentsline {section}{\numberline {2}Обзор литературы}{7}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Стандартные свёрточные нейронные сети}{7}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Depthwise Separable Convolution}{7}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}MobileNet}{8}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Xception}{9}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}ResNet и остаточное обучение}{9}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}EfficientNet и~NAS-архитектуры}{9}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Другие подходы к~повышению эффективности CNN}{10}{subsection.2.7}%
-\contentsline {subsection}{\numberline {2.8}Сравнительная таблица подходов}{10}{subsection.2.8}%
-\contentsline {section}{\numberline {3}Исходный датасет}{12}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Предобработка данных}{12}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Программа для обучения модели}{13}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Архитектура ResNet-18}{13}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Depthwise Separable Convolution}{14}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Процесс обучения}{15}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Методика бенчмарка}{16}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Результаты экспериментов}{16}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Вывод}{17}{section.5}%
-\contentsline {section}{\numberline {6}Список источников}{19}{section.6}%
+\contentsline {section}{\numberline {1}Введение}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Актуальность}{6}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Цель работы}{7}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Задачи}{7}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Обзор литературы}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Стандартные свёрточные нейронные сети}{8}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Depthwise Separable Convolution}{8}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}MobileNet}{9}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Xception}{10}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}ResNet и остаточное обучение}{10}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}EfficientNet и~NAS-архитектуры}{10}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Другие подходы к~повышению эффективности CNN}{11}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Сравнительная таблица подходов}{11}{subsection.2.8}%
+\contentsline {section}{\numberline {3}Математическая постановка задачи}{13}{section.3}%
+\contentsline {section}{\numberline {4}Архитектура модели}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Архитектура ResNet-18}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Depthwise Separable Convolution}{16}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Экспериментальная часть}{18}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Исходный датасет}{18}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Предобработка данных}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Процесс обучения}{19}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Методика бенчмарка}{20}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Визуализация обучения}{20}{subsection.5.5}%
+\contentsline {section}{\numberline {6}Анализ результатов}{23}{section.6}%
+\contentsline {section}{\numberline {7}Заключение}{25}{section.7}%
+\contentsline {section}{\numberline {8}Список источников}{26}{section.8}%
