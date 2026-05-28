@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  28 MAY 2026 16:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  28 MAY 2026 16:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1405,23 +1405,7 @@ File: acc_plot.pdf Graphic file (type pdf)
 <use acc_plot.pdf>
 Package pdftex.def Info: acc_plot.pdf  used on input line 440.
 (pdftex.def)             Requested size: 432.48051pt x 270.30055pt.
- [21 <./loss_plot.pdf> <./acc_plot.pdf>] [22]
-
-Package caption Warning: \label without proper reference on input line 462.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `tab:results' on page 23 undefined on input line 457.
-
-
-Package caption Warning: \label without proper reference on input line 479.
-See the caption package documentation for explanation.
-
-
-LaTeX Warning: Reference `tab:relative' on page 23 undefined on input line 457.
-
-
-[23] [24] [25]
+ [21 <./loss_plot.pdf> <./acc_plot.pdf>] [22] [23] [24] [25]
 Underfull \hbox (badness 2205) in paragraph at lines 534--537
 []\T2A/ntxtlf/b/n/14.4 (+20) Chollet F. Xception: Deep Learning with Depthwise 
 Separable
@@ -1473,16 +1457,13 @@ L3 programming layer <2020/03/25>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `coursework.out' has not changed.
 (rerunfilecheck)             Checksum: 3B307EFED923ADAE73A7CE5FD3E0C302;5308.
  ) 
 Here is how much of TeX's memory you used:
  22642 strings out of 468980
  350141 string characters out of 5462461
- 797016 words of memory out of 5000000
+ 796933 words of memory out of 5000000
  50655 multiletter control sequences out of 15000+600000
  663889 words of font info for 209 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
@@ -1498,7 +1479,7 @@ public/cm-super/sftt1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 hare/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/font
 s/type1/public/newtx/txsym.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/
 txsys.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on coursework.pdf (32 pages, 337451 bytes).
+Output written on coursework.pdf (32 pages, 337429 bytes).
 PDF statistics:
  594 PDF objects out of 1000 (max. 8388607)
  410 compressed objects within 5 object streams
