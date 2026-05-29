@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  28 MAY 2026 16:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  29 MAY 2026 12:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1312,21 +1312,20 @@ Overfull \hbox (8.21568pt too wide) in alignment at lines 85--90
 [] [] [] 
  []
 
-[2] [3] (./coursework.toc
+[2] [3] [4] (./coursework.toc
 LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
 e 1.
- (/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
+
+(/usr/share/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 14.4pt on input line 1.
-
-[4])
+ [5])
 \tf@toc=\write4
 \openout4 = `coursework.toc'.
 
- [5] [6{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}]
-[7]
+ [6] [7{/usr/share/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}] [8]
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/m/it' undefined
 (Font)              using `T2A/ntxtlf/m/n' instead on input line 167.
@@ -1346,7 +1345,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T2A).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [8]
+ [9]
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
 e 207.
 
@@ -1361,25 +1360,25 @@ Overfull \hbox (9.05779pt too wide) in paragraph at lines 208--209
 er $\OML/ntxmi/m/it/14.4 $ \T2A/ntxtlf/b/n/14.4 (-20) и resolution multiplier
  []
 
-[9{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
+[10{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
 Overfull \hbox (21.10786pt too wide) in paragraph at lines 224--225
 []\T2A/ntxtlf/b/n/14.4 (-20) EfficientNet [[]] (Tan M., Le Q.V., 2019) ис-поль-
 зу-ет нейро-архитектурный
  []
 
-[10]
+[11]
 Overfull \hbox (18.79703pt too wide) in paragraph at lines 246--262
  [][] 
  []
 
-[11] [12]
-Overfull \hbox (5.80775pt too wide) in paragraph at lines 287--288
+[12] [13]
+Overfull \hbox (5.80775pt too wide) in paragraph at lines 292--293
 []\T2A/ntxtlf/b/n/14.4 (-20) ƒл€ по-вы-ше-ни€ обоб-ща-ю-щей спо-соб-но-сти при-
 ме-н€-ет-с€ Weight Decay
  []
 
-[13] [14]
-Overfull \hbox (36.21068pt too wide) in paragraph at lines 332--333
+[14] [15]
+Overfull \hbox (36.21068pt too wide) in paragraph at lines 337--338
 []\T2A/ntxtlf/b/n/14.4 (-20)  лассификатор: AdaptiveAvgPool2d($\OT1/ntxtlf/m/n/
 14.4 (-20) 1 \LMS/ntxsy/m/n/14.4 ^^B \OT1/ntxtlf/m/n/14.4 (-20) 1$\T2A/ntxtlf/b
 /n/14.4 (-20) ) $\LMS/ntxsy/m/n/14.4 !$ \T2A/ntxtlf/b/n/14.4 (-20) Flatten $\LM
@@ -1387,65 +1386,72 @@ S/ntxsy/m/n/14.4 !$ \T2A/ntxtlf/b/n/14.4 (-20) Linear($\OT1/ntxtlf/m/n/14.4 (-2
 0) 512 \LMS/ntxsy/m/n/14.4 !
  []
 
-[15] [16] [17] [18] [19]
-Overfull \hbox (41.60481pt too wide) in paragraph at lines 421--422
+[16] [17] [18] [19] [20]
+Overfull \hbox (41.60481pt too wide) in paragraph at lines 426--427
 []\T2A/ntxtlf/b/n/14.4 (-20) ѕодсчитываетс€ сум-ма \T2A/cmtt/m/n/14.4 numel() \
 T2A/ntxtlf/b/n/14.4 (-20) всех тен-зо-ров с \T2A/cmtt/m/n/14.4 requires_grad=Tr
 ue\T2A/ntxtlf/b/n/14.4 (-20) . 
  []
 
-<loss_plot.pdf, id=294, 578.16pt x 361.35pt>
+<loss_plot.pdf, id=301, 578.16pt x 361.35pt>
 File: loss_plot.pdf Graphic file (type pdf)
 <use loss_plot.pdf>
-Package pdftex.def Info: loss_plot.pdf  used on input line 432.
+Package pdftex.def Info: loss_plot.pdf  used on input line 437.
 (pdftex.def)             Requested size: 432.48051pt x 270.30055pt.
-[20]
-<acc_plot.pdf, id=304, 578.16pt x 361.35pt>
+[21]
+<acc_plot.pdf, id=311, 578.16pt x 361.35pt>
 File: acc_plot.pdf Graphic file (type pdf)
 <use acc_plot.pdf>
-Package pdftex.def Info: acc_plot.pdf  used on input line 440.
+Package pdftex.def Info: acc_plot.pdf  used on input line 445.
 (pdftex.def)             Requested size: 432.48051pt x 270.30055pt.
- [21 <./loss_plot.pdf> <./acc_plot.pdf>] [22] [23] [24] [25]
-Underfull \hbox (badness 2205) in paragraph at lines 534--537
+ [22 <./loss_plot.pdf> <./acc_plot.pdf>] [23]
+Overfull \hbox (25.17502pt too wide) in paragraph at lines 459--464
+\T2A/ntxtlf/b/n/14.4 (-20) ро-ван-ным чис-лом по-то-ков (\T2A/cmtt/m/n/14.4 OMP
+_NUM_THREADS=8\T2A/ntxtlf/b/n/14.4 (-20) , \T2A/cmtt/m/n/14.4 torch.set_num_thr
+eads(8)\T2A/ntxtlf/b/n/14.4 (-20) ).
+ []
+
+[24] [25] [26]
+Underfull \hbox (badness 2205) in paragraph at lines 540--543
 []\T2A/ntxtlf/b/n/14.4 (+20) Chollet F. Xception: Deep Learning with Depthwise 
 Separable
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 556--559
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 562--565
 []\T2A/ntxtlf/b/n/14.4 (+20) CIFAR-10 ^^V Canadian Institute for Advanced Resea
 rch
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 556--559
+Underfull \hbox (badness 10000) in paragraph at lines 562--565
 \T2A/ntxtlf/b/n/14.4 (+20) [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па к дан-ным
 :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--563
+Underfull \hbox (badness 10000) in paragraph at lines 566--569
 []\T2A/ntxtlf/b/n/14.4 (+20) PyTorch Documentation: torchvision.datasets.CIFAR1
 0
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--563
+Underfull \hbox (badness 10000) in paragraph at lines 566--569
 \T2A/ntxtlf/b/n/14.4 (+20) [Ёлек-трон-ный ре-сурс] / –е-жим до-сту-па к дан-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 560--563
+Underfull \hbox (badness 10000) in paragraph at lines 566--569
 \T2A/ntxtlf/b/n/14.4 (+20) ным: https://pytorch.org/vision/stable/generated/
  []
 
-[27] [28]
-Overfull \hbox (6.6431pt too wide) in paragraph at lines 741--741
+[28] [29]
+Overfull \hbox (6.6431pt too wide) in paragraph at lines 747--747
 []                \T2A/cmtt/m/n/10 nn.Conv2d(self.in_channels, out_channels, 1,
  stride=stride, bias=False),[] 
  []
 
-[29] [30] [31] [32] (./coursework.aux
+[30] [31] [32] [33] (./coursework.aux
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 10.0pt on input line 8.
 )
@@ -1462,10 +1468,10 @@ Package rerunfilecheck Info: File `coursework.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  22642 strings out of 468980
- 350141 string characters out of 5462461
- 796933 words of memory out of 5000000
+ 350097 string characters out of 5462461
+ 796935 words of memory out of 5000000
  50655 multiletter control sequences out of 15000+600000
- 663889 words of font info for 209 fonts, out of 8000000 for 9000
+ 663646 words of font info for 206 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  80i,11n,82p,1026b,791s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb></usr/share/texmf
@@ -1479,10 +1485,10 @@ public/cm-super/sftt1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super
 hare/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-dist/font
 s/type1/public/newtx/txsym.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/
 txsys.pfb></usr/share/texmf-dist/fonts/type1/public/newtx/ztmr.pfb>
-Output written on coursework.pdf (32 pages, 337429 bytes).
+Output written on coursework.pdf (33 pages, 337797 bytes).
 PDF statistics:
- 594 PDF objects out of 1000 (max. 8388607)
- 410 compressed objects within 5 object streams
- 126 named destinations out of 1000 (max. 500000)
+ 602 PDF objects out of 1000 (max. 8388607)
+ 417 compressed objects within 5 object streams
+ 130 named destinations out of 1000 (max. 500000)
  26848 words of extra memory for PDF output out of 29859 (max. 10000000)
 
