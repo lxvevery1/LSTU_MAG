@@ -3,7 +3,7 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 
-if [[ ! -x "$ROOT/.venv/bin/python3.13" ]]; then
+if [[ ! -x "$ROOT/.venv/bin/python3" ]]; then
   echo "Сначала выполните: $ROOT/setup.sh" >&2
   exit 1
 fi
@@ -11,4 +11,4 @@ fi
 export PATH="$ROOT/.venv/bin:/usr/bin:/bin"
 export VIRTUAL_ENV="$ROOT/.venv"
 export PYTHONPATH="${PYTHONPATH:+$PYTHONPATH:}$ROOT"
-exec "$ROOT/.venv/bin/python3.13" "$@"
+exec "$ROOT/.venv/bin/python3" "$@"

@@ -1,0 +1,9 @@
+\babel@toc {russian}{}\relax 
+\beamer@sectionintoc {1}{Зачем нужны RTOS?}{3}{0}{1}
+\beamer@sectionintoc {2}{Отличия Zephyr от других RTOS}{6}{0}{2}
+\beamer@sectionintoc {3}{Архитектура Zephyr}{8}{0}{3}
+\beamer@sectionintoc {4}{Ядро Zephyr}{10}{0}{4}
+\beamer@sectionintoc {5}{Потоки}{11}{0}{5}
+\beamer@sectionintoc {6}{Планировщик}{14}{0}{6}
+\beamer@sectionintoc {7}{Управление памятью}{18}{0}{7}
+\beamer@sectionintoc {8}{Заключение}{25}{0}{8}

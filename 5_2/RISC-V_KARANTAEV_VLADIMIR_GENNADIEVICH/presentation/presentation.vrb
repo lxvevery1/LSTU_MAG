@@ -1,0 +1,17 @@
+\frametitle{Пример работы с кучей}
+\begin{lstlisting}[language={}, basicstyle=\ttfamily\scriptsize]
+*** Booting Zephyr OS build v4.3.0 ***
+System heap sample
+
+allocated 0,   free 196, max allocated 0,   heap size 256
+allocated 156, free 36,  max allocated 156, heap size 256
+allocated 100, free 92,  max allocated 156, heap size 256
+allocated 0,   free 196, max allocated 156, heap size 256
+
+1 static heap(s) allocated:
+  0 - addr 0x10000034  alloc 12, free 180, max alloc 12, size 256
+3 heap(s) allocated (including static):
+  0 - addr 0x10000034  alloc 12, free 180, max alloc 12, size 256
+  1 - addr 0x1000036c  alloc 0,  free 60676, max alloc 0, size 256
+  2 - addr 0x10000250  alloc 0,  free 196, max alloc 156, size 256
+\end{lstlisting}
