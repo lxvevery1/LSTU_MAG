@@ -78,6 +78,15 @@ Bluetooth... Это упрощает вашу жизнь, так как тепе
 3. prj.conf
 4. src/
 
+# c , cpp, rs
+
+# минимальный футпринт
+https://docs.zephyrproject.org/latest/samples/basic/minimal/README.html
+
+# booting
+https://academy.nordicsemi.com/courses/nrf-connect-sdk-intermediate/lessons/lesson-1-zephyr-rtos-advanced/topic/boot-up-sequence-execution-context/
+
+
 # yadro
 
 Ядро Zephyr лежит в основе каждого приложения Zephyr. Оно обеспечивает
@@ -115,6 +124,7 @@ Zephyr. Примерами таких систем являются: носим�
 
 Область стека: область памяти, используемая для стека потока. Размер может быть
 изменен в соответствии с требованиями процесса обработки потока.
+
 /* size of stack area used by each thread */
 #define STACKSIZE 1024
 

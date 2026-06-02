@@ -1,0 +1,24 @@
+\frametitle{Реализация depthwise-разделимого блока}
+\begin{block}{DepthwiseSeparableConv2d (Python/PyTorch)}
+    \footnotesize
+    \begin{semiverbatim}
+class DepthwiseSeparableConv2d(nn.Module):
+    def \alert{__init__}(self, in_c, out_c, k, stride, padding):
+        \textcolor{mygreen}{// depthwise: каждый канал фильтруется отдельно}
+        self.depthwise = nn.Conv2d(in_c, in_c, k,
+            stride, padding, \alert{groups=in_c})
+        \textcolor{mygreen}{// pointwise: смешивание каналов 1×1}
+        self.pointwise = nn.Conv2d(in_c, out_c, 1)
+
+    def \alert{forward}(self, x):
+        return self.pointwise(self.depthwise(x))
+    \end{semiverbatim}
+  \end{block}
+
+  \begin{itemize}
+    \item Параметр \texttt{groups=in\_channels} делает свёртку \textbf{depthwise} —
+          каждый канал обрабатывается независимо.
+    \item Pointwise \(1 \times 1\) затем смешивает каналы.
+    \item Механизм \texttt{separable} проброшен через всю архитектуру
+          (\texttt{conv3x3}, \texttt{conv1x1}, \texttt{BasicBlock}, \texttt{ResNet}).
+  \end{itemize}
