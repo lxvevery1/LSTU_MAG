@@ -1,0 +1,19 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{Введение}{3}{Doc-Start}%
+\contentsline {section}{\numberline {1}Описание выполнения общей части программы практики}{4}{section.1}%
+\contentsline {section}{\numberline {2}Цель дисциплины}{4}{section.2}%
+\contentsline {section}{\numberline {3}Содержание практических занятий}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Описание используемого методического материала и учебной литературы}{7}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Описание выполнения индивидуального задания}{8}{section.4}%
+\contentsline {section}{\numberline {5}Характеристика и цели разработанного комплекса}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Подробный анализ разработанных лабораторных работ и их вклад в достижение целей практики}{10}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Достижения студентов и результаты апробации}{14}{section.6}%
+\contentsline {section}{\numberline {7}Анализ педагогических трудностей и корректировка методики преподавания}{15}{section.7}%
+\contentsline {section}{Заключение}{17}{Item.16}%
+\contentsline {section}{Список использованных источников}{17}{Item.16}%
+\contentsline {section}{Приложение A}{20}{Item.28}%
+\contentsline {section}{Приложение Б}{20}{Item.28}%
+\contentsline {section}{Приложение В}{21}{Item.28}%
+\contentsline {section}{Приложение Г}{21}{Item.28}%
+\contentsline {section}{Приложение Д}{22}{Item.28}%
+\contentsline {section}{Приложение Е}{22}{Item.28}%
