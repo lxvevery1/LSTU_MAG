@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  10 JUN 2026 20:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  10 JUN 2026 21:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1206,11 +1206,13 @@ Package caption Info: End \AtBeginDocument code.
 \c@mv@boldtabular=\count356
 LaTeX Info: Command `\dddot' is already robust on input line 3.
 LaTeX Info: Command `\ddddot' is already robust on input line 3.
-<~/programmer/++Programmer/5_1/LSTU.jpg, id=70, 42.705pt x 63.729pt>
-File: ~/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
-<use ~/programmer/++Programmer/5_1/LSTU.jpg>
-Package pdftex.def Info: ~/programmer/++Programmer/5_1/LSTU.jpg  used on input 
-line 12.
+</home/stanik/programmer/++Programmer/5_1/LSTU.jpg, id=78, 42.705pt x 63.729pt>
+
+File: /home/stanik/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
+
+<use /home/stanik/programmer/++Programmer/5_1/LSTU.jpg>
+Package pdftex.def Info: /home/stanik/programmer/++Programmer/5_1/LSTU.jpg  use
+d on input line 12.
 (pdftex.def)             Requested size: 42.70488pt x 63.72884pt.
 
 Overfull \hbox (38.15495pt too wide) in paragraph at lines 12--13
@@ -1306,7 +1308,7 @@ LaTeX Font Warning: Font shape `T2A/ntxtlf/b/n' undefined
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
 /enc/dvips/cm-super/cm-super-t2a.enc} </home/stanik/programmer/++Programmer/5_1
-/LSTU.jpg>] (./practice.toc
+/LSTU.jpg>] [2] (./practice.toc
 LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
 e 1.
 
@@ -1319,82 +1321,85 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 \tf@toc=\write4
 \openout4 = `practice.toc'.
 
- [2]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 73.
+ [3]
 
+Package hyperref Warning: The anchor of a bookmark and its parent's must not
+(hyperref)                be the same. Added a new anchor on input line 80.
+
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
+e 90.
 (/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 73.
- [3{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}] [4]
-Overfull \hbox (5.25754pt too wide) in paragraph at lines 102--103
+(Font)              scaled to size 14.4pt on input line 90.
+ [4{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}] [5]
+Overfull \hbox (5.25754pt too wide) in paragraph at lines 117--118
 []\T2A/ntxtlf/b/n/14.4 (-20) Поскольку дис-ци-пли-на со сто-ро-ны ма-ги-стра но
 -си-ла су-гу-бо практико-
  []
 
-
-Overfull \hbox (15.83745pt too wide) in paragraph at lines 108--110
+[6]
+Overfull \hbox (15.83745pt too wide) in paragraph at lines 123--125
 []\T2A/ntxtlf/b/n/14.4 (-20) Лабораторная ра-бо-та ќ2: ѕРаз-ра-бот-ка ста-ти-че
 -ской веб-страницы.
  []
 
-[5]
-Overfull \hbox (15.83745pt too wide) in paragraph at lines 111--113
+
+Overfull \hbox (15.83745pt too wide) in paragraph at lines 126--128
 []\T2A/ntxtlf/b/n/14.4 (-20) Лабораторная ра-бо-та ќ3: ѕРаз-ра-бот-ка ста-ти-че
 -ской веб-страницы.
  []
 
-[6]
-Overfull \hbox (1.74744pt too wide) in paragraph at lines 120--122
+[7]
+Overfull \hbox (1.74744pt too wide) in paragraph at lines 135--137
 []\T2A/ntxtlf/b/n/14.4 (-20) Индивидуальное до-маш-нее за-да-ние: ѕРаз-ра-бот-к
 а веб-страницы
  []
 
-[7]
-Overfull \hbox (10.37859pt too wide) in paragraph at lines 136--137
+[8]
+Overfull \hbox (10.37859pt too wide) in paragraph at lines 151--152
 []\T2A/ntxtlf/b/n/14.4 (-20) Публичные REST API (JSONPlaceholder, OpenWeatherMa
 p, CoinGecko
  []
 
-[8]
-Underfull \hbox (badness 5260) in paragraph at lines 148--149
+[9]
+Underfull \hbox (badness 5260) in paragraph at lines 162--163
 []\T2A/ntxtlf/b/n/14.4 (+20) Основной це-лью раз-ра-бот-ки яв-ля-лось со-зда-ни
 е практико-
  []
 
 
-Overfull \hbox (26.04866pt too wide) in paragraph at lines 153--154
+Overfull \hbox (26.04866pt too wide) in paragraph at lines 167--168
 []\T2A/ntxtlf/b/n/14.4 (-20) Выработать прак-ти-че-ские на-вы-ки про-грам-ми-ро
 -ва-ния на JavaScript
  []
 
-[9]
+[10]
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/m/it' undefined
-(Font)              using `T2A/ntxtlf/m/n' instead on input line 162.
+(Font)              using `T2A/ntxtlf/m/n' instead on input line 176.
 
-[10] [11] [12]
+[11] [12] [13]
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 200.
+            Default family used instead on input line 214.
  (/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ntxtlf in TS1 encoding.
-            Default family used instead on input line 200.
- [13{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (0.73663pt too wide) in paragraph at lines 223--224
+            Default family used instead on input line 214.
+ [14{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [15]
+Overfull \hbox (0.73663pt too wide) in paragraph at lines 237--238
 \T2A/ntxtlf/m/it/14.4 (-20) (Use-case, ко-опе-ра-ции, раз-вер-ты-ва-ния, со-сто
 -я-ний, ком-по-нен-тов, клас-
  []
 
-[14] [15] [16]
+[16] [17] [18] [19]
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-263.
+280.
  (/usr/share/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
@@ -1402,31 +1407,31 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T2A).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [17]
-Overfull \hbox (5.86057pt too wide) in paragraph at lines 265--266
+
+Overfull \hbox (5.86057pt too wide) in paragraph at lines 282--283
 \T2A/ntxtlf/m/it/14.4 (-20) жим до-сту-па: []$\T2A/cmtt/m/n/14.4 https : / / fi
 gma . com$[] \T2A/ntxtlf/m/it/14.4 (-20) (да-та об-ра-ще-ния: 05.06.2026). 
  []
 
 
-Overfull \hbox (29.69334pt too wide) in paragraph at lines 267--268
+Overfull \hbox (29.69334pt too wide) in paragraph at lines 284--285
 \T2A/ntxtlf/m/it/14.4 (-20) W3C. --- Ре-жим до-сту-па: []$\T2A/cmtt/m/n/14.4 ht
 tps : / / www . w3 . org / TR / css-[]flexbox-[]1/$[]
  []
 
 
-Overfull \hbox (2.62227pt too wide) in paragraph at lines 268--269
+Overfull \hbox (2.62227pt too wide) in paragraph at lines 285--286
 []\T2A/ntxtlf/m/it/14.4 (-20) UML 2.5 Specification [Элек-трон-ный ре-сурс] Obj
 ect Management
  []
 
-[18]
-Overfull \hbox (13.16893pt too wide) in paragraph at lines 274--275
+[20]
+Overfull \hbox (13.16893pt too wide) in paragraph at lines 291--292
 \T2A/ntxtlf/m/it/14.4 (-20) жим до-сту-па: []$\T2A/cmtt/m/n/14.4 https : / / ro
 admap . sh$[] \T2A/ntxtlf/m/it/14.4 (-20) (да-та об-ра-ще-ния: 05.06.2026). 
  []
 
-[19] [20] [21] [22] (./practice.aux)
+[21] [22] [23] [24] (./practice.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
@@ -1436,25 +1441,25 @@ L3 programming layer <2020/03/25>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `practice.out' has not changed.
-(rerunfilecheck)             Checksum: F403AA7C9B0647F611C519B94843EF48;5392.
+(rerunfilecheck)             Checksum: 241926FA7F11CDFADC11BE2336C144B3;5848.
  ) 
 Here is how much of TeX's memory you used:
- 22478 strings out of 468980
- 347857 string characters out of 5462461
- 782099 words of memory out of 5000000
- 50666 multiletter control sequences out of 15000+600000
+ 22487 strings out of 468980
+ 348192 string characters out of 5462461
+ 781101 words of memory out of 5000000
+ 50671 multiletter control sequences out of 15000+600000
  649216 words of font info for 121 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
- 80i,7n,82p,1005b,682s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 80i,7n,82p,1285b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf
 -dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/typ
 e1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
 per/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pf
 b>
-Output written on practice.pdf (22 pages, 139182 bytes).
+Output written on practice.pdf (24 pages, 141441 bytes).
 PDF statistics:
- 276 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 18582 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 295 PDF objects out of 1000 (max. 8388607)
+ 254 compressed objects within 3 object streams
+ 64 named destinations out of 1000 (max. 500000)
+ 18598 words of extra memory for PDF output out of 20736 (max. 10000000)
 
