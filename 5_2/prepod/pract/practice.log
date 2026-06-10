@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  8 JUN 2026 12:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  10 JUN 2026 20:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1206,7 +1206,7 @@ Package caption Info: End \AtBeginDocument code.
 \c@mv@boldtabular=\count356
 LaTeX Info: Command `\dddot' is already robust on input line 3.
 LaTeX Info: Command `\ddddot' is already robust on input line 3.
-<~/programmer/++Programmer/5_1/LSTU.jpg, id=71, 42.705pt x 63.729pt>
+<~/programmer/++Programmer/5_1/LSTU.jpg, id=70, 42.705pt x 63.729pt>
 File: ~/programmer/++Programmer/5_1/LSTU.jpg Graphic file (type jpg)
 <use ~/programmer/++Programmer/5_1/LSTU.jpg>
 Package pdftex.def Info: ~/programmer/++Programmer/5_1/LSTU.jpg  used on input 
@@ -1315,11 +1315,6 @@ File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
 (Font)              scaled to size 14.4pt on input line 1.
-
-Overfull \hbox (2.64145pt too wide) detected at line 13
-\T2A/ntxtlf/b/n/14.4 10.  
- []
-
 )
 \tf@toc=\write4
 \openout4 = `practice.toc'.
@@ -1327,7 +1322,8 @@ Overfull \hbox (2.64145pt too wide) detected at line 13
  [2]
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
 e 73.
- (/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
+
+(/usr/share/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
@@ -1439,51 +1435,26 @@ L3 programming layer <2020/03/25>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-Package rerunfilecheck Warning: File `practice.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `practice.out':
-(rerunfilecheck)             Before: 5702A1688F9236946956DA5361312422;5397
-(rerunfilecheck)             After:  F403AA7C9B0647F611C519B94843EF48;5392.
+Package rerunfilecheck Info: File `practice.out' has not changed.
+(rerunfilecheck)             Checksum: F403AA7C9B0647F611C519B94843EF48;5392.
  ) 
 Here is how much of TeX's memory you used:
- 22484 strings out of 468980
- 347927 string characters out of 5462461
- 781099 words of memory out of 5000000
- 50667 multiletter control sequences out of 15000+600000
+ 22478 strings out of 468980
+ 347857 string characters out of 5462461
+ 782099 words of memory out of 5000000
+ 50666 multiletter control sequences out of 15000+600000
  649216 words of font info for 121 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  80i,7n,82p,1005b,682s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{section.10} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section.9} has been referenced but does not exist, 
-replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section.8} has been referenced but does not exist, 
-replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.6.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.4.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-</usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf-d
-ist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1
-/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-supe
-r/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pfb>
-Output written on practice.pdf (22 pages, 139374 bytes).
+</usr/share/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf
+-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/cm-super/sfrm1440.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
+per/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pf
+b>
+Output written on practice.pdf (22 pages, 139182 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
- 65 named destinations out of 1000 (max. 500000)
+ 276 PDF objects out of 1000 (max. 8388607)
+ 237 compressed objects within 3 object streams
+ 60 named destinations out of 1000 (max. 500000)
  18582 words of extra memory for PDF output out of 20736 (max. 10000000)
 
