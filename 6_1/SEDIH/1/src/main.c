@@ -1,167 +1,113 @@
-#include<stdio.h>
-#include<math.h>
+#include "common.h"
+#include "decoder.h"
+#include "encoder.h"
+#include "output.h"
+#include "xsrc.h"
+#include "xtgt.h"
 
-#define D_MODEL 4
-#define POSITIONS 6
-#define D_K 2
-#define HEADS 2
-#define SRC_WORDS 3
-#define TARGET_WORDS 6
-
-
-// 1st TASK
-void posEncoding(double pe[POSITIONS][D_MODEL])
-{
-    for (int pos = 0; pos < POSITIONS; pos++)
-    {
-        for (int i = 0; i < D_MODEL / 2; i++)
-        {
-            double denominator = pow(10000.0, (2.0 * i) / D_MODEL);
-
-            // чет
-            pe[pos][2 * i] = sin(pos / denominator);
-            // нечет
-            pe[pos][2 * i + 1] = cos(pos / denominator);
-        }
-    }
-
-    for (int pos = 0; pos < POSITIONS; pos++)
-    {
-        printf("PE(%d) = [ ", pos);
-        for (int j = 0; j < D_MODEL; j++)
-        {
-            printf("%f", pe[pos][j]);
-            putchar(' ');
-        }
-        putchar('\n');
-    }
-}
-
-// 2nd task
-double src[SRC_WORDS][D_MODEL] = {{0.6, 0.9, -0.5, 0.2},  // children
-    {1.0, 0.4, 0.5, 0.8},                   // play
-    {0.8, -0.1, -1.0, 0.5}};                // games
-
-void source(const double pe[POSITIONS][D_MODEL], double xsrc[SRC_WORDS][D_MODEL])
-{
-    printf("\nxsrc = [ ");
-    for (int i = 0; i < SRC_WORDS; i++)
-    {
-        for (int j = 0; j < D_MODEL; j++)
-        {
-            xsrc[i][j] = src[i][j] + pe[i][j];
-            printf("%f", xsrc[i][j]);
-            putchar(' ');
-        }
-        putchar('\n');
-    }
-}
-
-// 3rd task
-double tgt[TARGET_WORDS][D_MODEL] =
-        {{0.0, 0.0, 0.0, 0.0},  // sos
-        {0.5, 0.7, -0.3, 0.1},  // Дети
-        {1.2, 0.5, 0.6, 0.9},   // играют
-        {0.2, 0.2, 0.2, 0.2},   // в
-        {0.9, -0.1, -1.0, 0.5}, // игры
-        {1.0, 1.0, 1.0, 1.0}};  // eos
-
-void target(const double pe[POSITIONS][D_MODEL], double xtgt[TARGET_WORDS][D_MODEL])
-{
-    printf("\nxtgt = [ ");
-    for (int i = 0; i < TARGET_WORDS; i++)
-    {
-        for (int j = 0; j < D_MODEL; j++)
-        {
-            xtgt[i][j] = tgt[i][j] + pe[i][j];
-            printf("%f", xtgt[i][j]);
-            putchar(' ');
-        }
-        putchar('\n');
-    }
-}
-
-// 4th task
-// Encoder: Head 1 weights (4x2).
-double W_Q1[D_MODEL][D_K] =
-{
-    { 0.1,  0.2},
-    { 0.3, -0.1},
-    { 0.0,  0.4},
-    {-0.2,  0.1}
-};
-
-double W_K1[D_MODEL][D_K] =
-{
-    { 0.2,  0.1},
-    {-0.1,  0.3},
-    { 0.4,  0.0},
-    { 0.1, -0.2}
-};
-
-double W_V1[D_MODEL][D_K] =
-{
-    {0.1, -0.1},
-    {0.2,  0.3},
-    {0.0,  0.1},
-    {0.3,  0.0}
-};
-
-
-// Encoder: Head 2 weights (4x2).
-
-double W_Q2[D_MODEL][D_K] =
-{
-    { 0.0, 0.3},
-    { 0.2, 0.1},
-    {-0.1, 0.2},
-    { 0.3, 0.0}
-};
-
-double W_K2[D_MODEL][D_K] =
-{
-    {0.1,  0.2},
-    {0.3, -0.2},
-    {0.0,  0.1},
-    {0.2,  0.3}
-};
-
-double W_V2[D_MODEL][D_K] =
-{
-    { 0.2, 0.0},
-    { 0.1, 0.2},
-    {-0.1, 0.3},
-    { 0.0, 0.1}
-};
-
-
-// Output projection W_O (4x4): Identity matrix.
-
-
-double W_O[D_MODEL][D_MODEL] =
-{
-    {1.0, 0.0, 0.0, 0.0},
-    {0.0, 1.0, 0.0, 0.0},
-    {0.0, 0.0, 1.0, 0.0},
-    {0.0, 0.0, 0.0, 1.0}
-};
-
-
-void encoder()
-{
-
-}
-
-int main()
-{
-    double pe[POSITIONS][D_MODEL];
-    // по заданию должна получиться матрица 3x4
-    // поэтому EOS не в счет
-    double xsrc[SRC_WORDS][D_MODEL];
-
+int main() {
+    double pe[POSITIONS][D_MODEL];   // 4x6
+    double xsrc[SRC_WORDS][D_MODEL]; // 4x4
+    // 1
     posEncoding(pe);
+    // 2
     source(pe, xsrc);
-    target(pe, tgt);
+    // 3
+    target(pe, xtgt);
+    // 4: encoder
+    double head1[SRC_WORDS][D_K];
+    double head2[SRC_WORDS][D_K];
+    attentionHead(xsrc, W_Q1, W_K1, W_V1, head1);
+    attentionHead(xsrc, W_Q2, W_K2, W_V2, head2);
+
+    PRINT_MATRIX("head1", head1, SRC_WORDS, D_K);
+    PRINT_MATRIX("head2", head2, SRC_WORDS, D_K);
+
+    double concat[SRC_WORDS][D_MODEL]; // 4x4
+    concatenateHeads(head1, head2, concat);
+    PRINT_MATRIX("concat", concat, SRC_WORDS, D_MODEL);
+
+    // Z = Concat * W_O = Concat * I4 = Concat
+    double x_attn[SRC_WORDS][D_MODEL];
+    attn(xsrc, concat, x_attn);
+    PRINT_MATRIX("x_attn", x_attn, SRC_WORDS, D_MODEL);
+
+    double x_out_enc[SRC_WORDS][D_MODEL];
+    ffn(x_attn, W_FF1, b1, W_FF2, b2, x_out_enc);
+    PRINT_MATRIX("ffn", x_out_enc, SRC_WORDS, D_MODEL);
+
+    // 5: decoder
+    double head_dec1[TARGET_WORDS][D_K];
+    double head_dec2[TARGET_WORDS][D_K];
+
+    decoderAttentionHead(xtgt, W_Q1, W_K1, W_V1, head_dec1);
+    decoderAttentionHead(xtgt, W_Q2, W_K2, W_V2, head_dec2);
+
+    PRINT_MATRIX("decoder head 1", head_dec1, TARGET_WORDS, D_K);
+    PRINT_MATRIX("decoder head 2", head_dec2, TARGET_WORDS, D_K);
+
+    double concat_dec[TARGET_WORDS][D_MODEL];
+
+    concatenateDecoderHeads(head_dec1, head_dec2, concat_dec);
+
+    PRINT_MATRIX("decoder concat", concat_dec, TARGET_WORDS, D_MODEL);
+
+    double x_dec_self[TARGET_WORDS][D_MODEL];
+
+    for (int i = 0; i < TARGET_WORDS; i++) {
+        for (int j = 0; j < D_MODEL; j++) {
+            x_dec_self[i][j] = xtgt[i][j] + concat_dec[i][j];
+        }
+    }
+
+    double x_cross_attn[TARGET_WORDS][D_MODEL];
+
+    double head_cross1[TARGET_WORDS][D_K];
+    double head_cross2[TARGET_WORDS][D_K];
+
+    crossAttentionHead(x_dec_self, x_out_enc, W_Q_cross1, W_K_cross1,
+                       W_V_cross1, head_cross1);
+
+    crossAttentionHead(x_dec_self, x_out_enc, W_Q_cross2, W_K_cross2,
+                       W_V_cross2, head_cross2);
+
+    PRINT_MATRIX("cross head 1", head_cross1, TARGET_WORDS, D_K);
+    PRINT_MATRIX("cross head 2", head_cross2, TARGET_WORDS, D_K);
+
+    double concat_cross[TARGET_WORDS][D_MODEL];
+
+    concatenateDecoderHeads(head_cross1, head_cross2, concat_cross);
+    PRINT_MATRIX("cross concat", concat_cross, TARGET_WORDS, D_MODEL);
+
+    // Cross-attention residual
+    for (int i = 0; i < TARGET_WORDS; i++) {
+        for (int j = 0; j < D_MODEL; j++) {
+            x_cross_attn[i][j] = x_dec_self[i][j] + concat_cross[i][j];
+        }
+    }
+    PRINT_MATRIX("x_cross_attn", x_cross_attn, TARGET_WORDS, D_MODEL);
+
+    double x_out_dec[TARGET_WORDS][D_MODEL];
+    decoderFFN(x_cross_attn, W_FF1, b1, W_FF2, b2, x_out_dec);
+    PRINT_MATRIX("decoder ffn", x_out_dec, TARGET_WORDS, D_MODEL);
+
+    // 6: logits, softmax, loss for "children"
+    double logits[TARGET_WORDS][VOCAB];
+    decoderLogits(x_out_dec, W_out, b_out, logits);
+    PRINT_MATRIX("logits", logits, TARGET_WORDS, VOCAB);
+
+    double probs[TARGET_WORDS][VOCAB];
+    softmaxLogits(logits, probs);
+    PRINT_MATRIX("probs", probs, TARGET_WORDS, VOCAB);
+
+    int target_token = 1; // "children" (Дети)
+    int target_pos = 0;   // после sos
+
+    double loss = crossEntropyLoss(probs[target_pos], target_token);
+
+    printf("target = %d (\"children\")\n", target_token);
+    printf("p(target) = %f\n", probs[target_pos][target_token]);
+    printf("loss = %f\n", loss);
 
     return 0;
 }
