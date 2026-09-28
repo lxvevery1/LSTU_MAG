@@ -1,0 +1,4632 @@
+{
+  "classes": [
+    "NOISE_MEME",
+    "GENUINE_OPINION",
+    "FINANCIAL_CLAIM",
+    "ANALYSIS_DD",
+    "UNCERTAIN"
+  ],
+  "overall": {
+    "total": 1469,
+    "correct": 821,
+    "accuracy": 0.5589,
+    "missing_in_original": 0
+  },
+  "per_year": {
+    "2019": {
+      "total": 198,
+      "correct": 109,
+      "accuracy": 0.5505
+    },
+    "2020": {
+      "total": 204,
+      "correct": 136,
+      "accuracy": 0.6667
+    },
+    "2021": {
+      "total": 142,
+      "correct": 93,
+      "accuracy": 0.6549
+    },
+    "2022": {
+      "total": 199,
+      "correct": 115,
+      "accuracy": 0.5779
+    },
+    "2023": {
+      "total": 184,
+      "correct": 90,
+      "accuracy": 0.4891
+    },
+    "2024": {
+      "total": 183,
+      "correct": 92,
+      "accuracy": 0.5027
+    },
+    "2025": {
+      "total": 178,
+      "correct": 88,
+      "accuracy": 0.4944
+    },
+    "2026": {
+      "total": 181,
+      "correct": 98,
+      "accuracy": 0.5414
+    }
+  },
+  "mismatches": [
+    {
+      "id": "eiah6y",
+      "year": "2019",
+      "title": "Asking a girl out with options lingo",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei6uk5",
+      "year": "2019",
+      "title": "Short the shit out of UBER Happy New Year from California!",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei8tl1",
+      "year": "2019",
+      "title": "What Are Your Moves Tomorrow, January 01",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei7ejt",
+      "year": "2019",
+      "title": "I just realised Im responsible...",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dpthz7",
+      "year": "2019",
+      "title": "TSLA owes $570,669,500 due tomorrow to SCTY convertible debt holders",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "dpqf1h",
+      "year": "2019",
+      "title": "I caught autism",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dps88v",
+      "year": "2019",
+      "title": "My bank keeps sending me emails (around thrice yearly) that they want to give me a special 3.99% rate on my line of credit (12.5k), don't index funds beat this usually?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbcxj5",
+      "year": "2019",
+      "title": "Buy Amazon Call Spreads for 10/25",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "dbd1yy",
+      "year": "2019",
+      "title": "WeWork DD",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dptabk",
+      "year": "2019",
+      "title": "Earnings traders, how important is a company’s 10q / 10k",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbdlco",
+      "year": "2019",
+      "title": "McDonald’s launched the PLT in Ontario today (BYND meatless patty). Any WSBers in London Ontario that can head over to a McDonald’s and check it out for us?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "dbjvxp",
+      "year": "2019",
+      "title": "Chipotle + BYND fake meat?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbbzxp",
+      "year": "2019",
+      "title": "Finally time to buy $AMZN?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbcn4m",
+      "year": "2019",
+      "title": "How screwed am I?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbi9vf",
+      "year": "2019",
+      "title": "What Are Your Moves Tomorrow, October 01",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dptxfc",
+      "year": "2019",
+      "title": "What Are Your Moves Tomorrow, November 01",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dpqo14",
+      "year": "2019",
+      "title": "Has anyone YOLO'd with their 401k account?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dpvqto",
+      "year": "2019",
+      "title": "Sell to gain's only gang",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dpqj92",
+      "year": "2019",
+      "title": "Is there a way to gain exposure to CDS’s without being able to trade them outright?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbckwn",
+      "year": "2019",
+      "title": "THIS JUST IN: WeWork pulled out game strong",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "dbklrm",
+      "year": "2019",
+      "title": "I track YOLOs so you don't have to - September 2019",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "dbjwue",
+      "year": "2019",
+      "title": "That one where their naked puts got assigned",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "dbchew",
+      "year": "2019",
+      "title": "#CivilWar2 and #CivilWarSignup are trending on twitter. Long $GUNS",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "dbfnd0",
+      "year": "2019",
+      "title": "I have no balls and can’t bring myself to YOLO :’(",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dbdhbx",
+      "year": "2019",
+      "title": "Market Volume yearly low?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "dbhtzs",
+      "year": "2019",
+      "title": "Are paid stock pumpers a thing?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "dbgkyf",
+      "year": "2019",
+      "title": "Why is Disney taking mini hits everyday right now?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "dbjy8x",
+      "year": "2019",
+      "title": "Wondering about trading platforms",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "dbfglr",
+      "year": "2019",
+      "title": "Stupid question",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "cxwqtc",
+      "year": "2019",
+      "title": "Hurricane Dorian Turned",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "cxx8ef",
+      "year": "2019",
+      "title": "Just thought of a cool idea/script I can make to ENHANCE the WSB forum.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "cxzjky",
+      "year": "2019",
+      "title": "$lulu er play",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "cxy14v",
+      "year": "2019",
+      "title": "YOLO DD",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "cy1g5k",
+      "year": "2019",
+      "title": "Long $BYND, short $HeartDisease",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "cxzo3x",
+      "year": "2019",
+      "title": "Forex Euro and Pound plays (FXE) (FXB)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "cy0b6o",
+      "year": "2019",
+      "title": "MDB - thoughtson earnings?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "cxxohm",
+      "year": "2019",
+      "title": "Terlia (TLRA) DD",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ckfzdc",
+      "year": "2019",
+      "title": "This has to be the most negligent thing I’ve seen since Enron",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "ckegf0",
+      "year": "2019",
+      "title": "What Are Your Moves Tomorrow, August 01",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ckg8ok",
+      "year": "2019",
+      "title": "SPY DIP - should we btfd or its the start of a major correction?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ei6e4x",
+      "year": "2019",
+      "title": "Alibaba Chances of Going to 1609 in a Year",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei988r",
+      "year": "2019",
+      "title": "Tesla to $112,886 by 2030",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei5zku",
+      "year": "2019",
+      "title": "What’s happening to ACB?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei5kc1",
+      "year": "2019",
+      "title": "NYT: “Markets in 2019: You Couldn’t Lose Money If You Tried”",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ei5uen",
+      "year": "2019",
+      "title": "DD: Juicy Boi’s",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei97ir",
+      "year": "2019",
+      "title": "Imma hold it bc i trust the bald man",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei5zqv",
+      "year": "2019",
+      "title": "NFLX is losing friends",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "eiasq6",
+      "year": "2019",
+      "title": "I'm autistic and trying to understand some financial news from BSGM.",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "eiaiah",
+      "year": "2019",
+      "title": "2019 was the year of the BULLS, eat Di&$ Bears",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "eiacj0",
+      "year": "2019",
+      "title": "Thoughts on this??",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "eia92p",
+      "year": "2019",
+      "title": "The Closing Bell tolls for a wrap on trading in 2019. Post your years P&L, best/worst trades, and outlook for 2020.",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "eia4wt",
+      "year": "2019",
+      "title": "Arrow is both when I found WSB and when I started trading options. LK, NIO, PTI, XLE. No YOLO. Green setting may look strange as fuck to some of you so I made the arrow red for your comfort",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei9gmj",
+      "year": "2019",
+      "title": "How do I do this?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei9bf5",
+      "year": "2019",
+      "title": "Now the time to PUT TSLA?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei92yc",
+      "year": "2019",
+      "title": "GME YOLO month-end update — Dec 2019",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei910o",
+      "year": "2019",
+      "title": "IM FRUNK AND BUYING",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ei8juk",
+      "year": "2019",
+      "title": "are all the veuve clicquot sales for tonight priced in? i’m going all in on LVMH. free tenders.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ei8j90",
+      "year": "2019",
+      "title": "YOLO on ACB",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei8h5k",
+      "year": "2019",
+      "title": "Is January bull market?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ei8g8f",
+      "year": "2019",
+      "title": "Where does Putin put his money",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei87px",
+      "year": "2019",
+      "title": "TECD",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei81c2",
+      "year": "2019",
+      "title": "Am I missing something? SWTSX has beaten both the DOW and S&P over the past 20 years and has an expense ratio of 0.03%. Is there any reason for me to NOT buy this fund to be 100% of my Roth IRA portfolio? (28yo with 20+ year timeline)",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ei7xee",
+      "year": "2019",
+      "title": "B&H Photo - Payboo credit card- no sales tax?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei77e3",
+      "year": "2019",
+      "title": "Noob Question",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei6qc7",
+      "year": "2019",
+      "title": "I had a little money in RH so put it all into my cheapest penny stock I've been watching last week...",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei6mjj",
+      "year": "2019",
+      "title": "Tired of robinhood",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei6iaq",
+      "year": "2019",
+      "title": "Good platform for trading foreign currency options?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei65cm",
+      "year": "2019",
+      "title": "Is Robinhood fucking with me?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei5p6p",
+      "year": "2019",
+      "title": "$ACB up %12 today... Why?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ei5lza",
+      "year": "2019",
+      "title": "Don’t ever give up, yolo every last cent",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei5ijl",
+      "year": "2019",
+      "title": "Harpoon therapeutics rated buy",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ei5gor",
+      "year": "2019",
+      "title": "70,000% loss, am I doing this right?",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "eiaz8e",
+      "year": "2019",
+      "title": "Long LYFT and UBER DD",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ei97f7",
+      "year": "2019",
+      "title": "Robinhood is giving away free stocks",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ei7rkk",
+      "year": "2019",
+      "title": "DD on tobacco companies (PM, MO etc)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei7cht",
+      "year": "2019",
+      "title": "Thoughts on Molecular Templates?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ei5ick",
+      "year": "2019",
+      "title": "Last day of the year to harvest capital losses!",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "e3zd1u",
+      "year": "2019",
+      "title": "I FOUND A ROBINHOOD INFINITE MONEY GLITCH AGAIN!",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "e3nrms",
+      "year": "2019",
+      "title": "Older autists, what was 2008/9 recession like?",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "e45dhv",
+      "year": "2019",
+      "title": "Buy calls I was just at the mall!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "e3pf5z",
+      "year": "2019",
+      "title": "Dish",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "e442jn",
+      "year": "2019",
+      "title": "Streaming wars predictions",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "e3oi4r",
+      "year": "2019",
+      "title": "What happens if more people start selling options?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "e3yvso",
+      "year": "2019",
+      "title": "CLDR earnings date December 5th",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "e3yqwz",
+      "year": "2019",
+      "title": "MZM vs MZMV",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "e419nq",
+      "year": "2019",
+      "title": "Ulta earnings",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "e3puuk",
+      "year": "2019",
+      "title": "How to get around PDT restrictions?",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "e3o1rg",
+      "year": "2019",
+      "title": "CRSP",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "e3swnz",
+      "year": "2019",
+      "title": "Weekly Tendies Thread - November 30, 2019",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ko09ux",
+      "year": "2020",
+      "title": "Gamestop Visit",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko0zd1",
+      "year": "2020",
+      "title": "Selling Leaps - Vega Plays",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko04yx",
+      "year": "2020",
+      "title": "GME YOLO update (Shares ONLY) Dec 31",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "i1fz1y",
+      "year": "2020",
+      "title": "One way to make more than max profit on Call Spreads",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "i1gnjk",
+      "year": "2020",
+      "title": "This is easier than u autist’s make it",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "gu6ts0",
+      "year": "2020",
+      "title": "VTIQ/NKLA",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "gu9g5f",
+      "year": "2020",
+      "title": "Oil Cheap = Airline Profitablity Bullish Covid Downwards Trend / US space force and Boeing 300bn",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "gb71bk",
+      "year": "2020",
+      "title": "Walmart going to fill the $127 gap soon, buy your Calls Retards",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "hiyg43",
+      "year": "2020",
+      "title": "Tesla shareholders urged to oust Elon Musk",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "j2x8iy",
+      "year": "2020",
+      "title": "Hands-free driving for NIO cars coming in October",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "jlmd9p",
+      "year": "2020",
+      "title": "Every time I post in r/Politics I'm called out for being a Wallstreetbets user.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "jlsp8j",
+      "year": "2020",
+      "title": "Am I becoming a genius or just degenerating mentally into a true autist..",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "jlr6u8",
+      "year": "2020",
+      "title": "happy retardoween retards. heres my DD on y spy will go TITS up after election",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "jlslnd",
+      "year": "2020",
+      "title": "Election Results - Trump will win. Calls on GEO or CXW",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "j2w9qc",
+      "year": "2020",
+      "title": "To the genius with the SSSS DD post last week",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "j2x5x9",
+      "year": "2020",
+      "title": "$ASAN the newest Covid stock in the block",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "j2wky2",
+      "year": "2020",
+      "title": "Nordstrom Pump INCOMING",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ik8tl2",
+      "year": "2020",
+      "title": "An Ode to the Shoeshine Boy’s Stock Tips",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "i1hgh4",
+      "year": "2020",
+      "title": "My mom had a 7 bagger and didn’t know",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "i1gajr",
+      "year": "2020",
+      "title": "BECKY has changed",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "i1fkip",
+      "year": "2020",
+      "title": "Amazon about to lift off?",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "i1gbht",
+      "year": "2020",
+      "title": "Any other earnings plays people are confident about? This week tired me the fuck out",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "i1gxrs",
+      "year": "2020",
+      "title": "Theta gang gains",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "i1i5jx",
+      "year": "2020",
+      "title": "Doubled RCL then bought beach house",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "i1icds",
+      "year": "2020",
+      "title": "Amazon, To the ($3.5-$4.2k) moon?",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "hiyk0y",
+      "year": "2020",
+      "title": "Pizza the Hutt and Wendy's file for Chapter 11 Bankruptcy",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "gu9bq3",
+      "year": "2020",
+      "title": "u/Flarereddit bet me $300 SPY would open above 309 tomorrow and then deleted his comments",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "gu9adb",
+      "year": "2020",
+      "title": "Price to Book Value observation of PK (Park Hotels and Resorts)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "gu91ep",
+      "year": "2020",
+      "title": "SNAP",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "gu9tcs",
+      "year": "2020",
+      "title": "More than 300% up for the month, but losing to fees.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "gu9lqu",
+      "year": "2020",
+      "title": "Tendies against Police Brutality",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "gu8boy",
+      "year": "2020",
+      "title": "S and P futures started tanking massively at 17:30 Now at 3,013",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "gb6dzw",
+      "year": "2020",
+      "title": "Everyone's fucked in 3 months",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "gb6kxd",
+      "year": "2020",
+      "title": "Who YOLO'd AMZN!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "gb6jo5",
+      "year": "2020",
+      "title": "DIJA IMPORTANT new-calling gay moderators from the Caribbean islands",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "gb5v7d",
+      "year": "2020",
+      "title": "Best Month Done...Bears are back in town!!!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "gb5ae0",
+      "year": "2020",
+      "title": "I can't do this any more",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "gb5adm",
+      "year": "2020",
+      "title": "Chegg plays?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ko0o39",
+      "year": "2020",
+      "title": "Did I do this right? Up 1,500% on this one in the last 18 months.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko0rzf",
+      "year": "2020",
+      "title": "ARKK and ARKG PT's for 2021",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ko0cat",
+      "year": "2020",
+      "title": "Reply to \"NIO will miss 4Q delivery guidance\"",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "ko0yp5",
+      "year": "2020",
+      "title": "Some advice needed",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ko02mo",
+      "year": "2020",
+      "title": "CRM (SALESFORCE) - THE CHOSEN CRM - AN EPIC",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ko0vf5",
+      "year": "2020",
+      "title": "Stock picking is not dead.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko0qfa",
+      "year": "2020",
+      "title": "This kid made 90 percent this year hopefully he hasn’t found wsb yet",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ko0mm9",
+      "year": "2020",
+      "title": "Buying $PLTR be like.... Buy high sell low",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko0lcg",
+      "year": "2020",
+      "title": "Thoughts on Tesla?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ko07k0",
+      "year": "2020",
+      "title": "My Options Strategy: Bull Call Spread",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ko0556",
+      "year": "2020",
+      "title": "The Truth About Trading Gurus - My Research",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "ko025r",
+      "year": "2020",
+      "title": "New to stock market and buying stock through cashapp.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko00aq",
+      "year": "2020",
+      "title": "What is open interest?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "knzvxj",
+      "year": "2020",
+      "title": "“End of year sell off”",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "knzr15",
+      "year": "2020",
+      "title": "First time retard here. Losing most of my equity on qs calls (-87%) I thought stonks only went up",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "knzjdi",
+      "year": "2020",
+      "title": "TLRY still in Play For Big Week Next Week",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "knzg6k",
+      "year": "2020",
+      "title": "Actual Autistic Man Here, Need Advice/Resources",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "knze04",
+      "year": "2020",
+      "title": "GME: Tried contacting EB Games (GameStop in Canada) and they told me they have EXTREME VOLUME SPIKES",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "knzaxk",
+      "year": "2020",
+      "title": "Yolod my whole account(25k) going into 2021 down 5k so far",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ko0aps",
+      "year": "2020",
+      "title": "Thank you all for watching me live today. We secured the bag and ended 2020 making over $10K 🤑 What a wild year and I am looking to continue going into 2021!! Happy new year stay safe.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "knzbm6",
+      "year": "2020",
+      "title": "https://www.bloomberg.com/news/articles/2020-12-31/airbnb-and-doordash-set-for-flurry-of-analyst-coverage-next-week",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "k48a1m",
+      "year": "2020",
+      "title": "NKLA will continue to die",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "k47iwj",
+      "year": "2020",
+      "title": "Retards of Reddit let me introduce you to MP Materials",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "k47ih9",
+      "year": "2020",
+      "title": "1 and only reason I went full retard on PLTR. Holding 1780 shares at avg. $27.45",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "k47mhu",
+      "year": "2020",
+      "title": "Yolo all in apple $120c and AMD $100c, 12/31 expiry. 1 MILLION BY END OF YEAR 🚀🚀🚀🚀",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "k48bpz",
+      "year": "2020",
+      "title": "PLTR vs comps today. Trading similarly, just fear and greed. Keep calm.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "k48qbk",
+      "year": "2020",
+      "title": "Discovered Options after 3 years in the markets...",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "k48faj",
+      "year": "2020",
+      "title": "Modern Portfolio Theory: A Lesson In Diversification [Updated]",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "k48l1d",
+      "year": "2020",
+      "title": "50 UPVOTES AND I WILL YOLO $100K IN AMD FOR DECEMBER 🚀🚀🚀🚀🚀🚀🚀",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "k48cze",
+      "year": "2020",
+      "title": "Decided to get into stocks at the worst possible time, this past january, and put in $2000. Today marked the day I finally made my money back (and more) after the covid crash!",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "rt485p",
+      "year": "2021",
+      "title": "Thoughts on the Reddit IPO/Stock?",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt4813",
+      "year": "2021",
+      "title": "Loss Porn: Finally feel like I belong here.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt4th9",
+      "year": "2021",
+      "title": "Only 3 hedge funds outperformed the S&P 500 in 2021",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt3za1",
+      "year": "2021",
+      "title": "My 2022 Resolution: no more gambling. Also me: how about one last 2021 $420,000 TSLA YOLO",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt5sqm",
+      "year": "2021",
+      "title": "The first pic is how my YOLO Tesla contracts are doing, I got high hopes on tesla production numbers that are being announced (I hope) this weekend, bought more TSLA c1200 1/7/22 hoping to offset my losses, next pic is how I did YTD, can anyone do a technical analysis on it 😂😂 HAPPY NEW YEARS",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "pyu07t",
+      "year": "2021",
+      "title": "AMC Repurchase Some of its First Lien Debt and Reduces annual interest cost",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "ovh0wu",
+      "year": "2021",
+      "title": "Futures Wheel Strategy?",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "npfs0n",
+      "year": "2021",
+      "title": "Rethink your positions Dr. Burry",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "rt6fgg",
+      "year": "2021",
+      "title": "3 reasons why the Omicron variant will hurt the economy less than past waves, according to JPMorgan",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt6kgr",
+      "year": "2021",
+      "title": "Solid first year on the stock market",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt6frk",
+      "year": "2021",
+      "title": "Stock Exchange",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt67t3",
+      "year": "2021",
+      "title": "So let me get this straight, Jamie just went long on Jimmy with no hedge? uhh does something expire in Jan that kicks off Jimmy's cycle? oh that right......OI",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "rt65qo",
+      "year": "2021",
+      "title": "OK can anyone help explain why this option all of a sudden increased so much in value today? It was down significantly. Just because of trading? Obvs a noob. Thanks",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt5pmh",
+      "year": "2021",
+      "title": "Want to learn more",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt55lz",
+      "year": "2021",
+      "title": "My Journey As a Day/Swing Trader",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt4vxz",
+      "year": "2021",
+      "title": "Is this legitimate? If so, why won’t everyone doing it?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt4hjg",
+      "year": "2021",
+      "title": "PROG",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt4bt3",
+      "year": "2021",
+      "title": "Elliot capitals ceo John Pollocks son was arrested for making and detonating explosives in West palm beach florida",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt498m",
+      "year": "2021",
+      "title": "Elliot capital CEO son arrested for making explosives and setting them off near houses in lakeworth florida",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt43oi",
+      "year": "2021",
+      "title": "GTBIF. Anyone know why GTBIF has been on a run lately? 2022 midterms? Legislation? State laws?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt423z",
+      "year": "2021",
+      "title": "Happy New Year, need a little help",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt3yji",
+      "year": "2021",
+      "title": "NVAX, hedgies heavy shorting. Submitted to Fda today, has a bunch of approvals, about to pop. 🚀💎🤲🦍",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "rt3w5k",
+      "year": "2021",
+      "title": "Which platform offers best options for the solo trader that's not ready to yolo?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt3di2",
+      "year": "2021",
+      "title": "Y'all think this Sofi option is a good play?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt36bi",
+      "year": "2021",
+      "title": "Is there a Class action suit against Webull?????? They have cost me an exuberant amount of money and frustration.#Webull #fraud",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "rt33i5",
+      "year": "2021",
+      "title": "Does anyone know about this company UCL? Over last month, its stock price increased from $1.93 to $6.38 today! It went IPO at $18/share in June 2020. Should I get in now? It will be on my watch list for 2022.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "rt2t3j",
+      "year": "2021",
+      "title": "Chegg – Next WSB Bet?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt4w3v",
+      "year": "2021",
+      "title": "The official Let’s Go Brandon meme coin and sponsor of Brandon Brown. Gonna make money or flame out?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt4fv2",
+      "year": "2021",
+      "title": "Tesla to recall 475,000 cars in the US",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "rt3o1p",
+      "year": "2021",
+      "title": "Meme buying Gamestop was a terrible fucking idea.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "r608hf",
+      "year": "2021",
+      "title": "Current Problems with Apes",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "r5yz36",
+      "year": "2021",
+      "title": "On Omicron, the absurd sell-off trigger",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "r60b8j",
+      "year": "2021",
+      "title": "S and p call yolo already lost 4k and it’s a loan expensive way to get karma.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "r60e6i",
+      "year": "2021",
+      "title": "South America has it's first case of the Omicron Variant. It's Brazil. Stocks are down heavily.",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r5zy3f",
+      "year": "2021",
+      "title": "DNUT, 44% back and private",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "r5z26t",
+      "year": "2021",
+      "title": "Biotech company commercializing anti-sepsis and anti-bacterial infection tech but trading at just $0.85/share ($ASEP)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "r612e2",
+      "year": "2021",
+      "title": "Is there a buyer emerging for Rite Aid (RAD)?Rite Aid has had some interesting trading as of late.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r60miq",
+      "year": "2021",
+      "title": "What I’m hearing is that $HTZ is sold out everywhere 🖲👋",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r5zo8a",
+      "year": "2021",
+      "title": "T-Mobile loss porn",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "r5zet7",
+      "year": "2021",
+      "title": "Checked out of AAPL at top and switched to TQQQ at the dip.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r615kp",
+      "year": "2021",
+      "title": "Up 4% today while the market was down.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "r615dh",
+      "year": "2021",
+      "title": "What I’m hearing is $HTZ is sold out everywhere and charging a premium 🖲👋",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r611nn",
+      "year": "2021",
+      "title": "MindMed is going to the moon🚀🌝",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "r610hc",
+      "year": "2021",
+      "title": "ALCX V2 released",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r60vir",
+      "year": "2021",
+      "title": "So about Blackberry",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r60nih",
+      "year": "2021",
+      "title": "DNUT, 44% back and private!!! The sleeping catalyst?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "r60j3l",
+      "year": "2021",
+      "title": "TCG World",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r60igg",
+      "year": "2021",
+      "title": "How to Get rid of Robinhood margin effectively",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "r60gfl",
+      "year": "2021",
+      "title": "How do I buy sand and xrp in ny?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1003mtg",
+      "year": "2022",
+      "title": "Which one ticker ruined your year the most?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1003fc1",
+      "year": "2022",
+      "title": "This is the Buffett Indicator, my favorite indicator. It's proven quite accurate over time. We have a lot more room to fall. Happy new year!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "zzzzph",
+      "year": "2022",
+      "title": "BYOTP. Is ELON loosing it all? What it says about his entrepreneurship?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "v22ktn",
+      "year": "2022",
+      "title": "Tesla short sellers made $7 Billion in profit this year only.",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "v20to3",
+      "year": "2022",
+      "title": "TLRY (and other Cannabis stocks) could be the best lottery tickets in the market",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "v20sua",
+      "year": "2022",
+      "title": "What stocks politicians 'bought the dip'? Bullish on Energy & Oil",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "yipudk",
+      "year": "2022",
+      "title": "China is the way! Shanghai Disney shuts over Covid, visitors \"unable to leave\"",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "yiqme1",
+      "year": "2022",
+      "title": "Advice needed!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "yiq7t3",
+      "year": "2022",
+      "title": "WSB Loss Porn Story",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "yirz1f",
+      "year": "2022",
+      "title": "We need to talk about weed...",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "xsgkub",
+      "year": "2022",
+      "title": "Unpopular Opinion: Regard losing $100k inheritance on 0DTE isn't that bad",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "xsfudu",
+      "year": "2022",
+      "title": "You guys talk about gains….",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "xsgaoi",
+      "year": "2022",
+      "title": "Cryptocurrency Year Loss",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "xsg3ur",
+      "year": "2022",
+      "title": "I'm confused",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "xsfki5",
+      "year": "2022",
+      "title": "A full point rate hike is on the horizon",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "xsegmm",
+      "year": "2022",
+      "title": "SPY Oct/2020 to Oct/2022",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "xsenoe",
+      "year": "2022",
+      "title": "Am I the most regarded of you all?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "x2sgwf",
+      "year": "2022",
+      "title": "Even Bed Bath and Beyond doesn't want us to buy their stock...🥲",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "x2rlam",
+      "year": "2022",
+      "title": "Watch out for RC FUD - March 2022 Letter to BBBY",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "x2sbxc",
+      "year": "2022",
+      "title": "Buy shares and become a bbb(y)agholder.",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "x2s6k2",
+      "year": "2022",
+      "title": "Was the short term profit by RCV worth it?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "x2reu6",
+      "year": "2022",
+      "title": "There’s a ship currently clogging the Suez. What are your stock moves?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "x2r210",
+      "year": "2022",
+      "title": "Great news regarding BBBY strategic plan",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "x2qx6n",
+      "year": "2022",
+      "title": "Ryan Cohen violated SEC rules by filing insider status months late",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "x2qlus",
+      "year": "2022",
+      "title": "Today was the first day my portfolio was Green even though the commodity-ish I follow was red.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "wcwft7",
+      "year": "2022",
+      "title": "I think my son might have committed insider trading",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "wcxgvi",
+      "year": "2022",
+      "title": "What Are Your Moves Tomorrow, August 01, 2022",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "wd0szf",
+      "year": "2022",
+      "title": "AMD Earnings",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "wcz8lv",
+      "year": "2022",
+      "title": "What are you preferred subscriptions and sources of information?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "wd2roj",
+      "year": "2022",
+      "title": "Where to get this kind of graph?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "vohuwb",
+      "year": "2022",
+      "title": "Ever just have one of those days? $12k-->$45k",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "vohwt3",
+      "year": "2022",
+      "title": "Evergrande: Never ending drag! 🥱",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "vojtvk",
+      "year": "2022",
+      "title": "Alright Alright... Which one of you is this?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "vojrts",
+      "year": "2022",
+      "title": "Question about the fractional shares and Robinhood announcement",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "voiikd",
+      "year": "2022",
+      "title": "Residential real estate overbuilt? First I have heard of it",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "voij1o",
+      "year": "2022",
+      "title": "Robinhood",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "vomm1y",
+      "year": "2022",
+      "title": "Why NIO is so hyped when its financial situation is actually crashing?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "volch7",
+      "year": "2022",
+      "title": "Where is the socks/bets June 2022 contest?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "voikeu",
+      "year": "2022",
+      "title": "Lyft is marked overweight by JP Morgan Chase and Wedbush. Price target $37",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "v1zas8",
+      "year": "2022",
+      "title": "THE TRUTH ABOUT STOCK EARNINGS",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "v1z9dn",
+      "year": "2022",
+      "title": "Wendy’s Dumpsters Are For Sale",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "v1zohl",
+      "year": "2022",
+      "title": "Degens have broken RH in the past, but I just broke IBKR….",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "v1yiyr",
+      "year": "2022",
+      "title": "So apparently the Casino is now closed… did you guys get the memo???",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "v1zbiu",
+      "year": "2022",
+      "title": "Salesforce stock rallies on earnings beat, hiked outlook - $CRM",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "ufjo11",
+      "year": "2022",
+      "title": "Hey guys when is the stock market going to go back up again",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "ufi3m7",
+      "year": "2022",
+      "title": "Peter Lynch on stock market corrections",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "ufn067",
+      "year": "2022",
+      "title": "No shame: Name your current (unrealized or realized) losses",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1003gpr",
+      "year": "2022",
+      "title": "Trading fees",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1001kf4",
+      "year": "2022",
+      "title": "2022 please don’t go, stick around.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1006q7e",
+      "year": "2022",
+      "title": "Gay bear",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1006lp7",
+      "year": "2022",
+      "title": "Palantir's Mission to the Moon",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "10064d4",
+      "year": "2022",
+      "title": "What will AMC do in January? Will the shorts get fucked, will Apes take more of a beating? Will the MOASS ever happen?!?!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "10061tu",
+      "year": "2022",
+      "title": "Is it possible to get a credit line of 1000 dollars with a credit score under 600?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "10060r1",
+      "year": "2022",
+      "title": "How will AMC do in January?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1005zd6",
+      "year": "2022",
+      "title": "AMC predictions",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1005sjf",
+      "year": "2022",
+      "title": "PBR IS IT A GOOD BET?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "10059gx",
+      "year": "2022",
+      "title": "Mullen Automotive??",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1004xni",
+      "year": "2022",
+      "title": "Building a 100-200x crypto mining portfolio, can't lose from bottom!",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1004tzm",
+      "year": "2022",
+      "title": "Building a 100-200x crypto mining portfolio, can't lose from bottom!",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1004aim",
+      "year": "2022",
+      "title": "Guaranteed Gamma Squeeze",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1003zf2",
+      "year": "2022",
+      "title": "Vídeo Year in Review Performance Visualizer for any Ticker",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1003ukw",
+      "year": "2022",
+      "title": "Opinions on the market going into the new year? Mostly the first 3 months. Opinion and positions in text.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1003p3i",
+      "year": "2022",
+      "title": "Have any of you legends been able to get ChatGPT to recommend stock strategies?",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1003j84",
+      "year": "2022",
+      "title": "TD Ameritrade Leverage?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1003eb5",
+      "year": "2022",
+      "title": "Just started my investment journey. I’m looking at adding $20 a week indefinitely. Any tips you guys can give me?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1003d1y",
+      "year": "2022",
+      "title": "Just started, looking at adding $20 a week indefinitely. Any tips?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1000z15",
+      "year": "2022",
+      "title": "Checking out the GME doc",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1000xqb",
+      "year": "2022",
+      "title": "Year in review and bull case for China pt. 2",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1000hrp",
+      "year": "2022",
+      "title": "What’s going to be your first trade in 2023?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "zzzlcs",
+      "year": "2022",
+      "title": "DXY Long Term",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1003cug",
+      "year": "2022",
+      "title": "I thought you couldn't beat the market?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "z93y0f",
+      "year": "2022",
+      "title": "The UWMC shorts show the first signs of nervousness",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "z97pmw",
+      "year": "2022",
+      "title": "Am I missing something here with SPY 0DTE strategy?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "z93kdu",
+      "year": "2022",
+      "title": "Self-redemption of a gambler: Account had 15k. Bought all on puts. Lost 90%. Immediately wired 8k to td. Bought calls. Ended the day +4700.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "z954in",
+      "year": "2022",
+      "title": "Loss porn 60k",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "z97e31",
+      "year": "2022",
+      "title": "!BanBet SPY to hit under 330 by 2/17/2023.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "z93uky",
+      "year": "2022",
+      "title": "All in spy puts baby📉📉 PT3: u think I sold? Hell nah, added $8k AAPL puts",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "z94ui5",
+      "year": "2022",
+      "title": "Another recession indicator...",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "z96a0b",
+      "year": "2022",
+      "title": "1569% Gain on SPX calls after JPow announced a shift in policy.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "z973hw",
+      "year": "2022",
+      "title": "Weakest ever retail sales numbers in Sweden...",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "z958wj",
+      "year": "2022",
+      "title": "Bears lmaooo",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "z94twt",
+      "year": "2022",
+      "title": "Why equities went up despite a 50bp hike, it's not just because you bought puts [GS Research]",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "z9407s",
+      "year": "2022",
+      "title": "$HPE YOLO PUTS",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "z96t81",
+      "year": "2022",
+      "title": "Professional & Retail similarly weighted on 2023 outlook",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v804b",
+      "year": "2023",
+      "title": "Maersk ship hit in the red sea",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v9yyz",
+      "year": "2023",
+      "title": "Back in 12/31/1999, I was short YHOO.......then this happened",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18v98kk",
+      "year": "2023",
+      "title": "🌈 🐻 Feeling Lucky Next year? Here’s some stat on the Last year of presidential cycle and also Election year ;)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18vfh4m",
+      "year": "2023",
+      "title": "I saw one of my investments sail by ...",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "18viwsk",
+      "year": "2023",
+      "title": "New Year New Goal",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "18vc4pg",
+      "year": "2023",
+      "title": "Crazy Dragon better on Houthis",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17kvchg",
+      "year": "2023",
+      "title": "AMD Drops 4% as Earnings Fail to Live Up to Lofty Expectations",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "17ktiwk",
+      "year": "2023",
+      "title": "Caterpillar Shares Fall -6% on Tepid Outlook",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "17ktjxn",
+      "year": "2023",
+      "title": "BUD Rallies 5% following Earnings; Key Resistance Lies Ahead on the Chart",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "166kryc",
+      "year": "2023",
+      "title": "🚀🍏 YO YO YO, APES! IT'S TENDY TIME FOR APPLE! 🍏🚀",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "17kr7jb",
+      "year": "2023",
+      "title": "How Microsoft Makes Money [OC]",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "17kv5rw",
+      "year": "2023",
+      "title": "world bank warns oil price could soar to record 150 a barrel",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17ktwie",
+      "year": "2023",
+      "title": "What Are Your Moves Tomorrow, November 01, 2023",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "17ku7ds",
+      "year": "2023",
+      "title": "How do I convince my dad the \"Stock Market Expert\" that wants to give him hot stock tips for $2k a year is full of shit?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17ktmqr",
+      "year": "2023",
+      "title": "Don’t ask this sub for investing advice, we’re all financially illiterate with no impulse control (OP=ex gambling addict).",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "17kti5k",
+      "year": "2023",
+      "title": "Yemen Just Declared War On Israel - I did a YOLO on $UVXY",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17kvd72",
+      "year": "2023",
+      "title": "If I can dig out of a hole, so can you!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17kv25a",
+      "year": "2023",
+      "title": "Shorted SPR thinking it was SAVE",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17kqxn9",
+      "year": "2023",
+      "title": "AMD Reporting Earnings On Halloween afterhours",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "17kreo1",
+      "year": "2023",
+      "title": "Equity compensation",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17krekl",
+      "year": "2023",
+      "title": "Rolf invest in company with best ESG score",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "17kwoxb",
+      "year": "2023",
+      "title": "FOMC Sentiment Poll",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "17kvapt",
+      "year": "2023",
+      "title": "Stock Merger/Acquisition Need to Know!",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17krhz6",
+      "year": "2023",
+      "title": "Is it for possible for me to further request a refund from a broker on these grounds?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "17kr7jj",
+      "year": "2023",
+      "title": "Elon Musk would be on Joe Rohan podcast today!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "16wda4n",
+      "year": "2023",
+      "title": "Should I Quit And Full Time Trade?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "16wk0no",
+      "year": "2023",
+      "title": "Just turned 18 Buying my First Options Calls-Puts Ever",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "16wfi8l",
+      "year": "2023",
+      "title": "Theta, Delta, Gamma. It’s all just a SCAM!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "16waxae",
+      "year": "2023",
+      "title": "Should one invest in soft drink businesses like Coca-Cola co (CCC3) and Pepsi Inc (PEP)?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "16wka3p",
+      "year": "2023",
+      "title": "Thinking of becoming a full time trader...",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "16wfeh7",
+      "year": "2023",
+      "title": "Where do You guys buy stocks?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "16wjsqj",
+      "year": "2023",
+      "title": "Best stock apps",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "16wjzyz",
+      "year": "2023",
+      "title": "Can you make money doing $2 otm options?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "16wf8gu",
+      "year": "2023",
+      "title": "Am I a genius or a regard?",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "16wei5l",
+      "year": "2023",
+      "title": "What just happened with Bed Bath Beyond is a warning to all of you who still believe in stock market conspiracies",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "166kp1j",
+      "year": "2023",
+      "title": "Finally made my money back",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166lbl7",
+      "year": "2023",
+      "title": "What Are Your Moves Tomorrow, September 01, 2023",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "166jxvx",
+      "year": "2023",
+      "title": "To anyone looking to sell calls on $VFS - Don’t, you will get assigned!",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166o38l",
+      "year": "2023",
+      "title": "\"Navigating Paths of Personal Spending, Income, and Employment\"",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "166nffr",
+      "year": "2023",
+      "title": "CEO said the public will suffer",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166omlv",
+      "year": "2023",
+      "title": "Emergency Recovery Mode",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166o1xt",
+      "year": "2023",
+      "title": "Just found my old Robinhood account with $84 in it. How to YOLO it without going to Wendy’s?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166kvnx",
+      "year": "2023",
+      "title": "Is $AFRM stock a p&d? Up 45% in a week",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "166pg0w",
+      "year": "2023",
+      "title": "Am I winning?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166p9xm",
+      "year": "2023",
+      "title": "time to unfollow",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "166rc0q",
+      "year": "2023",
+      "title": "Welcome To September Reg. Your Long Put can on $PY Start Next Week!",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "166jx28",
+      "year": "2023",
+      "title": "Do you think we could raise $1 billion?",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "166kuyz",
+      "year": "2023",
+      "title": "START SHARING YOUR DUE DILIGENCE!!!",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "18va5b0",
+      "year": "2023",
+      "title": "Wendy's Is Selling Cheeseburgers for One Cent This Week",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vei7g",
+      "year": "2023",
+      "title": "Buying AAPL $125 Put since it obviously rejected $200",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18vg485",
+      "year": "2023",
+      "title": "Happy New Years",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18vcjeh",
+      "year": "2023",
+      "title": "Puts on free popcorn?",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vi5x7",
+      "year": "2023",
+      "title": "My guy - just give it up",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vhv77",
+      "year": "2023",
+      "title": "Price of MARA, RIOT, CLSK, etc. on Tuesday",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18vex4i",
+      "year": "2023",
+      "title": "Elastos ??",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "18vedzl",
+      "year": "2023",
+      "title": "I hope everyone loses their jobs this year",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18vc3um",
+      "year": "2023",
+      "title": "SBF won’t face a second trail!",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v9nmm",
+      "year": "2023",
+      "title": "🚀 Joining the Wallstreetbets Crypto Love Train! 🚀 Let's Talk Stonks and Check Out This Free Tool!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18vfqmk",
+      "year": "2023",
+      "title": "So I’ll be able to claim a loss for the rest of my life right?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18vaelz",
+      "year": "2023",
+      "title": "WSB Apes discuss $BB's DD become serious, bottom up?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vh3xz",
+      "year": "2023",
+      "title": "U.S. oil production hit a record under Joe Biden",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vgxyy",
+      "year": "2023",
+      "title": "Enabling options",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vfp4d",
+      "year": "2023",
+      "title": "LONG MTCH in 2024",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18vfdmy",
+      "year": "2023",
+      "title": "Are you planning o shorting Corcept Pharm? (CORT)",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "18vewcv",
+      "year": "2023",
+      "title": "Anyone hear of Elastos (ELA) ?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18veu1b",
+      "year": "2023",
+      "title": "Anyone hear of Elastos (ELA)?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18ves1n",
+      "year": "2023",
+      "title": "VSTS",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vemnq",
+      "year": "2023",
+      "title": "charging bull back story",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "18ve26u",
+      "year": "2023",
+      "title": "BTC Halving Buzz",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vdz1o",
+      "year": "2023",
+      "title": "BTC Halving Buzz: Predicting the Future Amidst Mixed Signals 🚀📉",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vdy77",
+      "year": "2023",
+      "title": "Critical Recession Update: Crossing the midpoint of the +/-1 Sigma Birthing Zone, the Cradle of Recessions (Key Takeaways Below)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vdi19",
+      "year": "2023",
+      "title": "How deep is the shit the Dragon O' Wallstreet is in right now? Those darn Houthis!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vd15d",
+      "year": "2023",
+      "title": "AI trading / Automatic trading bots",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vcm4d",
+      "year": "2023",
+      "title": "DCF Model for Nvidia",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vbs8g",
+      "year": "2023",
+      "title": "Theratechnologies Update",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18vbh98",
+      "year": "2023",
+      "title": "How do I YOLO my entire account",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18valzp",
+      "year": "2023",
+      "title": "thoughts on SPY staying in this channel for 2024 grand opening",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18vaajl",
+      "year": "2023",
+      "title": "Short $GOOG",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "18va44p",
+      "year": "2023",
+      "title": "Wendy's Is Selling Cheeseburgers for One Cent This Week",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18v9kwf",
+      "year": "2023",
+      "title": "Hi wsb, im just starting out in investing and would like some advice.",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v9b9z",
+      "year": "2023",
+      "title": "Wer sich mit Optionsscheinen auskennt kann sich gerne hier austauschen",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v95vo",
+      "year": "2023",
+      "title": "🌈 🐻 Feeling Lucky 2024? It’s presidential election year/ the last year of Presidential cycle",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v8k3p",
+      "year": "2023",
+      "title": "what's the best way to start doing and learning trading? wanna turn this into a skill",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "18v7ju7",
+      "year": "2023",
+      "title": "Can the Ukrainian government take over shares held by citizens?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "18v77c6",
+      "year": "2023",
+      "title": "Blackrock",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "187psk4",
+      "year": "2023",
+      "title": "Huge losses in the bull run.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "187u893",
+      "year": "2023",
+      "title": "$1k to $1M Challenge - Day 4 (-4%) (+85% overall)",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "187t6ho",
+      "year": "2023",
+      "title": "$NEGG is a victim of price manipulation and is shorted almost 15 times the free float",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "187tfno",
+      "year": "2023",
+      "title": "The wonderful tale of Kris “Santa” Kringle",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "187uhd1",
+      "year": "2023",
+      "title": "Understanding which stocks are most impacting an index's daily change",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "187ri2p",
+      "year": "2023",
+      "title": "Ambarella Inc Reporting Earnings on 11/30/2023 afterhours",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "187vsfj",
+      "year": "2023",
+      "title": "How come Nvidia dropped so much after their earnings report?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "187uy9q",
+      "year": "2023",
+      "title": "YTD gains of 82% ($35k-$64k)",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "187u94g",
+      "year": "2023",
+      "title": "Ramaco Resources",
+      "original_label": "UNCERTAIN",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1hqptx5",
+      "year": "2024",
+      "title": "I don’t know how options work",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqokwf",
+      "year": "2024",
+      "title": "Well 2024 was a great year for gains.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqn5yj",
+      "year": "2024",
+      "title": "From calls to puts: I’ve mastered the art of losing money",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqqksv",
+      "year": "2024",
+      "title": "Market was nasty today",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqmuy6",
+      "year": "2024",
+      "title": "Documenting my spy plays",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqq6pk",
+      "year": "2024",
+      "title": "Soundhound ($SOUN) now has a market cap 75x it’s annualized revenue…",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqnzwn",
+      "year": "2024",
+      "title": "Well 2024 was a great year for gains.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqqdwp",
+      "year": "2024",
+      "title": "What’s your P/L% YTD?",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1ggsh58",
+      "year": "2024",
+      "title": "SNAP earnings filled price gap. PINS next?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1ggpn9v",
+      "year": "2024",
+      "title": "Am I cooked for buying $5k worth of RDDT today? ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ggp583",
+      "year": "2024",
+      "title": "Today is the 5th Anniversary of the \"Guh!\" Heard Round the World",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ggotfo",
+      "year": "2024",
+      "title": "Bought intel 13000shares at 21.6 and sold at 24.7",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ggs9r9",
+      "year": "2024",
+      "title": "Alright regards tell me if I was right or wrong (rddt into Amzn)",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ggpyl6",
+      "year": "2024",
+      "title": "2K Month!! Big gains / small acct! ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ggqokx",
+      "year": "2024",
+      "title": "What are you guys' play for the last day of this earning week?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ggqv89",
+      "year": "2024",
+      "title": "Reddit Stock",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ggoa65",
+      "year": "2024",
+      "title": "Is this an arbitrage opportunity? ",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ggr77c",
+      "year": "2024",
+      "title": "Thanks guys - dinner on the house ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ggq7tx",
+      "year": "2024",
+      "title": "Why BTC price does't move? ",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ggomso",
+      "year": "2024",
+      "title": "Fidelity completely froze 2 separate times today but the rest of my computer was fine",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft4h32",
+      "year": "2024",
+      "title": "2.7m PureCycle YOLO ($PCT)",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft8cy1",
+      "year": "2024",
+      "title": "Carvana Gains. Bought in when it hit $8",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ft7v30",
+      "year": "2024",
+      "title": "W",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft3x6l",
+      "year": "2024",
+      "title": "Tomorrow might be a red day y’all ",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft79lb",
+      "year": "2024",
+      "title": "Dope",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft6ivc",
+      "year": "2024",
+      "title": "h o l o 🇨🇳",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft54xx",
+      "year": "2024",
+      "title": "The fuck happened with SPY for the last half hour??!!",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1ft49xe",
+      "year": "2024",
+      "title": "IMKTA Ingles Market Major Hurricane Helene Losses",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1ft8wom",
+      "year": "2024",
+      "title": "Just a heads up",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ft75m4",
+      "year": "2024",
+      "title": "Dope",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft4qux",
+      "year": "2024",
+      "title": "In out of stable coins / crypto tax",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft4kb6",
+      "year": "2024",
+      "title": "Stupid bears wants you to buy puts for tommorow via bot accounts saying this and that ports stuff",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft3u9o",
+      "year": "2024",
+      "title": "How do you learn ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ft7k2u",
+      "year": "2024",
+      "title": "$SMCI is a scam ",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ft62z3",
+      "year": "2024",
+      "title": "ChatGPT give me this list",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1ft5ne6",
+      "year": "2024",
+      "title": "Big Events for 2025 Stocks",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1ft4iva",
+      "year": "2024",
+      "title": "McCormick (MKC) calls??? No one eats at restaurants anymore.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1ft45xy",
+      "year": "2024",
+      "title": "2.7m PureCycle ($PCT) YOLO -  The Future of the Plastic Industry  ",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1f5unhj",
+      "year": "2024",
+      "title": "Two years ago turned $1000 -> $150,000 and in true WSB fashion lost it all and then some",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqon6u",
+      "year": "2024",
+      "title": "Robinhood Offer Reminder",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqnb5t",
+      "year": "2024",
+      "title": "Stop Simping, Start Saving: Tax Loss Harvesting Ends Today",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1hqn1gl",
+      "year": "2024",
+      "title": "200% gain for the year ",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1hqq1v5",
+      "year": "2024",
+      "title": "RGTI any clues?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1hqof2j",
+      "year": "2024",
+      "title": "iT's TimE iN tHe MarKeT... Guh",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqoank",
+      "year": "2024",
+      "title": "94k gain in 2024 selling options and trading index futures.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqo7b2",
+      "year": "2024",
+      "title": "94k gain in 2024 selling options and trading index futures.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqn2ht",
+      "year": "2024",
+      "title": "From $AMZN calls to $AMZN puts: I’ve mastered the art of losing money",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqpict",
+      "year": "2024",
+      "title": "Squid Games 2 is supposed to be for us degenerates",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1hqp4ih",
+      "year": "2024",
+      "title": "Hard Lesson Today: PATIENCE",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqo1m7",
+      "year": "2024",
+      "title": "Schrodinger's Coin",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqmz4w",
+      "year": "2024",
+      "title": "Another great year",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqnoxg",
+      "year": "2024",
+      "title": "Robinhood is selling your social security number, your bank info with your balances, and your credit history if you are a customer.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqnlgz",
+      "year": "2024",
+      "title": "FEDERAL RESERVE TO INJECT 700 BILLION STARTING 1JAN2025. LAST TIME THIS HAPPENED WAS 2021🐸",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1hqql9b",
+      "year": "2024",
+      "title": "Broadcom's chips, network will drive growth in 2025: Analyst",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqq69r",
+      "year": "2024",
+      "title": "What is an exit strategy?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqobrk",
+      "year": "2024",
+      "title": "It's been fun boys. No regret. Lot's of pain but you guys kept me entertained! Ya'll a funky bunch! I love it here. Too many losses to post.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqr83p",
+      "year": "2024",
+      "title": "Onds short sellers cost me 15k out of 60k in 24 hours!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqr53z",
+      "year": "2024",
+      "title": "HI ANYONE WHO RECOMMENED ANY GOOD COIN OR STOCK THAT WILL BLOW IN 2025. THANKS ",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqqp9i",
+      "year": "2024",
+      "title": "CMRX",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqqijg",
+      "year": "2024",
+      "title": "OMG! Jim is bullish on 2025 !! ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqpzgx",
+      "year": "2024",
+      "title": "YOLO Leaps for AMD in the ROTH today.  Open-ended at least through Jan2025 and then will plan into earnings early Feb.  ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqptjt",
+      "year": "2024",
+      "title": "LUNR/NOK",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqpb18",
+      "year": "2024",
+      "title": "End of year bullshit Investment atmosphere",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqp76d",
+      "year": "2024",
+      "title": "Down 18% this year. 2025 will be different",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqp477",
+      "year": "2024",
+      "title": "$500k Swing Trading Account - December Trades 📈",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqoucb",
+      "year": "2024",
+      "title": "I saw Moderna volume interesting for 1k usd quick profit, lets see",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqodo6",
+      "year": "2024",
+      "title": "What stock is this? ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqo9cj",
+      "year": "2024",
+      "title": "94k gain in 2024 selling options and trading index futures.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqnwp6",
+      "year": "2024",
+      "title": "$HUSA",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqntw5",
+      "year": "2024",
+      "title": "Eyen",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqnsqb",
+      "year": "2024",
+      "title": "Energy is back after being shorted and DVN is on sale",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqnn0i",
+      "year": "2024",
+      "title": "Trying something new: ChaptGPT Review of Speculative Stocks:  ANIXA Biosciences",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqnj0i",
+      "year": "2024",
+      "title": "Can’t buy crypto today on RH. ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1hqnif7",
+      "year": "2024",
+      "title": "2x / 3x Products Long-Term",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqn2up",
+      "year": "2024",
+      "title": "PZZA Papa John's thoughts ",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqn0g5",
+      "year": "2024",
+      "title": "DISCOUNT on Market",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1hqmz7m",
+      "year": "2024",
+      "title": "PZZA Papa John's thoughts",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqmxgo",
+      "year": "2024",
+      "title": "Tesla has officially completed the construction of its Shanghai Megafactory and is now beginning trial production.",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1hqmst4",
+      "year": "2024",
+      "title": "Comp to $500! 10mil supply! Sitting at $73",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1h3kbq4",
+      "year": "2024",
+      "title": "Made $21,000 on ACHR shares, when do I sell?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1h3l52p",
+      "year": "2024",
+      "title": "Alright.. ALRIGHTTTT .. ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1h3mxku",
+      "year": "2024",
+      "title": "SentinelOne (S)",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1h3j9zd",
+      "year": "2024",
+      "title": "A new kind of gain and loss porn. I want to see stories of how much you made or lost then a story about what you  actually did with it..",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1h3odr8",
+      "year": "2024",
+      "title": "Positive news … SMCI",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1h3lows",
+      "year": "2024",
+      "title": "I stopped looking at my investments",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1h3o9fj",
+      "year": "2024",
+      "title": "$META - 12/11/24 - Home Sports",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1h3n65j",
+      "year": "2024",
+      "title": "Spikes",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1h3lsyh",
+      "year": "2024",
+      "title": "I don't know who you are you beautifull bastard affirm whas a Nice bet ",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1h3l86t",
+      "year": "2024",
+      "title": "What options would you buy with a $1,000 budget?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1h3i34y",
+      "year": "2024",
+      "title": "Ride or Sell?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1h3hopj",
+      "year": "2024",
+      "title": "Mr. Beast collaboration with Amazon Prime.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0m7p8",
+      "year": "2025",
+      "title": "Been holding this bag for almost 5 years... From $10,000 to 3 Cents. Happy 2026!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0pobt",
+      "year": "2025",
+      "title": "$200k gains across all accounts for 2025, thank you Lawd 🙏",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0gcjn",
+      "year": "2025",
+      "title": "Gains for a new year",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0qpq9",
+      "year": "2025",
+      "title": "+51% YTD",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ol2zow",
+      "year": "2025",
+      "title": "SLDP  partnership with BMW and Samsung",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1ol4gks",
+      "year": "2025",
+      "title": "I Have Officially Ordered the New iPhone 17 Pro Max",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ol51fr",
+      "year": "2025",
+      "title": "$74k AMZN Gain Today- Happy Halloween Kiddos!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ol47lm",
+      "year": "2025",
+      "title": "POET Round two yolo",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ol5ggs",
+      "year": "2025",
+      "title": "Closed my AMZN position right before the bell at $247.16   locked in about $10.7K in profits",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ol7wlt",
+      "year": "2025",
+      "title": "$ASST YOLO (American not Korean)",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1ol7bob",
+      "year": "2025",
+      "title": "$TSLA price after Elon’s pay package gets approved",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ol6hqk",
+      "year": "2025",
+      "title": "LEVERAGE INTO BALANCE (A LITTLE LOOPHOLE):\nPOOR MAN’S OUTLET TO MANIPULATING THE MARKETS ON LOW CAP ASSETS:  POSSIBILITY INFINITE LEVERAGE",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1ol4cuq",
+      "year": "2025",
+      "title": "I think a young and attractive body is less likely to lose its value.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ol40kx",
+      "year": "2025",
+      "title": "Is anybody here wealthy?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nuk5uh",
+      "year": "2025",
+      "title": "The difference a few days of patience makes. NVDA -28K to +5K",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nuqy4n",
+      "year": "2025",
+      "title": "$RZLV - YOLO",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nusd1b",
+      "year": "2025",
+      "title": "Phase 3 initiated- options yolo",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1nuo4o4",
+      "year": "2025",
+      "title": "Sold all my Nike today",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1nusnk8",
+      "year": "2025",
+      "title": "IS IT OVER?",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1nusina",
+      "year": "2025",
+      "title": "The White House website has a government Shutdown Clock",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1nupb0f",
+      "year": "2025",
+      "title": "Official: US to take stake in lithium America’s to boost Nevada project",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1nup3iq",
+      "year": "2025",
+      "title": "Weekly Profit Buying OPEN dips",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nul1be",
+      "year": "2025",
+      "title": "TTC puts?",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nukckw",
+      "year": "2025",
+      "title": "YOLO fail",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nuk5u1",
+      "year": "2025",
+      "title": "All calls",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1nuk4ai",
+      "year": "2025",
+      "title": "Down with stubhub",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1n4wvy8",
+      "year": "2025",
+      "title": "Nvidia’s top 2 mystery customers made 39% of Q2 revenue, up from 25% last year, raising concentration risk concerns",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1n58d0c",
+      "year": "2025",
+      "title": "Girlfriend started crying cause she doesn’t have any leverage.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1n57rc0",
+      "year": "2025",
+      "title": "$69k on MSOS calls",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1n59utr",
+      "year": "2025",
+      "title": "Magnetar Financial Has Opened An Exit Corridor For Their CRWV Position",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1n58jci",
+      "year": "2025",
+      "title": "Go big or go broke.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1n4wj90",
+      "year": "2025",
+      "title": "Is there a smart timeline entering meme pumps or just pure luck?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1n4vj5g",
+      "year": "2025",
+      "title": "The Future of Finance ...... [meta verse prototype]",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1n4shbx",
+      "year": "2025",
+      "title": "Milk",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1q0ncw3",
+      "year": "2025",
+      "title": "Fuck you S&P",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0gvl0",
+      "year": "2025",
+      "title": "Bloomberg's 2026 picks",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0qa7u",
+      "year": "2025",
+      "title": "2025 Bitcoin.  Those holding bitcoin from Jan 1, 2025 or earlier, would have 22% more in their accounts if they had their money in the S&P 5",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0mncj",
+      "year": "2025",
+      "title": "MU is the Next Super Stock",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0je6b",
+      "year": "2025",
+      "title": "Advice on Kodiak ai",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0hdfj",
+      "year": "2025",
+      "title": "Should I sell or hold for Idk how long?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0genp",
+      "year": "2025",
+      "title": "Bloomberg's 2026 picks",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0p1e9",
+      "year": "2025",
+      "title": "NVIDIA Pushing RTX 5090 Prices to $5000 in 2026, Rumor Claims",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0njl4",
+      "year": "2025",
+      "title": "Another Year long WSB, Another Year with great returns.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0g8q9",
+      "year": "2025",
+      "title": "Retail investors close out one of their best years ever. How they beat Wall Street at its own game",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0q6b1",
+      "year": "2025",
+      "title": "My loss",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0otb5",
+      "year": "2025",
+      "title": "USA Rare Earth (USAR)- 2026",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0nvpw",
+      "year": "2025",
+      "title": "Should I dump any of these?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0lx3y",
+      "year": "2025",
+      "title": "$RIVN DD: A Straightforward 2026 Execution Bet (No Hype, No Copium)",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0lske",
+      "year": "2025",
+      "title": "$RIVN DD: Why 2026 Is the Year This Thing Either Dies or Sends",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0ktca",
+      "year": "2025",
+      "title": "Dogecoin 75x long",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0klpo",
+      "year": "2025",
+      "title": "METC (Ramaco Resources) Interesting Fundamentalls",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0jk3m",
+      "year": "2025",
+      "title": "Is BULL's 37% loss overestimating its value? Take a hit of weed to chill out",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0i4wu",
+      "year": "2025",
+      "title": "YOLO! SLV!",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1q0hmzv",
+      "year": "2025",
+      "title": "INBS new news",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0h7hl",
+      "year": "2025",
+      "title": "Nvidia just a worry",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0h6nw",
+      "year": "2025",
+      "title": "Highlighting $FOUR as a 2026 Winner",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0h2ao",
+      "year": "2025",
+      "title": "$FOUR seems ripe for a move",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0gz3z",
+      "year": "2025",
+      "title": "$FOUR exploding in 2026",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1q0g9m3",
+      "year": "2025",
+      "title": "“St. Louis Bag Dead (3.93% RIP) — I Yolo’d 70% Into AI Because SoftBank Did It (Send Help)”",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1q0g733",
+      "year": "2025",
+      "title": "“2026 AI Bet: Dumped 40% of My Portfolio (RIP St. Louis) — SoftBank’s Move Told Me All I Need to Know”",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1pan84m",
+      "year": "2025",
+      "title": "Seasonal hiring down 25% from last year as layoffs rise and retailers stay cautious amid weak consumer spending",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1pa9v2p",
+      "year": "2025",
+      "title": "War incoming ??",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1pak183",
+      "year": "2025",
+      "title": "Huawei's patent for 2nm-class patterning without EUV has been published.",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pawpri",
+      "year": "2025",
+      "title": "$235k in VOO",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1paw8v7",
+      "year": "2025",
+      "title": "$235k in VOO",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1paqoyh",
+      "year": "2025",
+      "title": "Why don’t people do this ?",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1pam0nb",
+      "year": "2025",
+      "title": "SFRM trading at below FV",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1palnyg",
+      "year": "2025",
+      "title": "SFRM? Any thoughts ?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1pakip7",
+      "year": "2025",
+      "title": "NFL 🏈 Free Pick + Premium Plays Available",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1pab7zu",
+      "year": "2025",
+      "title": "Anyone actually have evidence of over a year of consistent profits?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1pa85zb",
+      "year": "2025",
+      "title": "Why the Guy Who Shorted 2008 Is Shorting AI in 2025?",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1paw7ho",
+      "year": "2025",
+      "title": "Why should the market open 24 hours? It’s an undue advantage to people living on the east coast and people with access to overnight trading.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1pa9van",
+      "year": "2025",
+      "title": "I JUST YOLO’D MY ENTIRE BRAIN INTO SHINY ROCKS 🤡🪙💎",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1pa6y1l",
+      "year": "2025",
+      "title": "Hood prediction markets +9K gains | Charlotte Hornets | NBA",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1paumem",
+      "year": "2025",
+      "title": "Nvidia's Jensen Huang urges employees to automate every task possible with AI",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1paghlq",
+      "year": "2025",
+      "title": "I think I make too many trades. Nearly $1m but it took 2396 trades to do it",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1paa8pw",
+      "year": "2025",
+      "title": "OG Yolo",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1pautuf",
+      "year": "2025",
+      "title": "Kazakhstan Tells Ukraine To Stop Attacking Terminal After Oil Exports Halted",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1paso4z",
+      "year": "2025",
+      "title": "The Graph (GRT) continues to underpin major Web3 infrastructure, yet its current valuation tells a completely different story",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pask0s",
+      "year": "2025",
+      "title": "Klarna to launch dollar-backed stablecoin as race in digital payments heats up",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1panqxu",
+      "year": "2025",
+      "title": "Miracle Drug",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pancfx",
+      "year": "2025",
+      "title": "etoro's copyTrader - is that a real thing?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pamq24",
+      "year": "2025",
+      "title": "anyone familiar with popular investor on etoro (copy-trader)?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pamggy",
+      "year": "2025",
+      "title": "Has anyone had similar issues with Trading212 and the Financial Ombudsman",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pajge1",
+      "year": "2025",
+      "title": "$JBS - The world’s largest meat processor.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1paflxr",
+      "year": "2025",
+      "title": "Thoughts, boyz?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1pafk5q",
+      "year": "2025",
+      "title": "NVDA Feb 2026 $100 puts",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1pafiv7",
+      "year": "2025",
+      "title": "$NVDA puts (just got out of internal NVDA meeting)",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1pafhal",
+      "year": "2025",
+      "title": "XRP",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1paey8z",
+      "year": "2025",
+      "title": "What you think?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wm1i5b",
+      "year": "2026",
+      "title": "Why are we not talking about BWET more",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1wm06lm",
+      "year": "2026",
+      "title": "Who’s paying for or maintaining the bot accounts around here?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlyyyn",
+      "year": "2026",
+      "title": "Why the new Greenland deal will make AMRQ and UCU print.",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlyiwj",
+      "year": "2026",
+      "title": "Gold Futures Losses",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1wlxld2",
+      "year": "2026",
+      "title": "We have a beer",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1wlw2mz",
+      "year": "2026",
+      "title": "Got back into trading just in time to catch a bit of BWET",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wlvnym",
+      "year": "2026",
+      "title": "Expecting Extreme Market Volatility This Week",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlswai",
+      "year": "2026",
+      "title": "Iran war degenerates",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vc7et8",
+      "year": "2026",
+      "title": "A notepad in front of U.S. Secretary of the Treasury Scott Bessent reads \"To Do Buy Japanese Yen $5-10 bil\"",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1tt3ypf",
+      "year": "2026",
+      "title": "21% of US adults are functionally illiterate",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vc2x3p",
+      "year": "2026",
+      "title": "GOOGL - 270$ to 10k in 24 hours",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vbwl3o",
+      "year": "2026",
+      "title": "Reddit DAU decline due to AI bots and Google",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vc5z11",
+      "year": "2026",
+      "title": "The world no longer has a trillionaire 😩",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vc5nsp",
+      "year": "2026",
+      "title": "Thanks Tim Apple 🫡",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vbxhxt",
+      "year": "2026",
+      "title": "Maybe they shouldn’t have gotten rid of r/all?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vc36b7",
+      "year": "2026",
+      "title": "US and Israel preparing to bombard energy-related targets in Iran, sources say",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1vc21k0",
+      "year": "2026",
+      "title": "Why did RH auto sell my LEAP and buy the CC that I sold that was going to expire worthless??",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vc6v5m",
+      "year": "2026",
+      "title": "Asking Kevin Warsh anything is like asking your girlfriend what she wants to eat. Change my mind.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1vbw1wn",
+      "year": "2026",
+      "title": "TIL Bill Hwang has served 0 days in federal prison after his fraud and RICO conviction 24mo ago. His 18yr sentence is on appeal. The fuck?",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1vbz4w4",
+      "year": "2026",
+      "title": "SOXL YOLO (Cad hedged)",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vc1ovv",
+      "year": "2026",
+      "title": "SPX Spreads July Gains +148k",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vbywcu",
+      "year": "2026",
+      "title": "Lost everything. Rejected from Unemployment, New job delayed hiring me, All of my money was in Puts",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vc4l3s",
+      "year": "2026",
+      "title": "$200k NVIDIA Purchase made 2 years ago by some delinquent's dad",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vbwzq0",
+      "year": "2026",
+      "title": "Martin Shkreli Breaks Down the Collapse of Situational Awareness",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1vc7hzq",
+      "year": "2026",
+      "title": "Tom Lee: We Are Close to the Bottom",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1vc6svr",
+      "year": "2026",
+      "title": "Loss porn with a profitable day to cap off the month",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vc5l85",
+      "year": "2026",
+      "title": "Thanks Tim Apple",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vc0uz3",
+      "year": "2026",
+      "title": "Gambled my girlfriends account on MSFT and paid off",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vc084j",
+      "year": "2026",
+      "title": "$1k in the yacht account. Pick my play before close today",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1vbwfrj",
+      "year": "2026",
+      "title": "A brief history of Leopold Aschenbrenner: a most situationally unaware degenerate!",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1vc4v4u",
+      "year": "2026",
+      "title": "Ending July with 32k day, total 68k on the month.",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1uk0rsu",
+      "year": "2026",
+      "title": "WEN - Save her for this Independence day!",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1uk0fel",
+      "year": "2026",
+      "title": "Finally broke even",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1uk3g0o",
+      "year": "2026",
+      "title": "Burry short again",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1ujxgg8",
+      "year": "2026",
+      "title": "Should I go ahead and sell SPCX?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1uk4pqy",
+      "year": "2026",
+      "title": "Abandoned Boxes",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1ujzdg8",
+      "year": "2026",
+      "title": "Need Studs For Wendy’s",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1uk313x",
+      "year": "2026",
+      "title": "Advicc on sable offshore",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlrg2c",
+      "year": "2026",
+      "title": "[Serious] If Donald Trump removed the tariffs before midterms tomorrow, would it be enough boost markets from then into the election?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1wlqj20",
+      "year": "2026",
+      "title": "In other news…water is wet.",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlq709",
+      "year": "2026",
+      "title": "Coin about to pump those numbers up",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlpmxl",
+      "year": "2026",
+      "title": "Is Europe’s move to make Canada a European state destabilizing?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlpix3",
+      "year": "2026",
+      "title": "Are Europe’s move to make Canada a European state destabilizing?",
+      "original_label": "UNCERTAIN",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlmeyh",
+      "year": "2026",
+      "title": "Dont need to wait until market open to know if its a gain or not",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wlm7yi",
+      "year": "2026",
+      "title": "Believe it or not, DKNG calls...",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlj60k",
+      "year": "2026",
+      "title": "Puts on Everything Ai",
+      "original_label": "NOISE_MEME",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1wli5ll",
+      "year": "2026",
+      "title": "The gap has been closed",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlcuks",
+      "year": "2026",
+      "title": "Do any of you actually know what you are doing?",
+      "original_label": "UNCERTAIN",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wla5uj",
+      "year": "2026",
+      "title": "John Summit threw a rave at the NYSE. Top is in? Or load more calls on Monday?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wl9vp2",
+      "year": "2026",
+      "title": "Exclusive: US military had close call after using AI for false intelligence report, sources say",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wl4x6x",
+      "year": "2026",
+      "title": "Thoughts!!??",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wl2b2a",
+      "year": "2026",
+      "title": "Taco Sunday (The Ayatollah Chickens Out) is here",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wm6j4r",
+      "year": "2026",
+      "title": "Just net dumped into Robinhood at 19, what’s the move?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wm5i24",
+      "year": "2026",
+      "title": "SoftBank seeks $11 billion in junk bonds for OpenAI Bet",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wm4teg",
+      "year": "2026",
+      "title": "TTWO",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wm3n8x",
+      "year": "2026",
+      "title": "Beware Single Stock Risk",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wm2l6t",
+      "year": "2026",
+      "title": "Jensen Huang: AI CEOs have 'ulterior reasons' in doomsday warnings",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wm15en",
+      "year": "2026",
+      "title": "$2,000,000,000,000.00 Valuation...",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlzhr8",
+      "year": "2026",
+      "title": "Is it possible that the S&P 500 stops rising in the long term?",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1wlumkk",
+      "year": "2026",
+      "title": "4,400% growth",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1wlrvim",
+      "year": "2026",
+      "title": "BGC Group is firing 10% of staff",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlq42i",
+      "year": "2026",
+      "title": "45K to start, how can one be financially free",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wllah7",
+      "year": "2026",
+      "title": "Options for Beginners",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wljpyj",
+      "year": "2026",
+      "title": "Might be stupid quesiton but why does everyone seems mad at Anthropic?",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlgyif",
+      "year": "2026",
+      "title": "Take two Invest",
+      "original_label": "UNCERTAIN",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wlgpgx",
+      "year": "2026",
+      "title": "Why Most Traders Fail, And What 10 Years in the Markets Taught Me About Doing It Differently",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1wl7g4l",
+      "year": "2026",
+      "title": "Stocks or crypto?",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1wl4eva",
+      "year": "2026",
+      "title": "Anthropic makes 13 million USD per employee, the highest among most tech peers",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wl3o5c",
+      "year": "2026",
+      "title": "Patients Sue GLP-1 Drugmakers Over Risk of Sudden Vision Loss",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wl3lrv",
+      "year": "2026",
+      "title": "WSJ: Patients Sue GLP-1 Drugmakers Over Risk of Sudden Vision Loss",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    },
+    {
+      "id": "1wl3ctg",
+      "year": "2026",
+      "title": "Yo anyone buying TRUMP DIVIDEND FUND????",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1w3ojg3",
+      "year": "2026",
+      "title": "Thai prostitution warning as 5,000 US sailors arrive in town after 200 days at sea",
+      "original_label": "NOISE_MEME",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1w3u7fx",
+      "year": "2026",
+      "title": "ABCL Gains",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1w3vco1",
+      "year": "2026",
+      "title": "HUT 8 deal: NVIDIA / Lambda / Anthropic",
+      "original_label": "ANALYSIS_DD",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1w3v5jr",
+      "year": "2026",
+      "title": "SOXL 🐻 gains",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1w3j7wx",
+      "year": "2026",
+      "title": "Happy birthday Warren Buffett",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1w3osmr",
+      "year": "2026",
+      "title": "Roller Coaster of Today",
+      "original_label": "NOISE_MEME",
+      "model_label": "GENUINE_OPINION"
+    },
+    {
+      "id": "1w3pnvp",
+      "year": "2026",
+      "title": "GO-PRO now the next GameStop",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1w3pm27",
+      "year": "2026",
+      "title": "Warren Buffett quote",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "UNCERTAIN"
+    },
+    {
+      "id": "1w3hhw6",
+      "year": "2026",
+      "title": "Dear corporates, your employees are customers somewhere. Your customers are employees somewhere",
+      "original_label": "NOISE_MEME",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1w3os7z",
+      "year": "2026",
+      "title": "Wild movement on specific stock",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "FINANCIAL_CLAIM"
+    },
+    {
+      "id": "1w3iury",
+      "year": "2026",
+      "title": "Bitcoin is not bullish🐂, yet...",
+      "original_label": "GENUINE_OPINION",
+      "model_label": "ANALYSIS_DD"
+    },
+    {
+      "id": "1w3kn38",
+      "year": "2026",
+      "title": "Here comes the AI capex shocker, Goldman Sachs says",
+      "original_label": "FINANCIAL_CLAIM",
+      "model_label": "NOISE_MEME"
+    }
+  ],
+  "confusion_orig_to_model": {
+    "NOISE_MEME": {
+      "NOISE_MEME": 0,
+      "GENUINE_OPINION": 167,
+      "FINANCIAL_CLAIM": 55,
+      "ANALYSIS_DD": 15,
+      "UNCERTAIN": 30
+    },
+    "GENUINE_OPINION": {
+      "NOISE_MEME": 60,
+      "GENUINE_OPINION": 0,
+      "FINANCIAL_CLAIM": 61,
+      "ANALYSIS_DD": 21,
+      "UNCERTAIN": 28
+    },
+    "FINANCIAL_CLAIM": {
+      "NOISE_MEME": 41,
+      "GENUINE_OPINION": 9,
+      "FINANCIAL_CLAIM": 0,
+      "ANALYSIS_DD": 17,
+      "UNCERTAIN": 4
+    },
+    "ANALYSIS_DD": {
+      "NOISE_MEME": 13,
+      "GENUINE_OPINION": 21,
+      "FINANCIAL_CLAIM": 8,
+      "ANALYSIS_DD": 0,
+      "UNCERTAIN": 5
+    },
+    "UNCERTAIN": {
+      "NOISE_MEME": 56,
+      "GENUINE_OPINION": 23,
+      "FINANCIAL_CLAIM": 13,
+      "ANALYSIS_DD": 1,
+      "UNCERTAIN": 0
+    }
+  }
+}

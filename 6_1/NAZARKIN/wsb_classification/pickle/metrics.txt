@@ -1,0 +1,34 @@
+Classification of ~8k WallStreetBets posts (1000/year, 2019-2026)
+Model: some_model/logreg_model.joblib
+NOTE: labels are model predictions (pseudo-labels), not ground truth.
+      Therefore accuracy/F1 vs truth are NOT reported here.
+
+Total posts: 8000
+Low confidence (<0.5): 4386 (54.8%)
+
+Overall class distribution:
+  NOISE_MEME        :  5939  (74.24%)
+  GENUINE_OPINION   :  1248  (15.60%)
+  FINANCIAL_CLAIM   :   294  (3.67%)
+  ANALYSIS_DD       :   363  (4.54%)
+  UNCERTAIN         :   156  (1.95%)
+
+Per-year totals:
+  2019: 1000
+  2020: 1000
+  2021: 1000
+  2022: 1000
+  2023: 1000
+  2024: 1000
+  2025: 1000
+  2026: 1000
+
+Per-year distribution:
+  2019: NOISE=772  GENUINE=138  FINANCIAL=35  ANALYSIS=25  UNCERTAIN=30
+  2020: NOISE=690  GENUINE=208  FINANCIAL=50  ANALYSIS=35  UNCERTAIN=17
+  2021: NOISE=814  GENUINE=118  FINANCIAL=12  ANALYSIS=44  UNCERTAIN=12
+  2022: NOISE=854  GENUINE=103  FINANCIAL=15  ANALYSIS=12  UNCERTAIN=16
+  2023: NOISE=816  GENUINE=105  FINANCIAL=41  ANALYSIS=19  UNCERTAIN=19
+  2024: NOISE=664  GENUINE=196  FINANCIAL=56  ANALYSIS=58  UNCERTAIN=26
+  2025: NOISE=693  GENUINE=191  FINANCIAL=36  ANALYSIS=58  UNCERTAIN=22
+  2026: NOISE=636  GENUINE=189  FINANCIAL=49  ANALYSIS=112  UNCERTAIN=14
