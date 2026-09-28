@@ -26,18 +26,18 @@ def ts(s):
     return int(datetime.strptime(s, "%Y-%m-%d").replace(tzinfo=timezone.utc).timestamp())
 
 
-def fetch(after, before, retries=4):
+def fetch(after, before, retries=2):
     params = {"subreddit": SUBREDDIT, "after": after, "before": before, "limit": 100,
               "sort": "asc", "fields": FIELDS}
     for attempt in range(retries):
         try:
-            r = requests.get(API, params=params, timeout=60)
+            r = requests.get(API, params=params, timeout=25)
             r.raise_for_status()
             return r.json().get("data") or []
         except Exception as e:
             if attempt == retries - 1:
-                print(f"    fail {after}-{before}: {e}", file=sys.stderr, flush=True)
-            time.sleep(2 * (attempt + 1))
+                print(f"    fail {after}-{before}: {type(e).__name__}", file=sys.stderr, flush=True)
+            time.sleep(3 * (attempt + 1))
     return []
 
 

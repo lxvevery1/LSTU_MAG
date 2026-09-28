@@ -52,27 +52,7 @@ def build_text(p):
 
 
 def month_of(ts):
-    return datetime.datetime.utcfromtimestamp(ts or 0).month
-
-
-def rules_ok(cls, text, body):
-    n = len(text)
-    links = text.count("http")
-    if cls == "NOISE_MEME":
-        return n <= 1200
-    if cls == "GENUINE_OPINION":
-        return 60 <= n <= 3000 and bool(FIRST_PERSON.search(text) or QUESTION.search(text))
-    if cls == "FINANCIAL_CLAIM":
-        return 80 <= n <= 3500 and bool(MONEY.search(text) or TICKER.search(text))
-    if cls == "ANALYSIS_DD":
-        if n < 500:
-            return False
-        if body.count("\n\n") + 1 < 3 and links < 2:
-            return False
-        return bool(MONEY.search(text) or TICKER.search(text) or links >= 2)
-    if cls == "UNCERTAIN":
-        return n < 400
-    return True
+    return datetime.datetime.fromtimestamp(ts or 0, datetime.timezone.utc).month
 
 
 def pick_balanced(cands, k):
@@ -91,11 +71,65 @@ def pick_balanced(cands, k):
     return out
 
 
+DAILY_THREAD = re.compile(r"Daily Discussion Thread|Weekly Earnings Discussion Thread|What Are Your Moves Tomorrow", re.I)
+DEAD_BODY = {"[removed]", "[deleted]"}
+STORY_FLAIR = {"gain", "loss", "yolo", "meme", "shitpost", "storytime", "first group buy"}
+
+
+def is_dead(title, body):
+    """Only truly destroyed posts are dropped; title-only posts are still classifiable."""
+    t, b = (title or "").strip(), (body or "").strip().lower()
+    if b in DEAD_BODY:
+        return True
+    if not t and not b:
+        return True
+    # daily-thread boilerplate carries no content of its own
+    return bool(DAILY_THREAD.search(t)) and len(t) + len(b) < 260
+
+
 def flair_bonus(cls, flair):
     table = FLAIR_BONUS[cls]
     if not flair:
         return 0.0
     return table.get(flair.strip().lower(), 0.0)
+
+
+def rules_ok(cls, text, body, flair, title):
+    if is_dead(title, body):
+        return False
+    fl = (flair or "").strip().lower()
+    n = len(text)
+    links = text.count("http")
+    blen = len((body or "").strip())
+    t = (title or "").strip()
+
+    if cls == "NOISE_MEME":
+        return n <= 1200
+    if cls == "GENUINE_OPINION":
+        if fl in ("daily discussion", "meme", "shitpost"):
+            return False
+        return 60 <= n <= 3000 and bool(FIRST_PERSON.search(text) or QUESTION.search(text))
+    if cls == "FINANCIAL_CLAIM":
+        if fl in STORY_FLAIR:
+            return False
+        if blen < 50:
+            # title-only post: the claim itself must be concrete and specific
+            return len(t) >= 40 and bool(MONEY.search(t) or TICKER.search(t))
+        return 80 <= n <= 3500 and bool(MONEY.search(text) or TICKER.search(text))
+    if cls == "ANALYSIS_DD":
+        if fl in STORY_FLAIR or fl == "news":
+            return False
+        if blen < 400:          # DD needs actual reasoning, not a headline
+            return False
+        if n < 500:
+            return False
+        if body.count("\n\n") + 1 < 3 and links < 2:
+            return False
+        return bool(MONEY.search(text) or TICKER.search(text) or links >= 2)
+    if cls == "UNCERTAIN":
+        return n < 400
+    return True
+
 
 
 def load_pool():
@@ -160,7 +194,7 @@ def main():
             for r in rows:
                 if r["id"] in used:
                     continue
-                if not rules_ok(cls, r["_text"], r["body"]):
+                if not rules_ok(cls, r["_text"], r["body"], r["flair"], r["title"]):
                     continue
                 score = r["_probs"][cls] + flair_bonus(cls, r["flair"])
                 cand = {"post": r, "score": score}

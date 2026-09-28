@@ -5,3 +5,4 @@
 \contentsline {section}{\numberline {4}Внедрение (преобразование) сервиса}{7}{section.4}%
 \contentsline {section}{\numberline {5}Эксплуатация сервиса}{8}{section.5}%
 \contentsline {section}{\numberline {6}Постоянное улучшение сервиса}{10}{section.6}%
+\contentsline {section}{\numberline {7}Конец жизненного цикла}{12}{section.7}%
