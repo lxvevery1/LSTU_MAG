@@ -1,0 +1,80 @@
+/*
+ * Badge styling. Everything is scoped under .wsb-cls-slot and reset with `all: initial`
+ * so Reddit's own stylesheet cannot bleed in and the badge cannot inherit the page font.
+ */
+
+.wsb-cls-slot {
+  all: initial;
+  display: block;
+  margin: 4px 0 2px;
+  font: 600 12px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+.wsb-cls {
+  all: initial;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 1px 7px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font: 600 12px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  cursor: help;
+  user-select: none;
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+.wsb-cls[data-state="pending"] {
+  color: #9aa0a6;
+  background: rgba(128, 128, 128, 0.12);
+}
+
+.wsb-cls[data-state="empty"] {
+  color: #9aa0a6;
+  background: transparent;
+  border: 1px dashed rgba(128, 128, 128, 0.5);
+}
+
+.wsb-cls[data-state="error"] {
+  color: #d93025;
+  background: rgba(217, 48, 37, 0.12);
+  border-color: rgba(217, 48, 37, 0.4);
+}
+
+/* the four model classes */
+.wsb-cls[data-cls="NOISE_MEME"] {
+  color: #9aa0a6;
+  background: rgba(138, 138, 138, 0.18);
+  border-color: rgba(138, 138, 138, 0.4);
+}
+
+.wsb-cls[data-cls="GENUINE_OPINION"] {
+  color: #1a73e8;
+  background: rgba(26, 115, 232, 0.12);
+  border-color: rgba(26, 115, 232, 0.35);
+}
+
+.wsb-cls[data-cls="FINANCIAL_CLAIM"] {
+  color: #b06000;
+  background: rgba(224, 138, 0, 0.14);
+  border-color: rgba(224, 138, 0, 0.4);
+}
+
+.wsb-cls[data-cls="ANALYSIS_DD"] {
+  color: #128a3e;
+  background: rgba(18, 138, 62, 0.12);
+  border-color: rgba(18, 138, 62, 0.35);
+}
+
+/*
+ * Low-confidence labels are drawn as an outline rather than a filled pill. The model
+ * overfits (train accuracy 0.958 vs 0.711 held out) and GENUINE_OPINION in
+ * particular has F1 0.42, so a confident-looking badge can be wrong.
+ */
+.wsb-cls[data-low="1"] {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.85;
+}

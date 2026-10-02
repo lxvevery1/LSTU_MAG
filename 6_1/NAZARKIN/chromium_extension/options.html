@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>WSB Post Classifier — options</title>
+  <style>
+    body {
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding: 20px 24px 28px;
+      max-width: 620px;
+      color: #202124;
+    }
+    h1 { font-size: 17px; margin: 0 0 2px; }
+    .sub { color: #5f6368; margin: 0 0 20px; font-size: 13px; }
+    fieldset { border: 1px solid #dadce0; border-radius: 6px; padding: 12px 14px 14px; margin: 0 0 16px; }
+    legend { padding: 0 6px; font-weight: 600; font-size: 12px; color: #5f6368; }
+    label { display: block; margin: 10px 0 3px; font-weight: 500; }
+    label:first-of-type { margin-top: 0; }
+    input[type="text"] {
+      width: 100%; box-sizing: border-box; padding: 6px 8px; font: inherit;
+      border: 1px solid #dadce0; border-radius: 4px;
+    }
+    input[type="number"] {
+      width: 90px; padding: 6px 8px; font: inherit; border: 1px solid #dadce0; border-radius: 4px;
+    }
+    .hint { color: #5f6368; font-size: 12px; margin: 3px 0 0; }
+    .row { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    button {
+      font: inherit; padding: 6px 14px; border: 1px solid #dadce0; border-radius: 4px;
+      background: #f1f3f4; cursor: pointer;
+    }
+    button.primary { background: #1a73e8; border-color: #1a73e8; color: #fff; }
+    #status { font-size: 12px; color: #5f6368; min-height: 16px; }
+    .ok { color: #128a3e; }
+    .bad { color: #d93025; }
+    code { background: #f1f3f4; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>WSB Post Classifier</h1>
+  <p class="sub">Annotates r/WallStreetBets posts with a model label. The model runs
+    locally, so the API server must be running.</p>
+
+  <fieldset>
+    <legend>Model API</legend>
+    <label for="apiBase">Base URL of api_model/server.py</label>
+    <input type="text" id="apiBase" spellcheck="false">
+    <p class="hint">The port is part of the URL here. Match the port you started the
+      server with.</p>
+
+    <label for="arcticBase">Arctic Shift base URL (post text source)</label>
+    <input type="text" id="arcticBase" spellcheck="false">
+    <p class="hint">Posts are read from
+      <code>/api/posts/ids?ids=…</code>, in one batched request per viewport.</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>Where it runs</legend>
+    <label for="subreddits">Subreddits (comma separated)</label>
+    <input type="text" id="subreddits" spellcheck="false">
+
+    <label for="lowConfidence">Low-confidence threshold</label>
+    <input type="number" id="lowConfidence" min="0" max="1" step="0.05">
+    <p class="hint">Labels below this probability are drawn as an outline instead of
+      a filled badge.</p>
+
+    <label><input type="checkbox" id="enabled"> Enabled</label>
+  </fieldset>
+
+  <div class="row">
+    <button class="primary" id="save">Save</button>
+    <button id="test">Test API</button>
+    <button id="clear">Clear cache</button>
+    <span id="status"></span>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

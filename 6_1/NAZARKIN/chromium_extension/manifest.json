@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "WSB Post Classifier",
+  "version": "1.0.0",
+  "description": "Classifies r/WallStreetBets posts as NOISE_MEME / GENUINE_OPINION / FINANCIAL_CLAIM / ANALYSIS_DD and shows the label next to each post.",
+
+  "permissions": ["storage"],
+
+  "host_permissions": [
+    "https://www.reddit.com/*",
+    "https://old.reddit.com/*",
+    "https://arctic-shift.photon-reddit.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+
+  "background": {
+    "scripts": ["background.js"],
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.reddit.com/r/*/*",
+        "https://old.reddit.com/r/*/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "options_page": "options.html",
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "wsb-post-classifier@localhost",
+      "strict_min_version": "121.0"
+    }
+  }
+}
