@@ -1,0 +1,43 @@
+WSB hand-labelled dataset - pickle_classification_for_learning.json
+==============================================================
+
+Total posts          : 8000
+Per year             : 1000 (2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026)
+Sampling             : uniform random, seed 20260928, unfiltered
+Classes              : 4
+  The fifth, catch-all class from the original task spec (UNCERTAIN) was removed
+  on purpose. It appears in no post label and nowhere in the JSON - each of the
+  8000 posts carries exactly one of the four classes above. Ambiguous posts were
+  forced to the best of the four via the tie-break rules in LABEL_RUBRIC.md.
+
+Class distribution (whole dataset):
+  NOISE_MEME       :  4627  (57.84%)
+  GENUINE_OPINION  :  1283  (16.04%)
+  FINANCIAL_CLAIM  :  1336  (16.70%)
+  ANALYSIS_DD      :   754  ( 9.43%)
+
+Per-year distribution:
+  year        NOISE_MEME  GENUINE_OPINIO  FINANCIAL_CLAI     ANALYSIS_DD   total
+  2019               639             111             173              77    1000
+  2020               616             141             136             107    1000
+  2021               625             157             149              69    1000
+  2022               667             120             122              91    1000
+  2023               588             154             186              72    1000
+  2024               566             178             136             120    1000
+  2025               454             234             206             106    1000
+  2026               472             188             228             112    1000
+  ALL               4627            1283            1336             754    8000
+
+Reading the numbers:
+  - NOISE_MEME dominates (~58%). That is the real WSB mix: most posts are
+    memes, one-liners, questions about investing process, P&L screenshots and
+    chatter. This dataset is NOT class-balanced, on purpose - it samples WSB.
+  - ANALYSIS_DD is the smallest class (~9%) and is most common in 2019 and
+    2025-2026; in 2019-2023 Arctic Shift returns an empty body for roughly 70%
+    of posts, so those years can only be judged from the title.
+  - FINANCIAL_CLAIM includes relayed news facts and concrete position numbers
+    (e.g. '200 calls, expiry friday'), which is why it beats GENUINE_OPINION.
+
+Fields per post: id, year, created_utc, author, score, num_comments, flair,
+                title, body, label
+

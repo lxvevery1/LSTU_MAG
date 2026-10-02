@@ -1,0 +1,140 @@
+==============================================================================
+LogReg on hand-labelled WSB data - pickle_classification_for_learning.json
+train/test = 6400/1600 (80/20), stratified on (year,label), seed 42
+max_iter=300 epochs, constant learning rate, l2 penalty alpha=1e-4
+==============================================================================
+--- logreg(lr=0.01, const, raw) [36.5s, 300 epochs]
+    test accuracy : 0.6887
+    test macro-F1  : 0.5548
+    train accuracy: 0.9214   (fit +0.2327 vs test)
+                 precision    recall  f1-score   support
+
+     NOISE_MEME      0.714     0.927     0.807       926
+GENUINE_OPINION      0.475     0.222     0.302       257
+FINANCIAL_CLAIM      0.657     0.337     0.446       267
+    ANALYSIS_DD      0.683     0.647     0.664       150
+
+       accuracy                          0.689      1600
+      macro avg      0.632     0.533     0.555      1600
+   weighted avg      0.663     0.689     0.652      1600
+
+    confusion matrix (rows = true, cols = pred):
+          NOISE_MEME  GENUINE_OPIN  FINANCIAL_CL   ANALYSIS_DD
+      NOISE_MEME               858            30            23            15
+      GENUINE_OPIN             181            57             6            13
+      FINANCIAL_CL             143            17            90            17
+      ANALYSIS_DD               19            16            18            97
+--- logreg(lr=0.01, const, bal) [30.3s, 300 epochs]
+    test accuracy : 0.7106
+    test macro-F1  : 0.6264
+    train accuracy: 0.9583   (fit +0.2477 vs test)
+                 precision    recall  f1-score   support
+
+     NOISE_MEME      0.781     0.856     0.817       926
+GENUINE_OPINION      0.475     0.377     0.421       257
+FINANCIAL_CLAIM      0.642     0.491     0.556       267
+    ANALYSIS_DD      0.659     0.773     0.712       150
+
+       accuracy                          0.711      1600
+      macro avg      0.639     0.624     0.626      1600
+   weighted avg      0.697     0.711     0.700      1600
+
+    confusion matrix (rows = true, cols = pred):
+          NOISE_MEME  GENUINE_OPIN  FINANCIAL_CL   ANALYSIS_DD
+      NOISE_MEME               793            66            47            20
+      GENUINE_OPIN             130            97            10            20
+      FINANCIAL_CL              89            27           131            20
+      ANALYSIS_DD                4            14            16           116
+--- logreg(lr=0.001, const, raw) [28.5s, 300 epochs]
+    test accuracy : 0.6663
+    test macro-F1  : 0.4864
+    train accuracy: 0.7620   (fit +0.0958 vs test)
+                 precision    recall  f1-score   support
+
+     NOISE_MEME      0.670     0.958     0.788       926
+GENUINE_OPINION      0.510     0.097     0.163       257
+FINANCIAL_CLAIM      0.652     0.225     0.334       267
+    ANALYSIS_DD      0.696     0.627     0.660       150
+
+       accuracy                          0.666      1600
+      macro avg      0.632     0.477     0.486      1600
+   weighted avg      0.644     0.666     0.600      1600
+
+    confusion matrix (rows = true, cols = pred):
+          NOISE_MEME  GENUINE_OPIN  FINANCIAL_CL   ANALYSIS_DD
+      NOISE_MEME               887            12            16            11
+      GENUINE_OPIN             219            25             5             8
+      FINANCIAL_CL             177             8            60            22
+      ANALYSIS_DD               41             4            11            94
+--- logreg(lr=0.001, const, bal) [30.6s, 300 epochs]
+    test accuracy : 0.6887
+    test macro-F1  : 0.6024
+    train accuracy: 0.8408   (fit +0.1520 vs test)
+                 precision    recall  f1-score   support
+
+     NOISE_MEME      0.779     0.821     0.800       926
+GENUINE_OPINION      0.454     0.346     0.393       257
+FINANCIAL_CLAIM      0.597     0.461     0.520       267
+    ANALYSIS_DD      0.583     0.867     0.697       150
+
+       accuracy                          0.689      1600
+      macro avg      0.603     0.624     0.602      1600
+   weighted avg      0.678     0.689     0.678      1600
+
+    confusion matrix (rows = true, cols = pred):
+          NOISE_MEME  GENUINE_OPIN  FINANCIAL_CL   ANALYSIS_DD
+      NOISE_MEME               760            74            63            29
+      GENUINE_OPIN             129            89            12            27
+      FINANCIAL_CL              83            24           123            37
+      ANALYSIS_DD                3             9             8           130
+--- logreg(lbfgs, C=4, balanced) - reference, no explicit lr [30.4s]
+    test accuracy : 0.7031
+    test macro-F1  : 0.6261
+    train accuracy: 0.9894   (fit +0.2863 vs test)
+                 precision    recall  f1-score   support
+
+     NOISE_MEME      0.800     0.827     0.813       926
+GENUINE_OPINION      0.452     0.420     0.435       257
+FINANCIAL_CLAIM      0.595     0.528     0.560       267
+    ANALYSIS_DD      0.663     0.733     0.696       150
+
+       accuracy                          0.703      1600
+      macro avg      0.627     0.627     0.626      1600
+   weighted avg      0.697     0.703     0.699      1600
+
+    confusion matrix (rows = true, cols = pred):
+          NOISE_MEME  GENUINE_OPIN  FINANCIAL_CL   ANALYSIS_DD
+      NOISE_MEME               766            83            58            19
+      GENUINE_OPIN             111           108            19            19
+      FINANCIAL_CL              77            31           141            18
+      ANALYSIS_DD                4            17            19           110
+
+------------------------------------------------------------------------------
+LEARNING-RATE COMPARISON (same split, same features)
+------------------------------------------------------------------------------
+config                                  acc   macro-F1    train   epochs
+logreg(lr=0.01, const, raw)          0.6887     0.5548   0.9214      300
+logreg(lr=0.01, const, bal)          0.7106     0.6264   0.9583      300
+logreg(lr=0.001, const, raw)         0.6663     0.4864   0.7620      300
+logreg(lr=0.001, const, bal)         0.6887     0.6024   0.8408      300
+logreg(lbfgs, C=4, bal) ref          0.7031     0.6261   0.9894       84
+
+------------------------------------------------------------------------------
+PER-YEAR TEST BREAKDOWN
+------------------------------------------------------------------------------
+config                                        2019            2020            2021            2022            2023            2024            2025            2026
+logreg(lr=0.01, const, raw)             0.715(200)      0.705(200)      0.725(200)      0.749(199)      0.680(200)      0.680(200)      0.605(200)      0.652(201)
+logreg(lr=0.01, const, bal)             0.730(200)      0.740(200)      0.770(200)      0.754(199)      0.660(200)      0.675(200)      0.640(200)      0.716(201)
+logreg(lr=0.001, const, raw)            0.710(200)      0.665(200)      0.720(200)      0.729(199)      0.655(200)      0.665(200)      0.565(200)      0.622(201)
+logreg(lr=0.001, const, bal)            0.745(200)      0.725(200)      0.750(200)      0.693(199)      0.690(200)      0.650(200)      0.615(200)      0.642(201)
+logreg(lbfgs, C=4, bal) ref             0.720(200)      0.710(200)      0.730(200)      0.754(199)      0.660(200)      0.705(200)      0.660(200)      0.687(201)
+
+------------------------------------------------------------------------------
+5-FOLD CV (on all 8000, stratified) - stability check
+------------------------------------------------------------------------------
+config                               acc mean      +-    macroF1      +-
+logreg(lr=0.01, raw)                   0.7065  0.0102     0.5876  0.0182
+logreg(lr=0.01, bal)                   0.7177  0.0119     0.6373  0.0139
+logreg(lr=0.001, raw)                  0.6849  0.0080     0.5271  0.0170
+logreg(lr=0.001, bal)                  0.7050  0.0089     0.6223  0.0114
+logreg(lbfgs ref)                      0.7139  0.0115     0.6487  0.0105

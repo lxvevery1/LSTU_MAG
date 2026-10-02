@@ -1,0 +1,34 @@
+сможешь (пока не пиши) написать нейросетевую модель, которая парсит посты в
+реддите (определенный тред WallStreetBets) за последние N лет / N постов и
+определяет какие из них шуточные, а какие нет.
+Таким образом решаем задачу классификации.
+Скачай посты с этого треда за 2019-2026 год.
+
+Есть 5 классов.
+
+NOISE_MEME
+No meaningful financial/investment information.
+Pure joke, reaction, shitpost, image-style caption, etc.
+
+GENUINE_OPINION
+A genuine bullish/bearish/trading opinion without substantial analysis.
+
+FINANCIAL_CLAIM
+A concrete factual claim about a company, market, event, price,
+earnings, financial metric, etc.
+
+ANALYSIS_DD
+Detailed reasoning, DD, calculations, valuation, catalysts,
+risks, sources, or other structured analysis.
+
+UNCERTAIN
+You cannot confidently assign another label.
+
+
+-----------------------------
+
+данных для обучения нет, поэтому надо брать посты с https://arctic-shift.photon-reddit.com/
+Для начала сойдет 100 постов учителей - 1000 учеников для начала так.
+
+Для начала предоставь возможность мне определить 100 постов учителей (дай по 15 постов на каждый год с 2019 по 2026),
+я определю какие из них шуточные, а какие нет, а дальше нейросеть сама будет учиться.

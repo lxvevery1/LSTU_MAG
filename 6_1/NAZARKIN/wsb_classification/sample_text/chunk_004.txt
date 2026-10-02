@@ -1,0 +1,799 @@
+[0] (Discussion | score 81 | id agkp69)
+TITLE: I Read The News So You Don't Have To - Market News (January 16, 2019)
+BODY: ## UNITED STATES * **Futures** are up slightly * *Core PPI Inflation* was a bit softer than expected (Actual 2.7% | Expected 2.9%) * *Semi Trailers PPI* was up over 7.5% * The *New York Feds Regional Manufacturing Index* started the year off with a big disappointment (Actual 3.9 | Expected 10.0) * **Cost** **pressures** and **bottlenecks** are easing * But **new** **orders** are plummeting * **Retail** **sales** **data** for December will not be released today due to the government shutdown * The **government** **shutdown**, now in its 26th day, is calculated to be wiping out 0.13 percentage points of growth each week * The city of Atlanta is experiencing airport security lines lasting hours related to the shutdown -- raising concerns about wait times when the **Super Bowl** arrives ## OTHER * **Netflix** is raising prices again -- their base plan (now $11) will be raised to $13 * **Snap [...truncated]
+
+[1] (noflair | score 14 | id awc4kl)
+TITLE: Y’all bragging about your tsla trades
+BODY: <empty>
+
+[2] (Shitpost | score 7 | id d5081l)
+TITLE: Scientists create first ever autistic monkeys - Looks like we have some competition, boys!
+BODY: <empty>
+
+[3] (noflair | score 1 | id crb4oe)
+TITLE: If you are a true autist throw this man your money
+BODY: <empty>
+
+[4] (DD | score 44 | id b2jhzk)
+TITLE: Why I'm Buying Puts on GME (GameStop)
+BODY: Edit 3/19/19: Google just announced a new streaming gaming system too. Oh my. Edit 3/20/19: This thread was posted on 3/18. GME starts falling and hits a 52-week low 48 hours later. Oh my. I personally like $GME/GameStop (nostalgia, 90s kid rofl) but I like money more. GME seems like a solid play for some good ole' fashion puts. There are numerous reasons why I'm buying puts on GME. *** Analysts have been adjusting earnings down the past few weeks. This morning Zacks made another adjustment to $1.59/share which would be a decline of 21.3% YOY from GME's $2.02/share same Q last year: https://www.baseballdailydigest.com/news/2019/03/18/zacks-analysts-anticipate-gamestop-corp-gme-to-post-1-59-earnings-per-share.html (MarketWatch) *** Revolting investors, possible changes to leadership soon: https://www.thestreet.com/investing/gamestop-investors-threaten-proxy-fight-14896292?puc=tsczacks&cm_ [...truncated]
+
+[5] (Earnings Thread | score 285 | id am2bzf)
+TITLE: Most Anticipated Earnings Releases for the week beginning February 4th, 2019
+BODY: <empty>
+
+[6] (Discussion | score 6 | id agtcql)
+TITLE: Another Apple sell off incoming?
+BODY: <empty>
+
+[7] (Technicals | score 12 | id agprnq)
+TITLE: Useful Expiry info for robinhood option writers
+BODY: Response from robinhood support about opting out of them closing out my otm short puts an hour before close: Unfortunately there is no way to opt out of our risk check. As your spread nears expiration, a few things can happen depending on the individual legs in the spread: If both legs are in the money, or not at risk of being in the money, we’ll take no action. If one leg is at risk or in the money, we'll close the spread or match the option with another form of collateral (like cash or stocks) and let you exercise it. To determine if an option is “at risk,” Robinhood will calculate an upper and lower bound. If your option’s strike price falls within these parameters, it’s considered “at risk”’ and we’ll place an order to close your position. How we calculate the upper bound: Today’s High + (4% X maintenance requirement X Today’s High) How we calculate the lower bound: Today’s Low - (4% [...truncated]
+
+[8] (Options | score 2 | id abzcct)
+TITLE: Which one of you autists did this?
+BODY: <empty>
+
+[9] (YOLO | score 1 | id amfg42)
+TITLE: YOLO is up for grabs now right?
+BODY: <empty>
+
+[10] (Technicals | score 38 | id agzxnf)
+TITLE: $NFLX island top and TD seq short
+BODY: <empty>
+
+[11] (noflair | score 1 | id cksyo3)
+TITLE: I’m beginning to think holding Shopify was a good idea.
+BODY: <empty>
+
+[12] (Shitpost | score 2234 | id bjgn88)
+TITLE: $FB Relationship status
+BODY: <empty>
+
+[13] (Discussion | score 1 | id absd7v)
+TITLE: The Delusional Leaders of the Eurozone | Steve Keen
+BODY: <empty>
+
+[14] (Discussion | score 89 | id c1mvji)
+TITLE: Aurora & Harvard University Announce Significant New Cannabis Research Collaborations in Canada.
+BODY: [http://equitybulletin.com/2019/06/aurora-harvard-university-announce-significant-new-cannabis-research-collaborations-in-canada/](http://equitybulletin.com/2019/06/aurora-harvard-university-announce-significant-new-cannabis-research-collaborations-in-canada/) &#x200B; >Cannabis has made it’s way to top 10 most “novel and significant” research directions in Canada, with funding agencies allocating a record amount of funding to novel Cannabis studies. Take into consideration the piggy-back effect Cannabis has on the #2 most researched epidemic, that of the [***Opioid***](https://www.google.com/search?q=Opioid&spell=1&sa=X&ved=0ahUKEwititGRte_iAhXmwlQKHTZIDqEQkeECCC0oAA) epidemic, and you have cannabis reaching the top of most active research topics in Canada. However, the biggest issue facing researchers is the policy of the federal government, which limit research to tracking correlation [...truncated]
+
+[15] (Stocks | score 7 | id b8lzv8)
+TITLE: The Stupid Idiot's Guide to the Future of Uber and Lyft
+BODY: <empty>
+
+[16] (Earnings Thread | score 35 | id cktkx5)
+TITLE: $SQ Earnings Thread
+BODY: **Estimated EPS:** $0.16 **Actual EPS:** $0.21 **Conference Call:** 5 PM EST [**link**](http://mmm.wallstreethorizon.com/u.asp?u=274075)
+
+[17] (noflair | score 427 | id abgbio)
+TITLE: Thank god I saved 5200 in commissions!
+BODY: <empty>
+
+[18] (Shitpost | score 1019 | id cqz76f)
+TITLE: Buy Greenland?
+BODY: Do you really think mango was trying to buy an entire block of land? Buy? Green? It's all coming together now. Trump is signalling that the stock market will be GREEN and we should BUY now. I don't know how any of you retards haven't figured this out yet. Greenland is also home to what species? Oxen. What do oxen look like? Bulls. They are thriving over there. Guess what pussy animal species is dying out as ice melts? Polar bears. This year Greenland lost a record amount of ice, so bears are basically fucked. Honestly, you guys need to learn how to crunch numbers. TLDR: All in on AMD calls.
+
+[19] (Shitpost | score 0 | id c1szkt)
+TITLE: Is there any case for bynd cooling off in the near future?
+BODY: <empty>
+
+[20] (Discussion | score 3 | id b8jkgb)
+TITLE: $BA: Jetstar 787 suffers problems with both engines on approach to Osaka
+BODY: [Jetstar 787 suffers problems with both engines on approach to Osaka](https://www.smh.com.au/business/companies/jetstar-787-suffers-problems-with-both-engines-on-approach-to-osaka-20190327-p5183s.html) Not saying that this is a big issue at this point, but this *IS* the second incident involving both 787 engines in recent months. Here's [incident \#1](https://www.flyingmag.com/all-nippon-787-engines-quit). Just something to consider. Trying to stay ahead of the curve on BA since it's been so event driven lately.
+
+[21] (Shitpost | score 1 | id be41l9)
+TITLE: Reminder to check your inbox, before it is too late!
+BODY: <empty>
+
+[22] (noflair | score 1 | id dbm8ug)
+TITLE: I think they meant blue balls
+BODY: <empty>
+
+[23] (noflair | score 5 | id cr1s0f)
+TITLE: Let it ride longer or cash out now.
+BODY: I made a comment on a post in another sub and was told to post here for some help. Edit: sorry for the post here I got got I bought some puts at $8 3 days ago when I read an article saying that the CEO and other directors bought some shares totaling $3 million. I’m extremely new as far as investing in the market but I thought it was strange nonetheless. I read through the comment section and someone posted a link of an article that showed GE dip shortly after the CEO bought stock last time. So i figured what the hell its worth a shot. $37 an option at the time, woke up this morning to this story and was surprised. I have a question though since I’m extremely new. If i hold on to these contracts, expiration date is 1/17/20, and it dips down to say the $1-$2 range will that contract be hard to close out? Or should I get out sooner.
+
+[24] (**PENIS**PENIS**PENIS** | score 45141 | id b87viz)
+TITLE: No bamboozles, everyone who comments in this thread will be invited to become a mod of r/WSB.
+BODY: #Just a reminder, invitations will expire 15 minutes after they are sent. Please accept them ASAP. If you miss your invite, you will eventually be reinvited, but it may take some time. You can increase your chances of being invited sooner by being active on r/wallstreetbets and remaining subscribed. --- #UPDATE, APR 2ND - MODS ARE STILL BEING ADDED #UPDATE, APR 3RD - MODS ARE STILL BEING ADDED #UPDATE, APR 4TH - MODS ARE STILL BEING ADDED #UPDATE, APR 5TH - MODS ARE STILL BEING ADDED #UPDATE, APR 6TH - MODS ARE STILL BEING ADDED #UPDATE, APR 7TH - MODS ARE STILL BEING ADDED #UPDATE, APR 8TH - MODS ARE STILL BEING ADDED --- Make sure you comment and upvote because... If we reach 5,000 comments, everyone gets some mod privileges. At 7:04PM we reached #1 on r/all!! Everyone gets full permissions!! HAVOK IS ON THE WAY Stretch goal: #80,000 COMMENTS Thread will be locked at 23:59 PM Apr. 2nd, [...truncated]
+
+[25] (Discussion | score 413 | id arsdja)
+TITLE: I made so many trades last year I have to print out my 82 page 1099-B and mail it to the IRS
+BODY: Thousands of trades and I had a total loss of only 2,200 bucks. Not too bad if I do say so myself Edit: It’s probably actually less than a thousand trades now that I think about it
+
+[26] (Discussion | score 27 | id dxbdwa)
+TITLE: Correction Lotto Tickets: Shittiest Stock Challenge
+BODY: This thread is for all the salty bears out there who are just salivating for the end of the melt up. **The challenge is to find the most overvalued stock(s) on the market for the shittiest underlying company.** Some helpful criteria: 1. High price-to-equity ratio \[This won't work for many unprofitable companies, you can use price-to-sales as a proxy for a bullshit 'growth' stock\]. 2. High debt-to-EBIDTA \[Add around 1 to your total for companies with significant [add-backs](https://ftalphaville.ft.com/2019/07/23/1563872966000/Ebitda-add-backs-are-so-hot-right-now/)\] 3. Poor credit rating \[BB all the way down to our CCC's\]. Even better if the trend is downgrades. 4. Profits? No, get the fuck outta here. The more cash burn, the better. 5. Sensitivity to cyclical downturns or unexpected risk in a single sector. 6. Terrible business model/viable competition. 7. Insane hype. Winner gets  [...truncated]
+
+[27] (Stocks | score 0 | id abwjsr)
+TITLE: An Interesting Title
+BODY: <empty>
+
+[28] (Discussion | score 65 | id dbpdxl)
+TITLE: Neumann bought a Gulfstream for him to "use on company business"
+BODY: "After having lost $900 million in the first half of this year, WeWork is planning on selling three businesses it acquired in recent years, according to people familiar with the matter, as well as a $60 million [Gulfstream jet](https://www.bloomberg.com/news/articles/2019-09-26/wework-looks-to-sell-private-jet-3-side-businesses) bought for Neumann to use on company business." [https://www.bloomberg.com/news/articles/2019-09-30/wework-withdraws-ipo-prospectus-as-new-co-ceos-delay-offering?srnd=technology-vp](https://www.bloomberg.com/news/articles/2019-09-30/wework-withdraws-ipo-prospectus-as-new-co-ceos-delay-offering?srnd=technology-vp) Company business was definitely not the only thing he and his buddies used the jet for. No doubt CEOs buy jets, but at least turn a fucking profit before you go and blow 60M on a Gulfstream. Let's hope they don't get another cash injection by spring when [...truncated]
+
+[29] (Shitpost | score 19 | id abyzhf)
+TITLE: Hi, my name is Tim Cook and this...is your call position in AAPL
+BODY: <empty>
+
+[30] (Shitpost | score 3 | id c1rs19)
+TITLE: Level II Data now available on Robinhood!
+BODY: Can someone tell me how to use it to make gains? (On the right under stocks graph, there is a gear icon now for switching to candlesticks and to view Level II Data)
+
+[31] (Satire | score 9255 | id e4xsu7)
+TITLE: Step by step autist guide to Robinhood fiasco
+BODY: <empty>
+
+[32] (Fundamentals | score 31 | id b2i7ed)
+TITLE: Last week 3-14-19, random people confirmed the trade deal between US and China won’t happen until April. Now, reports are coming in from South China Morning Post that a deal may not be reached until June 2019. The planned meeting 3-27-2019 was cancelled. China VP Liu and US Rep Lighthizer spoke 3-14
+BODY: <empty>
+
+[33] (Daily Discussion | score 63 | id dxsk0u)
+TITLE: What Are Your Moves Tomorrow, November 18
+BODY: [Daily Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?q=flair_name%3A%22Daily%20Thread%22&restrict_sr=1&sort=new) - [DD](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) - [YOLO](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3AYOLO) - [Discussion](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADiscussion) [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[34] (Shitpost | score 4498 | id aly4o3)
+TITLE: This guy is a revolutionary!
+BODY: <empty>
+
+[35] (noflair | score 1 | id cygl1g)
+TITLE: Found some DD on /r/videos. Long $TSLA, short $BABA?
+BODY: <empty>
+
+[36] (noflair | score 1 | id absod1)
+TITLE: Thoughts on JCP puts?
+BODY: <empty>
+
+[37] (DD | score 10 | id b7v20f)
+TITLE: All in on Pareteum
+BODY: Someone questioned whether I was actually balls deep in this or not, so here's a screenshot of my position for proof: https://imgur.com/a/LnXYjPH Posting this from a new account since I’m going to be linking some IRL friends to it as well. Also I was drinking while I wrote this so if you see any math or grammar errors, just call me a fag or something. Pareteum is a cloud services and mobile virtual network enablement company. I’m frankly surprised that they haven’t been mentioned more in this sub, so I figured I’d do a DD post. TEUM currently represents 100% of my portfolio. TEUM currently seems to trade based on 10 times trailing 12 months revenue, with the exception of November-December when they dipped to about 5x. Companies in their sector generally trade between 7 and 12 times revenues. Their reported revenues of $32M this year only partially include the acquisition of Artillium whi [...truncated]
+
+[38] (Meme | score 12070 | id e52km0)
+TITLE: u/RobinhoodTeam tries to manage r/WallStreetBets
+BODY: <empty>
+
+[39] (noflair | score 1 | id dl09rx)
+TITLE: CNBC: Stonks go up ¯\_(ツ)_/¯
+BODY: <empty>
+
+[40] (Daily Discussion | score 65 | id b8ox04)
+TITLE: What Are Your Moves Tomorrow, April 03
+BODY: [Daily Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?q=flair_name%3A%22Daily%20Thread%22&restrict_sr=1&sort=new) - [DD](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) - [YOLO](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3AYOLO) - [Discussion](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADiscussion) [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[41] (DD | score 119 | id cye2wl)
+TITLE: 2Q 2019 S&P Sectors Earnings Reaction DD
+BODY: #Summary With 494 of 497 S&P companies reporting, 2Q earnings reactions have been generally positive 1 day after earnings but stock prices seem to reverse 5 days after earnings. At a sector level, only Utilities have positive momentum after earnings (showing a stronger positive reaction 5 days after earnings compared to 1 day after earnings). 8 of 11 S&P sectors show a price decline 5 days after earnings, and this is also true for the S&P as a whole. **For this quarter, the average price move for all S&P sectors 5 days after earnings is over 1% lower than the average price move 1 day after earnings.** Is this a sign that investors are unhappy with the earnings results? Probably not. The 1d reaction (+0.28%) is very similar to that of 2Q last year (+0.30%), but price reaction at 5d this quarter (-0.83%) is demonstrating an unusual reversal in momentum compared to the 5d reaction of 2Q las [...truncated]
+
+[42] (Shitpost | score 208 | id c1o0bs)
+TITLE: In front of the Frankfurt Stock Exchange. Which one should I kick in the balls?
+BODY: <empty>
+
+[43] (Stocks | score 34 | id awjk6z)
+TITLE: With an average as good or better than institutions I’m holding through ER
+BODY: <empty>
+
+[44] (Discussion | score 15 | id dksj3y)
+TITLE: Any good IPO's coming up? Looking to YOLO but not on options
+BODY: Hoover's used to have the most consulted list, now it seems this might be it? [https://www.marketwatch.com/tools/ipo-calendar](https://www.marketwatch.com/tools/ipo-calendar)
+
+[45] (Loss | score 1 | id ce09h6)
+TITLE: Just call me a 15 year old girl
+BODY: <empty>
+
+[46] (Discussion | score 78 | id b2j2oh)
+TITLE: Facebook downgraded as analyst warns its executive exodus could be contagious
+BODY: <empty>
+
+[47] (YOLO | score 524 | id aby862)
+TITLE: Just about the worst after hours you will ever see. I’m al in Apple btw. Thanks Tim Cook for literally laying out the Bear case on national TV.
+BODY: <empty>
+
+[48] (Discussion | score 10 | id asalql)
+TITLE: Can low premarket be a tactic to attract short selling in favor of a companies cash flow?
+BODY: <empty>
+
+[49] (Discussion | score 520 | id arkrzx)
+TITLE: If someone was trying to make insider info public to trade on it, putting it here is hilariously genius because nobody will take it seriously
+BODY: <empty>
+
+[50] (noflair | score 1 | id dq93va)
+TITLE: Looks like the orange man might save u/ControlTheNarrative from bankruptcy
+BODY: <empty>
+
+[51] (noflair | score 3 | id dc4tac)
+TITLE: Which public companies are bag holding for WeWork?
+BODY: Someone do my DD for me. WeWork is going bankrupt unless Masa Son invents a money printing machine directly inside his zen like anus. It’s a matter of time. So which companies are hiding WeWork risk on their books?
+
+[52] (Discussion | score 757 | id e4xw5l)
+TITLE: VIDEO METHOD ON HOW TO DO ROBINHOOD INFINITE MONEY GLITCH
+BODY: Edit April 4th 2020: Just ignore this post everyone. It keeps getting pinned to the top of WSB and I don’t know why. Edit December 13rd 2019: Just ignore this post everyone. It keeps getting pinned to the top of WSB and I don’t know why. https://youtu.be/O_1tZPdwZJg This is not my video but he’s providing the exact method in which I use. Go like his video for taking the time out of his life to make a video for you autist degenerates. Also does anyone realize we’re probably breaking TTWO stock right now and they own gta so we’ll probably never have gta 6 now. Lol your all finally killing a company, and doing the gta infinite money glitch in real life.
+
+[53] (Loss | score 23 | id amary3)
+TITLE: Can you tell when i started options? Anyway gonna start posting the rest of my trades with this account. 357 more to lose
+BODY: <empty>
+
+[54] (Shitpost | score 43 | id b8pvif)
+TITLE: Seriously who talks like this? Much less a Fox Business professional talking head? This guy is out of control on Fannie Mae and the GSEs... wtf and I watching? This guy is on TV:
+BODY: <empty>
+
+[55] (Discussion | score 1 | id aglmeo)
+TITLE: PSIQ Secures $2,500,000 to Become the Only Licensed Growing Farm and Processing Plant for Medical Cannabis & Hemp in eSwatini for a Minimum of 10 Years
+BODY: <empty>
+
+[56] (noflair | score 149 | id e4p75k)
+TITLE: Unbreakable Strategy
+BODY: Here’s my new plan: Find one stock that is guaranteed to go up, then put every penny I have which is like $6,000 into that stock. Invest extra student loan money that I have left which is another $4,000 into that same stock. Then use all the leverage that RH gold offers which is another $13,000. Boom. $23,000 and drop it all into one stock. Once the stock goes up 25%, I just made $5,000. Do that for the rest of my life and never have to work again. Can’t believe I just shared this genius strategy with you guys but I wanted to help you out. You’re welcome.
+
+[57] (Shitpost | score 0 | id cdwr3y)
+TITLE: Short $ZNGA their word of the day is going to trigger the masses
+BODY: <empty>
+
+[58] (Loss | score 22 | id be9t63)
+TITLE: Hi. I’ve come for my humble pie.
+BODY: <empty>
+
+[59] (Shitpost | score 7540 | id bdu4yy)
+TITLE: Jesus christ thats u/1r0nyman
+BODY: <empty>
+
+[60] (noflair | score 1 | id ebvxp4)
+TITLE: I just noticed that BOTH weed and money are green....
+BODY: <empty>
+
+[61] (Storytime | score 336 | id dkowes)
+TITLE: Philosophers can get rich, they just don't need to
+BODY: Thales of Miletus, the first options YOLO in recorded history, in ancient Greece. >A story, with different versions, recounts how Thales achieved riches from an olive harvest by prediction of the weather. In one version, he bought all the olive presses in Miletus after predicting the weather and a good harvest for a particular year. Another version of the story has Aristotle explain that Thales had reserved presses in advance, at a discount, and could rent them out at a high price when demand peaked, following his prediction of a particularly good harvest. This first version of the story would constitute the first historically known creation and use of futures, whereas the second version would be the first historically known creation and use of options. > >Aristotle explains that **Thales' objective in doing this was not to enrich himself but to prove to his fellow Milesians that philoso [...truncated]
+
+[62] (Discussion | score 16 | id b87g7r)
+TITLE: Trump Daddy is going to take your avocados. Get your Puts now on $TACO and $CMG
+BODY: <empty>
+
+[63] (YOLO | score 33 | id c7oc3s)
+TITLE: 10k in yy, 25k in mmm 20k in RTN 10 k CENX 15k amd
+BODY: see you tomorrow ambien kicking in. maybe not yy tho
+
+[64] (noflair | score 1 | id cr65qi)
+TITLE: Outlook is Rosey! Thought one of you might have written this
+BODY: <empty>
+
+[65] (noflair | score 1 | id ammof7)
+TITLE: What do you all think about this chart pattern? Bought in for a lot of shares hoping for atleast a run to 8!
+BODY: <empty>
+
+[66] (Daily Discussion | score 75 | id ckmww3)
+TITLE: Daily Discussion Thread - August 01, 2019
+BODY: Your daily trading discussion thread. Please keep the shitposting to a minimum. Looking for a trade? We've got the [DD Threads](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) you were looking for. [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[67] (Loss | score 1 | id abmwbz)
+TITLE: Yeah .. fuck that im not ganna tell my friends! But imma tell it to all you autistic cunts. At least yall understand..
+BODY: <empty>
+
+[68] (Options | score 6 | id ax20uf)
+TITLE: Tip for averaging down
+BODY: Neat trick to average down: If you already went all in on some calls, but the dip keeps dipping you can sell even more otm calls and use that cash to average down. &#x200B; For example, last Friday I had some $310 TSLA calls and was able to sell a bunch of $320 calls at the bottom to average down to increase my # of contracts by like 50%.
+
+[69] (noflair | score 1 | id c19z33)
+TITLE: Buy TSLA calls NOW, see DD inside
+BODY: <empty>
+
+[70] (Discussion | score 15 | id d59inv)
+TITLE: Will cannabis 2.0 even be profitable or be a dud like this whole MJ industry?
+BODY: As the title says, seems there is a lot of buzz about Cannabis 2.0 legalization on Oct 17th, but it could just be a bunch of delusional baggies screaming to drop their bags on to some other unsuspecting cuck. My thoughts are that the waste-weed goes into concentrates, edibles, and drinks... Also maybe opens up deals. On the other hand, the cannabis sector is a steaming pile of shit. Which way will it go WSB?
+
+[71] (Shitpost | score 1 | id b8se51)
+TITLE: Robinhood got an update
+BODY: <empty>
+
+[72] (Fundamentals | score 22 | id ckuj1b)
+TITLE: 10yr treasury is pretty much dead 1.902..... The lowest since 2016. This shit was 2.06 earlier.
+BODY: <empty>
+
+[73] (Shitpost | score 350 | id asfwu5)
+TITLE: Elon Musk: Tesla cars will be able to fly to Mars by next month
+BODY: <empty>
+
+[74] (Discussion | score 7 | id c1l15x)
+TITLE: Stocks of war
+BODY: As Iran tensions get stronger and the administration is seeming to build up an enemy just like in 2003, what are your top picks for betting on a eventual escalation? I am currently eying some $RTN (Raytheon) $210 Calls for 6/2020.
+
+[75] (Loss | score 8 | id abuwhp)
+TITLE: At least I saved $5000 in commission...
+BODY: <empty>
+
+[76] (noflair | score 5 | id abrfsy)
+TITLE: How to light 15k on fire
+BODY: <empty>
+
+[77] (Shitpost | score 10 | id agusqz)
+TITLE: R1P SH0RT B0X SPREADS
+BODY: <empty>
+
+[78] (Shitpost | score 1 | id c1rzyg)
+TITLE: Obviously one of us - Iraqi dinars and yachts
+BODY: <empty>
+
+[79] (noflair | score 23 | id abueea)
+TITLE: Footage of a bull buying in today’s market
+BODY: <empty>
+
+[80] (Discussion | score 5 | id abu25v)
+TITLE: Shouldn't airlines be more favorable with low or continued low oil prices? AAL DAL JBLU
+BODY: Isn't fuel a major cost and one that kept profits down last year... they still maintain low PE ratios and have has good quarters recently, but are at near 52 week lows. Is this just a case of small growth not being attractive and it will always be ranged?
+
+[81] (Daily Discussion | score 48 | id am0xz8)
+TITLE: Daily Discussion Thread - February 01, 2019
+BODY: Your daily trading discussion thread. Please keep the shitposting to a minimum. Looking for a trade? There's always [DD Threads](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) in the banana stand. [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[82] (Shitpost | score 19 | id c829w1)
+TITLE: A Lot of Autists' Accounts Hitting Zero Lately...
+BODY: <empty>
+
+[83] (Shitpost | score 17 | id b8b8na)
+TITLE: Autism Awareness Day
+BODY: Rejoice brothers and sisters and celebrate the day that a fellow autist had the foresight to create 12 years ago. They had the ultimate long play in mind. April 2nd is our day.
+
+[84] (noflair | score 1 | id dbu198)
+TITLE: Recently discovered options trading. Guess I’m one of you now.
+BODY: <empty>
+
+[85] (Discussion | score 1 | id ebjex5)
+TITLE: YouTube COPPA changes and NFLX/DIS
+BODY: Why is no one here talking about the effect of the COPPA changes on YouTube streaming for kids and the opportunity that means for Disney+ and Netflix? In the new year there is going to be an Armageddon for streaming kids content creators on YouTube. I get this isn't a sexy pump and dump, but the fact that YouTube will no longer auto play kids videos one after the other or offer suggestions for what to watch next will probably erase them from the kids content market. It makes Netflix and Disney+ pretty much uncontested for kids streaming starting January 1st. With Disney+ being new, and it being the Christmas season, it should help significantly with new subscribers and reduce any cancellation numbers as well. Maybe it is because people on this sub can't procreate, so they aren't aware of how much kids watch YouTube now? I guess the mods at least have adoption or surrogacy as an option, s [...truncated]
+
+[86] (Meme | score 0 | id bpnsrv)
+TITLE: Anyone else pissed about Kraft?
+BODY: <empty>
+
+[87] (YOLO | score 18 | id ce446t)
+TITLE: Must not sell till tomorrow. Mid 80s bound $QCOM
+BODY: <empty>
+
+[88] (Discussion | score 41 | id bp5mzn)
+TITLE: With Hurricane season coming up, my question is simple, which publicly traded company stands to profit the most off recovery efforts?
+BODY: <empty>
+
+[89] (Stocks | score 67 | id agl54z)
+TITLE: Sears (SHLDQ) just got bought for roughly $5.2 billion
+BODY: [https://www.wsj.com/articles/sears-to-stay-open-after-edward-lampert-prevails-in-bankruptcy-auction-11547636823?mod=breakingnews](https://www.wsj.com/articles/sears-to-stay-open-after-edward-lampert-prevails-in-bankruptcy-auction-11547636823?mod=breakingnews) &#x200B; SHLDQ is a great value right now. Huge upside with low risk of loss.
+
+[90] (Gain | score 8 | id c82rpy)
+TITLE: Told y’all to load up on $PVH for dat gap!
+BODY: <empty>
+
+[91] (Shitpost | score 5 | id cqyypu)
+TITLE: Shitpost, literally
+BODY: Gents! A sign from the almighty himself! I had a long day at work today. I go to my car and I see SHIT on my car! This shit immediately caught my attention because it was GREEN! It was fucking GREEN! Now if that’s not enough for you, it looks like it was originally dark RED! The shit on my car was dark RED and dried to GREEN. BOYS, if that’s not a fucking sign from warren buffet himself to buy calls tomorrow then what the fuck is? What the fuck is? Will post pic.
+
+[92] (Earnings Thread | score 93 | id bdy1cb)
+TITLE: Netflix (NFLX) Earnings Thread; Keep all discussion here
+BODY: EPS est: $0.57 **EPS actual:** $0.76 Revenue est: $4.505B **Revenue actual:** $4.52B 130x P/E 86x FWP/E 32% estimated long term growth rate Average 6.43% move vs 7.87% implied move 29 buy ratings 12 hold ratings 4 sell ratings $389 average price target Netflix guided for 1.6M domestic subs 7.3M international subs estimated
+
+[93] (Discussion | score 9 | id dpynrc)
+TITLE: Who is the worst Bloomberg tv anchor?
+BODY: For me it used to be Abigail “the Chartress” Doolittle. Her obsession with the bull and bear dichotomy and her overstatement of the implications of technicals is a real chalkboard scratcher. I often find myself muting her segments so I don’t have to listen to that drivel. But since Taylor Riggs has been filling in for Emily Chang on Bloomberg technology, she is now, hands down, the worst IMO. The way she asks interview questions is sooooo bad with awkward emphasis/tone and often incomplete sentences.
+
+[94] (Discussion | score 3 | id bpfusn)
+TITLE: Why is the market being tight today?
+BODY: Sold some short SPX positions about noon ET and they did not produce any profit in the hour or so since. Any ideas on why theta (time value) is apparently standing still?
+
+[95] (Discussion | score 86 | id b2qgia)
+TITLE: [PDF warning] The SEC just filed its reply brief for their contempt case against Elon Musk
+BODY: <empty>
+
+[96] (Loss | score 1 | id dl3q0g)
+TITLE: Honestly I need help. Any tips are greatly appreciated.
+BODY: <empty>
+
+[97] (Discussion | score 17 | id dkbaco)
+TITLE: $BA Earning Puts
+BODY: With all of the problems they have been having, whose going on on puts? Let me know your thought processes.
+
+[98] (Shitpost | score 1 | id ebhziw)
+TITLE: Finally I know what I’ll be getting for Christmas. Say hello to my new toy!
+BODY: <empty>
+
+[99] (Stocks | score 93 | id d59hpz)
+TITLE: WeWork IPO "reportedly" dead
+BODY: <empty>
+
+[100] (noflair | score 430 | id ah09mz)
+TITLE: WSB trying to “buy the dip”
+BODY: <empty>
+
+[101] (Shitpost | score 1 | id d54crf)
+TITLE: Clearly they don't know which subreddit they should be using
+BODY: <empty>
+
+[102] (Shitpost | score 311 | id abo9bk)
+TITLE: “The truth is, market was rigged from the start.”
+BODY: <empty>
+
+[103] (Discussion | score 32 | id d4tj7u)
+TITLE: Tesla gigafactory 3
+BODY: A single neuron fired off a few minutes ago and I decided to post this. Tesla is nearing completion of this factory. They will build and assemble the entire car (model 3 and model y) within the factory. It's not clear if they will manufacture their own batteries or source them from a supplier. But it seems that unlike the fremont + gigafactory1 combo in America there will be a single factory in Shanghai. Now, they have learned many a lesson trying to manufacture cars in America, and all of these lessons will get applied to this new factory. So ostensibly they will be able to manufacture cars much more efficiently in this new factory. Not only will the build be more efficient, but they will also get a much cheaper supply of materials (china supply chain) and cheaper labor as well. So higher efficiency + lower operational costs will result from the factory. Now, they also plan on selling t [...truncated]
+
+[104] (Discussion | score 4 | id asba7d)
+TITLE: Short auto insurance
+BODY: <empty>
+
+[105] (Discussion | score 64 | id cywxi0)
+TITLE: Is Motley Fool and all these other ads just scams of crap?
+BODY: My feeds are filled with people who want to sell the secret to the next big thing, probably from all the research I attempt to do, but this one seems to come up the most. Is Motley Fool just crap and lucky forecasting or is it actual intelligent reviews of various up and coming stocks etc?
+
+[106] (Shitpost | score 2 | id c1bp3a)
+TITLE: $DIS - puts
+BODY: Call me a fucking autist but I took some 6/28 140 puts. It made an ATH on Friday and feel like it needs to cool down. Idiot? Yes. Retard? No question. But you’re saying I still have a chance.
+
+[107] (Shitpost | score 1 | id cy33tx)
+TITLE: Put some TA together. By my calculations spy goes to 345 by Tuesday
+BODY: <empty>
+
+[108] (Discussion | score 8 | id bjsmny)
+TITLE: Discussion: Do you think Powell is making Fed language ambiguous on purpose?
+BODY: My theory is that he's had so much political pressure to lower rates that he has decided to not say anything purposeful and meaningful or permanent. He wants to come across as unaffected and unable to be manipulated by the executive arm of the government. Unfortunately, being this way is causing markets to act stupid. The Chinese went through this same issue two years ago when they tried to convey strength of their offshore yuan market by saying shit that made people more confused than clear.
+
+[109] (Shitpost | score 1 | id b2b1da)
+TITLE: Paddy's Day Foreshadowing for the week to come?
+BODY: <empty>
+
+[110] (Daily Discussion | score 59 | id absgf6)
+TITLE: Daily Discussion Thread - January 02, 2019
+BODY: Your daily trading discussion thread. Please keep the shitposting to a minimum. Looking for a trade? Help yourself to some farm-to-table [DD Threads](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[111] (Stocks | score 51 | id agfzz7)
+TITLE: How to Make Money Trading: Hack Into SEC, Peek at 157 Secret Earnings Reports
+BODY: <empty>
+
+[112] (Shitpost | score 46 | id b2jmre)
+TITLE: Sold 4 Tesla put contracts, June, strike 200. Can’t go tits up?
+BODY: 1065 per contract.
+
+[113] (Stocks | score 34 | id agmdrm)
+TITLE: China's Central Bank Will Prop Up Country's Stock Market
+BODY: <empty>
+
+[114] (Meme | score 591 | id b853uf)
+TITLE: Iron hands make for rock hard boners
+BODY: <empty>
+
+[115] (YOLO | score 1 | id ebfok4)
+TITLE: Don't second guess urself boys...
+BODY: <empty>
+
+[116] (Gain | score 67 | id bpv499)
+TITLE: Today was a good day
+BODY: <empty>
+
+[117] (YOLO | score 1 | id c1vt07)
+TITLE: Facebook Cryptowagon
+BODY: <empty>
+
+[118] (Gain | score 11 | id bdzs8c)
+TITLE: I fucking love Chinese IPOs
+BODY: <empty>
+
+[119] (Shitpost | score 159 | id abwij8)
+TITLE: Gee RH thanks for the giftcard totally makes us even /
+BODY: <empty>
+
+[120] (Shitpost | score 643 | id bdtbd9)
+TITLE: $UBER shorts where y’all at? Currently switching brokers to Morgan Stanley heard they got a new shorting technology
+BODY: <empty>
+
+[121] (Discussion | score 1741 | id c1blh7)
+TITLE: I track active YOLOs and the last 6 months of YOLOs so you don't have to.
+BODY: I went back and tracked the last 6 months of posts tagged as "Gains", "Losses", and "YOLO" so you don't have to. You can see the full list here: [WallStreetBets - YOLOs](https://www.swaggystocks.com/dashboard/wallstreetbets/yolos) &#x200B; # How it works &#x200B; **YOLOs** Any time someone posts a screenshot of a YOLO they enter, I will track the data so people can see how said YOLO performs over time. YOLOs are classified as a "weekly" play if it expires within the next 3-4 weeks. If the YOLO expires further out then it will be classified as a "Yolo Play". &#x200B; Here are the criteria that I require before I can begin to track them (they must be in your screenshots posted): Strike price, expiry date, put/call, ticker involved, contracts purchased, and price paid. &#x200B; **Gains/Losses** I tracked all Gains/Losses/YOLOs where the value was more than $1k. Moving forward, I might only  [...truncated]
+
+[122] (Shitpost | score 16 | id as6u9l)
+TITLE: Reporting Secured GG Scammers
+BODY: <empty>
+
+[123] (Options | score 3 | id agns6i)
+TITLE: Who bought 38,202 SPY puts expiring this week and why
+BODY: <empty>
+
+[124] (Options | score 37 | id amrgvw)
+TITLE: Does this qualify as autistic?
+BODY: <empty>
+
+[125] (Shitpost | score 61 | id aw9lsu)
+TITLE: When Lyft's S-1 says "We have incurred net losses each year since our inception and we may not be able to achieve or maintain profitability in the future. We incurred net losses of $682.8 million, $688.3 million and $911.3 million in 2016, 2017 and 2018, respectively.”
+BODY: <empty>
+
+[126] (Options | score 8 | id awqppv)
+TITLE: When you trade CFD’s on US options from Australia “cannot be left in debt to plus500”. Also, no assignment risk and stop losses always work. Short strangles 4 days fella’s
+BODY: <empty>
+
+[127] (noflair | score 4 | id ebfmwt)
+TITLE: How would an index fund “bubble” even be possible?
+BODY: If you’re invested in an S&P index fund or a total stock market index fund, you are essentially invested in the majority of the stock market. So wouldn’t to say that there’s a “bubble” for this mean that the entire market is going to tank?
+
+[128] (Discussion | score 1 | id dbzq3u)
+TITLE: Holy shit this WeWork/SoftBank story
+BODY: <empty>
+
+[129] (Technicals | score 18 | id c1wmjq)
+TITLE: 2019 Saw Net Equities Outflow But Rising Indexes Explained.
+BODY: &#x200B; https://i.redd.it/pdd3rz8sz0531.png 2019 data shows a net equities outflow. So how can we explain the rise of equity markets to near ATH? The answer is corporate buybacks. That is the main channel that has pushed up the equities market. &#x200B; Naturally, when will corporate buybacks stop. The answer is when cash flow is squeezed, putting pressures on margins. That is what we should all watch for in Q2 earnings. A contraction in margins or news about curtailing corporate buybacks. Without corporate buybacks, the stock is more likely to collapse.
+
+[130] (Meme | score 1 | id cr8nnf)
+TITLE: I was never swayed by communism until I saw this gem. Let’s redistribute all of the tendies comrades so we all have gains! *burpppppp*
+BODY: <empty>
+
+[131] (Shitpost | score 2 | id b2kqtk)
+TITLE: A year and a half later and I've finally breached into the green. #gains
+BODY: <empty>
+
+[132] (Shitpost | score 137 | id b2ojr1)
+TITLE: WTF is this, are the reddit admin's trying to find out how autistic I am?
+BODY: <empty>
+
+[133] (Shitpost | score 1 | id cr8f9q)
+TITLE: I would like to thank not only God but Jesus...finally broke positive, now time to go back in the red
+BODY: <empty>
+
+[134] (Loss | score 626 | id b8bn14)
+TITLE: -100.02%, did I win?
+BODY: <empty>
+
+[135] (Meme | score 2 | id bdockf)
+TITLE: When you YOLO into the perfect FDs and this is what you see...
+BODY: <empty>
+
+[136] (Meme | score 1 | id ebpizd)
+TITLE: Which one of you did this?
+BODY: <empty>
+
+[137] (Shitpost | score 3 | id b2uw4r)
+TITLE: Venezuela 2-year bond FD?
+BODY: <empty>
+
+[138] (YOLO | score 19 | id cea7ak)
+TITLE: My life savings. In Elon we trust !
+BODY: <empty>
+
+[139] (Discussion | score 7 | id bjsojr)
+TITLE: Does it make sense to buy deep otm calls on stocks with a +60% shortfloat speculating on good earnings/news so shortsqueeze and $$$ or should i stay with scratchcards?
+BODY: <empty>
+
+[140] (noflair | score 8 | id amaq5c)
+TITLE: The average number of months from the last hike of the cycle to the first cut is 4.75.
+BODY: With the Fed pausing rate hikes for at least the next few months, investors are wondering when the Fed will cut rates and when the next recession will occur. On average there are 4.75 months from the last hike of the cycle to the first cut. The huge logical flaw in the thinking that cuts are coming in 4.75 months is the assumption that the last hike occurred. The Fed could easily pause for 9 months and hike again if the economy and stock market improve. The Fed paused hikes from December 2015 to December 2016 and there wasn’t a recession or string of rate cuts that followed. [Is The Economy Telling Us Something New?](https://upfina.com/is-the-economy-telling-us-something-new/) [Rate cuts coming? ](https://i.imgur.com/XwZXIIo.jpg)
+
+[141] (Shitpost | score 1 | id ce5cl7)
+TITLE: Who else is going long airlines? #Area51
+BODY: <empty>
+
+[142] (Shitpost | score 1 | id am994a)
+TITLE: $GOOG Cucks While $MSFT Slambones His Wife
+BODY: <empty>
+
+[143] (Discussion | score 28 | id bpweoi)
+TITLE: As soon as the deal is done, market sells off! But it will be different this time.. right?
+BODY: <empty>
+
+[144] (noflair | score 1 | id awafsn)
+TITLE: Anyone else overly optimistic about $tsla?
+BODY: <empty>
+
+[145] (Fundamentals | score 8 | id am5nry)
+TITLE: More Good News for Bulls...PBOC looking to cut long term rates 🤸
+BODY: <empty>
+
+[146] (Shitpost | score 1 | id c83kbe)
+TITLE: THE TRUMP PUMP READ DETAILS
+BODY: <empty>
+
+[147] (Shitpost | score 233 | id asdlml)
+TITLE: Got a Calculator Stock Trading Game so I Can Practice My Autism in Math
+BODY: <empty>
+
+[148] (DD | score 733 | id crb44k)
+TITLE: I shorted Argentina and i was right, now hear my next play
+BODY: First of all a few things to tell, My previous post was deleted because as i am new at wsb i didn't read the fucking rules and i got banned. Thats one thing but I'm over with it. I learned a lot of things first of all that wsb is indeed more retarded than it looks, and most you guys take options as literally gambling and do absolutely no DD whatsoever. i was also in the middle of a mess because my family will face an imminent financial crisis and that is fucking hard. Thanks for all the guys that supported me while some autist where trash-talking me. IM HERE TO STAY. For a brief moment, i got the sensation that i was in the big short, the movie but nowhere near that amount of money. haha. Now, more DD, i was right before and i think i am right again. On Monday of this week, the etf was down more than 25% while even most of the Argentina adr on wall street fell 50%. Also, the local curren [...truncated]
+
+[149] (Discussion | score 161 | id cr0x20)
+TITLE: Hong Kong protesters to withdraw all their money from banks and exchange them for US Dollars tomorrow. Long boba tea stock in the US!
+BODY: [https://www.stuff.co.nz/business/world/115051808/hong-kong-protesters-to-withdraw-all-their-money-from-atms](https://www.stuff.co.nz/business/world/115051808/hong-kong-protesters-to-withdraw-all-their-money-from-atms)
+
+[150] (noflair | score 1 | id ckty6s)
+TITLE: [shitpost gif] My Reaction to Chinese tariffs.
+BODY: <empty>
+
+[151] (Meme | score 282 | id be0dfp)
+TITLE: $NFLX adding 9.6 million global subscribers in Q1 from a year ago
+BODY: <empty>
+
+[152] (noflair | score 1 | id c7yx6a)
+TITLE: I wanna do it again.
+BODY: <empty>
+
+[153] (Discussion | score 1 | id dq82l2)
+TITLE: Stocktwats makes WSB look like stable geniuses
+BODY: <empty>
+
+[154] (Options | score 64 | id bjv42b)
+TITLE: 200% gain on $JNUG puts 5/3 I bought on 5/1. Locked in profits.
+BODY: <empty>
+
+[155] (Shitpost | score 536 | id ah082a)
+TITLE: Me checking on the market like
+BODY: <empty>
+
+[156] (Shitpost | score 2 | id dbqxre)
+TITLE: BECKY ETF: Will the SEC’s New ETF Rule Benefit Investors?
+BODY: <empty>
+
+[157] (Shitpost | score 189 | id d4ub5x)
+TITLE: Our homeboy Ben Felix giving us a shoutout. ONE OF US
+BODY: <empty>
+
+[158] (Discussion | score 26 | id dq24qr)
+TITLE: Bonuses And Bailouts In 2008 - Bloomberg
+BODY: <empty>
+
+[159] (Gain | score 1 | id dpxoya)
+TITLE: It ain't much but I try
+BODY: <empty>
+
+[160] (Shitpost | score 634 | id alwpkm)
+TITLE: Never forget what we're fighting for.
+BODY: <empty>
+
+[161] (Meme | score 376 | id bjsaa9)
+TITLE: better than the shit I do on a daily basis from 9-5 EST...
+BODY: <empty>
+
+[162] (Shitpost | score 6 | id ari5mn)
+TITLE: Disneyland Lunar Year Wish: LONG $DIS
+BODY: <empty>
+
+[163] (Options | score 11 | id dblal0)
+TITLE: Should I cut my loss or turn my puts into a strangle? (Add calls)
+BODY: So I bought $T $37.5p 10/4 expiration. But obviously as you can see it's not going down. Should I buy calls so it turns into strangles or just cut the loss? &#x200B; And if I do turn it into strangles, buying $38c, what the stock price has to be for me to break even or to be profitable? I am not holding it until expiration btw.
+
+[164] (Discussion | score 146 | id amd5t1)
+TITLE: anyone find it weird that the NVIDIA CEO and AMD CEO are related to each other?
+BODY: is there some kind of tech illuminati
+
+[165] (Discussion | score 32 | id abwrpo)
+TITLE: Companies you expect to be out of business or filing for bankruptcy within 5 years.
+BODY: What say you ?
+
+[166] (Options | score 8 | id ceen6x)
+TITLE: Unusual options activity in ALLY (several days now, earnings tomorrow)
+BODY: Most days over the past few weeks have seen a p/c of \~0.05. Earnings come out tomorrow before the bell, and today the options activity on the contracts expiring this Friday has been amazing. Just in the 20 minutes that prompted this post (remember, these expire in 2 days and the stock price is 31.5) \- 294 of the 34 strike calls (over a lot of various small purchases); these calls need an 8% move to break even. \- 28 of the 31-33 strike calls \- 1, yes a fucking single put, the 31 strike put
+
+[167] (noflair | score 1 | id cqzoo0)
+TITLE: Daily Treasury Yeild Curve Since 2006
+BODY: <empty>
+
+[168] (Discussion | score 1 | id aghf5n)
+TITLE: How will backpay to unpaid government workers affect the market?
+BODY: <empty>
+
+[169] (Discussion | score 0 | id b89a8f)
+TITLE: Brexit: Parliament rejects soft Brexit or second referendum. Get your puts ready!
+BODY: <empty>
+
+[170] (Shitpost | score 26 | id abjevx)
+TITLE: Chungus Musk. Puts or Calls?
+BODY: <empty>
+
+[171] (Gain | score 76 | id abv4sz)
+TITLE: Up 220% today, what a way to start 2019 !!! (No Robinhood in the EU :( )
+BODY: <empty>
+
+[172] (noflair | score 138 | id awyj3o)
+TITLE: U.S., China Close In on Trade Deal... MR.DOWN JONES 30K TOMORROW!
+BODY: <empty>
+
+[173] (noflair | score 1 | id dbtm4j)
+TITLE: Should I sell $GPRO calls for 900% gains or nah?
+BODY: <empty>
+
+[174] (Discussion | score 209 | id b2gjfj)
+TITLE: So I call TDAmeritrade's customer service line (on acid) Fucking blew me away
+BODY: From Robinhood to like you're personal 24/7 financial butler... I took like 30 mins of his time with a password reset for a Papermoney account and an account with $1000 I just deposited. I might just come over to this side. We were kinda funny like obviously he could have been helping a customer thats not taking ages on acid.. but he likes the diversity of calls and we had a genuine thanks hanging up conversation.
+
+[175] (Daily Discussion | score 45 | id agwosz)
+TITLE: Daily Discussion Thread - January 17, 2019
+BODY: Your daily trading discussion thread. Please keep the shitposting to a minimum. Looking for a trade? We've got the [DD Threads](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) you were looking for. [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[176] (Loss | score 0 | id b8o4lb)
+TITLE: Never forget. 48k potential baggies holding
+BODY: <empty>
+
+[177] (Shitpost | score 12 | id bphab9)
+TITLE: For all you autists wondering how to short yourself
+BODY: <empty>
+
+[178] (Shitpost | score 1 | id c83ecw)
+TITLE: Tariff man on Gyna Deal "YUGGEST"
+BODY: <empty>
+
+[179] (Daily Discussion | score 62 | id agpsfv)
+TITLE: What Are Your Moves Tomorrow, January 17
+BODY: [Daily Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?q=flair_name%3A%22Daily%20Thread%22&restrict_sr=1&sort=new) - [DD](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADD) - [YOLO](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3AYOLO) - [Discussion](https://reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3ADiscussion) [Weekly Earnings Discussion Thread](https://www.reddit.com/r/wallstreetbets/search?sort=new&restrict_sr=on&q=flair%3A%22Earnings%20Thread%22) [WSB Discord Chat](http://discord.gg/wallstreetbets)
+
+[180] (Shitpost | score 1 | id agujwz)
+TITLE: Got this interesting ad for Robinhood app
+BODY: <empty>
+
+[181] (Discussion | score 2 | id aw6zlb)
+TITLE: What is the worst Biotech stock you can buy right now?
+BODY: <empty>
+
+[182] (Shitpost | score 2378 | id agrhsx)
+TITLE: Her profile said 'Bullish on genuine connections'
+BODY: <empty>
+
+[183] (Loss | score 1 | id dl57j9)
+TITLE: ONE OF US. ONE OF US.
+BODY: <empty>
+
+[184] (Meme | score 1 | id dqaqye)
+TITLE: Google be stupid like
+BODY: <empty>
+
+[185] (Shitpost | score 286 | id bdo6is)
+TITLE: Thought someone here might need to see this.
+BODY: <empty>
+
+[186] (Shitpost | score 3 | id bpjt76)
+TITLE: Long $MTCH DD inside
+BODY: <empty>
+
+[187] (Discussion | score 13 | id bdt7ec)
+TITLE: If we could have one rapper to be the spokesman for WSB, who will it be?
+BODY: Chamillionare?
+
+[188] (Shitpost | score 113 | id abw56n)
+TITLE: Fed: "We are raising rates." Markets: "Time is a flat circle."
+BODY: <empty>
+
+[189] (noflair | score 0 | id am9b3j)
+TITLE: I have brought dishonor to my family.
+BODY: <empty>
+
+[190] (Stocks | score 28 | id abspen)
+TITLE: Last quarter's losses mean that equities are looking historically cheap
+BODY: <empty>
+
+[191] (Discussion | score 18 | id abd4b0)
+TITLE: How did you autists get into the finance jobs you have now?
+BODY: I watched Wolf of Wall Street 2 weeks ago and I think I have what it takes to pursue a career in finance. I've been applying for internships all day. I want to know how did you fucks get where you are, and what it takes to be able to lose all those tendies?
+
+[192] (Discussion | score 1 | id agzpr8)
+TITLE: Enzolytics Inc .... Can you buy options for it? They doing clinical trials on HIV/AIDS - Dont see it on RobinHood?
+BODY: Can you trade it on RobinHood? Sorry, im noob x 10 &#x200B; $ENZC
+
+[193] (noflair | score 119 | id amishh)
+TITLE: Amazon with the shivers
+BODY: <empty>
+
+[194] (Shitpost | score 3 | id am3yme)
+TITLE: Fucking hippies taking all my tendies with their Lucifer’s Lettuce stocks
+BODY: <empty>
+
+[195] (noflair | score 1 | id crct51)
+TITLE: Can anyone explain why these companies dipped momentarily?
+BODY: <empty>
+
+[196] (noflair | score 1 | id are5mx)
+TITLE: Which one of u faggots wrote this for your little retard?
+BODY: <empty>
+
+[197] (noflair | score 31 | id bpleb5)
+TITLE: The DOW Jones spotted trying to bounce back today
+BODY: <empty>
+
+[198] (Shitpost | score 1 | id ckgzqx)
+TITLE: RIP Beyond Meat. In the name of The Theta, The Vega, and The Delta. RIP. $160 offering.
+BODY: <empty>
+
+[199] (Discussion | score 8 | id bjm2y4)
+TITLE: $PCG Earnings Tomorrow
+BODY: Does anyone have a play here? I know this stock is a complete gamble but isn't that why we're here - how have I not seen more people clamoring to throw money away here...
