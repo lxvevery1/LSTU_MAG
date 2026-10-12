@@ -31,13 +31,13 @@ subsequent visit to that viewport.
 reddit.com/r/wallstreetbets
         │  content.js   viewport scan, id extraction, badge injection
         ▼
-   runtime.sendMessage  {posts:[{id, domTitle, domBody}]}
+   runtime.connect  {posts:[{id, domTitle, domBody}]}
         │
    background.js        batched archive fetch  →  batched /predict  →  cache
         │                        │                        │
 arctic-shift …/ids?ids=…   127.0.0.1:8000/predict   storage.local
                                  │
-                        api_model/server.py  →  model.joblib
+                        api_model/server.py  →  finbert/ (fine-tuned FinBERT)
 ```
 
 ### Finding the post cards
@@ -60,8 +60,11 @@ login wall rather than a selector bug.
 
 ### 1. Install the Python dependencies
 
+The model is a fine-tuned **FinBERT**, so serving it needs `torch` and
+`transformers`. Use the prepared virtualenv in `wsb_classification/.venv`:
+
 ```bash
-python3 -m pip install scikit-learn joblib
+wsb_classification/.venv/bin/python -c "import torch, transformers"   # sanity check
 ```
 
 `api_model/smoke_test.py` recomputes the model card's headline numbers on 1600
@@ -69,13 +72,13 @@ held-out posts, so it needs the labelled data one directory up:
 
 ```bash
 cp ../wsb_classification/pickle_classification_for_learning.json .
-python3 api_model/smoke_test.py     # 30 checks, exits non-zero on failure
+wsb_classification/.venv/bin/python api_model/smoke_test.py   # exits non-zero on failure
 ```
 
 ### 2. Start the model server
 
 ```bash
-python3 api_model/server.py --host 127.0.0.1 --port 8000
+wsb_classification/.venv/bin/python api_model/server.py --host 127.0.0.1 --port 8000
 ```
 
 Keep it running — the extension shows a `classifier offline` badge otherwise.
@@ -83,7 +86,7 @@ Verify it:
 
 ```bash
 curl -s http://127.0.0.1:8000/health
-# {"status":"ok","version":"1.1.0","model":"model.joblib","classes":[...]}
+# {"status":"ok","version":"2.0.0","model":"finbert","backend":"finbert","classes":[...]}
 ```
 
 If you use a different port, change it in the extension's options page.
@@ -149,8 +152,8 @@ A label is never invented when the classifier did not answer.
 ## Tests
 
 ```bash
-# model: 30 checks incl. the held-out score from the model card
-python3 api_model/smoke_test.py
+# model: loads the fine-tuned FinBERT, incl. the held-out score from the model card
+wsb_classification/.venv/bin/python api_model/smoke_test.py
 
 # background worker against the real archive + real server (server must be running)
 node tools/dryrun.js t3_1wvjeke t3_1wvqnzs
@@ -183,11 +186,13 @@ Two things are genuinely open, both environmental rather than code:
    real post markup could not be inspected. Tier 2 discovery exists precisely because of
    this. Load the extension and check the console for the tier-1-missed warning; if the
    badge lands somewhere odd, `placeBadge()` is the only function to change.
-2. **The content-script → worker message hop is untested end-to-end.** Headless Chrome
-   does not round-trip `runtime.sendMessage` to an MV3 service worker — a three-line
-   control extension fails identically here, while calling the handler directly inside
-   the worker succeeds. The same path is covered in jsdom, and
-   `tools/browser-check.js` re-checks it as a preflight so a headed run verifies it.
+2. **The content-script → worker hop needs a long-lived port.** Headless Chrome does
+   not round-trip one-shot `runtime.sendMessage` to an MV3 service worker — a three-line
+   control extension fails identically, and it also fails headed on this Chrome 131
+   build. `chrome.runtime.connect` (port name `wsb-classifier`) works reliably, so the
+   content script and options page use a port with reconnect, and the `sendMessage`
+   handler is kept only as a fallback. Covered in jsdom and re-checked as a preflight in
+   `tools/browser-check.js`.
 
 ## Limits worth knowing
 

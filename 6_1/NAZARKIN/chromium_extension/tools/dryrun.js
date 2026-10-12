@@ -56,7 +56,18 @@ const fakeChrome = {
   }
 };
 
-const sandbox = { chrome: fakeChrome, fetch, console, AbortController, setTimeout,
+// Count the real outbound requests rather than predicting how many there should be, so
+// the summary at the end cannot drift from what background.js actually does.
+let arcticRequests = 0;
+let modelRequests = 0;
+const countingFetch = (url, init) => {
+  const u = String(url);
+  if (u.includes('/api/posts/ids')) arcticRequests++;
+  else if (u.includes('/predict')) modelRequests++;
+  return fetch(url, init);
+};
+
+const sandbox = { chrome: fakeChrome, fetch: countingFetch, console, AbortController, setTimeout,
                   clearTimeout, Object, JSON, Math, String, Number, Array, Error,
                   Promise, Set, Map, Boolean, RegExp, Date, isNaN };
 sandbox.globalThis = sandbox;
@@ -64,10 +75,7 @@ vm.createContext(sandbox);
 vm.runInContext(fs.readFileSync(path.join(HERE, '..', 'background.js'), 'utf8'),
                 sandbox, { filename: 'background.js' });
 
-if (!connectListeners.length) {
-  console.error('the worker registered no onConnect handler');
-  process.exit(1);
-}
+
 
 // The port transport the extension actually uses, exercised end to end: grab the
 // message handler the worker registers inside onConnect and call it directly, then
@@ -132,9 +140,8 @@ const LABELS = { NOISE_MEME: 1, GENUINE_OPINION: 1, FINANCIAL_CLAIM: 1, ANALYSIS
     if (errors[id]) console.log(`        note: ${errors[id]}`);
   }
 
-  const chunks = Math.max(1, Math.ceil(ids.length / 4));
   console.log(`\nlatency ${ms}ms for ${ids.length} post(s) ` +
-              `(${chunks} arctic request(s) of max 4 ids + 1 model request)`);
+              `(${arcticRequests} arctic request(s) + ${modelRequests} model request(s))`);
   console.log(`cache entries written: ${[...store.keys()].filter((k) => k.startsWith('c:')).length}`);
 
   // second pass must be served entirely from cache

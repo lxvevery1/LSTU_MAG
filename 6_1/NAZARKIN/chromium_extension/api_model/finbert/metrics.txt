@@ -1,0 +1,32 @@
+==============================================================================
+FinBERT (ProsusAI/finbert) on hand-labelled WSB data - pickle_classification_for_learning.json
+train/test = 6400/1600 (80/20), stratified on (year,label), seed 42
+max_len=256, epochs=4, batch=8, lr=2e-05, balanced class weights, fp32
+==============================================================================
+--- finbert(balanced)
+    test accuracy : 0.7306
+    test macro-F1  : 0.6861
+    train accuracy: 0.8953   (fit +0.1647 vs test)
+                 precision    recall  f1-score   support
+
+     NOISE_MEME      0.874     0.780     0.824       926
+GENUINE_OPINION      0.461     0.580     0.514       257
+FINANCIAL_CLAIM      0.613     0.689     0.649       267
+    ANALYSIS_DD      0.755     0.760     0.757       150
+
+       accuracy                          0.731      1600
+      macro avg      0.676     0.702     0.686      1600
+   weighted avg      0.753     0.731     0.739      1600
+
+    confusion matrix (rows = true, cols = pred):
+                        NOISE_MEME  GENUINE_OPIN  FINANCIAL_CL   ANALYSIS_DD
+      NOISE_MEME               722           125            63            16
+      GENUINE_OPIN              66           149            33             9
+      FINANCIAL_CL              34            37           184            12
+      ANALYSIS_DD                4            12            20           114
+
+------------------------------------------------------------------------------
+PER-YEAR TEST BREAKDOWN
+------------------------------------------------------------------------------
+finbert                                       2019            2020            2021            2022            2023            2024            2025            2026
+finbert                                 0.715(200)      0.750(200)      0.760(200)      0.714(199)      0.735(200)      0.675(200)      0.770(200)      0.726(201)

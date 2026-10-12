@@ -88,7 +88,10 @@ async function fetchJson(url, init, timeoutMs, attempt = 0) {
   let text;
   try {
     res = await fetch(url, ctrl ? { ...init, signal: ctrl.signal } : init);
-    clearTimeout(timer);
+    // The abort has to stay armed across the body read. The archive has been seen
+    // returning 200 and then stalling part way through the body, which resolves fetch()
+    // as soon as the headers arrive - clearing the timer at that point would leave
+    // res.text() waiting forever on a response that is never going to finish.
     text = await res.text();
   } catch (e) {
     // network-level failure: server down, DNS, blocked by the browser, or aborted

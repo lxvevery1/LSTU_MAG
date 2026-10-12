@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-"""Zero-dependency JSON HTTP API around WSBClassifier (stdlib only).
+"""JSON HTTP API around WSBClassifier (fine-tuned FinBERT).
 
-    python3 server.py [--host 127.0.0.1] [--port 8000] [--model model.joblib]
+    .venv/bin/python server.py [--host 127.0.0.1] [--port 8000] [--model finbert]
+
+Run it with a python that has torch + transformers (the wsb_classification/.venv).
+The legacy sklearn checkpoint can still be served with `--model model.joblib`.
 
 Endpoints
     GET  /health    -> {"status":"ok","classes":[...],"version":...}
@@ -30,7 +33,7 @@ from predictor import WSBClassifier  # noqa: E402
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CLF: WSBClassifier | None = None
-VERSION = "1.1.0"
+VERSION = "2.0.0"
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -65,6 +68,7 @@ class Handler(BaseHTTPRequestHandler):
         if path in ("/", "/health"):
             self._send(200, {"status": "ok", "version": VERSION,
                              "model": os.path.basename(self.clf.model_path),
+                             "backend": self.clf.backend,
                              "classes": self.clf.classes})
         elif path == "/classes":
             self._send(200, {"classes": self.clf.classes})
@@ -101,7 +105,7 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8000)
-    ap.add_argument("--model", default=os.path.join(HERE, "model.joblib"))
+    ap.add_argument("--model", default=os.path.join(HERE, "finbert"))
     a = ap.parse_args()
 
     CLF = WSBClassifier(a.model)

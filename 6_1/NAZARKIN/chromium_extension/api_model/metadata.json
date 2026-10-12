@@ -1,7 +1,7 @@
 {
   "name": "wsb-post-classifier",
-  "version": "1.1.0",
-  "created": "2026-10-02",
+  "version": "2.0.0",
+  "created": "2026-10-12",
   "task": "classify r/WallStreetBets posts into 4 classes",
   "classes": [
     "NOISE_MEME",
@@ -13,33 +13,37 @@
     "the catch-all fifth class was removed on purpose; it is not part of this model"
   ],
   "provenance": {
-    "model_file": "model.joblib",
-    "source_checkpoint": "logreg_hand/logreg_lr0.01_bal.joblib",
-    "note": "byte-identical copy of the best checkpoint from the training run in logreg_hand/. Not refit, not retrained, not re-parameterised.",
-    "selected_from": "logreg_hand/results.json"
+    "model_dir": "finbert/",
+    "base_model": "ProsusAI/finbert",
+    "training_script": "wsb_classification/train_finbert.py",
+    "note": "Fine-tuned from the published ProsusAI/finbert checkpoint. The original 3-way sentiment head (positive/negative/neutral) is discarded and replaced with a fresh 4-way classification head; the whole BERT encoder is then fine-tuned on the hand-labelled WSB data. Not a TF-IDF/linear model.",
+    "legacy_model": "model.joblib (the previous TF-IDF + logistic-regression model) is kept for reference and can still be served with --model model.joblib"
   },
-  "estimator": {
-    "estimator": "sklearn.linear_model.SGDClassifier",
-    "loss": "log_loss (logistic regression objective)",
-    "learning_rate": "constant",
-    "eta0": 0.01,
-    "penalty": "l2",
-    "alpha": 0.0001,
-    "class_weight": "balanced",
-    "epochs": 300,
+  "architecture": {
+    "base": "ProsusAI/finbert (BERT-base, uncased, 12 layers, 768 hidden)",
+    "parameters": 109484547,
+    "head": "linear(768 -> 4) on the [CLS] pooled output, replacing the original 3-label head",
+    "tokenizer": "bert WordPiece, truncation + dynamic padding",
+    "max_len": 256,
+    "loss": "cross-entropy with balanced class weights",
+    "optimizer": "AdamW (transformers Trainer default)",
+    "learning_rate": 2e-05,
+    "weight_decay": 0.01,
+    "warmup_steps": 80,
+    "epochs": 4,
+    "effective_batch_size": 32,
+    "per_device_batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "gradient_checkpointing": true,
+    "precision": "fp32",
     "random_state": 42,
-    "why_sgd": "sklearn >= 1.7 removed learning_rate/eta0 from LogisticRegression (they only ever applied to the sag/saga solvers). SGDClassifier with loss='log_loss' is the same logistic objective with a fixed step size, so lr=0.01 is honoured literally."
-  },
-  "features": {
-    "word": "tfidf 1-2gram min_df=2 max_features=120000 sublinear_tf",
-    "char": "tfidf char_wb 3-5gram min_df=3 max_features=120000 sublinear_tf",
-    "note": "FeatureUnion fitted on the 80% train split only; the held-out 20% was never seen by the vectorizer or the classifier"
+    "trained_on": "NVIDIA GeForce GTX 1660 Ti (6 GB), ~31 min"
   },
   "training_data": {
     "source": "r/WallStreetBets via arctic-shift.photon-reddit.com",
     "labelled_file": "pickle_classification_for_learning.json",
     "n_posts_labelled": 8000,
-    "split": "80% train (6400) / 20% held-out test (1600), stratified on (year, label), seed 42",
+    "split": "80% train (6400) / 20% held-out test (1600), stratified on (year, label), seed 42 - the exact same split as the legacy logreg model, verified via split_test_ids.json",
     "labelling": "every post read by hand against LABEL_RUBRIC.md; no model-generated or keyword-generated labels",
     "per_year_posts": 1000,
     "years": [
@@ -55,44 +59,45 @@
     "n_trained_on": 6400
   },
   "metrics": {
-    "note": "these are this exact checkpoint's own scores: it was trained on the 80% split only, so the 20% is a genuine held-out set for it. Reproducible via smoke_test.py.",
+    "note": "this model's own scores: it was trained on the 80% split only, so the 20% is a genuine held-out set for it. Reproducible via smoke_test.py.",
     "holdout_20pct": {
-      "accuracy": 0.7106,
-      "macro_f1": 0.6264,
+      "accuracy": 0.7306,
+      "macro_f1": 0.6861,
       "n_test": 1600
     },
-    "cv5": {
-      "accuracy_mean": 0.7177,
-      "accuracy_std": 0.0119,
-      "macro_f1_mean": 0.6373,
-      "macro_f1_std": 0.0139
-    },
     "per_class_holdout": {
-      "NOISE_MEME": {"precision": 0.7805, "recall": 0.8564, "f1": 0.8167, "support": 926},
-      "GENUINE_OPINION": {"precision": 0.4755, "recall": 0.3774, "f1": 0.4208, "support": 257},
-      "FINANCIAL_CLAIM": {"precision": 0.6422, "recall": 0.4906, "f1": 0.5563, "support": 267},
-      "ANALYSIS_DD": {"precision": 0.6591, "recall": 0.7733, "f1": 0.7117, "support": 150}
+      "NOISE_MEME": {"precision": 0.8741, "recall": 0.7797, "f1": 0.8242, "support": 926},
+      "GENUINE_OPINION": {"precision": 0.4613, "recall": 0.5798, "f1": 0.5138, "support": 257},
+      "FINANCIAL_CLAIM": {"precision": 0.6133, "recall": 0.6891, "f1": 0.6490, "support": 267},
+      "ANALYSIS_DD": {"precision": 0.7550, "recall": 0.7600, "f1": 0.7575, "support": 150}
+    },
+    "per_year_accuracy": {
+      "2019": 0.715, "2020": 0.750, "2021": 0.760, "2022": 0.7136,
+      "2023": 0.735, "2024": 0.675, "2025": 0.770, "2026": 0.7264
     }
   },
-  "why_this_checkpoint": {
-    "summary": "logreg_lr0.01_bal was best on 3 of the 4 recorded metrics; the logreg_lbfgs reference only edged it on CV macro-F1, by less than one standard deviation.",
-    "holdout_accuracy": "0.7106 vs 0.7031 for lbfgs - best",
-    "holdout_macro_f1": "0.6264 vs 0.6261 for lbfgs - best",
-    "cv5_accuracy": "0.7177 vs 0.7139 for lbfgs - best",
-    "cv5_macro_f1": "0.6373 vs 0.6487 for lbfgs - second, gap 0.0114 < 1 std (0.0139)",
-    "also": "it is the lr=0.01 configuration that was requested as primary, not a side reference"
+  "finetune_vs_previous_logreg": {
+    "note": "same 80/20 split, same 1600 held-out posts, same labels - directly comparable",
+    "accuracy": "0.7306 vs 0.7106 (+0.0200)",
+    "macro_f1": "0.6861 vs 0.6264 (+0.0597)",
+    "GENUINE_OPINION_f1": "0.5138 vs 0.4208 (+0.0930)",
+    "FINANCIAL_CLAIM_f1": "0.6490 vs 0.5563 (+0.0927)",
+    "ANALYSIS_DD_f1": "0.7575 vs 0.7117 (+0.0458)",
+    "NOISE_MEME_f1": "0.8242 vs 0.8167 (+0.0075)",
+    "train_accuracy": "0.8953 vs 0.9583 (less overfitting: gap 0.165 vs 0.248)"
   },
-  "alternates_in_models_dir": {
-    "logreg_lr0.01_raw.joblib": "same lr=0.01 but no class_weight - collapses toward NOISE_MEME, macro-F1 0.5548",
-    "logreg_lr0.001_bal.joblib": "lr=0.001, undertrained at 300 epochs (train acc 0.84), macro-F1 0.6024",
-    "logreg_lr0.001_raw.joblib": "lr=0.001 without class_weight - worst, macro-F1 0.4864",
-    "logreg_lbfgs.joblib": "LogisticRegression lbfgs C=4 balanced reference - best CV macro-F1 (0.6487)",
-    "training_results.json": "the full metrics.json the selection was made from"
+  "why_finetune_finbert": {
+    "summary": "A domain-pretrained transformer beats TF-IDF + logistic regression on every class and on every year, with the largest gains on the two smallest classes.",
+    "domain_pretraining": "FinBERT was pretrained on financial text (Reuters TRC2-financial + Financial PhraseBank), so its encoder already encodes market vocabulary before it ever sees WSB.",
+    "context": "Unlike bag-of-ngrams, the encoder reads word order and context, which is what separates a directional opinion from a joke and a claim from an analysis.",
+    "overfitting": "Fine-tuning regularises better here: the train/test gap drops from 0.248 to 0.165."
   },
   "known_weaknesses": [
-    "GENUINE_OPINION is the weakest class (F1 0.42): a directional opinion with no analysis is hard to separate from a joke using text alone",
+    "GENUINE_OPINION is still the weakest class (F1 0.51): a directional opinion with no analysis is genuinely hard to separate from a joke from text alone, though it improved by 0.09 over the previous model",
+    "the model overfits: train accuracy 0.895 vs 0.731 held-out",
+    "text is truncated to 256 tokens, so the longest DD posts are only partly read by the model (the previous TF-IDF model saw the whole text)",
     "2019-2023 posts in Arctic Shift often have an empty body, so those years are classified from the title alone",
-    "accuracy is dominated by NOISE_MEME (58% of data); use macro-F1 or per-class metrics to judge changes to this model",
-    "the model overfits: train accuracy 0.958 vs 0.711 on held-out data"
+    "accuracy is dominated by NOISE_MEME (58% of data); use macro-F1 or per-class metrics to judge changes",
+    "serving needs torch + transformers and ~440 MB of model weights; the previous model was 8.6 MB and stdlib-servable"
   ]
 }
