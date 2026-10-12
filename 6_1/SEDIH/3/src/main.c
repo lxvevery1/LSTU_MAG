@@ -13,6 +13,7 @@ int main(void) {
   double z2[N] = {2.1, 1.6, 1.8, 2.4, 0.9};
   double rho = 1.2;
 
+  // Latency
   double ttft = 0.25;
   double tpot = 0.020;
   int n = 128;
@@ -23,20 +24,19 @@ int main(void) {
   double max = z1[0];
 
   for (int i = 1; i < N; i++)
-    if (z1[i] / T > max / T)
+    if (z1[i] > max)
       max = z1[i];
 
   double sum = 0;
 
   for (int i = 0; i < N; i++) {
-    p[i] = exp(z1[i] / T - max / T);
+    p[i] = exp((z1[i] - max) / T);
     sum += p[i];
   }
 
   for (int i = 0; i < N; i++)
     p[i] /= sum;
 
-  printf("Вариант 16\n");
   printf("z1 = [2.5, 2.4, 0.5, 0.4, 0.3], T = 0.7, top-k = 4\n");
   printf("z2 = [2.1, 1.6, 1.8, 2.4, 0.9], rho = 1.2\n\n");
 
@@ -58,12 +58,6 @@ int main(void) {
     }
   }
 
-  for (int i = 0; i < N - 1; i++) {
-    printf("%d", order[i]);
-  }
-
-  putchar('\n');
-  putchar('\n');
   double core_sum = 0;
 
   for (int i = 0; i < k; i++)
@@ -88,32 +82,110 @@ int main(void) {
   printf("Метод: жадный\n");
   printf("Выбран: %s (%.4f)\n", tokens[chosen], p[chosen] / core_sum);
 
-  /* 4. Penalty */
+  /* 4. Repetition penalty */
+
   double z2_penalty[N];
+  double p2[N];
+  double p2_penalty[N];
 
   for (int i = 0; i < N; i++) {
-    z2_penalty[i] = z2[i];
-
-    if (i == chosen)
-      z2_penalty[i] /= rho;
+    z2_penalty[i] = z1[i];
+    p2[i] = 0.0;
+    p2_penalty[i] = 0.0;
   }
 
-  int with_penalty = 0;
-  int without_penalty = 0;
+  /* Apply repetition penalty only to the Top-k candidates */
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
 
-  for (int i = 1; i < N; i++) {
-    if (z2_penalty[i] > z2_penalty[with_penalty])
-      with_penalty = i;
+    if (idx == chosen)
+      z2_penalty[idx] /= rho;
+  }
 
-    if (z2[i] > z2[without_penalty])
-      without_penalty = i;
+  /* Softmax without penalty, only over Top-k */
+  double max_z2 = z1[order[0]];
+
+  for (int i = 1; i < k; i++) {
+    int idx = order[i];
+
+    if (z1[idx] > max_z2)
+      max_z2 = z1[idx];
+  }
+
+  double sum_z2 = 0.0;
+
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
+
+    p2[idx] = exp(z1[idx] - max_z2);
+    sum_z2 += p2[idx];
+  }
+
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
+    p2[idx] /= sum_z2;
+  }
+
+  /* Softmax after penalty, only over Top-k */
+  double max_penalty = z2_penalty[order[0]];
+
+  for (int i = 1; i < k; i++) {
+    int idx = order[i];
+
+    if (z2_penalty[idx] > max_penalty)
+      max_penalty = z2_penalty[idx];
+  }
+
+  double sum_penalty = 0.0;
+
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
+
+    p2_penalty[idx] = exp(z2_penalty[idx] - max_penalty);
+    sum_penalty += p2_penalty[idx];
+  }
+
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
+    p2_penalty[idx] /= sum_penalty;
+  }
+
+  /* Select by probability */
+  int without_penalty = order[0];
+  int with_penalty = order[0];
+
+  for (int i = 1; i < k; i++) {
+    int idx = order[i];
+
+    if (p2[idx] > p2[without_penalty])
+      without_penalty = idx;
+
+    if (p2_penalty[idx] > p2_penalty[with_penalty])
+      with_penalty = idx;
   }
 
   printf("\n4. Штраф за повтор (rho = %.1f)\n", rho);
-  printf("%s: %.2f -> %.2f\n", tokens[chosen], z2[chosen], z2_penalty[chosen]);
+  printf("%s: %.2f -> %.2f\n", tokens[chosen], z1[chosen], z2_penalty[chosen]);
 
-  printf("Выбор со штрафом: %s\n", tokens[with_penalty]);
-  printf("Выбор без штрафа: %s\n", tokens[without_penalty]);
+  printf("\nВероятности без штрафа:\n");
+
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
+    printf("%s = %.4f\n", tokens[idx], p2[idx]);
+  }
+
+  printf("\nВероятности со штрафом:\n");
+
+  for (int i = 0; i < k; i++) {
+    int idx = order[i];
+    printf("%s = %.4f\n", tokens[idx], p2_penalty[idx]);
+  }
+
+  printf("\nВыбор со штрафом: %s (%.4f)\n", tokens[with_penalty],
+         p2_penalty[with_penalty]);
+
+  printf("Выбор без штрафа: %s (%.4f)\n", tokens[without_penalty],
+         p2[without_penalty]);
 
   /* 5. Metrics */
   double latency = ttft + tpot * (n - 1);
