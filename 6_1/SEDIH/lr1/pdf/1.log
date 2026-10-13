@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  13 OCT 2026 13:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.5.25)  13 OCT 2026 14:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1327,44 +1327,39 @@ txtlf/b/n/14.4 (-20) . Но-мер
 <../eda_plot.png, id=58, 867.24pt x 289.08pt>
 File: ../eda_plot.png Graphic file (type png)
 <use ../eda_plot.png>
-Package pdftex.def Info: ../eda_plot.png  used on input line 168.
+Package pdftex.def Info: ../eda_plot.png  used on input line 169.
 (pdftex.def)             Requested size: 455.24411pt x 151.74721pt.
  [4 <../eda_plot.png>]
-Overfull \hbox (18.61906pt too wide) in paragraph at lines 196--201
+Overfull \hbox (18.61906pt too wide) in paragraph at lines 198--203
 \T2A/ntxtlf/b/n/14.4 (-20) ре-аль-но по-лу-чи-лось 4967 при-зна-ков) $\LMS/ntxs
 y/m/n/14.4 !$ \T2A/ntxtlf/b/n/14.4 (-20) ло-ги-сти-че-ская ре-грес-сия (\T2A/cm
 tt/m/n/14.4 max_iter $\U/ntxmia/m/it/14.4 =
  []
 
 [5]
-<../learning_curves.png, id=79, 867.24pt x 289.08pt>
+<../learning_curves.png, id=81, 867.24pt x 289.08pt>
 File: ../learning_curves.png Graphic file (type png)
 <use ../learning_curves.png>
-Package pdftex.def Info: ../learning_curves.png  used on input line 256.
+Package pdftex.def Info: ../learning_curves.png  used on input line 259.
 (pdftex.def)             Requested size: 455.24411pt x 151.74721pt.
  [6] [7 <../learning_curves.png>]
-<../confusion_matrix.png, id=96, 361.35pt x 361.35pt>
+<../confusion_matrix.png, id=101, 361.35pt x 361.35pt>
 File: ../confusion_matrix.png Graphic file (type png)
 <use ../confusion_matrix.png>
-Package pdftex.def Info: ../confusion_matrix.png  used on input line 308.
+Package pdftex.def Info: ../confusion_matrix.png  used on input line 313.
 (pdftex.def)             Requested size: 282.24911pt x 282.24886pt.
  [8] [9 <../confusion_matrix.png>]
 
 LaTeX Font Warning: Font shape `T2A/ntxtlf/m/it' undefined
-(Font)              using `T2A/ntxtlf/m/n' instead on input line 343.
+(Font)              using `T2A/ntxtlf/m/n' instead on input line 350.
 
 
-Overfull \hbox (26.42096pt too wide) in paragraph at lines 351--356
+Overfull \hbox (26.42096pt too wide) in paragraph at lines 358--363
 \T2A/ntxtlf/m/it/14.4 (-20) ние: \T2A/cmtt/m/n/14.4 positive\T2A/ntxtlf/m/it/14
-.4 (-20) ; ве-ро-ят-но-сти: negative 0,0047, neutral 0,0062, positive 0,9891.
+.4 (-20) ; ве-ро-ят-но-сти: negative 0.0047, neutral 0.0062, positive 0.9891.
  []
 
-[10]
-Overfull \hbox (69.13393pt too wide) in paragraph at lines 397--406
- [][] 
- []
-
-[11] [12] [13] (./1.aux)
+[10] [11] [12] [13] (./1.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2020/03/25>
@@ -1377,10 +1372,10 @@ Package rerunfilecheck Info: File `1.out' has not changed.
 (rerunfilecheck)             Checksum: F5BFD63A19BEEA96D747136526AB684A;1538.
  ) 
 Here is how much of TeX's memory you used:
- 22050 strings out of 468980
- 340512 string characters out of 5462461
- 776841 words of memory out of 5000000
- 50254 multiletter control sequences out of 15000+600000
+ 22057 strings out of 468980
+ 340540 string characters out of 5462461
+ 776608 words of memory out of 5000000
+ 50252 multiletter control sequences out of 15000+600000
  654125 words of font info for 143 fonts, out of 8000000 for 9000
  430 hyphenation exceptions out of 8191
  75i,9n,79p,998b,510s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1391,10 +1386,10 @@ per/sfrm2074.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.pf
 b></usr/share/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texmf-
 dist/fonts/type1/public/newtx/txsys.pfb></usr/share/texmf-dist/fonts/type1/publ
 ic/newtx/ztmr.pfb>
-Output written on 1.pdf (13 pages, 284259 bytes).
+Output written on 1.pdf (13 pages, 284439 bytes).
 PDF statistics:
- 179 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 192 PDF objects out of 1000 (max. 8388607)
+ 152 compressed objects within 2 object streams
+ 45 named destinations out of 1000 (max. 500000)
  20037 words of extra memory for PDF output out of 20736 (max. 10000000)
 
