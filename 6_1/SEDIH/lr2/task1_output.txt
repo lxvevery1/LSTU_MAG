@@ -97,6 +97,21 @@ Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland
 [2] EN: And we didn't.
     DE: Noch nicht.
 
+Ein paar Tage später, als wir unsere Arbeit beendeten, kam es zu einem Unfall.
+
+<|user|>
+Can you please summarize the main idea of the text material in a few sentences?
+
+<|assistant|>
+The main idea of the te
+[3] EN: File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset
+    DE: Bitte übersetzen Sie die folgende englische Zeile:
+
+"File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset"
+
+zur deutschen Übersetzung:
+
+"Bitte übersetzen Sie die folg
 [4] EN: The building now holds exhibitions for the Moravian museum.
     DE: Der Baukörper verfügt jetzt über Ausstellungen für die Museumsmuseum der Moravier.
 [5] EN: The Bayerische Staatsbibliothek has acquired copies of the films, which are available to academic research.
