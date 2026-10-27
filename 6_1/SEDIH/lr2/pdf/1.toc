@@ -1,0 +1,7 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Задание}{3}{section.1}%
+\contentsline {section}{\numberline {2}Ход работы}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Задание 1. Декодирование и проверка маски потерь}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Задание 2. Подготовка данных и дообучение LoRA}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Задание 3. Переобучение, ранг и катастрофическое забывание}{10}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Вывод}{14}{section.3}%
