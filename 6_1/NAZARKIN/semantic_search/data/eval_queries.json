@@ -1,0 +1,1558 @@
+[
+  {
+    "query": "акции C",
+    "relevant_post_ids": [
+      "1e4r3f7",
+      "1lco2rv",
+      "i1meem"
+    ],
+    "kind": "ticker",
+    "ticker": "C"
+  },
+  {
+    "query": "what does WSB think about C",
+    "relevant_post_ids": [
+      "1e4r3f7",
+      "1lco2rv",
+      "i1meem"
+    ],
+    "kind": "ticker",
+    "ticker": "C"
+  },
+  {
+    "query": "Citigroup stock",
+    "relevant_post_ids": [
+      "1e4r3f7",
+      "1lco2rv",
+      "i1meem"
+    ],
+    "kind": "ticker",
+    "ticker": "C"
+  },
+  {
+    "query": "акции F",
+    "relevant_post_ids": [
+      "1j1mj15",
+      "epohwj",
+      "fjbzr1",
+      "ol7wcc",
+      "r63ljo"
+    ],
+    "kind": "ticker",
+    "ticker": "F"
+  },
+  {
+    "query": "what does WSB think about F",
+    "relevant_post_ids": [
+      "1j1mj15",
+      "epohwj",
+      "fjbzr1",
+      "ol7wcc",
+      "r63ljo"
+    ],
+    "kind": "ticker",
+    "ticker": "F"
+  },
+  {
+    "query": "Ford stock",
+    "relevant_post_ids": [
+      "1j1mj15",
+      "epohwj",
+      "fjbzr1",
+      "ol7wcc",
+      "r63ljo"
+    ],
+    "kind": "ticker",
+    "ticker": "F"
+  },
+  {
+    "query": "акции BRK.B",
+    "relevant_post_ids": [
+      "17wu0qa",
+      "arsglm",
+      "shp0um"
+    ],
+    "kind": "ticker",
+    "ticker": "BRK.B"
+  },
+  {
+    "query": "what does WSB think about BRK.B",
+    "relevant_post_ids": [
+      "17wu0qa",
+      "arsglm",
+      "shp0um"
+    ],
+    "kind": "ticker",
+    "ticker": "BRK.B"
+  },
+  {
+    "query": "Berkshire Hathaway stock",
+    "relevant_post_ids": [
+      "17wu0qa",
+      "arsglm",
+      "shp0um"
+    ],
+    "kind": "ticker",
+    "ticker": "BRK.B"
+  },
+  {
+    "query": "акции AMC",
+    "relevant_post_ids": [
+      "15exuig",
+      "n2as0u",
+      "o0t1cn",
+      "o0th2g",
+      "qk931p",
+      "rt9y1t",
+      "v2s0b1",
+      "zn274g",
+      "zn2alf"
+    ],
+    "kind": "ticker",
+    "ticker": "AMC"
+  },
+  {
+    "query": "what does WSB think about AMC",
+    "relevant_post_ids": [
+      "15exuig",
+      "n2as0u",
+      "o0t1cn",
+      "o0th2g",
+      "qk931p",
+      "rt9y1t",
+      "v2s0b1",
+      "zn274g",
+      "zn2alf"
+    ],
+    "kind": "ticker",
+    "ticker": "AMC"
+  },
+  {
+    "query": "AMC stock",
+    "relevant_post_ids": [
+      "15exuig",
+      "n2as0u",
+      "o0t1cn",
+      "o0th2g",
+      "qk931p",
+      "rt9y1t",
+      "v2s0b1",
+      "zn274g",
+      "zn2alf"
+    ],
+    "kind": "ticker",
+    "ticker": "AMC"
+  },
+  {
+    "query": "акции MU",
+    "relevant_post_ids": [
+      "1r7aicr",
+      "1ttek97",
+      "1vqgtq5"
+    ],
+    "kind": "ticker",
+    "ticker": "MU"
+  },
+  {
+    "query": "what does WSB think about MU",
+    "relevant_post_ids": [
+      "1r7aicr",
+      "1ttek97",
+      "1vqgtq5"
+    ],
+    "kind": "ticker",
+    "ticker": "MU"
+  },
+  {
+    "query": "Micron stock",
+    "relevant_post_ids": [
+      "1r7aicr",
+      "1ttek97",
+      "1vqgtq5"
+    ],
+    "kind": "ticker",
+    "ticker": "MU"
+  },
+  {
+    "query": "акции UBER",
+    "relevant_post_ids": [
+      "16x8xme",
+      "1iqzifp",
+      "1kcbb6b",
+      "1snba82",
+      "b2x914"
+    ],
+    "kind": "ticker",
+    "ticker": "UBER"
+  },
+  {
+    "query": "what does WSB think about UBER",
+    "relevant_post_ids": [
+      "16x8xme",
+      "1iqzifp",
+      "1kcbb6b",
+      "1snba82",
+      "b2x914"
+    ],
+    "kind": "ticker",
+    "ticker": "UBER"
+  },
+  {
+    "query": "Uber stock",
+    "relevant_post_ids": [
+      "16x8xme",
+      "1iqzifp",
+      "1kcbb6b",
+      "1snba82",
+      "b2x914"
+    ],
+    "kind": "ticker",
+    "ticker": "UBER"
+  },
+  {
+    "query": "акции NFLX",
+    "relevant_post_ids": [
+      "1gsdinb",
+      "1gsfc7d",
+      "1qt2tox",
+      "1snbnmx",
+      "agswfb",
+      "ol7jkj"
+    ],
+    "kind": "ticker",
+    "ticker": "NFLX"
+  },
+  {
+    "query": "what does WSB think about NFLX",
+    "relevant_post_ids": [
+      "1gsdinb",
+      "1gsfc7d",
+      "1qt2tox",
+      "1snbnmx",
+      "agswfb",
+      "ol7jkj"
+    ],
+    "kind": "ticker",
+    "ticker": "NFLX"
+  },
+  {
+    "query": "Netflix stock",
+    "relevant_post_ids": [
+      "1gsdinb",
+      "1gsfc7d",
+      "1qt2tox",
+      "1snbnmx",
+      "agswfb",
+      "ol7jkj"
+    ],
+    "kind": "ticker",
+    "ticker": "NFLX"
+  },
+  {
+    "query": "акции GME",
+    "relevant_post_ids": [
+      "1jp6k0k",
+      "ce177q",
+      "ky9r1t",
+      "ky9ri3",
+      "lkrlyx",
+      "n2as0u",
+      "qk931p",
+      "rheopb",
+      "si24e9",
+      "stxzsz",
+      "tth4u4",
+      "v2s0b1",
+      "yiumuq"
+    ],
+    "kind": "ticker",
+    "ticker": "GME"
+  },
+  {
+    "query": "what does WSB think about GME",
+    "relevant_post_ids": [
+      "1jp6k0k",
+      "ce177q",
+      "ky9r1t",
+      "ky9ri3",
+      "lkrlyx",
+      "n2as0u",
+      "qk931p",
+      "rheopb",
+      "si24e9",
+      "stxzsz",
+      "tth4u4",
+      "v2s0b1",
+      "yiumuq"
+    ],
+    "kind": "ticker",
+    "ticker": "GME"
+  },
+  {
+    "query": "GameStop stock",
+    "relevant_post_ids": [
+      "1jp6k0k",
+      "ce177q",
+      "ky9r1t",
+      "ky9ri3",
+      "lkrlyx",
+      "n2as0u",
+      "qk931p",
+      "rheopb",
+      "si24e9",
+      "stxzsz",
+      "tth4u4",
+      "v2s0b1",
+      "yiumuq"
+    ],
+    "kind": "ticker",
+    "ticker": "GME"
+  },
+  {
+    "query": "акции AMD",
+    "relevant_post_ids": [
+      "1eh3l3l",
+      "1ghaw2q",
+      "1ld48oz",
+      "1qstobb",
+      "1tfpyc7",
+      "f4w3oh",
+      "k4cclb",
+      "p58qa0"
+    ],
+    "kind": "ticker",
+    "ticker": "AMD"
+  },
+  {
+    "query": "what does WSB think about AMD",
+    "relevant_post_ids": [
+      "1eh3l3l",
+      "1ghaw2q",
+      "1ld48oz",
+      "1qstobb",
+      "1tfpyc7",
+      "f4w3oh",
+      "k4cclb",
+      "p58qa0"
+    ],
+    "kind": "ticker",
+    "ticker": "AMD"
+  },
+  {
+    "query": "AMD stock",
+    "relevant_post_ids": [
+      "1eh3l3l",
+      "1ghaw2q",
+      "1ld48oz",
+      "1qstobb",
+      "1tfpyc7",
+      "f4w3oh",
+      "k4cclb",
+      "p58qa0"
+    ],
+    "kind": "ticker",
+    "ticker": "AMD"
+  },
+  {
+    "query": "акции BA",
+    "relevant_post_ids": [
+      "18jhmgf",
+      "1q11t8n",
+      "1tg0htp",
+      "bpwx9e"
+    ],
+    "kind": "ticker",
+    "ticker": "BA"
+  },
+  {
+    "query": "what does WSB think about BA",
+    "relevant_post_ids": [
+      "18jhmgf",
+      "1q11t8n",
+      "1tg0htp",
+      "bpwx9e"
+    ],
+    "kind": "ticker",
+    "ticker": "BA"
+  },
+  {
+    "query": "Boeing stock",
+    "relevant_post_ids": [
+      "18jhmgf",
+      "1q11t8n",
+      "1tg0htp",
+      "bpwx9e"
+    ],
+    "kind": "ticker",
+    "ticker": "BA"
+  },
+  {
+    "query": "акции SPY",
+    "relevant_post_ids": [
+      "1ld48oz",
+      "1tg0htp",
+      "rtbty6"
+    ],
+    "kind": "ticker",
+    "ticker": "SPY"
+  },
+  {
+    "query": "what does WSB think about SPY",
+    "relevant_post_ids": [
+      "1ld48oz",
+      "1tg0htp",
+      "rtbty6"
+    ],
+    "kind": "ticker",
+    "ticker": "SPY"
+  },
+  {
+    "query": "SPY stock",
+    "relevant_post_ids": [
+      "1ld48oz",
+      "1tg0htp",
+      "rtbty6"
+    ],
+    "kind": "ticker",
+    "ticker": "SPY"
+  },
+  {
+    "query": "акции META",
+    "relevant_post_ids": [
+      "14osk76",
+      "1ct612i",
+      "1ld48oz",
+      "1q11t8n",
+      "1rvs0c1",
+      "aryqmy"
+    ],
+    "kind": "ticker",
+    "ticker": "META"
+  },
+  {
+    "query": "what does WSB think about META",
+    "relevant_post_ids": [
+      "14osk76",
+      "1ct612i",
+      "1ld48oz",
+      "1q11t8n",
+      "1rvs0c1",
+      "aryqmy"
+    ],
+    "kind": "ticker",
+    "ticker": "META"
+  },
+  {
+    "query": "Meta stock",
+    "relevant_post_ids": [
+      "14osk76",
+      "1ct612i",
+      "1ld48oz",
+      "1q11t8n",
+      "1rvs0c1",
+      "aryqmy"
+    ],
+    "kind": "ticker",
+    "ticker": "META"
+  },
+  {
+    "query": "акции NVDA",
+    "relevant_post_ids": [
+      "1988uya",
+      "1as4iao",
+      "1b3qmug",
+      "1dhn600",
+      "1dhu7eu",
+      "1ggzwq5",
+      "1ghaw2q",
+      "1ifkae3",
+      "1k0meek",
+      "1kbv9mt",
+      "1olu843",
+      "1tetu36",
+      "1tf324j",
+      "1tfpyc7",
+      "1tfxv2g",
+      "1ttsx4j",
+      "1vqgtq5",
+      "fjbc5s",
+      "ol7jkj",
+      "shp0um"
+    ],
+    "kind": "ticker",
+    "ticker": "NVDA"
+  },
+  {
+    "query": "what does WSB think about NVDA",
+    "relevant_post_ids": [
+      "1988uya",
+      "1as4iao",
+      "1b3qmug",
+      "1dhn600",
+      "1dhu7eu",
+      "1ggzwq5",
+      "1ghaw2q",
+      "1ifkae3",
+      "1k0meek",
+      "1kbv9mt",
+      "1olu843",
+      "1tetu36",
+      "1tf324j",
+      "1tfpyc7",
+      "1tfxv2g",
+      "1ttsx4j",
+      "1vqgtq5",
+      "fjbc5s",
+      "ol7jkj",
+      "shp0um"
+    ],
+    "kind": "ticker",
+    "ticker": "NVDA"
+  },
+  {
+    "query": "Nvidia stock",
+    "relevant_post_ids": [
+      "1988uya",
+      "1as4iao",
+      "1b3qmug",
+      "1dhn600",
+      "1dhu7eu",
+      "1ggzwq5",
+      "1ghaw2q",
+      "1ifkae3",
+      "1k0meek",
+      "1kbv9mt",
+      "1olu843",
+      "1tetu36",
+      "1tf324j",
+      "1tfpyc7",
+      "1tfxv2g",
+      "1ttsx4j",
+      "1vqgtq5",
+      "fjbc5s",
+      "ol7jkj",
+      "shp0um"
+    ],
+    "kind": "ticker",
+    "ticker": "NVDA"
+  },
+  {
+    "query": "акции MSFT",
+    "relevant_post_ids": [
+      "1eh3l3l",
+      "1ghaw2q",
+      "1ld48oz",
+      "1tfxv2g",
+      "1tg0htp",
+      "f4r014",
+      "f4w3oh",
+      "fjbc5s",
+      "i1t7by",
+      "m5x5o5",
+      "ol7jkj"
+    ],
+    "kind": "ticker",
+    "ticker": "MSFT"
+  },
+  {
+    "query": "what does WSB think about MSFT",
+    "relevant_post_ids": [
+      "1eh3l3l",
+      "1ghaw2q",
+      "1ld48oz",
+      "1tfxv2g",
+      "1tg0htp",
+      "f4r014",
+      "f4w3oh",
+      "fjbc5s",
+      "i1t7by",
+      "m5x5o5",
+      "ol7jkj"
+    ],
+    "kind": "ticker",
+    "ticker": "MSFT"
+  },
+  {
+    "query": "Microsoft stock",
+    "relevant_post_ids": [
+      "1eh3l3l",
+      "1ghaw2q",
+      "1ld48oz",
+      "1tfxv2g",
+      "1tg0htp",
+      "f4r014",
+      "f4w3oh",
+      "fjbc5s",
+      "i1t7by",
+      "m5x5o5",
+      "ol7jkj"
+    ],
+    "kind": "ticker",
+    "ticker": "MSFT"
+  },
+  {
+    "query": "акции INTC",
+    "relevant_post_ids": [
+      "15t2efo",
+      "1ggzw11",
+      "1qstobb",
+      "1t18btu",
+      "1tfpyc7",
+      "1tfxv2g"
+    ],
+    "kind": "ticker",
+    "ticker": "INTC"
+  },
+  {
+    "query": "what does WSB think about INTC",
+    "relevant_post_ids": [
+      "15t2efo",
+      "1ggzw11",
+      "1qstobb",
+      "1t18btu",
+      "1tfpyc7",
+      "1tfxv2g"
+    ],
+    "kind": "ticker",
+    "ticker": "INTC"
+  },
+  {
+    "query": "Intel stock",
+    "relevant_post_ids": [
+      "15t2efo",
+      "1ggzw11",
+      "1qstobb",
+      "1t18btu",
+      "1tfpyc7",
+      "1tfxv2g"
+    ],
+    "kind": "ticker",
+    "ticker": "INTC"
+  },
+  {
+    "query": "акции AAPL",
+    "relevant_post_ids": [
+      "1k0jexu",
+      "1tfpyc7",
+      "aby149",
+      "abyv5x",
+      "bjorhq",
+      "itmw7d",
+      "itoysh",
+      "j2ystt",
+      "mhlkv6",
+      "r64vb4",
+      "shp0um",
+      "z9893h"
+    ],
+    "kind": "ticker",
+    "ticker": "AAPL"
+  },
+  {
+    "query": "what does WSB think about AAPL",
+    "relevant_post_ids": [
+      "1k0jexu",
+      "1tfpyc7",
+      "aby149",
+      "abyv5x",
+      "bjorhq",
+      "itmw7d",
+      "itoysh",
+      "j2ystt",
+      "mhlkv6",
+      "r64vb4",
+      "shp0um",
+      "z9893h"
+    ],
+    "kind": "ticker",
+    "ticker": "AAPL"
+  },
+  {
+    "query": "Apple stock",
+    "relevant_post_ids": [
+      "1k0jexu",
+      "1tfpyc7",
+      "aby149",
+      "abyv5x",
+      "bjorhq",
+      "itmw7d",
+      "itoysh",
+      "j2ystt",
+      "mhlkv6",
+      "r64vb4",
+      "shp0um",
+      "z9893h"
+    ],
+    "kind": "ticker",
+    "ticker": "AAPL"
+  },
+  {
+    "query": "акции T",
+    "relevant_post_ids": [
+      "18vu89l",
+      "1tfxv2g",
+      "1tg0htp",
+      "dblal0"
+    ],
+    "kind": "ticker",
+    "ticker": "T"
+  },
+  {
+    "query": "what does WSB think about T",
+    "relevant_post_ids": [
+      "18vu89l",
+      "1tfxv2g",
+      "1tg0htp",
+      "dblal0"
+    ],
+    "kind": "ticker",
+    "ticker": "T"
+  },
+  {
+    "query": "AT&T stock",
+    "relevant_post_ids": [
+      "18vu89l",
+      "1tfxv2g",
+      "1tg0htp",
+      "dblal0"
+    ],
+    "kind": "ticker",
+    "ticker": "T"
+  },
+  {
+    "query": "акции HOOD",
+    "relevant_post_ids": [
+      "1etpoug",
+      "1loq6yq",
+      "1lp48y3",
+      "1meknss",
+      "1vdatv7",
+      "b87viz",
+      "cz6z4f",
+      "e4xw5l",
+      "ebtktv",
+      "fjbzr1",
+      "mrtfwz",
+      "q99bm1"
+    ],
+    "kind": "ticker",
+    "ticker": "HOOD"
+  },
+  {
+    "query": "what does WSB think about HOOD",
+    "relevant_post_ids": [
+      "1etpoug",
+      "1loq6yq",
+      "1lp48y3",
+      "1meknss",
+      "1vdatv7",
+      "b87viz",
+      "cz6z4f",
+      "e4xw5l",
+      "ebtktv",
+      "fjbzr1",
+      "mrtfwz",
+      "q99bm1"
+    ],
+    "kind": "ticker",
+    "ticker": "HOOD"
+  },
+  {
+    "query": "Robinhood stock",
+    "relevant_post_ids": [
+      "1etpoug",
+      "1loq6yq",
+      "1lp48y3",
+      "1meknss",
+      "1vdatv7",
+      "b87viz",
+      "cz6z4f",
+      "e4xw5l",
+      "ebtktv",
+      "fjbzr1",
+      "mrtfwz",
+      "q99bm1"
+    ],
+    "kind": "ticker",
+    "ticker": "HOOD"
+  },
+  {
+    "query": "акции SPCE",
+    "relevant_post_ids": [
+      "14anvun",
+      "f4r014",
+      "f4tslg",
+      "f4w3oh",
+      "fjbc5s",
+      "ke1ltx"
+    ],
+    "kind": "ticker",
+    "ticker": "SPCE"
+  },
+  {
+    "query": "what does WSB think about SPCE",
+    "relevant_post_ids": [
+      "14anvun",
+      "f4r014",
+      "f4tslg",
+      "f4w3oh",
+      "fjbc5s",
+      "ke1ltx"
+    ],
+    "kind": "ticker",
+    "ticker": "SPCE"
+  },
+  {
+    "query": "Virgin Galactic stock",
+    "relevant_post_ids": [
+      "14anvun",
+      "f4r014",
+      "f4tslg",
+      "f4w3oh",
+      "fjbc5s",
+      "ke1ltx"
+    ],
+    "kind": "ticker",
+    "ticker": "SPCE"
+  },
+  {
+    "query": "акции BTC",
+    "relevant_post_ids": [
+      "1bftsd9",
+      "1gssti9",
+      "1h4iirn",
+      "1jp6k0k",
+      "1po9u2v"
+    ],
+    "kind": "ticker",
+    "ticker": "BTC"
+  },
+  {
+    "query": "what does WSB think about BTC",
+    "relevant_post_ids": [
+      "1bftsd9",
+      "1gssti9",
+      "1h4iirn",
+      "1jp6k0k",
+      "1po9u2v"
+    ],
+    "kind": "ticker",
+    "ticker": "BTC"
+  },
+  {
+    "query": "Bitcoin stock",
+    "relevant_post_ids": [
+      "1bftsd9",
+      "1gssti9",
+      "1h4iirn",
+      "1jp6k0k",
+      "1po9u2v"
+    ],
+    "kind": "ticker",
+    "ticker": "BTC"
+  },
+  {
+    "query": "акции AMZN",
+    "relevant_post_ids": [
+      "1ld48oz",
+      "1u7e2sx",
+      "bdui5f",
+      "d5bbz1",
+      "dx41u6",
+      "m5x5o5",
+      "shp0um",
+      "ufxce5"
+    ],
+    "kind": "ticker",
+    "ticker": "AMZN"
+  },
+  {
+    "query": "what does WSB think about AMZN",
+    "relevant_post_ids": [
+      "1ld48oz",
+      "1u7e2sx",
+      "bdui5f",
+      "d5bbz1",
+      "dx41u6",
+      "m5x5o5",
+      "shp0um",
+      "ufxce5"
+    ],
+    "kind": "ticker",
+    "ticker": "AMZN"
+  },
+  {
+    "query": "Amazon stock",
+    "relevant_post_ids": [
+      "1ld48oz",
+      "1u7e2sx",
+      "bdui5f",
+      "d5bbz1",
+      "dx41u6",
+      "m5x5o5",
+      "shp0um",
+      "ufxce5"
+    ],
+    "kind": "ticker",
+    "ticker": "AMZN"
+  },
+  {
+    "query": "акции GS",
+    "relevant_post_ids": [
+      "11srlof",
+      "13j7fe3",
+      "stq0dy",
+      "tfgul9"
+    ],
+    "kind": "ticker",
+    "ticker": "GS"
+  },
+  {
+    "query": "what does WSB think about GS",
+    "relevant_post_ids": [
+      "11srlof",
+      "13j7fe3",
+      "stq0dy",
+      "tfgul9"
+    ],
+    "kind": "ticker",
+    "ticker": "GS"
+  },
+  {
+    "query": "Goldman Sachs stock",
+    "relevant_post_ids": [
+      "11srlof",
+      "13j7fe3",
+      "stq0dy",
+      "tfgul9"
+    ],
+    "kind": "ticker",
+    "ticker": "GS"
+  },
+  {
+    "query": "акции DIS",
+    "relevant_post_ids": [
+      "167aaxj",
+      "bp824x",
+      "fjbc5s",
+      "fjbzr1"
+    ],
+    "kind": "ticker",
+    "ticker": "DIS"
+  },
+  {
+    "query": "what does WSB think about DIS",
+    "relevant_post_ids": [
+      "167aaxj",
+      "bp824x",
+      "fjbc5s",
+      "fjbzr1"
+    ],
+    "kind": "ticker",
+    "ticker": "DIS"
+  },
+  {
+    "query": "Disney stock",
+    "relevant_post_ids": [
+      "167aaxj",
+      "bp824x",
+      "fjbc5s",
+      "fjbzr1"
+    ],
+    "kind": "ticker",
+    "ticker": "DIS"
+  },
+  {
+    "query": "акции TSLA",
+    "relevant_post_ids": [
+      "150szr6",
+      "17wlckm",
+      "18kdgit",
+      "1hqt8lk",
+      "1kc9c2t",
+      "1q11t8n",
+      "1q190zx",
+      "1smstry",
+      "1wjgsxj",
+      "am1lyd",
+      "amfh0k",
+      "awu71o",
+      "bpvw2c",
+      "cr63nw",
+      "eb90av",
+      "epdeb1",
+      "fjbc5s",
+      "g2dsvo",
+      "ialhq6",
+      "ikbpcs",
+      "itq4w8",
+      "itv8uo",
+      "j2ystt",
+      "k4cclb",
+      "mhlkv6",
+      "qkd16c",
+      "shp0um",
+      "t3xkrd",
+      "x2zxux",
+      "zn2alf"
+    ],
+    "kind": "ticker",
+    "ticker": "TSLA"
+  },
+  {
+    "query": "what does WSB think about TSLA",
+    "relevant_post_ids": [
+      "150szr6",
+      "17wlckm",
+      "18kdgit",
+      "1hqt8lk",
+      "1kc9c2t",
+      "1q11t8n",
+      "1q190zx",
+      "1smstry",
+      "1wjgsxj",
+      "am1lyd",
+      "amfh0k",
+      "awu71o",
+      "bpvw2c",
+      "cr63nw",
+      "eb90av",
+      "epdeb1",
+      "fjbc5s",
+      "g2dsvo",
+      "ialhq6",
+      "ikbpcs",
+      "itq4w8",
+      "itv8uo",
+      "j2ystt",
+      "k4cclb",
+      "mhlkv6",
+      "qkd16c",
+      "shp0um",
+      "t3xkrd",
+      "x2zxux",
+      "zn2alf"
+    ],
+    "kind": "ticker",
+    "ticker": "TSLA"
+  },
+  {
+    "query": "Tesla stock",
+    "relevant_post_ids": [
+      "150szr6",
+      "17wlckm",
+      "18kdgit",
+      "1hqt8lk",
+      "1kc9c2t",
+      "1q11t8n",
+      "1q190zx",
+      "1smstry",
+      "1wjgsxj",
+      "am1lyd",
+      "amfh0k",
+      "awu71o",
+      "bpvw2c",
+      "cr63nw",
+      "eb90av",
+      "epdeb1",
+      "fjbc5s",
+      "g2dsvo",
+      "ialhq6",
+      "ikbpcs",
+      "itq4w8",
+      "itv8uo",
+      "j2ystt",
+      "k4cclb",
+      "mhlkv6",
+      "qkd16c",
+      "shp0um",
+      "t3xkrd",
+      "x2zxux",
+      "zn2alf"
+    ],
+    "kind": "ticker",
+    "ticker": "TSLA"
+  },
+  {
+    "query": "акции JPM",
+    "relevant_post_ids": [
+      "1882ieu",
+      "1t0kl4g",
+      "stq0dy"
+    ],
+    "kind": "ticker",
+    "ticker": "JPM"
+  },
+  {
+    "query": "what does WSB think about JPM",
+    "relevant_post_ids": [
+      "1882ieu",
+      "1t0kl4g",
+      "stq0dy"
+    ],
+    "kind": "ticker",
+    "ticker": "JPM"
+  },
+  {
+    "query": "JPMorgan stock",
+    "relevant_post_ids": [
+      "1882ieu",
+      "1t0kl4g",
+      "stq0dy"
+    ],
+    "kind": "ticker",
+    "ticker": "JPM"
+  },
+  {
+    "query": "акции GOOGL",
+    "relevant_post_ids": [
+      "1678fwl",
+      "1k0jexu",
+      "1lou4bo",
+      "1pp35p9",
+      "1qt2tox",
+      "1tfxv2g",
+      "dbtt9y",
+      "dpx0hk",
+      "ex8o2m",
+      "fsqhv0",
+      "m5x5o5",
+      "o0sjuh",
+      "s5h6vj",
+      "shp0um",
+      "ufr8xm",
+      "vp2019"
+    ],
+    "kind": "ticker",
+    "ticker": "GOOGL"
+  },
+  {
+    "query": "what does WSB think about GOOGL",
+    "relevant_post_ids": [
+      "1678fwl",
+      "1k0jexu",
+      "1lou4bo",
+      "1pp35p9",
+      "1qt2tox",
+      "1tfxv2g",
+      "dbtt9y",
+      "dpx0hk",
+      "ex8o2m",
+      "fsqhv0",
+      "m5x5o5",
+      "o0sjuh",
+      "s5h6vj",
+      "shp0um",
+      "ufr8xm",
+      "vp2019"
+    ],
+    "kind": "ticker",
+    "ticker": "GOOGL"
+  },
+  {
+    "query": "Google stock",
+    "relevant_post_ids": [
+      "1678fwl",
+      "1k0jexu",
+      "1lou4bo",
+      "1pp35p9",
+      "1qt2tox",
+      "1tfxv2g",
+      "dbtt9y",
+      "dpx0hk",
+      "ex8o2m",
+      "fsqhv0",
+      "m5x5o5",
+      "o0sjuh",
+      "s5h6vj",
+      "shp0um",
+      "ufr8xm",
+      "vp2019"
+    ],
+    "kind": "ticker",
+    "ticker": "GOOGL"
+  },
+  {
+    "query": "акции LYFT",
+    "relevant_post_ids": [
+      "1iqzifp",
+      "b2x914",
+      "b8j7ka",
+      "ky9sg9"
+    ],
+    "kind": "ticker",
+    "ticker": "LYFT"
+  },
+  {
+    "query": "what does WSB think about LYFT",
+    "relevant_post_ids": [
+      "1iqzifp",
+      "b2x914",
+      "b8j7ka",
+      "ky9sg9"
+    ],
+    "kind": "ticker",
+    "ticker": "LYFT"
+  },
+  {
+    "query": "Lyft stock",
+    "relevant_post_ids": [
+      "1iqzifp",
+      "b2x914",
+      "b8j7ka",
+      "ky9sg9"
+    ],
+    "kind": "ticker",
+    "ticker": "LYFT"
+  },
+  {
+    "query": "акции TM",
+    "relevant_post_ids": [
+      "jv0dj0",
+      "m5x5o5",
+      "q9hcki"
+    ],
+    "kind": "ticker",
+    "ticker": "TM"
+  },
+  {
+    "query": "what does WSB think about TM",
+    "relevant_post_ids": [
+      "jv0dj0",
+      "m5x5o5",
+      "q9hcki"
+    ],
+    "kind": "ticker",
+    "ticker": "TM"
+  },
+  {
+    "query": "Toyota stock",
+    "relevant_post_ids": [
+      "jv0dj0",
+      "m5x5o5",
+      "q9hcki"
+    ],
+    "kind": "ticker",
+    "ticker": "TM"
+  },
+  {
+    "query": "How to get short for the medium term versus short?",
+    "relevant_post_ids": [
+      "1ifa99j"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "RKLB 2 massive catalysts in the NEXT 6 WEEKS",
+    "relevant_post_ids": [
+      "1etor92"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "GE discussion and SPY Monday",
+    "relevant_post_ids": [
+      "crajbi"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "US unemployment rate hits four-year high of 4.6%",
+    "relevant_post_ids": [
+      "1po2bgq"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Go all Thanos on this sub. Get rid of Random people.",
+    "relevant_post_ids": [
+      "fjc0q3"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "“The Options Playbook” by Brian Overby",
+    "relevant_post_ids": [
+      "1lcujr7"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Robinhood Options Glitch?",
+    "relevant_post_ids": [
+      "1etpoug"
+    ],
+    "kind": "title",
+    "ticker": "HOOD"
+  },
+  {
+    "query": "(VRT) Vertiv Holdings - To the Moon",
+    "relevant_post_ids": [
+      "14nk46b"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "What a year, let's run it back!",
+    "relevant_post_ids": [
+      "1q190zx"
+    ],
+    "kind": "title",
+    "ticker": "TSLA"
+  },
+  {
+    "query": "What is your analysis on the portfolio?",
+    "relevant_post_ids": [
+      "1smv2ae"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "My first futes trade",
+    "relevant_post_ids": [
+      "1s9blyz"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Wanna quit your job and drive a navy blue Chevy Lumina?",
+    "relevant_post_ids": [
+      "eir68c"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "GE - smash hit and why it will continue to run after earnings 🚀",
+    "relevant_post_ids": [
+      "1e4r3f7"
+    ],
+    "kind": "title",
+    "ticker": "C"
+  },
+  {
+    "query": "Gold, BTC and stocks/ ETF discussion",
+    "relevant_post_ids": [
+      "1qsv6qc"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Thanks, fellow WallStreetBets degenerates.",
+    "relevant_post_ids": [
+      "1uxxj8t"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Weekend Discussion Thread for the Weekend of January 16, 2026",
+    "relevant_post_ids": [
+      "1qeryvi"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "What happens to my Jan 2025 calls on southwestern energy (swn) after merger with chesapeake energy?",
+    "relevant_post_ids": [
+      "1ftngm3"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "NGAS , is there any chances?",
+    "relevant_post_ids": [
+      "1bg157c"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Daily Discussion Thread for February 01, 2024",
+    "relevant_post_ids": [
+      "1ag8fol"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "I’m regarded. Someone explain options to a regard like me please.",
+    "relevant_post_ids": [
+      "1arx0vo"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Eurex options historical data ubisoft",
+    "relevant_post_ids": [
+      "1tenc68"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Lack of bear posts means bear is coming.",
+    "relevant_post_ids": [
+      "dbvhi9"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "For the retards reading DD",
+    "relevant_post_ids": [
+      "o0sjuh"
+    ],
+    "kind": "title",
+    "ticker": "GOOGL"
+  },
+  {
+    "query": "Liberty Media \"Attacking the Discount\" on SiriusXM - What does it mean?",
+    "relevant_post_ids": [
+      "pz1e53"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Market trackers and what to use.",
+    "relevant_post_ids": [
+      "lkrlyx"
+    ],
+    "kind": "title",
+    "ticker": "GME"
+  },
+  {
+    "query": "Four bank have custody of over US$179 Trillion in assets",
+    "relevant_post_ids": [
+      "stq0dy"
+    ],
+    "kind": "title",
+    "ticker": "GS"
+  },
+  {
+    "query": "the FUD has my brain short circuiting, so i averaged down with some 0DTE calls",
+    "relevant_post_ids": [
+      "1c5h5vx"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Goldman Raises US Recession Probability to 35% on Banking Stress",
+    "relevant_post_ids": [
+      "11srlof"
+    ],
+    "kind": "title",
+    "ticker": "GS"
+  },
+  {
+    "query": "The Schizo You’ll Call Crazy Today… But I’ll Be Back to Say, “I Told You So”",
+    "relevant_post_ids": [
+      "1h4iirn"
+    ],
+    "kind": "title",
+    "ticker": "MSTR"
+  },
+  {
+    "query": "SPY vs. QQQ for daily options trading",
+    "relevant_post_ids": [
+      "shp0um"
+    ],
+    "kind": "title",
+    "ticker": "AAPL"
+  },
+  {
+    "query": "Philosophers can get rich, they just don't need to",
+    "relevant_post_ids": [
+      "dkowes"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "What should i do i need help",
+    "relevant_post_ids": [
+      "1nioq0m"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "🚀 YOLOing on Nestlé calls ; CEO fired, growth plan intact, let’s go! 🚀",
+    "relevant_post_ids": [
+      "1n607to"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Options Will Not Be Available on Robinhood in the UK",
+    "relevant_post_ids": [
+      "cz6z4f"
+    ],
+    "kind": "title",
+    "ticker": "HOOD"
+  },
+  {
+    "query": "Barron's from 2 weeks ago: The Dow Could Hit 30,000 Five Years Ahead of Schedule. It Won’t Stop There.",
+    "relevant_post_ids": [
+      "ewxq13"
+    ],
+    "kind": "title",
+    "ticker": "DIA"
+  },
+  {
+    "query": "Fed Ex Drops 16% After Hours",
+    "relevant_post_ids": [
+      "xffhaq"
+    ],
+    "kind": "title",
+    "ticker": "OXY"
+  },
+  {
+    "query": "11/30 - 12/1 SPY, NIO, AMD, and TSLA TA Recap and Possibilities Pt. 2: Free Tendies Inside or TA Haters Can Stick it where the Sun Don't Shine",
+    "relevant_post_ids": [
+      "k4cclb"
+    ],
+    "kind": "title",
+    "ticker": "NIO"
+  },
+  {
+    "query": "What are the best TSX/TSXV stock plays to weather Trump tariffs on Canada?",
+    "relevant_post_ids": [
+      "1ifkgrb"
+    ],
+    "kind": "title",
+    "ticker": ""
+  },
+  {
+    "query": "Aduro Clean Technologies (NASDAQ: ADUR) DD",
+    "relevant_post_ids": [
+      "1lco2rv"
+    ],
+    "kind": "title",
+    "ticker": "C"
+  },
+  {
+    "query": "The new prince of Autists (Roku $700 guy)",
+    "relevant_post_ids": [
+      "e50obn"
+    ],
+    "kind": "title",
+    "ticker": "ROKU"
+  }
+]

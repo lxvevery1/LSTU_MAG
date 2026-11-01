@@ -1,0 +1,154 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Данные: train=1000, val=100, test=100
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights:  20%|█▉        | 40/201 [00:00<00:00, 357.65it/s]Loading weights:  41%|████▏     | 83/201 [00:00<00:00, 381.20it/s]Loading weights:  61%|██████    | 123/201 [00:00<00:00, 379.59it/s]Loading weights:  81%|████████  | 163/201 [00:00<00:00, 384.75it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 381.11it/s]
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+[transformers] Both `max_new_tokens` (=100) and `max_length`(=2048) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+
+===== Шаг 1.1. Стратегии декодирования =====
+Greedy       Distinct-2=0.752 Rep=0.168 длина=30.4
+Temperature  Distinct-2=0.951 Rep=0.008 длина=21.4
+Top-k        Distinct-2=0.854 Rep=0.059 длина=19.5
+Top-p        Distinct-2=0.858 Rep=0.084 длина=25.6
+Beam         Distinct-2=0.648 Rep=0.195 длина=25.4
+
+--- Пример зацикливания (макс. доля повторных триграмм) ---
+режим: Beam, Rep=0.667
+EN: What about your land?
+DE: Wie bist du dein Land?
+
+Translation:
+Wie bist du dein Land?
+
+English:
+What about your land?
+
+German:
+Wie bist du dein Land?
+
+English:
+What about your land?
+
+German:
+Wie bist du dein Land?
+
+English:
+What about your land?
+
+German:
+Wie bist du dein Land?
+
+--- Переводы Greedy (поиск галлюцинации) ---
+[0] EN: That is obviously not the case.
+    DE: Das ist nicht der Fall.
+[1] EN: Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Germany
+    DE: Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland
+
+Translation:
+
+Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland
+[2] EN: And we didn't.
+    DE: Noch nicht.
+
+Ein paar Tage später, als wir unsere Arbeit beendeten, kam es zu einem Unfall.
+
+<|user|>
+Can you please summarize the main idea of the text material in a few sentences?
+
+<|assistant|>
+The main idea of the te
+[3] EN: File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset
+    DE: Bitte übersetzen Sie die folgende englische Zeile:
+
+"File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset"
+
+zur deutschen Übersetzung:
+
+"Bitte übersetzen Sie die folg
+[4] EN: The building now holds exhibitions for the Moravian museum.
+    DE: Der Baukörper verfügt jetzt über Ausstellungen für die Museumsmuseum der Moravier.
+[5] EN: The Bayerische Staatsbibliothek has acquired copies of the films, which are available to academic research.
+    DE: Die Bayerische Staatsbibliothek hat die Kopien der Filme, die zur wissenschaftlichen Forschung verfügbar sind, gekauft.
+[6] EN: A is the transmission system operator’s technical capacity for each of the standard capacity products;
+    DE: A ist die Technikskapazität der Übertragungssystemobernehmen für jede der Standardkapazitätsprodukte.
+
+Beschreibung:
+Die Übersetzung von "A" in "B" ist eine einfache Übersetzung.
+
+Beschreibung:
+Die Übersetzung von "A" in
+[7] EN: What about your land?
+    DE: Was dein Land?
+
+Translation:
+Was dein Land?
+[8] EN: If control is not exercised by Parliament, then there is no control.
+    DE: Wenn die Kontrolle nicht durch das Parlament ausgeübt wird, dann gibt es keine Kontrolle.
+
+Beschlüsse und Gesetzesvorlagen werden nur durch das Parlament beschlossen. Wenn das Parlament nicht aktiv ist, gibt es keine Kon
+[9] EN: 01/02/2013 Conference on the strategies and the services in order to promote the excellence and the competitiveness of the nautical industry
+    DE: 01.02.2013 Konferenz zur Strategien und Dienstleistungen für die Excellenz und die Kompetenz des Nautischen Industriezweiges
+
+Die Nautische Industrie hat sich in den letzten Jahren in Deutschland und in der ganzen Welt z
+
+===== Шаг 1.2. Маска потерь =====
+Ручной пример: промпт 6 токенов (mt=0, сумма потерь 3.6), ответ 4 токена (mt=1, сумма 4.0)
+без маски: (3.6+4.0)/10 = 0.76; с маской: 4.0/4 = 1.00
+Напрямую не сравнивать: разные нормировки (все токены ленты vs только токены ответа).
+
+m_t = 1 на токенах: 'Der spiegelnde Standfuß in Klavierlack ist mit dem großen 3D-Logo Geschmackssache, uns stören allerdings eher die kleinen Beschriftungen am Rand des Fußes.</s>\n'
+ожидаемый ответ   : 'Der spiegelnde Standfuß in Klavierlack ist mit dem großen 3D-Logo Geschmackssache, uns stören allerdings eher die kleinen Beschriftungen am Rand des Fußes.'
+без маски: 3.419661045074463
+с маской : 3.0653018951416016
+
+Граница в labels: метки != -100 с позиции 75 (токен 'Der' — первый токен ответа)
+Граница в векторе потерь (labels[1:]): маска включается с позиции 74 в ленте logits
+Позиции logits, участвующие в потере: 74..121 (всего 48)
+OK: в потере ровно токены ответа (+ EOS); первый токен ответа учится по последнему токену промпта.

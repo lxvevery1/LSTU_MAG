@@ -1,0 +1,13 @@
+{
+  "base_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "output_dir": "model/wsb-minilm",
+  "train_pairs": 14194,
+  "epochs": 2.0,
+  "batch_size": 32,
+  "learning_rate": 3e-05,
+  "max_seq_length": 256,
+  "loss": "MultipleNegativesRankingLoss(scale=20)",
+  "batch_sampler": "no_duplicates",
+  "device": "cuda",
+  "seed": 42
+}

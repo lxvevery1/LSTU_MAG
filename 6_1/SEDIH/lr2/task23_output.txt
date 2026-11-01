@@ -1,0 +1,95 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+===== Шаг 2.1. Данные: три поля для двух примеров =====
+--- пример 0 ---
+prompt  : 'Translate from English to German.\n\nBoth hands are needed to get it to move. The reflective stand in high polish finish with its huge 3D logo is a matter of individual taste. We found the small labels at the edge of stand to be more annoying though.'
+response: 'Der spiegelnde Standfuß in Klavierlack ist mit dem großen 3D-Logo Geschmackssache, uns stören allerdings eher die kleinen Beschriftungen am Rand des Fußes.'
+mask    : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+          длина=123, 0 (промпт)=75, 1 (ответ)=48
+--- пример 1 ---
+prompt  : 'Translate from English to German.\n\nLook at this.'
+response: 'Sehen Sie sich das an.'
+mask    : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+          длина=37, 0 (промпт)=28, 1 (ответ)=9
+
+===== Шаг 2.2 (итог): LoRA r=4: 563200 параметров = 0.051% модели
+Сверка print_trainable_parameters: 563200 == 563200 -> OK
+
+===== Шаг 2.5. Контрольный вывод: до/после =====
+BLEU до: 4.42   BLEU после: 18.02
+эхо промпта в ответах: до 2/50, после 9/50; мусор чат-шаблона: до 3/50, после 0/50
+--- пара 0 ---
+EN: That is obviously not the case.
+эталон DE : Das ist natürlich nicht der Fall.
+до   : Das ist nicht der Fall.
+после: Dies ist nicht der Fall.
+--- пара 1 ---
+EN: Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Germany
+эталон DE : KAMAX GmbH & Co. KG, Homberg (Ohm), Germany
+до   : Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland
+Translation:
+Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland
+после: Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Germany
+--- пара 2 ---
+EN: And we didn't.
+эталон DE : Aber das klappte nicht.
+до   : Noch nicht.
+Ein paar Tage später, als wir unsere Arbeit beendeten, kam es zu einem Unfall.
+<|user|>
+Can you please summarize the main idea of the text material in a few sentences?
+<|assistant|>
+The main idea of the text material is that the author
+после: Und wir haben nicht.
+--- пара 3 ---
+EN: File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset
+эталон DE : Datei=>Weitere Datei-Funktionen , auto_LoadMatrixDataset
+до   : Bitte übersetzen Sie die folgende englische Zeile:
+"File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset"
+zur deutschen Übersetzung:
+"Bitte übersetzen Sie die folg
+после: File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset
+--- пара 4 ---
+EN: The building now holds exhibitions for the Moravian museum.
+эталон DE : Das Gebäude dient den Ausstellungszwecken des Mährischen Museums.
+до   : Der Baukörper verfügt jetzt über Ausstellungen für die Museumsmuseum der Moravier.
+после: Die Gebäude sind nun für die Museumsausstellung der Moravischen Museen geöffnet.
+
+===== Шаг 3.1. Кривые переобучения =====
+минимум val loss: эпоха 2, val=1.5620
+разрыв «val растёт, train падает»: не виден (последняя val - лучшая val = +0.0015)
+
+Таблица трассировки ранней остановки (patience=1):
+ Эпоха  Val loss      Best  Wait  Действие
+     1    1.5741    1.5741     0  сохранить
+     2    1.5620    1.5620     0  сохранить
+     3    1.5635    1.5620     1  стоп (patience=1)
+график сохранён: overfit.png
+
+===== Шаг 3.2. Катастрофическое забывание (wikitext-2) =====
+PP база: 10.24   PP LoRA: 10.13   изменение: -0.11
+
+===== Шаг 3.3. Память по правилу 18 байт на параметр =====
+полное дообучение: 18.4 ГиБ, LoRA: 2.06 ГиБ (без активаций)
+факт пик (обучение r=4): 3.02 ГиБ (расхождение с расчётом LoRA: +0.96 ГиБ — активации и буферы)
+
+===== Шаг 3.4. Влияние ранга =====
+
+Таблица результатов по рангам:
+ Ранг  Параметры  Val loss     BLEU  Время, с
+    4     563200     1.562    18.02      4469
+    8    1126400    1.5594    17.87      4505
+   16    2252800    1.5592    18.28      4506
+график сохранён: rank_metric.png
+
+===== Шаг 3.5. Диагностика сбоев =====
+Симптом                                Причина                            Действие                                   Наблюдалось
+Модель повторяет промпт                маска не на ответе                 mt=1 только на токенах ответа              да — наблюдалось
+train↓, val↑ со 2-й эпохи              переобучение                       ранняя остановка, меньший r                нет — не наблюдалось
+Старые умения пропали                  полное дообучение без replay       replay 10-20% старых данных, LoRA          нет — не наблюдалось
+Потеря не снижается                    B не нули, мала lr                 проверить инициализацию и lr               нет — train снизился на 0.24
+«Двойной» вывод после слияния          адаптер слит дважды                пересобрать из базовой модели              нет — слияние не выполнялось
+NaN в потере                           lr велика для fp16                 снизить lr, клиппинг градиента             нет — не наблюдалось
+
+===== ВЫВОДЫ =====
+Задание 2. На 50 тестовых примерах BLEU вырос 4.4 -> 18.0 (+13.6); LoRA (r=4, 563200 параметров, 0.051% модели) обучается только на токенах ответа: мусор чат-шаблона исчез (3 -> 0 из 50), эхо промпта (2 -> 9, в основном — копирование служебных строк). Ручной расчёт параметров 563200 сошёлся с print_trainable_parameters (563200).
+Задание 3. Минимум val loss — эпоха 2 (1.5620), разрыв к концу +0.0015 (переобучения нет, сработала ранняя остановка); перплексия wikitext-2 10.24 -> 10.13 (-0.11) — знания сохранены. Память: полное дообучение 18.4 ГиБ не помещается в GPU, LoRA-расчёт 2.06 ГиБ против пика 3.02 ГиБ (разница — активации). Метрика по рангам: r=4: BLEU 18.02 (4469 с), r=8: BLEU 17.87 (4505 с), r=16: BLEU 18.28 (4506 с). Лучший ранг: 16 (BLEU 18.28); разброс BLEU по рангам 0.41 — метрика в пределах шума, точка насыщения уже на r=4 (увеличение ранга в 4 раза не даёт прироста).
+ГОТОВО

@@ -1,0 +1,152 @@
+{
+  "ranks": {
+    "4": {
+      "params": 563200,
+      "val_loss": 1.562,
+      "BLEU": 18.02,
+      "BLEU_before": 4.42,
+      "время, с": 4469,
+      "peak_gib": 3.02,
+      "echo_before": 2,
+      "echo_after": 9,
+      "tmpl_before": 3,
+      "tmpl_after": 0,
+      "hist_train": [
+        [
+          1,
+          1.7242
+        ],
+        [
+          2,
+          1.5285
+        ],
+        [
+          3,
+          1.4889
+        ]
+      ],
+      "hist_val": [
+        [
+          1,
+          1.5741
+        ],
+        [
+          2,
+          1.562
+        ],
+        [
+          3,
+          1.5635
+        ]
+      ],
+      "pairs5": [
+        {
+          "EN": "That is obviously not the case.",
+          "ref": "Das ist natürlich nicht der Fall.",
+          "before": "Das ist nicht der Fall.",
+          "after": "Dies ist nicht der Fall."
+        },
+        {
+          "EN": "Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Germany",
+          "ref": "KAMAX GmbH & Co. KG, Homberg (Ohm), Germany",
+          "before": "Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland\nTranslation:\nBacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Deutschland",
+          "after": "Bacher & Co. Personalberatung GmbH, Köln, Stuttgart, München, Germany"
+        },
+        {
+          "EN": "And we didn't.",
+          "ref": "Aber das klappte nicht.",
+          "before": "Noch nicht.\nEin paar Tage später, als wir unsere Arbeit beendeten, kam es zu einem Unfall.\n<|user|>\nCan you please summarize the main idea of the text material in a few sentences?\n<|assistant|>\nThe main idea of the text material is that the author",
+          "after": "Und wir haben nicht."
+        },
+        {
+          "EN": "File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset",
+          "ref": "Datei=>Weitere Datei-Funktionen , auto_LoadMatrixDataset",
+          "before": "Bitte übersetzen Sie die folgende englische Zeile:\n\"File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset\"\nzur deutschen Übersetzung:\n\"Bitte übersetzen Sie die folg",
+          "after": "File , File=>More File Functions , File=>More File Functions=>Load 3D Data Matrix , auto_LoadMatrixDataset"
+        },
+        {
+          "EN": "The building now holds exhibitions for the Moravian museum.",
+          "ref": "Das Gebäude dient den Ausstellungszwecken des Mährischen Museums.",
+          "before": "Der Baukörper verfügt jetzt über Ausstellungen für die Museumsmuseum der Moravier.",
+          "after": "Die Gebäude sind nun für die Museumsausstellung der Moravischen Museen geöffnet."
+        }
+      ]
+    },
+    "8": {
+      "params": 1126400,
+      "val_loss": 1.5594,
+      "BLEU": 17.87,
+      "время, с": 4505,
+      "peak_gib": 3.01,
+      "hist_train": [
+        [
+          1,
+          1.7094
+        ],
+        [
+          2,
+          1.5272
+        ],
+        [
+          3,
+          1.4848
+        ]
+      ],
+      "hist_val": [
+        [
+          1,
+          1.5716
+        ],
+        [
+          2,
+          1.5594
+        ],
+        [
+          3,
+          1.5632
+        ]
+      ]
+    },
+    "16": {
+      "params": 2252800,
+      "val_loss": 1.5592,
+      "BLEU": 18.28,
+      "время, с": 4506,
+      "peak_gib": 3.03,
+      "hist_train": [
+        [
+          1,
+          1.7097
+        ],
+        [
+          2,
+          1.5273
+        ],
+        [
+          3,
+          1.4858
+        ]
+      ],
+      "hist_val": [
+        [
+          1,
+          1.5714
+        ],
+        [
+          2,
+          1.5592
+        ],
+        [
+          3,
+          1.5606
+        ]
+      ]
+    }
+  },
+  "misc": {
+    "pp_base": 10.24,
+    "pp_lora": 10.13,
+    "n_all_base": 1100048384,
+    "manual_total": 563200
+  }
+}

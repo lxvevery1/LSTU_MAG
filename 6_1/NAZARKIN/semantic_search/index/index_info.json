@@ -1,0 +1,11 @@
+{
+  "model": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/semantic_search/model/wsb-minilm",
+  "corpus": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/semantic_search/data/corpus.jsonl",
+  "vectors": 11500,
+  "dimension": 384,
+  "posts": 8000,
+  "chunks": 11500,
+  "metric": "inner product on L2-normalised vectors (cosine similarity)",
+  "built_at": "2026-11-01T22:35:33+0300",
+  "encode_seconds": 19.51
+}
