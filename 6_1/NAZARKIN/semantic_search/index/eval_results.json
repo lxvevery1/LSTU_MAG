@@ -1,0 +1,2548 @@
+{
+  "corpus_chunks": 11500,
+  "eval_queries": 124,
+  "base": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "encode_seconds": 21.11,
+    "overall": {
+      "n": 124,
+      "recall@10": 0.3389,
+      "recall@50": 0.4584,
+      "hit@10": 0.5,
+      "hit@50": 0.7177,
+      "mrr@10": 0.333
+    },
+    "by_kind": {
+      "ticker": {
+        "n": 84,
+        "recall@10": 0.0717,
+        "recall@50": 0.2005,
+        "hit@10": 0.3095,
+        "hit@50": 0.5833,
+        "mrr@10": 0.0884
+      },
+      "title": {
+        "n": 40,
+        "recall@10": 0.9,
+        "recall@50": 1.0,
+        "hit@10": 0.9,
+        "hit@50": 1.0,
+        "mrr@10": 0.8467
+      }
+    },
+    "per_query": [
+      {
+        "query": "акции C",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about C",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Citigroup stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции F",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about F",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Ford stock",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.2,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции BRK.B",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about BRK.B",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Berkshire Hathaway stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции AMC",
+        "kind": "ticker",
+        "n_relevant": 9,
+        "recall@10": 0.2222222222222222,
+        "hit@10": 1.0,
+        "recall@50": 0.4444444444444444,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "what does WSB think about AMC",
+        "kind": "ticker",
+        "n_relevant": 9,
+        "recall@10": 0.1111111111111111,
+        "hit@10": 1.0,
+        "recall@50": 0.1111111111111111,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "AMC stock",
+        "kind": "ticker",
+        "n_relevant": 9,
+        "recall@10": 0.2222222222222222,
+        "hit@10": 1.0,
+        "recall@50": 0.4444444444444444,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "акции MU",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about MU",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Micron stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции UBER",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.6,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "what does WSB think about UBER",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.4,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Uber stock",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.6,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "акции NFLX",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.16666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "what does WSB think about NFLX",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Netflix stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.8333333333333334,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "акции GME",
+        "kind": "ticker",
+        "n_relevant": 13,
+        "recall@10": 0.07692307692307693,
+        "hit@10": 1.0,
+        "recall@50": 0.3076923076923077,
+        "hit@50": 1.0,
+        "mrr@10": 0.1111111111111111
+      },
+      {
+        "query": "what does WSB think about GME",
+        "kind": "ticker",
+        "n_relevant": 13,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.07692307692307693,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "GameStop stock",
+        "kind": "ticker",
+        "n_relevant": 13,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.07692307692307693,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции AMD",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.125,
+        "hit@10": 1.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "what does WSB think about AMD",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "AMD stock",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.125,
+        "hit@10": 1.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.1111111111111111
+      },
+      {
+        "query": "акции BA",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about BA",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Boeing stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции SPY",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about SPY",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "SPY stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции META",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.16666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.5,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "what does WSB think about META",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Meta stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.5,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "акции NVDA",
+        "kind": "ticker",
+        "n_relevant": 20,
+        "recall@10": 0.05,
+        "hit@10": 1.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "what does WSB think about NVDA",
+        "kind": "ticker",
+        "n_relevant": 20,
+        "recall@10": 0.15,
+        "hit@10": 1.0,
+        "recall@50": 0.2,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "Nvidia stock",
+        "kind": "ticker",
+        "n_relevant": 20,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции MSFT",
+        "kind": "ticker",
+        "n_relevant": 11,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about MSFT",
+        "kind": "ticker",
+        "n_relevant": 11,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.09090909090909091,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Microsoft stock",
+        "kind": "ticker",
+        "n_relevant": 11,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.09090909090909091,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции INTC",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about INTC",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Intel stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции AAPL",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.08333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "what does WSB think about AAPL",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.08333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.1111111111111111
+      },
+      {
+        "query": "Apple stock",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.08333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "акции T",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about T",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "AT&T stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции HOOD",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about HOOD",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Robinhood stock",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.08333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции SPCE",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about SPCE",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Virgin Galactic stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции BTC",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about BTC",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Bitcoin stock",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.2,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции AMZN",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.125,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about AMZN",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.125,
+        "hit@10": 1.0,
+        "recall@50": 0.125,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "Amazon stock",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции GS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about GS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Goldman Sachs stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции DIS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about DIS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Disney stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.5,
+        "hit@10": 1.0,
+        "recall@50": 0.5,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "акции TSLA",
+        "kind": "ticker",
+        "n_relevant": 30,
+        "recall@10": 0.03333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.06666666666666667,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "what does WSB think about TSLA",
+        "kind": "ticker",
+        "n_relevant": 30,
+        "recall@10": 0.03333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.03333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "Tesla stock",
+        "kind": "ticker",
+        "n_relevant": 30,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.1,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции JPM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about JPM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "JPMorgan stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "акции GOOGL",
+        "kind": "ticker",
+        "n_relevant": 16,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about GOOGL",
+        "kind": "ticker",
+        "n_relevant": 16,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Google stock",
+        "kind": "ticker",
+        "n_relevant": 16,
+        "recall@10": 0.0625,
+        "hit@10": 1.0,
+        "recall@50": 0.0625,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "акции LYFT",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.5,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "what does WSB think about LYFT",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.75,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Lyft stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.5,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "акции TM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about TM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Toyota stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "How to get short for the medium term versus short?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "RKLB 2 massive catalysts in the NEXT 6 WEEKS",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "GE discussion and SPY Monday",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "US unemployment rate hits four-year high of 4.6%",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Go all Thanos on this sub. Get rid of Random people.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "“The Options Playbook” by Brian Overby",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Robinhood Options Glitch?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "(VRT) Vertiv Holdings - To the Moon",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What a year, let's run it back!",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "What is your analysis on the portfolio?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "My first futes trade",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Wanna quit your job and drive a navy blue Chevy Lumina?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "GE - smash hit and why it will continue to run after earnings 🚀",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Gold, BTC and stocks/ ETF discussion",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Thanks, fellow WallStreetBets degenerates.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Weekend Discussion Thread for the Weekend of January 16, 2026",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "What happens to my Jan 2025 calls on southwestern energy (swn) after merger with chesapeake energy?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "NGAS , is there any chances?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Daily Discussion Thread for February 01, 2024",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "I’m regarded. Someone explain options to a regard like me please.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Eurex options historical data ubisoft",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Lack of bear posts means bear is coming.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "For the retards reading DD",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Liberty Media \"Attacking the Discount\" on SiriusXM - What does it mean?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Market trackers and what to use.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Four bank have custody of over US$179 Trillion in assets",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "the FUD has my brain short circuiting, so i averaged down with some 0DTE calls",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Goldman Raises US Recession Probability to 35% on Banking Stress",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "The Schizo You’ll Call Crazy Today… But I’ll Be Back to Say, “I Told You So”",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "SPY vs. QQQ for daily options trading",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Philosophers can get rich, they just don't need to",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What should i do i need help",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "🚀 YOLOing on Nestlé calls ; CEO fired, growth plan intact, let’s go! 🚀",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Options Will Not Be Available on Robinhood in the UK",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Barron's from 2 weeks ago: The Dow Could Hit 30,000 Five Years Ahead of Schedule. It Won’t Stop There.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Fed Ex Drops 16% After Hours",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "11/30 - 12/1 SPY, NIO, AMD, and TSLA TA Recap and Possibilities Pt. 2: Free Tendies Inside or TA Haters Can Stick it where the Sun Don't Shine",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What are the best TSX/TSXV stock plays to weather Trump tariffs on Canada?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Aduro Clean Technologies (NASDAQ: ADUR) DD",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "The new prince of Autists (Roku $700 guy)",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      }
+    ]
+  },
+  "finetuned": {
+    "model": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/semantic_search/model/wsb-minilm",
+    "encode_seconds": 19.87,
+    "overall": {
+      "n": 124,
+      "recall@10": 0.4224,
+      "recall@50": 0.6892,
+      "hit@10": 0.75,
+      "hit@50": 0.9758,
+      "mrr@10": 0.4696
+    },
+    "by_kind": {
+      "ticker": {
+        "n": 84,
+        "recall@10": 0.1593,
+        "recall@50": 0.5412,
+        "hit@10": 0.6429,
+        "hit@50": 0.9643,
+        "mrr@10": 0.2369
+      },
+      "title": {
+        "n": 40,
+        "recall@10": 0.975,
+        "recall@50": 1.0,
+        "hit@10": 0.975,
+        "hit@50": 1.0,
+        "mrr@10": 0.9583
+      }
+    },
+    "per_query": [
+      {
+        "query": "акции C",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about C",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Citigroup stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции F",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.2,
+        "hit@10": 1.0,
+        "recall@50": 0.8,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "what does WSB think about F",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.4,
+        "hit@10": 1.0,
+        "recall@50": 0.8,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "Ford stock",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.6,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции BRK.B",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "what does WSB think about BRK.B",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.6666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "Berkshire Hathaway stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "акции AMC",
+        "kind": "ticker",
+        "n_relevant": 9,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.5555555555555556,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about AMC",
+        "kind": "ticker",
+        "n_relevant": 9,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.5555555555555556,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "AMC stock",
+        "kind": "ticker",
+        "n_relevant": 9,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.4444444444444444,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции MU",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "what does WSB think about MU",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "Micron stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "акции UBER",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.4,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "what does WSB think about UBER",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.4,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "Uber stock",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.4,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "акции NFLX",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.16666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "what does WSB think about NFLX",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.16666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "Netflix stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.8333333333333334,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "акции GME",
+        "kind": "ticker",
+        "n_relevant": 13,
+        "recall@10": 0.07692307692307693,
+        "hit@10": 1.0,
+        "recall@50": 0.3076923076923077,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "what does WSB think about GME",
+        "kind": "ticker",
+        "n_relevant": 13,
+        "recall@10": 0.07692307692307693,
+        "hit@10": 1.0,
+        "recall@50": 0.3076923076923077,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "GameStop stock",
+        "kind": "ticker",
+        "n_relevant": 13,
+        "recall@10": 0.07692307692307693,
+        "hit@10": 1.0,
+        "recall@50": 0.23076923076923078,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "акции AMD",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about AMD",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "AMD stock",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции BA",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.25,
+        "hit@10": 1.0,
+        "recall@50": 0.75,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "what does WSB think about BA",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.25,
+        "hit@10": 1.0,
+        "recall@50": 0.75,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "Boeing stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.25,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "акции SPY",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about SPY",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "SPY stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.0,
+        "hit@50": 0.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции META",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about META",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Meta stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции NVDA",
+        "kind": "ticker",
+        "n_relevant": 20,
+        "recall@10": 0.05,
+        "hit@10": 1.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "what does WSB think about NVDA",
+        "kind": "ticker",
+        "n_relevant": 20,
+        "recall@10": 0.05,
+        "hit@10": 1.0,
+        "recall@50": 0.3,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "Nvidia stock",
+        "kind": "ticker",
+        "n_relevant": 20,
+        "recall@10": 0.05,
+        "hit@10": 1.0,
+        "recall@50": 0.3,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "акции MSFT",
+        "kind": "ticker",
+        "n_relevant": 11,
+        "recall@10": 0.09090909090909091,
+        "hit@10": 1.0,
+        "recall@50": 0.45454545454545453,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "what does WSB think about MSFT",
+        "kind": "ticker",
+        "n_relevant": 11,
+        "recall@10": 0.09090909090909091,
+        "hit@10": 1.0,
+        "recall@50": 0.45454545454545453,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Microsoft stock",
+        "kind": "ticker",
+        "n_relevant": 11,
+        "recall@10": 0.09090909090909091,
+        "hit@10": 1.0,
+        "recall@50": 0.5454545454545454,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "акции INTC",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.16666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "what does WSB think about INTC",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "Intel stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.16666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 0.5,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "акции AAPL",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.4166666666666667,
+        "hit@10": 1.0,
+        "recall@50": 0.5833333333333334,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "what does WSB think about AAPL",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.4166666666666667,
+        "hit@10": 1.0,
+        "recall@50": 0.5833333333333334,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Apple stock",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.5833333333333334,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "акции T",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.25,
+        "hit@10": 1.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "what does WSB think about T",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "AT&T stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.5,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции HOOD",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.08333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.08333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "what does WSB think about HOOD",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.08333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.08333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "Robinhood stock",
+        "kind": "ticker",
+        "n_relevant": 12,
+        "recall@10": 0.08333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.08333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.16666666666666666
+      },
+      {
+        "query": "акции SPCE",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about SPCE",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Virgin Galactic stock",
+        "kind": "ticker",
+        "n_relevant": 6,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.8333333333333334,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции BTC",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.2,
+        "hit@10": 1.0,
+        "recall@50": 0.4,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "what does WSB think about BTC",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.4,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Bitcoin stock",
+        "kind": "ticker",
+        "n_relevant": 5,
+        "recall@10": 0.2,
+        "hit@10": 1.0,
+        "recall@50": 0.8,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "акции AMZN",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about AMZN",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.125,
+        "hit@10": 1.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "Amazon stock",
+        "kind": "ticker",
+        "n_relevant": 8,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции GS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.75,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about GS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Goldman Sachs stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "акции DIS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "what does WSB think about DIS",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.25,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Disney stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.25,
+        "hit@10": 1.0,
+        "recall@50": 0.5,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "акции TSLA",
+        "kind": "ticker",
+        "n_relevant": 30,
+        "recall@10": 0.03333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.13333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "what does WSB think about TSLA",
+        "kind": "ticker",
+        "n_relevant": 30,
+        "recall@10": 0.03333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.16666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Tesla stock",
+        "kind": "ticker",
+        "n_relevant": 30,
+        "recall@10": 0.06666666666666667,
+        "hit@10": 1.0,
+        "recall@50": 0.13333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "акции JPM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "what does WSB think about JPM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.6666666666666666,
+        "hit@50": 1.0,
+        "mrr@10": 0.14285714285714285
+      },
+      {
+        "query": "JPMorgan stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "акции GOOGL",
+        "kind": "ticker",
+        "n_relevant": 16,
+        "recall@10": 0.0625,
+        "hit@10": 1.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.25
+      },
+      {
+        "query": "what does WSB think about GOOGL",
+        "kind": "ticker",
+        "n_relevant": 16,
+        "recall@10": 0.0625,
+        "hit@10": 1.0,
+        "recall@50": 0.375,
+        "hit@50": 1.0,
+        "mrr@10": 0.125
+      },
+      {
+        "query": "Google stock",
+        "kind": "ticker",
+        "n_relevant": 16,
+        "recall@10": 0.0625,
+        "hit@10": 1.0,
+        "recall@50": 0.3125,
+        "hit@50": 1.0,
+        "mrr@10": 0.5
+      },
+      {
+        "query": "акции LYFT",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.75,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "what does WSB think about LYFT",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.5,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.2
+      },
+      {
+        "query": "Lyft stock",
+        "kind": "ticker",
+        "n_relevant": 4,
+        "recall@10": 0.5,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "акции TM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.3333333333333333,
+        "hit@10": 1.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.1
+      },
+      {
+        "query": "what does WSB think about TM",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 0.3333333333333333,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "Toyota stock",
+        "kind": "ticker",
+        "n_relevant": 3,
+        "recall@10": 0.6666666666666666,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "How to get short for the medium term versus short?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "RKLB 2 massive catalysts in the NEXT 6 WEEKS",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "GE discussion and SPY Monday",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "US unemployment rate hits four-year high of 4.6%",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Go all Thanos on this sub. Get rid of Random people.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "“The Options Playbook” by Brian Overby",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Robinhood Options Glitch?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "(VRT) Vertiv Holdings - To the Moon",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What a year, let's run it back!",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What is your analysis on the portfolio?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 0.0,
+        "hit@10": 0.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.0
+      },
+      {
+        "query": "My first futes trade",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Wanna quit your job and drive a navy blue Chevy Lumina?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "GE - smash hit and why it will continue to run after earnings 🚀",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Gold, BTC and stocks/ ETF discussion",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Thanks, fellow WallStreetBets degenerates.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 0.3333333333333333
+      },
+      {
+        "query": "Weekend Discussion Thread for the Weekend of January 16, 2026",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What happens to my Jan 2025 calls on southwestern energy (swn) after merger with chesapeake energy?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "NGAS , is there any chances?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Daily Discussion Thread for February 01, 2024",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "I’m regarded. Someone explain options to a regard like me please.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Eurex options historical data ubisoft",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Lack of bear posts means bear is coming.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "For the retards reading DD",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Liberty Media \"Attacking the Discount\" on SiriusXM - What does it mean?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Market trackers and what to use.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Four bank have custody of over US$179 Trillion in assets",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "the FUD has my brain short circuiting, so i averaged down with some 0DTE calls",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Goldman Raises US Recession Probability to 35% on Banking Stress",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "The Schizo You’ll Call Crazy Today… But I’ll Be Back to Say, “I Told You So”",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "SPY vs. QQQ for daily options trading",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Philosophers can get rich, they just don't need to",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What should i do i need help",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "🚀 YOLOing on Nestlé calls ; CEO fired, growth plan intact, let’s go! 🚀",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Options Will Not Be Available on Robinhood in the UK",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Barron's from 2 weeks ago: The Dow Could Hit 30,000 Five Years Ahead of Schedule. It Won’t Stop There.",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Fed Ex Drops 16% After Hours",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "11/30 - 12/1 SPY, NIO, AMD, and TSLA TA Recap and Possibilities Pt. 2: Free Tendies Inside or TA Haters Can Stick it where the Sun Don't Shine",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "What are the best TSX/TSXV stock plays to weather Trump tariffs on Canada?",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "Aduro Clean Technologies (NASDAQ: ADUR) DD",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      },
+      {
+        "query": "The new prince of Autists (Roku $700 guy)",
+        "kind": "title",
+        "n_relevant": 1,
+        "recall@10": 1.0,
+        "hit@10": 1.0,
+        "recall@50": 1.0,
+        "hit@50": 1.0,
+        "mrr@10": 1.0
+      }
+    ]
+  }
+}
