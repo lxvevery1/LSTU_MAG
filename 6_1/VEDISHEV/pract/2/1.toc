@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Стратегическое управление ИТ-услугами}{3}{section.1}%
+\contentsline {section}{\numberline {2}Управление портфелем услуг}{3}{section.2}%
+\contentsline {section}{\numberline {3}Управление финансами для ИТ-услуг}{4}{section.3}%
+\contentsline {section}{\numberline {4}Управление спросом}{5}{section.4}%
+\contentsline {section}{\numberline {5}Управление взаимоотношениями с бизнесом}{6}{section.5}%
