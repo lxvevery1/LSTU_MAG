@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WSB Semantic Search — настройки</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #101217;
+      --panel: #171a21;
+      --border: #2f343e;
+      --text: #e8eaed;
+      --muted: #9aa3af;
+      --accent: #ff5a12;
+      --ok: #22c55e;
+      --error: #ef4444;
+      --pending: #f59e0b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 32px 20px;
+      color: var(--text);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    main {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    h1 { margin: 0 0 4px; font-size: 22px; }
+    h2 { margin: 28px 0 8px; font-size: 15px; }
+
+    .lead { margin: 0 0 24px; color: var(--muted); }
+
+    label { display: block; margin-bottom: 6px; font-weight: 600; }
+
+    .row { display: flex; gap: 8px; }
+
+    input[type="url"] {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 10px 12px;
+      color: var(--text);
+      background: #0d0f13;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      outline: none;
+      font: inherit;
+    }
+
+    input[type="url"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 90, 18, 0.18);
+    }
+
+    button {
+      padding: 9px 14px;
+      color: var(--text);
+      background: #232833;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover { background: #2b313d; }
+
+    button.primary {
+      color: #fff;
+      background: linear-gradient(135deg, #ff4500, #ff7a18);
+      border: 0;
+    }
+
+    button.primary:hover { filter: brightness(1.08); }
+
+    .actions { display: flex; gap: 8px; margin-top: 10px; }
+
+    .hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    code {
+      padding: 1px 5px;
+      background: #0d0f13;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-size: 12px;
+    }
+
+    pre {
+      margin: 0;
+      padding: 12px 14px;
+      overflow-x: auto;
+      color: #cfd6df;
+      background: #0d0f13;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    kbd {
+      padding: 1px 5px;
+      background: #232833;
+      border: 1px solid var(--border);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 11px;
+    }
+
+    .status {
+      margin-top: 14px;
+      padding: 10px 12px;
+      color: var(--muted);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .status[data-state="ok"] { border-left-color: var(--ok); color: #b7e7c5; }
+    .status[data-state="error"] { border-left-color: var(--error); color: #f3b7b7; }
+    .status[data-state="pending"] { border-left-color: var(--pending); color: #f4d79b; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WSB Semantic Search</h1>
+    <p class="lead">
+      Панель поиска появляется на страницах reddit.com и обращается к локальному
+      HTTP API семантического поиска.
+    </p>
+
+    <label for="server">Адрес локального сервера</label>
+    <div class="row">
+      <input id="server" type="url" spellcheck="false" placeholder="http://127.0.0.1:8000">
+      <button id="save" class="primary" type="button">Сохранить</button>
+    </div>
+    <p class="hint">
+      По умолчанию <code>http://127.0.0.1:8000</code>. Расширение имеет доступ только
+      к <code>localhost</code> и <code>127.0.0.1</code> (порт любой).
+    </p>
+
+    <div class="actions">
+      <button id="test" type="button">Проверить соединение</button>
+      <button id="reset" type="button">Сбросить</button>
+    </div>
+
+    <pre id="status" class="status" data-state="idle">—</pre>
+
+    <h2>Как запустить сервер</h2>
+    <pre><code>cd semantic_search
+source .venv/bin/activate
+python server.py --host 127.0.0.1 --port 8000</code></pre>
+
+    <h2>Использование</h2>
+    <p class="hint">
+      Откройте reddit.com: панель находится в правом нижнем углу. Запрос
+      отправляется по <kbd>Enter</kbd>, панель сворачивается по <kbd>Esc</kbd>.
+      Быстрый фокус на поле — <kbd>Alt</kbd>+<kbd>S</kbd>.
+    </p>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

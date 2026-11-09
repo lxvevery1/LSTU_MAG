@@ -156,6 +156,25 @@ curl -s 'http://localhost:8000/search?q=%D0%B0%D0%BA%D1%86%D0%B8%D0%B8%20APPL&to
 }
 ```
 
+## Браузерное расширение
+
+В `extension/` лежит расширение для Chromium-браузеров (Manifest V3), которое
+добавляет на страницы reddit.com плавающую панель семантического поиска. Запросы
+идут в локальный API через background service worker, поэтому CORS и mixed content
+не мешают: страница HTTPS, а API — HTTP.
+
+```bash
+# 1. запустить API
+python server.py --host 127.0.0.1 --port 8000
+
+# 2. chrome://extensions → режим разработчика → «Загрузить распакованное»
+#    выбрать папку semantic_search/extension
+```
+
+Панель появляется в правом нижнем углу; `Alt+S` фокусирует поле, `Enter` запускает
+поиск. Адрес сервера и проверка соединения — на странице настроек расширения.
+Подробности: [`extension/README.md`](extension/README.md).
+
 ## Пересборка пайплайна
 
 ```bash
@@ -196,6 +215,7 @@ python fetch_arctic_shift.py \
 | `semantic_search.py` | класс `Searcher` (энкодер + FAISS + SQLite) |
 | `search.py` | CLI-поиск |
 | `server.py` | HTTP API на стандартной библиотеке |
+| `extension/` | браузерное расширение с панелью поиска на reddit.com |
 | `evaluate.py` | сравнение base и дообученной модели, `index/eval_results.json` |
 | `smoke_test.py` | проверки модели, индекса, примеров запросов и метрик |
 | `fetch_arctic_shift.py` | загрузка постов из Arctic Shift |
