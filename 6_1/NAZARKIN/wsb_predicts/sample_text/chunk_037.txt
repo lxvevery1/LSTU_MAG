@@ -1,0 +1,799 @@
+[0] (Discussion | score 978 | id 1vd6y8c)
+TITLE: Dip buying results vs spy
+BODY: Nothing fancy. No calls here. Just buying shares of great companies when I think they’re temporarily mispriced. Have done this with many others with same results. I also have a call options starter and a foundation of S&P index, bonds and cash. Not smarter than anyone. Just plenty of liquidity and discipline. Wait and buy fear…wait again and trim/sell strength, repeat. Post COVID, it’s been basically that easy. My returns have been nearly 2x the index over the last 6 years with this strategy. I have losses too. But not a lot. I only own a few positions at a time. It’s 20% what I buy, and 80% when. Many of you do better but this works for me. Age 52. $10.3m portfolio. 90% invested when value is easy to find. 60% invested when hard to find. Results of these 3 positions vs SPY if bought instead on same day: Amazon vs SPY 04/21/25: +61.59% vs +45.2% 04/09/25: +58.27% vs +37.3% 04/04/25: +56. [...truncated]
+
+[1] (Meme | score 23 | id 1uy1vqh)
+TITLE: Which one of you regards is this?
+BODY: <empty>
+
+[2] (News | score 1436 | id 1ukmykl)
+TITLE: Fed Chief Kevin Warsh declines to hint at July rate decision, but says inflation ‘too high’
+BODY: <empty>
+
+[3] (News | score 43 | id 1t0k7th)
+TITLE: SMH Other Subreddits are so behind on the news cycle
+BODY: <empty>
+
+[4] (Gain | score 7 | id 1q1wycz)
+TITLE: 2025 was a good year
+BODY: Overall 2025 was a good year (almost 6 digit profit). Most of the gains came from NVDA, TSLA, ASML, UNH. I hope I make some good trades in 2026.
+
+[5] (noflair | score 332 | id 1u796ur)
+TITLE: Daily Discussion Thread for June 16, 2026
+BODY: This post contains content not supported on old Reddit. [Click here to view the full post](https://sh.reddit.com/r/wallstreetbets/comments/1u796ur)
+
+[6] (News | score 100 | id 1vpm0co)
+TITLE: New option patch dropped: Expanded options hours 7:30 ET so you can ruin your life before work instead of during work.
+BODY: <empty>
+
+[7] (Loss | score 1 | id 1r7i8k7)
+TITLE: How bad did i fuck up
+BODY: <empty>
+
+[8] (Discussion | score 575 | id 1u7er9k)
+TITLE: Anyone sold SPCX Puts this morning on the 1st SPCX options day
+BODY: https://preview.redd.it/0apr3ky1kn7h1.png?width=2174&format=png&auto=webp&s=0cd596d0ef790f2ade85ba281a6e9f9082bf587a Woke up early before any indications on the SPCX maiden options trading day June 16, 2026. Pre open with SPCX still under 203, I placed multiple STO Put orders at 150 to 195 Strikes. Got filled at $8 for the 190 Puts. The premium was lower, much lower than I calculated hours before, especially with the 229 printed overnight. I guess the premium may have halved due to the all stock $60 billion deal for Cursor AI, but that news was not at all un-expected. So now as I write this, SPCX has climbed to #4 market cap, ahead of Amazon and now Microsoft nearing $3 Trillion.
+
+[9] (Discussion | score 1 | id 1q1xn18)
+TITLE: Best LEAPS right now?
+BODY: What are in your opinion the best LEAPS to buy for 27/28 right now? I'm looking at deep ITM NFLX Dec. 26.
+
+[10] (Loss | score 4 | id 1s95nv4)
+TITLE: Charles Schwab liquidated 700 shares of NBIS without notice
+BODY: Posting this because I'm frustrated and want to know if anyone else has dealt with this or has advice. I hold 3,400 shares of NBIS (Nebius Group) in a Schwab margin account. This morning they sold 700 of my shares to cover a margin call — without calling me, without emailing me, without any notification whatsoever. My account was UP $74,000 on the day when this happened. Here's what I found out after the fact: Schwab apparently raised the maintenance margin requirement on NBIS from 40% to 50%. I was never notified of this change. Had I known, I would have deposited cash immediately to cover the difference. I had the funds. I just had no idea there was a deficiency. When I called, they told me to call the margin team tomorrow. So that's where I'm at. A few things I'm trying to find out: Whether the requirement change happened intraday today (same day as the liquidation) or earlier Whether [...truncated]
+
+[11] (Discussion | score 28 | id 1vr4rjs)
+TITLE: Why Leo is the goat 🐐
+BODY: The chart shows that July's Situational Awareness facepalm absolutely trounces the second greatest trading loss of all time. And it's greater than Archegos, Amaranth and LTCM put together in inflation-adjusted dollars.
+
+[12] (DD | score 3 | id 1uk8x7h)
+TITLE: The Bull case for $NU (one of my next 10x)
+BODY: Everyone’s so hot in chips and tech I actually think reading a bag for some capital rotation and quality companies.. well $NU in and interesting play. Personally I’m bullish on South America and they are already taking key markets but storm. I just entered 4 Leaps waiting for money to clear and I will pick up 1k shares to start and DCA over the next year to hopefully around 2k shares.. here’s my thoughts NU is executing at an insane level... Customer base hit 135 million Q1 2026, Brazil approaching 100 million monthly actives. Activity rates hold steady around 83 percent, and Mexico is following the same path with 15 million customers already. .. ARPAC climbed to around $16 per active customer, up sequentially every quarter. a record Q1 revenue of $5 billion. Credit portfolio grew 40 percent year over year to $37 billion+ Bottom line is strong. Q1 net income was $871 million, Earnings ha [...truncated]
+
+[13] (DD | score 1 | id 1riihv8)
+TITLE: $LCID will profit HUGE from the crash 🚀
+BODY: TL;DR: Iran war go boom. Oil prices go up, but defense contracts go brrrr. Lucid secretly building self driving tank bots for the Pentagon. Silent electric mules hauling ammo through mountains. Black budget projects for autonomous "Desert Lucid" combat vehicles. Saudi money is just a cover for the real manufacturing play. Market is sleeping on defense dollars while staring at car deliveries. This is a 10 bagger. Buy now or forever hold your peace. Not financial advice. I just like the stock.
+
+[14] (News | score 1 | id 1u7f0mz)
+TITLE: BlackRock's covered-call Bitcoin ETF (BITA) went live today
+BODY: So this dropped on Nasdaq this morning. Its not a spot fund, its covered calls on top of IBIT. They sell calls on like 25-35% of the holdings and pay you the premium monthly. Targeting 15-25% yield, keeping \~70% of btc upside. Fee is 0.65% so cheaper than the other covered call funds but obviously more than plain IBIT. The catch is the usual covered call thing, if btc rips your gains get capped above the strike and you underperform IBIT. The "yield" is really just you selling off some upside, not free money. Anyone actually buying this over just holding IBIT? cant decide if the monthly income is worth the capped upside tbh
+
+[15] (Discussion | score 0 | id 1vcwpfj)
+TITLE: Spacex Short squeeze? Can the history repeat itself?
+BODY: I have no doubt that spacex is going downhill in a long run as there is no way to justify the current BS pricing. Even 40$ seems too generous for me. But the question is what prevents seeing the similar short squeeze as it was during COVID? This time the only difference is that institutions were heavily invested in the first initial rounds of private investments before IPO announcement, so one might think they will try to offload their shares as soon as possible. Which seems logical given that pre-IPO pricing was a little less than 3$ per share which is still a massive profit even if stock tanks 50% during the market open. But another risk is that SPACEX is the most shorted company right now with short interest standing at around 34% of the shares available for public trading. Sure it is well below 2020 short interest that peaked at around 140% of its available public float, but still \~ [...truncated]
+
+[16] (Discussion | score 1 | id 1r6r7s4)
+TITLE: Most of the big man's relationships ended badly
+BODY: How will this affect us?
+
+[17] (Meme | score 5 | id 1q0xhmx)
+TITLE: 2026 pls
+BODY: https://preview.redd.it/cry1oizrkoag1.jpg?width=480&format=pjpg&auto=webp&s=daf58611865ea9450ad1087ed02bc5fa01767044 Green candles only, please
+
+[18] (DD | score 0 | id 1ttlq5b)
+TITLE: Can i pet that dawwg
+BODY: This shits so overhyped trading at 602 forward p/e and will come down as soon as Nasdaq shows some weakness. Sep. 18 220$ puts. Send it famm
+
+[19] (Loss | score 0 | id 1rvo2yg)
+TITLE: First time in a “big” position, enjoy my suffering
+BODY: Listened to the DD on $MVST. I am not cut out for this shit. Officially a bag holder. Yeah yeah don’t listen to people on the internet blah blah. Let me hear it
+
+[20] (Meme | score 38 | id 1wi7p8q)
+TITLE: Traders waiting for Trumps threatening post after today
+BODY: <empty>
+
+[21] (Discussion | score 2 | id 1t0sb77)
+TITLE: First day at JP Morgan
+BODY: <empty>
+
+[22] (Discussion | score 114 | id 1tte32g)
+TITLE: 347k followers (not my account)
+BODY: The confusion continues. Get ready for more gains. Not financial advice.
+
+[23] (Loss | score 9 | id 1wi6id8)
+TITLE: went searching for what i lost
+BODY: <empty>
+
+[24] (Discussion | score 1 | id 1u7giwm)
+TITLE: Fed Meeting Tmrw
+BODY: Tomorrow is an important day! I am curious as to what the atmosphere is surrounding this. Does anyone have any ideas what might be the outcome? Is there a possibility we cut? Is there a bigger possibility that we hike? Thanks, Fellow Liquidity
+
+[25] (News | score 0 | id 1u7aguu)
+TITLE: Is this bullish or bearish for oil I can't tell
+BODY: [https://www.reuters.com/business/energy/us-is-using-an-iranian-smuggling-tactic-sneak-oil-out-gulf-2026-06-16/](https://www.reuters.com/business/energy/us-is-using-an-iranian-smuggling-tactic-sneak-oil-out-gulf-2026-06-16/)
+
+[26] (Discussion | score 1 | id 1rhzien)
+TITLE: Guy I am going to full port into Toyota as Q1 is probably going to be their best quarter.
+BODY: With current developments,the sales of Hilux pick ups and Land Cruisers should be booming. The Prius also looks good Most taxis in UAE are Camrys and some might have been bombed and need replacement
+
+[27] (Loss | score 69 | id 1w4qywn)
+TITLE: Loss Porn
+BODY: My 9 11 has arrived
+
+[28] (Meme | score 127 | id 1u7d0ew)
+TITLE: i can time the market
+BODY: <empty>
+
+[29] (Gain | score 30 | id 1smsk9j)
+TITLE: Fixed my portfolio (+215K)
+BODY: <empty>
+
+[30] (Gain | score 21 | id 1qenf7n)
+TITLE: Thanks ASTS
+BODY: Tried tried tried to post DD on here a year ago, six months ago, three months ago. Every post was deleted without explanation. Tried to tell everyone who would listen that asts was the future of telecom with a fuck ton of catalysts in the pipe. 5400+ shares with an average of $38. Starting building my position July 2024. The position went from 25% of my net worth to 75% in the last year. This will be a $250-$500b company in the next 5-7 years. We’re still early.
+
+[31] (Gain | score 1539 | id 1qsq46v)
+TITLE: SLV puts - it finally paid out
+BODY: Started to accumulate SLV puts position around 1/10/2026. It was a very very painful process and I can’t believe my eyes. Glad this collapse finally came on Friday. (Had 550 puts before this screenshot. Closed all positions and took profits before 2pm)
+
+[32] (Gain | score 16 | id 1wi5pgc)
+TITLE: MRVL Call + $$19438
+BODY: It's the Fed's interest rate decision day, so lock in your profits now!
+
+[33] (Gain | score 46 | id 1tttcrv)
+TITLE: SPCE(X)!! 4.20, 6900%!! 🚀🚀
+BODY: Next stop, $15 a share, book it
+
+[34] (Meme | score 1662 | id 1t0fbly)
+TITLE: POV You’re a new hire at JPM and your manager wants to discuss the terms of your promotion
+BODY: <empty>
+
+[35] (Meme | score 68 | id 1r66aw0)
+TITLE: Jaws is ready for blood tomorrow.
+BODY: <empty>
+
+[36] (News | score 326 | id 1ttp74y)
+TITLE: Michael Burry Calls Elon Musk-Nvidia AI Deal 'Fugazi' — Warns Retirees of Hidden Risks
+BODY: <empty>
+
+[37] (Discussion | score 1 | id 1t0rivg)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[38] (Discussion | score 1 | id 1r7fkys)
+TITLE: FTW STUB shorts are crazy
+BODY: Not sure why first post was deleted. Who doesn’t buy tickets. Not a social media post!
+
+[39] (Meme | score 2 | id 1sa3efl)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[40] (Meme | score 13 | id 1t0k3bj)
+TITLE: Calls/Puts on JPM. Bubble About to Burst
+BODY: <empty>
+
+[41] (Meme | score 5613 | id 1rip2ap)
+TITLE: so many people will be obliterated by close
+BODY: <empty>
+
+[42] (Loss | score 0 | id 1rvuk0c)
+TITLE: How is this possible
+BODY: Had a great day and was looking to recover from my losses yesterday and then the option went to 0 2 mins before close I’m honestly shocked and at the end of my rope. I will never give up tho I just added my last paycheck to my portfolio WE WILL WIN TMR
+
+[43] (YOLO | score 3 | id 1rvfyf2)
+TITLE: iNvEsTiNg 🥀
+BODY: Don’t worry guys, I just withdrew more than I deposited. 🥀
+
+[44] (YOLO | score 0 | id 1rhpndd)
+TITLE: Make me rich
+BODY: Wallstreetbets, I'm a total noob. Getting 10k cash from some RSUs that are vesting as a cash bonus because the company I work for got privately acquired. No debt, no credit cards. What do I do with 10K, I am all in.
+
+[45] (Discussion | score 1 | id 1r77240)
+TITLE: Why is ZIM Integrated Shipping Services trading at $30 instead of $35?
+BODY: Hi. Can you explain this?[ ZIM to be acquired by Hapag-Lloyd for $35.00 per share](https://investors.zim.com/news/news-details/2026/ZIM-to-be-Acquired-by-Hapag-Lloyd-for-35-00-per-Share-in-Cash-at-Aggregate-Cash-Consideration-of-Approximately-4-2-Billion-New-Israeli-Company-New-ZIM-to-Acquire-Portion-of-ZIMs-Business/default.aspx) *in cash.* The stock is currently trading at $30. Is that basically a free $5? Where’s the catch?
+
+[46] (Gain | score 1045 | id 1q1aqe9)
+TITLE: RKLB made me a millionaire
+BODY: 2025 was the year I hit $1M net worth. About $700k of that is RKLB (already discounted 10% from ATH so don’t @ me). Big shoutout to yall degens. This is where I learned about VACQ pre-RKLB and because of that I stacked 10k shares between Aug 2021 and Apr 2024. The rest is boomer stuff: QQQM, VOO, NVDA. I’m up about 1100% on NVDA, though I sold a decent chunk to buy more RKLB years ago. Also started nibbling KRKNF in the last month. My point is, if you actually read and think instead of just shitposting, there are some legit gems here. Happy New Year. Now give me my fkn flair: “See you, space cowboy…” RKLB $9000 LET’S RIDE 🚀
+
+[47] (News | score 6 | id 1r73dtv)
+TITLE: $BWA - The next AI infrastructure play? From Tier 1 Auto Supplier to Data Center Powerhouse
+BODY: Everyone is chasing $NVDA and $MU, but the real bottleneck for AI is energy. I’ve been looking into **BorgWarner ($BWA)**. They just announced a pivot into the data center power market with modular turbine generators (2GW capacity planned). The stock already popped 20% on the news, but I think this is just the beginning of the 'Second Wave' AI rally. While the market sees them as a 'boring' automotive Tier 1 supplier, they are perfectly positioned to solve the on-site power crisis for gigawatt-scale data centers. Current P/E is still way below the high-flyers like $VRT or $ETN. Is the market sleeping on the transition from auto to energy infrastructure? I’m looking for other 'secondary' or 'pick-and-shovel' plays that haven't been pumped to the moon yet. What are we watching in the energy/cooling sector?
+
+[48] (Discussion | score 0 | id 1vq0mx3)
+TITLE: Why doesn’t Netflix trade around Spotify’s valuation?
+BODY: I understand the differences between the platforms (audio vs video), but Netflix is significantly bigger than Spotify in both annual revenue and market capitalization. Netflix brings in over $41 billion in annual revenue compared to Spotify's roughly $16 billion, and holds a market valuation more than three times larger Is it just vibes at this point? And yes, I got me a couple hundred Netflix shares about two weeks Afos
+
+[49] (Loss | score 63 | id 1t16f1t)
+TITLE: All Losses
+BODY: When will the dump end? Fuck this
+
+[50] (News | score 1 | id 1uxz499)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[51] (Discussion | score 0 | id 1u7iyhn)
+TITLE: SpaceX is becoming too big to fail...and that is why it will break the global economy.
+BODY: Not an expert, not a trader, but SpaceX getting special exceptions to IPO rules to go public and then immediately turning around and leveraging $60B in stock to acquire one of the biggest names in AI coding assistants to inflate the (real? perceived?) value of Grok sure sounds a lot like what banks were doing back in the 00's.
+
+[52] (Meme | score 1231 | id 1tf5959)
+TITLE: POV you open Yahoo Finance the morning after finally purchasing calls
+BODY: <empty>
+
+[53] (Meme | score 78 | id 1wi65v5)
+TITLE: After today’s hike….
+BODY: <empty>
+
+[54] (YOLO | score 12 | id 1smo205)
+TITLE: MNDY YOLO
+BODY: I love mondays ❤️
+
+[55] (YOLO | score 108 | id 1s9n29e)
+TITLE: This will be 25k by next week!
+BODY: <empty>
+
+[56] (Meme | score 496 | id 1wiq5nq)
+TITLE: We are rising rates.
+BODY: <empty>
+
+[57] (Discussion | score 378 | id 1vqsouz)
+TITLE: So we all buying magnets now?
+BODY: After Dell,IBM. I think it’s time for me to become a magnet guy Call me magneto cuz I’ll be buying up all magnet stocks.
+
+[58] (Loss | score 2 | id 1qea4q9)
+TITLE: Anyone betting on $NFLX earnings?
+BODY: https://preview.redd.it/9hz0urkf4odg1.png?width=1470&format=png&auto=webp&s=84fdb06865ec80e21b7e3ba69d028daeb02c2dbf Meanwhile my possition
+
+[59] (News | score 170 | id 1u7ajlx)
+TITLE: SpaceX Cements $60 Billion Deal to Take Over AI Startup Cursor
+BODY: <empty>
+
+[60] (Discussion | score 77 | id 1snba82)
+TITLE: Cramer suggests Buy... RIP Uber
+BODY: [Link](https://finance.yahoo.com/markets/stocks/articles/jim-cramer-uber-sell-off-133533310.html) Disclosure: long 2925 of Uber @$77.76 Uber has a P/E of over 16, I think this is what cranberry was interested in. However, at its current valuation, Uber has a disconnect to it's PEG ratio of 7. This signals that the stock price is drastically overextended relative to its actual earnings growth. Growth in users has plateaued. Moving from 156 million monthly active users in 2024 to 200 million in 2025 was a significant leap, yet the expectation that 2026 will see growth is misplaced. Uber has effectively saturated its addressable market, hence why they didn't forecast their Monthly Active Users for this year. They will not see user growth as significant as their PEG suggests. Furthermore, the pivot toward an autonomous future is often marketed as a cure-all for labor costs, but this transiti [...truncated]
+
+[61] (YOLO | score 1 | id 1u7jwsc)
+TITLE: SpaceX is buying Anysphere company behind AI coding agent Cursor. I'm going full YOLO to buy $ANY.
+BODY: <empty>
+
+[62] (Meme | score 4 | id 1rhxvv2)
+TITLE: It’s my time to shine tomorrow
+BODY: <empty>
+
+[63] (Meme | score 1 | id 1rvlz2k)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[64] (Discussion | score 1 | id 1w501tt)
+TITLE: Sitting on $5,000 and I want to turn it into $50,000.
+BODY: What’s up, guys. I’ve got $5,000 sitting in settled cash ready to deploy, and my goal is straightforward: 10x the stack to $50k. I'm looking for high-conviction ideas, high volatility, and massive asymmetric upside. Whether it's earnings plays, short squeezes, momentum plays, or 0DTEs—I want to hear what's on everyone's radar right now. What’s your favorite ticker and play setup right now, and what’s the thesis behind it? Pitch me your favorite high-upside moves. 🚀🚀🚀
+
+[65] (Discussion | score 24 | id 1rigod1)
+TITLE: Iran war Bulls are retarded
+BODY: Last post got removed because mods said posting this as DD makes me gay. Anyone betting on a green day tomorrow is actually retarded. The only way we end green tomorrow is if we gap up on open (which we won’t unless Iran publicly capitulates overnight - which they won’t). We’re opening red tomorrow because war is scary, and having a massive sell-off because gen-pop is retarded and operates purely off of fear. They’ll see the market open red, sell everything they own, market will bleed until close. I’ll post my gains after close tomorrow. TLDR: Iran war bulls r fuk, buying as many 0DTE SPX puts as I can afford at open tomorrow. Positions: G
+
+[66] (DD | score 1 | id 1ri3fzs)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[67] (Meme | score 1 | id 1qedcoq)
+TITLE: How I feel telling everyone I suffered an impairment loss instead of "I'm down 90% on 0tde spy puts"
+BODY: <empty>
+
+[68] (Loss | score 44 | id 1rixwog)
+TITLE: I’m just tired. Really fucking tired. Tired of everything.
+BODY: <empty>
+
+[69] (News | score 0 | id 1t0wisj)
+TITLE: JUST IN: Apple $AAPL rises 5%, adding $205,000,000,000 to its market cap today.
+BODY: <empty>
+
+[70] (News | score 47 | id 1ukjbf7)
+TITLE: Trump reports over $1.4 billion in income from crypto ventures
+BODY: [https://www.reuters.com/world/us/trump-reports-more-than-14-billion-income-crypto-ventures-2026-06-30/](https://www.reuters.com/world/us/trump-reports-more-than-14-billion-income-crypto-ventures-2026-06-30/)
+
+[71] (Discussion | score 0 | id 1r6snd5)
+TITLE: Wendy's - Competitive Advantage and Project Fresh
+BODY: Trump is bringing down the immigration numbers. The food service industry is reliant on immigrant labor. The reduction in the labor supply will put an upward pressure on wages, which means less lower profits. There is an iconic company that is well positioned to resist this wage inflation, because its prestige and dynamic corporate culture make it the employer of choice for members of this subreddit. With crypto going into the crapper, silver crashing and 0DTE options growing in popularity, the usually steam of marginally skilled labor flowing in the direction of Wendy's is bound to become a flood. Also, Wendy's has launched a turnaround plan - "Project Fresh". (Given that their primary product is dead cow on a bun full of preservatives, the name is probably ironic. That is how hip and cutting edge Wendy's is!). The underperforming locations it is closing represents only about 5% - 6% of [...truncated]
+
+[72] (Loss | score 234 | id 1smq792)
+TITLE: Anyone hiring?
+BODY: Should’ve bought calls 😞
+
+[73] (DD | score 1 | id 1w4aux2)
+TITLE: Infleqtion - The Quantum Dark Horse
+BODY: A continuation from [https://www.reddit.com/r/wallstreetbets/comments/1udusnu/why\_i\_think\_infleqtion\_infq\_might\_be\_a\_big\_winner/](https://www.reddit.com/r/wallstreetbets/comments/1udusnu/why_i_think_infleqtion_infq_might_be_a_big_winner/) I will try to not waste your time with bullshit and pointless yapp and I will try to show everything I gathered about this . Bullish af partnerships recently seen Dell: [https://x.com/infleqtion/status/2087246482667721088?s=20](https://x.com/infleqtion/status/2087246482667721088?s=20) "We’re excited to join our partner Dell Technologies in Booth #409, where attendees can learn how we’re working together to help scale and deploy atom-based quantum RF and other advanced quantum sensing solutions for national security and defense applications. Stop by the Dell Technologies booth to explore how quantum sensing can deliver critical insights for deci [...truncated]
+
+[74] (Discussion | score 0 | id 1uk8o4u)
+TITLE: This months report from my personal AI
+BODY: I built my own AI. Created a new report tonight. It gives validation for the regards. A perfect stock score is 1. I gave it $2500.00 to play with. https://preview.redd.it/l7uxkbq10jah1.png?width=1163&format=png&auto=webp&s=5323062728b831ae688197e7a0fd2e459d2cca8f
+
+[75] (Meme | score 1 | id 1vdatv7)
+TITLE: CATECOIN OG
+BODY: 0xfDAa0AaD9779014150ac987Aa965a5A74878fA68 Real OG of Catecoin on Robinhood. All the copycats are dead, more than 11% supply burnt. CA was launched in Noxa, we need the power of all the degens to send this beyond Mars.
+
+[76] (Loss | score 15 | id 1tejftv)
+TITLE: Bulls seeing liquidity re-enter the system
+BODY: <empty>
+
+[77] (DD | score 66 | id 1ttlx3b)
+TITLE: $HIMS - The former Netflix CFO just bought $1.2M of stock.
+BODY: David B. Wells, Director of Hims & Hers, purchased 48,400 shares at $24.23 on May 26 - an open market buy worth $1.2M. His stake increased by 27.5% in a single transaction. Here's what makes this interesting: I went through the complete insider history of $HIMS. The pattern is striking: The entire C-suite has been selling non-stop. CFO Okupe alone unloaded shares in five separate transactions between April 6 and May 18 - at prices ranging from $19.98 all the way up to $29.96. The CLO sold in April too. Open market buys from executives? Almost nonexistent. Until now. https://preview.redd.it/uc8j25etrm4h1.png?width=502&format=png&auto=webp&s=ab008cf875575a107479bc8ac7f6b53d4dbe54e3 Wells is not just any board member. He's the former CFO of Netflix. He understands subscriber platforms, unit economics, and what a transition quarter actually looks like versus a structural collapse. He saw the [...truncated]
+
+[78] (Discussion | score 1 | id 1rhrxce)
+TITLE: Tomorrow’s plays
+BODY: What’s everyone’s move for tomorrow?
+
+[79] (Gain | score 1 | id 1w4dfyn)
+TITLE: Sep starting out decent
+BODY: <empty>
+
+[80] (Discussion | score 0 | id 1rw893j)
+TITLE: Trying to call historical PE on Google Sheet
+BODY: I'm trying to call historical PE (5/10 years for the Indian Stock Exchange: 'NSE') on Google Sheet, but could not. Is it possible? If yes, how to call the value on google sheet? \[Thanks in Advance\]
+
+[81] (Gain | score 1 | id 1qtqm16)
+TITLE: Dont miss this twice
+BODY: <empty>
+
+[82] (Gain | score 21 | id 1qemh28)
+TITLE: Tax free ASTS gains
+BODY: I once had 300 shares in a brokerage but chickened out in mid 20’s. I just remembered the other day I had these still 😅
+
+[83] (Discussion | score 0 | id 1ttnfhq)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[84] (DD | score 5 | id 1t0ump4)
+TITLE: $SOUN DD:The Voice AI Casino Play That Might Print or Send You Back to Wendy’s Dumpster.
+BODY: So SoundHound (SOUN) is basically trying to fix the fact that every Wendy’s drive-thru speaker sounds like it’s underwater and held together by duct tape. They’re doing voice AI for real businesses restaurants, cars, call centers not just “ask Siri the weather” type stuff. And unlike a lot of AI names, they actually have revenue, around \~$170M annual run rate and still growing fast. Now here’s where it gets spicy: short interest is sitting around 40%. That’s not “a few skeptics,” that’s a full-on “we think this thing is garbage” crowd all piled in. Earnings are expected next week and sentiment is leaning toward a beat. If they even slightly outperform, this turns into one of those situations where the chart turns into a vertical line for no reason other than positioning getting blown up. The company also announced on April 21, the $43 million acquisition of LivePerson. Management is imp [...truncated]
+
+[85] (DD | score 1 | id 1wiwsj1)
+TITLE: Aerotyne International
+BODY: It is a cutting-edge high-tech firm out of the Midwest awaiting imminent patent approval on the next generation of radar detectors that have both huge military and civilian applications. Right now, the stock trades over-the-counter at 10 cents a share. And by the way, my analysis indicate it could go a heck of a lot higher than that. Your profit on a mere $6,000 investment would be upwards of $60,000!
+
+[86] (Gain | score 0 | id 1q0r95g)
+TITLE: Happy New Years regards! I just threw shit at the wall and booked profits often.
+BODY: [YTD](https://preview.redd.it/23es9ir1smag1.png?width=1414&format=png&auto=webp&s=a03381c42d8cd706bc2b0a53d7fe07da39e66809) [Top earning positions](https://preview.redd.it/287reg72smag1.png?width=1856&format=png&auto=webp&s=99ef66c4d6a61bab780020232520ac4c5d2e262b) Too many people posting their gains without how they got'em so I thought I'd throw my gains with all my dumb positions into the mix. I hope its an inspiration, if a dumbass like me can make money then anyone can! All stocks, no options.
+
+[87] (News | score 5 | id 1r6tpxj)
+TITLE: Western Digital is already sold out of hard drives for all of 2026 — chief says some long-term agreements for 2027 and 2028 already in place
+BODY: <empty>
+
+[88] (Gain | score 461 | id 1ttr5sy)
+TITLE: Just made 4 months of income in a week
+BODY: Thank you Sandisk and Micron.
+
+[89] (Discussion | score 0 | id 1teza5q)
+TITLE: Is the narrative still plausible?
+BODY: I’m about to blindly follow ChatGPT’s advice and open a call position on ONDS if it hits a 2.50€ entry. The product I’m looking at is a 15$ call warrant expiring in January 2027. I’m honestly tired of missing out on huge moves like AMD or Rocket Lab. ChatGPT says I’m probably late to the ONDS trade, since the stock was more attractive not too long ago, but it still sees ONDS as one of the more realistic story-wise moonshot setups because of drone defense, autonomous systems, AI/defense tech, and the current defense spending narrative. I know this is not just an “ONDS to 15$” trade. Because of the warrant price, ONDS probably has to get above roughly 18$ by expiration just to break even, and more like 25$+ for the trade to really pay off. What do y’all think are my chances of losing it all? Am I just chasing after the move, or is there still a realistic asymmetric setup here?
+
+[90] (Discussion | score 1 | id 1riu6xq)
+TITLE: CORZ earnings day…puts or no?
+BODY: Core Scientific reports today after the bell. Last earnings they skipped because of the failed CRWV takeover attempt. Huge bitcoin holding. Bitcoin miner. Building data centers for coreweave that have been repeatedly delayed. Seems like the results could be terrible with the write downs on BTC, substantially lower profits on the mining, and then significant capex without revenue? What you think?
+
+[91] (DD | score 161 | id 1vpiobs)
+TITLE: Why I Expect $MSTR at $40ish in 8-12 Weeks
+BODY: *Note: This is my assessment and opinion. I place high probability on this coming to pass, but there's always a chance that it does not.* While Strategy management is running around like a headless chicken and changing strategies like one changes underwear, I believe $MSTR is lining up for another leg down. Simply because Strategy's fortunes are tied to those of Bitcoin at the hip, and Bitcoin is showing signs of keeling over: [Left: Flags on Bitcoin | Right: Liquidity \(GLI Indicator on tV\)](https://preview.redd.it/mrpftap2pmjh1.png?width=1575&format=png&auto=webp&s=6307b4585f8ddf257a269e4af574a30e09441053) Both the technicals and liquidity suggest it's time for Bitcoin's next leg down. Perhaps the final leg down, before it starts bottoming. (Yes, these measures are reliable; you can see track record of this [here](https://x.com/NitherDither/status/2073565617399939150) on X.) Here's a  [...truncated]
+
+[92] (Loss | score 1 | id 1r7cwl8)
+TITLE: All this just to still be down - Same Day 9K Gain and 10k Loss
+BODY: <empty>
+
+[93] (Discussion | score 8 | id 1uktzsc)
+TITLE: The real reason $WEN will go up
+BODY: Because it's like really really funny... Do you remember 2016, where Trumpy first start taking the stage and just started dissing all the other candidates and being a meme candidate. He kept gaining, and we voted him in because he was... like really really funny. There were so many better squeeze opportunities than Wendy's over the last 5 years. But were they funny?? Hell no. The MOST IMPORTANT thing we can do for Wendy's is to keep the memes growing and growing. And I'm looking at you, fellow regard. So sure, you can buy shares and stuff. But most importantly, Make The Wendy's Dumpster Great Again. And hey, when we lose all of our money, I'll keep an extra $50 in my pocket for a handjibber or two.
+
+[94] (Meme | score 1 | id 1wi5mmn)
+TITLE: We’ve got a runner
+BODY: Gloo is up big today, but I still think the market is missing the story. At around $4/share, the company is worth roughly $350M while guiding to **$200M in 2026 revenue**. That’s under 2x sales for a company that just grew revenue **188% YoY**. The other thing that caught my attention: insiders bought about **$9M worth of stock around $3.25**, including CEO Scott Beck and Pat Gelsinger. Margins are improving, losses are shrinking, and management is targeting positive adjusted EBITDA in Q4. The obvious risk is that a lot of the growth has come from acquisitions. If organic growth disappoints, this gets ugly. But if they prove they can integrate these businesses, keep growing, and expand margins, I think the valuation changes fast. Analyst targets currently go as high as **$17/share**. At $4, that’s the setup I’m interested in. Not saying it goes 4x overnight. But I think the upside here i [...truncated]
+
+[95] (Discussion | score 1 | id 1rhtvk5)
+TITLE: Is the ChatGPT drama bullish or bearish?
+BODY: They got a government contract. Users are cancelling in droves. Is this bullish or bearish? Is the government contract worth enough money to justify losing a few users? What do you all think?
+
+[96] (Discussion | score 2 | id 1w4fk7h)
+TITLE: Stock market as a weighing machine
+BODY: Buffett says over the long term the stock market is a weighing machine, reflecting accurate values--eventually. But multiples have been so high for so long--is he still right?
+
+[97] (Discussion | score 405 | id 1t0vwy7)
+TITLE: It’s one big club and you ain’t in it.
+BODY: Based off confirmation from Tehran, the latest peace proposal was handed in yesterday. Although the exact timeline remains undefined it’s pretty clear yesterday’s price action as insiders front running the news that the normies now get today. This is why it makes no sense to be a bear. You are betting against a multitude of market manipulators and insiders with infinite levers to pull to make profit. It’s one big club and you ain’t in it. Best strategy is still to just DCA and chill.
+
+[98] (Discussion | score 612 | id 1rhy169)
+TITLE: How does the market react to the death of Iran's supreme leader?
+BODY: With the ongoing crisis of Israel vs Iran where israel has killed the supreme leader of Iran, what will the effect on the stock market, gold and silver? Will the real currencies (gold and silver) rise again or the does the stock market gets the boost due to reduction in further uncertainty?
+
+[99] (Meme | score 363 | id 1uyf968)
+TITLE: Why is their earnings call YOU FUCKING TUBE!?
+BODY: https://preview.redd.it/2a6qy7bvondh1.png?width=2880&format=png&auto=webp&s=cb804acc09985a478998f51a9a8b3c86452f8932 Title says it all... Going into a busted earnings call where one of the main concerns for stock dump is YouTube, who thought it'd be smart to run the earnings call on YouTube itself!?
+
+[100] (Gain | score 1 | id 1ttm6ns)
+TITLE: 500$ into 50k that’s my goal any advice? I’m up 1k right now just started
+BODY: <empty>
+
+[101] (Meme | score 1 | id 1r7n7x5)
+TITLE: Where do I actually find financial advice?
+BODY: I tried looking on this sub but every DD here starts like "Not financial advice". So unfortunately you guys don't help me. Where can I find actual financial advice?
+
+[102] (News | score 56 | id 1wjbc89)
+TITLE: Can’t we just have one full consistent day???
+BODY: Peace to annihilation… fucking tired of this nonsense
+
+[103] (Daily Discussion | score 345 | id 1ri8v84)
+TITLE: What Are Your Moves Tomorrow, March 02, 2026
+BODY: This post contains content not supported on old Reddit. [Click here to view the full post](https://sh.reddit.com/r/wallstreetbets/comments/1ri8v84)
+
+[104] (DD | score 3 | id 1rwas3b)
+TITLE: GAB-RT
+BODY: GAB-RT are rights that were issued by GAB to buy shares at 5.50 They expire on 4/14 and will disappear regardless of they have value or not. I don’t like to use the word and fuck you up, but arbitrage. They’re trading for under a penny but actually worth .05 at the moment. Unknown stock and shareholders haven’t figured out what they are yet. Supposedly the liquidity will pour in in the last few days if the stock is above 5.50. 5.50$ is low for GAB. Not many brokerages let you trade them but I found one. My hint. It’s what’s for dinner. Nfa First time with this situation.
+
+[105] (Discussion | score 768 | id 1wi9eo6)
+TITLE: Trump demands 1% or lower interest rate after first Fed hike since 2023
+BODY: <empty>
+
+[106] (Meme | score 0 | id 1sn4nrf)
+TITLE: WHAT IS THE COMPANY THAT MADE THE BIGGEST COMEBACK YTD INTEL "WILL BE BACK" ?
+BODY: Intel has been one of the biggest turnaround stories in the S&P 500 this year, with a powerful rally driven by credible progress on its foundry strategy, AI momentum, and major strategic moves. YTD Returns |Stock / Index|YTD Return (2026)|Approx. Price (latest)|Notes| |:-|:-|:-|:-| |**INTC**|**+72% to +76%**|$64.94 (+1.77% on Apr 15)|Strongest performer in S&P 500 YTD; hit 52-week high of $65.84| |**S&P 500**|**\~+5% to +8%** (estimated from context)|\~7,023 (recent record)|Modest gains; INTC massively outperforming the index| |**NVDA**|**+6.6%**|\~$193–$196 range|Flat-to-modest YTD while INTC surged on turnaround bets| Key takeaway: Intel is up \~10–12x more than NVIDIA and far ahead of the broader market YTD. The stock added over $100 billion in market cap in just the last 8 trading sessions of April alone (a record +51% streak). What’s Driving Intel Higher? (Main Catalysts) The rally  [...truncated]
+
+[107] (Gain | score 195 | id 1smresf)
+TITLE: Bought the war dip. No options.
+BODY: I hope I never see my buy price again after the next few weeks. How'd I do?
+
+[108] (DD | score 1 | id 1qsvdzo)
+TITLE: Google is becoming a video game company (in addition to every else)
+BODY: **TLDR:** Google released Genie 3 for public use. It generates infinite playable worlds from text. Unity (-24%) and Roblox (-13%) are cooked. Google owns the chips (Ironwood), the engine (Genie), and the platform (YouTube). You can also watch this video, shows Genie in action + interview with the developers in Google - [https://www.youtube.com/watch?v=lALGud1Ynhc](https://www.youtube.com/watch?v=lALGud1Ynhc) I'm a gamer, so last week when Google released 'Genie 3' model for public use it was a WATERSHED moment in my view. Genie models are capable of creating interactive experiences\\mini games based on just a text prompt I immeditaly realized the huge potential this would have for the video game industry. And the markets agreed, game building stocks such as Unity (-24%), Roblox (-13%), TakeTwo (-8%) took massive falls. 📉 *Processing gif pfv6rlx4zugg1...* This is a pivotal moment for gene [...truncated]
+
+[109] (Discussion | score 1 | id 1u7c0vj)
+TITLE: Maybe the smartest comment I've seen on WSB
+BODY: <empty>
+
+[110] (Discussion | score 1 | id 1t0xrta)
+TITLE: $SOUN Shaping How You Place Your Wendy’s Order
+BODY: I keep seeing SOUN pop up and I don’t really understand what changed recently. It’s something about voice AI for restaurants, cars, call centers, stuff like that. Basically replacing those awful automated phone systems that make you want to give up halfway through pressing buttons. Revenue is somewhere around $170M run-rate from what I’ve seen, so it’s not one of those zero-revenue AI names, but I also don’t really know how to value it in my head. Short interest is high (40%) which I guess just means a lot of people don’t like it or think something is off with it. Could be right, could be wrong, I honestly don’t know. They also did some deal with LivePerson recently which seems like it adds messaging/customer support stuff on top of voice. I didn’t dig super deep into it, just saw it mentioned. Anyway I’m just watching it because it’s one of those AI names that keeps coming up and I’m tr [...truncated]
+
+[111] (News | score 8 | id 1r71jc5)
+TITLE: Nio Touts First Adjusted Profit -- Here's What It Isn't Saying
+BODY: <empty>
+
+[112] (Loss | score 71 | id 1rw77j4)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[113] (Discussion | score 28 | id 1vd6ejr)
+TITLE: "rescue"? is that what they are calling manipulation these days?
+BODY: <empty>
+
+[114] (YOLO | score 775 | id 1uxoi1l)
+TITLE: SpaceX bagholders checking their portfolios this morning 📉
+BODY: <empty>
+
+[115] (News | score 826 | id 1ukk6pq)
+TITLE: Euro area annual inflation down to 2.8%
+BODY: Consumer prices rose 2.8% from a year ago in June, **down from 3.2% the previous month**, Eurostat said Wednesday. That’s less than the 3% median estimate in a Bloomberg survey. CPI is lower in EU in June. The EU is one of the place that got hit the hardest after the Strait of Hormuz closed. If EU's June CPI is now lower then expected, then June CPI in USA will probably do the same. Inflation has peaked. Bullish for market.
+
+[116] (News | score 1 | id 1wiproo)
+TITLE: Chronology of the Turkish Capital Markets Crisis (13–17 September 2026)
+BODY: 1. Late-August 2026 Capital Markets Board rules (2–8% free-float caps, related-party and concentration limits), issued after MSCI warnings on coordinated trading and low-float stocks, forced hedge funds to unwind concentrated positions and triggered the liquidity crisis. 2. Portfolio managers (Pusula, Tera and others) had generated 144–164% YTD returns via illiquid, related-party holdings; the forced sales produced a redemption–fire-sale feedback loop and fund-run dynamics. 3 .On 16 September the BIST 100 dropped >5–6%, triggering market-wide circuit breakers and roughly ₺34 billion ($1 billion) in retail fund outflows; Tera defaulted on two funds totaling \~$7.5 billion AUM. 4. On 17 September the Capital Markets Board filed 38 criminal complaints (naming Katilimevim, Gundogdu Gida and Destek Finans Faktoring), imposed two-year trading bans, ordered liquidation of funds managed by seven [...truncated]
+
+[117] (Gain | score 1 | id 1qf09gm)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[118] (DD | score 6 | id 1qt2tox)
+TITLE: Time to revive Netflix
+BODY: Feb 3 senate will be holding a meeting to start discussing the Warner bros buy that coupled up with an upgraded rating and all the silver and gold money pulled out last week having to go somewhere I think this is a buy the rumor , see how the news goes situation Worst case I’m stuck holding a business that isn’t going anywhere for a while The membership numbers have been on an incline , the quality of the shows have been much less generic they are green lighting movies every day. The new term “Netflix lighting” being used to describe any show or movie that has bright lighting shows the market shift. Just like when everyone started to refer to any mp3 player as an iPod and look where they are now. Netflix is currently sitting even lower then before any deal talk began , showing that even if nothing works out it’s going back to where it was , and if it does work out it’s going sky high. Th [...truncated]
+
+[119] (Gain | score 63 | id 1q1n9pq)
+TITLE: Options for the year. A blend of 70/30 calls/puts
+BODY: Never playing with more than 2000 at a trade. Any more I would have soft hands and sell too early. Lower stakes per bet kept me holding for bigger gains
+
+[120] (Meme | score 8 | id 1smqx5j)
+TITLE: HYPERBEAST +165% June 2025->today
+BODY: <empty>
+
+[121] (Discussion | score 1 | id 1r668r8)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[122] (News | score 2 | id 1vqvml6)
+TITLE: Prediction markets added to IBKR (EU)
+BODY: we're cooked
+
+[123] (YOLO | score 7 | id 1ttqr42)
+TITLE: Aight we in now!!
+BODY: To The Space We Go🚀🚀🚀
+
+[124] (News | score 991 | id 1uyhrdk)
+TITLE: FDA to Warn of Taco Bell Lettuce in 5 States Over Parasite
+BODY: Ticker: YUM
+
+[125] (Loss | score 1 | id 1vpwmqh)
+TITLE: Should I stop or keep going...
+BODY: <empty>
+
+[126] (Meme | score 4 | id 1ttj1kr)
+TITLE: Just glimpsed the rocket that i (a virgin) will be riding to the Moon on Monday
+BODY: Saw this the auspicious moment as soon as I stepped outside this evening. Even a regard like me can read the signs. 🙏
+
+[127] (Discussion | score 240 | id 1whq51s)
+TITLE: What changed do you see from the Fed meeting tomorrow ?
+BODY: https://preview.redd.it/7s35c66d2uph1.png?width=713&format=png&auto=webp&s=f060606923c99f32b8edf16765f5f0be6127dcdc So, what do we think the outcome of tomorrow’s Fed meeting will be? Do you think it’ll play out like one of these scenarios, or do you think something else happens? My guess is they don’t cut rates, and we drop hard.
+
+[128] (Discussion | score 1 | id 1qsiya5)
+TITLE: iShares Silver Trust (SLV) dropped by 30%. Anyone know why?
+BODY: <empty>
+
+[129] (News | score 1 | id 1qtuf7w)
+TITLE: Oracle plans $45B to $50B capital raise in 2026 to expand AI cloud as stock is down 50% from peak
+BODY: Source: [https://finance.yahoo.com/news/oracle-raise-50-billion-2026-235033434.html](https://finance.yahoo.com/news/oracle-raise-50-billion-2026-235033434.html) >Oracle Corp. plans to raise $45 billion to $50 billion this year through a combination of debt and equity sales to build additional cloud infrastructure capacity, reflecting the scale of financing needed to feed AI’s growth. >Oracle is raising money to build additional capacity to meet the contracted demand from the company’s largest cloud customers, including Advanced Micro Devices Inc., Meta Platforms Inc., Nvidia Corp., OpenAI, TikTok Inc. and xAI Corp., the company said in a statement Sunday. >The announcement coincides with persistent fears about whether massive artificial intelligence-linked investments by tech companies such as Oracle will pay off. The company’s shares have fallen around 50% from its record price on Sept. [...truncated]
+
+[130] (Discussion | score 1 | id 1r6h2at)
+TITLE: Do I buy more?
+BODY: I am poor
+
+[131] (Discussion | score 76 | id 1qtaexb)
+TITLE: What made WallStreetBets famous? Pss Pss!
+BODY: Was 5 years of waiting enough for you guys? Can we start the Memes and Hype videos again soon? or will you neglect the fact that THIS made the sub famous. So there is room for every kind of Lossporn or huge gains. Regarded posts and stupid crypto coins. But we don´t have space for the 1 and only, the best investor we know... wait what was his name again??? I keep forgetting... Can someone help me out here? Yelling lion? Twisted Tiger? Pooping Panda? BAN BET!! If he is not back within 14 days ban me from this sub. (Yes, I did not name the stock or the person for a reason) IT´S TIME! CHEERS EVERYBODY!
+
+[132] (YOLO | score 45 | id 1vq0umc)
+TITLE: KLAR earnings
+BODY: Bought 1000 forever calls for Monday. ATH’s on the backs of poors doing installments for chipotle. 🥸
+
+[133] (Discussion | score 0 | id 1vd4u8n)
+TITLE: ASTS - 100x Am I crazy?!
+BODY: **I posted only the bull version of this** [**here**](https://www.reddit.com/r/rockstarBets/s/lckhPg8U1n) **and people went crazy so here’s the updated version:** **AST SpaceMobile Valuation Scenarios:** **Current share price: ≈ $73/share** 🐻 **Bear Case** **Assumptions** 500M subscribers $2/month ARPU 15× P/S Revenue = **500M × $2 × 12 = $12B/year** Market Cap = **$12B × 15 = $180B** **\~6.3×** current market cap **Share price:** **\~$73 → \~$460** ⚖️** Base Cas**e **Assumptions** 1.5B subscribers $2.50/month ARPU 20× P/S Revenue = **1.5B × $2.50 × 12 = $45B/year** Market Cap = **$45B × 20 = $900B** **\~31.7×** current market cap **Share price:** **\~$73 → \~$2,320** 🚀 **Bull Case** **Assumptions** 3B subscribers $3/month ARPU 30× P/S Revenue = **3B × $3 × 12 = $108B/year** Market Cap = **$108B × 30 = $3.24T** **\~114×** current market cap **Share price:** **\~$73 → \~$8,350** Some cont [...truncated]
+
+[134] (Daily Discussion | score 150 | id 1w47gdn)
+TITLE: Daily Discussion Thread for September 1, 2026
+BODY: This post contains content not supported on old Reddit. [Click here to view the full post](https://sh.reddit.com/r/wallstreetbets/comments/1w47gdn)
+
+[135] (Meme | score 18 | id 1r6vqjm)
+TITLE: which one of you suckers owns this
+BODY: <empty>
+
+[136] (Gain | score 13 | id 1sng0wt)
+TITLE: I finally tried not being a total idiot
+BODY: <empty>
+
+[137] (Discussion | score 1 | id 1w5d1gy)
+TITLE: KTOS is the next PLTR???
+BODY: Everyone looking for next PLTR and you got KTOS killing it. No reason to believe this stock isnt gonna take off soon. Is it a buy under $50?
+
+[138] (YOLO | score 1 | id 1t0s7hb)
+TITLE: The Veggie Rocket Has Entered the Chat 🚀
+BODY: the short interest is spicy enough to turn this fake meat into real tendies.
+
+[139] (YOLO | score 33 | id 1w5dmh7)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[140] (Loss | score 1 | id 1q1d80o)
+TITLE: Omw to become a 5 digit owner, maybe.
+BODY: First year of actually trying to buy and sell stock, I had some gains at first but got greedy and didn't sell the position. Also missed a few big opportunity if I held a bit longer. Hope 2026 is greener. ​
+
+[141] (YOLO | score 0 | id 1rvozqs)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[142] (noflair | score 1 | id 1uxt6ec)
+TITLE: Taiwan Semiconductor Manufacturing Company Q2 Earnings Call Live Transcript
+BODY: This post contains content not supported on old Reddit. [Click here to view the full post](https://sh.reddit.com/r/wallstreetbets/comments/1uxt6ec)
+
+[143] (Discussion | score 4 | id 1tfa7un)
+TITLE: $PLTR top is in
+BODY: My father (who has no idea neither about tech nor about American politics) called me 2 days ago to tell me that he has heard about “Cool software company that does military adjacent tech stuff named poopoobear or something” and asked if I thought about working there (neither of us lives in us nor is related to us). Do what you wish with this info, but I warned you.
+
+[144] (YOLO | score 0 | id 1qemou1)
+TITLE: BAC feeling solid
+BODY: Opened this one today in hopes to Jumpstart an2026 rebound
+
+[145] (Loss | score 236 | id 1t0mmxd)
+TITLE: Every day I stray further from god
+BODY: So I gambled on losses after being burned. Washing my hands while I take a break.
+
+[146] (Loss | score 240 | id 1wj4s18)
+TITLE: Kept losing on both sides
+BODY: <empty>
+
+[147] (Gain | score 452 | id 1sna4lg)
+TITLE: I bought 1500 shares for a 12k dividend payout
+BODY: <empty>
+
+[148] (YOLO | score 24 | id 1tg0htp)
+TITLE: A justification for Spacex's IPO valuation by looking backwards: The story of McCaw Cellular
+BODY: ***Apologies for the Spacex glazing I'm about to do. I'm going to enjoy this even less than you will.*** I think to understand Spacex's astronomic valuation, you need to look at the story of McCaw Cellular. In short, in the early 1980s Craig McCaw realized that the way the FCC was allocating cell spectrum licenses to anyone who asked would result in decades of spotty, inconsistent cell coverage that would hamper the adoption of cell phones despite obvious consumer demand. His solution? Buy every single chunk of spectrum he could find and build a working nationwide cellular telephone network, as fast as possible, at literally any cost. By 1994, McCaw Cellular had cornered nearly the entire American cell market and grown to roughly the same size as Boeing, American Express, and even briefly eclipsed Microsoft in market cap. **WITHOUT EVER TURNING A PROFIT.** Despite the titanic debt load i [...truncated]
+
+[149] (Meme | score 1296 | id 1r72317)
+TITLE: Happy Chinese New Year Motherfuckers
+BODY: Hope y'all like red
+
+[150] (Discussion | score 0 | id 1vq1hs9)
+TITLE: Is Michael Burry the LeBron James of stocks?
+BODY: I really don't need to know when this man goes to bed, whether he ate breakfast or not, or took a dump.. All those sports pages cover these for LeBron already I don't need one for Michael Burry too on Reddit. He has proven to be very irrelevant and unlike Bron he is a one-hit wonder (2008 crash). We need to let this man go, his predictions are 10 times worse than Cramer's.
+
+[151] (Discussion | score 1 | id 1q1qeci)
+TITLE: Where is the Next Investment Frontier?
+BODY: What, in your opinion, has the potential to become the next transformative investment opportunity, like Bitcoin?
+
+[152] (Meme | score 3 | id 1whl6gg)
+TITLE: was the "Gucci Bull" or "drippy bull" an meme created here or of this subreddit?
+BODY: this one https://preview.redd.it/787ztsg2ssph1.png?width=1100&format=png&auto=webp&s=2c2b3ef1a731d0f71dab36f1376004aede005dc2
+
+[153] (Meme | score 0 | id 1tewdet)
+TITLE: Thought experiment
+BODY: Air Force One carrying Trump and the 17 CEO’s of American’s most important public companies mysteriously disappears. How much does the US stock market tank?
+
+[154] (Meme | score 6428 | id 1w3xo4z)
+TITLE: End of an era
+BODY: Salute to Tim Apple for turning a $349 billion company into a $4.5 trillion one 🫡
+
+[155] (Meme | score 1 | id 1rvt1p4)
+TITLE: [ Removed by moderator ]
+BODY: <empty>
+
+[156] (Gain | score 555 | id 1wixncp)
+TITLE: Sandisk $$ 170% gain!
+BODY: Bought majority during the dip yesterday , this time it worked out quite well :) will treat myself with fine Wagyu beef 🥩 It’s all LUCK 🍀 Happy trading .. overall good day for most of tech stocks it seems.
+
+[157] (Discussion | score 2 | id 1w5dkji)
+TITLE: And the Saga continues..
+BODY: <empty>
+
+[158] (Loss | score 213 | id 1uy6vsq)
+TITLE: Ouch Ouch Ouch
+BODY: Luckily, there are all shares, but it stings looking at this.
+
+[159] (Discussion | score 1 | id 1r763mz)
+TITLE: $TTWO - GTA 6 Producers - Solid Entry
+BODY: I think this is a solid entry point for TTWO, it has fallen to $191, a 25% drop in the last month, basically following tech, and AI concerns. 34 analysts all show buy’s with a target of $300. Yeah sure the game might be priced into the stock, but the hype is not priced in yet because the game has been pushed back so many times. Once we get closer to the date and it is confirmed, the hype alone will drive this stock upwards. Right now everyone is weary about it being delayed again. I say DCA, and ride the wave baby
+
+[160] (Gain | score 1 | id 1uxqms4)
+TITLE: AMD gains
+BODY: A quick flip on AMD today.
+
+[161] (News | score 615 | id 1ttgqhp)
+TITLE: Virgin Galactic SPCE - investor backing disclosed after Friday market close
+BODY: News excerpts - **Options-Backed Bet On SPCE** A filing from Friday showed that investor Rich Huang and RichRich Capital LLC disclosed a 5.26% stake in Virgin Galactic. According to the filing, RichRich Capital reported owning 4.87 million shares, representing 4.62% of the company, consisting of 304,600 shares, along with call options on an additional 4.57 million shares. Huang, the sole member of RichRich Capital, reported a total stake of 5.58 million shares, representing 5.26% of Virgin Galactic. In addition to the firm's holdings, Huang disclosed call options representing another 708,500 shares, including 284,100 in an individual retirement account (IRA) and 424,400 personally held.
+
+[162] (Gain | score 1 | id 1q0rbg7)
+TITLE: 35% YTD - Very Fortunate
+BODY: Timely bets in MT, MU, CIEN, AEO, and ANF led the way along with Financials (BAC and C). Looking to ADBE, UNH, and BX to outdeliver in 2026. Watching UBER and AMZN and for a deal for CLF in 2026.
+
+[163] (YOLO | score 25 | id 1vclcwx)
+TITLE: Pltr earnings yolo
+BODY: Strapped in ready to roll. Everyone bearish on AI in here. What color gt3 should I get
+
+[164] (Gain | score 1 | id 1w47akt)
+TITLE: Caught a falling knife four times with a spreadsheet
+BODY: Everyone said AI was going to kill SaaS so I bought NOW four times on the way down. None of them felt smart at the time. [Wrote a whole DD ](https://www.reddit.com/r/ValueInvesting/comments/1s0kzyp/servicenow_at_half_price_what_five_dimensions_of/)before the first buy like a nerd, which is the only reason I didn't panic sell! https://preview.redd.it/gsjhov10rvmh1.png?width=1200&format=png&auto=webp&s=96e7d4222d8d6fd106bf85267e70733bd4d6517f https://preview.redd.it/5s6ugr0jrvmh1.png?width=680&format=png&auto=webp&s=ac89a0c3b844d3fb36cb1e2c7ca6bd8f73392906
+
+[165] (Meme | score 2357 | id 1tfttep)
+TITLE: Pigeon here
+BODY: I just shit on some guys shoulder again now and I’m straight cawing right now. I’ve been doing this since this crackhead thinks that by me shitting on his shoulder it’s gonna result in a little red day for his stocks. Well fuck him stocks only go up, Green Day tomorrow.
+
+[166] (News | score 359 | id 1vcy851)
+TITLE: DeepSeek's new bargain model accelerates AI's race to zero
+BODY: Chinese AI lab DeepSeek released a powerful new coding model Friday that charges pennies for vast amounts of code On Arena.ai's crowdsourced leaderboard for front-end coding, V4 Flash debuted ahead of Opus 4.8 — while delivering the best performance for its price among any model in its class. The price gap is staggering: DeepSeek charges about 28 cents for the same amount of output that costs $25 on Opus 4.8 — a 99% discount.” TLDR: Here we go again
+
+[167] (Loss | score 1 | id 1qsj8rx)
+TITLE: Sorry das muss sein
+BODY: Bitte Ton an😅 Wer kennts nicht?
+
+[168] (Gain | score 1 | id 1uxxj8t)
+TITLE: Thanks, fellow WallStreetBets degenerates.
+BODY: I don't know if anyone here remembers, but about a year ago a user made a post saying they were going to put their entire portfolio into Lionsgate (LION). At the time, it either sounded completely crazy or like they had insider information. I went looking for the post, but it seems to have been deleted and I can't find it anymore. If that person is still around, I just wanted to say thank you, I followed your lead, and it worked out really well!
+
+[169] (News | score 490 | id 1rvyamy)
+TITLE: Nvidia GTC: CEO Jensen Huang sees $1 trillion in orders for Blackwell and Vera Rubin through '27
+BODY: <empty>
+
+[170] (DD | score 1 | id 1vqek06)
+TITLE: AMD is overvalued
+BODY: AMD is currently way overvalued. It closed on Friday at about $514.41 per share. It has an enterprise value of $829 billion. It’s currently trading at about 107 in terms of enterprise value over a trailing free cash flow. In order for AMD‘s current valuation to make sense it would have to grow free cash flow at a rate of 27% every year for a decade followed by perpetual 3% growth assuming a pretty friendly 9% discount rate. Everyone knows that the future of AI is largely speculative. Nobody really has a full grasp over just how much value AI will generate or how much demand will actually emerge. Currently the majority of experiments that aim to replace workers with AI in the workplace have actually generated more cost rather than creating cost savings. The research is already suggesting that for many cases humans augmented by AI may actually be less efficient than humans acting in isolat [...truncated]
+
+[171] (News | score 3919 | id 1u7a2at)
+TITLE: SpaceX to buy Cursor AI coding agent operator Anysphere for $60 billion
+BODY: &#x200B; SpaceX already making moves. Know theyve talked about this before &#x200B; Calls?
+
+[172] (Discussion | score 1 | id 1t0xik6)
+TITLE: Anyone going long got stomped out because of trump tweet
+BODY: <empty>
+
+[173] (Gain | score 2 | id 1q1g8yi)
+TITLE: 85% gains
+BODY: Just your average small degenerate, throwing peanuts at the market for now, but next year? FULL SEND. Rolling in with 150k to see if my portfolio’s a moonshot or a dumpster fire. Happy New Year, let’s hope our portfolios don’t end up in the trash! https://preview.redd.it/4lgjc1rw6tag1.png?width=2044&format=png&auto=webp&s=e526b8aa8fe580666d3978b692ef5fe4a7ddc59d
+
+[174] (Discussion | score 15 | id 1uxz6p5)
+TITLE: KEEL - Buying now or waiting?
+BODY: I've been looking into KEEL recently and I'm tempted to start a position, but I'm not sure if it's worth buying now or waiting to see if it drops further. For anyone who's been following it for a while, what's the general sentiment? Do people think this pullback has further to go, or is it looking like a decent entry? If you're buying, what sort of price are you aiming for? And if you're already in, what's your average? I'm planning to hold long term, so I'm not trying to time the bottom perfectly, but if most people think there's still plenty of downside I'd rather be patient. Would be good to hear both the bull and bear case.
+
+[175] (noflair | score 1 | id 1sn3li4)
+TITLE: Charles Schwab Q1 Earnings Call Live Transcript
+BODY: This post contains content not supported on old Reddit. [Click here to view the full post](https://sh.reddit.com/r/wallstreetbets/comments/1sn3li4)
+
+[176] (Loss | score 1 | id 1qesvt4)
+TITLE: What could have been
+BODY: Back in July, when Google dipped, I almost bought some calls. I decided to put the money into something else though, and put it in my watchlist. Feels bad.
+
+[177] (Discussion | score 4 | id 1wj2m89)
+TITLE: $250k invested in an eToro QQQ CFD for 20 years, should I move to IBKR despite a huge tax bill?
+BODY: Hi everyone, I’m an Italian tax resident and currently have approximately $256,000 invested in QQQ through eToro. My original investment was around $153,000, so I’m sitting on an unrealised profit of approximately $103,000. My intention was to hold this investment for around 20 years. I’m not particularly worried about market volatility or QQQ falling in value. My main concern is what happens if the broker fails, becomes insolvent, or there is fraud or theft. I recently discovered that my QQQ position is labelled “Buy CFD”, even though it is X1/unleveraged. I contacted eToro and asked what would happen if eToro became insolvent. After several incomplete responses, their Operations Team finally sent me a detailed explanation. The key points they confirmed were: \* My account is with eToro Europe, regulated by CySEC in Cyprus. \* My QQQ position is an OTC CFD, not actual ownership of QQQ E [...truncated]
+
+[178] (Discussion | score 0 | id 1vr5i8l)
+TITLE: SMCI Undervalued
+BODY: A huge part of the reason SMCI has decreased in value was from the ongoing legal cases. Those issues have been dragging SMCI down for a while and if they start getting resolved without a major impact it removes one of the biggest reason this stock is down. What’s also interesting is that other companies tied to some of the same broader legal issues haven’t been punished nearly as much by the market, which makes SMCI’s reaction look even more severe. Like Nvidia, Albatron Technology, and Chief Telecom. The business is starting to look stronger. Margins have been improving, demand for AI infrastructure remains strong and SMCI has a significant order backlog that gives them a lot of potential revenue still waiting to be recognized. That’s the part I think the market is overlooking. If SMCI can keep expanding margins while converting that backlog into revenue, earnings can grow much faster t [...truncated]
+
+[179] (News | score 367 | id 1wiavgq)
+TITLE: Trump demands 1% or lower interest rate after first Fed hike since 2023
+BODY: So, everything is gonna be ok after all
+
+[180] (Gain | score 1 | id 1w5gwrj)
+TITLE: I want to turn $5,000 into $50,000 in less than 1 month.
+BODY: What is the move?
+
+[181] (Gain | score 606 | id 1ttd8fl)
+TITLE: Maybe you guys aren’t so bad after all
+BODY: Who needs financial advisers and shitty ETFs when you got Reddit
+
+[182] (YOLO | score 54 | id 1qe1qun)
+TITLE: Full ported into AMD weeklies. Lisa Su paid for my tuition. $81,420.69 balance
+BODY: <empty>
+
+[183] (Gain | score 1 | id 1t12s9r)
+TITLE: AAOI + CALL profit 1320%
+BODY: Just took some AAOI $180 calls and wanted to share. Been watching the chart and jumped in when I saw a golden cross – felt like the right momentum to catch. Ended up grabbing 16 contracts at $10.56 and it’s already worked out really well, made over $15k. My stock screener alerted me to a buy point.Honestly, I mostly trade off these crossover signals, especially when the daily chart lines up and volume looks good. Not financial advice or anything, but it’s crazy how reliable these golden crosses can be sometimes. Anyone else riding calls based on tech signals lately?
+
+[184] (Discussion | score 0 | id 1rhmu5l)
+TITLE: Deployment to Iran
+BODY: From a credible source, I was told that the marines were deploying in the next week to Iran. How can I capitalize on this?
+
+[185] (Loss | score 198 | id 1t0n8k8)
+TITLE: Make money when I'm drunk trading then lost it all when I am actually sober
+BODY: I think I trade OTM options better when I’m drunk and I genuinely don’t know what to do with this information anymore. Last Friday NVDA closed around 206 after another stupid AI rally and every headline was basically “yeah valuations make no sense but it’s still going higher anyway.” I was like 5 fucking whiskey deep eating cold leftover fried rice at 1AM and opened Robinhood because apparently that’s what financially responsible adults do now. Total position was like 5k. I wake up Monday hungover thinking I probably donated money to Citadel again and somehow NVDA opens around 211 and those contracts were over 1.30. Then sober me watches market videos. Sober me reads macro threads. So by Wednesday I convince myself NVDA obviously can’t keep squeezing after the run it already had and I roll most of the gains into deep OTM 190 puts expiring this Friday. Bought them around 92 cents. Then ab [...truncated]
+
+[186] (Loss | score 205 | id 1vd4s0i)
+TITLE: 202k Recent Losses (Positions attached)
+BODY: **NVDA stock:** **-$91,304** — Went all in near the top. Sold at a loss to chase the memory rally. My first major mistake. **The revenge trading starts here.** **SNDK stock:** **-$1,511** — Sold at a small loss because I thought I bought too high. If I had waited til the next day I would’ve made 20k. **Switched to options chasing a bigger and faster comeback.** **SNDK calls (Expiration: Jan. 15, 2027 | Strike: $208):** **-$94,806** — The dip kept dipping. Panic sold to preserve $110k. I try to have diamond hands but sndk has been down 40% in a month. **DRAM calls (Expiration: Jan. 15, 2027** | Strike: $70): -$10,189 — Lost on bullish memory ETF calls. **SNDK puts:** **-$2,018** — Revenge trade. Sold before giving it time to work. **Total realized loss: -$202,214.48** *Self made & from my life savings (not play money).*
+
+[187] (News | score 1 | id 1r66lk5)
+TITLE: Dutch Lawmakers Approve a 36% Tax on Unrealized Crypto, Stock, and Bond Gains
+BODY: <empty>
+
+[188] (DD | score 0 | id 1ttibp3)
+TITLE: ABCL is the most slept-on biotech binary event of 2026 and you're all too busy buying 0DTE SPY puts to notice
+BODY: Alright degenerates, put down the weekly options for 5 minutes and hear me out. **AbCellera Biologics (ABCL)** — Canadian biotech, antibody discovery platform, and the company about to drop a Phase 2 readout that management literally called *"by far the most important data readout in 2026."* When management says that, you listen. **THE PLAY:** ABCL-635 is a treatment for postmenopausal vasomotor symptoms (hot flashes). \~$6B U.S. market. Phase 1 already showed: * ✅ No liver toxicity (huge, this kills most drugs) * ✅ \~24-day half-life = once-monthly dosing (patients actually stay on it) * ✅ Strong biomarker suppression Phase 2 topline readout expected **Q3 2026.** That's the binary event. Clean data = stock rips. Miss = it gets destroyed. Classic biotech lottery ticket — except this one has actual fundamentals backing it. **WHY THIS ISN'T JUST ANOTHER BIOTECH GAMBLE:** * $655M total liqu [...truncated]
+
+[189] (Gain | score 17 | id 1ukrhmi)
+TITLE: Haven't even thought about selling $WEN
+BODY: Local Wendy's has been popping lately...it's all I've eaten for the past week
+
+[190] (YOLO | score 14 | id 1q0vlp2)
+TITLE: Will RDW print in 2026?
+BODY: I hold 5500 shares across three accounts.
+
+[191] (Loss | score 1 | id 1wi7na8)
+TITLE: This sucks, at least I got my gold card finally….
+BODY: <empty>
+
+[192] (Gain | score 734 | id 1uyd0rr)
+TITLE: Thanks Elon for such great POS SPCX 😂😂,
+BODY: SSPC is 2x Short SPCX etf
+
+[193] (Discussion | score 0 | id 1uybr5y)
+TITLE: Expecting a 10% Crash in Silver!! Write down your views boys
+BODY: Expecting a hard selloff in silver due to its technical strength breakdown of support
+
+[194] (Discussion | score 13 | id 1rve71q)
+TITLE: I accidentally built a system that reads SEC filings before stocks move. Here's what happened
+BODY: So I've been losing money in the market like a normal person for a few years. Nothing special, just the classic retail experience of buying high and selling low while institutions quietly print money on the other side of my trades. At some point I got annoyed enough to actually figure out why stocks were moving before I had any idea what was happening. Turned out the answer was embarrassingly simple and I felt like an idiot for not knowing sooner. Companies are legally required to file a document called an 8-K with the SEC within 4 business days of anything important happening. CEO quits, acquisition closes, they get hacked, earnings drop, it all goes to a public government database called EDGAR before it goes anywhere else. Before Bloomberg. Before CNBC. Before your broker sends you a notification about a stock that already moved 15%. I built a small script to monitor these filings in r [...truncated]
+
+[195] (Daily Discussion | score 148 | id 1whswko)
+TITLE: Daily Discussion Thread for September 16, 2026
+BODY: This post contains content not supported on old Reddit. [Click here to view the full post](https://sh.reddit.com/r/wallstreetbets/comments/1whswko)
+
+[196] (News | score 99 | id 1t16uzt)
+TITLE: GameStop preparing offer for eBay, WSJ reports
+BODY: <empty>
+
+[197] (Discussion | score 1 | id 1w5don3)
+TITLE: 1000 Euros to gamble
+BODY: Hey guys i just scammed 1000 Euros off a German Grandma, tell me where i should go long or short and if you convince me I'll send proof!
+
+[198] (News | score 422 | id 1ri4nmw)
+TITLE: The U.S. is destroying Iran's navy after it tried to shut down global oil flows
+BODY: <empty>
+
+[199] (News | score 249 | id 1rhso11)
+TITLE: Saudia Arabia major index opens -5% ( Now -2.2%)
+BODY: Symbol is: Tasi

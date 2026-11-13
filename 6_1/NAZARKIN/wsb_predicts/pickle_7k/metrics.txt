@@ -1,0 +1,60 @@
+Balanced WSB dataset 7k_posts.json - class distribution report
+Model used for ranking: some_model/logreg_model.joblib
+
+NOTE: labels are pseudo-labels produced by class-balanced selection
+      (classifier probability + per-class rules + flair re-ranking).
+      They are NOT human ground truth, so accuracy/F1 vs truth are not reported.
+
+Total posts: 7598
+
+Overall class distribution:
+  NOISE_MEME        :  1600  (21.06%)
+  GENUINE_OPINION   :  1600  (21.06%)
+  FINANCIAL_CLAIM   :  1490  (19.61%)
+  ANALYSIS_DD       :  1308  (17.22%)
+  UNCERTAIN         :  1600  (21.06%)
+  balance spread    : 1308 .. 1600 (target 1519)
+
+Per-year totals:
+  2019: 982
+  2020: 953
+  2021: 786
+  2022: 924
+  2023: 953
+  2024: 1000
+  2025: 1000
+  2026: 1000
+
+Per-year distribution:
+  year     NOISE_MEME  GENUINE_OPI  FINANCIAL_C  ANALYSIS_DD    UNCERTAIN   total
+  2019            200          200          200          182          200     982
+  2020            200          200          200          153          200     953
+  2021            200          200           90           96          200     786
+  2022            200          200          200          124          200     924
+  2023            200          200          200          153          200     953
+  2024            200          200          200          200          200    1000
+  2025            200          200          200          200          200    1000
+  2026            200          200          200          200          200    1000
+  ALL            1600         1600         1490         1308         1600    7598
+
+Average classifier probability of the assigned class (selection confidence):
+  year     NOISE_MEME  GENUINE_OPI  FINANCIAL_C  ANALYSIS_DD    UNCERTAIN
+  2019           0.61         0.46         0.29         0.64         0.28
+  2020           0.60         0.45         0.26         0.62         0.25
+  2021           0.62         0.41         0.22         0.77         0.23
+  2022           0.62         0.42         0.25         0.65         0.25
+  2023           0.61         0.47         0.26         0.67         0.28
+  2024           0.59         0.54         0.32         0.75         0.29
+  2025           0.56         0.53         0.29         0.76         0.27
+  2026           0.57         0.51         0.27         0.68         0.25
+
+Agreement between assigned label and classifier argmax:
+  5473/7598 (72.03%)  remainder filled from the runner-up class
+
+Quality caveats:
+  - FINANCIAL_CLAIM and UNCERTAIN have low selection confidence (~0.25); they were
+    filled from the tail of the distribution to reach the per-class quota, so they
+    are the noisiest classes here.
+  - 2021 is short (90 FINANCIAL_CLAIM, 96 ANALYSIS_DD): Arctic Shift returns a body
+    for only 236 of 3030 2021 posts, and ANALYSIS_DD requires real reasoning text.
+  - ANALYSIS_DD requires a non-empty body, so title-only posts never enter that class.
