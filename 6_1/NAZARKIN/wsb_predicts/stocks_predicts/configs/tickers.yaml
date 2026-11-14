@@ -1,0 +1,192 @@
+# Ticker universe and alias dictionary.
+# The direction universe follows TZ section 4.2.  SPY and QQQ are both
+# tradeable ETFs and the two benchmarks; IWM/DIA are extra benchmarks and are
+# intentionally not part of the direction universe.
+universe:
+  - AAPL
+  - TSLA
+  - NVDA
+  - MSFT
+  - AMZN
+  - GOOGL
+  - META
+  - AMD
+  - NFLX
+  - DIS
+  - BA
+  - GME
+  - AMC
+  - PLTR
+  - HOOD
+  - SOFI
+  - RIVN
+  - LCID
+  - NIO
+  - MSTR
+  - COIN
+  - SNAP
+  - UBER
+  - PYPL
+  - INTC
+  - MU
+  - AVGO
+  - ARM
+  - SPY
+  - QQQ
+
+benchmarks: [SPY, QQQ]
+
+# Ambiguous symbols are matched only as cashtags or through a company alias.
+# This is the context gate required by TZ section 4.2.
+ambiguous:
+  - AI
+  - DD
+  - CEO
+  - USA
+  - IT
+  - 'ON'
+  - ALL
+  - KEY
+  - RE
+  - CAT
+  - MO
+  - PG
+  - BE
+  - OPEN
+  - SAVE
+  - WISH
+  - ARM
+  - META
+  - DIS
+  - BA
+  - MU
+  - ALL
+  - ANY
+  - FOR
+  - ARE
+  - CAN
+  - NOW
+  - ONE
+  - OUT
+  - NEW
+  - BIG
+  - LOW
+  - HIGH
+  - PLAY
+  - CALL
+  - PUT
+  - LONG
+  - SHORT
+
+# Additional words that look like tickers but are almost never a ticker in WSB.
+stoplist:
+  - A
+  - I
+  - DD
+  - CEO
+  - CFO
+  - CTO
+  - IPO
+  - ETF
+  - FED
+  - CPI
+  - GDP
+  - SEC
+  - IRS
+  - FDA
+  - FOMC
+  - OPEC
+  - YOLO
+  - FOMO
+  - APE
+  - GUH
+  - LOL
+  - LMAO
+  - WSB
+  - TLDR
+  - EDIT
+  - TL
+  - DR
+  - IMO
+  - IMHO
+  - FUD
+  - PT
+  - EPS
+  - PE
+  - OT
+  - ATM
+  - ITM
+  - OTM
+  - ER
+  - AH
+  - PM
+  - EOD
+  - EOW
+  - ATH
+  - ATL
+  - YTD
+  - MTD
+  - QOQ
+  - YOY
+  - TTM
+  - SPAC
+  - APES
+  - BULL
+  - BEAR
+  - MOON
+  - ROCKET
+  - TENDIES
+  - GAIN
+  - LOSS
+  - BAG
+  - HODL
+  - BUY
+  - SELL
+  - HOLD
+  - USA
+  - US
+  - UK
+  - EU
+  - NYSE
+  - NASDAQ
+  - AMEX
+  - OTC
+  - IRA
+  - ROTH
+  - HSA
+  - 401K
+
+# Aliases are matched case-insensitively with word boundaries.  Keep aliases
+# distinctive: common English words (apple, meta, arm, open) are deliberately
+# not included as bare aliases.
+aliases:
+  AAPL: [Apple Inc, Apple, iPhone maker, Cupertino]
+  TSLA: [Tesla, Tesla Inc, Elon Musk's company]
+  NVDA: [Nvidia, NVIDIA, Nvidia Corp, Jensen Huang]
+  MSFT: [Microsoft, Microsoft Corp, Azure]
+  AMZN: [Amazon, Amazon.com, AWS]
+  GOOGL: [Google, Alphabet, Alphabet Inc, Google parent]
+  META: [Meta Platforms, Facebook, Instagram, WhatsApp]
+  AMD: [Advanced Micro Devices, AMD]
+  NFLX: [Netflix]
+  DIS: [Disney, Walt Disney, Disney World, Disneyland]
+  BA: [Boeing, Boeing Co]
+  GME: [GameStop, Game Stop, GME]
+  AMC: [AMC Entertainment, AMC Theatres, AMC]
+  PLTR: [Palantir, Palantir Technologies]
+  HOOD: [Robinhood, Robinhood Markets]
+  SOFI: [SoFi, Social Finance, SoFi Technologies]
+  RIVN: [Rivian, Rivian Automotive]
+  LCID: [Lucid, Lucid Motors, Lucid Group]
+  NIO: [NIO Inc, Nio]
+  MSTR: [MicroStrategy, Microstrategy, Strategy]
+  COIN: [Coinbase, Coinbase Global]
+  SNAP: [Snapchat, Snap Inc, Snap]
+  UBER: [Uber, Uber Technologies]
+  PYPL: [PayPal, PayPal Holdings]
+  INTC: [Intel, Intel Corp]
+  MU: [Micron, Micron Technology]
+  AVGO: [Broadcom, Broadcom Inc]
+  ARM: [Arm Holdings, ARM Holdings, Arm Ltd]
+  SPY: [S&P 500, SPY, SPDR S&P 500]
+  QQQ: [Nasdaq 100, QQQ, Invesco QQQ]

@@ -1,0 +1,77 @@
+{
+  "created_utc": "2026-11-14T08:07:59Z",
+  "checkpoint": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/chromium_extension/api_model/finbert",
+  "max_len": 256,
+  "n_posts": 16000,
+  "class_distribution": {
+    "NOISE_MEME": 8674,
+    "FINANCIAL_CLAIM": 2893,
+    "GENUINE_OPINION": 2864,
+    "ANALYSIS_DD": 1569
+  },
+  "class_distribution_pct": {
+    "NOISE_MEME": 54.21,
+    "FINANCIAL_CLAIM": 18.08,
+    "GENUINE_OPINION": 17.9,
+    "ANALYSIS_DD": 9.81
+  },
+  "per_year": {
+    "2019": {
+      "NOISE_MEME": 1218,
+      "FINANCIAL_CLAIM": 363,
+      "GENUINE_OPINION": 259,
+      "ANALYSIS_DD": 160
+    },
+    "2020": {
+      "NOISE_MEME": 1115,
+      "GENUINE_OPINION": 349,
+      "FINANCIAL_CLAIM": 310,
+      "ANALYSIS_DD": 226
+    },
+    "2021": {
+      "NOISE_MEME": 1207,
+      "FINANCIAL_CLAIM": 300,
+      "ANALYSIS_DD": 127,
+      "GENUINE_OPINION": 366
+    },
+    "2022": {
+      "NOISE_MEME": 1287,
+      "FINANCIAL_CLAIM": 280,
+      "GENUINE_OPINION": 260,
+      "ANALYSIS_DD": 173
+    },
+    "2023": {
+      "NOISE_MEME": 1126,
+      "ANALYSIS_DD": 153,
+      "GENUINE_OPINION": 326,
+      "FINANCIAL_CLAIM": 395
+    },
+    "2024": {
+      "FINANCIAL_CLAIM": 369,
+      "NOISE_MEME": 975,
+      "GENUINE_OPINION": 418,
+      "ANALYSIS_DD": 238
+    },
+    "2025": {
+      "NOISE_MEME": 855,
+      "GENUINE_OPINION": 468,
+      "FINANCIAL_CLAIM": 439,
+      "ANALYSIS_DD": 238
+    },
+    "2026": {
+      "GENUINE_OPINION": 418,
+      "NOISE_MEME": 891,
+      "FINANCIAL_CLAIM": 437,
+      "ANALYSIS_DD": 254
+    }
+  },
+  "review": {
+    "auto_accepted": 5189,
+    "needs_review": 2811
+  },
+  "manual_posts": 8000,
+  "new_posts": 8000,
+  "gold_audit_sample": 500,
+  "confidence_threshold": 0.55,
+  "review_fraction": 0.2
+}

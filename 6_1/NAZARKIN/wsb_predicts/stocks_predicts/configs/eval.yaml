@@ -1,0 +1,24 @@
+# Evaluation configuration.
+evaluation:
+  primary_horizon: 5
+  bootstrap_iterations: 1000
+  bootstrap_block: date
+  confidence: 0.95
+  calibration: temperature
+  metrics:
+    - macro_f1
+    - mcc
+    - balanced_accuracy
+    - roc_auc_ovr
+    - auc_pr_up
+    - brier
+    - ece
+  economic:
+    transaction_cost_bps: [5, 10]
+    quantile: 0.1
+    rebalance: weekly
+    benchmark: SPY
+    random_portfolios: 100
+  leakage:
+    shuffle_labels: true
+    mutual_information: true

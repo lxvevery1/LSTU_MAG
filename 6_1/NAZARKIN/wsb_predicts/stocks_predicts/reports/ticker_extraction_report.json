@@ -1,0 +1,316 @@
+{
+  "created_utc": "2026-11-14T08:09:13Z",
+  "n_posts": 16000,
+  "n_posts_with_ticker": 3658,
+  "pct_posts_with_ticker": 22.86,
+  "n_links": 4844,
+  "unique_tickers": 30,
+  "ticker_frequency": {
+    "TSLA": 603,
+    "SPY": 592,
+    "NVDA": 360,
+    "HOOD": 319,
+    "GME": 315,
+    "MSTR": 271,
+    "AAPL": 252,
+    "AMZN": 226,
+    "GOOGL": 207,
+    "AMC": 182,
+    "MSFT": 163,
+    "AMD": 154,
+    "NFLX": 135,
+    "PLTR": 128,
+    "META": 125,
+    "INTC": 104,
+    "QQQ": 90,
+    "MU": 87,
+    "DIS": 83,
+    "NIO": 74,
+    "BA": 64,
+    "UBER": 59,
+    "SNAP": 48,
+    "PYPL": 41,
+    "LCID": 36,
+    "SOFI": 35,
+    "COIN": 33,
+    "AVGO": 28,
+    "RIVN": 24,
+    "ARM": 6
+  },
+  "per_year": {
+    "2019": {
+      "posts": 2000,
+      "with_ticker": 463,
+      "pct_with_ticker": 23.15
+    },
+    "2020": {
+      "posts": 2000,
+      "with_ticker": 527,
+      "pct_with_ticker": 26.35
+    },
+    "2021": {
+      "posts": 2000,
+      "with_ticker": 491,
+      "pct_with_ticker": 24.55
+    },
+    "2022": {
+      "posts": 2000,
+      "with_ticker": 357,
+      "pct_with_ticker": 17.85
+    },
+    "2023": {
+      "posts": 2000,
+      "with_ticker": 355,
+      "pct_with_ticker": 17.75
+    },
+    "2024": {
+      "posts": 2000,
+      "with_ticker": 550,
+      "pct_with_ticker": 27.5
+    },
+    "2025": {
+      "posts": 2000,
+      "with_ticker": 505,
+      "pct_with_ticker": 25.25
+    },
+    "2026": {
+      "posts": 2000,
+      "with_ticker": 410,
+      "pct_with_ticker": 20.5
+    }
+  },
+  "match_methods": {
+    "alias": 3799,
+    "uppercase": 2469,
+    "cashtag": 462
+  },
+  "foreign_cashtags": {
+    "SANA": 50,
+    "SPCE": 32,
+    "BBBY": 28,
+    "OPEN": 18,
+    "WISH": 17,
+    "ASTS": 14,
+    "F": 13,
+    "RH": 13,
+    "RDDT": 13,
+    "WEN": 13,
+    "WMT": 12,
+    "ITCI": 12,
+    "SAVE": 12,
+    "HYLN": 12,
+    "T": 11,
+    "BABA": 11,
+    "SBUX": 11,
+    "DKNG": 11,
+    "HIMS": 11,
+    "BAC": 10,
+    "JPM": 10,
+    "BYND": 10,
+    "LULU": 10,
+    "CROX": 10,
+    "NET": 10,
+    "LUMN": 10,
+    "DJT": 10,
+    "KO": 9,
+    "UNH": 9,
+    "TMUS": 9,
+    "CLOV": 9,
+    "RIOT": 9,
+    "NTLA": 9,
+    "TWTR": 8,
+    "SQ": 8,
+    "GOOS": 8,
+    "ROPE": 8,
+    "NOK": 8,
+    "SIRI": 8,
+    "ZIM": 8,
+    "MSOS": 8,
+    "GENI": 8,
+    "SEI": 8,
+    "APP": 8,
+    "BE": 8,
+    "COST": 7,
+    "GM": 7,
+    "FSLY": 7,
+    "PINS": 7,
+    "TERP": 7,
+    "BRK": 7,
+    "BB": 7,
+    "RBLX": 7,
+    "PENN": 7,
+    "BX": 7,
+    "TMC": 7,
+    "RXRX": 7,
+    "RKLB": 7,
+    "TOKEN": 7,
+    "NBIS": 7,
+    "PENG": 7,
+    "VFC": 6,
+    "TSM": 6,
+    "TGT": 6,
+    "MRVL": 6,
+    "FB": 6,
+    "SHOP": 6,
+    "JMIA": 6,
+    "SPOT": 6,
+    "ROKU": 6,
+    "NKLA": 6,
+    "JOBY": 6,
+    "ABNB": 6,
+    "RILY": 6,
+    "TARA": 6,
+    "GRAB": 6,
+    "ACDC": 6,
+    "CCXI": 6,
+    "UAL": 5,
+    "ET": 5,
+    "YY": 5,
+    "JD": 5,
+    "VZ": 5,
+    "HD": 5,
+    "V": 5,
+    "SDC": 5,
+    "TTWO": 5,
+    "CVNA": 5,
+    "X": 5,
+    "LYFT": 5,
+    "CSCO": 5,
+    "UPST": 5,
+    "PSFE": 5,
+    "APEPE": 5,
+    "IREN": 5,
+    "LLY": 5,
+    "SOUN": 5,
+    "PM": 5,
+    "GDEN": 5,
+    "FIG": 5
+  },
+  "universe_mention_coverage_pct": 68.57,
+  "no_ticker_examples": [
+    {
+      "post_id": "abd4b0",
+      "title": "How did you autists get into the finance jobs you have now?"
+    },
+    {
+      "post_id": "abd503",
+      "title": "2018 is almost finished. What was your funnest/greatest/worst trade you made this year?"
+    },
+    {
+      "post_id": "abd7gh",
+      "title": "$ULTA 2 the moon!! Think about all the lipstick needing to be reapplied after New Years kisses and smooches 💋"
+    },
+    {
+      "post_id": "abdgg0",
+      "title": "To all SPX Call Holders at 2495/2500... you’re welcome... & Happy New Year!"
+    },
+    {
+      "post_id": "abdmiy",
+      "title": "The Last USO DD Post of 2018!"
+    },
+    {
+      "post_id": "abduw9",
+      "title": "anyone else not doing anything tonight because you are broke and autistic?"
+    },
+    {
+      "post_id": "abe7q8",
+      "title": "Seasons Greetings WSB!"
+    },
+    {
+      "post_id": "abf497",
+      "title": "Yep, he's gonna fit right in."
+    },
+    {
+      "post_id": "abf4u9",
+      "title": "Happy New Year Autists"
+    },
+    {
+      "post_id": "abfzsq",
+      "title": "Thank God I saved $2727.90 in commissions"
+    },
+    {
+      "post_id": "abg8m7",
+      "title": "Thank god I saved $11,776.45 in commissions"
+    },
+    {
+      "post_id": "abg8pp",
+      "title": "who saved the most in commissions? $13,000 here."
+    },
+    {
+      "post_id": "abgbio",
+      "title": "Thank god I saved 5200 in commissions!"
+    },
+    {
+      "post_id": "abglq2",
+      "title": "Well at least I saved more than my total acct"
+    },
+    {
+      "post_id": "abhert",
+      "title": "Daily Discussion Thread - January 01, 2019"
+    },
+    {
+      "post_id": "abiorf",
+      "title": "Crazy how much commission I saved"
+    },
+    {
+      "post_id": "abisyq",
+      "title": "I have ADHD combined with endless time and no sort of life."
+    },
+    {
+      "post_id": "abiwmh",
+      "title": "$BBBY Puts paid for Christmas"
+    },
+    {
+      "post_id": "abj1hd",
+      "title": "How did High Times fuck up legalization this badly"
+    },
+    {
+      "post_id": "abjevx",
+      "title": "Chungus Musk. Puts or Calls?"
+    },
+    {
+      "post_id": "abjljs",
+      "title": "my commission savings tho"
+    },
+    {
+      "post_id": "abjmvm",
+      "title": "WSB demographics"
+    },
+    {
+      "post_id": "abjsnl",
+      "title": "The best and worst-performing stocks of 2018"
+    },
+    {
+      "post_id": "abk1nv",
+      "title": "Happy new year WSB bois...."
+    },
+    {
+      "post_id": "abk6fb",
+      "title": "Wow my savings are insane!"
+    },
+    {
+      "post_id": "abkc09",
+      "title": "Poor man’s market manipulation!"
+    },
+    {
+      "post_id": "abkjlr",
+      "title": "When you’re new to the market, having some success, and start trading options 1/2way through the yr lol, just money.."
+    },
+    {
+      "post_id": "ablfne",
+      "title": "Popular Twitch Streamer on how he would invest a small amount of money"
+    },
+    {
+      "post_id": "abllmi",
+      "title": "New Year, Same Elon. #FundingSecured"
+    },
+    {
+      "post_id": "ablzh6",
+      "title": "What Are Your Moves Tomorrow, January 02"
+    }
+  ],
+  "gold_ticker_audit": {
+    "status": "not_available",
+    "note": "Create data/raw/ticker_gold.json with 300 hand-checked posts to compute precision/recall."
+  }
+}
