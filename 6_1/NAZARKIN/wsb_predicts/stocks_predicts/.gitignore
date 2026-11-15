@@ -1,0 +1,25 @@
+# Python / tooling
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# Large generated artifacts (rebuild with make data / make train)
+data/raw/*
+data/interim/*
+data/processed/*
+!data/**/.gitkeep
+models/*
+!models/.gitkeep
+
+# Local secrets and env files
+.env
+.env.*
+*.pem
+
+# OS noise
+.DS_Store
+*.log

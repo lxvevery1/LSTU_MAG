@@ -39,6 +39,7 @@ from common import (
     ID_TO_DIRECTION,
     ensure_dirs,
     load_config,
+    model_path,
     project_path,
     set_seed,
     setup_logging,
@@ -277,7 +278,7 @@ def train_one(config_path: str, seed: int, run_id: str | None, overrides: dict,
     val_df = pipeline.transform(val_df)
     test_df = pipeline.transform(test_df)
 
-    tokenizer = AutoTokenizer.from_pretrained(str(project_path(mcfg["encoder_path"])))
+    tokenizer = AutoTokenizer.from_pretrained(model_path(mcfg["encoder_path"]))
     train_ds = PairDataset(train_df, tokenizer, pipeline.numeric_cols, max_len, horizons,
                            use_engagement=bool(mcfg.get("use_engagement_weight", False)),
                            direction_weights=pipeline.direction_weights)
@@ -292,7 +293,7 @@ def train_one(config_path: str, seed: int, run_id: str | None, overrides: dict,
                             collate_fn=collate, pin_memory=(device.type == "cuda"))
 
     model = DirectionFusionModel(
-        encoder_path=str(project_path(mcfg["encoder_path"])),
+        encoder_path=model_path(mcfg["encoder_path"]),
         numeric_dim=len(pipeline.numeric_cols),
         n_tickers=len(pipeline.tickers),
         n_flairs=len(pipeline.flairs),
@@ -409,10 +410,15 @@ def main() -> None:
     parser.add_argument("--override", action="append", default=[],
                         help="model/training override key=value (repeatable)")
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--max-len", type=int, default=None,
+                        help="override the encoder token limit (256 or 512)")
     parser.add_argument("--quick", action="store_true")
     args = parser.parse_args()
     setup_logging()
-    train_one(args.config, args.seed, args.run_id, parse_override(args.override),
+    overrides = parse_override(args.override)
+    if args.max_len:
+        overrides["max_len"] = int(args.max_len)
+    train_one(args.config, args.seed, args.run_id, overrides,
               args.limit, args.quick)
 
 

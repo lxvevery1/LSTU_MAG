@@ -1,0 +1,15 @@
+{
+  "created_utc": "2026-11-15T09:03:24Z",
+  "kind": "gold_audit_class_labels",
+  "gold_file": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/data/raw/gold_audit_sample.json",
+  "sample_size": 500,
+  "labelled": 0,
+  "coverage": 0.0,
+  "skipped": {
+    "unlabelled": 500
+  },
+  "target_kappa": 0.65,
+  "status": "blocked",
+  "reason": "Fewer than 20 gold labels are available. Fill gold_label in the gold_audit_sample.json file (or pass --gold) and rerun.",
+  "passes_target": null
+}

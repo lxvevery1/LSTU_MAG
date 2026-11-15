@@ -42,7 +42,7 @@ training:
   device: auto
 
 ablations:
-  # Names map to overrides of model.*
+  # Names map to overrides of model.* / training.*
   no_influence_weight: {loss_use_influence_weight: false}
   no_ticker_fragment: {use_ticker_fragment: false}
   text_only: {use_market_features: false, use_aggregate_features: false}
@@ -50,3 +50,8 @@ ablations:
   no_aux_loss: {use_aux_class_loss: false}
   no_noise_meme: {drop_noise_meme: true}
   no_class_probs: {use_class_probs: false}
+  # TZ 5.3 requires at least weighted CE vs focal loss.  gamma=0 removes the
+  # focal modulation while keeping influence/class weights and smoothing.
+  weighted_ce_only: {focal_gamma: 0.0}
+  # TZ 5.4 item 6: isolate the multi-task horizon benefit by training H=5 only.
+  single_horizon_h5: {horizons: [5]}

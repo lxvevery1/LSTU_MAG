@@ -1,0 +1,91 @@
+project:
+  name: wsb16k
+  data_version: wsb16k-wf2023
+  seed: 42
+corpus:
+  years:
+  - 2019
+  - 2020
+  - 2021
+  - 2022
+  - 2023
+  - 2024
+  - 2025
+  - 2026
+  per_year: 2000
+  target_total: 16000
+  min_text_chars: 20
+  existing_posts: ../pickle_classification_for_learning.json
+  pool_files:
+  - ../pool_big.jsonl
+  - data/raw/pool_extra.jsonl
+  fallback_pool_files:
+  - ../7k_posts.json
+  - ../students_raw.json
+  - ../teachers_extra_raw.json
+  bots:
+  - automoderator
+  - auto_moderator
+  - wsb_moderator
+  - - deleted
+  near_duplicate_hamming: 3
+labels:
+  classifier_checkpoint: ../../chromium_extension/api_model/finbert
+  max_len: 256
+  batch_size: 64
+  confidence_review_threshold: 0.55
+  review_fraction: 0.2
+  gold_audit_size: 500
+  classes:
+  - NOISE_MEME
+  - GENUINE_OPINION
+  - FINANCIAL_CLAIM
+  - ANALYSIS_DD
+  influence_weights:
+    ANALYSIS_DD: 1.0
+    FINANCIAL_CLAIM: 0.6
+    GENUINE_OPINION: 0.5
+    ADVICE: 0.5
+    NOISE_MEME: 0.1
+    UNCERTAIN: 0.0
+tickers:
+  config: configs/tickers.yaml
+  max_per_post: 5
+  fragment_chars: 200
+  weighting: equal
+prices:
+  prices_long: stocks_dataset/prices_long.csv
+  prices_dir: stocks_dataset/prices
+  start: '2018-06-01'
+  end: '2026-12-31'
+  benchmark: SPY
+  secondary_benchmark: QQQ
+  beta_window: 60
+  beta_min_obs: 30
+  vol_window: 20
+  min_threshold: 0.005
+  threshold_vol_multiplier: 0.5
+horizons:
+- 1
+- 3
+- 5
+- 10
+primary_horizon: 5
+splits:
+  train_years:
+  - 2019
+  - 2021
+  val_year: 2022
+  test_years:
+  - 2023
+  - 2023
+  embargo_trading_days: 10
+paths:
+  posts_raw: data/raw/posts_16k_raw.json
+  posts_labeled: data/raw/posts_16k_labeled.json
+  gold_audit: data/raw/gold_audit_sample.json
+  links: data/interim/post_ticker_links.parquet
+  embeddings: data/interim/finbert_embeddings.npz
+  dataset: data/processed/walk_forward/wf_2023.parquet
+  pairs_h5: data/processed/walk_forward/wf_2023_pairs_h5.parquet
+  reports: reports/walk_forward/wf_2023

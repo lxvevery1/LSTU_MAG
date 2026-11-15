@@ -154,7 +154,6 @@ def prepare_frame(cfg: dict, model_cfg: dict, drop_noise_meme: bool = False) -> 
         for c in CLASSES:
             base[f"prob_{c}"] = 0.0
         base["confidence"] = 0.0
-
     base["class_id"] = base["class_label"].map(CLASS_TO_ID).fillna(0).astype(int)
     # Ticker and flair categorical maps are filled by the caller.
     base["ticker_id"] = 0

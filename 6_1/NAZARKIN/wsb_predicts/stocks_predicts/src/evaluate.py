@@ -30,6 +30,7 @@ from common import (
     DIRECTIONS,
     DIRECTION_TO_ID,
     load_config,
+    model_path,
     project_path,
     read_json,
     setup_logging,
@@ -70,7 +71,7 @@ def load_run(run_dir: Path, device: torch.device):
     mcfg = ckpt["model_config"]
     pipeline = FeaturePipeline.from_json(ckpt["pipeline"])
     model = DirectionFusionModel(
-        encoder_path=str(project_path(mcfg["encoder_path"])),
+        encoder_path=model_path(mcfg["encoder_path"]),
         numeric_dim=len(pipeline.numeric_cols),
         n_tickers=len(pipeline.tickers),
         n_flairs=len(pipeline.flairs),
@@ -99,20 +100,20 @@ def predict_df(model, df, pipeline, tokenizer, mcfg, horizons, max_len,
 
 
 def split_frames(cfg, mcfg):
-    df = prepare_frame(cfg, mcfg)
+    df = prepare_frame(cfg, mcfg, drop_noise_meme=bool(mcfg.get("drop_noise_meme", False)))
     for split in df["split"].unique():
         if split not in {"train", "val", "test"}:
             df = df[df["split"] != split]
     return df
 
 
-def per_group_metrics(df, probs, group_col, min_n=20) -> dict:
+def per_group_metrics(df, probs, group_col, primary: int, min_n=20) -> dict:
     out = {}
     for key, idx in df.groupby(group_col).groups.items():
         idx = np.asarray(list(idx))
         if len(idx) < min_n:
             continue
-        y = df.iloc[idx]["y_h5"].map(DIRECTION_TO_ID).to_numpy(dtype=int)
+        y = df.iloc[idx][f"y_h{primary}"].map(DIRECTION_TO_ID).to_numpy(dtype=int)
         if len(set(y)) < 2:
             continue
         out[str(key)] = compute_metrics(y, probs[idx])
@@ -125,6 +126,8 @@ def main() -> None:
     parser.add_argument("--eval-config", default="configs/eval.yaml")
     parser.add_argument("--run-id", default="")
     parser.add_argument("--bootstrap", type=int, default=500)
+    parser.add_argument("--publish", action="store_true",
+                        help="also copy the primary artifacts to reports/ root")
     parser.add_argument("--device", default="auto")
     args = parser.parse_args()
     setup_logging()
@@ -135,7 +138,8 @@ def main() -> None:
     run_dir = project_path("models") / args.run_id if args.run_id else latest_run()
     out_dir = project_path(cfg["paths"]["reports"]) / "runs" / run_dir.name
     out_dir.mkdir(parents=True, exist_ok=True)
-    LOG.info("run=%s device=%s out=%s", run_dir, device, out_dir)
+    publish = bool(args.publish)
+    LOG.info("run=%s device=%s out=%s publish=%s", run_dir, device, out_dir, publish)
     model, pipeline, mcfg, tokenizer, ckpt = load_run(run_dir, device)
     horizons = ckpt["horizons"]
     primary = int(ckpt["primary_horizon"])
@@ -212,7 +216,7 @@ def main() -> None:
         yy = y_test[idx]
         if len(set(yy)) > 1:
             per_year[str(int(y))] = compute_metrics(yy, test_probs[idx])
-    per_ticker = per_group_metrics(test_sub, test_probs, "ticker", min_n=20)
+    per_ticker = per_group_metrics(test_sub, test_probs, "ticker", primary, min_n=20)
 
     # ticker-day aggregate
     td = aggregate_ticker_day(test_sub, test_probs)
@@ -327,10 +331,11 @@ def main() -> None:
     pred["confidence"] = test_probs.max(1)
     pred.to_parquet(out_dir / "model_predictions.parquet", index=False)
     td.to_parquet(out_dir / "ticker_day_predictions.parquet", index=False)
-    # Keep the newest run's primary artifacts at the reports root for the API
-    # and for readers who expect the original layout.
-    pred.to_parquet(project_path(cfg["paths"]["reports"]) / "model_predictions.parquet", index=False)
-    td.to_parquet(project_path(cfg["paths"]["reports"]) / "ticker_day_predictions.parquet", index=False)
+    # The newest run's artifacts are only published to the reports root on
+    # request, so an ablation run cannot silently overwrite the reference run.
+    if publish:
+        pred.to_parquet(project_path(cfg["paths"]["reports"]) / "model_predictions.parquet", index=False)
+        td.to_parquet(project_path(cfg["paths"]["reports"]) / "ticker_day_predictions.parquet", index=False)
 
     report = {
         "run_id": run_dir.name,
@@ -356,8 +361,9 @@ def main() -> None:
     }
     write_json(out_dir / "model_metrics.json", report)
     write_json(out_dir / "leakage_audit.json", leakage)
-    write_json(project_path(cfg["paths"]["reports"]) / "model_metrics.json", report)
-    write_json(project_path(cfg["paths"]["reports"]) / "leakage_audit.json", leakage)
+    if publish:
+        write_json(project_path(cfg["paths"]["reports"]) / "model_metrics.json", report)
+        write_json(project_path(cfg["paths"]["reports"]) / "leakage_audit.json", leakage)
 
     # ---------------- model card
     bmetrics_path = project_path(cfg["paths"]["reports"]) / "baselines_metrics.json"
@@ -442,12 +448,13 @@ Research and educational analysis of social-media sentiment. Not investment advi
 
 ## Limitations
 - Direction labels are noisy and associative, not causal.
-- New-post class labels are classifier prelabels until the human review queue is completed.
+- New-post class labels are classifier prelabels until the human review queue is completed; the classifier-vs-manual holdout Cohen's κ is 0.573 [0.540, 0.605], below the 0.65 target.
 - 8,000 new posts are sampled from the local Arctic Shift pool; 2026 is partial.
-- The 30-ticker universe suffers from survivorship/selection bias.
+- The 30-ticker universe is the TZ §4.2 fixed list (including SPY/QQQ); it suffers from survivorship/selection bias.
 - Only 22.9% of posts mention a universe ticker; the rest cannot enter the pair dataset.
 - Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise; seeds 42/43/44 should be reported as mean ± std.
 - The ticker-day aggregate is a fixed influence-weighted average, not a learned attention pool.
+- Reddit `score`/`num_comments` and the document text are Arctic Shift snapshot values. We cannot reconstruct the values exactly at `t0`, so votes/edits after publication are a residual leakage risk that this dataset cannot eliminate.
 - Test ECE is slightly above 0.05; the calibration shift between 2024 and 2025–2026 is documented.
 - No DeBERTa checkpoint was available offline; MiniLM and max_len=512 runs are reported separately when completed.
 
@@ -455,7 +462,8 @@ Research and educational analysis of social-media sentiment. Not investment advi
 Reddit data are used for research; author names are hashed. Respect Reddit/Arctic Shift terms of use. Do not use the output as personalized financial advice.
 """
     (out_dir / "model_card.md").write_text(card, encoding="utf-8")
-    (project_path(cfg["paths"]["reports"]) / "model_card.md").write_text(card, encoding="utf-8")
+    if publish:
+        (project_path(cfg["paths"]["reports"]) / "model_card.md").write_text(card, encoding="utf-8")
 
     # ---------------- error analysis
     cm = metrics.get("confusion_matrix", [[0, 0, 0], [0, 0, 0], [0, 0, 0]])
@@ -494,7 +502,9 @@ Reddit data are used for research; author names are hashed. Respect Reddit/Arcti
               "The economic result is a sanity check, not an acceptance criterion. Overlapping forward windows, "
               "small samples and the absence of a full execution model make it easy to overfit."]
     (out_dir / "error_analysis.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    (project_path(cfg["paths"]["reports"]) / "error_analysis.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    if publish:
+        (project_path(cfg["paths"]["reports"]) / "error_analysis.md").write_text(
+            "\n".join(lines) + "\n", encoding="utf-8")
 
     print(json.dumps({
         "run_id": run_dir.name,

@@ -1,0 +1,79 @@
+{
+  "created_utc": "2026-11-14T22:39:48Z",
+  "kind": "classifier_vs_manual_proxy",
+  "caveat": "This is agreement between the frozen 4-class classifier and hand labels, not a human audit of the 8,000 new classifier prelabels. The 500-post gold sample remains unlabelled, so a true kappa for the new labels is not claimed.",
+  "holdout_restricted": true,
+  "n": 1600,
+  "kappa": 0.5726766466545177,
+  "kappa_95ci": {
+    "lo": 0.5399340802055235,
+    "hi": 0.6047288148337691,
+    "n_bootstrap": 1000
+  },
+  "accuracy": 0.73125,
+  "macro_f1": 0.6868370633570707,
+  "per_class": {
+    "NOISE_MEME": {
+      "precision": 0.8751515151515151,
+      "recall": 0.7796976241900648,
+      "f1": 0.8246716162193033,
+      "support": 926
+    },
+    "GENUINE_OPINION": {
+      "precision": 0.4613003095975232,
+      "recall": 0.5797665369649806,
+      "f1": 0.5137931034482759,
+      "support": 257
+    },
+    "FINANCIAL_CLAIM": {
+      "precision": 0.6146179401993356,
+      "recall": 0.6928838951310862,
+      "f1": 0.6514084507042254,
+      "support": 267
+    },
+    "ANALYSIS_DD": {
+      "precision": 0.7549668874172185,
+      "recall": 0.76,
+      "f1": 0.7574750830564784,
+      "support": 150
+    }
+  },
+  "confusion_matrix_rows_true_cols_pred": [
+    [
+      722,
+      125,
+      63,
+      16
+    ],
+    [
+      66,
+      149,
+      33,
+      9
+    ],
+    [
+      33,
+      37,
+      185,
+      12
+    ],
+    [
+      4,
+      12,
+      20,
+      114
+    ]
+  ],
+  "label_distribution_manual": {
+    "FINANCIAL_CLAIM": 267,
+    "NOISE_MEME": 926,
+    "ANALYSIS_DD": 150,
+    "GENUINE_OPINION": 257
+  },
+  "label_distribution_pred": {
+    "ANALYSIS_DD": 151,
+    "NOISE_MEME": 825,
+    "GENUINE_OPINION": 323,
+    "FINANCIAL_CLAIM": 301
+  }
+}

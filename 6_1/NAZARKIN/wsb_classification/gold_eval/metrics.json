@@ -1,0 +1,731 @@
+{
+  "note": "Gold labels were assigned by reading post text only (LLM/manual proxy), not by humans; treat these numbers as an independent reference estimate, not absolute ground truth.",
+  "candidates_file": "gold_candidates.json",
+  "labels_file": "gold_labels.json",
+  "candidates_total": 235,
+  "usable": 218,
+  "skipped": 17,
+  "skipped_reasons": {
+    "UNCERTAIN": 17
+  },
+  "usable_label_distribution": {
+    "NOISE_MEME": 94,
+    "ANALYSIS_DD": 47,
+    "FINANCIAL_CLAIM": 33,
+    "GENUINE_OPINION": 44
+  },
+  "natural_subset_size": 52,
+  "evaluations": [
+    {
+      "subset": "all",
+      "model": "4class_model",
+      "n": 218,
+      "accuracy": 0.6284,
+      "macro_f1": 0.5955,
+      "class_distribution": {
+        "NOISE_MEME": 94,
+        "ANALYSIS_DD": 47,
+        "FINANCIAL_CLAIM": 33,
+        "GENUINE_OPINION": 44
+      },
+      "predicted_distribution": {
+        "GENUINE_OPINION": 39,
+        "NOISE_MEME": 91,
+        "ANALYSIS_DD": 45,
+        "FINANCIAL_CLAIM": 43
+      },
+      "per_class": {
+        "NOISE_MEME": {
+          "precision": 0.7253,
+          "recall": 0.7021,
+          "f1-score": 0.7135,
+          "support": 94.0
+        },
+        "GENUINE_OPINION": {
+          "precision": 0.4615,
+          "recall": 0.4091,
+          "f1-score": 0.4337,
+          "support": 44.0
+        },
+        "FINANCIAL_CLAIM": {
+          "precision": 0.4186,
+          "recall": 0.5455,
+          "f1-score": 0.4737,
+          "support": 33.0
+        },
+        "ANALYSIS_DD": {
+          "precision": 0.7778,
+          "recall": 0.7447,
+          "f1-score": 0.7609,
+          "support": 47.0
+        }
+      },
+      "per_year_accuracy": {
+        "2019": {
+          "accuracy": 0.7083,
+          "correct": 17,
+          "total": 24
+        },
+        "2020": {
+          "accuracy": 0.6,
+          "correct": 15,
+          "total": 25
+        },
+        "2021": {
+          "accuracy": 0.7143,
+          "correct": 15,
+          "total": 21
+        },
+        "2022": {
+          "accuracy": 0.52,
+          "correct": 13,
+          "total": 25
+        },
+        "2023": {
+          "accuracy": 0.5714,
+          "correct": 12,
+          "total": 21
+        },
+        "2024": {
+          "accuracy": 0.561,
+          "correct": 23,
+          "total": 41
+        },
+        "2025": {
+          "accuracy": 0.5882,
+          "correct": 20,
+          "total": 34
+        },
+        "2026": {
+          "accuracy": 0.8148,
+          "correct": 22,
+          "total": 27
+        }
+      },
+      "per_hint_accuracy": {
+        "ANALYSIS_DD": {
+          "accuracy": 0.7556,
+          "correct": 34,
+          "total": 45
+        },
+        "FINANCIAL_CLAIM": {
+          "accuracy": 0.5263,
+          "correct": 20,
+          "total": 38
+        },
+        "GENUINE_OPINION": {
+          "accuracy": 0.5641,
+          "correct": 22,
+          "total": 39
+        },
+        "NATURAL": {
+          "accuracy": 0.6154,
+          "correct": 32,
+          "total": 52
+        },
+        "NOISE_MEME": {
+          "accuracy": 0.6591,
+          "correct": 29,
+          "total": 44
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "NOISE_MEME",
+          "GENUINE_OPINION",
+          "FINANCIAL_CLAIM",
+          "ANALYSIS_DD"
+        ],
+        "rows_true": [
+          [
+            66,
+            17,
+            10,
+            1
+          ],
+          [
+            11,
+            18,
+            8,
+            7
+          ],
+          [
+            13,
+            0,
+            18,
+            2
+          ],
+          [
+            1,
+            4,
+            7,
+            35
+          ]
+        ]
+      },
+      "per_flair_accuracy": {
+        "DD": {
+          "accuracy": 0.766,
+          "correct": 36,
+          "total": 47
+        },
+        "Meme": {
+          "accuracy": 0.7568,
+          "correct": 28,
+          "total": 37
+        },
+        "News": {
+          "accuracy": 0.4857,
+          "correct": 17,
+          "total": 35
+        },
+        "Discussion": {
+          "accuracy": 0.6562,
+          "correct": 21,
+          "total": 32
+        },
+        "Shitpost": {
+          "accuracy": 0.5714,
+          "correct": 12,
+          "total": 21
+        },
+        "YOLO": {
+          "accuracy": 0.6429,
+          "correct": 9,
+          "total": 14
+        },
+        "Gain": {
+          "accuracy": 0.4167,
+          "correct": 5,
+          "total": 12
+        },
+        "Loss": {
+          "accuracy": 0.4286,
+          "correct": 3,
+          "total": 7
+        },
+        "Stocks": {
+          "accuracy": 0.6667,
+          "correct": 4,
+          "total": 6
+        }
+      },
+      "accuracy_by_confidence_bin": {
+        "0.3-0.4": {
+          "accuracy": 0.375,
+          "correct": 3,
+          "total": 8
+        },
+        "0.4-0.5": {
+          "accuracy": 0.425,
+          "correct": 17,
+          "total": 40
+        },
+        "0.5-0.6": {
+          "accuracy": 0.5882,
+          "correct": 20,
+          "total": 34
+        },
+        "0.6-0.7": {
+          "accuracy": 0.6486,
+          "correct": 24,
+          "total": 37
+        },
+        "0.7-0.8": {
+          "accuracy": 0.5882,
+          "correct": 20,
+          "total": 34
+        },
+        "0.8-0.9": {
+          "accuracy": 0.775,
+          "correct": 31,
+          "total": 40
+        },
+        "0.9-1.0": {
+          "accuracy": 0.88,
+          "correct": 22,
+          "total": 25
+        }
+      },
+      "confusion_pairs": {
+        "NOISE_MEME->GENUINE_OPINION": 17,
+        "FINANCIAL_CLAIM->NOISE_MEME": 13,
+        "GENUINE_OPINION->NOISE_MEME": 11,
+        "NOISE_MEME->FINANCIAL_CLAIM": 10,
+        "GENUINE_OPINION->FINANCIAL_CLAIM": 8,
+        "GENUINE_OPINION->ANALYSIS_DD": 7,
+        "ANALYSIS_DD->FINANCIAL_CLAIM": 7,
+        "ANALYSIS_DD->GENUINE_OPINION": 4,
+        "FINANCIAL_CLAIM->ANALYSIS_DD": 2,
+        "NOISE_MEME->ANALYSIS_DD": 1
+      },
+      "text_report": "                 precision    recall  f1-score   support\n\n     NOISE_MEME       0.73      0.70      0.71        94\nGENUINE_OPINION       0.46      0.41      0.43        44\nFINANCIAL_CLAIM       0.42      0.55      0.47        33\n    ANALYSIS_DD       0.78      0.74      0.76        47\n\n       accuracy                           0.63       218\n      macro avg       0.60      0.60      0.60       218\n   weighted avg       0.64      0.63      0.63       218\n"
+    },
+    {
+      "subset": "natural_only",
+      "model": "4class_model",
+      "n": 52,
+      "accuracy": 0.6154,
+      "macro_f1": 0.4888,
+      "class_distribution": {
+        "GENUINE_OPINION": 11,
+        "NOISE_MEME": 31,
+        "FINANCIAL_CLAIM": 4,
+        "ANALYSIS_DD": 6
+      },
+      "predicted_distribution": {
+        "GENUINE_OPINION": 10,
+        "NOISE_MEME": 28,
+        "FINANCIAL_CLAIM": 9,
+        "ANALYSIS_DD": 5
+      },
+      "per_class": {
+        "NOISE_MEME": {
+          "precision": 0.8214,
+          "recall": 0.7419,
+          "f1-score": 0.7797,
+          "support": 31.0
+        },
+        "GENUINE_OPINION": {
+          "precision": 0.5,
+          "recall": 0.4545,
+          "f1-score": 0.4762,
+          "support": 11.0
+        },
+        "FINANCIAL_CLAIM": {
+          "precision": 0.1111,
+          "recall": 0.25,
+          "f1-score": 0.1538,
+          "support": 4.0
+        },
+        "ANALYSIS_DD": {
+          "precision": 0.6,
+          "recall": 0.5,
+          "f1-score": 0.5455,
+          "support": 6.0
+        }
+      },
+      "per_year_accuracy": {
+        "2019": {
+          "accuracy": 0.5714,
+          "correct": 4,
+          "total": 7
+        },
+        "2020": {
+          "accuracy": 0.6,
+          "correct": 3,
+          "total": 5
+        },
+        "2021": {
+          "accuracy": 0.8,
+          "correct": 4,
+          "total": 5
+        },
+        "2022": {
+          "accuracy": 0.4286,
+          "correct": 3,
+          "total": 7
+        },
+        "2023": {
+          "accuracy": 0.75,
+          "correct": 6,
+          "total": 8
+        },
+        "2024": {
+          "accuracy": 0.5556,
+          "correct": 5,
+          "total": 9
+        },
+        "2025": {
+          "accuracy": 0.5,
+          "correct": 3,
+          "total": 6
+        },
+        "2026": {
+          "accuracy": 0.8,
+          "correct": 4,
+          "total": 5
+        }
+      },
+      "per_hint_accuracy": {
+        "NATURAL": {
+          "accuracy": 0.6154,
+          "correct": 32,
+          "total": 52
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "NOISE_MEME",
+          "GENUINE_OPINION",
+          "FINANCIAL_CLAIM",
+          "ANALYSIS_DD"
+        ],
+        "rows_true": [
+          [
+            23,
+            4,
+            4,
+            0
+          ],
+          [
+            2,
+            5,
+            2,
+            2
+          ],
+          [
+            3,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            3
+          ]
+        ]
+      },
+      "per_flair_accuracy": {
+        "Discussion": {
+          "accuracy": 0.625,
+          "correct": 10,
+          "total": 16
+        },
+        "Shitpost": {
+          "accuracy": 0.5714,
+          "correct": 4,
+          "total": 7
+        },
+        "Meme": {
+          "accuracy": 1.0,
+          "correct": 7,
+          "total": 7
+        },
+        "YOLO": {
+          "accuracy": 0.8,
+          "correct": 4,
+          "total": 5
+        }
+      },
+      "accuracy_by_confidence_bin": {
+        "0.3-0.4": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "total": 1
+        },
+        "0.4-0.5": {
+          "accuracy": 0.4667,
+          "correct": 7,
+          "total": 15
+        },
+        "0.5-0.6": {
+          "accuracy": 0.6667,
+          "correct": 6,
+          "total": 9
+        },
+        "0.6-0.7": {
+          "accuracy": 0.5714,
+          "correct": 4,
+          "total": 7
+        },
+        "0.7-0.8": {
+          "accuracy": 0.2,
+          "correct": 1,
+          "total": 5
+        },
+        "0.8-0.9": {
+          "accuracy": 1.0,
+          "correct": 7,
+          "total": 7
+        },
+        "0.9-1.0": {
+          "accuracy": 0.875,
+          "correct": 7,
+          "total": 8
+        }
+      },
+      "confusion_pairs": {
+        "NOISE_MEME->GENUINE_OPINION": 4,
+        "NOISE_MEME->FINANCIAL_CLAIM": 4,
+        "FINANCIAL_CLAIM->NOISE_MEME": 3,
+        "GENUINE_OPINION->NOISE_MEME": 2,
+        "GENUINE_OPINION->FINANCIAL_CLAIM": 2,
+        "GENUINE_OPINION->ANALYSIS_DD": 2,
+        "ANALYSIS_DD->FINANCIAL_CLAIM": 2,
+        "ANALYSIS_DD->GENUINE_OPINION": 1
+      },
+      "text_report": "                 precision    recall  f1-score   support\n\n     NOISE_MEME       0.82      0.74      0.78        31\nGENUINE_OPINION       0.50      0.45      0.48        11\nFINANCIAL_CLAIM       0.11      0.25      0.15         4\n    ANALYSIS_DD       0.60      0.50      0.55         6\n\n       accuracy                           0.62        52\n      macro avg       0.51      0.49      0.49        52\n   weighted avg       0.67      0.62      0.64        52\n"
+    },
+    {
+      "subset": "all",
+      "model": "5class_model",
+      "n": 218,
+      "accuracy": 0.6193,
+      "macro_f1": 0.536,
+      "class_distribution": {
+        "NOISE_MEME": 94,
+        "ANALYSIS_DD": 47,
+        "FINANCIAL_CLAIM": 33,
+        "GENUINE_OPINION": 44
+      },
+      "predicted_distribution": {
+        "NOISE_MEME": 111,
+        "ANALYSIS_DD": 52,
+        "GENUINE_OPINION": 39,
+        "FINANCIAL_CLAIM": 16
+      },
+      "per_class": {
+        "NOISE_MEME": {
+          "precision": 0.6667,
+          "recall": 0.7872,
+          "f1-score": 0.722,
+          "support": 94.0
+        },
+        "GENUINE_OPINION": {
+          "precision": 0.4359,
+          "recall": 0.3864,
+          "f1-score": 0.4096,
+          "support": 44.0
+        },
+        "FINANCIAL_CLAIM": {
+          "precision": 0.375,
+          "recall": 0.1818,
+          "f1-score": 0.2449,
+          "support": 33.0
+        },
+        "ANALYSIS_DD": {
+          "precision": 0.7308,
+          "recall": 0.8085,
+          "f1-score": 0.7677,
+          "support": 47.0
+        },
+        "UNCERTAIN": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 0.0
+        }
+      },
+      "per_year_accuracy": {
+        "2019": {
+          "accuracy": 0.6667,
+          "correct": 16,
+          "total": 24
+        },
+        "2020": {
+          "accuracy": 0.72,
+          "correct": 18,
+          "total": 25
+        },
+        "2021": {
+          "accuracy": 0.7619,
+          "correct": 16,
+          "total": 21
+        },
+        "2022": {
+          "accuracy": 0.6,
+          "correct": 15,
+          "total": 25
+        },
+        "2023": {
+          "accuracy": 0.5714,
+          "correct": 12,
+          "total": 21
+        },
+        "2024": {
+          "accuracy": 0.5122,
+          "correct": 21,
+          "total": 41
+        },
+        "2025": {
+          "accuracy": 0.5294,
+          "correct": 18,
+          "total": 34
+        },
+        "2026": {
+          "accuracy": 0.7037,
+          "correct": 19,
+          "total": 27
+        }
+      },
+      "per_hint_accuracy": {
+        "ANALYSIS_DD": {
+          "accuracy": 0.7778,
+          "correct": 35,
+          "total": 45
+        },
+        "FINANCIAL_CLAIM": {
+          "accuracy": 0.2895,
+          "correct": 11,
+          "total": 38
+        },
+        "GENUINE_OPINION": {
+          "accuracy": 0.5641,
+          "correct": 22,
+          "total": 39
+        },
+        "NATURAL": {
+          "accuracy": 0.6538,
+          "correct": 34,
+          "total": 52
+        },
+        "NOISE_MEME": {
+          "accuracy": 0.75,
+          "correct": 33,
+          "total": 44
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "NOISE_MEME",
+          "GENUINE_OPINION",
+          "FINANCIAL_CLAIM",
+          "ANALYSIS_DD",
+          "UNCERTAIN"
+        ],
+        "rows_true": [
+          [
+            74,
+            14,
+            4,
+            2,
+            0
+          ],
+          [
+            14,
+            17,
+            5,
+            8,
+            0
+          ],
+          [
+            21,
+            2,
+            6,
+            4,
+            0
+          ],
+          [
+            2,
+            6,
+            1,
+            38,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "per_flair_accuracy": {
+        "DD": {
+          "accuracy": 0.8085,
+          "correct": 38,
+          "total": 47
+        },
+        "Meme": {
+          "accuracy": 0.7838,
+          "correct": 29,
+          "total": 37
+        },
+        "News": {
+          "accuracy": 0.2571,
+          "correct": 9,
+          "total": 35
+        },
+        "Discussion": {
+          "accuracy": 0.6562,
+          "correct": 21,
+          "total": 32
+        },
+        "Shitpost": {
+          "accuracy": 0.6667,
+          "correct": 14,
+          "total": 21
+        },
+        "YOLO": {
+          "accuracy": 0.6429,
+          "correct": 9,
+          "total": 14
+        },
+        "Gain": {
+          "accuracy": 0.5833,
+          "correct": 7,
+          "total": 12
+        },
+        "Loss": {
+          "accuracy": 0.4286,
+          "correct": 3,
+          "total": 7
+        },
+        "Stocks": {
+          "accuracy": 0.5,
+          "correct": 3,
+          "total": 6
+        }
+      },
+      "accuracy_by_confidence_bin": {
+        "0.2-0.3": {
+          "accuracy": 0.4118,
+          "correct": 7,
+          "total": 17
+        },
+        "0.3-0.4": {
+          "accuracy": 0.5152,
+          "correct": 34,
+          "total": 66
+        },
+        "0.4-0.5": {
+          "accuracy": 0.5614,
+          "correct": 32,
+          "total": 57
+        },
+        "0.5-0.6": {
+          "accuracy": 0.7179,
+          "correct": 28,
+          "total": 39
+        },
+        "0.6-0.7": {
+          "accuracy": 0.85,
+          "correct": 17,
+          "total": 20
+        },
+        "0.7-0.8": {
+          "accuracy": 0.8889,
+          "correct": 8,
+          "total": 9
+        },
+        "0.8-0.9": {
+          "accuracy": 0.8571,
+          "correct": 6,
+          "total": 7
+        },
+        "0.9-1.0": {
+          "accuracy": 1.0,
+          "correct": 3,
+          "total": 3
+        }
+      },
+      "confusion_pairs": {
+        "FINANCIAL_CLAIM->NOISE_MEME": 21,
+        "GENUINE_OPINION->NOISE_MEME": 14,
+        "NOISE_MEME->GENUINE_OPINION": 14,
+        "GENUINE_OPINION->ANALYSIS_DD": 8,
+        "ANALYSIS_DD->GENUINE_OPINION": 6,
+        "GENUINE_OPINION->FINANCIAL_CLAIM": 5,
+        "NOISE_MEME->FINANCIAL_CLAIM": 4,
+        "FINANCIAL_CLAIM->ANALYSIS_DD": 4,
+        "FINANCIAL_CLAIM->GENUINE_OPINION": 2,
+        "NOISE_MEME->ANALYSIS_DD": 2
+      },
+      "text_report": "                 precision    recall  f1-score   support\n\n     NOISE_MEME       0.67      0.79      0.72        94\nGENUINE_OPINION       0.44      0.39      0.41        44\nFINANCIAL_CLAIM       0.38      0.18      0.24        33\n    ANALYSIS_DD       0.73      0.81      0.77        47\n      UNCERTAIN       0.00      0.00      0.00         0\n\n       accuracy                           0.62       218\n      macro avg       0.44      0.43      0.43       218\n   weighted avg       0.59      0.62      0.60       218\n"
+    }
+  ]
+}

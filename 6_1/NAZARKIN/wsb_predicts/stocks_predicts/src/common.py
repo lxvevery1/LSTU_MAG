@@ -44,6 +44,24 @@ def project_path(value: str | Path) -> Path:
     return (p if p.is_absolute() else PROJECT_ROOT / p).resolve()
 
 
+def model_path(value: str | Path) -> str:
+    """Resolve a local checkpoint path or pass through a HuggingFace hub id.
+
+    ``configs/model.yaml`` historically used paths relative to the project
+    (``../../chromium_extension/api_model/finbert``).  Encoder-comparison runs
+    may instead use a hub id such as ``sentence-transformers/all-MiniLM-L6-v2``.
+    """
+    raw = str(value)
+    p = Path(raw)
+    if p.is_absolute():
+        return str(p)
+    local = (PROJECT_ROOT / p).resolve()
+    if local.exists():
+        return str(local)
+    # A hub id contains a slash but is not a path on this machine.
+    return raw
+
+
 def load_config(path: str | Path = "configs/data.yaml") -> dict:
     p = project_path(path)
     with open(p, encoding="utf-8") as f:

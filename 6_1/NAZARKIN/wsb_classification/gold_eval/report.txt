@@ -1,0 +1,208 @@
+Gold set evaluation (independent, model was not used to select or label posts)
+
+Candidates: 235, usable: 218, skipped: 17 {'UNCERTAIN': 17}
+Usable gold label distribution: {'NOISE_MEME': 94, 'ANALYSIS_DD': 47, 'FINANCIAL_CLAIM': 33, 'GENUINE_OPINION': 44}
+
+============================================================
+4class_model / subset=all  n=218
+ACCURACY: 0.6284   MACRO-F1: 0.5955
+
+                 precision    recall  f1-score   support
+
+     NOISE_MEME       0.73      0.70      0.71        94
+GENUINE_OPINION       0.46      0.41      0.43        44
+FINANCIAL_CLAIM       0.42      0.55      0.47        33
+    ANALYSIS_DD       0.78      0.74      0.76        47
+
+       accuracy                           0.63       218
+      macro avg       0.60      0.60      0.60       218
+   weighted avg       0.64      0.63      0.63       218
+
+Confusion matrix (rows=true):
+  NOISE_MEME         [66, 17, 10, 1]
+  GENUINE_OPINION    [11, 18, 8, 7]
+  FINANCIAL_CLAIM    [13, 0, 18, 2]
+  ANALYSIS_DD        [1, 4, 7, 35]
+
+Per-year accuracy:
+  2019: 0.7083 (17/24)
+  2020: 0.6 (15/25)
+  2021: 0.7143 (15/21)
+  2022: 0.52 (13/25)
+  2023: 0.5714 (12/21)
+  2024: 0.561 (23/41)
+  2025: 0.5882 (20/34)
+  2026: 0.8148 (22/27)
+
+Per-sampler-hint accuracy (sampling group, not gold label):
+  ANALYSIS_DD: 0.7556 (34/45)
+  FINANCIAL_CLAIM: 0.5263 (20/38)
+  GENUINE_OPINION: 0.5641 (22/39)
+  NATURAL: 0.6154 (32/52)
+  NOISE_MEME: 0.6591 (29/44)
+
+Per-flair accuracy (flair >= 5):
+  DD: 0.766 (36/47)
+  Meme: 0.7568 (28/37)
+  News: 0.4857 (17/35)
+  Discussion: 0.6562 (21/32)
+  Shitpost: 0.5714 (12/21)
+  YOLO: 0.6429 (9/14)
+  Gain: 0.4167 (5/12)
+  Loss: 0.4286 (3/7)
+  Stocks: 0.6667 (4/6)
+
+Accuracy by predicted probability:
+  0.3-0.4: 0.375 (3/8)
+  0.4-0.5: 0.425 (17/40)
+  0.5-0.6: 0.5882 (20/34)
+  0.6-0.7: 0.6486 (24/37)
+  0.7-0.8: 0.5882 (20/34)
+  0.8-0.9: 0.775 (31/40)
+  0.9-1.0: 0.88 (22/25)
+
+Top confusions (true -> predicted):
+  NOISE_MEME->GENUINE_OPINION: 17
+  FINANCIAL_CLAIM->NOISE_MEME: 13
+  GENUINE_OPINION->NOISE_MEME: 11
+  NOISE_MEME->FINANCIAL_CLAIM: 10
+  GENUINE_OPINION->FINANCIAL_CLAIM: 8
+  GENUINE_OPINION->ANALYSIS_DD: 7
+  ANALYSIS_DD->FINANCIAL_CLAIM: 7
+  ANALYSIS_DD->GENUINE_OPINION: 4
+  FINANCIAL_CLAIM->ANALYSIS_DD: 2
+  NOISE_MEME->ANALYSIS_DD: 1
+
+============================================================
+4class_model / subset=natural_only  n=52
+ACCURACY: 0.6154   MACRO-F1: 0.4888
+
+                 precision    recall  f1-score   support
+
+     NOISE_MEME       0.82      0.74      0.78        31
+GENUINE_OPINION       0.50      0.45      0.48        11
+FINANCIAL_CLAIM       0.11      0.25      0.15         4
+    ANALYSIS_DD       0.60      0.50      0.55         6
+
+       accuracy                           0.62        52
+      macro avg       0.51      0.49      0.49        52
+   weighted avg       0.67      0.62      0.64        52
+
+Confusion matrix (rows=true):
+  NOISE_MEME         [23, 4, 4, 0]
+  GENUINE_OPINION    [2, 5, 2, 2]
+  FINANCIAL_CLAIM    [3, 0, 1, 0]
+  ANALYSIS_DD        [0, 1, 2, 3]
+
+Per-year accuracy:
+  2019: 0.5714 (4/7)
+  2020: 0.6 (3/5)
+  2021: 0.8 (4/5)
+  2022: 0.4286 (3/7)
+  2023: 0.75 (6/8)
+  2024: 0.5556 (5/9)
+  2025: 0.5 (3/6)
+  2026: 0.8 (4/5)
+
+Per-sampler-hint accuracy (sampling group, not gold label):
+  NATURAL: 0.6154 (32/52)
+
+Per-flair accuracy (flair >= 5):
+  Discussion: 0.625 (10/16)
+  Shitpost: 0.5714 (4/7)
+  Meme: 1.0 (7/7)
+  YOLO: 0.8 (4/5)
+
+Accuracy by predicted probability:
+  0.3-0.4: 0.0 (0/1)
+  0.4-0.5: 0.4667 (7/15)
+  0.5-0.6: 0.6667 (6/9)
+  0.6-0.7: 0.5714 (4/7)
+  0.7-0.8: 0.2 (1/5)
+  0.8-0.9: 1.0 (7/7)
+  0.9-1.0: 0.875 (7/8)
+
+Top confusions (true -> predicted):
+  NOISE_MEME->GENUINE_OPINION: 4
+  NOISE_MEME->FINANCIAL_CLAIM: 4
+  FINANCIAL_CLAIM->NOISE_MEME: 3
+  GENUINE_OPINION->NOISE_MEME: 2
+  GENUINE_OPINION->FINANCIAL_CLAIM: 2
+  GENUINE_OPINION->ANALYSIS_DD: 2
+  ANALYSIS_DD->FINANCIAL_CLAIM: 2
+  ANALYSIS_DD->GENUINE_OPINION: 1
+
+============================================================
+5class_model / subset=all  n=218
+ACCURACY: 0.6193   MACRO-F1: 0.536
+
+                 precision    recall  f1-score   support
+
+     NOISE_MEME       0.67      0.79      0.72        94
+GENUINE_OPINION       0.44      0.39      0.41        44
+FINANCIAL_CLAIM       0.38      0.18      0.24        33
+    ANALYSIS_DD       0.73      0.81      0.77        47
+      UNCERTAIN       0.00      0.00      0.00         0
+
+       accuracy                           0.62       218
+      macro avg       0.44      0.43      0.43       218
+   weighted avg       0.59      0.62      0.60       218
+
+Confusion matrix (rows=true):
+  NOISE_MEME         [74, 14, 4, 2, 0]
+  GENUINE_OPINION    [14, 17, 5, 8, 0]
+  FINANCIAL_CLAIM    [21, 2, 6, 4, 0]
+  ANALYSIS_DD        [2, 6, 1, 38, 0]
+  UNCERTAIN          [0, 0, 0, 0, 0]
+
+Per-year accuracy:
+  2019: 0.6667 (16/24)
+  2020: 0.72 (18/25)
+  2021: 0.7619 (16/21)
+  2022: 0.6 (15/25)
+  2023: 0.5714 (12/21)
+  2024: 0.5122 (21/41)
+  2025: 0.5294 (18/34)
+  2026: 0.7037 (19/27)
+
+Per-sampler-hint accuracy (sampling group, not gold label):
+  ANALYSIS_DD: 0.7778 (35/45)
+  FINANCIAL_CLAIM: 0.2895 (11/38)
+  GENUINE_OPINION: 0.5641 (22/39)
+  NATURAL: 0.6538 (34/52)
+  NOISE_MEME: 0.75 (33/44)
+
+Per-flair accuracy (flair >= 5):
+  DD: 0.8085 (38/47)
+  Meme: 0.7838 (29/37)
+  News: 0.2571 (9/35)
+  Discussion: 0.6562 (21/32)
+  Shitpost: 0.6667 (14/21)
+  YOLO: 0.6429 (9/14)
+  Gain: 0.5833 (7/12)
+  Loss: 0.4286 (3/7)
+  Stocks: 0.5 (3/6)
+
+Accuracy by predicted probability:
+  0.2-0.3: 0.4118 (7/17)
+  0.3-0.4: 0.5152 (34/66)
+  0.4-0.5: 0.5614 (32/57)
+  0.5-0.6: 0.7179 (28/39)
+  0.6-0.7: 0.85 (17/20)
+  0.7-0.8: 0.8889 (8/9)
+  0.8-0.9: 0.8571 (6/7)
+  0.9-1.0: 1.0 (3/3)
+
+Top confusions (true -> predicted):
+  FINANCIAL_CLAIM->NOISE_MEME: 21
+  GENUINE_OPINION->NOISE_MEME: 14
+  NOISE_MEME->GENUINE_OPINION: 14
+  GENUINE_OPINION->ANALYSIS_DD: 8
+  ANALYSIS_DD->GENUINE_OPINION: 6
+  GENUINE_OPINION->FINANCIAL_CLAIM: 5
+  NOISE_MEME->FINANCIAL_CLAIM: 4
+  FINANCIAL_CLAIM->ANALYSIS_DD: 4
+  FINANCIAL_CLAIM->GENUINE_OPINION: 2
+  NOISE_MEME->ANALYSIS_DD: 2
+
+Gold labels were assigned by reading post text only (LLM/manual proxy), not by humans; treat these numbers as an independent reference estimate, not absolute ground truth.

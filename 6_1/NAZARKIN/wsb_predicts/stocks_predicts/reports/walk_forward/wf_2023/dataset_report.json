@@ -1,0 +1,247 @@
+{
+  "created_utc": "2026-11-15T09:13:16Z",
+  "data_version": "wsb16k-wf2023",
+  "horizons": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "posts_total": 16000,
+  "links_total": 4844,
+  "posts_with_ticker": 3658,
+  "pairs_valid": 2675,
+  "rows_total": 10836,
+  "coverage": {
+    "links_total": 4844,
+    "no_post": 0,
+    "no_calendar": 0,
+    "not_in_split": 1977,
+    "invalid_prices": 632,
+    "invalid_benchmark": 0,
+    "purged": 114,
+    "valid_by_horizon": {
+      "1": 2709,
+      "3": 2709,
+      "5": 2709,
+      "10": 2709
+    },
+    "invalid_reasons": {
+      "missing ticker entry/exit price": 632
+    }
+  },
+  "split_counts": [
+    {
+      "split": "test",
+      "purged": false,
+      "n": 1812
+    },
+    {
+      "split": "train",
+      "purged": false,
+      "n": 7002
+    },
+    {
+      "split": "train",
+      "purged": true,
+      "n": 66
+    },
+    {
+      "split": "val",
+      "purged": false,
+      "n": 1908
+    },
+    {
+      "split": "val",
+      "purged": true,
+      "n": 48
+    }
+  ],
+  "direction_by_horizon": {
+    "1": {
+      "FLAT": 1646,
+      "DOWN": 557,
+      "UP": 506
+    },
+    "3": {
+      "FLAT": 1126,
+      "DOWN": 845,
+      "UP": 738
+    },
+    "5": {
+      "FLAT": 986,
+      "UP": 889,
+      "DOWN": 834
+    },
+    "10": {
+      "UP": 1010,
+      "DOWN": 851,
+      "FLAT": 848
+    }
+  },
+  "class_by_year": {
+    "2019": {
+      "NOISE_MEME": 1218,
+      "FINANCIAL_CLAIM": 363,
+      "GENUINE_OPINION": 259,
+      "ANALYSIS_DD": 160
+    },
+    "2020": {
+      "NOISE_MEME": 1115,
+      "GENUINE_OPINION": 349,
+      "FINANCIAL_CLAIM": 310,
+      "ANALYSIS_DD": 226
+    },
+    "2021": {
+      "NOISE_MEME": 1207,
+      "FINANCIAL_CLAIM": 300,
+      "ANALYSIS_DD": 127,
+      "GENUINE_OPINION": 366
+    },
+    "2022": {
+      "NOISE_MEME": 1287,
+      "FINANCIAL_CLAIM": 280,
+      "GENUINE_OPINION": 260,
+      "ANALYSIS_DD": 173
+    },
+    "2023": {
+      "NOISE_MEME": 1126,
+      "ANALYSIS_DD": 153,
+      "GENUINE_OPINION": 326,
+      "FINANCIAL_CLAIM": 395
+    },
+    "2024": {
+      "FINANCIAL_CLAIM": 369,
+      "NOISE_MEME": 975,
+      "GENUINE_OPINION": 418,
+      "ANALYSIS_DD": 238
+    },
+    "2025": {
+      "NOISE_MEME": 855,
+      "GENUINE_OPINION": 468,
+      "FINANCIAL_CLAIM": 439,
+      "ANALYSIS_DD": 238
+    },
+    "2026": {
+      "GENUINE_OPINION": 418,
+      "NOISE_MEME": 891,
+      "FINANCIAL_CLAIM": 437,
+      "ANALYSIS_DD": 254
+    }
+  },
+  "direction_by_year": {
+    "2019": {
+      "FLAT": 917,
+      "UP": 577,
+      "DOWN": 554
+    },
+    "2020": {
+      "FLAT": 1240,
+      "UP": 812,
+      "DOWN": 528
+    },
+    "2021": {
+      "DOWN": 898,
+      "UP": 783,
+      "FLAT": 759
+    },
+    "2022": {
+      "FLAT": 905,
+      "DOWN": 625,
+      "UP": 426
+    },
+    "2023": {
+      "FLAT": 785,
+      "UP": 545,
+      "DOWN": 482
+    }
+  },
+  "ticker_counts": {
+    "TSLA": 396,
+    "SPY": 385,
+    "GME": 296,
+    "AAPL": 170,
+    "AMC": 168,
+    "AMZN": 146,
+    "MSTR": 111,
+    "GOOGL": 106,
+    "MSFT": 80,
+    "NFLX": 79,
+    "AMD": 77,
+    "PLTR": 73,
+    "NVDA": 73,
+    "DIS": 69,
+    "META": 67,
+    "NIO": 67,
+    "HOOD": 62,
+    "QQQ": 38,
+    "SNAP": 37,
+    "PYPL": 31,
+    "BA": 30,
+    "LCID": 26,
+    "UBER": 26,
+    "INTC": 26,
+    "MU": 22,
+    "SOFI": 17,
+    "RIVN": 14,
+    "COIN": 11,
+    "AVGO": 5,
+    "ARM": 1
+  },
+  "beta": {
+    "1": {
+      "mean": 0.8797,
+      "median": 1.3192,
+      "p05": 0.1825,
+      "p95": 2.609
+    },
+    "3": {
+      "mean": 0.8797,
+      "median": 1.3192,
+      "p05": 0.1825,
+      "p95": 2.609
+    },
+    "5": {
+      "mean": 0.8797,
+      "median": 1.3192,
+      "p05": 0.1825,
+      "p95": 2.609
+    },
+    "10": {
+      "mean": 0.8797,
+      "median": 1.3192,
+      "p05": 0.1825,
+      "p95": 2.609
+    }
+  },
+  "threshold": {
+    "1": {
+      "mean": 0.02322,
+      "median": 0.01489
+    },
+    "3": {
+      "mean": 0.02322,
+      "median": 0.01489
+    },
+    "5": {
+      "mean": 0.02322,
+      "median": 0.01489
+    },
+    "10": {
+      "mean": 0.02322,
+      "median": 0.01489
+    }
+  },
+  "flat_rate_by_horizon": {
+    "1": 0.6076,
+    "3": 0.4157,
+    "5": 0.364,
+    "10": 0.313
+  },
+  "class_distribution_posts": {
+    "NOISE_MEME": 8674,
+    "FINANCIAL_CLAIM": 2893,
+    "GENUINE_OPINION": 2864,
+    "ANALYSIS_DD": 1569
+  }
+}

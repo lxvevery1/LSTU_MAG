@@ -193,11 +193,13 @@ def main() -> None:
     LOG.info("purge cutoffs: train exit <= %s, val exit <= %s", train_exit_cutoff, val_exit_cutoff)
 
     def split_for(day) -> str:
-        if day.year <= int(cfg["splits"]["train_years"][1]):
+        train_start, train_end = (int(y) for y in cfg["splits"]["train_years"])
+        test_start, test_end = (int(y) for y in cfg["splits"]["test_years"])
+        if train_start <= day.year <= train_end:
             return "train"
         if day.year == int(cfg["splits"]["val_year"]):
             return "val"
-        if day.year >= int(cfg["splits"]["test_years"][0]):
+        if test_start <= day.year <= test_end:
             return "test"
         return "out"
 
@@ -416,7 +418,10 @@ def main() -> None:
               "- Prices are split-adjusted but not dividend-adjusted (Nasdaq source); label noise from dividends is small for 1–10 day horizons.",
               "- Benchmark beta uses 60 prior sessions and falls back to 1.0 when fewer than 30 observations are available.",
               "- The 10-day embargo removes training/validation rows whose forward window crosses the next split.",
-              "- Class labels for new posts are not ground truth; see `prelabel_report.json` and `gold_audit_sample.json`."]
+              "- Class labels for new posts are not ground truth; see `prelabel_report.json` and `gold_audit_sample.json`.",
+              "- Classifier-vs-manual agreement on its 20% holdout is κ=0.573 [0.540, 0.605] (`classifier_audit_proxy.json`); this is a proxy, not a gold audit of the 8,000 new prelabels.",
+              "- 157 posts (0.98%) share normalized text, mostly manual posts whose body is `[removed by moderator]`; post IDs are still unique.",
+              "- Ticker precision/recall on the fixed 300-post sample is not measured until humans fill `gold_tickers` (`ticker_gold_audit.json`, status blocked)."]
     (project_path(cfg["paths"]["reports"]) / "data_quality.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     data_card = f"""# Data card — {report['data_version']}
@@ -438,6 +443,9 @@ One row is a (post, ticker, horizon) tuple.  The primary model uses H={primary_h
 - Survivorship: the universe was chosen from currently popular/liquid WSB names; delisted tickers are not represented.
 - Selection: 2,000 posts/year target; 2026 is partial (through 2026-11-14).
 - Class labels for the new 8,000 are model-generated until human review is completed.
+- Classifier-vs-manual agreement on its 20% holdout is κ=0.573 [0.540, 0.605] (`classifier_audit_proxy.json`); this is a proxy, not a gold audit.
+- 157 posts (0.98%) share normalized text, mostly manual posts with `[removed by moderator]` bodies; post IDs are unique.
+- Ticker precision/recall on the fixed 300-post sample is not measured until humans fill `gold_tickers` (`ticker_gold_audit.json`, status blocked).
 - WSB user base and vocabulary drift over time; temporal splits are mandatory.
 - Reddit data are observational; labels are associative, not causal.
 

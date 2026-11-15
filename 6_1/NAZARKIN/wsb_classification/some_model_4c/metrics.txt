@@ -1,0 +1,36 @@
+4-class LogReg (UNCERTAIN removed)
+Train file: 7k_posts_4class.json  (5998 posts)
+
+CV accuracy: 0.8861
+macro-F1: 0.8810
+
+                 precision    recall  f1-score   support
+
+     NOISE_MEME       0.95      0.99      0.97      1600
+GENUINE_OPINION       0.91      0.93      0.92      1600
+FINANCIAL_CLAIM       0.84      0.75      0.79      1490
+    ANALYSIS_DD       0.83      0.86      0.85      1308
+
+       accuracy                           0.89      5998
+      macro avg       0.88      0.88      0.88      5998
+   weighted avg       0.88      0.89      0.88      5998
+
+Confusion matrix (rows=true):
+[[1584   10    6    0]
+ [  17 1491   68   24]
+ [  69  107 1112  202]
+ [   0   35  145 1128]]
+
+Per-year accuracy:
+  2019: 0.8721 (682/782)
+  2020: 0.8353 (629/753)
+  2021: 0.8703 (510/586)
+  2022: 0.8384 (607/724)
+  2023: 0.8871 (668/753)
+  2024: 0.9537 (763/800)
+  2025: 0.9163 (733/800)
+  2026: 0.9038 (723/800)
+
+External consistency check on teachers_labeled_some_model.json (1384 posts):
+  accuracy 0.7283, macro-F1 0.6910
+  (these gold labels are another model's output, not human ground truth)

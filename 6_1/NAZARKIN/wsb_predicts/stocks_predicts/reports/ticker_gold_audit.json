@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-11-15T09:05:29Z",
+  "kind": "ticker_extraction_gold_audit",
+  "gold_file": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/data/raw/ticker_gold_sample.json",
+  "sample_size": 300,
+  "labelled": 0,
+  "coverage": 0.0,
+  "skipped": {
+    "unlabelled": 300
+  },
+  "targets": {
+    "precision": 0.95,
+    "recall": 0.9
+  },
+  "status": "blocked",
+  "reason": "Fewer than 20 gold-labelled posts are available. Fill gold_tickers in ticker_gold_sample.json and rerun.",
+  "passes_targets": null
+}

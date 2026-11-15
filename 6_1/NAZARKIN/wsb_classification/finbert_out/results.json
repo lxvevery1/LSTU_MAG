@@ -1,0 +1,67 @@
+{
+  "model": "ProsusAI/finbert",
+  "classes": [
+    "NOISE_MEME",
+    "GENUINE_OPINION",
+    "FINANCIAL_CLAIM",
+    "ANALYSIS_DD"
+  ],
+  "max_len": 256,
+  "epochs": 4,
+  "batch": 8,
+  "lr": 2e-05,
+  "class_weight": "balanced",
+  "seed": 42,
+  "split": {
+    "train": 6400,
+    "test": 1600,
+    "seed": 42
+  },
+  "holdout": {
+    "accuracy": 0.730625,
+    "macro_f1": 0.6861247705275197,
+    "train_accuracy": 0.8953125,
+    "per_year": {
+      "2019": {
+        "n": 200,
+        "accuracy": 0.715,
+        "macro_f1": 0.6505799755799756
+      },
+      "2020": {
+        "n": 200,
+        "accuracy": 0.75,
+        "macro_f1": 0.6808076898735718
+      },
+      "2021": {
+        "n": 200,
+        "accuracy": 0.76,
+        "macro_f1": 0.6985997873094647
+      },
+      "2022": {
+        "n": 199,
+        "accuracy": 0.7135678391959799,
+        "macro_f1": 0.5926273058565532
+      },
+      "2023": {
+        "n": 200,
+        "accuracy": 0.735,
+        "macro_f1": 0.6788993659923982
+      },
+      "2024": {
+        "n": 200,
+        "accuracy": 0.675,
+        "macro_f1": 0.6478669275579549
+      },
+      "2025": {
+        "n": 200,
+        "accuracy": 0.77,
+        "macro_f1": 0.7790728184345206
+      },
+      "2026": {
+        "n": 201,
+        "accuracy": 0.7263681592039801,
+        "macro_f1": 0.6878732773656873
+      }
+    }
+  }
+}

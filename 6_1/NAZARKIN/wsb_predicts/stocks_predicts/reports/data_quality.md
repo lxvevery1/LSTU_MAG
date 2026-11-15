@@ -59,3 +59,6 @@ Data version: `wsb16k-v1`
 - Benchmark beta uses 60 prior sessions and falls back to 1.0 when fewer than 30 observations are available.
 - The 10-day embargo removes training/validation rows whose forward window crosses the next split.
 - Class labels for new posts are not ground truth; see `prelabel_report.json` and `gold_audit_sample.json`.
+- Classifier-vs-manual agreement on its 20% holdout is κ=0.573 [0.540, 0.605] (`classifier_audit_proxy.json`); this is a proxy, not a gold audit.
+- 157 posts (0.98%) share normalized text, mostly manual posts with `[removed by moderator]` bodies; post IDs are unique.
+- Ticker precision/recall on the fixed 300-post sample is not measured until humans fill `gold_tickers` (`ticker_gold_audit.json`, status blocked).

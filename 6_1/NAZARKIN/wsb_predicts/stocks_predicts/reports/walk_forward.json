@@ -1,0 +1,166 @@
+{
+  "scheme": "train <= Y-2, val = Y-1, test = Y, 10-session embargo",
+  "note": "The TZ text says train <= Y-1; one year is held out for early stopping and temperature scaling, so training stops at Y-2.",
+  "seed": 42,
+  "folds": {
+    "2023": {
+      "run_id": "wf_2023_seed42",
+      "source": "fold checkpoint",
+      "config": "configs/walk_forward/wf_2023.yaml",
+      "train_years": [
+        2019,
+        2021
+      ],
+      "val_year": 2022,
+      "test_year": 2023,
+      "metrics": {
+        "macro_f1": 0.4382939590930712,
+        "mcc": 0.174041218497668,
+        "balanced_accuracy": 0.4429418661162867,
+        "roc_auc_ovr": 0.5918009046767709,
+        "auc_pr_up": 0.36593156062926235,
+        "brier": 0.6158602952678119,
+        "ece": 0.08215222827676044,
+        "accuracy": 0.4326710816777042,
+        "n": 453,
+        "n_groups": 299,
+        "temperature": 1.1696300473943113
+      },
+      "n_test": 453,
+      "seconds": 3629.8
+    },
+    "2024": {
+      "run_id": "wf_2024_seed42",
+      "source": "fold checkpoint",
+      "config": "configs/walk_forward/wf_2024.yaml",
+      "train_years": [
+        2019,
+        2022
+      ],
+      "val_year": 2023,
+      "test_year": 2024,
+      "metrics": {
+        "macro_f1": 0.42405993983614954,
+        "mcc": 0.1892628538279619,
+        "balanced_accuracy": 0.4380328195294178,
+        "roc_auc_ovr": 0.6130306301395664,
+        "auc_pr_up": 0.49458666420591024,
+        "brier": 0.5968345185530513,
+        "ece": 0.027483672775410466,
+        "accuracy": 0.4695898161244696,
+        "n": 707,
+        "n_groups": 373,
+        "temperature": 1.1184429557758049
+      },
+      "n_test": 707,
+      "seconds": 4649.4
+    },
+    "2025": {
+      "run_id": "finbert_h5_seed42",
+      "source": "reference run per_year 2025 (same train/val/test boundary)",
+      "config": "configs/walk_forward/wf_2025.yaml",
+      "train_years": [
+        2019,
+        2023
+      ],
+      "val_year": 2024,
+      "test_year": 2025,
+      "metrics": {
+        "macro_f1": 0.4089690208096323,
+        "mcc": 0.13861053679684085,
+        "balanced_accuracy": 0.40869448842623085,
+        "roc_auc_ovr": 0.5855486267842083,
+        "auc_pr_up": 0.3702563749470421,
+        "brier": 0.6017150936794456,
+        "ece": 0.09441604670411696,
+        "accuracy": 0.4108761329305136,
+        "n": 662,
+        "n_groups": null,
+        "temperature": null
+      },
+      "n_test": 662
+    }
+  },
+  "aggregate": {
+    "macro_f1": {
+      "mean": 0.42377430657961773,
+      "std": 0.014664555605261352,
+      "n_folds": 3,
+      "values": [
+        0.4382939590930712,
+        0.42405993983614954,
+        0.4089690208096323
+      ]
+    },
+    "mcc": {
+      "mean": 0.16730486970749026,
+      "std": 0.02598938439868278,
+      "n_folds": 3,
+      "values": [
+        0.174041218497668,
+        0.1892628538279619,
+        0.13861053679684085
+      ]
+    },
+    "balanced_accuracy": {
+      "mean": 0.4298897246906452,
+      "std": 0.018518996053411448,
+      "n_folds": 3,
+      "values": [
+        0.4429418661162867,
+        0.4380328195294178,
+        0.40869448842623085
+      ]
+    },
+    "roc_auc_ovr": {
+      "mean": 0.5967933872001819,
+      "std": 0.014405165338027234,
+      "n_folds": 3,
+      "values": [
+        0.5918009046767709,
+        0.6130306301395664,
+        0.5855486267842083
+      ]
+    },
+    "auc_pr_up": {
+      "mean": 0.4102581999274049,
+      "std": 0.07306259932687299,
+      "n_folds": 3,
+      "values": [
+        0.36593156062926235,
+        0.49458666420591024,
+        0.3702563749470421
+      ]
+    },
+    "brier": {
+      "mean": 0.6048033025001028,
+      "std": 0.009881691160422475,
+      "n_folds": 3,
+      "values": [
+        0.6158602952678119,
+        0.5968345185530513,
+        0.6017150936794456
+      ]
+    },
+    "ece": {
+      "mean": 0.06801731591876263,
+      "std": 0.03563470892906601,
+      "n_folds": 3,
+      "values": [
+        0.08215222827676044,
+        0.027483672775410466,
+        0.09441604670411696
+      ]
+    },
+    "accuracy": {
+      "mean": 0.43771234357756245,
+      "std": 0.029679705013818437,
+      "n_folds": 3,
+      "values": [
+        0.4326710816777042,
+        0.4695898161244696,
+        0.4108761329305136
+      ]
+    }
+  }
+}

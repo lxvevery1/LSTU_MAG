@@ -60,6 +60,7 @@ from common import (  # noqa: E402
     DIRECTION_TO_ID,
     INFLUENCE_WEIGHTS,
     load_config,
+    model_path,
     project_path,
     setup_logging,
 )
@@ -169,7 +170,7 @@ class DirectionService:
         self.max_len = int(ckpt["max_len"])
         self.pipeline = FeaturePipeline.from_json(ckpt["pipeline"])
         self.model = DirectionFusionModel(
-            encoder_path=str(project_path(self.mcfg["encoder_path"])),
+            encoder_path=model_path(self.mcfg["encoder_path"]),
             numeric_dim=len(self.pipeline.numeric_cols),
             n_tickers=len(self.pipeline.tickers),
             n_flairs=len(self.pipeline.flairs),
@@ -284,12 +285,11 @@ class DirectionService:
         if not self.calendar:
             return None, empty
         idx = next_entry_index(created_utc, self.calendar)
-        if idx is None:
-            return None, empty
-        if idx >= len(self.calendar):
+        if idx is None or idx >= len(self.calendar):
             # The requested entry is beyond the cached price history.  Return
-            # no market features (the pipeline fills training medians) but keep
-            # a human-readable next business day.
+            # no market features (the pipeline fills training medians), but
+            # keep a human-readable next business day instead of the calendar
+            # date of the post itself.
             next_day = pd.bdate_range(
                 start=pd.Timestamp(datetime.fromtimestamp(created_utc, tz=timezone.utc).date())
                 + pd.Timedelta(days=1), periods=1
@@ -505,6 +505,8 @@ def create_app(service: Any | None = None) -> FastAPI:
 
     @app.post("/predict_direction", response_model=PredictResponse)
     def predict_direction(req: PredictRequest) -> dict:
+        if not (req.title.strip() or req.body.strip()):
+            raise HTTPException(status_code=422, detail="title or body must contain text")
         svc = get_service()
         try:
             return svc.predict(
@@ -553,17 +555,18 @@ def main() -> None:
     args = parser.parse_args()
     setup_logging()
     run_dir = project_path("models") / args.run_id if args.run_id else latest_run()
-    if args.preload:
-        create_app(DirectionService(run_dir=run_dir, device=args.device,
-                                    temperature=args.temperature))
     os.environ["WSB_RUN_DIR"] = str(run_dir)
     os.environ["WSB_DEVICE"] = args.device
+    service = None
+    if args.preload or args.temperature is not None:
+        service = DirectionService(run_dir=run_dir, device=args.device,
+                                   temperature=args.temperature)
+    application = create_app(service)
     import uvicorn
 
-    uvicorn.run(
-        "serve:app" if args.reload else create_app(),
-        host=args.host, port=args.port, reload=False,
-    )
+    if args.reload:
+        LOG.warning("--reload is ignored because the model is loaded in-process")
+    uvicorn.run(application, host=args.host, port=args.port, reload=False)
 
 
 if __name__ == "__main__":
