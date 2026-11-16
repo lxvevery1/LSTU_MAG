@@ -226,8 +226,14 @@
     return el("span", extraClass ? `chip ${extraClass}` : "chip", text);
   }
 
+  function isPostId(value) {
+    const text = String(value || "").trim();
+    return /^[a-z0-9]{4,12}$/i.test(text);
+  }
+
   function safeUrl(item) {
-    if (item && item.url) {
+    if (!item || typeof item !== "object") return null;
+    if (item.url) {
       try {
         const url = new URL(String(item.url), "https://www.reddit.com");
         if (url.protocol === "http:" || url.protocol === "https:") return url.href;
@@ -235,10 +241,16 @@
         /* ignore */
       }
     }
-    const postId = String((item && (item.post_id || item.id)) || "");
-    return postId
-      ? `https://www.reddit.com/r/wallstreetbets/comments/${encodeURIComponent(postId)}/`
-      : "https://www.reddit.com/r/wallstreetbets/";
+    // Only real Reddit post ids may be turned into a thread URL.  Entity ids
+    // such as watch_… / task_… are internal and must never be used here.
+    const candidates = [item.post_id];
+    if (item.kind === "thread") candidates.push(item.target);
+    const postId = candidates.find(isPostId);
+    if (!postId) return null;
+    return (
+      "https://www.reddit.com/r/wallstreetbets/comments/" +
+      `${encodeURIComponent(postId)}/`
+    );
   }
 
   function currentThreadContext() {
@@ -399,9 +411,13 @@
 
         const actions = el("div", "result-actions");
         const open = el("a", "mini-btn", "Открыть тред");
-        open.href = safeUrl(item);
-        open.target = "_blank";
-        open.rel = "noopener noreferrer";
+        const openUrl = safeUrl(item);
+        if (openUrl) {
+          open.href = openUrl;
+          open.target = "_blank";
+          open.rel = "noopener noreferrer";
+          actions.append(open);
+        }
         const save = el("button", "mini-btn", "＋ В мониторинг");
         save.type = "button";
         save.addEventListener("click", () => {
@@ -412,7 +428,7 @@
             url: item.url,
           });
         });
-        actions.append(open, save);
+        actions.append(save);
         card.append(actions);
         searchResults.append(card);
       });
@@ -474,12 +490,20 @@
       items.forEach((item) => {
         const card = el("div", "actual-card");
         const title = item.title || item.name || item.key || item.ticker || "(без названия)";
-        const link = el("a", "actual-title", title);
-        link.href = safeUrl(item);
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-        card.append(link);
+        const url = safeUrl(item);
+        if (url) {
+          const link = el("a", "actual-title", title);
+          link.href = url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          card.append(link);
+        } else {
+          card.append(el("div", "actual-title", title));
+        }
         const metaRow = el("div", "actual-meta");
+        if (item.id) metaRow.append(chip(item.id));
+        if (item.kind) metaRow.append(chip(item.kind));
+        if (item.target) metaRow.append(chip(item.target));
         if (item.post_id) metaRow.append(chip(item.post_id));
         if (item.year) metaRow.append(chip(String(item.year)));
         if (item.label) metaRow.append(chip(String(item.label)));
