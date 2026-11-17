@@ -250,6 +250,9 @@ at Y−2 instead of the TZ's literal Y−1. The 2025 fold reuses the primary mod
 
 ## 6. HTTP API
 
+The full endpoint reference, including every request/response field, is in
+[`docs/api.md`](docs/api.md).
+
 ```bash
 make serve                      # or: python src/serve.py --run-id finbert_h5_seed42 --port 8080
 
@@ -293,16 +296,41 @@ Endpoints:
 
 | method | path | notes |
 |---|---|---|
-| GET | `/health` | liveness + loaded run id |
+| GET | `/health` | liveness; does not load the checkpoint |
 | GET | `/model_info` | horizons, universe, device, temperature |
 | POST | `/predict_direction` | one post × ticker; validates universe and text |
 | POST | `/predict_direction/batch` | up to 100 items; per-item errors are returned |
+| GET | `/tickers` | 30-symbol universe + saved-test coverage |
+| GET | `/runs` | evaluated runs with headline metrics |
+| GET | `/prices/{ticker}` | daily OHLCV; `start`, `end`, `limit` |
+| GET | `/predictions/{ticker}` | saved H=5 test rows + daily aggregates |
+| GET | `/chart/{ticker}` | one payload for the price/prediction chart |
 | GET | `/docs` | interactive OpenAPI UI |
+
+The history endpoints are read-only and do **not** load the transformer. They
+serve artifacts from `stocks_dataset/prices_long.csv` and
+`reports/runs/<run_id>/model_predictions.parquet`; `run_id` defaults to the
+checkpoint selected by `make serve` (or `finbert_h5_seed42` when the API is
+started directly). Prices and predictions can be filtered by inclusive ISO
+dates:
+
+```bash
+curl -s 'localhost:8080/chart/AAPL?run_id=finbert_h5_seed42' | python -m json.tool
+curl -s 'localhost:8080/prices/AAPL?start=2026-09-01&end=2026-09-18' | python -m json.tool
+curl -s 'localhost:8080/predictions/AAPL?start=2025-01-01&end=2025-06-30' | python -m json.tool
+```
+
+`/chart/{ticker}` returns the candles, the daily aggregate prediction
+(`prediction`, mean `probabilities`, `score = P(UP) − P(DOWN)`, true direction,
+abnormal return) and the hit-rate summary. The frontend can also select another
+run explicitly; `/runs` lists available run ids. `WSB_CORS_ORIGINS` controls the
+allowed browser origins (default `*` for local demos).
 
 The service builds market features from the cached price file and class
 probabilities from the frozen 4-class FinBERT classifier. If `created_utc` is
 beyond the cached price history, it warns and uses training medians for market
-features. Unknown tickers return HTTP 422.
+features. Unknown tickers return HTTP 422. `/health` reports `model_loaded:
+false` until the first prediction request (or use `--preload` to load eagerly).
 
 ---
 
@@ -324,6 +352,7 @@ checkpoint. The real-model test is opt-in via `WSB_TEST_REAL_MODEL=1`.
 ```
 stocks_predicts/
 ├── configs/                  data.yaml, tickers.yaml, model.yaml, eval.yaml
+├── docs/api.md               complete HTTP API reference
 ├── data/
 │   ├── raw/                  posts_16k_raw.json, posts_16k_labeled.json, gold_audit_sample.json
 │   ├── interim/              post_ticker_links.parquet, finbert_embeddings.npz
@@ -358,6 +387,7 @@ stocks_predicts/
 │   ├── run_experiments.py    seeds/ablation driver
 │   ├── aggregate_results.py  seed mean ± std and ablation table
 │   ├── walk_forward.py       train <= Y-2, val = Y-1, test = Y folds
+│   ├── history_api.py        prices / saved predictions / chart endpoints
 │   └── serve.py              FastAPI service
 ├── tests/
 ├── Makefile

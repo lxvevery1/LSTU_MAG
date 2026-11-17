@@ -40,6 +40,7 @@ import numpy as np
 import pandas as pd
 import torch
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
@@ -66,6 +67,7 @@ from common import (  # noqa: E402
 )
 from extract_tickers import extract_tickers, load_ticker_config, make_fragment  # noqa: E402
 from features import FeaturePipeline, _time_features  # noqa: E402
+from history_api import HistoryService, register_history_routes  # noqa: E402
 from model import DirectionFusionModel  # noqa: E402
 
 LOG = logging.getLogger("serve")
@@ -472,16 +474,35 @@ class DirectionService:
 
 
 # --------------------------------------------------------------------- FastAPI
-def create_app(service: Any | None = None) -> FastAPI:
+def create_app(
+    service: Any | None = None,
+    history_service: Any | None = None,
+) -> FastAPI:
     app = FastAPI(
         title="WSB Direction Model",
-        version="1.0.0",
+        version="1.1.0",
         description=(
             "Predict 5-day (and auxiliary 1/3/10-day) beta-adjusted direction of "
-            "a WSB post x ticker pair. Research use only; not investment advice."
+            "a WSB post x ticker pair, and serve historical prices plus saved "
+            "test predictions for the dashboard. Research use only; not "
+            "investment advice."
         ),
     )
     app.state.service = service
+    app.state.history_service = history_service
+
+    origins = [
+        item.strip()
+        for item in os.environ.get("WSB_CORS_ORIGINS", "*").split(",")
+        if item.strip()
+    ]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=False,
+        allow_methods=["GET", "POST"],
+        allow_headers=["*"],
+    )
 
     def get_service() -> Any:
         if app.state.service is None:
@@ -491,9 +512,28 @@ def create_app(service: Any | None = None) -> FastAPI:
             )
         return app.state.service
 
+    def get_history() -> Any:
+        if app.state.history_service is None:
+            app.state.history_service = HistoryService()
+        return app.state.history_service
+
+    @app.get("/", include_in_schema=False)
+    def root() -> dict:
+        return {
+            "name": "WSB direction model API",
+            "version": app.version,
+            "docs": "/docs",
+            "live_prediction": "POST /predict_direction",
+            "history": ["/tickers", "/runs", "/prices/{ticker}",
+                        "/predictions/{ticker}", "/chart/{ticker}"],
+        }
+
     @app.get("/health")
     def health() -> dict:
-        svc = get_service()
+        svc = app.state.service
+        if svc is None:
+            return {"status": "ok", "model_loaded": False,
+                    "run_id": None, "device": None}
         info = svc.info() if hasattr(svc, "info") else {}
         return {"status": "ok", "model_loaded": True, "run_id": info.get("run_id"),
                 "device": info.get("device")}
@@ -536,6 +576,8 @@ def create_app(service: Any | None = None) -> FastAPI:
             except ValueError as exc:
                 out.append({"error": str(exc), "ticker": req.ticker})
         return {"n": len(out), "results": out}
+
+    register_history_routes(app, get_history)
 
     return app
 
