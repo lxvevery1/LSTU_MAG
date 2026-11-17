@@ -1,0 +1,812 @@
+{
+  "prompt": {
+    "V1": "Ответь на вопрос, используя предоставленный текст.",
+    "V2": "Если в тексте нет информации для ответа, напиши 'Нет данных'. Не используй свои внутренние знания. Ответь строго по фактам из текста.",
+    "V3": "Шаг 1: Прочитай текст и выдели релевантные предложения. Шаг 2: Проверь, отвечают ли они напрямую на вопрос. Шаг 3: Если да -- дай краткий ответ. Если нет -- напиши 'Нет данных'."
+  },
+  "qa": [
+    {
+      "question": "Сколько секунд отводится питчеру на бросок после получения мяча?",
+      "question_en": "How many seconds does a pitcher have to throw after receiving the ball?",
+      "gold": "20",
+      "src_doc": 93
+    },
+    {
+      "question": "Сколько голов забили «Айлендерс» в четвёртом матче против «Кэпиталз»?",
+      "question_en": "How many goals did the Islanders score in game four against the Capitals?",
+      "gold": "4",
+      "src_doc": 231
+    },
+    {
+      "question": "Сколько голов забил «Детройт Ред Уингз» в матче с «Торонто» 19 апреля 1993 года?",
+      "question_en": "How many goals did the Detroit Red Wings score against Toronto on April 19, 1993?",
+      "gold": "6",
+      "src_doc": 184
+    },
+    {
+      "question": "Какой год выпуска у продаваемого мотоцикла Yamaha XS-2?",
+      "question_en": "What year was the Yamaha XS-2 motorcycle for sale produced?",
+      "gold": "1972",
+      "src_doc": 69
+    },
+    {
+      "question": "В каком году Mercedes-Benz планирует начать выпуск внедорожников в США?",
+      "question_en": "In what year does Mercedes-Benz plan to start building sport-utility vehicles in the US?",
+      "gold": "1997",
+      "src_doc": 256
+    },
+    {
+      "question": "Сколько стоит джерси Oaks из последнего каталога?",
+      "question_en": "How much does an Oaks jersey from the latest catalog cost?",
+      "gold": "165",
+      "src_doc": 209
+    },
+    {
+      "question": "Сколько очков набрал Маркус Турессон в шведской элитной лиге?",
+      "question_en": "How many points did Marcus Thuresson score in the Swedish elite league?",
+      "gold": "16",
+      "src_doc": 169
+    },
+    {
+      "question": "На какой частоте транслируются игры «Пингвинз»?",
+      "question_en": "On what frequency are the Penguins games broadcast?",
+      "gold": "102.5",
+      "src_doc": 39
+    },
+    {
+      "question": "Как называлась компания, разработавшая роторный автомобильный кондиционер?",
+      "question_en": "What was the company that developed the rotary car air conditioner called?",
+      "gold": "ROVAC",
+      "src_doc": 24
+    },
+    {
+      "question": "Как называется средство для смазки цепи, которое хвалит автор?",
+      "question_en": "What is the name of the chain lubricant product the author praises?",
+      "gold": "Maxima Chain Wax",
+      "src_doc": 254
+    },
+    {
+      "question": "Какую травму получил Уэйн Гретцки в плей-офф 1993 года и сколько матчей он пропустил?",
+      "question_en": "What injury did Wayne Gretzky suffer in the 1993 playoffs and how many games did he miss?",
+      "gold": null,
+      "src_doc": null
+    },
+    {
+      "question": "Какую травму спины лечил Марио Лемье в сезоне 1992/93?",
+      "question_en": "What back injury was Mario Lemieux treating in the 1992/93 season?",
+      "gold": null,
+      "src_doc": null
+    },
+    {
+      "question": "Восстановился ли Павел Буре после травмы колена к серии с «Виннипегом»?",
+      "question_en": "Did Pavel Bure recover from his knee injury before the series against Winnipeg?",
+      "gold": null,
+      "src_doc": null
+    },
+    {
+      "question": "Какую травму получил вратарь «Баффало» Доминик Гашек в серии с «Бостоном»?",
+      "question_en": "What injury did Buffalo goaltender Dominik Hasek suffer in the series against Boston?",
+      "gold": null,
+      "src_doc": null
+    },
+    {
+      "question": "Сколько недель пропустил Горди Хоу из-за травмы запястья в 1993 году?",
+      "question_en": "How many weeks did Gordie Howe miss due to a wrist injury in 1993?",
+      "gold": null,
+      "src_doc": null
+    }
+  ],
+  "runs": {
+    "V1": [
+      {
+        "question": "Сколько секунд отводится питчеру на бросок после получения мяча?",
+        "question_en": "How many seconds does a pitcher have to throw after receiving the ball?",
+        "gold": "20",
+        "src_doc": 93,
+        "answer": "Питчера нужно бросать мяч не более 20 секунд после получения мяча, а не менее 15 секунд.",
+        "retrieved": [
+          234,
+          301,
+          280
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.0,
+        "correct": true
+      },
+      {
+        "question": "Сколько голов забили «Айлендерс» в четвёртом матче против «Кэпиталз»?",
+        "question_en": "How many goals did the Islanders score in game four against the Capitals?",
+        "gold": "4",
+        "src_doc": 231,
+        "answer": "2",
+        "retrieved": [
+          381,
+          356,
+          406
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько голов забил «Детройт Ред Уингз» в матче с «Торонто» 19 апреля 1993 года?",
+        "question_en": "How many goals did the Detroit Red Wings score against Toronto on April 19, 1993?",
+        "gold": "6",
+        "src_doc": 184,
+        "answer": "2",
+        "retrieved": [
+          372,
+          387,
+          385
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": false
+      },
+      {
+        "question": "Какой год выпуска у продаваемого мотоцикла Yamaha XS-2?",
+        "question_en": "What year was the Yamaha XS-2 motorcycle for sale produced?",
+        "gold": "1972",
+        "src_doc": 69,
+        "answer": "Yamaha XS-2 был выпущен в 1972 году.",
+        "retrieved": [
+          136,
+          165,
+          139
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.5,
+        "correct": true
+      },
+      {
+        "question": "В каком году Mercedes-Benz планирует начать выпуск внедорожников в США?",
+        "question_en": "In what year does Mercedes-Benz plan to start building sport-utility vehicles in the US?",
+        "gold": "1997",
+        "src_doc": 256,
+        "answer": "Мерседес Бензиновский планирует начать выпуск внедорожников в США в 1997 году.",
+        "retrieved": [
+          93,
+          4,
+          92
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.125,
+        "correct": true
+      },
+      {
+        "question": "Сколько стоит джерси Oaks из последнего каталога?",
+        "question_en": "How much does an Oaks jersey from the latest catalog cost?",
+        "gold": "165",
+        "src_doc": 209,
+        "answer": "Джерси Oaks из последнего catalogа стоит $165.00.",
+        "retrieved": [
+          286,
+          22,
+          175
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.2,
+        "correct": true
+      },
+      {
+        "question": "Сколько очков набрал Маркус Турессон в шведской элитной лиге?",
+        "question_en": "How many points did Marcus Thuresson score in the Swedish elite league?",
+        "gold": "16",
+        "src_doc": 169,
+        "answer": "Маркус Турессон набрал 6 очков в шведской элитной лиге.",
+        "retrieved": [
+          361,
+          315,
+          257
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "На какой частоте транслируются игры «Пингвинз»?",
+        "question_en": "On what frequency are the Penguins games broadcast?",
+        "gold": "102.5",
+        "src_doc": 39,
+        "answer": "На частоте 102.5 WDVE.",
+        "retrieved": [
+          325,
+          315,
+          323
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.5,
+        "correct": true
+      },
+      {
+        "question": "Как называлась компания, разработавшая роторный автомобильный кондиционер?",
+        "question_en": "What was the company that developed the rotary car air conditioner called?",
+        "gold": "ROVAC",
+        "src_doc": 24,
+        "answer": "ROVAC",
+        "retrieved": [
+          9,
+          10,
+          130
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": true
+      },
+      {
+        "question": "Как называется средство для смазки цепи, которое хвалит автор?",
+        "question_en": "What is the name of the chain lubricant product the author praises?",
+        "gold": "Maxima Chain Wax",
+        "src_doc": 254,
+        "answer": "Разделитель среды для смазки цепи, который хвалит автора, называется \"lube\".",
+        "retrieved": [
+          194,
+          162,
+          9
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.1111111111111111,
+        "correct": false
+      },
+      {
+        "question": "Какую травму получил Уэйн Гретцки в плей-офф 1993 года и сколько матчей он пропустил?",
+        "question_en": "What injury did Wayne Gretzky suffer in the 1993 playoffs and how many games did he miss?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Уэйн Гретцки получил травму в плей-офф 1993 года и пропустил 3 матча.",
+        "retrieved": [
+          240,
+          315,
+          401
+        ],
+        "retrieval_hit": null,
+        "refused": false,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Какую травму спины лечил Марио Лемье в сезоне 1992/93?",
+        "question_en": "What back injury was Mario Lemieux treating in the 1992/93 season?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Легионер не был травмирован.",
+        "retrieved": [
+          401,
+          314,
+          253
+        ],
+        "retrieval_hit": null,
+        "refused": false,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Восстановился ли Павел Буре после травмы колена к серии с «Виннипегом»?",
+        "question_en": "Did Pavel Bure recover from his knee injury before the series against Winnipeg?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Павел Буре восстановился после травмы колена. Он выиграл два гола в своей игре и получил один из них на хорошем моменте.",
+        "retrieved": [
+          332,
+          373,
+          404
+        ],
+        "retrieval_hit": null,
+        "refused": false,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Какую травму получил вратарь «Баффало» Доминик Гашек в серии с «Бостоном»?",
+        "question_en": "What injury did Buffalo goaltender Dominik Hasek suffer in the series against Boston?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Давайте разберем этот вопрос пошагово:\n\n1. Вот основные моменты из текста:\n\n   - \"B's can check, Juneau is darn good, and Neely.\"\n   - \"Quebec vs. Montreal - Classic battle, the inexperience will hurt the Nords\"\n   - \"Final - Bruins in 5.  Habs will be hurting from their series with the Nords\"\n\n2. Следующий вопрос требует дополнительного контекста или информации, чтобы ответить на него.\n\n3. В тексте не указано, что Гашек получил травму в серии с Бостоном.\n\n4. В общем контексте, Гашек был",
+        "retrieved": [
+          405,
+          376,
+          382
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.46
+      },
+      {
+        "question": "Сколько недель пропустил Горди Хоу из-за травмы запястья в 1993 году?",
+        "question_en": "How many weeks did Gordie Howe miss due to a wrist injury in 1993?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Сколько недель пропустил Горди Хоу из-за травмы запястья в 1993 году?",
+        "retrieved": [
+          299,
+          334,
+          206
+        ],
+        "retrieval_hit": null,
+        "refused": false,
+        "faithfulness": 0.0
+      }
+    ],
+    "V2": [
+      {
+        "question": "Сколько секунд отводится питчеру на бросок после получения мяча?",
+        "question_en": "How many seconds does a pitcher have to throw after receiving the ball?",
+        "gold": "20",
+        "src_doc": 93,
+        "answer": "Нет данных.",
+        "retrieved": [
+          234,
+          301,
+          280
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько голов забили «Айлендерс» в четвёртом матче против «Кэпиталз»?",
+        "question_en": "How many goals did the Islanders score in game four against the Capitals?",
+        "gold": "4",
+        "src_doc": 231,
+        "answer": "4",
+        "retrieved": [
+          381,
+          356,
+          406
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": true
+      },
+      {
+        "question": "Сколько голов забил «Детройт Ред Уингз» в матче с «Торонто» 19 апреля 1993 года?",
+        "question_en": "How many goals did the Detroit Red Wings score against Toronto on April 19, 1993?",
+        "gold": "6",
+        "src_doc": 184,
+        "answer": "2",
+        "retrieved": [
+          372,
+          387,
+          385
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": false
+      },
+      {
+        "question": "Какой год выпуска у продаваемого мотоцикла Yamaha XS-2?",
+        "question_en": "What year was the Yamaha XS-2 motorcycle for sale produced?",
+        "gold": "1972",
+        "src_doc": 69,
+        "answer": "1972",
+        "retrieved": [
+          136,
+          165,
+          139
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": true
+      },
+      {
+        "question": "В каком году Mercedes-Benz планирует начать выпуск внедорожников в США?",
+        "question_en": "In what year does Mercedes-Benz plan to start building sport-utility vehicles in the US?",
+        "gold": "1997",
+        "src_doc": 256,
+        "answer": "Нет данных.",
+        "retrieved": [
+          93,
+          4,
+          92
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько стоит джерси Oaks из последнего каталога?",
+        "question_en": "How much does an Oaks jersey from the latest catalog cost?",
+        "gold": "165",
+        "src_doc": 209,
+        "answer": "39 Home",
+        "retrieved": [
+          286,
+          22,
+          175
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько очков набрал Маркус Турессон в шведской элитной лиге?",
+        "question_en": "How many points did Marcus Thuresson score in the Swedish elite league?",
+        "gold": "16",
+        "src_doc": 169,
+        "answer": "Маркус Турессон набрал 6 очков в шведской элитной лиге.",
+        "retrieved": [
+          361,
+          315,
+          257
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "На какой частоте транслируются игры «Пингвинз»?",
+        "question_en": "On what frequency are the Penguins games broadcast?",
+        "gold": "102.5",
+        "src_doc": 39,
+        "answer": "Next week's SportsView ожидает трансляции НХЛ и крупных сетевых каналов.",
+        "retrieved": [
+          325,
+          315,
+          323
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.375,
+        "correct": false
+      },
+      {
+        "question": "Как называлась компания, разработавшая роторный автомобильный кондиционер?",
+        "question_en": "What was the company that developed the rotary car air conditioner called?",
+        "gold": "ROVAC",
+        "src_doc": 24,
+        "answer": "ROVAC",
+        "retrieved": [
+          9,
+          10,
+          130
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": true
+      },
+      {
+        "question": "Как называется средство для смазки цепи, которое хвалит автор?",
+        "question_en": "What is the name of the chain lubricant product the author praises?",
+        "gold": "Maxima Chain Wax",
+        "src_doc": 254,
+        "answer": "Разделитель: Нет данных",
+        "retrieved": [
+          194,
+          162,
+          9
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Какую травму получил Уэйн Гретцки в плей-офф 1993 года и сколько матчей он пропустил?",
+        "question_en": "What injury did Wayne Gretzky suffer in the 1993 playoffs and how many games did he miss?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          240,
+          315,
+          401
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Какую травму спины лечил Марио Лемье в сезоне 1992/93?",
+        "question_en": "What back injury was Mario Lemieux treating in the 1992/93 season?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          401,
+          314,
+          253
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Восстановился ли Павел Буре после травмы колена к серии с «Виннипегом»?",
+        "question_en": "Did Pavel Bure recover from his knee injury before the series against Winnipeg?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Павел Буре не восстановился после травмы колена. Он был забит в 2-й периоде игры, но не получил травму.",
+        "retrieved": [
+          332,
+          373,
+          404
+        ],
+        "retrieval_hit": null,
+        "refused": false,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Какую травму получил вратарь «Баффало» Доминик Гашек в серии с «Бостоном»?",
+        "question_en": "What injury did Buffalo goaltender Dominik Hasek suffer in the series against Boston?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          405,
+          376,
+          382
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Сколько недель пропустил Горди Хоу из-за травмы запястья в 1993 году?",
+        "question_en": "How many weeks did Gordie Howe miss due to a wrist injury in 1993?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          299,
+          334,
+          206
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      }
+    ],
+    "V3": [
+      {
+        "question": "Сколько секунд отводится питчеру на бросок после получения мяча?",
+        "question_en": "How many seconds does a pitcher have to throw after receiving the ball?",
+        "gold": "20",
+        "src_doc": 93,
+        "answer": "Нет данных.",
+        "retrieved": [
+          234,
+          301,
+          280
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько голов забили «Айлендерс» в четвёртом матче против «Кэпиталз»?",
+        "question_en": "How many goals did the Islanders score in game four against the Capitals?",
+        "gold": "4",
+        "src_doc": 231,
+        "answer": "Нет данных.",
+        "retrieved": [
+          381,
+          356,
+          406
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько голов забил «Детройт Ред Уингз» в матче с «Торонто» 19 апреля 1993 года?",
+        "question_en": "How many goals did the Detroit Red Wings score against Toronto on April 19, 1993?",
+        "gold": "6",
+        "src_doc": 184,
+        "answer": "Нет данных.",
+        "retrieved": [
+          372,
+          387,
+          385
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Какой год выпуска у продаваемого мотоцикла Yamaha XS-2?",
+        "question_en": "What year was the Yamaha XS-2 motorcycle for sale produced?",
+        "gold": "1972",
+        "src_doc": 69,
+        "answer": "1972",
+        "retrieved": [
+          136,
+          165,
+          139
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": true
+      },
+      {
+        "question": "В каком году Mercedes-Benz планирует начать выпуск внедорожников в США?",
+        "question_en": "In what year does Mercedes-Benz plan to start building sport-utility vehicles in the US?",
+        "gold": "1997",
+        "src_doc": 256,
+        "answer": "Нет данных.",
+        "retrieved": [
+          93,
+          4,
+          92
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Сколько стоит джерси Oaks из последнего каталога?",
+        "question_en": "How much does an Oaks jersey from the latest catalog cost?",
+        "gold": "165",
+        "src_doc": 209,
+        "answer": "Стоимость джерси Oaks из последнего catalogа составляет $165.00.",
+        "retrieved": [
+          286,
+          22,
+          175
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.16666666666666666,
+        "correct": true
+      },
+      {
+        "question": "Сколько очков набрал Маркус Турессон в шведской элитной лиге?",
+        "question_en": "How many points did Marcus Thuresson score in the Swedish elite league?",
+        "gold": "16",
+        "src_doc": 169,
+        "answer": "Маркус Турессон набрал 6 очков в шведской элитной лиге.",
+        "retrieved": [
+          361,
+          315,
+          257
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "На какой частоте транслируются игры «Пингвинз»?",
+        "question_en": "On what frequency are the Penguins games broadcast?",
+        "gold": "102.5",
+        "src_doc": 39,
+        "answer": "Нет данных.",
+        "retrieved": [
+          325,
+          315,
+          323
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Как называлась компания, разработавшая роторный автомобильный кондиционер?",
+        "question_en": "What was the company that developed the rotary car air conditioner called?",
+        "gold": "ROVAC",
+        "src_doc": 24,
+        "answer": "ROVAC",
+        "retrieved": [
+          9,
+          10,
+          130
+        ],
+        "retrieval_hit": true,
+        "refused": false,
+        "faithfulness": 1.0,
+        "correct": true
+      },
+      {
+        "question": "Как называется средство для смазки цепи, которое хвалит автор?",
+        "question_en": "What is the name of the chain lubricant product the author praises?",
+        "gold": "Maxima Chain Wax",
+        "src_doc": 254,
+        "answer": "Нет данных.",
+        "retrieved": [
+          194,
+          162,
+          9
+        ],
+        "retrieval_hit": true,
+        "refused": true,
+        "faithfulness": 0.0,
+        "correct": false
+      },
+      {
+        "question": "Какую травму получил Уэйн Гретцки в плей-офф 1993 года и сколько матчей он пропустил?",
+        "question_en": "What injury did Wayne Gretzky suffer in the 1993 playoffs and how many games did he miss?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          240,
+          315,
+          401
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Какую травму спины лечил Марио Лемье в сезоне 1992/93?",
+        "question_en": "What back injury was Mario Lemieux treating in the 1992/93 season?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          401,
+          314,
+          253
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Восстановился ли Павел Буре после травмы колена к серии с «Виннипегом»?",
+        "question_en": "Did Pavel Bure recover from his knee injury before the series against Winnipeg?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          332,
+          373,
+          404
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Какую травму получил вратарь «Баффало» Доминик Гашек в серии с «Бостоном»?",
+        "question_en": "What injury did Buffalo goaltender Dominik Hasek suffer in the series against Boston?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          405,
+          376,
+          382
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      },
+      {
+        "question": "Сколько недель пропустил Горди Хоу из-за травмы запястья в 1993 году?",
+        "question_en": "How many weeks did Gordie Howe miss due to a wrist injury in 1993?",
+        "gold": null,
+        "src_doc": null,
+        "answer": "Нет данных.",
+        "retrieved": [
+          299,
+          334,
+          206
+        ],
+        "retrieval_hit": null,
+        "refused": true,
+        "faithfulness": 0.0
+      }
+    ]
+  }
+}

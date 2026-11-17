@@ -1,0 +1,52 @@
+Saving the dataset (0/1 shards):   0%|          | 0/300 [00:00<?, ? examples/s]Saving the dataset (1/1 shards): 100%|██████████| 300/300 [00:00<00:00, 36796.44 examples/s]Saving the dataset (1/1 shards): 100%|██████████| 300/300 [00:00<00:00, 35169.41 examples/s]
+[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (618 > 512). Running this sequence through the model will result in indexing errors
+Could not reach the Hub (Cannot reach https://huggingface.co/api/models/intfloat/multilingual-e5-small: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable.). Using cached commit hash for 'intfloat/multilingual-e5-small'.
+[part3] лучшая конфигурация части 2: S (128 ток., overlap=0%), чанков=414
+  [V1] 1/15 hit=True refused=False -> 'Питчера нужно бросать мяч не более 20 секунд после получения мяча, а н'
+  [V1] 2/15 hit=True refused=False -> '2'
+  [V1] 3/15 hit=True refused=False -> '2'
+  [V1] 4/15 hit=True refused=False -> 'Yamaha XS-2 был выпущен в 1972 году.'
+  [V1] 5/15 hit=True refused=False -> 'Мерседес Бензиновский планирует начать выпуск внедорожников в США в 19'
+  [V1] 6/15 hit=True refused=False -> 'Джерси Oaks из последнего catalogа стоит $165.00.'
+  [V1] 7/15 hit=True refused=False -> 'Маркус Турессон набрал 6 очков в шведской элитной лиге.'
+  [V1] 8/15 hit=True refused=False -> 'На частоте 102.5 WDVE.'
+  [V1] 9/15 hit=True refused=False -> 'ROVAC'
+  [V1] 10/15 hit=True refused=False -> 'Разделитель среды для смазки цепи, который хвалит автора, называется "'
+  [V1] 11/15 hit=None refused=False -> 'Уэйн Гретцки получил травму в плей-офф 1993 года и пропустил 3 матча.'
+  [V1] 12/15 hit=None refused=False -> 'Легионер не был травмирован.'
+  [V1] 13/15 hit=None refused=False -> 'Павел Буре восстановился после травмы колена. Он выиграл два гола в св'
+  [V1] 14/15 hit=None refused=True -> 'Давайте разберем этот вопрос пошагово:\n\n1. Вот основные моменты из тек'
+  [V1] 15/15 hit=None refused=False -> 'Сколько недель пропустил Горди Хоу из-за травмы запястья в 1993 году?'
+[part3] V1: {'Accuracy': 0.6, 'Refusal Rate': 0.2, 'Faithfulness': 0.44361111111111107, 'seconds': 1488.2}
+  [V2] 1/15 hit=True refused=True -> 'Нет данных.'
+  [V2] 2/15 hit=True refused=False -> '4'
+  [V2] 3/15 hit=True refused=False -> '2'
+  [V2] 4/15 hit=True refused=False -> '1972'
+  [V2] 5/15 hit=True refused=True -> 'Нет данных.'
+  [V2] 6/15 hit=True refused=False -> '39 Home'
+  [V2] 7/15 hit=True refused=False -> 'Маркус Турессон набрал 6 очков в шведской элитной лиге.'
+  [V2] 8/15 hit=True refused=False -> "Next week's SportsView ожидает трансляции НХЛ и крупных сетевых канало"
+  [V2] 9/15 hit=True refused=False -> 'ROVAC'
+  [V2] 10/15 hit=True refused=True -> 'Разделитель: Нет данных'
+  [V2] 11/15 hit=None refused=True -> 'Нет данных.'
+  [V2] 12/15 hit=None refused=True -> 'Нет данных.'
+  [V2] 13/15 hit=None refused=False -> 'Павел Буре не восстановился после травмы колена. Он был забит в 2-й пе'
+  [V2] 14/15 hit=None refused=True -> 'Нет данных.'
+  [V2] 15/15 hit=None refused=True -> 'Нет данных.'
+[part3] V2: {'Accuracy': 0.3, 'Refusal Rate': 0.8, 'Faithfulness': 0.5375, 'seconds': 1365.3}
+  [V3] 1/15 hit=True refused=True -> 'Нет данных.'
+  [V3] 2/15 hit=True refused=True -> 'Нет данных.'
+  [V3] 3/15 hit=True refused=True -> 'Нет данных.'
+  [V3] 4/15 hit=True refused=False -> '1972'
+  [V3] 5/15 hit=True refused=True -> 'Нет данных.'
+  [V3] 6/15 hit=True refused=False -> 'Стоимость джерси Oaks из последнего catalogа составляет $165.00.'
+  [V3] 7/15 hit=True refused=False -> 'Маркус Турессон набрал 6 очков в шведской элитной лиге.'
+  [V3] 8/15 hit=True refused=True -> 'Нет данных.'
+  [V3] 9/15 hit=True refused=False -> 'ROVAC'
+  [V3] 10/15 hit=True refused=True -> 'Нет данных.'
+  [V3] 11/15 hit=None refused=True -> 'Нет данных.'
+  [V3] 12/15 hit=None refused=True -> 'Нет данных.'
+  [V3] 13/15 hit=None refused=True -> 'Нет данных.'
+  [V3] 14/15 hit=None refused=True -> 'Нет данных.'
+  [V3] 15/15 hit=None refused=True -> 'Нет данных.'
+[part3] V3: {'Accuracy': 0.3, 'Refusal Rate': 1.0, 'Faithfulness': 0.2166666666666667, 'seconds': 1407.5}

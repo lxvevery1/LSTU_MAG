@@ -1,0 +1,16 @@
+Запрос: 'Honda Asoct TF500 ebginner motorcycle' (документ 20, класс rec.motorcycles)
+Лучше в S, не найден в M.
+
+--- top-5 для конфигурации S ---
+1. [OK] page=12 chars=3507-3993 (486 симв.): . Hi folks. I'm going to be buying my first bike and I'm considering an 82 Honda Ascot FT500 with less than 5K miles. Does this sound like a reasonable choice? Is there anything special I need to know? Thanks. Let's see 
+2. [--] page=0 chars=4138-4143 (5 симв.): t so.
+3. [--] page=18 chars=2994-3567 (573 симв.): limited by the rules of the list to issues related to racing motorcycles and is to be "flame-free". HOW TO GET THE DAILY DISTRIBUTION --------------------------------- You are welcome to subscribe. To subscribe send your
+4. [--] page=13 chars=4360-4749 (389 симв.): , and more versatile. I got mine from one of the mail-order houses (Motorcycle Accessory Warehouse, I beleive), for $42. In combination with an ignition disable, and a couple of other deterrents, all I *usually* worry ab
+5. [--] page=14 chars=3945-4506 (561 симв.): dents or dings. Needs a new exhaust as original finally rusted through and was discarded. I was in process of making Kenney Roberts TT replica/ cafe racer when graduate school, marriage, child precluded further effort. W
+
+--- top-5 для конфигурации M ---
+1. [--] page=18 chars=2676-3780 (1104 симв.): , and the United States. The list was formed (October 1991) in response to a perceived need to both provide technical discussion of riding at the edge of performance (roadracing) and to improve on the very low signal-to-
+2. [--] page=16 chars=932-1839 (907 симв.): : high in the low 40s, chance of snow flurries, showers possible. Enjoy the weather where you are. Have a ride on me. What's involved in getting bonded? Anyone know if that's an option recognized by NYS DMV? Rod Good poi
+3. [--] page=19 chars=3527-4071 (544 симв.): , it is nicely stable. But it is not overfond of corners. Forced into one, it protests, shaking its head, chattering its front tire, grinding its footpegs, and generally making known its preference for straight pavement.
+4. [--] page=20 chars=927-1872 (945 симв.): mot.com <= => Motorola Cellular APD | <= =>"Friends don't let friends wear neon"| Phone: (708) 632-4596 <= Interesting. All I can say is that I haven't seen any wear in the 1000 miles I've used the stuff on the Ninja, an
+5. [--] page=18 chars=5589-5760 (171 симв.): ion.rain.com (in body of message write: subscribe euro-moto) thanks, be seeing you, Rich (race list administrator) rich@boogie.EBay.Sun.COM

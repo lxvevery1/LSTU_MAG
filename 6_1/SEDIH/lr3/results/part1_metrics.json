@@ -1,0 +1,60 @@
+{
+  "variant": 16,
+  "seed": 42,
+  "n_train": 3099,
+  "n_test": 775,
+  "A_zero_shot": {
+    "accuracy": 0.33806451612903227,
+    "f1_macro": 0.2858076433895365,
+    "seconds": 44.65817475318909
+  },
+  "B_finetune": {
+    "accuracy": 0.7535483870967742,
+    "f1_macro": 0.7509703798198974,
+    "seconds": 5261.619478702545,
+    "epochs": 5,
+    "lr": 2e-05,
+    "batch_size": 32
+  },
+  "delta": {
+    "accuracy": 0.4154838709677419,
+    "f1_macro": 0.46516273643036093
+  },
+  "confusion_matrix": [
+    [
+      168,
+      43,
+      3,
+      0
+    ],
+    [
+      24,
+      145,
+      12,
+      3
+    ],
+    [
+      5,
+      20,
+      119,
+      57
+    ],
+    [
+      2,
+      7,
+      15,
+      152
+    ]
+  ],
+  "classes": [
+    "rec.autos",
+    "rec.motorcycles",
+    "rec.sport.baseball",
+    "rec.sport.hockey"
+  ],
+  "most_confused_pair": {
+    "true": "rec.sport.baseball",
+    "pred": "rec.sport.hockey",
+    "count": 57
+  }
+}
