@@ -1,0 +1,31 @@
+ M Makefile
+ M README.md
+ M configs/data.yaml
+ M configs/model.yaml
+ M reports/baselines.md
+ M reports/experiment_runs.json
+ M reports/final_report.md
+ M reports/leakage_audit.json
+ M reports/model_card.md
+ M reports/runs/finbert_h5_seed42/leakage_audit.json
+ M requirements.txt
+ M src/aggregate_results.py
+ M src/baselines.py
+ M src/evaluate.py
+ M src/run_experiments.py
+ M tests/test_experiments.py
+?? ../../../GALKIN/lr2/
+?? experiment_state/
+?? reports/ablations.md
+?? reports/classifier_overlap_audit.json
+?? src/audit_classifier_overlap.py
+?? ../../../SEDIH/1/src/tff1
+?? ../../../SEDIH/Kursovaya_rabota__Prikladnye_zadachi_II.pdf
+?? ../../../SEDIH/lr1/out/
+?? ../../../SEDIH/lr1/out_exp/
+?? ../../../SEDIH/lr2/lora_r16/checkpoint-126/
+?? ../../../SEDIH/lr2/lora_r4/checkpoint-126/
+?? ../../../SEDIH/lr2/lora_r8/checkpoint-126/
+?? ../../../SEDIH/lr2/texput.log
+?? ../../../SEDIH/lr3/
+?? ../../../VEDISHEV/4.md

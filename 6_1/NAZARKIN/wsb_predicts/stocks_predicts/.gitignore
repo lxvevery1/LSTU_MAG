@@ -23,3 +23,10 @@ models/*
 # OS noise
 .DS_Store
 *.log
+
+# Local recovery snapshot: preserve large partial checkpoints and raw tmp logs
+# on disk, but do not stage them in git.
+experiment_state/partial_runs/*
+!experiment_state/partial_runs/README.md
+experiment_state/tmp_opencode_snapshot_*/
+experiment_state/logs/

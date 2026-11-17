@@ -50,8 +50,11 @@ ablations:
   no_aux_loss: {use_aux_class_loss: false}
   no_noise_meme: {drop_noise_meme: true}
   no_class_probs: {use_class_probs: false}
-  # TZ 5.3 requires at least weighted CE vs focal loss.  gamma=0 removes the
-  # focal modulation while keeping influence/class weights and smoothing.
+  # TZ 5.3 requires at least weighted CE vs focal loss.  The reference run uses
+  # training.loss_type=weighted_ce, so this arm switches the loss type on.
+  focal_loss: {loss_type: focal, focal_gamma: 1.5}
+  # Reproducibility control: focal is already off because the reference uses
+  # weighted_ce, so this arm should reproduce the reference almost exactly.
   weighted_ce_only: {focal_gamma: 0.0}
   # TZ 5.4 item 6: isolate the multi-task horizon benefit by training H=5 only.
   single_horizon_h5: {horizons: [5]}

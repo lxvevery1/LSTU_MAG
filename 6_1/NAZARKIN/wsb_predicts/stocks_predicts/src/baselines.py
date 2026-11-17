@@ -257,17 +257,24 @@ def main() -> None:
     # markdown table
     lines = ["# Baselines B0–B6 (test split, H=5)", "",
              f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}", "",
-             "| model | macro-F1 | MCC | AUC OvR | AUC-PR UP | Brier | ECE | ticker-day macro-F1 |",
-             "|---|---:|---:|---:|---:|---:|---:|---:|"]
+             "| model | macro-F1 | MCC | AUC OvR | AUC-PR UP | Brier | ECE raw | ECE calibrated | ticker-day macro-F1 |",
+             "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for name in reports:
         r = reports[name]
         t = r["test"]
+        cal = r.get("test_calibrated") or {}
         lines.append(f"| {name} | {t.get('macro_f1', 0):.4f} | {t.get('mcc', 0):.4f} | "
                      f"{t.get('roc_auc_ovr', float('nan')):.4f} | {t.get('auc_pr_up', float('nan')):.4f} | "
                      f"{t.get('brier', float('nan')):.4f} | {t.get('ece', float('nan')):.4f} | "
+                     f"{cal.get('ece', float('nan')):.4f} | "
                      f"{r['ticker_day_test'].get('macro_f1', 0):.4f} |")
     lines += ["", "Bootstrap 95% CI is in `baselines_metrics.json` (date-block resampling).", "",
-              "B3 uses frozen FinBERT embeddings; B6 uses the four class probabilities.", ""]
+              "B3 uses frozen FinBERT embeddings; B6 uses the four class probabilities.", "",
+              "`ECE calibrated` uses a scalar temperature fitted on the 2024 validation split. "
+              "B0/B4/B6 fit near-degenerate temperatures (and therefore near-uniform "
+              "probabilities), so their calibrated ECE is not interpretable; the raw ECE is "
+              "the honest number for those rows. The neural model card reports the "
+              "NLL-temperature calibration ECE.", ""]
     (project_path(cfg["paths"]["reports"]) / "baselines.md").write_text("\n".join(lines), encoding="utf-8")
     print("\n".join(lines))
 

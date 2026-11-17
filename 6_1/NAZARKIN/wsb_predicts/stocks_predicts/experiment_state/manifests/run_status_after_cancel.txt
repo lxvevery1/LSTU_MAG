@@ -1,0 +1,2 @@
+focal: interrupted after epoch 1/3; partial checkpoint quarantined; full rerun planned
+deberta: failed with NaN loss from epoch 1; checkpoint quarantined; smoke test required

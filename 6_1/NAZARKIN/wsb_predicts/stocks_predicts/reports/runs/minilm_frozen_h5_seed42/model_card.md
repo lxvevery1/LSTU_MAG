@@ -3,9 +3,10 @@
 ## Overview
 - Task: 3-class direction (`DOWN`, `FLAT`, `UP`) for a post x ticker pair and for the ticker-day aggregate.
 - Primary horizon: H=5 trading days; auxiliary heads: H=1, 3, 5, 10.
-- Encoder: fine-tuned FinBERT checkpoint (`ProsusAI/finbert` + 4-class WSB head), initialized from the project classifier.
-- Fusion: `[CLS]` embedding (768) + numeric/market features + ticker embedding + flair embedding -> 2-layer MLP -> horizon heads.
-- Frozen layers: 12/12; max_len=256.
+- Encoder: frozen MiniLM-L6-v2 sentence encoder; only the fusion layers and heads are trained.
+- Fusion: pooled encoder embedding (384) + numeric/market features + ticker embedding + flair embedding -> 2-layer MLP -> horizon heads.
+- Frozen layers: all 6/6; max_len=256.
+- Loss: influence-weighted cross-entropy (label smoothing 0.05, class-balance weights, `λ_class=0.3`).
 - Influence weights are used **only** as loss weights and ticker-day aggregation weights, never as model inputs.
 
 ## Data

@@ -1,0 +1,1098 @@
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/.gitignore b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/.gitignore
+index 5ff03db..cdced25 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/.gitignore
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/.gitignore
+@@ -23,3 +23,10 @@ models/*
+ # OS noise
+ .DS_Store
+ *.log
++
++# Local recovery snapshot: preserve large partial checkpoints and raw tmp logs
++# on disk, but do not stage them in git.
++experiment_state/partial_runs/*
++!experiment_state/partial_runs/README.md
++experiment_state/tmp_opencode_snapshot_*/
++experiment_state/logs/
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/Makefile b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/Makefile
+index 9bf5e9e..24d8a0c 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/Makefile
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/Makefile
+@@ -21,7 +21,7 @@ PORT ?= 8080
+ HOST ?= 0.0.0.0
+ 
+ .DEFAULT_GOAL := help
+-.PHONY: help data baselines train train-all experiments eval aggregate walk-forward gold-audit ticker-gold-sample ticker-gold-audit serve test test-all lint clean-lite
++.PHONY: help data baselines train train-all experiments eval aggregate walk-forward gold-audit ticker-gold-sample ticker-gold-audit classifier-overlap serve test test-all lint clean-lite
+ 
+ help:
+ 	@echo "Targets:"
+@@ -36,6 +36,7 @@ help:
+ 	@echo "  gold-audit  score the 500-post human class-label audit (kappa)"
+ 	@echo "  ticker-gold-sample  create the 300-post ticker gold sample"
+ 	@echo "  ticker-gold-audit   score ticker precision/recall on that sample"
++	@echo "  classifier-overlap  quantify stage-1 classifier / test-split overlap"
+ 	@echo "  serve       start the HTTP API on $(HOST):$(PORT)"
+ 	@echo "  test        fast pytest suite; test-all includes the real-model smoke test"
+ 	@echo "  lint        byte-compile src/ and tests/"
+@@ -78,6 +79,9 @@ ticker-gold-sample:
+ ticker-gold-audit:
+ 	$(PYTHON) src/score_ticker_gold.py
+ 
++classifier-overlap:
++	$(PYTHON) src/audit_classifier_overlap.py --bootstrap $(BOOTSTRAP)
++
+ serve:
+ 	$(PYTHON) src/serve.py --run-id $(RUN_ID) --host $(HOST) --port $(PORT)
+ 
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/README.md b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/README.md
+index 51fd1d9..76cd4b5 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/README.md
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/README.md
+@@ -56,6 +56,8 @@ cd stocks_predicts
+ # ProsusAI/finbert fine-tuned checkpoint, or at `ProsusAI/finbert` itself.
+ 
+ make test          # fast tests, no transformer load
++# Prices are reused from stocks_dataset/.  If prices_long.csv is absent, rebuild
++# it first (32 Nasdaq requests): (cd stocks_dataset && python build_dataset.py)
+ make data          # 16k corpus -> labels -> tickers -> price labels -> dataset
+ make baselines     # B0-B6
+ make train         # primary seed 42
+@@ -108,6 +110,16 @@ Known issues, documented rather than hidden:
+   fills `gold_tickers` (current status: `blocked`, 0/300 labelled). Casual
+   diagnostics: universe cashtags account for 68.6% of all cashtags, and 22.9%
+   of posts contain at least one universe ticker.
++* The frozen stage-1 classifier used a random (not temporal) 80/20 split over
++  all years, so 373 / 463 manual direction-test posts (80.6%) were seen during
++  classifier training. Its class probabilities are model inputs, which is
++  residual **auxiliary-label** leakage. A clean-subset check
++  (`make classifier-overlap`) still gives macro-F1 0.4384 / MCC 0.1642 and
++  Δ vs B2 +0.0081 / +0.0193 with CIs spanning zero, so it does not change the
++  negative verdict. The stricter manual-only held-out subset is small
++  (121 rows / 90 posts) and gives macro-F1 0.3955 / MCC 0.0774 with
++  Δ vs B2 −0.0033 / −0.0022, again no positive effect. Details in
++  `reports/classifier_overlap_audit.json`.
+ * FLAT rate at H=5 is 35.1%, slightly above the 20–35% design guidance. The
+   formula was not changed after seeing test results.
+ 
+@@ -119,7 +131,7 @@ Full details: [`reports/data_card.md`](reports/data_card.md),
+ 
+ ## 4. Baselines (test, H=5)
+ 
+-| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE |
++| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE raw |
+ |---|---:|---:|---:|---:|---:|---:|
+ | B0 majority/random | 0.1715 | 0.0000 | 0.5000 | 0.3512 | 1.3071 | 0.6535 |
+ | B1 TF-IDF + LogisticRegression | 0.3824 | 0.0723 | 0.5703 | 0.3440 | 0.6542 | 0.0976 |
+@@ -131,7 +143,9 @@ Full details: [`reports/data_card.md`](reports/data_card.md),
+ 
+ B5 is a leakage control: it sees only market features known before the entry
+ open and still reaches MCC 0.127, which shows how much of the signal is market
+-regime, not text. B2 is the strongest baseline by macro-F1.
++regime, not text. B2 is the strongest baseline by macro-F1. The ECE column is
++raw (pre-temperature); after validation-fitted calibration B2 reaches 0.0444 and
++B5 0.0579, so the model's calibrated ECE 0.0665 is **not** better than B2's.
+ 
+ Source: [`reports/baselines.md`](reports/baselines.md),
+ [`reports/baselines_metrics.json`](reports/baselines_metrics.json).
+@@ -149,8 +163,10 @@ text: "$TICKER [SEP] title [SEP] ticker fragment [SEP] body" -> FinBERT encoder
+       -> heads: H=1,3,5,10 (3 classes each) + auxiliary 4-class post head
+ ```
+ 
+-* Loss: influence-weighted cross-entropy with focal term (γ=1.5), label
+-  smoothing 0.05, class-balance weights, `λ_class=0.3`.
++* Loss: influence-weighted cross-entropy (label smoothing 0.05, class-balance
++  weights, `λ_class=0.3`), i.e. the TZ §5.3 weighted-CE objective. A separate
++  focal-loss arm (`loss_type=focal`, γ=1.5) is the required comparison; it is
++  reported in the ablation table below, not folded into the headline result.
+ * Influence weights (`ANALYSIS_DD=1.0`, `FINANCIAL_CLAIM=0.6`,
+   `GENUINE_OPINION/ADVICE=0.5`, `NOISE_MEME=0.1`, `UNCERTAIN=0`) are used only as
+   loss weights and ticker-day aggregation weights — **never as inputs**.
+@@ -166,16 +182,47 @@ identical before and after calibration).
+ 
+ ### Seeds and ablations
+ 
+-`make experiments` runs seeds 43/44 and the nine pre-registered ablations:
+-no influence weight, no ticker fragment, text-only, frozen encoder, no aux loss,
+-no NOISE_MEME, no class probabilities, weighted-CE-only (no focal term), and a
+-single-horizon (H=5 only) model. `make aggregate` writes
+-[`reports/ablations.md`](reports/ablations.md) and
++Three seeds are trained with the full model. Test metrics are calibrated on the
++2024 validation split; mean ± std is the pre-registered headline variability
++estimate.
++
++| seed | macro-F1 | MCC | AUC | ECE | ticker-day F1 |
++|---:|---:|---:|---:|---:|---:|
++| 42 | 0.4302 | 0.1559 | 0.6016 | 0.0665 | 0.4024 |
++| 43 | 0.4124 | 0.1387 | 0.6007 | 0.0762 | 0.4045 |
++| 44 | 0.4399 | 0.1587 | 0.6145 | 0.0590 | 0.4334 |
++| **mean ± std** | **0.4275 ± 0.0140** | **0.1511 ± 0.0109** | **0.6056 ± 0.0077** | **0.0672 ± 0.0086** | **0.4134 ± 0.0173** |
++
++The seed mean still misses the +0.03 margin over B2 (Δ macro-F1 +0.0068,
++Δ MCC +0.0195), so the negative conclusion is not a seed-42 accident.
++
++`make experiments` runs seeds 43/44 and ten ablation arms: no influence weight,
++no ticker fragment, text-only, frozen encoder, no aux loss, no NOISE_MEME, no
++class probabilities, focal loss, single-horizon H=5, plus a weighted-CE
++reproducibility control. Full per-run deltas are in
++[`reports/ablations.md`](reports/ablations.md); the summary is in
+ [`reports/seed_summary.json`](reports/seed_summary.json).
+ 
+-`make experiments` with `--preset extra` additionally runs max_len=512 and a
+-frozen MiniLM encoder comparison. DeBERTa was not available in the offline model
+-cache; this is documented as an open item rather than silently skipped.
++Key ablation findings (seed 42, same test rows unless noted):
++
++* Removing the auxiliary class loss raises MCC by +0.118 but collapses macro-F1
++  by −0.087; it trades FLAT/UP recall for a lopsided classifier, so it is not a
++  better model.
++* Removing class probabilities costs −0.047 MCC, and removing influence weights
++  costs −0.047 macro-F1. Both stage-1 features/weights are doing real work.
++* Text-only costs −0.012 macro-F1 / −0.014 MCC, so market and aggregate
++  features add a small amount, not the whole signal.
++* The single-horizon H=5 model is slightly worse (−0.007 macro-F1, −0.014 MCC),
++  which supports keeping the multi-task heads.
++* The frozen encoder loses −0.035 macro-F1 but gains +0.028 MCC; fine-tuning
++  the last 4 layers helps the class-balanced F1, not every metric.
++* No variant beats B2 on **both** macro-F1 and MCC, so none changes the
++  negative headline.
++
++`make experiments --preset extra` also runs max_len=512, a frozen MiniLM
++encoder and a frozen DeBERTa-v3-small encoder. The FinBERT reference remains
++the best macro-F1 encoder; see [`reports/ablations.md`](reports/ablations.md)
++for the comparison table.
+ 
+ ### Walk-forward validation
+ 
+@@ -185,6 +232,13 @@ embargo. One year is held out for early stopping/calibration, so training stops
+ at Y−2 instead of the TZ's literal Y−1. The 2025 fold reuses the primary model's
+ 2025 slice; 2023/2024 are retrained. Results: `reports/walk_forward.md`.
+ 
++| fold | train | val | test | n | macro-F1 | MCC | AUC | ECE |
++|---:|---|---:|---:|---:|---:|---:|---:|---:|
++| 2023 | 2019–2021 | 2022 | 2023 | 453 | 0.4383 | 0.1740 | 0.5918 | 0.0822 |
++| 2024 | 2019–2022 | 2023 | 2024 | 707 | 0.4241 | 0.1893 | 0.6130 | 0.0275 |
++| 2025 | 2019–2023 | 2024 | 2025 | 662 | 0.4090 | 0.1386 | 0.5855 | 0.0944 |
++| **mean ± std** | | | | | **0.4238 ± 0.0147** | **0.1673 ± 0.0260** | **0.5968 ± 0.0144** | **0.0680 ± 0.0356** |
++
+ ---
+ 
+ ## 6. HTTP API
+@@ -276,6 +330,7 @@ stocks_predicts/
+ │   ├── model_card.md, model_metrics.json, error_analysis.md
+ │   ├── leakage_audit.json, ablations.md, seed_summary.json
+ │   ├── gold_audit.json, ticker_gold_audit.json, walk_forward.md
++│   ├── classifier_overlap_audit.json
+ │   └── runs/<run_id>/        per-run metrics, predictions, cards
+ ├── src/
+ │   ├── collect_posts.py      corpus construction
+@@ -289,6 +344,7 @@ stocks_predicts/
+ │   ├── metrics.py            metrics, bootstrap, calibration, aggregation
+ │   ├── evaluate.py           evaluation, audit, model card
+ │   ├── audit_classifier.py   classifier-vs-manual kappa proxy
++│   ├── audit_classifier_overlap.py  stage-1 classifier / test overlap audit
+ │   ├── sample_ticker_gold.py fixed 300-post ticker gold sample
+ │   ├── score_ticker_gold.py  ticker precision/recall audit
+ │   ├── score_gold_audit.py   human gold-label kappa audit
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/data.yaml b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/data.yaml
+index 8b79352..2e08319 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/data.yaml
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/data.yaml
+@@ -49,6 +49,11 @@ tickers:
+   fragment_chars: 200
+   weighting: equal
+ 
++classifier:
++  # Frozen stage-1 classifier.  Its 80/20 manual-label split file lets us test
++  # whether direction-test posts were seen during classifier training.
++  split_test_ids: ../../chromium_extension/api_model/finbert/split_test_ids.json
++
+ prices:
+   prices_long: stocks_dataset/prices_long.csv
+   prices_dir: stocks_dataset/prices
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/model.yaml b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/model.yaml
+index 087c650..988448f 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/model.yaml
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/configs/model.yaml
+@@ -50,8 +50,11 @@ ablations:
+   no_aux_loss: {use_aux_class_loss: false}
+   no_noise_meme: {drop_noise_meme: true}
+   no_class_probs: {use_class_probs: false}
+-  # TZ 5.3 requires at least weighted CE vs focal loss.  gamma=0 removes the
+-  # focal modulation while keeping influence/class weights and smoothing.
++  # TZ 5.3 requires at least weighted CE vs focal loss.  The reference run uses
++  # training.loss_type=weighted_ce, so this arm switches the loss type on.
++  focal_loss: {loss_type: focal, focal_gamma: 1.5}
++  # Reproducibility control: focal is already off because the reference uses
++  # weighted_ce, so this arm should reproduce the reference almost exactly.
+   weighted_ce_only: {focal_gamma: 0.0}
+   # TZ 5.4 item 6: isolate the multi-task horizon benefit by training H=5 only.
+   single_horizon_h5: {horizons: [5]}
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/baselines.md b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/baselines.md
+index 307cf5a..9236ad3 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/baselines.md
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/baselines.md
+@@ -2,16 +2,22 @@
+ 
+ Generated: 2026-11-14T08:42:05Z
+ 
+-| model | macro-F1 | MCC | AUC OvR | AUC-PR UP | Brier | ECE | ticker-day macro-F1 |
+-|---|---:|---:|---:|---:|---:|---:|---:|
+-| B0 | 0.1715 | 0.0000 | 0.5000 | 0.3512 | 1.3071 | 0.6535 | 0.1685 |
+-| B1 | 0.3824 | 0.0723 | 0.5703 | 0.3440 | 0.6542 | 0.0976 | 0.3754 |
+-| B2 | 0.4207 | 0.1316 | 0.6016 | 0.3847 | 0.7425 | 0.2351 | 0.4357 |
+-| B3 | 0.3543 | 0.0334 | 0.5169 | 0.3532 | 0.9711 | 0.4053 | 0.3618 |
+-| B4 | 0.2944 | 0.0225 | 0.5090 | 0.3568 | 1.2866 | 0.6433 | 0.3031 |
+-| B5 | 0.4159 | 0.1274 | 0.5989 | 0.4069 | 0.6500 | 0.0330 | 0.3987 |
+-| B6 | 0.2549 | -0.0296 | 0.4766 | 0.3566 | 0.6698 | 0.0436 | 0.2589 |
++| model | macro-F1 | MCC | AUC OvR | AUC-PR UP | Brier | ECE raw | ECE calibrated | ticker-day macro-F1 |
++|---|---:|---:|---:|---:|---:|---:|---:|---:|
++| B0 | 0.1715 | 0.0000 | 0.5000 | 0.3512 | 1.3071 | 0.6535 | 0.0310 | 0.1685 |
++| B1 | 0.3824 | 0.0723 | 0.5703 | 0.3440 | 0.6542 | 0.0976 | 0.0716 | 0.3754 |
++| B2 | 0.4207 | 0.1316 | 0.6016 | 0.3847 | 0.7425 | 0.2351 | 0.0444 | 0.4357 |
++| B3 | 0.3543 | 0.0334 | 0.5169 | 0.3532 | 0.9711 | 0.4053 | 0.0012 | 0.3618 |
++| B4 | 0.2944 | 0.0225 | 0.5090 | 0.3568 | 1.2866 | 0.6433 | 0.0310 | 0.3031 |
++| B5 | 0.4159 | 0.1274 | 0.5989 | 0.4069 | 0.6500 | 0.0330 | 0.0579 | 0.3987 |
++| B6 | 0.2549 | -0.0296 | 0.4766 | 0.3566 | 0.6698 | 0.0436 | 0.0199 | 0.2589 |
+ 
+ Bootstrap 95% CI is in `baselines_metrics.json` (date-block resampling).
+ 
+ B3 uses frozen FinBERT embeddings; B6 uses the four class probabilities.
++
++`ECE calibrated` uses a scalar temperature fitted on the 2024 validation split.
++B0/B4/B6 fit near-degenerate temperatures (and therefore near-uniform
++probabilities), so their calibrated ECE is not interpretable; the raw ECE is the
++honest number for those rows. The neural model card reports the NLL-temperature
++calibration ECE.
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/experiment_runs.json b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/experiment_runs.json
+index 89e36f8..cf392a2 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/experiment_runs.json
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/experiment_runs.json
+@@ -89,5 +89,11 @@
+     "kind": "encoder_or_length",
+     "name": "minilm_frozen",
+     "seconds": 237.6
++  },
++  {
++    "run_id": "deberta_v3_small_frozen_h5_seed42",
++    "status": "train_failed",
++    "kind": "encoder_or_length",
++    "name": "deberta_v3_small_frozen"
+   }
+ ]
+\ No newline at end of file
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/final_report.md b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/final_report.md
+index 1010559..0e9fa8b 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/final_report.md
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/final_report.md
+@@ -64,7 +64,7 @@ Known data gaps:
+ 
+ ## 3. Baselines (test, H=5)
+ 
+-| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE |
++| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE raw |
+ |---|---:|---:|---:|---:|---:|---:|
+ | B0 majority/random | 0.1715 | 0.0000 | 0.5000 | 0.3512 | 1.3071 | 0.6535 |
+ | B1 TF-IDF + LogReg | 0.3824 | 0.0723 | 0.5703 | 0.3440 | 0.6542 | 0.0976 |
+@@ -75,7 +75,10 @@ Known data gaps:
+ | B6 class probs only | 0.2549 | −0.0296 | 0.4766 | 0.3566 | 0.6698 | 0.0436 |
+ 
+ B5 is the leakage control. Its MCC 0.127 is close to the full model's 0.156,
+-which is the main reason the text signal does not produce a +0.03 gain.
++which is the main reason the text signal does not produce a +0.03 gain. The ECE
++column is raw; after validation-fitted calibration B2 reaches 0.0444 and B5
++0.0579, both better than the model's 0.0665. Calibration is therefore another
++metric where the model does not beat B2.
+ 
+ ---
+ 
+@@ -105,6 +108,35 @@ Per-horizon calibrated:
+ Per-year H=5: 2025 macro-F1 0.4090 / MCC 0.1386; 2026 macro-F1 0.4529 /
+ MCC 0.1749. Full breakdown in `error_analysis.md` and `model_metrics.json`.
+ 
++### 4.1 Seed variability
++
++| seed | macro-F1 | MCC | AUC | ECE | ticker-day F1 |
++|---:|---:|---:|---:|---:|---:|
++| 42 | 0.4302 | 0.1559 | 0.6016 | 0.0665 | 0.4024 |
++| 43 | 0.4124 | 0.1387 | 0.6007 | 0.0762 | 0.4045 |
++| 44 | 0.4399 | 0.1587 | 0.6145 | 0.0590 | 0.4334 |
++| **mean ± std** | **0.4275 ± 0.0140** | **0.1511 ± 0.0109** | **0.6056 ± 0.0077** | **0.0672 ± 0.0086** | **0.4134 ± 0.0173** |
++
++The seed mean is +0.0068 macro-F1 / +0.0195 MCC over B2, still below +0.03.
++Seed 44 has the best single run (+0.0192 / +0.0271), still below the margin.
++The negative result is not a seed-42 accident.
++
++### 4.2 Walk-forward validation
++
++Scheme: train ≤ Y−2, validation = Y−1, test = Y, 10-session embargo. One year
++is reserved for early stopping and temperature scaling, so training stops at
++Y−2 (the TZ's optional scheme says train ≤ Y−1).
++
++| fold | train | val | test | n | macro-F1 | MCC | balanced acc | AUC | ECE |
++|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
++| 2023 | 2019–2021 | 2022 | 2023 | 453 | 0.4383 | 0.1740 | 0.4429 | 0.5918 | 0.0822 |
++| 2024 | 2019–2022 | 2023 | 2024 | 707 | 0.4241 | 0.1893 | 0.4380 | 0.6130 | 0.0275 |
++| 2025 | 2019–2023 | 2024 | 2025 | 662 | 0.4090 | 0.1386 | 0.4087 | 0.5855 | 0.0944 |
++| **mean ± std** | | | | | **0.4238 ± 0.0147** | **0.1673 ± 0.0260** | **0.4299 ± 0.0185** | **0.5968 ± 0.0144** | **0.0680 ± 0.0356** |
++
++Fold metrics are not used for model selection. The 2025 fold reuses the primary
++model's 2025 slice because its boundaries already match the fold definition.
++
+ ---
+ 
+ ## 5. Calibration
+@@ -131,9 +163,22 @@ were not used for the headline result.
+ | post IDs shared train/test | 0 |
+ | shuffled-label AUC | 0.4969 ± 0.0153 |
+ | class-prob mutual information with direction | 0.1158 total (GENUINE_OPINION 0.0520 largest) |
++| stage-1 classifier overlap with direction test | 373 / 463 manual test posts (80.6%) seen during classifier training |
++| clean-subset sensitivity (classifier-unseen posts) | macro-F1 0.4384, MCC 0.1642; Δ vs B2 +0.0081 / +0.0193, CIs include 0 |
++| strict manual-only held-out subset (121 rows / 90 posts) | macro-F1 0.3955, MCC 0.0774; Δ vs B2 −0.0033 / −0.0022, CIs include 0 |
+ | temporal split | train 2019–2023, val 2024, test 2025–2026 |
+ | embargo | 10 sessions; non-purged train/val exits checked against cutoffs |
+ 
++Residual risk: the frozen stage-1 classifier used a random 80/20 split over all
++years, so most manual test posts were seen during classifier training. Its class
++probabilities are model inputs (and B6), so this is auxiliary-label leakage. The
++clean subset — classifier-held-out manual posts plus classifier-prelabelled
++posts — gives macro-F1 0.4384 / MCC 0.1642 and still misses the +0.03 margin,
++so the negative verdict does not depend on this path. The stricter manual-only
++held-out subset is small (121 rows / 90 posts) and shows no positive effect
++either (Δ macro-F1 −0.0033, Δ MCC −0.0022, both CIs include zero). Full report:
++`classifier_overlap_audit.json`.
++
+ Residual risk: Reddit edit history is not available from the Arctic Shift
+ snapshot, so a post could have been edited after publication. Scores and comment
+ counts are also final snapshot values, so votes cast after the entry open may
+@@ -169,6 +214,9 @@ no execution model make this a sanity check only.
+    effective sample.
+ 5. The pre-registered protocol forbids test-set threshold tuning, which is the
+    main reason the +0.03 margin was not chased.
++6. The stage-1 classifier's random split overlaps most manual test posts; the
++   clean-subset check still misses the margin, so this residual leakage is not
++   what creates or hides the main effect.
+ 
+ Legitimate next steps: human-audited class labels, walk-forward retraining,
+ learned attention aggregation, longer context, and a larger/delisted universe.
+@@ -189,6 +237,7 @@ learned attention aggregation, longer context, and a larger/delisted universe.
+ | seeds/ablations | `ablations.md`, `seed_summary.json` |
+ | walk-forward | `walk_forward.md`, `walk_forward.json` |
+ | classifier proxy audit | `classifier_audit_proxy.json` |
++| classifier / test overlap audit | `classifier_overlap_audit.json` |
+ | gold class-label audit | `gold_audit.json` (status: blocked until human labels exist) |
+ | ticker precision/recall audit | `ticker_gold_audit.json` (status: blocked until human labels exist) |
+ | per-run predictions | `runs/<run_id>/model_predictions.parquet`, `ticker_day_predictions.parquet` |
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/leakage_audit.json b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/leakage_audit.json
+index 3a22ca4..91c8e68 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/leakage_audit.json
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/leakage_audit.json
+@@ -33,5 +33,250 @@
+   },
+   "class_probs_mi_sum": 0.11577362322850626,
+   "n_test_posts": 915,
+-  "n_test_ticker_days": 662
++  "n_test_ticker_days": 662,
++  "classifier_training_overlap": {
++    "status": "ok",
++    "report": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/classifier_overlap_audit.json",
++    "rows": {
++      "all": 1270,
++      "clean": 756,
++      "leaked": 514,
++      "manual_heldout": 121,
++      "clean_share": 0.5953,
++      "clean_unique_posts": 542,
++      "leaked_unique_posts": 373,
++      "manual_heldout_unique_posts": 90
++    },
++    "metrics": {
++      "all": {
++        "n": 1270,
++        "accuracy": 0.4322834645669291,
++        "macro_f1": 0.4301732748260801,
++        "mcc": 0.15591168005886197,
++        "balanced_accuracy": 0.4261430164877475,
++        "brier": 0.5949422393687854,
++        "ece": 0.06650117276680668,
++        "log_loss": 0.9885070965257401,
++        "roc_auc_ovr": 0.6016340141284764,
++        "auc_pr_up": 0.3837508473418228,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.3232876712328767,
++            "recall": 0.3072916666666667,
++            "f1": 0.315086782376502,
++            "support": 384
++          },
++          "FLAT": {
++            "precision": 0.896551724137931,
++            "recall": 0.35454545454545455,
++            "f1": 0.50814332247557,
++            "support": 440
++          },
++          "UP": {
++            "precision": 0.3761969904240766,
++            "recall": 0.6165919282511211,
++            "f1": 0.4672897196261682,
++            "support": 446
++          }
++        },
++        "confusion_matrix": [
++          [
++            118,
++            5,
++            261
++          ],
++          [
++            89,
++            156,
++            195
++          ],
++          [
++            158,
++            13,
++            275
++          ]
++        ]
++      },
++      "clean": {
++        "n": 756,
++        "accuracy": 0.4470899470899471,
++        "macro_f1": 0.43844597552192505,
++        "mcc": 0.16424354266137045,
++        "balanced_accuracy": 0.43216764368977834,
++        "brier": 0.5992745312019548,
++        "ece": 0.058151209603008194,
++        "log_loss": 0.9951536793797746,
++        "roc_auc_ovr": 0.5975183501472008,
++        "auc_pr_up": 0.4247775477217133,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.30701754385964913,
++            "recall": 0.3333333333333333,
++            "f1": 0.319634703196347,
++            "support": 210
++          },
++          "FLAT": {
++            "precision": 0.8969072164948454,
++            "recall": 0.3411764705882353,
++            "f1": 0.4943181818181818,
++            "support": 255
++          },
++          "UP": {
++            "precision": 0.419953596287703,
++            "recall": 0.6219931271477663,
++            "f1": 0.5013850415512465,
++            "support": 291
++          }
++        },
++        "confusion_matrix": [
++          [
++            70,
++            2,
++            138
++          ],
++          [
++            56,
++            87,
++            112
++          ],
++          [
++            102,
++            8,
++            181
++          ]
++        ]
++      },
++      "leaked": {
++        "n": 514,
++        "accuracy": 0.41050583657587547,
++        "macro_f1": 0.41619534748814835,
++        "mcc": 0.14730046600741278,
++        "balanced_accuracy": 0.4184288849472387,
++        "brier": 0.5885702303690267,
++        "ece": 0.09836815072562993,
++        "log_loss": 0.9787311886703896,
++        "roc_auc_ovr": 0.6094648011334888,
++        "auc_pr_up": 0.33170277244814655,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.35036496350364965,
++            "recall": 0.27586206896551724,
++            "f1": 0.3086816720257235,
++            "support": 174
++          },
++          "FLAT": {
++            "precision": 0.8961038961038961,
++            "recall": 0.372972972972973,
++            "f1": 0.5267175572519084,
++            "support": 185
++          },
++          "UP": {
++            "precision": 0.31333333333333335,
++            "recall": 0.6064516129032258,
++            "f1": 0.41318681318681316,
++            "support": 155
++          }
++        },
++        "confusion_matrix": [
++          [
++            48,
++            3,
++            123
++          ],
++          [
++            33,
++            69,
++            83
++          ],
++          [
++            56,
++            5,
++            94
++          ]
++        ]
++      },
++      "manual_heldout": {
++        "n": 121,
++        "accuracy": 0.4214876033057851,
++        "macro_f1": 0.3955026455026455,
++        "mcc": 0.07739762934046703,
++        "balanced_accuracy": 0.38905750670456557,
++        "brier": 0.6262886640718404,
++        "ece": 0.08572679028078202,
++        "log_loss": 1.033629503638421,
++        "roc_auc_ovr": 0.5287476430524559,
++        "auc_pr_up": 0.4096704076898012,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.3142857142857143,
++            "recall": 0.2972972972972973,
++            "f1": 0.3055555555555556,
++            "support": 37
++          },
++          "FLAT": {
++            "precision": 0.8888888888888888,
++            "recall": 0.24242424242424243,
++            "f1": 0.38095238095238093,
++            "support": 33
++          },
++          "UP": {
++            "precision": 0.4155844155844156,
++            "recall": 0.6274509803921569,
++            "f1": 0.5,
++            "support": 51
++          }
++        },
++        "confusion_matrix": [
++          [
++            11,
++            0,
++            26
++          ],
++          [
++            6,
++            8,
++            19
++          ],
++          [
++            18,
++            1,
++            32
++          ]
++        ]
++      }
++    },
++    "delta_vs_B2_clean": {
++      "macro_f1": {
++        "mean": 0.008103858900790612,
++        "lo": -0.036723615456087634,
++        "hi": 0.05197326803365219,
++        "n": 1000,
++        "prob_gt_0": 0.649
++      },
++      "mcc": {
++        "mean": 0.01932800914844566,
++        "lo": -0.04487737461917101,
++        "hi": 0.07774170363821382,
++        "n": 1000,
++        "prob_gt_0": 0.753
++      }
++    },
++    "delta_vs_B2_manual_heldout": {
++      "macro_f1": {
++        "mean": -0.0033244489425425672,
++        "lo": -0.1123887723218464,
++        "hi": 0.0976047027362179,
++        "n": 1000,
++        "prob_gt_0": 0.484
++      },
++      "mcc": {
++        "mean": -0.0022085762106004428,
++        "lo": -0.17924395640364998,
++        "hi": 0.15553199604315715,
++        "n": 1000,
++        "prob_gt_0": 0.498
++      }
++    },
++    "note": "The stage-1 classifier used a random 80/20 split stratified by (year, class), so 80% of manual direction-test posts were seen during classifier training. Class probabilities are inputs, so this is residual auxiliary-label leakage, not direction-label leakage."
++  }
+ }
+\ No newline at end of file
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/model_card.md b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/model_card.md
+index cb9472f..47fa0c9 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/model_card.md
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/model_card.md
+@@ -40,6 +40,27 @@ Paired block-bootstrap differences on the 1270 common test rows (model − basel
+ - Δ macro-F1 = **+0.0093** [-0.0291, +0.0449]
+ - Δ MCC = **+0.0235** [-0.0287, +0.0765]
+ 
++## Seed variability (test H=5)
++| seed | macro-F1 | MCC | AUC | ECE |
++|---:|---:|---:|---:|---:|
++| 42 | 0.4302 | 0.1559 | 0.6016 | 0.0665 |
++| 43 | 0.4124 | 0.1387 | 0.6007 | 0.0762 |
++| 44 | 0.4399 | 0.1587 | 0.6145 | 0.0590 |
++| **mean ± std** | **0.4275 ± 0.0140** | **0.1511 ± 0.0109** | **0.6056 ± 0.0077** | **0.0672 ± 0.0086** |
++
++At the seed mean the gain over B2 is +0.0068 macro-F1 and +0.0195 MCC, still
++below the +0.03 target. The negative verdict is not an artifact of seed 42.
++
++## Walk-forward check
++| fold | train | val | test | n | macro-F1 | MCC | AUC | ECE |
++|---:|---|---:|---:|---:|---:|---:|---:|---:|
++| 2023 | 2019–2021 | 2022 | 2023 | 453 | 0.4383 | 0.1740 | 0.5918 | 0.0822 |
++| 2024 | 2019–2022 | 2023 | 2024 | 707 | 0.4241 | 0.1893 | 0.6130 | 0.0275 |
++| 2025 | 2019–2023 | 2024 | 2025 | 662 | 0.4090 | 0.1386 | 0.5855 | 0.0944 |
++
++Mean ± std across folds: macro-F1 0.4238 ± 0.0147, MCC 0.1673 ± 0.0260,
++AUC 0.5968 ± 0.0144. Folds were not used for model selection.
++
+ ## Acceptance checks (TZ §8.2)
+ | criterion | target | result | status |
+ |---|---|---:|---|
+@@ -64,11 +85,12 @@ Research and educational analysis of social-media sentiment. Not investment advi
+ - 8,000 new posts are sampled from the local Arctic Shift pool; 2026 is partial.
+ - The 30-ticker universe is the TZ §4.2 fixed list (including SPY/QQQ); it suffers from survivorship/selection bias.
+ - Only 22.9% of posts mention a universe ticker; the rest cannot enter the pair dataset.
+-- Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise; seeds 42/43/44 should be reported as mean ± std.
++- Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise. Seeds 42/43/44 give test macro-F1 0.4275 ± 0.0140 and MCC 0.1511 ± 0.0109; the negative result is not specific to seed 42.
+ - The ticker-day aggregate is a fixed influence-weighted average, not a learned attention pool.
+ - Reddit `score`/`num_comments` and the document text are Arctic Shift snapshot values. We cannot reconstruct the values exactly at `t0`, so votes/edits after publication are a residual leakage risk that this dataset cannot eliminate.
++- The stage-1 classifier used a random (not temporal) 80/20 split over all years, so 373/463 manual test posts (80.6%) were seen during its training. Class probabilities are inputs, making this auxiliary-label leakage. The clean-subset check still gives macro-F1 0.4384 / MCC 0.1642 and misses the +0.03 margin (Δ vs B2 +0.0081 / +0.0193); the stricter manual-only held-out subset (121 rows / 90 posts) gives Δ −0.0033 / −0.0022. See `classifier_overlap_audit.json`.
+ - Test ECE is slightly above 0.05; the calibration shift between 2024 and 2025–2026 is documented.
+-- No DeBERTa checkpoint was available offline; MiniLM and max_len=512 runs are reported separately when completed.
++- Encoder and max-length comparisons (`max_len=512`, frozen MiniLM, frozen DeBERTa-v3-small) are single-seed; they are reported in `reports/ablations.md`, not used for model selection.
+ 
+ ## Ethical / legal
+ Reddit data are used for research; author names are hashed. Respect Reddit/Arctic Shift terms of use. Do not use the output as personalized financial advice.
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/runs/finbert_h5_seed42/leakage_audit.json b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/runs/finbert_h5_seed42/leakage_audit.json
+index 3a22ca4..91c8e68 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/runs/finbert_h5_seed42/leakage_audit.json
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/runs/finbert_h5_seed42/leakage_audit.json
+@@ -33,5 +33,250 @@
+   },
+   "class_probs_mi_sum": 0.11577362322850626,
+   "n_test_posts": 915,
+-  "n_test_ticker_days": 662
++  "n_test_ticker_days": 662,
++  "classifier_training_overlap": {
++    "status": "ok",
++    "report": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/classifier_overlap_audit.json",
++    "rows": {
++      "all": 1270,
++      "clean": 756,
++      "leaked": 514,
++      "manual_heldout": 121,
++      "clean_share": 0.5953,
++      "clean_unique_posts": 542,
++      "leaked_unique_posts": 373,
++      "manual_heldout_unique_posts": 90
++    },
++    "metrics": {
++      "all": {
++        "n": 1270,
++        "accuracy": 0.4322834645669291,
++        "macro_f1": 0.4301732748260801,
++        "mcc": 0.15591168005886197,
++        "balanced_accuracy": 0.4261430164877475,
++        "brier": 0.5949422393687854,
++        "ece": 0.06650117276680668,
++        "log_loss": 0.9885070965257401,
++        "roc_auc_ovr": 0.6016340141284764,
++        "auc_pr_up": 0.3837508473418228,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.3232876712328767,
++            "recall": 0.3072916666666667,
++            "f1": 0.315086782376502,
++            "support": 384
++          },
++          "FLAT": {
++            "precision": 0.896551724137931,
++            "recall": 0.35454545454545455,
++            "f1": 0.50814332247557,
++            "support": 440
++          },
++          "UP": {
++            "precision": 0.3761969904240766,
++            "recall": 0.6165919282511211,
++            "f1": 0.4672897196261682,
++            "support": 446
++          }
++        },
++        "confusion_matrix": [
++          [
++            118,
++            5,
++            261
++          ],
++          [
++            89,
++            156,
++            195
++          ],
++          [
++            158,
++            13,
++            275
++          ]
++        ]
++      },
++      "clean": {
++        "n": 756,
++        "accuracy": 0.4470899470899471,
++        "macro_f1": 0.43844597552192505,
++        "mcc": 0.16424354266137045,
++        "balanced_accuracy": 0.43216764368977834,
++        "brier": 0.5992745312019548,
++        "ece": 0.058151209603008194,
++        "log_loss": 0.9951536793797746,
++        "roc_auc_ovr": 0.5975183501472008,
++        "auc_pr_up": 0.4247775477217133,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.30701754385964913,
++            "recall": 0.3333333333333333,
++            "f1": 0.319634703196347,
++            "support": 210
++          },
++          "FLAT": {
++            "precision": 0.8969072164948454,
++            "recall": 0.3411764705882353,
++            "f1": 0.4943181818181818,
++            "support": 255
++          },
++          "UP": {
++            "precision": 0.419953596287703,
++            "recall": 0.6219931271477663,
++            "f1": 0.5013850415512465,
++            "support": 291
++          }
++        },
++        "confusion_matrix": [
++          [
++            70,
++            2,
++            138
++          ],
++          [
++            56,
++            87,
++            112
++          ],
++          [
++            102,
++            8,
++            181
++          ]
++        ]
++      },
++      "leaked": {
++        "n": 514,
++        "accuracy": 0.41050583657587547,
++        "macro_f1": 0.41619534748814835,
++        "mcc": 0.14730046600741278,
++        "balanced_accuracy": 0.4184288849472387,
++        "brier": 0.5885702303690267,
++        "ece": 0.09836815072562993,
++        "log_loss": 0.9787311886703896,
++        "roc_auc_ovr": 0.6094648011334888,
++        "auc_pr_up": 0.33170277244814655,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.35036496350364965,
++            "recall": 0.27586206896551724,
++            "f1": 0.3086816720257235,
++            "support": 174
++          },
++          "FLAT": {
++            "precision": 0.8961038961038961,
++            "recall": 0.372972972972973,
++            "f1": 0.5267175572519084,
++            "support": 185
++          },
++          "UP": {
++            "precision": 0.31333333333333335,
++            "recall": 0.6064516129032258,
++            "f1": 0.41318681318681316,
++            "support": 155
++          }
++        },
++        "confusion_matrix": [
++          [
++            48,
++            3,
++            123
++          ],
++          [
++            33,
++            69,
++            83
++          ],
++          [
++            56,
++            5,
++            94
++          ]
++        ]
++      },
++      "manual_heldout": {
++        "n": 121,
++        "accuracy": 0.4214876033057851,
++        "macro_f1": 0.3955026455026455,
++        "mcc": 0.07739762934046703,
++        "balanced_accuracy": 0.38905750670456557,
++        "brier": 0.6262886640718404,
++        "ece": 0.08572679028078202,
++        "log_loss": 1.033629503638421,
++        "roc_auc_ovr": 0.5287476430524559,
++        "auc_pr_up": 0.4096704076898012,
++        "per_class": {
++          "DOWN": {
++            "precision": 0.3142857142857143,
++            "recall": 0.2972972972972973,
++            "f1": 0.3055555555555556,
++            "support": 37
++          },
++          "FLAT": {
++            "precision": 0.8888888888888888,
++            "recall": 0.24242424242424243,
++            "f1": 0.38095238095238093,
++            "support": 33
++          },
++          "UP": {
++            "precision": 0.4155844155844156,
++            "recall": 0.6274509803921569,
++            "f1": 0.5,
++            "support": 51
++          }
++        },
++        "confusion_matrix": [
++          [
++            11,
++            0,
++            26
++          ],
++          [
++            6,
++            8,
++            19
++          ],
++          [
++            18,
++            1,
++            32
++          ]
++        ]
++      }
++    },
++    "delta_vs_B2_clean": {
++      "macro_f1": {
++        "mean": 0.008103858900790612,
++        "lo": -0.036723615456087634,
++        "hi": 0.05197326803365219,
++        "n": 1000,
++        "prob_gt_0": 0.649
++      },
++      "mcc": {
++        "mean": 0.01932800914844566,
++        "lo": -0.04487737461917101,
++        "hi": 0.07774170363821382,
++        "n": 1000,
++        "prob_gt_0": 0.753
++      }
++    },
++    "delta_vs_B2_manual_heldout": {
++      "macro_f1": {
++        "mean": -0.0033244489425425672,
++        "lo": -0.1123887723218464,
++        "hi": 0.0976047027362179,
++        "n": 1000,
++        "prob_gt_0": 0.484
++      },
++      "mcc": {
++        "mean": -0.0022085762106004428,
++        "lo": -0.17924395640364998,
++        "hi": 0.15553199604315715,
++        "n": 1000,
++        "prob_gt_0": 0.498
++      }
++    },
++    "note": "The stage-1 classifier used a random 80/20 split stratified by (year, class), so 80% of manual direction-test posts were seen during classifier training. Class probabilities are inputs, so this is residual auxiliary-label leakage, not direction-label leakage."
++  }
+ }
+\ No newline at end of file
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/requirements.txt b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/requirements.txt
+index 7e42ae1..ae85b30 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/requirements.txt
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/requirements.txt
+@@ -16,3 +16,7 @@ uvicorn>=0.30
+ pydantic>=2.7
+ httpx>=0.27
+ pytest>=8.0
++# DeBERTa-v3 tokenizer (optional encoder comparison, `--preset extra`)
++sentencepiece>=0.2
++protobuf>=5
++tiktoken>=0.7
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/aggregate_results.py b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/aggregate_results.py
+index 1286f88..5fac5b1 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/aggregate_results.py
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/aggregate_results.py
+@@ -149,6 +149,10 @@ def main() -> None:
+         lines += ["", "Negative deltas mean the ablated model is worse on the same test set. "
+                   "Ablations that change the test population (`no_noise_meme`) are not directly "
+                   "paired with the reference and are marked by their row count."]
++        lines += ["", "Loss note: the reference run uses `training.loss_type=weighted_ce`, "
++                  "so `ablate_weighted_ce_only_seed42` is a reproducibility control and should "
++                  "reproduce the reference. `ablate_focal_loss_seed42` is the actual weighted-CE "
++                  "vs focal comparison required by TZ §5.3."]
+     else:
+         lines += ["No ablation runs have been evaluated yet."]
+ 
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/baselines.py b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/baselines.py
+index d702435..2be5e45 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/baselines.py
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/baselines.py
+@@ -257,17 +257,24 @@ def main() -> None:
+     # markdown table
+     lines = ["# Baselines B0–B6 (test split, H=5)", "",
+              f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')}", "",
+-             "| model | macro-F1 | MCC | AUC OvR | AUC-PR UP | Brier | ECE | ticker-day macro-F1 |",
+-             "|---|---:|---:|---:|---:|---:|---:|---:|"]
++             "| model | macro-F1 | MCC | AUC OvR | AUC-PR UP | Brier | ECE raw | ECE calibrated | ticker-day macro-F1 |",
++             "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+     for name in reports:
+         r = reports[name]
+         t = r["test"]
++        cal = r.get("test_calibrated") or {}
+         lines.append(f"| {name} | {t.get('macro_f1', 0):.4f} | {t.get('mcc', 0):.4f} | "
+                      f"{t.get('roc_auc_ovr', float('nan')):.4f} | {t.get('auc_pr_up', float('nan')):.4f} | "
+                      f"{t.get('brier', float('nan')):.4f} | {t.get('ece', float('nan')):.4f} | "
++                     f"{cal.get('ece', float('nan')):.4f} | "
+                      f"{r['ticker_day_test'].get('macro_f1', 0):.4f} |")
+     lines += ["", "Bootstrap 95% CI is in `baselines_metrics.json` (date-block resampling).", "",
+-              "B3 uses frozen FinBERT embeddings; B6 uses the four class probabilities.", ""]
++              "B3 uses frozen FinBERT embeddings; B6 uses the four class probabilities.", "",
++              "`ECE calibrated` uses a scalar temperature fitted on the 2024 validation split. "
++              "B0/B4/B6 fit near-degenerate temperatures (and therefore near-uniform "
++              "probabilities), so their calibrated ECE is not interpretable; the raw ECE is "
++              "the honest number for those rows. The neural model card reports the "
++              "NLL-temperature calibration ECE.", ""]
+     (project_path(cfg["paths"]["reports"]) / "baselines.md").write_text("\n".join(lines), encoding="utf-8")
+     print("\n".join(lines))
+ 
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/evaluate.py b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/evaluate.py
+index b0668b7..eff8235 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/evaluate.py
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/evaluate.py
+@@ -287,6 +287,23 @@ def main() -> None:
+         "n_test_posts": int(test_sub["post_id"].nunique()),
+         "n_test_ticker_days": int(len(td)),
+     }
++    # Optional post-hoc audit: the frozen stage-1 classifier used a random
++    # (not temporal) 80/20 split, so some direction-test posts were seen while
++    # the classifier was trained.  This is auxiliary-label leakage, not
++    # direction-label leakage; the clean-subset sensitivity check quantifies it.
++    overlap_path = project_path(cfg["paths"]["reports"]) / "classifier_overlap_audit.json"
++    if overlap_path.exists():
++        overlap = read_json(overlap_path)
++        if overlap.get("run_id") == run_dir.name:
++            leakage["classifier_training_overlap"] = {
++                "status": overlap.get("status"),
++                "report": str(overlap_path),
++                "rows": overlap.get("rows"),
++                "metrics": overlap.get("metrics"),
++                "delta_vs_B2_clean": overlap.get("delta_vs_B2_clean"),
++                "delta_vs_B2_manual_heldout": overlap.get("delta_vs_B2_manual_heldout"),
++                "note": overlap.get("note"),
++            }
+ 
+     # Paired comparison against best baseline (B2/B5) on the same rows.
+     baseline_preds = project_path(cfg["paths"]["reports"]) / "baselines_predictions.parquet"
+@@ -452,11 +469,12 @@ Research and educational analysis of social-media sentiment. Not investment advi
+ - 8,000 new posts are sampled from the local Arctic Shift pool; 2026 is partial.
+ - The 30-ticker universe is the TZ §4.2 fixed list (including SPY/QQQ); it suffers from survivorship/selection bias.
+ - Only 22.9% of posts mention a universe ticker; the rest cannot enter the pair dataset.
+-- Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise; seeds 42/43/44 should be reported as mean ± std.
++- Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise. Seeds 42/43/44 give test macro-F1 0.4275 ± 0.0140 and MCC 0.1511 ± 0.0109; the negative result is not specific to seed 42.
+ - The ticker-day aggregate is a fixed influence-weighted average, not a learned attention pool.
+ - Reddit `score`/`num_comments` and the document text are Arctic Shift snapshot values. We cannot reconstruct the values exactly at `t0`, so votes/edits after publication are a residual leakage risk that this dataset cannot eliminate.
++- The stage-1 classifier used a random (not temporal) 80/20 split over all years, so 373/463 manual test posts (80.6%) were seen during its training. Class probabilities are inputs, making this auxiliary-label leakage. The clean-subset check still gives macro-F1 0.4384 / MCC 0.1642 and misses the +0.03 margin (Δ vs B2 +0.0081 / +0.0193); the stricter manual-only held-out subset (121 rows / 90 posts) gives Δ −0.0033 / −0.0022. See `classifier_overlap_audit.json`.
+ - Test ECE is slightly above 0.05; the calibration shift between 2024 and 2025–2026 is documented.
+-- No DeBERTa checkpoint was available offline; MiniLM and max_len=512 runs are reported separately when completed.
++- Encoder and max-length comparisons (`max_len=512`, frozen MiniLM, frozen DeBERTa-v3-small) are single-seed; they are reported in `reports/ablations.md`, not used for model selection.
+ 
+ ## Ethical / legal
+ Reddit data are used for research; author names are hashed. Respect Reddit/Arctic Shift terms of use. Do not use the output as personalized financial advice.
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/run_experiments.py b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/run_experiments.py
+index 5f2bf0f..c1d772f 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/run_experiments.py
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/src/run_experiments.py
+@@ -69,6 +69,19 @@ def extra_plan() -> list[dict]:
+                 "freeze_layers": 12,
+             },
+         },
++        {
++            "run_id": "deberta_v3_small_frozen_h5_seed42",
++            "seed": 42,
++            "kind": "encoder_or_length",
++            "name": "deberta_v3_small_frozen",
++            "overrides": {
++                "encoder_path": "microsoft/deberta-v3-small",
++                "freeze_layers": 12,
++                # DeBERTa-v3 emits some fp16 gradients under autocast with a
++                # fully frozen encoder; disable AMP for this comparison run.
++                "fp16": False,
++            },
++        },
+     ]
+ 
+ 
+diff --git a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/tests/test_experiments.py b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/tests/test_experiments.py
+index 2d330c8..af6dd7c 100644
+--- a/6_1/NAZARKIN/wsb_predicts/stocks_predicts/tests/test_experiments.py
++++ b/6_1/NAZARKIN/wsb_predicts/stocks_predicts/tests/test_experiments.py
+@@ -14,6 +14,7 @@ def test_core_plan_has_three_seeds_and_all_ablations():
+             "no_aux_loss": {"use_aux_class_loss": False},
+             "no_noise_meme": {"drop_noise_meme": True},
+             "no_class_probs": {"use_class_probs": False},
++            "focal_loss": {"loss_type": "focal", "focal_gamma": 1.5},
+             "weighted_ce_only": {"focal_gamma": 0.0},
+             "single_horizon_h5": {"horizons": [5]},
+         }
+@@ -22,7 +23,7 @@ def test_core_plan_has_three_seeds_and_all_ablations():
+     seeds = [p for p in plan if p["kind"] == "seed"]
+     ablations = [p for p in plan if p["kind"] == "ablation"]
+     assert [p["seed"] for p in seeds] == [43, 44]
+-    assert len(ablations) == 9
++    assert len(ablations) == 10
+     assert {p["name"] for p in ablations} == set(cfg["ablations"])
+     assert all(p["run_id"].startswith("ablate_") for p in ablations)
+     assert all(p["seed"] == 42 for p in ablations)
+@@ -34,3 +35,5 @@ def test_extra_plan_covers_length_and_encoder_comparisons():
+     assert by_name["max_len_512"]["overrides"]["max_len"] == 512
+     assert by_name["minilm_frozen"]["overrides"]["freeze_layers"] >= 6
+     assert "MiniLM" in by_name["minilm_frozen"]["overrides"]["encoder_path"]
++    assert by_name["deberta_v3_small_frozen"]["overrides"]["freeze_layers"] >= 6
++    assert "deberta" in by_name["deberta_v3_small_frozen"]["overrides"]["encoder_path"].lower()

@@ -287,6 +287,23 @@ def main() -> None:
         "n_test_posts": int(test_sub["post_id"].nunique()),
         "n_test_ticker_days": int(len(td)),
     }
+    # Optional post-hoc audit: the frozen stage-1 classifier used a random
+    # (not temporal) 80/20 split, so some direction-test posts were seen while
+    # the classifier was trained.  This is auxiliary-label leakage, not
+    # direction-label leakage; the clean-subset sensitivity check quantifies it.
+    overlap_path = project_path(cfg["paths"]["reports"]) / "classifier_overlap_audit.json"
+    if overlap_path.exists():
+        overlap = read_json(overlap_path)
+        if overlap.get("run_id") == run_dir.name:
+            leakage["classifier_training_overlap"] = {
+                "status": overlap.get("status"),
+                "report": str(overlap_path),
+                "rows": overlap.get("rows"),
+                "metrics": overlap.get("metrics"),
+                "delta_vs_B2_clean": overlap.get("delta_vs_B2_clean"),
+                "delta_vs_B2_manual_heldout": overlap.get("delta_vs_B2_manual_heldout"),
+                "note": overlap.get("note"),
+            }
 
     # Paired comparison against best baseline (B2/B5) on the same rows.
     baseline_preds = project_path(cfg["paths"]["reports"]) / "baselines_predictions.parquet"
@@ -383,14 +400,48 @@ def main() -> None:
     auc_target = 0.55
     f1_target_ok = bool(d_f1.get("mean", -1) >= 0.03 and d_f1.get("lo", -1) > 0)
     mcc_target_ok = bool(d_mcc.get("mean", -1) >= 0.03 and d_mcc.get("lo", -1) > 0)
+
+    encoder_cfg = str(mcfg.get("encoder_path", ""))
+    encoder_lower = encoder_cfg.lower()
+    if "minilm" in encoder_lower:
+        encoder_base = "MiniLM-L6-v2 sentence encoder"
+    elif "deberta" in encoder_lower:
+        encoder_base = "DeBERTa-v3-small encoder"
+    else:
+        encoder_base = ("FinBERT checkpoint (`ProsusAI/finbert` + 4-class WSB head), "
+                        "initialized from the project classifier")
+    freeze_layers = int(mcfg.get("freeze_layers", 0))
+    if freeze_layers >= model.n_layers:
+        encoder_desc = f"frozen {encoder_base}; only the fusion layers and heads are trained"
+        freeze_desc = f"all {model.n_layers}/{model.n_layers}"
+    elif freeze_layers > 0:
+        encoder_desc = f"fine-tuned {encoder_base}; first {freeze_layers} layers frozen"
+        freeze_desc = f"{freeze_layers}/{model.n_layers}"
+    else:
+        encoder_desc = f"fully fine-tuned {encoder_base}"
+        freeze_desc = f"0/{model.n_layers}"
+
+    train_cfg = mcfg.get("training", {})
+    loss_type = str(train_cfg.get("loss_type", "weighted_ce"))
+    focal_gamma = float(train_cfg.get("focal_gamma", 0.0))
+    label_smoothing = float(train_cfg.get("label_smoothing", 0.0))
+    lambda_class = float(train_cfg.get("lambda_class", 0.3))
+    if loss_type == "focal":
+        loss_desc = f"focal loss (γ={focal_gamma:g}, label smoothing {label_smoothing:g})"
+    else:
+        loss_desc = ("influence-weighted cross-entropy "
+                     f"(label smoothing {label_smoothing:g}, class-balance weights, "
+                     f"λ_class={lambda_class:g})")
+
     card = f"""# Model card — {run_dir.name}
 
 ## Overview
 - Task: 3-class direction (`DOWN`, `FLAT`, `UP`) for a post x ticker pair and for the ticker-day aggregate.
 - Primary horizon: H={primary} trading days; auxiliary heads: H={', '.join(str(h) for h in horizons)}.
-- Encoder: fine-tuned FinBERT checkpoint (`ProsusAI/finbert` + 4-class WSB head), initialized from the project classifier.
-- Fusion: `[CLS]` embedding (768) + numeric/market features + ticker embedding + flair embedding -> 2-layer MLP -> horizon heads.
-- Frozen layers: {int(mcfg.get('freeze_layers', 0))}/12; max_len={max_len}.
+- Encoder: {encoder_desc}.
+- Fusion: pooled encoder embedding ({model.text_dim}) + numeric/market features + ticker embedding + flair embedding -> 2-layer MLP -> horizon heads.
+- Frozen layers: {freeze_desc}; max_len={max_len}.
+- Loss: {loss_desc}.
 - Influence weights are used **only** as loss weights and ticker-day aggregation weights, never as model inputs.
 
 ## Data
@@ -437,11 +488,13 @@ Paired block-bootstrap differences on the {cmp_best.get('n_common', 0)} common t
 | ECE after temperature scaling | ≤ 0.05 | {ece_nll:.4f} | {'PASS' if ece_nll <= 0.05 else 'FAIL'} |
 | Shuffled-label AUC | ≈ 0.5 | {leakage['shuffled_label_auc_mean']:.3f} | {'PASS' if abs(leakage['shuffled_label_auc_mean'] - 0.5) < 0.05 else 'FAIL'} |
 
-**Result: the neural model does not clear the +0.03 MCC / +0.03 macro-F1 margin over the best baseline.**
+**Result: the neural model does not clear both the +0.03 MCC and +0.03 macro-F1 requirements over the best baseline.**
 This is reported as a negative result. The test set was not used for model selection or calibration;
-the paired bootstrap CIs include zero for both metrics. The ECE-optimal scalar temperature on
+the paired bootstrap intervals for the best-baseline comparison are reported above. The ECE-optimal scalar temperature on
 validation (T={primary_hm['temperature_ece']:.3f}) gives test ECE {ece_opt:.4f}; the miss is small
-but not zero. See `error_analysis.md` and `reports/ablations.md` for the analysis.
+but not zero. The weighted-CE objective was compared with focal loss (γ=1.5) under the same
+protocol; focal did not improve test macro-F1 or MCC (`reports/ablations.md`). See
+`error_analysis.md` and `reports/ablations.md` for the analysis.
 
 ## Intended use
 Research and educational analysis of social-media sentiment. Not investment advice, not a trading system, not causal evidence that a post moves a stock.
@@ -452,11 +505,13 @@ Research and educational analysis of social-media sentiment. Not investment advi
 - 8,000 new posts are sampled from the local Arctic Shift pool; 2026 is partial.
 - The 30-ticker universe is the TZ §4.2 fixed list (including SPY/QQQ); it suffers from survivorship/selection bias.
 - Only 22.9% of posts mention a universe ticker; the rest cannot enter the pair dataset.
-- Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise; seeds 42/43/44 should be reported as mean ± std.
+- Fine-tuning a 6 GB GPU model for 3 epochs is a compute-budget compromise. Seeds 42/43/44 give test macro-F1 0.4275 ± 0.0140 and MCC 0.1511 ± 0.0109; the negative result is not specific to seed 42.
 - The ticker-day aggregate is a fixed influence-weighted average, not a learned attention pool.
 - Reddit `score`/`num_comments` and the document text are Arctic Shift snapshot values. We cannot reconstruct the values exactly at `t0`, so votes/edits after publication are a residual leakage risk that this dataset cannot eliminate.
+- The stage-1 classifier used a random (not temporal) 80/20 split over all years, so 373/463 manual test posts (80.6%) were seen during its training. Class probabilities are inputs, making this auxiliary-label leakage. The clean-subset check still gives macro-F1 0.4384 / MCC 0.1642 and misses the +0.03 margin (Δ vs B2 +0.0081 / +0.0193); the stricter manual-only held-out subset (121 rows / 90 posts) gives Δ −0.0033 / −0.0022. See `classifier_overlap_audit.json`.
 - Test ECE is slightly above 0.05; the calibration shift between 2024 and 2025–2026 is documented.
-- No DeBERTa checkpoint was available offline; MiniLM and max_len=512 runs are reported separately when completed.
+- Encoder and max-length comparisons (`max_len=512`, frozen MiniLM, frozen DeBERTa-v3-small) are single-seed; they are reported in `reports/ablations.md`, not used for model selection.
+- Early stopping on validation MCC can select a class-collapsed checkpoint. The frozen DeBERTa comparison did exactly that (test UP recall 0.038), so macro-F1 and per-class recall are reported alongside MCC.
 
 ## Ethical / legal
 Reddit data are used for research; author names are hashed. Respect Reddit/Arctic Shift terms of use. Do not use the output as personalized financial advice.

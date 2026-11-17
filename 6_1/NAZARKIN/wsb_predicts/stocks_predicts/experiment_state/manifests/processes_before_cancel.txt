@@ -1,0 +1,5 @@
+ 130158       1 Sun Nov 15 22:23:00 2026       41:59  0.0  0.8 ../.venv/bin/python src/run_experiments.py --preset core --only focal_loss --bootstrap 1000
+ 130161  130158 Sun Nov 15 22:23:00 2026       41:59  100 16.6 /home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/../.venv/bin/python src/train.py --seed 42 --run-id ablate_focal_loss_seed42 --override loss_type="focal" --override focal_gamma=1.5
+ 131234       1 Sun Nov 15 22:28:00 2026       36:59  0.0  0.8 ../.venv/bin/python src/run_experiments.py --preset extra --only deberta --bootstrap 1000
+ 131237  131234 Sun Nov 15 22:28:00 2026       36:59  100 14.5 /home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/../.venv/bin/python src/train.py --seed 42 --run-id deberta_v3_small_frozen_h5_seed42 --override encoder_path="microsoft/deberta-v3-small" --override freeze_layers=12 --override fp16=false
+ 133365    7250 Sun Nov 15 22:37:28 2026       27:31  0.0  0.0 bash /tmp/opencode/wait_final.sh

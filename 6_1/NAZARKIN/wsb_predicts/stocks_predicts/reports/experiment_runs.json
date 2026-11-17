@@ -89,5 +89,19 @@
     "kind": "encoder_or_length",
     "name": "minilm_frozen",
     "seconds": 237.6
+  },
+  {
+    "run_id": "deberta_v3_small_frozen_h5_seed42",
+    "status": "done",
+    "kind": "encoder_or_length",
+    "name": "deberta_v3_small_frozen",
+    "seconds": 767.0
+  },
+  {
+    "run_id": "ablate_focal_loss_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "focal_loss",
+    "seconds": 2670.5
   }
 ]

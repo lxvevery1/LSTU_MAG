@@ -39,7 +39,15 @@ class DirectionFusionModel(nn.Module):
         self.freeze_layers = int(freeze_layers)
         self.n_layers = int(getattr(self.encoder.config, "num_hidden_layers", 12))
 
-        if self.freeze_layers > 0:
+        if self.freeze_layers >= self.n_layers:
+            # "Frozen encoder" must mean the whole encoder, not just the
+            # embeddings and transformer blocks.  Some architectures keep extra
+            # parameters outside `encoder.layer` (DeBERTa's relative-position
+            # embeddings and final LayerNorm, for example); leaving those
+            # trainable made the DeBERTa comparison numerically unstable.
+            for p in self.encoder.parameters():
+                p.requires_grad = False
+        elif self.freeze_layers > 0:
             for p in self.encoder.embeddings.parameters():
                 p.requires_grad = False
         for i, layer in enumerate(self.encoder.encoder.layer):

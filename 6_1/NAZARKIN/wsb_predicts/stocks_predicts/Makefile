@@ -21,7 +21,7 @@ PORT ?= 8080
 HOST ?= 0.0.0.0
 
 .DEFAULT_GOAL := help
-.PHONY: help data baselines train train-all experiments eval aggregate walk-forward gold-audit ticker-gold-sample ticker-gold-audit serve test test-all lint clean-lite
+.PHONY: help data baselines train train-all experiments eval aggregate walk-forward gold-audit ticker-gold-sample ticker-gold-audit classifier-overlap serve test test-all lint clean-lite
 
 help:
 	@echo "Targets:"
@@ -36,6 +36,7 @@ help:
 	@echo "  gold-audit  score the 500-post human class-label audit (kappa)"
 	@echo "  ticker-gold-sample  create the 300-post ticker gold sample"
 	@echo "  ticker-gold-audit   score ticker precision/recall on that sample"
+	@echo "  classifier-overlap  quantify stage-1 classifier / test-split overlap"
 	@echo "  serve       start the HTTP API on $(HOST):$(PORT)"
 	@echo "  test        fast pytest suite; test-all includes the real-model smoke test"
 	@echo "  lint        byte-compile src/ and tests/"
@@ -77,6 +78,9 @@ ticker-gold-sample:
 
 ticker-gold-audit:
 	$(PYTHON) src/score_ticker_gold.py
+
+classifier-overlap:
+	$(PYTHON) src/audit_classifier_overlap.py --bootstrap $(BOOTSTRAP)
 
 serve:
 	$(PYTHON) src/serve.py --run-id $(RUN_ID) --host $(HOST) --port $(PORT)

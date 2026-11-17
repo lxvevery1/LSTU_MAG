@@ -149,6 +149,10 @@ def main() -> None:
         lines += ["", "Negative deltas mean the ablated model is worse on the same test set. "
                   "Ablations that change the test population (`no_noise_meme`) are not directly "
                   "paired with the reference and are marked by their row count."]
+        lines += ["", "Loss note: the reference run uses `training.loss_type=weighted_ce`, "
+                  "so `ablate_weighted_ce_only_seed42` is a reproducibility control and should "
+                  "reproduce the reference. `ablate_focal_loss_seed42` is the actual weighted-CE "
+                  "vs focal comparison required by TZ §5.3."]
     else:
         lines += ["No ablation runs have been evaluated yet."]
 
@@ -159,6 +163,10 @@ def main() -> None:
             m = extra[run_id]
             lines.append(f"| {run_id} | {m['n']} | {m['macro_f1']:.4f} | {m['mcc']:.4f} | "
                          f"{m['auc']:.4f} | {m['ece']:.4f} |")
+        lines += ["", "Single-seed comparisons, not used for model selection. "
+                  "The frozen DeBERTa arm gains MCC but collapses toward DOWN "
+                  "(test UP recall 0.038) and its macro-F1 is below the reference, "
+                  "so it is not a better balanced model."]
     else:
         lines += ["Not yet run."]
 

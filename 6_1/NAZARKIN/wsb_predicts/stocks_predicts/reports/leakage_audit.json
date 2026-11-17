@@ -33,5 +33,250 @@
   },
   "class_probs_mi_sum": 0.11577362322850626,
   "n_test_posts": 915,
-  "n_test_ticker_days": 662
+  "n_test_ticker_days": 662,
+  "classifier_training_overlap": {
+    "status": "ok",
+    "report": "/home/stanik/programmer/++Programmer/6_1/NAZARKIN/wsb_predicts/stocks_predicts/reports/classifier_overlap_audit.json",
+    "rows": {
+      "all": 1270,
+      "clean": 756,
+      "leaked": 514,
+      "manual_heldout": 121,
+      "clean_share": 0.5953,
+      "clean_unique_posts": 542,
+      "leaked_unique_posts": 373,
+      "manual_heldout_unique_posts": 90
+    },
+    "metrics": {
+      "all": {
+        "n": 1270,
+        "accuracy": 0.4322834645669291,
+        "macro_f1": 0.4301732748260801,
+        "mcc": 0.15591168005886197,
+        "balanced_accuracy": 0.4261430164877475,
+        "brier": 0.5949422393687854,
+        "ece": 0.06650117276680668,
+        "log_loss": 0.9885070965257401,
+        "roc_auc_ovr": 0.6016340141284764,
+        "auc_pr_up": 0.3837508473418228,
+        "per_class": {
+          "DOWN": {
+            "precision": 0.3232876712328767,
+            "recall": 0.3072916666666667,
+            "f1": 0.315086782376502,
+            "support": 384
+          },
+          "FLAT": {
+            "precision": 0.896551724137931,
+            "recall": 0.35454545454545455,
+            "f1": 0.50814332247557,
+            "support": 440
+          },
+          "UP": {
+            "precision": 0.3761969904240766,
+            "recall": 0.6165919282511211,
+            "f1": 0.4672897196261682,
+            "support": 446
+          }
+        },
+        "confusion_matrix": [
+          [
+            118,
+            5,
+            261
+          ],
+          [
+            89,
+            156,
+            195
+          ],
+          [
+            158,
+            13,
+            275
+          ]
+        ]
+      },
+      "clean": {
+        "n": 756,
+        "accuracy": 0.4470899470899471,
+        "macro_f1": 0.43844597552192505,
+        "mcc": 0.16424354266137045,
+        "balanced_accuracy": 0.43216764368977834,
+        "brier": 0.5992745312019548,
+        "ece": 0.058151209603008194,
+        "log_loss": 0.9951536793797746,
+        "roc_auc_ovr": 0.5975183501472008,
+        "auc_pr_up": 0.4247775477217133,
+        "per_class": {
+          "DOWN": {
+            "precision": 0.30701754385964913,
+            "recall": 0.3333333333333333,
+            "f1": 0.319634703196347,
+            "support": 210
+          },
+          "FLAT": {
+            "precision": 0.8969072164948454,
+            "recall": 0.3411764705882353,
+            "f1": 0.4943181818181818,
+            "support": 255
+          },
+          "UP": {
+            "precision": 0.419953596287703,
+            "recall": 0.6219931271477663,
+            "f1": 0.5013850415512465,
+            "support": 291
+          }
+        },
+        "confusion_matrix": [
+          [
+            70,
+            2,
+            138
+          ],
+          [
+            56,
+            87,
+            112
+          ],
+          [
+            102,
+            8,
+            181
+          ]
+        ]
+      },
+      "leaked": {
+        "n": 514,
+        "accuracy": 0.41050583657587547,
+        "macro_f1": 0.41619534748814835,
+        "mcc": 0.14730046600741278,
+        "balanced_accuracy": 0.4184288849472387,
+        "brier": 0.5885702303690267,
+        "ece": 0.09836815072562993,
+        "log_loss": 0.9787311886703896,
+        "roc_auc_ovr": 0.6094648011334888,
+        "auc_pr_up": 0.33170277244814655,
+        "per_class": {
+          "DOWN": {
+            "precision": 0.35036496350364965,
+            "recall": 0.27586206896551724,
+            "f1": 0.3086816720257235,
+            "support": 174
+          },
+          "FLAT": {
+            "precision": 0.8961038961038961,
+            "recall": 0.372972972972973,
+            "f1": 0.5267175572519084,
+            "support": 185
+          },
+          "UP": {
+            "precision": 0.31333333333333335,
+            "recall": 0.6064516129032258,
+            "f1": 0.41318681318681316,
+            "support": 155
+          }
+        },
+        "confusion_matrix": [
+          [
+            48,
+            3,
+            123
+          ],
+          [
+            33,
+            69,
+            83
+          ],
+          [
+            56,
+            5,
+            94
+          ]
+        ]
+      },
+      "manual_heldout": {
+        "n": 121,
+        "accuracy": 0.4214876033057851,
+        "macro_f1": 0.3955026455026455,
+        "mcc": 0.07739762934046703,
+        "balanced_accuracy": 0.38905750670456557,
+        "brier": 0.6262886640718404,
+        "ece": 0.08572679028078202,
+        "log_loss": 1.033629503638421,
+        "roc_auc_ovr": 0.5287476430524559,
+        "auc_pr_up": 0.4096704076898012,
+        "per_class": {
+          "DOWN": {
+            "precision": 0.3142857142857143,
+            "recall": 0.2972972972972973,
+            "f1": 0.3055555555555556,
+            "support": 37
+          },
+          "FLAT": {
+            "precision": 0.8888888888888888,
+            "recall": 0.24242424242424243,
+            "f1": 0.38095238095238093,
+            "support": 33
+          },
+          "UP": {
+            "precision": 0.4155844155844156,
+            "recall": 0.6274509803921569,
+            "f1": 0.5,
+            "support": 51
+          }
+        },
+        "confusion_matrix": [
+          [
+            11,
+            0,
+            26
+          ],
+          [
+            6,
+            8,
+            19
+          ],
+          [
+            18,
+            1,
+            32
+          ]
+        ]
+      }
+    },
+    "delta_vs_B2_clean": {
+      "macro_f1": {
+        "mean": 0.008103858900790612,
+        "lo": -0.036723615456087634,
+        "hi": 0.05197326803365219,
+        "n": 1000,
+        "prob_gt_0": 0.649
+      },
+      "mcc": {
+        "mean": 0.01932800914844566,
+        "lo": -0.04487737461917101,
+        "hi": 0.07774170363821382,
+        "n": 1000,
+        "prob_gt_0": 0.753
+      }
+    },
+    "delta_vs_B2_manual_heldout": {
+      "macro_f1": {
+        "mean": -0.0033244489425425672,
+        "lo": -0.1123887723218464,
+        "hi": 0.0976047027362179,
+        "n": 1000,
+        "prob_gt_0": 0.484
+      },
+      "mcc": {
+        "mean": -0.0022085762106004428,
+        "lo": -0.17924395640364998,
+        "hi": 0.15553199604315715,
+        "n": 1000,
+        "prob_gt_0": 0.498
+      }
+    },
+    "note": "The stage-1 classifier used a random 80/20 split stratified by (year, class), so 80% of manual direction-test posts were seen during classifier training. Class probabilities are inputs, so this is residual auxiliary-label leakage, not direction-label leakage."
+  }
 }

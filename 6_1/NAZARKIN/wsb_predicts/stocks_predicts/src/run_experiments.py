@@ -69,6 +69,19 @@ def extra_plan() -> list[dict]:
                 "freeze_layers": 12,
             },
         },
+        {
+            "run_id": "deberta_v3_small_frozen_h5_seed42",
+            "seed": 42,
+            "kind": "encoder_or_length",
+            "name": "deberta_v3_small_frozen",
+            "overrides": {
+                "encoder_path": "microsoft/deberta-v3-small",
+                "freeze_layers": 12,
+                # DeBERTa-v3 emits some fp16 gradients under autocast with a
+                # fully frozen encoder; disable AMP for this comparison run.
+                "fp16": False,
+            },
+        },
     ]
 
 

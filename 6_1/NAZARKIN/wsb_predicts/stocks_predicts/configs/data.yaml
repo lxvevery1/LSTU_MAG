@@ -49,6 +49,11 @@ tickers:
   fragment_chars: 200
   weighting: equal
 
+classifier:
+  # Frozen stage-1 classifier.  Its 80/20 manual-label split file lets us test
+  # whether direction-test posts were seen during classifier training.
+  split_test_ids: ../../chromium_extension/api_model/finbert/split_test_ids.json
+
 prices:
   prices_long: stocks_dataset/prices_long.csv
   prices_dir: stocks_dataset/prices

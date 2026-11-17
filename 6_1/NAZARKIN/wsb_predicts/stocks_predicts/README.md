@@ -56,6 +56,8 @@ cd stocks_predicts
 # ProsusAI/finbert fine-tuned checkpoint, or at `ProsusAI/finbert` itself.
 
 make test          # fast tests, no transformer load
+# Prices are reused from stocks_dataset/.  If prices_long.csv is absent, rebuild
+# it first (32 Nasdaq requests): (cd stocks_dataset && python build_dataset.py)
 make data          # 16k corpus -> labels -> tickers -> price labels -> dataset
 make baselines     # B0-B6
 make train         # primary seed 42
@@ -108,6 +110,16 @@ Known issues, documented rather than hidden:
   fills `gold_tickers` (current status: `blocked`, 0/300 labelled). Casual
   diagnostics: universe cashtags account for 68.6% of all cashtags, and 22.9%
   of posts contain at least one universe ticker.
+* The frozen stage-1 classifier used a random (not temporal) 80/20 split over
+  all years, so 373 / 463 manual direction-test posts (80.6%) were seen during
+  classifier training. Its class probabilities are model inputs, which is
+  residual **auxiliary-label** leakage. A clean-subset check
+  (`make classifier-overlap`) still gives macro-F1 0.4384 / MCC 0.1642 and
+  Δ vs B2 +0.0081 / +0.0193 with CIs spanning zero, so it does not change the
+  negative verdict. The stricter manual-only held-out subset is small
+  (121 rows / 90 posts) and gives macro-F1 0.3955 / MCC 0.0774 with
+  Δ vs B2 −0.0033 / −0.0022, again no positive effect. Details in
+  `reports/classifier_overlap_audit.json`.
 * FLAT rate at H=5 is 35.1%, slightly above the 20–35% design guidance. The
   formula was not changed after seeing test results.
 
@@ -119,7 +131,7 @@ Full details: [`reports/data_card.md`](reports/data_card.md),
 
 ## 4. Baselines (test, H=5)
 
-| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE |
+| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE raw |
 |---|---:|---:|---:|---:|---:|---:|
 | B0 majority/random | 0.1715 | 0.0000 | 0.5000 | 0.3512 | 1.3071 | 0.6535 |
 | B1 TF-IDF + LogisticRegression | 0.3824 | 0.0723 | 0.5703 | 0.3440 | 0.6542 | 0.0976 |
@@ -131,7 +143,9 @@ Full details: [`reports/data_card.md`](reports/data_card.md),
 
 B5 is a leakage control: it sees only market features known before the entry
 open and still reaches MCC 0.127, which shows how much of the signal is market
-regime, not text. B2 is the strongest baseline by macro-F1.
+regime, not text. B2 is the strongest baseline by macro-F1. The ECE column is
+raw (pre-temperature); after validation-fitted calibration B2 reaches 0.0444 and
+B5 0.0579, so the model's calibrated ECE 0.0665 is **not** better than B2's.
 
 Source: [`reports/baselines.md`](reports/baselines.md),
 [`reports/baselines_metrics.json`](reports/baselines_metrics.json).
@@ -149,8 +163,10 @@ text: "$TICKER [SEP] title [SEP] ticker fragment [SEP] body" -> FinBERT encoder
       -> heads: H=1,3,5,10 (3 classes each) + auxiliary 4-class post head
 ```
 
-* Loss: influence-weighted cross-entropy with focal term (γ=1.5), label
-  smoothing 0.05, class-balance weights, `λ_class=0.3`.
+* Loss: influence-weighted cross-entropy (label smoothing 0.05, class-balance
+  weights, `λ_class=0.3`), i.e. the TZ §5.3 weighted-CE objective. A separate
+  focal-loss arm (`loss_type=focal`, γ=1.5) is the required comparison; it is
+  reported in the ablation table below, not folded into the headline result.
 * Influence weights (`ANALYSIS_DD=1.0`, `FINANCIAL_CLAIM=0.6`,
   `GENUINE_OPINION/ADVICE=0.5`, `NOISE_MEME=0.1`, `UNCERTAIN=0`) are used only as
   loss weights and ticker-day aggregation weights — **never as inputs**.
@@ -166,16 +182,54 @@ identical before and after calibration).
 
 ### Seeds and ablations
 
-`make experiments` runs seeds 43/44 and the nine pre-registered ablations:
-no influence weight, no ticker fragment, text-only, frozen encoder, no aux loss,
-no NOISE_MEME, no class probabilities, weighted-CE-only (no focal term), and a
-single-horizon (H=5 only) model. `make aggregate` writes
-[`reports/ablations.md`](reports/ablations.md) and
+Three seeds are trained with the full model. Test metrics are calibrated on the
+2024 validation split; mean ± std is the pre-registered headline variability
+estimate.
+
+| seed | macro-F1 | MCC | AUC | ECE | ticker-day F1 |
+|---:|---:|---:|---:|---:|---:|
+| 42 | 0.4302 | 0.1559 | 0.6016 | 0.0665 | 0.4024 |
+| 43 | 0.4124 | 0.1387 | 0.6007 | 0.0762 | 0.4045 |
+| 44 | 0.4399 | 0.1587 | 0.6145 | 0.0590 | 0.4334 |
+| **mean ± std** | **0.4275 ± 0.0140** | **0.1511 ± 0.0109** | **0.6056 ± 0.0077** | **0.0672 ± 0.0086** | **0.4134 ± 0.0173** |
+
+The seed mean still misses the +0.03 margin over B2 (Δ macro-F1 +0.0068,
+Δ MCC +0.0195), so the negative conclusion is not a seed-42 accident.
+
+`make experiments` runs seeds 43/44 and ten ablation arms: no influence weight,
+no ticker fragment, text-only, frozen encoder, no aux loss, no NOISE_MEME, no
+class probabilities, focal loss, single-horizon H=5, plus a weighted-CE
+reproducibility control. Full per-run deltas are in
+[`reports/ablations.md`](reports/ablations.md); the summary is in
 [`reports/seed_summary.json`](reports/seed_summary.json).
 
-`make experiments` with `--preset extra` additionally runs max_len=512 and a
-frozen MiniLM encoder comparison. DeBERTa was not available in the offline model
-cache; this is documented as an open item rather than silently skipped.
+Key ablation findings (seed 42, same test rows unless noted):
+
+* Removing the auxiliary class loss raises MCC by +0.118 but collapses macro-F1
+  by −0.087; it trades FLAT/UP recall for a lopsided classifier, so it is not a
+  better model.
+* Removing class probabilities costs −0.047 MCC, and removing influence weights
+  costs −0.047 macro-F1. Both stage-1 features/weights are doing real work.
+* Text-only costs −0.012 macro-F1 / −0.014 MCC, so market and aggregate
+  features add a small amount, not the whole signal.
+* The single-horizon H=5 model is slightly worse (−0.007 macro-F1, −0.014 MCC),
+  which supports keeping the multi-task heads.
+* The frozen encoder loses −0.035 macro-F1 but gains +0.028 MCC; fine-tuning
+  the last 4 layers helps the class-balanced F1, not every metric.
+* Replacing weighted CE with focal loss (γ=1.5) is slightly worse: −0.0075
+  macro-F1, −0.0169 MCC and −0.0115 ticker-day F1. Weighted CE remains the
+  reference loss.
+* Frozen DeBERTa-v3-small trades macro-F1 for MCC: −0.0647 macro-F1 but +0.0838
+  MCC versus the reference, with UP recall collapsing to 0.038. It does not beat
+  B2 on macro-F1 and is not a better balanced model.
+* No variant beats B2 on **both** macro-F1 and MCC, so none changes the
+  negative headline.
+
+`make experiments --preset extra` also runs max_len=512, a frozen MiniLM
+encoder and a frozen DeBERTa-v3-small encoder. The FinBERT reference remains
+the best macro-F1 encoder; the frozen DeBERTa arm improves MCC but collapses
+toward DOWN (UP recall 0.038) and loses 0.0647 macro-F1. See
+[`reports/ablations.md`](reports/ablations.md) for the comparison table.
 
 ### Walk-forward validation
 
@@ -184,6 +238,13 @@ validation = Y−1, test = Y for Y ∈ {2023, 2024, 2025} with a 10-session
 embargo. One year is held out for early stopping/calibration, so training stops
 at Y−2 instead of the TZ's literal Y−1. The 2025 fold reuses the primary model's
 2025 slice; 2023/2024 are retrained. Results: `reports/walk_forward.md`.
+
+| fold | train | val | test | n | macro-F1 | MCC | AUC | ECE |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|
+| 2023 | 2019–2021 | 2022 | 2023 | 453 | 0.4383 | 0.1740 | 0.5918 | 0.0822 |
+| 2024 | 2019–2022 | 2023 | 2024 | 707 | 0.4241 | 0.1893 | 0.6130 | 0.0275 |
+| 2025 | 2019–2023 | 2024 | 2025 | 662 | 0.4090 | 0.1386 | 0.5855 | 0.0944 |
+| **mean ± std** | | | | | **0.4238 ± 0.0147** | **0.1673 ± 0.0260** | **0.5968 ± 0.0144** | **0.0680 ± 0.0356** |
 
 ---
 
@@ -276,6 +337,7 @@ stocks_predicts/
 │   ├── model_card.md, model_metrics.json, error_analysis.md
 │   ├── leakage_audit.json, ablations.md, seed_summary.json
 │   ├── gold_audit.json, ticker_gold_audit.json, walk_forward.md
+│   ├── classifier_overlap_audit.json
 │   └── runs/<run_id>/        per-run metrics, predictions, cards
 ├── src/
 │   ├── collect_posts.py      corpus construction
@@ -289,6 +351,7 @@ stocks_predicts/
 │   ├── metrics.py            metrics, bootstrap, calibration, aggregation
 │   ├── evaluate.py           evaluation, audit, model card
 │   ├── audit_classifier.py   classifier-vs-manual kappa proxy
+│   ├── audit_classifier_overlap.py  stage-1 classifier / test overlap audit
 │   ├── sample_ticker_gold.py fixed 300-post ticker gold sample
 │   ├── score_ticker_gold.py  ticker precision/recall audit
 │   ├── score_gold_audit.py   human gold-label kappa audit

@@ -64,7 +64,7 @@ Known data gaps:
 
 ## 3. Baselines (test, H=5)
 
-| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE |
+| model | macro-F1 | MCC | AUC | AUC-PR UP | Brier | ECE raw |
 |---|---:|---:|---:|---:|---:|---:|
 | B0 majority/random | 0.1715 | 0.0000 | 0.5000 | 0.3512 | 1.3071 | 0.6535 |
 | B1 TF-IDF + LogReg | 0.3824 | 0.0723 | 0.5703 | 0.3440 | 0.6542 | 0.0976 |
@@ -75,7 +75,10 @@ Known data gaps:
 | B6 class probs only | 0.2549 | −0.0296 | 0.4766 | 0.3566 | 0.6698 | 0.0436 |
 
 B5 is the leakage control. Its MCC 0.127 is close to the full model's 0.156,
-which is the main reason the text signal does not produce a +0.03 gain.
+which is the main reason the text signal does not produce a +0.03 gain. The ECE
+column is raw; after validation-fitted calibration B2 reaches 0.0444 and B5
+0.0579, both better than the model's 0.0665. Calibration is therefore another
+metric where the model does not beat B2.
 
 ---
 
@@ -105,6 +108,86 @@ Per-horizon calibrated:
 Per-year H=5: 2025 macro-F1 0.4090 / MCC 0.1386; 2026 macro-F1 0.4529 /
 MCC 0.1749. Full breakdown in `error_analysis.md` and `model_metrics.json`.
 
+### 4.1 Seed variability
+
+| seed | macro-F1 | MCC | AUC | ECE | ticker-day F1 |
+|---:|---:|---:|---:|---:|---:|
+| 42 | 0.4302 | 0.1559 | 0.6016 | 0.0665 | 0.4024 |
+| 43 | 0.4124 | 0.1387 | 0.6007 | 0.0762 | 0.4045 |
+| 44 | 0.4399 | 0.1587 | 0.6145 | 0.0590 | 0.4334 |
+| **mean ± std** | **0.4275 ± 0.0140** | **0.1511 ± 0.0109** | **0.6056 ± 0.0077** | **0.0672 ± 0.0086** | **0.4134 ± 0.0173** |
+
+The seed mean is +0.0068 macro-F1 / +0.0195 MCC over B2, still below +0.03.
+Seed 44 has the best single run (+0.0192 / +0.0271), still below the margin.
+The negative result is not a seed-42 accident.
+
+### 4.2 Walk-forward validation
+
+Scheme: train ≤ Y−2, validation = Y−1, test = Y, 10-session embargo. One year
+is reserved for early stopping and temperature scaling, so training stops at
+Y−2 (the TZ's optional scheme says train ≤ Y−1).
+
+| fold | train | val | test | n | macro-F1 | MCC | balanced acc | AUC | ECE |
+|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 2023 | 2019–2021 | 2022 | 2023 | 453 | 0.4383 | 0.1740 | 0.4429 | 0.5918 | 0.0822 |
+| 2024 | 2019–2022 | 2023 | 2024 | 707 | 0.4241 | 0.1893 | 0.4380 | 0.6130 | 0.0275 |
+| 2025 | 2019–2023 | 2024 | 2025 | 662 | 0.4090 | 0.1386 | 0.4087 | 0.5855 | 0.0944 |
+| **mean ± std** | | | | | **0.4238 ± 0.0147** | **0.1673 ± 0.0260** | **0.4299 ± 0.0185** | **0.5968 ± 0.0144** | **0.0680 ± 0.0356** |
+
+Fold metrics are not used for model selection. The 2025 fold reuses the primary
+model's 2025 slice because its boundaries already match the fold definition.
+
+### 4.3 Loss comparison (TZ §5.3)
+
+The reference objective is influence-weighted cross-entropy (label smoothing
+0.05, class-balance weights, `λ_class=0.3`). A focal-loss arm was retrained from
+scratch with the same seed, data, frozen layers and schedule, changing only
+`loss_type=focal` with `γ=1.5`:
+
+| run | loss | macro-F1 | Δ | MCC | Δ | AUC | ECE | ticker-day F1 | Δ |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| `finbert_h5_seed42` | weighted CE | 0.4302 | — | 0.1559 | — | 0.6016 | 0.0665 | 0.4024 | — |
+| `ablate_focal_loss_seed42` | focal, γ=1.5 | 0.4227 | −0.0075 | 0.1390 | −0.0169 | 0.6019 | 0.0753 | 0.3910 | −0.0115 |
+
+Focal loss is worse on macro-F1, MCC, ticker-day F1 and ECE; its AUC is
+statistically indistinguishable (+0.0003). Weighted CE therefore remains the
+reference loss. The `ablate_weighted_ce_only_seed42` control reproduces the
+reference exactly (Δ macro-F1 0.0000, Δ MCC 0.0000), confirming that the focal
+difference is not run-to-run noise.
+
+### 4.4 Encoder and input length (single seed)
+
+| run | encoder | max_len | macro-F1 | Δ | MCC | Δ | AUC | ECE |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| `finbert_h5_seed42` | FinBERT, 8/12 frozen | 256 | 0.4302 | — | 0.1559 | — | 0.6016 | 0.0665 |
+| `finbert_h5_maxlen512_seed42` | FinBERT, 8/12 frozen | 512 | 0.4087 | −0.0215 | 0.1561 | +0.0002 | 0.6037 | 0.0522 |
+| `minilm_frozen_h5_seed42` | MiniLM-L6-v2, frozen | 256 | 0.4048 | −0.0253 | 0.1286 | −0.0273 | 0.6008 | 0.0616 |
+| `deberta_v3_small_frozen_h5_seed42` | DeBERTa-v3-small, frozen | 256 | 0.3655 | −0.0647 | 0.2397 | +0.0838 | 0.6062 | 0.0550 |
+
+Increasing `max_len` to 512 does not improve ranking (MCC +0.0002, AUC +0.0021)
+and costs 0.0215 macro-F1; it does improve ECE to 0.0522. The frozen MiniLM
+comparison is 0.0253 macro-F1 / 0.0273 MCC below the reference, so most of the
+signal comes from the task-tuned FinBERT initialization rather than from the
+fusion head alone.
+
+The frozen DeBERTa arm shows the opposite trade-off: it gains +0.0838 MCC and
+improves ECE by 0.0115 relative to the reference, but loses 0.0647 macro-F1 and
+0.0529 ticker-day F1. Its test predictions collapse toward DOWN (UP recall
+0.038, confusion matrix row UP → 361 DOWN / 68 FLAT / 17 UP), and validation MCC
+selected epoch 1 as "best". Against B2 the paired deltas are Δ macro-F1 −0.0564
+[−0.1047, −0.0051] and Δ MCC +0.1060 [+0.0282, +0.1846], so it still fails the
+joint +0.03 macro-F1 requirement. It is not a better balanced model.
+
+The first DeBERTa attempt produced `NaN` training loss because
+`freeze_layers=12` did not freeze all encoder parameters: DeBERTa keeps
+`encoder.rel_embeddings` and a final `encoder.LayerNorm` outside
+`encoder.layer`. The model now freezes the entire encoder when
+`freeze_layers >= n_layers`; the rerun had finite loss in every epoch. The old
+`NaN` checkpoint remains quarantined under `experiment_state/partial_runs/`.
+
+These encoder/length comparisons are single-seed and were not used for model
+selection.
+
 ---
 
 ## 5. Calibration
@@ -131,8 +214,21 @@ were not used for the headline result.
 | post IDs shared train/test | 0 |
 | shuffled-label AUC | 0.4969 ± 0.0153 |
 | class-prob mutual information with direction | 0.1158 total (GENUINE_OPINION 0.0520 largest) |
+| stage-1 classifier overlap with direction test | 373 / 463 manual test posts (80.6%) seen during classifier training |
+| clean-subset sensitivity (classifier-unseen posts) | macro-F1 0.4384, MCC 0.1642; Δ vs B2 +0.0081 / +0.0193, CIs include 0 |
+| strict manual-only held-out subset (121 rows / 90 posts) | macro-F1 0.3955, MCC 0.0774; Δ vs B2 −0.0033 / −0.0022, CIs include 0 |
 | temporal split | train 2019–2023, val 2024, test 2025–2026 |
 | embargo | 10 sessions; non-purged train/val exits checked against cutoffs |
+
+Residual risk: the frozen stage-1 classifier used a random 80/20 split over all
+years, so most manual test posts were seen during classifier training. Its class
+probabilities are model inputs (and B6), so this is auxiliary-label leakage. The
+clean subset — classifier-held-out manual posts plus classifier-prelabelled
+posts — gives macro-F1 0.4384 / MCC 0.1642 and still misses the +0.03 margin,
+so the negative verdict does not depend on this path. The stricter manual-only
+held-out subset is small (121 rows / 90 posts) and shows no positive effect
+either (Δ macro-F1 −0.0033, Δ MCC −0.0022, both CIs include zero). Full report:
+`classifier_overlap_audit.json`.
 
 Residual risk: Reddit edit history is not available from the Arctic Shift
 snapshot, so a post could have been edited after publication. Scores and comment
@@ -169,6 +265,14 @@ no execution model make this a sanity check only.
    effective sample.
 5. The pre-registered protocol forbids test-set threshold tuning, which is the
    main reason the +0.03 margin was not chased.
+6. The stage-1 classifier's random split overlaps most manual test posts; the
+   clean-subset check still misses the margin, so this residual leakage is not
+   what creates or hides the main effect.
+7. Validation-MCC early stopping is sensitive to class collapse: the frozen
+   DeBERTa arm selected epoch 1 (validation MCC 0.2557) and then predicted DOWN
+   for 361 of 446 true-UP test rows, so its test MCC 0.2397 came with macro-F1
+   0.3655. The primary FinBERT run does not show this pattern, but the
+   comparison shows why MCC alone is not sufficient.
 
 Legitimate next steps: human-audited class labels, walk-forward retraining,
 learned attention aggregation, longer context, and a larger/delisted universe.
@@ -189,6 +293,7 @@ learned attention aggregation, longer context, and a larger/delisted universe.
 | seeds/ablations | `ablations.md`, `seed_summary.json` |
 | walk-forward | `walk_forward.md`, `walk_forward.json` |
 | classifier proxy audit | `classifier_audit_proxy.json` |
+| classifier / test overlap audit | `classifier_overlap_audit.json` |
 | gold class-label audit | `gold_audit.json` (status: blocked until human labels exist) |
 | ticker precision/recall audit | `ticker_gold_audit.json` (status: blocked until human labels exist) |
 | per-run predictions | `runs/<run_id>/model_predictions.parquet`, `ticker_day_predictions.parquet` |

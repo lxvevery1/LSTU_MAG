@@ -1,0 +1,99 @@
+[
+  {
+    "run_id": "ablate_weighted_ce_only_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "weighted_ce_only",
+    "seconds": 11000.4
+  },
+  {
+    "run_id": "ablate_single_horizon_h5_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "single_horizon_h5",
+    "seconds": 10857.7
+  },
+  {
+    "run_id": "finbert_h5_seed43",
+    "status": "done",
+    "kind": "seed",
+    "name": null,
+    "seconds": 11041.6
+  },
+  {
+    "run_id": "finbert_h5_seed44",
+    "status": "done",
+    "kind": "seed",
+    "name": null,
+    "seconds": 10950.0
+  },
+  {
+    "run_id": "ablate_no_aux_loss_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "no_aux_loss",
+    "seconds": 11070.0
+  },
+  {
+    "run_id": "ablate_no_noise_meme_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "no_noise_meme",
+    "seconds": 7604.2
+  },
+  {
+    "run_id": "ablate_no_class_probs_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "no_class_probs",
+    "seconds": 7076.0
+  },
+  {
+    "run_id": "ablate_no_influence_weight_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "no_influence_weight",
+    "seconds": 11078.3
+  },
+  {
+    "run_id": "ablate_no_ticker_fragment_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "no_ticker_fragment",
+    "seconds": 10949.3
+  },
+  {
+    "run_id": "ablate_text_only_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "text_only",
+    "seconds": 4628.0
+  },
+  {
+    "run_id": "ablate_frozen_encoder_seed42",
+    "status": "done",
+    "kind": "ablation",
+    "name": "frozen_encoder",
+    "seconds": 941.2
+  },
+  {
+    "run_id": "finbert_h5_maxlen512_seed42",
+    "status": "done",
+    "kind": "encoder_or_length",
+    "name": "max_len_512",
+    "seconds": 9607.2
+  },
+  {
+    "run_id": "minilm_frozen_h5_seed42",
+    "status": "done",
+    "kind": "encoder_or_length",
+    "name": "minilm_frozen",
+    "seconds": 237.6
+  },
+  {
+    "run_id": "deberta_v3_small_frozen_h5_seed42",
+    "status": "train_failed",
+    "kind": "encoder_or_length",
+    "name": "deberta_v3_small_frozen"
+  }
+]

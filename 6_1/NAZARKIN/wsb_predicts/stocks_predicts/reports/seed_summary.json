@@ -1,5 +1,5 @@
 {
-  "n_runs": 14,
+  "n_runs": 16,
   "seeds": {
     "runs": [
       "finbert_h5_seed42",
@@ -110,6 +110,31 @@
     }
   },
   "ablations": {
+    "ablate_focal_loss_seed42": {
+      "metrics": {
+        "n": 1270,
+        "macro_f1": 0.42265455175354766,
+        "mcc": 0.13901000400194916,
+        "accuracy": 0.4220472440944882,
+        "auc": 0.6019451873970213,
+        "auc_pr_up": 0.38746906797051484,
+        "brier": 0.5953309791750022,
+        "ece": 0.07532992211260253,
+        "ticker_day_macro_f1": 0.390953947368421,
+        "ticker_day_mcc": 0.10379521659888209,
+        "ticker_day_auc": 0.5868131287385844,
+        "ece_nll_temperature": 0.9056861008732888,
+        "run_id": "ablate_focal_loss_seed42"
+      },
+      "delta_vs_seed42": {
+        "macro_f1": -0.0075187230725324294,
+        "mcc": -0.016901676056912812,
+        "auc": 0.00031117326854490646,
+        "ece": 0.008828749345795847,
+        "ticker_day_macro_f1": -0.011462330839354773,
+        "ticker_day_mcc": -0.024654599122155826
+      }
+    },
     "ablate_frozen_encoder_seed42": {
       "metrics": {
         "n": 1270,
@@ -337,6 +362,21 @@
     }
   },
   "extra": {
+    "deberta_v3_small_frozen_h5_seed42": {
+      "n": 1270,
+      "macro_f1": 0.3654756364350141,
+      "mcc": 0.23967146651594895,
+      "accuracy": 0.4322834645669291,
+      "auc": 0.6062488150398132,
+      "auc_pr_up": 0.3741681253942263,
+      "brier": 0.5985724774943485,
+      "ece": 0.05500475079746027,
+      "ticker_day_macro_f1": 0.349534500676478,
+      "ticker_day_mcc": 0.21250637193831434,
+      "ticker_day_auc": 0.5896495945104311,
+      "ece_nll_temperature": 0.8040751853969802,
+      "run_id": "deberta_v3_small_frozen_h5_seed42"
+    },
     "finbert_h5_maxlen512_seed42": {
       "n": 1270,
       "macro_f1": 0.4086703820911351,
