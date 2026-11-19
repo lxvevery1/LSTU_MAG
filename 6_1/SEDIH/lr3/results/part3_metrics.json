@@ -1,0 +1,20 @@
+{
+  "V1": {
+    "Accuracy": 0.6,
+    "Refusal Rate": 0.2,
+    "Faithfulness": 0.44361111111111107,
+    "seconds": 1488.2
+  },
+  "V2": {
+    "Accuracy": 0.3,
+    "Refusal Rate": 0.8,
+    "Faithfulness": 0.5375,
+    "seconds": 1365.3
+  },
+  "V3": {
+    "Accuracy": 0.3,
+    "Refusal Rate": 1.0,
+    "Faithfulness": 0.2166666666666667,
+    "seconds": 1407.5
+  }
+}

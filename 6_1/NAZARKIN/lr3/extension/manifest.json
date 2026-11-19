@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "WSB Thread Radar",
+  "version": "1.0.0",
+  "description": "Семантический поиск и LLM-ассистент для мониторинга тредов r/WallStreetBets.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "background": {
+      "scripts": ["background.js"]
+  },
+  "action": {
+    "default_title": "WSB Thread Radar — настройки"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.reddit.com/*",
+        "*://reddit.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["panel.css"],
+      "matches": [
+        "*://*.reddit.com/*",
+        "*://reddit.com/*"
+      ]
+    }
+  ]
+}

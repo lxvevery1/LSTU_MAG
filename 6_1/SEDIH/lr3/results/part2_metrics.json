@@ -1,0 +1,451 @@
+{
+  "variant": 16,
+  "seed": 42,
+  "n_docs": 300,
+  "n_pages": 42,
+  "page_tokens": 1024,
+  "configs": {
+    "S": {
+      "chunk_size": 128,
+      "overlap": 0.0,
+      "Recall@5": 0.9,
+      "MRR@5": 0.8416666666666666,
+      "чанков": 414,
+      "секунд": 131.5
+    },
+    "M": {
+      "chunk_size": 256,
+      "overlap": 0.1,
+      "Recall@5": 0.9,
+      "MRR@5": 0.7366666666666667,
+      "чанков": 233,
+      "секунд": 130.6
+    },
+    "L": {
+      "chunk_size": 512,
+      "overlap": 0.2,
+      "Recall@5": 0.9,
+      "MRR@5": 0.825,
+      "чанков": 134,
+      "секунд": 156.2
+    }
+  },
+  "best": "S",
+  "worst": "M",
+  "queries": [
+    {
+      "query": "Chevy Sprint oxygen sensor replacement",
+      "doc_id": 238,
+      "kind": "short"
+    },
+    {
+      "query": "1972 Yamaha XS-2 650 for sale",
+      "doc_id": 69,
+      "kind": "short"
+    },
+    {
+      "query": "pitcher 20 seconds to pitch rule",
+      "doc_id": 93,
+      "kind": "short"
+    },
+    {
+      "query": "Dale Hunter third goal 2.7 seconds",
+      "doc_id": 176,
+      "kind": "short"
+    },
+    {
+      "query": "Mercedes sport utility 1997 price",
+      "doc_id": 256,
+      "kind": "short"
+    },
+    {
+      "query": "What does the Limited Tort Option mean for my car insurance and will choosing it lower my rates?",
+      "doc_id": 60,
+      "kind": "long"
+    },
+    {
+      "query": "Can I use a 12 volt halogen lamp power supply to trickle charge the battery on my Honda CB650?",
+      "doc_id": 87,
+      "kind": "long"
+    },
+    {
+      "query": "Which Jewish players are in the Baseball Hall of Fame according to the list in the post?",
+      "doc_id": 280,
+      "kind": "long"
+    },
+    {
+      "query": "Which teams from pool B and pool C are playing for the last Olympic spot next fall?",
+      "doc_id": 132,
+      "kind": "long"
+    },
+    {
+      "query": "How much does a fully loaded Saturn SL2 cost compared with a fully loaded Ford Taurus LX?",
+      "doc_id": 26,
+      "kind": "long"
+    },
+    {
+      "query": "vehicle air conditioning built around a rotary compressor instead of freon",
+      "doc_id": 24,
+      "kind": "synonym"
+    },
+    {
+      "query": "product that keeps a motorcycle chain clean and well lubricated",
+      "doc_id": 254,
+      "kind": "synonym"
+    },
+    {
+      "query": "swap that sent Milt Pappas away in exchange for Frank Robinson",
+      "doc_id": 170,
+      "kind": "synonym"
+    },
+    {
+      "query": "Winnipeg captains who were traded to other clubs",
+      "doc_id": 125,
+      "kind": "synonym"
+    },
+    {
+      "query": "how to adjust a passenger helmet that is too loose using foam padding",
+      "doc_id": 122,
+      "kind": "synonym"
+    },
+    {
+      "query": "Cnosume reRprots crahs test cmpoarison",
+      "doc_id": 208,
+      "kind": "typo"
+    },
+    {
+      "query": "Honda Asoct TF500 ebginner motorcycle",
+      "doc_id": 20,
+      "kind": "typo"
+    },
+    {
+      "query": "striek zone any part of the ball",
+      "doc_id": 111,
+      "kind": "typo"
+    },
+    {
+      "query": "HL Nplyaoff rseults pAril 19 1993",
+      "doc_id": 184,
+      "kind": "typo"
+    },
+    {
+      "query": "Passat super uneldaed gsaoilen",
+      "doc_id": 290,
+      "kind": "typo"
+    }
+  ],
+  "per_query": {
+    "S": [
+      {
+        "query": "Chevy Sprint oxygen sensor replacement",
+        "doc_id": 238,
+        "rank": 0
+      },
+      {
+        "query": "1972 Yamaha XS-2 650 for sale",
+        "doc_id": 69,
+        "rank": 0
+      },
+      {
+        "query": "pitcher 20 seconds to pitch rule",
+        "doc_id": 93,
+        "rank": 0
+      },
+      {
+        "query": "Dale Hunter third goal 2.7 seconds",
+        "doc_id": 176,
+        "rank": 0
+      },
+      {
+        "query": "Mercedes sport utility 1997 price",
+        "doc_id": 256,
+        "rank": 0
+      },
+      {
+        "query": "What does the Limited Tort Option mean for my car insurance and will choosing it lower my rates?",
+        "doc_id": 60,
+        "rank": 0
+      },
+      {
+        "query": "Can I use a 12 volt halogen lamp power supply to trickle charge the battery on my Honda CB650?",
+        "doc_id": 87,
+        "rank": 0
+      },
+      {
+        "query": "Which Jewish players are in the Baseball Hall of Fame according to the list in the post?",
+        "doc_id": 280,
+        "rank": 1
+      },
+      {
+        "query": "Which teams from pool B and pool C are playing for the last Olympic spot next fall?",
+        "doc_id": 132,
+        "rank": 0
+      },
+      {
+        "query": "How much does a fully loaded Saturn SL2 cost compared with a fully loaded Ford Taurus LX?",
+        "doc_id": 26,
+        "rank": 0
+      },
+      {
+        "query": "vehicle air conditioning built around a rotary compressor instead of freon",
+        "doc_id": 24,
+        "rank": 0
+      },
+      {
+        "query": "product that keeps a motorcycle chain clean and well lubricated",
+        "doc_id": 254,
+        "rank": 2
+      },
+      {
+        "query": "swap that sent Milt Pappas away in exchange for Frank Robinson",
+        "doc_id": 170,
+        "rank": 0
+      },
+      {
+        "query": "Winnipeg captains who were traded to other clubs",
+        "doc_id": 125,
+        "rank": null
+      },
+      {
+        "query": "how to adjust a passenger helmet that is too loose using foam padding",
+        "doc_id": 122,
+        "rank": 0
+      },
+      {
+        "query": "Cnosume reRprots crahs test cmpoarison",
+        "doc_id": 208,
+        "rank": null
+      },
+      {
+        "query": "Honda Asoct TF500 ebginner motorcycle",
+        "doc_id": 20,
+        "rank": 0
+      },
+      {
+        "query": "striek zone any part of the ball",
+        "doc_id": 111,
+        "rank": 0
+      },
+      {
+        "query": "HL Nplyaoff rseults pAril 19 1993",
+        "doc_id": 184,
+        "rank": 0
+      },
+      {
+        "query": "Passat super uneldaed gsaoilen",
+        "doc_id": 290,
+        "rank": 0
+      }
+    ],
+    "M": [
+      {
+        "query": "Chevy Sprint oxygen sensor replacement",
+        "doc_id": 238,
+        "rank": 0
+      },
+      {
+        "query": "1972 Yamaha XS-2 650 for sale",
+        "doc_id": 69,
+        "rank": 0
+      },
+      {
+        "query": "pitcher 20 seconds to pitch rule",
+        "doc_id": 93,
+        "rank": 0
+      },
+      {
+        "query": "Dale Hunter third goal 2.7 seconds",
+        "doc_id": 176,
+        "rank": 4
+      },
+      {
+        "query": "Mercedes sport utility 1997 price",
+        "doc_id": 256,
+        "rank": 0
+      },
+      {
+        "query": "What does the Limited Tort Option mean for my car insurance and will choosing it lower my rates?",
+        "doc_id": 60,
+        "rank": 0
+      },
+      {
+        "query": "Can I use a 12 volt halogen lamp power supply to trickle charge the battery on my Honda CB650?",
+        "doc_id": 87,
+        "rank": 0
+      },
+      {
+        "query": "Which Jewish players are in the Baseball Hall of Fame according to the list in the post?",
+        "doc_id": 280,
+        "rank": 1
+      },
+      {
+        "query": "Which teams from pool B and pool C are playing for the last Olympic spot next fall?",
+        "doc_id": 132,
+        "rank": 0
+      },
+      {
+        "query": "How much does a fully loaded Saturn SL2 cost compared with a fully loaded Ford Taurus LX?",
+        "doc_id": 26,
+        "rank": 0
+      },
+      {
+        "query": "vehicle air conditioning built around a rotary compressor instead of freon",
+        "doc_id": 24,
+        "rank": 0
+      },
+      {
+        "query": "product that keeps a motorcycle chain clean and well lubricated",
+        "doc_id": 254,
+        "rank": 0
+      },
+      {
+        "query": "swap that sent Milt Pappas away in exchange for Frank Robinson",
+        "doc_id": 170,
+        "rank": 0
+      },
+      {
+        "query": "Winnipeg captains who were traded to other clubs",
+        "doc_id": 125,
+        "rank": 2
+      },
+      {
+        "query": "how to adjust a passenger helmet that is too loose using foam padding",
+        "doc_id": 122,
+        "rank": 4
+      },
+      {
+        "query": "Cnosume reRprots crahs test cmpoarison",
+        "doc_id": 208,
+        "rank": null
+      },
+      {
+        "query": "Honda Asoct TF500 ebginner motorcycle",
+        "doc_id": 20,
+        "rank": null
+      },
+      {
+        "query": "striek zone any part of the ball",
+        "doc_id": 111,
+        "rank": 1
+      },
+      {
+        "query": "HL Nplyaoff rseults pAril 19 1993",
+        "doc_id": 184,
+        "rank": 0
+      },
+      {
+        "query": "Passat super uneldaed gsaoilen",
+        "doc_id": 290,
+        "rank": 0
+      }
+    ],
+    "L": [
+      {
+        "query": "Chevy Sprint oxygen sensor replacement",
+        "doc_id": 238,
+        "rank": 0
+      },
+      {
+        "query": "1972 Yamaha XS-2 650 for sale",
+        "doc_id": 69,
+        "rank": 0
+      },
+      {
+        "query": "pitcher 20 seconds to pitch rule",
+        "doc_id": 93,
+        "rank": 0
+      },
+      {
+        "query": "Dale Hunter third goal 2.7 seconds",
+        "doc_id": 176,
+        "rank": 0
+      },
+      {
+        "query": "Mercedes sport utility 1997 price",
+        "doc_id": 256,
+        "rank": 0
+      },
+      {
+        "query": "What does the Limited Tort Option mean for my car insurance and will choosing it lower my rates?",
+        "doc_id": 60,
+        "rank": 0
+      },
+      {
+        "query": "Can I use a 12 volt halogen lamp power supply to trickle charge the battery on my Honda CB650?",
+        "doc_id": 87,
+        "rank": 0
+      },
+      {
+        "query": "Which Jewish players are in the Baseball Hall of Fame according to the list in the post?",
+        "doc_id": 280,
+        "rank": 3
+      },
+      {
+        "query": "Which teams from pool B and pool C are playing for the last Olympic spot next fall?",
+        "doc_id": 132,
+        "rank": 0
+      },
+      {
+        "query": "How much does a fully loaded Saturn SL2 cost compared with a fully loaded Ford Taurus LX?",
+        "doc_id": 26,
+        "rank": 0
+      },
+      {
+        "query": "vehicle air conditioning built around a rotary compressor instead of freon",
+        "doc_id": 24,
+        "rank": 0
+      },
+      {
+        "query": "product that keeps a motorcycle chain clean and well lubricated",
+        "doc_id": 254,
+        "rank": null
+      },
+      {
+        "query": "swap that sent Milt Pappas away in exchange for Frank Robinson",
+        "doc_id": 170,
+        "rank": 0
+      },
+      {
+        "query": "Winnipeg captains who were traded to other clubs",
+        "doc_id": 125,
+        "rank": 3
+      },
+      {
+        "query": "how to adjust a passenger helmet that is too loose using foam padding",
+        "doc_id": 122,
+        "rank": 0
+      },
+      {
+        "query": "Cnosume reRprots crahs test cmpoarison",
+        "doc_id": 208,
+        "rank": null
+      },
+      {
+        "query": "Honda Asoct TF500 ebginner motorcycle",
+        "doc_id": 20,
+        "rank": 0
+      },
+      {
+        "query": "striek zone any part of the ball",
+        "doc_id": 111,
+        "rank": 0
+      },
+      {
+        "query": "HL Nplyaoff rseults pAril 19 1993",
+        "doc_id": 184,
+        "rank": 0
+      },
+      {
+        "query": "Passat super uneldaed gsaoilen",
+        "doc_id": 290,
+        "rank": 0
+      }
+    ]
+  },
+  "case": {
+    "query": "Honda Asoct TF500 ebginner motorcycle",
+    "doc_id": 20,
+    "best": "S",
+    "worst": "M"
+  }
+}

@@ -1,0 +1,20 @@
+# окружение
+.venv/
+__pycache__/
+*.pyc
+
+# сырые и производные данные (скачиваются скриптом)
+data/raw/
+data/processed/
+models/*.task
+
+# тяжёлые артефакты экспериментов
+results/preds/
+results/renders/
+
+# сборка LaTeX
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.synctex.gz

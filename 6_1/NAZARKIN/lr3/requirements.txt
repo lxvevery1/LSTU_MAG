@@ -1,0 +1,6 @@
+faiss-cpu>=1.8
+sentence-transformers>=6.2,<7
+transformers>=5.0
+huggingface-hub>=1.5,<2
+torch>=2.2
+numpy>=1.26

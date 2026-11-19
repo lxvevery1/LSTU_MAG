@@ -1,0 +1,10 @@
+\xpg@aux {}{russian}
+\contentsline {section}{\numberline {1}Задание}{3}{section.1}%
+\contentsline {section}{\numberline {2}Ход работы}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Часть 1. Классификация: без обучения и с дообучением}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Часть 2. Поиск: влияние размера чанка}{7}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Часть 3. RAG: итеративное улучшение промпта}{11}{subsection.2.3}%
+\contentsline {section}{\numberline {3}AI Audit}{15}{section.3}%
+\contentsline {section}{\numberline {4}Воспроизводимость}{16}{section.4}%
+\contentsline {section}{\numberline {5}Вывод}{16}{section.5}%
+\contentsline {section}{\numberline {A}Сводный Experiment Log}{18}{appendix.A}%
