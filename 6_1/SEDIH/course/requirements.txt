@@ -1,0 +1,7 @@
+# python >= 3.10 (проверено на 3.14)
+mediapipe==1.2.3        # Tasks API: HandLandmarker, PoseLandmarker; тянет opencv-contrib-python
+numpy
+matplotlib
+pandas
+tqdm
+requests
