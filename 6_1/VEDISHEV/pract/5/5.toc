@@ -1,0 +1,6 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Эффективное планирование и управление потоком изменений.}{3}{section.1}%
+\contentsline {section}{\numberline {2}Управление рисками, связанными с изменением услуг.}{4}{section.2}%
+\contentsline {section}{\numberline {3}Успешное внедрение изменений, отражающих новые требования бизнеса.}{6}{section.3}%
+\contentsline {section}{\numberline {4}Обеспечение качественных и актуальных знаний и информации по инфраструктуре и услугам.}{7}{section.4}%
+\contentsline {section}{\numberline {5}Контроль за используемыми сервисными активами.}{9}{section.5}%
